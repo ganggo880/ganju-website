@@ -1,9 +1,10 @@
-# Matt Pocock Skills
+# 港居不動產開發有限公司 專案指引 (CLAUDE.md)
 
-## 專案說明
-本專案為 Matt Pocock 開源之 AI Agent 技能集（Agent Skills），收錄適用於各類 AI Coding Agent (如 Claude Code, Codex, Antigravity) 的結構化開發指引與工作流。
+## 1. 專案說明與三處同步對照表
 
-## 三處同步對照表
+本專案為「港居不動產開發有限公司」品牌官方網站、包租代管業務運作與 AI Agent 技能集之核心專案。
+
+### 三處同步對照表
 | 項目 | 路徑 / URL |
 |---|---|
 | **本地專案路徑** | `g:\我的雲端硬碟\ai agent\Matt Pocock skills` |
@@ -11,6 +12,29 @@
 | **Obsidian 資料夾路徑** | `g:\我的雲端硬碟\ai agent\Matt Pocock skills\obsidian` |
 
 ---
+
+## 2. 開發與運作指引
+
+- **檔案歸檔規範**：所有新產出的檔案、講義或試卷，統一存放在 `output/` 資料夾中。
+- **語言與語氣**：一律使用繁體中文（台灣），語氣親切專業。
+- **UI/UX 設計規範**：網頁與視覺設計優先採用響應式設計（RWD），具備良好留白與清晰動線。
+- **安全性**：敏感資訊（API 金鑰等）絕對不可 commit 進版本控制。
+
+---
+
+## 3. Obsidian 第二大腦結構 (Karpathy 三層式)
+
+| 資料夾 | 用途 | 說明 / 存放內容 |
+|---|---|---|
+| `obsidian/Clippings/` | 輸入 | 透過 Web Clipper 剪藏的不動產文章、法規案例與參考資料 |
+| `obsidian/知識庫/` | 消化 | AI 自動提煉與整理的結構化知識庫 (包含 `index.md` 與 `log.md`) |
+| `obsidian/創作庫/` | 輸出 | 代管/包租業務合約範本、招租企劃、教材與管理報告 |
+| `obsidian/每日筆記/` | 時間管理 | 每日工作紀錄、週計畫與每週知識重整週報 |
+| `obsidian/Templates/` | 模板 | 各類筆記與週計畫標準格式 |
+
+---
+
+## 4. Agent Skills 技能架構說明
 
 Skills are organized into bucket folders under `skills/`:
 
@@ -20,19 +44,3 @@ Skills are organized into bucket folders under `skills/`:
 - `personal/` — tied to my own setup, not promoted
 - `in-progress/` — drafts not yet ready to ship
 - `deprecated/` — no longer used
-
-Every skill in `engineering/` or `productivity/` (the **promoted** buckets) must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`'s `skills` array (the Claude Code plugin ships exactly the promoted set). Skills in `misc/`, `personal/`, `in-progress/`, and `deprecated/` must not appear in either.
-
-The repo is also its own single-plugin Claude Code marketplace: `.claude-plugin/marketplace.json` lists the one `mattpocock-skills` plugin. When bumping the release version, keep `.claude-plugin/plugin.json`'s `version` in sync with `package.json`'s — Claude uses the plugin `version` to decide when installed users see an update. Run `claude plugin validate . --strict` after touching either manifest. Why a Claude plugin but not (yet) a Codex one lives in [.agents/adr/0002-ship-as-a-claude-code-plugin.md](./.agents/adr/0002-ship-as-a-claude-code-plugin.md).
-
-Each skill entry in the top-level `README.md` must link the skill name to its `SKILL.md`.
-
-Each bucket folder has a `README.md` that lists every skill in the bucket with a one-line description, with the skill name linked to its `SKILL.md`. The promoted buckets' `README.md`s and the top-level `README.md` group entries into **User-invoked** and **Model-invoked**; non-promoted bucket `README.md`s (`misc/`, `personal/`) use a flat list.
-
-Skills in `engineering/` and `productivity/` also have a human-facing docs page at `docs/<bucket>/<skill-name>.md` (the docs tree mirrors those two bucket folders under `skills/`). The published URL is `https://aihero.dev/skills-<skill-name>` regardless of bucket — the docs path is repo organisation only. When you add, rename, or change the behaviour of a skill in `engineering/` or `productivity/`, create or re-sync its docs page following [.agents/writing-docs.md](./.agents/writing-docs.md). Skills in the non-promoted buckets (`misc/`, `personal/`, `in-progress/`, `deprecated/`) get **no** docs page.
-
-Every `SKILL.md` is either user-invoked (`disable-model-invocation: true` plus `policy.allow_implicit_invocation: false` in `agents/openai.yaml`, reachable only by the human) or model-invoked (model- or user-reachable). See [.agents/invocation.md](./.agents/invocation.md).
-
-[`ask-matt`](./skills/engineering/ask-matt/SKILL.md) is the router that maps every user-reachable skill and how they relate. The same trigger that re-syncs a docs page applies to it: whenever you add, rename, remove, or change how a user-reachable skill fits the flows, re-read `ask-matt`'s `SKILL.md` and update it so the map stays accurate — a new skill it never mentions, or a stale one it still routes to, is a router that lies.
-
-To (re)link every skill into the local harness skill directories (`~/.claude/skills`, `~/.agents/skills`), run `scripts/link-skills.sh`. Each entry is a symlink into this repo, so a `git pull` keeps installed skills current; re-run the script after adding, removing, or renaming a skill.
