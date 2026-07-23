@@ -1,1 +1,12 @@
 node_modules
+
+# OS & Editor temp files
+.DS_Store
+Thumbs.db
+*.tmp
+.vscode/
+.idea/
+
+# Obsidian workspace
+.obsidian/workspace*
+.obsidian/cache

@@ -1,3 +1,17 @@
+# Matt Pocock Skills
+
+## 專案說明
+本專案為 Matt Pocock 開源之 AI Agent 技能集（Agent Skills），收錄適用於各類 AI Coding Agent (如 Claude Code, Codex, Antigravity) 的結構化開發指引與工作流。
+
+## 三處同步對照表
+| 項目 | 路徑 / URL |
+|---|---|
+| **本地專案路徑** | `g:\我的雲端硬碟\ai agent\Matt Pocock skills` |
+| **GitHub 倉庫 URL** | `https://github.com/mattpocock/skills.git` |
+| **Obsidian 資料夾路徑** | `g:\我的雲端硬碟\ai agent\Matt Pocock skills\obsidian` |
+
+---
+
 Skills are organized into bucket folders under `skills/`:
 
 - `engineering/` — daily code work
