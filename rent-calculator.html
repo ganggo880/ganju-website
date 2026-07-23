@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>租金換算工具｜港居不動產包租代管專用</title>
+  <meta name="description" content="港居不動產包租代管專用日租金換算工具，支援固定30天、當月實際天數、自訂基準、跨月起迄區間與包租代管服務費拆分計算。">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="租金換算工具｜港居不動產包租代管專用">
+  <meta property="og:description" content="精確計算日租金、跨月不足月租金及代管服務費拆分。港居不動產貼心提供。">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="rent-calc.css">
+</head>
+<body>
+  <!-- Background Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <a href="index.html" class="logo" title="港居不動產首頁">
+        <svg viewBox="0 0 120 75" class="logo-svg" xmlns="http://www.w3.org/2000/svg">
+          <!-- Blue horizontal ring/ellipse -->
+          <ellipse cx="60" cy="40" rx="42" ry="12" fill="none" stroke="#112F8B" stroke-width="6"/>
+          <!-- Letters in the center -->
+          <text x="34" y="44" font-family="'Noto Sans TC', sans-serif" font-weight="900" font-size="24" fill="#112F8B" style="letter-spacing: -2px;">港</text>
+          <text x="58" y="44" font-family="'Noto Sans TC', sans-serif" font-weight="900" font-size="24" fill="#BA1E1E" style="letter-spacing: -2px;">居</text>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-subtitle">Harbor Residence Real Estate</span>
+        </div>
+      </a>
+
+      <div class="header-controls">
+        <a href="index.html" class="home-nav-btn">
+          <i class="fa-solid fa-house"></i> 回官網首頁
+        </a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <!-- Sun icon (visible in dark mode) -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <!-- Moon icon (visible in light mode) -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Calculator Section -->
+      <section class="calculator-card glass-panel">
+        <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-calculator"></i> 專業租金與服務費換算工具
+        </h2>
+
+        <!-- Input fields -->
+        <div class="form-group">
+          <label for="monthlyRent" class="form-label">每月租金 (TWD)</label>
+          <div class="input-wrapper">
+            <span class="currency-symbol">$</span>
+            <input type="text" id="monthlyRent" class="form-input" placeholder="請輸入月租金，例: 25,000" autocomplete="off">
+            <button type="button" id="clearRent" class="clear-btn" aria-label="清除月租金">&times;</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">計算基準</label>
+          <div class="segmented-control">
+            <input type="radio" id="basis30" name="calcBasis" value="30" checked>
+            <label for="basis30" class="segment-label">
+              <span>固定 30 日/月</span>
+              <small class="segment-desc">最常用合約標準</small>
+            </label>
+
+            <input type="radio" id="basisActual" name="calcBasis" value="actual">
+            <label for="basisActual" class="segment-label">
+              <span>當月實際天數</span>
+              <small class="segment-desc">依足月天數計算</small>
+            </label>
+
+            <input type="radio" id="basisCustom" name="calcBasis" value="custom">
+            <label for="basisCustom" class="segment-label">
+              <span>自訂基準天數</span>
+              <small class="segment-desc">輸入指定天數</small>
+            </label>
+          </div>
+
+          <!-- Custom Basis Input (Conditional) -->
+          <div id="customBasisWrapper" class="input-wrapper custom-basis-wrapper collapsible">
+            <input type="number" id="customBasisDays" class="form-input sub-input" placeholder="請輸入自訂基準天數，例: 36.5" min="1" step="any">
+            <span class="input-unit">天 / 月</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">天數計算模式</label>
+          <div class="tabs-header">
+            <button type="button" class="tab-btn active" data-tab="tab-days">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tab-icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+              直接輸入天數
+            </button>
+            <button type="button" class="tab-btn" data-tab="tab-dates">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tab-icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              選擇起迄日期
+            </button>
+          </div>
+
+          <div class="tabs-content">
+            <!-- Tab 1: Direct Days -->
+            <div id="tab-days" class="tab-panel active">
+              <div class="input-wrapper">
+                <input type="number" id="daysInput" class="form-input" placeholder="請輸入不足月天數" min="0" step="any">
+                <span class="input-unit">天</span>
+              </div>
+            </div>
+
+            <!-- Tab 2: Date Picker -->
+            <div id="tab-dates" class="tab-panel">
+              <div class="date-grid">
+                <div class="date-input-group">
+                  <span class="date-label">起算日期</span>
+                  <input type="date" id="startDate" class="form-input date-picker">
+                </div>
+                <div class="date-input-group">
+                  <span class="date-label">截止日期</span>
+                  <input type="date" id="endDate" class="form-input date-picker">
+                </div>
+              </div>
+              <div id="dateCalcResult" class="date-calc-info">
+                選擇日期以自動計算天數...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brand/Management Fee split section -->
+        <div class="form-group management-fee-section border-top">
+          <div class="toggle-row">
+            <span class="form-label mb-0">啟用包租代管服務費拆分</span>
+            <label class="switch-toggle">
+              <input type="checkbox" id="enableFeeSplit">
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+          
+          <div id="feeSplitInputs" class="collapsible">
+            <div class="fee-settings">
+              <div class="fee-input-wrapper">
+                <label for="feeRate" class="form-label-small">代管服務費率</label>
+                <div class="input-wrapper">
+                  <input type="number" id="feeRate" class="form-input sub-input" placeholder="代管費率" value="10" min="0" max="100" step="any">
+                  <span class="input-unit">%</span>
+                </div>
+              </div>
+              <div class="fee-input-wrapper">
+                <label for="ownerShareRate" class="form-label-small">屋主實收比例</label>
+                <div class="input-wrapper">
+                  <input type="number" id="ownerShareRate" class="form-input sub-input" value="90" min="0" max="100" step="any" readonly>
+                  <span class="input-unit">%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="fee-results-card">
+              <div class="fee-result-row">
+                <span class="fee-label">屋主實收租金：</span>
+                <span class="fee-val" id="feeOwnerNet">$0</span>
+              </div>
+              <div class="fee-result-row">
+                <span class="fee-label">港居代管服務費：</span>
+                <span class="fee-val" id="feeAgency">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Card -->
+        <div class="results-box glass-panel-inner">
+          <div class="results-grid">
+            <div class="result-item">
+              <span class="result-label">計算基準：</span>
+              <span id="resultBasis" class="result-value-sub">30 日 / 月</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">日租金 (四捨五入)：</span>
+              <div class="result-currency">
+                <span class="currency-symbol">$</span>
+                <span id="dailyRent" class="result-value highlight">0</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="result-item total-item">
+              <span class="result-label font-bold">應付總額：</span>
+              <div class="result-currency">
+                <span class="currency-symbol-big">$</span>
+                <span id="totalRent" class="result-value-big highlight">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box" id="formulaContainer">
+            <span class="formula-label">計算公式：</span>
+            <div id="formulaText" class="formula-content">請輸入金額和天數開始計算</div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="action-buttons">
+          <button type="button" id="copyBtn" class="btn btn-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            複製租金明細
+          </button>
+          <button type="button" id="saveBtn" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            儲存此筆紀錄
+          </button>
+        </div>
+
+        <p class="footnote">※ 預設以小數點後採四捨五入計算至整數，亦提供多樣化小數處理選項。</p>
+      </section>
+
+      <!-- History and Tools Section -->
+      <section class="side-panel">
+        <!-- Settings / Rounding Options Card -->
+        <div class="glass-panel settings-card">
+          <h3>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="panel-header-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            計算設定
+          </h3>
+          <div class="settings-grid">
+            <div class="setting-item">
+              <label for="roundingMode" class="form-label-small">數值捨入方式</label>
+              <select id="roundingMode" class="form-select">
+                <option value="round" selected>四捨五入 (最普遍)</option>
+                <option value="floor">直接無條件捨去</option>
+                <option value="ceil">無條件進位</option>
+                <option value="keep-decimals">保留小數 (至小數點後兩位)</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label for="currencySelect" class="form-label-small">幣值符號</label>
+              <select id="currencySelect" class="form-select">
+                <option value="TWD" data-symbol="$" selected>TWD ($ 新台幣)</option>
+                <option value="HKD" data-symbol="HK$">HKD (HK$ 港幣)</option>
+                <option value="CNY" data-symbol="¥">CNY (¥ 人民幣)</option>
+                <option value="USD" data-symbol="US$">USD (US$ 美金)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- History Card -->
+        <div class="glass-panel history-card">
+          <div class="panel-header">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="panel-header-icon"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+              計算歷史紀錄
+            </h3>
+            <button type="button" id="clearHistoryBtn" class="text-link-btn" style="display: none;">清除全部</button>
+          </div>
+          
+          <div id="historyPlaceholder" class="history-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-icon"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <p>尚無歷史計算紀錄</p>
+            <small>點擊「儲存此筆紀錄」以將結果存放在此</small>
+          </div>
+
+          <div id="historyList" class="history-list" style="display: none;">
+            <!-- History items will be injected here by JavaScript -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Notification for interactive messages -->
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+    <footer class="app-footer">
+      <div class="footer-brand">港居不動產開發有限公司 | 專業包租代管服務</div>
+      <p class="footer-copyright">&copy; 2026 港居不動產. All Rights Reserved. 設計精美，計算精準</p>
+    </footer>
+  </div>
+
+  <!-- JavaScript file -->
+  <script src="rent-calc.js"></script>
+</body>
+</html>

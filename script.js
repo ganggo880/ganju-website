@@ -5,20 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileToggle = document.getElementById('mobileToggle');
   const navMenu = document.getElementById('navMenu');
 
-  if (mobileToggle) {
-    mobileToggle.addEventListener('click', () => {
-      if (navMenu.style.display === 'flex') {
-        navMenu.style.display = 'none';
-      } else {
-        navMenu.style.display = 'flex';
-        navMenu.style.flexDirection = 'column';
-        navMenu.style.position = 'absolute';
-        navMenu.style.top = '80px';
-        navMenu.style.left = '0';
-        navMenu.style.width = '100%';
-        navMenu.style.background = '#FFFFFF';
-        navMenu.style.padding = '20px';
-        navMenu.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navMenu.classList.toggle('active');
+    });
+
+    // 點擊選單項目後自動關閉選單
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // 點擊頁面其他區域自動關閉選單
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && e.target !== mobileToggle) {
+        navMenu.classList.remove('active');
       }
     });
   }

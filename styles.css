@@ -455,7 +455,7 @@ body {
 /* 核心優勢區塊 (卡片設計與留白) */
 .advantages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 36px;
 }
 
@@ -696,7 +696,7 @@ input[type="range"] {
 
 .properties-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 36px;
 }
 
@@ -1055,6 +1055,23 @@ input[type="range"] {
   background: #E2E8F0;
 }
 
+/* 全域防止溢出與行動端點擊 */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+img, svg, iframe, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn {
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
 /* RWD 響應式佈局 (Mobile & Tablet 最佳化) */
 @media (max-width: 992px) {
   .hero-grid, .calc-grid, .footer-grid, .plans-grid {
@@ -1062,7 +1079,7 @@ input[type="range"] {
     gap: 40px;
   }
   .hero {
-    padding: 70px 0 90px;
+    padding: 60px 0 80px;
     text-align: center;
   }
   .hero-subtitle {
@@ -1078,8 +1095,32 @@ input[type="range"] {
   .nav-menu {
     display: none;
   }
+  .nav-menu.active {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF;
+    padding: 24px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    border-bottom: 3px solid var(--accent-gold);
+    z-index: 9999;
+  }
+  .nav-menu.active .nav-link {
+    width: 100%;
+    padding: 12px 16px;
+    min-height: 44px;
+    font-size: 1.05rem;
+  }
   .mobile-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
   }
   .form-grid {
     grid-template-columns: 1fr;
@@ -1091,7 +1132,7 @@ input[type="range"] {
     padding: 35px 24px;
   }
   .section {
-    padding: 80px 0;
+    padding: 70px 0;
   }
   .floating-actions {
     bottom: 24px;
@@ -1101,5 +1142,154 @@ input[type="range"] {
     width: 56px;
     height: 56px;
     font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  .top-bar-badges {
+    justify-content: center;
+  }
+  .top-bar-contact {
+    width: 100%;
+    text-align: center;
+  }
+  .top-bar-contact a {
+    margin-left: 8px;
+  }
+  .navbar .container {
+    height: 76px;
+  }
+  .brand-logo img {
+    height: 42px;
+  }
+  .brand-text-box h1 {
+    font-size: 1.2rem;
+  }
+  .brand-text-box p {
+    font-size: 0.65rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding-top: 24px;
+  }
+  .stat-item h3 {
+    font-size: 1.6rem;
+  }
+  .stat-item p {
+    font-size: 0.78rem;
+  }
+  .advantages-grid, .properties-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .plans-grid {
+    gap: 24px;
+  }
+  .plan-card {
+    padding: 36px 24px;
+  }
+  .properties-filter {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .properties-filter::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-btn {
+    flex-shrink: 0;
+    min-height: 44px;
+    padding: 10px 18px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-grid h4 {
+    justify-content: center;
+  }
+  .modal-card {
+    padding: 30px 18px;
+    width: 95%;
+  }
+  .modal-close {
+    top: 14px;
+    right: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .top-bar {
+    font-size: 0.78rem;
+    padding: 8px 0;
+  }
+  .top-bar-badge {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  .hero-subtitle {
+    font-size: 0.98rem;
+  }
+  .hero-mascot-card {
+    padding: 20px 14px;
+  }
+  .mascot-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mascot-img {
+    height: 180px;
+  }
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .stat-item {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 12px;
+  }
+  .stat-item:last-child {
+    border-bottom: none;
+  }
+  .btn {
+    padding: 14px 20px;
+    font-size: 0.92rem;
+    min-height: 48px;
+  }
+  .floating-actions {
+    bottom: 16px;
+    right: 16px;
+    gap: 12px;
+  }
+  .float-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
   }
 }
