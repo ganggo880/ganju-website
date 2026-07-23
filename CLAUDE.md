@@ -7,7 +7,7 @@
 | 項目 | 路徑 / URL |
 |---|---|
 | **本地專案路徑** | `g:\我的雲端硬碟\ai agent\Matt Pocock skills` |
-| **GitHub 倉庫 URL** | `https://github.com/mattpocock/skills.git` |
+| **GitHub 倉庫 URL** | `https://github.com/ganggo880/ganju-website.git` |
 | **Obsidian 資料夾路徑** | `g:\我的雲端硬碟\ai agent\Matt Pocock skills\obsidian` |
 
 ---
