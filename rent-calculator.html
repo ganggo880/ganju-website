@@ -12,13 +12,30 @@
   <meta property="og:image" content="assets/logo.png">
   <meta property="og:type" content="website">
 
-  <!-- Icons & Fonts -->
+  <!-- Icons & Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="rent-calc.css">
   
-  <script type="module" src="js/navigation.js"></script>
+  <!-- Schema.org JSON-LD for FinancialCalculator -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialCalculator",
+    "name": "港居租金與代管服務費換算工具",
+    "url": "https://ganggo880.github.io/ganju-website/rent-calculator.html",
+    "description": "提供房東與租客精確試算日租金、跨月租金及 10% 代管服務費與屋主實收租金拆分。",
+    "provider": {
+      "@type": "RealEstateAgent",
+      "name": "港居不動產開發有限公司"
+    }
+  }
+  </script>
+  
+  <script type="module" src="js/layout.js"></script>
 </head>
 <body>
 

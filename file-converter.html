@@ -12,16 +12,34 @@
   <meta property="og:image" content="assets/logo.png">
   <meta property="og:type" content="website">
 
-  <!-- Icons & Fonts -->
+  <!-- Icons & Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- CSS Stylesheets -->
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/converter.css">
 
+  <!-- Schema.org JSON-LD for WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居線上多功能檔案轉換神器",
+    "url": "https://ganggo880.github.io/ganju-website/file-converter.html",
+    "applicationCategory": "UtilitiesApplication",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas & Blob API.",
+    "operatingSystem": "All",
+    "description": "提供 PDF、Word、圖片 (PNG/JPG/WEBP)、音訊與視訊極速安全的瀏覽器本機端檔案格式轉換。",
+    "provider": {
+      "@type": "RealEstateAgent",
+      "name": "港居不動產開發有限公司"
+    }
+  }
+  </script>
+
   <!-- JS Modules -->
-  <script type="module" src="js/navigation.js"></script>
+  <script type="module" src="js/layout.js"></script>
 </head>
 <body>
 

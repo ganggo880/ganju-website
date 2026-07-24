@@ -1,41 +1,15 @@
-/* ==========================================================================
-   港居不動產 (GANJU REAL ESTATE) 品牌設計 Token & UI 系統
-   ========================================================================== */
+/* 港居不動產 照片 EXIF 水印工具 - 品牌特調樣式 */
+@import url('css/tokens.css');
+@import url('css/components.css');
+
 :root {
-  /* 品牌核心色彩 Palette */
-  --primary-navy: #1A365D;
-  --primary-dark: #0F2341;
-  --primary-light: #2B4C7E;
-  
-  --accent-gold: #C5A059;
-  --accent-gold-hover: #B08C45;
-  --accent-gold-light: #FFE8B8;
-  --accent-light: #F8F5EE;
-  
+  /* 頁面特定微調變數 */
   --bg-dark: #0B132B;
   --bg-sidebar: #0F2341;
-  --bg-card: #152A4A;
+  --bg-card-wm: #152A4A;
   --bg-input: #0A192F;
   --bg-hover: #1C3B68;
-  
-  --border-color: rgba(197, 160, 89, 0.25);
-  --border-gold: #C5A059;
-  
-  --text-main: #FAFCFE;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
   --text-gold: #E2C17D;
-  
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
-  
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 6px 16px rgba(15, 35, 65, 0.4);
-  --shadow-gold: 0 8px 24px rgba(197, 160, 89, 0.3);
-  
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Base Reset & Fonts */

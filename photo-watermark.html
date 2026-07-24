@@ -15,12 +15,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="watermark.css">
+  
+  <!-- Schema.org JSON-LD for WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居照片 EXIF & 拍攝日期浮水印工具",
+    "url": "https://ganggo880.github.io/ganju-website/photo-watermark.html",
+    "applicationCategory": "MultimediaApplication",
+    "description": "專為不動產點交巡檢與招租照提供批次照片 EXIF 時間戳記與浮水印合成。",
+    "provider": {
+      "@type": "RealEstateAgent",
+      "name": "港居不動產開發有限公司"
+    }
+  }
+  </script>
   
   <!-- External Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/exifreader@4.23.3/dist/exif-reader.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script type="module" src="js/layout.js"></script>
 </head>
 <body class="ganju-theme">
   <div class="app-container">
