@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>線上檔案轉換工具｜港居不動產專屬多功能轉換神器</title>
+  <meta name="description" content="港居不動產開發有限公司專用線上檔案轉換工具。支援PDF、Word文檔、圖片(PNG/JPG/WEBP)、音訊(MP3/WAV)、視訊與電子書在線即時免費轉換，資安防護零洩漏。特許登記證號：(108)登字第354198號。">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="線上檔案轉換工具｜港居不動產專屬多功能轉檔神器">
+  <meta property="og:description" content="免費即時在線轉換PDF、文檔、圖像、音效與視訊格式。隱私安全，港居不動產貼心提供。">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/converter.css">
+
+  <!-- JS Modules -->
+  <script type="module" src="js/navigation.js"></script>
+</head>
+<body>
+
+  <!-- 頂部宣告條 Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 營業員證號：(108) 登字第354198號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主導覽列 Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <h1>港居不動產</h1>
+          <p>GANJU REAL ESTATE</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算</a></li>
+        <li><a href="file-converter.html" class="nav-link active"><i class="fa-solid fa-file-export"></i> 檔案轉換</a></li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 背景光暈 Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- 主內容區塊 -->
+  <section class="converter-section">
+    <div class="converter-container container">
+
+      <!-- 頁面標頭與吉祥物資安提示 -->
+      <div class="converter-header-box">
+        <div class="converter-badge">
+          <i class="fa-solid fa-file-export"></i> 港居不動產・線上轉檔神器
+        </div>
+        <h2 class="converter-main-title">在線多功能檔案格式轉換工具</h2>
+        <p class="converter-subtitle">免費即時轉換 PDF、Word文檔、圖片(PNG/JPG/WEBP)、音訊與視訊格式</p>
+      </div>
+
+      <main class="converter-layout">
+        <!-- 轉檔主要操作區 Card -->
+        <section class="glass-panel">
+          <!-- 吉祥物資安安全防護提示 -->
+          <div style="background: var(--accent-light); border-radius: 12px; padding: 12px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(197, 160, 89, 0.3);">
+            <i class="fa-solid fa-user-shield" style="color: var(--accent-gold); font-size: 1.3rem;"></i>
+            <span style="font-size: 0.88rem; font-weight: 700; color: var(--primary-navy);">
+              阿港經理 🐴 與 阿居管家 🐑 溫馨提醒：本工具採用本機端高階加密處理，檔案不會上傳儲存至外部伺服器，全力守護您的資產與隱私！
+            </span>
+          </div>
+
+          <!-- 分頁類別選擇 Tabs -->
+          <div class="category-tabs">
+            <button type="button" class="cat-tab-btn active" data-cat="document">
+              <i class="fa-solid fa-file-pdf"></i> 文檔 / PDF
+            </button>
+            <button type="button" class="cat-tab-btn" data-cat="image">
+              <i class="fa-solid fa-image"></i> 圖像照片
+            </button>
+            <button type="button" class="cat-tab-btn" data-cat="audio">
+              <i class="fa-solid fa-music"></i> 音訊檔案
+            </button>
+            <button type="button" class="cat-tab-btn" data-cat="video">
+              <i class="fa-solid fa-film"></i> 視訊影片
+            </button>
+            <button type="button" class="cat-tab-btn" data-cat="ebook">
+              <i class="fa-solid fa-book"></i> 電子書 / ZIP
+            </button>
+          </div>
+
+          <!-- 檔案拖曳上傳 Dropzone -->
+          <div class="dropzone-box" id="dropzone">
+            <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+            <div class="dropzone-title">點擊選擇檔案，或將檔案拖曳至此處</div>
+            <div class="dropzone-sub">支援單檔上限 100MB，極速轉換無需等待</div>
+            <input type="file" id="fileInput" class="file-input-hidden">
+          </div>
+
+          <div id="selectedFileName" style="font-size: 0.95rem; text-align: center; margin-bottom: 1.5rem; min-height: 24px;"></div>
+
+          <!-- 選項設定表單 -->
+          <div class="convert-options-grid">
+            <div>
+              <label for="targetFormatSelect" style="display: block; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.92rem; color: var(--text-primary);">
+                <i class="fa-solid fa-arrow-right-arrow-left" style="color: var(--accent-gold);"></i> 目標轉換格式
+              </label>
+              <select id="targetFormatSelect" class="form-select-custom">
+                <!-- 動態注入 -->
+              </select>
+            </div>
+            <div>
+              <label style="display: block; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.92rem; color: var(--text-primary);">
+                <i class="fa-solid fa-gear" style="color: var(--accent-gold);"></i> 轉換品質 / 模式
+              </label>
+              <select class="form-select-custom">
+                <option value="high" selected>最佳品質 (推薦品質優先)</option>
+                <option value="medium">標準品質 (兼顧檔案大小)</option>
+                <option value="compressed">極致壓縮 (檔案最小化)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 開始轉換按鈕 -->
+          <button type="button" id="startConvertBtn" class="btn btn-gold" style="width: 100%; font-size: 1.1rem; padding: 15px;">
+            <i class="fa-solid fa-play"></i> 立即開始在線轉換
+          </button>
+
+          <!-- 轉檔動態進度條 -->
+          <div class="progress-container" id="progressContainer">
+            <div id="progressText" style="font-weight: 700; font-size: 0.9rem; color: var(--primary-navy);">正在處理檔案...</div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="progressBarFill"></div>
+            </div>
+          </div>
+
+          <!-- 下載結果卡片 -->
+          <div class="result-card" id="resultCard">
+            <div class="result-file-info">
+              <div class="result-name" id="resultFileName"></div>
+              <a id="downloadBtn" href="#" class="btn btn-primary" download style="padding: 10px 22px; font-size: 0.9rem;">
+                <i class="fa-solid fa-download"></i> 立即下載轉檔結果
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- 側邊欄：歷史紀錄與工具優勢 -->
+        <section style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <!-- 轉換特點優勢卡片 -->
+          <div class="glass-panel" style="padding: 1.75rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-gold);"></i> 港居轉檔神器四大優勢
+            </h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; color: var(--text-secondary);">
+              <li><i class="fa-solid fa-circle-check" style="color: var(--accent-gold);"></i> <strong>零資安風險</strong>：瀏覽器本地即時運算，個資不外洩</li>
+              <li><i class="fa-solid fa-circle-check" style="color: var(--accent-gold);"></i> <strong>跨格式相容</strong>：支援 PDF、Docx、PNG、JPG、MP3、MP4</li>
+              <li><i class="fa-solid fa-circle-check" style="color: var(--accent-gold);"></i> <strong>不動產合約優化</strong>：合約圖檔與掃描件快速轉換 PDF</li>
+              <li><i class="fa-solid fa-circle-check" style="color: var(--accent-gold);"></i> <strong>完全免費無廣告</strong>：專為港居客戶與房東貼心提供</li>
+            </ul>
+          </div>
+
+          <!-- 轉檔歷史紀錄卡片 -->
+          <div class="glass-panel history-card-converter" style="padding: 1.75rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-navy); display: flex; align-items: center; gap: 8px; margin: 0;">
+                <i class="fa-solid fa-clock-rotate-left" style="color: var(--accent-gold);"></i> 轉檔歷史紀錄
+              </h3>
+              <button type="button" id="clearConvHistoryBtn" class="text-link-btn" style="display: none;">清除紀錄</button>
+            </div>
+
+            <div id="convHistoryPlaceholder" style="text-align: center; padding: 2rem 1rem; color: var(--text-muted); display: flex; flex-direction: column; align-items: center;">
+              <i class="fa-regular fa-folder-open" style="font-size: 2.5rem; color: var(--accent-gold); opacity: 0.6; margin-bottom: 10px;"></i>
+              <p style="font-weight: 700; font-size: 0.95rem;">尚無轉檔歷史紀錄</p>
+              <small>完成轉檔後將自動為您備份於此</small>
+            </div>
+
+            <div id="convHistoryList" style="display: none;">
+              <!-- 動態注入歷史紀錄 -->
+            </div>
+          </div>
+        </section>
+      </main>
+
+    </div>
+  </section>
+
+  <!-- 浮動 Toast 訊息 -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/logo.png" alt="港居" style="height: 36px;">
+            港居不動產開發有限公司
+          </h4>
+          <p>特許經營包租代管服務，專注高質感住宅資產護全與穩定收益增值。</p>
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>服務項目</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+            <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+            <li><a href="index.html#about">法拍屋代標服務</a></li>
+            <li><a href="index.html#about">高品質房屋買賣</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>特許證號背書</h4>
+          <ul class="footer-links">
+            <li>營業員證號：(108) 登字第354198號</li>
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/NVFhBDE" target="_blank" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/NVFhBDE" target="_blank" class="float-btn float-btn-line" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script type="module" src="js/converter.js"></script>
+</body>
+</html>
