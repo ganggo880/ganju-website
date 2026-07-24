@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>港居不動產｜照片 EXIF & 拍攝日期浮水印工具</title>
+  <meta name="description" content="港居不動產開發有限公司專屬照片 EXIF 拍攝資訊、拍攝日期與區域物業巡檢浮水印批次合成工具">
+  
+  <!-- Google Fonts matching official site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="watermark.css">
+  
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/exifreader@4.23.3/dist/exif-reader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body class="ganju-theme">
+  <div class="app-container">
+    <!-- 1. 頂部特許宣告條 (Top Announcement Bar) -->
+    <div class="top-bar">
+      <div class="container-fluid top-bar-inner">
+        <div class="top-bar-badges">
+          <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 港居不動產特許包租代管業者</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 營業員：(108) 登字第354198號</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理：(112) 登字第013739號</span>
+        </div>
+        <div class="top-bar-contact">
+          <span>統編：96797997</span>
+          <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 主導覽列 Header (Matching official navbar) -->
+    <header class="navbar">
+      <div class="container-fluid navbar-inner">
+        <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+          <div class="logo-icon-box">
+            <i class="fa-solid fa-building-user"></i>
+          </div>
+          <div class="brand-text-box">
+            <h1 class="brand-title">港居不動產</h1>
+            <p class="brand-sub">GANJU REAL ESTATE</p>
+          </div>
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index.html#home" class="nav-link">官網首頁</a>
+          <a href="index.html#landlords" class="nav-link">房東專區</a>
+          <a href="index.html#properties" class="nav-link">精選房源</a>
+          <a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a>
+          <a href="photo-watermark.html" class="nav-link active"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印工具</a>
+        </nav>
+
+        <div class="header-actions">
+          <button id="btn-save-preset" class="btn btn-outline-gold" title="儲存當前設定為預設範本">
+            <i class="fa-solid fa-bookmark"></i> 儲存預設
+          </button>
+          <label for="photo-upload-input" class="btn btn-gold">
+            <i class="fa-solid fa-cloud-arrow-up"></i> 上傳照片
+          </label>
+          <input type="file" id="photo-upload-input" accept="image/jpeg,image/png,image/webp,image/heic" multiple hidden>
+        </div>
+      </div>
+    </header>
+
+    <!-- 主內容區 Main Layout -->
+    <main class="app-main">
+      <!-- 左側控制面板 Control Sidebar -->
+      <aside class="control-sidebar">
+        <!-- 頁籤選單 Tabs -->
+        <nav class="sidebar-tabs">
+          <button class="tab-btn active" data-tab="tab-text">
+            <i class="fa-solid fa-pen-nib"></i> 文字與區域
+          </button>
+          <button class="tab-btn" data-tab="tab-style">
+            <i class="fa-solid fa-palette"></i> 風格與排版
+          </button>
+          <button class="tab-btn" data-tab="tab-exif">
+            <i class="fa-solid fa-circle-info"></i> EXIF 資訊
+          </button>
+        </nav>
+
+        <div class="tab-contents">
+          <!-- 頁籤一：文字、區域與日期 -->
+          <div class="tab-panel active" id="tab-text">
+            <!-- 區域快捷按鈕區域 (Region Quick Selectors) -->
+            <div class="panel-section highlight-gold">
+              <h3><i class="fa-solid fa-location-dot"></i> 巡檢物業區域快速選擇</h3>
+              <p class="section-desc">點擊下方按鈕可快速套用物業行政區標籤：</p>
+              <div class="region-buttons-grid" id="region-buttons-grid">
+                <button class="region-chip active" data-region="小港區">小港區</button>
+                <button class="region-chip" data-region="前鎮區">前鎮區</button>
+                <button class="region-chip" data-region="鳳山區">鳳山區</button>
+                <button class="region-chip" data-region="左營區">左營區</button>
+                <button class="region-chip" data-region="鼓山區">鼓山區</button>
+                <button class="region-chip" data-region="三民區">三民區</button>
+                <button class="region-chip" data-region="楠梓區">楠梓區</button>
+                <button class="region-chip" data-region="苓雅區">苓雅區</button>
+                <button class="region-chip" data-region="新興區">新興區</button>
+                <button class="region-chip" data-region="前金區">前金區</button>
+                <button class="region-chip" data-region="鹽埕區">鹽埕區</button>
+                <button class="region-chip" data-region="仁武區">仁武區</button>
+                <button class="region-chip" data-region="全區/外縣市">全區/外縣市</button>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-font"></i> 自訂預設文字</h3>
+              <div class="form-group">
+                <label for="custom-text-main">主要標籤 / 品牌名稱</label>
+                <input type="text" id="custom-text-main" placeholder="例如：港居不動產" value="港居不動產">
+              </div>
+              <div class="form-group">
+                <label for="custom-text-sub">次要說明 / 物業巡檢紀錄</label>
+                <input type="text" id="custom-text-sub" placeholder="例如：高雄市小港區物業巡檢" value="高雄市小港區物業巡檢紀錄">
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-calendar-day"></i> 日期顯示設定</h3>
+              <div class="form-group">
+                <label for="date-source-select">日期來源</label>
+                <select id="date-source-select">
+                  <option value="exif">優先使用照片 EXIF 拍攝時間</option>
+                  <option value="file">使用照片檔案修改時間</option>
+                  <option value="custom">自訂指定日期時間</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="custom-date-picker-group" style="display: none;">
+                <label for="custom-date-input">指定日期時間</label>
+                <input type="datetime-local" id="custom-date-input">
+              </div>
+
+              <div class="form-group">
+                <label for="date-format-select">日期時間格式</label>
+                <select id="date-format-select">
+                  <option value="YYYY-MM-DD HH:mm">YYYY-MM-DD HH:mm (2026-07-24 19:20)</option>
+                  <option value="YYYY.MM.DD HH:mm">YYYY.MM.DD HH:mm (2026.07.24 19:20)</option>
+                  <option value="YYYY/MM/DD">YYYY/MM/DD (2026/07/24)</option>
+                  <option value="YYYY年MM月DD日">YYYY年MM月DD日 (2026年07月24日)</option>
+                  <option value="'YY MM DD">'YY MM DD (復古底片 '26 07 24)</option>
+                  <option value="'YY MM DD HH:mm">'YY MM DD HH:mm (復古底片含時間)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-sliders"></i> 顯示勾選項目</h3>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="chk-show-date" checked>
+                  <span>顯示拍攝/指定日期時間</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="chk-show-text" checked>
+                  <span>顯示自訂預設與區域文字</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="chk-show-exif-params" checked>
+                  <span>顯示相機 EXIF 參數 (快門/光圈/ISO)</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="chk-show-camera" checked>
+                  <span>顯示相機型號與鏡頭</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 頁籤二：風格與排版 -->
+          <div class="tab-panel" id="tab-style">
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-wand-magic-sparkles"></i> 選擇視覺風格</h3>
+              <div class="style-presets-grid">
+                <div class="style-card active" data-style="property-badge">
+                  <div class="style-preview property-preview">
+                    <span>🏢 港居不動產 | 小港區巡檢</span>
+                  </div>
+                  <div class="style-info">
+                    <h4>物業巡檢紀錄標籤</h4>
+                    <p>港居品牌深藍金邊專業卡片</p>
+                  </div>
+                </div>
+
+                <div class="style-card" data-style="film-stamp">
+                  <div class="style-preview film-stamp-preview">
+                    <span class="stamp-demo">'26 07 24</span>
+                  </div>
+                  <div class="style-info">
+                    <h4>復古底片日期戳記</h4>
+                    <p>經典橙黃亮色冰晶數位戳記</p>
+                  </div>
+                </div>
+
+                <div class="style-card" data-style="elegant-signature">
+                  <div class="style-preview elegant-preview">
+                    <span>港居不動產 ✦ 小港區巡檢</span>
+                  </div>
+                  <div class="style-info">
+                    <h4>優雅角落浮水印</h4>
+                    <p>高級透明度文字與微陰影</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-compass"></i> 位置與尺寸</h3>
+              <div class="form-group">
+                <label for="position-select">浮水印位置</label>
+                <select id="position-select">
+                  <option value="bottom-right" selected>右下角 (Bottom Right)</option>
+                  <option value="bottom-left">左下角 (Bottom Left)</option>
+                  <option value="top-right">右上角 (Top Right)</option>
+                  <option value="top-left">左上角 (Top Left)</option>
+                  <option value="bottom-center">底部中央 (Bottom Center)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="font-size-slider">字體大小比例 <span id="font-size-val">100%</span></label>
+                <input type="range" id="font-size-slider" min="50" max="200" value="100">
+              </div>
+
+              <div class="form-group">
+                <label for="margin-slider">邊緣距離 <span id="margin-val">40px</span></label>
+                <input type="range" id="margin-slider" min="10" max="150" value="40">
+              </div>
+
+              <div class="form-group">
+                <label for="opacity-slider">透明度 <span id="opacity-val">90%</span></label>
+                <input type="range" id="opacity-slider" min="20" max="100" value="90">
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-droplet"></i> 顏色與字型</h3>
+              <div class="form-row">
+                <div class="form-group half">
+                  <label for="color-picker-text">主題色彩 (金色)</label>
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="color-picker-text" value="#C5A059">
+                    <input type="text" id="color-text-hex" value="#C5A059">
+                  </div>
+                </div>
+                <div class="form-group half">
+                  <label for="color-picker-bg">背景底色 (深藍)</label>
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="color-picker-bg" value="#0F2341">
+                    <input type="text" id="color-bg-hex" value="#0F2341">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="font-family-select">字型選擇</label>
+                <select id="font-family-select">
+                  <option value="'Noto Sans TC', sans-serif" selected>Noto Sans TC (港居黑體)</option>
+                  <option value="'Share Tech Mono', monospace">Share Tech Mono (經典數位戳記)</option>
+                  <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans (現代質感)</option>
+                  <option value="'VT323', monospace">VT323 (復古 8-bit)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 頁籤三：EXIF 詳細資訊檢視 -->
+          <div class="tab-panel" id="tab-exif">
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-camera"></i> 當前照片 EXIF 資料</h3>
+              <div id="exif-details-card" class="exif-details-container">
+                <div class="empty-exif-msg">
+                  <i class="fa-regular fa-image"></i>
+                  <p>尚無照片或請選擇上方照片進行檢視</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 右側預覽與操作區 Main Display -->
+      <section class="preview-stage">
+        <!-- 照片縮圖列 Thumbnail Bar -->
+        <div class="thumbnail-strip-wrapper">
+          <div class="strip-header">
+            <span><i class="fa-regular fa-images"></i> 已載入物業照片 (<span id="photo-count">0</span> 張)</span>
+            <button id="btn-clear-all" class="btn btn-text danger" style="display: none;">
+              <i class="fa-solid fa-trash-can"></i> 清除全部
+            </button>
+          </div>
+          <div id="thumbnail-strip" class="thumbnail-strip">
+            <!-- 動態插入縮圖 -->
+          </div>
+        </div>
+
+        <!-- 主畫布預覽區域 Main Preview Canvas -->
+        <div class="canvas-viewport" id="canvas-viewport">
+          <!-- 上傳拖曳區 Dropzone (未上傳時顯示) -->
+          <div id="dropzone-area" class="dropzone-area">
+            <div class="dropzone-icon">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <h2>拖曳物業照片至此處，或點擊上傳</h2>
+            <p>自動辨識拍攝時間與相機 EXIF，結合港居不動產區域標籤優雅加壓</p>
+            <button class="btn btn-gold btn-lg" onclick="document.getElementById('photo-upload-input').click()">
+              <i class="fa-solid fa-folder-open"></i> 選擇物業照片
+            </button>
+          </div>
+
+          <!-- 即時畫布 Live Canvas -->
+          <div id="canvas-container" class="canvas-container" style="display: none;">
+            <canvas id="main-canvas"></canvas>
+            <div class="canvas-overlay-info">
+              <span id="canvas-dim-info">0 x 0 px</span>
+              <span id="canvas-filename">photo.jpg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部導出操作列 Bottom Export Bar -->
+        <footer class="export-bar" id="export-bar" style="display: none;">
+          <div class="export-options">
+            <div class="opt-group">
+              <label for="output-format"><i class="fa-solid fa-file-image"></i> 檔案格式：</label>
+              <select id="output-format">
+                <option value="image/jpeg" selected>JPEG (.jpg)</option>
+                <option value="image/png">PNG (.png)</option>
+                <option value="image/webp">WEBP (.webp)</option>
+              </select>
+            </div>
+
+            <div class="opt-group">
+              <label for="output-size-limit"><i class="fa-solid fa-weight-hanging"></i> 容量限制：</label>
+              <select id="output-size-limit">
+                <option value="unlimited">不限制 (原畫質)</option>
+                <option value="2.0">最大 2.0 MB</option>
+                <option value="1.0" selected>最大 1.0 MB (推薦傳輸)</option>
+                <option value="0.5">最大 0.5 MB (約 512 KB)</option>
+                <option value="0.2">最大 0.2 MB (約 200 KB)</option>
+                <option value="custom">自訂容量 (MB)...</option>
+              </select>
+              <input type="number" id="custom-size-input" step="0.1" min="0.1" max="20" placeholder="MB" style="display: none; width: 70px;">
+            </div>
+
+            <div class="opt-group">
+              <label for="output-quality"><i class="fa-solid fa-sliders"></i> 畫質基準：</label>
+              <select id="output-quality">
+                <option value="0.95" selected>高品質 (95%)</option>
+                <option value="0.85">標準 (85%)</option>
+                <option value="0.75">輕量 (75%)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="export-btns">
+            <button id="btn-download-single" class="btn btn-secondary">
+              <i class="fa-solid fa-download"></i> 下載當前單張照片
+            </button>
+            <button id="btn-download-batch" class="btn btn-gold">
+              <i class="fa-solid fa-file-zipper"></i> 一鍵批次打包下載 (.ZIP)
+            </button>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- JS Modules -->
+  <script src="js/exif-parser.js"></script>
+  <script src="js/watermark-engine.js"></script>
+  <script src="js/watermark-app.js"></script>
+</body>
+</html>
