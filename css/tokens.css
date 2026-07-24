@@ -1,0 +1,75 @@
+/* 港居不動產 品牌設計 Token (Design Tokens) */
+:root {
+  /* 品牌核心色彩 Palette */
+  --primary-navy: #1A365D;
+  --primary-dark: #0F2341;
+  --primary-light: #2B4C7E;
+  
+  --accent-gold: #C5A059;
+  --accent-gold-hover: #B08C45;
+  --accent-gold-light: #FFE8B8;
+  --accent-light: #F8F5EE;
+  
+  --bg-light: #FAFCFE;
+  --bg-card: #FFFFFF;
+  --bg-card-inner: #F8FAFC;
+  
+  --text-dark: #0F172A;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  
+  --border-color: #E2E8F0;
+  
+  /* 陰影系統 Shadows */
+  --shadow-sm: 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 12px 30px -8px rgba(26, 54, 93, 0.08);
+  --shadow-lg: 0 24px 45px -12px rgba(26, 54, 93, 0.15);
+  --shadow-gold: 0 12px 30px -5px rgba(197, 160, 89, 0.35);
+  
+  /* 圓角系統 Border Radius */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  /* 動畫過渡 Transitions */
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* 字體系統 Typography */
+  --font-primary: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* 背景光暈 Glows */
+  --bg-glow-1: rgba(26, 54, 93, 0.08);
+  --bg-glow-2: rgba(197, 160, 89, 0.12);
+
+  /* Toast & Notification */
+  --toast-bg: rgba(26, 54, 93, 0.95);
+  --toast-text: #FFFFFF;
+}
+
+/* 深色模式變數覆蓋 Dark Theme Scope */
+[data-theme="dark"] {
+  --bg-light: #0B192C;
+  --bg-card: rgba(15, 35, 65, 0.85);
+  --bg-card-inner: rgba(24, 48, 85, 0.75);
+  
+  --text-dark: #F8FAFC;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  
+  --border-color: rgba(197, 160, 89, 0.2);
+  
+  --shadow-sm: 0 4px 10px -2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 12px 30px -8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 45px -12px rgba(0, 0, 0, 0.7);
+  
+  --bg-glow-1: rgba(197, 160, 89, 0.18);
+  --bg-glow-2: rgba(43, 76, 126, 0.25);
+  
+  --toast-bg: rgba(197, 160, 89, 0.95);
+  --toast-text: #0F2341;
+}

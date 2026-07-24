@@ -1,84 +1,10 @@
-/* 港居不動產 租金換算工具 - 品牌特調 UI/UX 樣式 */
-@import url('styles.css');
-
-:root {
-  /* Common variables */
-  --font-primary: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-full: 9999px;
-  
-  /* Light Theme Palette (Matching Gangju Brand) */
-  --calc-bg-primary: #F8FAFC;
-  --calc-bg-glow-1: rgba(26, 54, 93, 0.08); /* Navy glow */
-  --calc-bg-glow-2: rgba(197, 160, 89, 0.12); /* Gold glow */
-  
-  --card-bg: rgba(255, 255, 255, 0.92);
-  --card-bg-inner: rgba(248, 250, 252, 0.9);
-  --card-border: rgba(226, 232, 240, 0.8);
-  --card-shadow: 0 12px 30px -8px rgba(26, 54, 93, 0.08), 
-                 0 1px 3px rgba(0, 0, 0, 0.02);
-  
-  --text-primary: #0F172A;
-  --text-secondary: #334155;
-  --text-muted: #64748B;
-  
-  --accent-primary: #1A365D;      /* Gangju Navy */
-  --accent-primary-hover: #0F2341;
-  --accent-gold: #C5A059;         /* Gangju Gold */
-  --accent-gold-hover: #B08C45;
-  --accent-light: #F8F5EE;
-  
-  --input-bg: #FFFFFF;
-  --input-border: #CBD5E1;
-  --input-focus: #1A365D;
-  --input-focus-ring: rgba(197, 160, 89, 0.25);
-  
-  --divider-color: #E2E8F0;
-  
-  --toast-success-bg: rgba(26, 54, 93, 0.95);
-  --toast-text: #FFFFFF;
-}
-
-[data-theme="dark"] {
-  /* Dark Theme Palette (Gangju Midnight Navy) */
-  --calc-bg-primary: #0B192C;
-  --calc-bg-glow-1: rgba(197, 160, 89, 0.18);
-  --calc-bg-glow-2: rgba(43, 76, 126, 0.25);
-  
-  --card-bg: rgba(15, 35, 65, 0.85);
-  --card-bg-inner: rgba(24, 48, 85, 0.75);
-  --card-border: rgba(197, 160, 89, 0.2);
-  --card-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6),
-                 inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  
-  --accent-primary: #C5A059;      /* Gold as highlight in dark mode */
-  --accent-primary-hover: #FFE8B8;
-  --accent-gold: #C5A059;
-  --accent-gold-hover: #FFE8B8;
-  --accent-light: rgba(197, 160, 89, 0.15);
-  
-  --input-bg: #0F2341;
-  --input-border: #2B4C7E;
-  --input-focus: #C5A059;
-  --input-focus-ring: rgba(197, 160, 89, 0.35);
-  
-  --divider-color: #1E3A5F;
-  --toast-success-bg: rgba(197, 160, 89, 0.95);
-  --toast-text: #0F2341;
-}
+/* 港居不動產 租金換算工具 - 專屬 UI/UX 樣式 */
+@import url('css/tokens.css');
+@import url('css/components.css');
 
 /* Base Body Adjustment */
 body {
-  background-color: var(--calc-bg-primary);
+  background-color: var(--bg-light);
   display: block; /* Override flex center so header & footer stretch naturally */
   padding: 0;
   min-height: 100vh;
