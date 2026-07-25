@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>港居不動產｜身份證照裁剪與租賃水印工具</title>
+  <meta name="description" content="港居不動產開發有限公司專屬身份證照自動裁剪、「限租賃房屋使用」水印合成工具">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/id-card-watermark.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="港居不動產｜身份證照裁剪與租賃水印工具">
+  <meta property="og:description" content="自動裁剪身份證尺寸，智能加壓「限租賃房屋使用」水印，一鍵下載。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/id-card-watermark.html">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Brand Tokens & Components -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/id-card-watermark.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居身份證照裁剪與租賃水印工具",
+    "url": "https://ganggo880.github.io/ganju-website/id-card-watermark.html",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas & File API.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "自動裁剪身份證尺寸並加壓租賃限用水印的專業工具。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body class="ganju-theme">
+  <div class="app-container">
+    <!-- 頂部特許宣告條 -->
+    <div class="top-bar">
+      <div class="container-fluid top-bar-inner">
+        <div class="top-bar-badges">
+          <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 港居不動產特許包租代管業者</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 營業員：(108) 登字第354198號</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理：(112) 登字第013739號</span>
+        </div>
+        <div class="top-bar-contact">
+          <span>統編：96797997</span>
+          <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主導覽列 -->
+    <header class="navbar">
+      <div class="container-fluid navbar-inner">
+        <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+          <div class="logo-icon-box">
+            <i class="fa-solid fa-building-user"></i>
+          </div>
+          <div class="brand-text-box">
+            <h1 class="brand-title">港居不動產</h1>
+            <p class="brand-sub">GANJU REAL ESTATE</p>
+          </div>
+        </a>
+
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html#home" class="nav-link">官網首頁</a>
+          <a href="index.html#landlords" class="nav-link">房東專區</a>
+          <a href="index.html#properties" class="nav-link">精選房源</a>
+          <a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a>
+          <a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a>
+          <a href="id-card-watermark.html" class="nav-link active"><i class="fa-solid fa-id-card"></i> 身份證水印工具</a>
+          <a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印工具</a>
+        </nav>
+
+        <div class="header-actions">
+          <label for="photo-upload-input" class="btn btn-gold">
+            <i class="fa-solid fa-cloud-arrow-up"></i> 上傳照片
+          </label>
+          <input type="file" id="photo-upload-input" accept="image/jpeg,image/png,image/webp" hidden>
+          <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 主內容區 -->
+    <main class="app-main id-card-main">
+      <!-- 左側控制面板 -->
+      <aside class="control-sidebar id-card-sidebar">
+        <nav class="sidebar-tabs">
+          <button class="tab-btn active" data-tab="tab-crop">
+            <i class="fa-solid fa-crop"></i> 裁剪設定
+          </button>
+          <button class="tab-btn" data-tab="tab-watermark">
+            <i class="fa-solid fa-stamp"></i> 水印設定
+          </button>
+        </nav>
+
+        <div class="tab-contents">
+          <!-- 頁籤一：裁剪設定 -->
+          <div class="tab-panel active" id="tab-crop">
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-expand"></i> 裁剪框尺寸</h3>
+              <div class="form-group">
+                <label>身份證比例（寬:高）</label>
+                <p class="field-hint">標準身份證尺寸：85.6mm × 53.98mm</p>
+                <select id="aspect-ratio">
+                  <option value="1.585" selected>標準身份證 (1.585:1)</option>
+                  <option value="1.2">寬幅 (1.2:1)</option>
+                  <option value="1.5">16:10 (1.5:1)</option>
+                  <option value="1.333">4:3 (1.333:1)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="zoom-slider">縮放程度 <span id="zoom-value">100%</span></label>
+                <input type="range" id="zoom-slider" min="50" max="200" value="100">
+              </div>
+
+              <div class="form-group">
+                <label>裁剪框位置</label>
+                <div class="position-buttons">
+                  <button class="btn btn-small" id="btn-center">
+                    <i class="fa-solid fa-crosshairs"></i> 置中
+                  </button>
+                  <button class="btn btn-small" id="btn-fit">
+                    <i class="fa-solid fa-maximize"></i> 自適應
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-sliders"></i> 背景與邊框</h3>
+              <div class="form-group">
+                <label for="bg-color">背景色彩</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="bg-color" value="#FFFFFF">
+                  <input type="text" id="bg-color-hex" value="#FFFFFF" class="hex-input">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="padding-slider">背景邊距 <span id="padding-value">0px</span></label>
+                <input type="range" id="padding-slider" min="0" max="150" value="0" step="5">
+              </div>
+            </div>
+          </div>
+
+          <!-- 頁籤二：水印設定 -->
+          <div class="tab-panel" id="tab-watermark">
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-stamp"></i> 水印文字</h3>
+              <div class="form-group">
+                <label for="watermark-text">水印內容</label>
+                <input type="text" id="watermark-text" value="限租賃房屋使用" placeholder="輸入水印文字">
+                <p class="field-hint">預設：限租賃房屋使用</p>
+              </div>
+
+              <div class="form-group">
+                <label for="watermark-position">水印位置</label>
+                <select id="watermark-position">
+                  <option value="top">頂部</option>
+                  <option value="bottom" selected>底部</option>
+                  <option value="top-bottom">頂部 + 底部</option>
+                  <option value="none">不顯示</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-font"></i> 字體樣式</h3>
+              <div class="form-group">
+                <label for="font-size-slider">字體大小 <span id="font-size-value">24px</span></label>
+                <input type="range" id="font-size-slider" min="12" max="60" value="24">
+              </div>
+
+              <div class="form-group">
+                <label for="font-color">文字色彩</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="font-color" value="#1A365D">
+                  <input type="text" id="font-color-hex" value="#1A365D" class="hex-input">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="font-opacity-slider">文字透明度 <span id="font-opacity-value">100%</span></label>
+                <input type="range" id="font-opacity-slider" min="20" max="100" value="100">
+              </div>
+
+              <div class="form-group">
+                <label for="font-family">字型</label>
+                <select id="font-family">
+                  <option value="'Noto Sans TC', sans-serif" selected>Noto Sans TC (黑體)</option>
+                  <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans</option>
+                  <option value="Arial, sans-serif">Arial</option>
+                </select>
+              </div>
+
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="chk-bold" checked>
+                  <span>粗體</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <h3><i class="fa-solid fa-droplet"></i> 背景橫幅</h3>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="chk-banner-bg" checked>
+                  <span>顯示背景橫幅</span>
+                </label>
+              </div>
+
+              <div class="form-group" id="banner-settings">
+                <label for="banner-color">橫幅色彩</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="banner-color" value="#C5A059">
+                  <input type="text" id="banner-color-hex" value="#C5A059" class="hex-input">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="banner-opacity-slider">橫幅透明度 <span id="banner-opacity-value">70%</span></label>
+                <input type="range" id="banner-opacity-slider" min="0" max="100" value="70">
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 右側預覽與操作區 -->
+      <section class="preview-stage id-card-preview">
+        <!-- 畫布區域 -->
+        <div class="canvas-viewport" id="canvas-viewport">
+          <!-- 拖曳區 -->
+          <div id="dropzone-area" class="dropzone-area">
+            <div class="dropzone-icon">
+              <i class="fa-solid fa-image"></i>
+            </div>
+            <h2>將身份證照片拖曳至此</h2>
+            <p>支援 JPG、PNG、WEBP 格式</p>
+            <button class="btn btn-gold btn-lg" onclick="document.getElementById('photo-upload-input').click()">
+              <i class="fa-solid fa-folder-open"></i> 選擇照片
+            </button>
+          </div>
+
+          <!-- 畫布區 -->
+          <div id="canvas-container" class="canvas-container" style="display: none;">
+            <canvas id="main-canvas"></canvas>
+            <div class="canvas-controls">
+              <div class="control-hint">
+                <span id="canvas-info">照片已載入</span>
+                <small>使用滑桿調整裁剪框</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部導出列 -->
+        <footer class="export-bar" id="export-bar" style="display: none;">
+          <div class="export-options">
+            <div class="opt-group">
+              <label for="output-format"><i class="fa-solid fa-file-image"></i> 格式：</label>
+              <select id="output-format">
+                <option value="image/png" selected>PNG (.png)</option>
+                <option value="image/jpeg">JPEG (.jpg)</option>
+              </select>
+            </div>
+
+            <div class="opt-group">
+              <label for="output-size-limit"><i class="fa-solid fa-weight-hanging"></i> 容量：</label>
+              <select id="output-size-limit">
+                <option value="unlimited" selected>不限制</option>
+                <option value="1.0">最大 1.0 MB</option>
+                <option value="0.5">最大 0.5 MB</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="export-btns">
+            <button id="btn-download" class="btn btn-gold">
+              <i class="fa-solid fa-download"></i> 下載處理後的照片
+            </button>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- JS 模組 -->
+  <script type="module" src="js/id-card-watermark.js"></script>
+</body>
+</html>
