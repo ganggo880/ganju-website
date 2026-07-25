@@ -92,35 +92,7 @@ body {
   color: var(--text-muted);
 }
 
-/* Theme Toggle Button inside Navbar */
-.theme-toggle-btn {
-  background: #F1F5F9;
-  border: 1px solid var(--border-color);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--primary-navy);
-  transition: var(--transition);
-}
-
-[data-theme="dark"] .theme-toggle-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--accent-gold);
-  border-color: rgba(197, 160, 89, 0.3);
-}
-
-.theme-toggle-btn:hover {
-  transform: scale(1.08);
-}
-
-[data-theme="dark"] .icon-moon { display: none; }
-[data-theme="dark"] .icon-sun { display: inline-block; color: var(--accent-gold); }
-body:not([data-theme="dark"]) .icon-moon { display: inline-block; }
-body:not([data-theme="dark"]) .icon-sun { display: none; }
+/* 主題切換按鈕樣式已移至 css/components.css（多頁共用組件，需全站繼承） */
 
 /* Main Content Grid */
 .main-content {
@@ -331,6 +303,14 @@ body:not([data-theme="dark"]) .icon-sun { display: none; }
   margin-bottom: 0.75rem;
   border-bottom: 2px solid var(--divider-color);
   padding-bottom: 0.25rem;
+}
+
+/* 觸控熱區：分頁鈕與子輸入框補足 44px */
+.tab-btn,
+.form-input,
+.sub-input,
+.form-select {
+  min-height: 44px;
 }
 
 .tab-btn {

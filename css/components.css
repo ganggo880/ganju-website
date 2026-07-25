@@ -126,6 +126,27 @@
   transition: var(--transition);
   position: relative;
   padding: 6px 0;
+  /* 導覽文字不得逐字斷行；空間不足時由下方 @media 縮小字級與間距 */
+  white-space: nowrap;
+}
+
+/* 中型桌機（項目多時）壓縮導覽列間距，避免選單擠成直書 */
+@media (max-width: 1400px) {
+  .nav-menu {
+    gap: 18px;
+  }
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1150px) {
+  .nav-menu {
+    gap: 12px;
+  }
+  .nav-link {
+    font-size: 0.84rem;
+  }
 }
 
 .nav-link:hover, .nav-link.active {
@@ -165,6 +186,38 @@
 [data-theme="dark"] .mobile-toggle {
   color: var(--accent-gold);
 }
+
+/* 深淺模式切換按鈕 Theme Toggle（導覽列共用組件） */
+.theme-toggle-btn {
+  background: #F1F5F9;
+  border: 1px solid var(--border-color);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--primary-navy);
+  transition: var(--transition);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent-gold);
+  border-color: rgba(197, 160, 89, 0.3);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.08);
+}
+
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: inline-block; color: var(--accent-gold); }
+body:not([data-theme="dark"]) .icon-moon { display: inline-block; }
+body:not([data-theme="dark"]) .icon-sun { display: none; }
 
 /* 按鈕系統 Buttons System */
 .btn {
@@ -333,4 +386,172 @@
   padding-top: 35px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   觸控區域最小尺寸 Touch Target Minimums (≥ 44×44px)
+   觸控裝置 (pointer: coarse) 或行動端寬度時生效，桌機滑鼠版面維持原設計密度
+   ========================================================================== */
+@media (pointer: coarse), (max-width: 992px) {
+  .top-bar-contact a,
+  .footer-links a,
+  .footer-links li {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .footer-links li {
+    margin-bottom: 4px;
+  }
+
+  /* 表單控制項統一觸控高度 */
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  input[type="datetime-local"],
+  select,
+  textarea {
+    min-height: 44px;
+  }
+
+  /* 原生核取方塊與單選鈕放大至可靠點擊尺寸 */
+  input[type="checkbox"]:not([hidden]),
+  input[type="radio"]:not([hidden]) {
+    min-width: 22px;
+    min-height: 22px;
+    /* 以 outline 外擴熱區至 44px，不影響版面 */
+    outline-offset: 11px;
+  }
+
+  /* 滑桿：以 padding 外擴拖曳熱區，不改變軌道視覺高度 */
+  input[type="range"] {
+    box-sizing: content-box;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    background-clip: content-box;
+  }
+}
+
+/* ==========================================================================
+   全站公用組件 RWD 響應式 Shared Component Breakpoints
+   ⚠️ 這些規則必須放在 components.css，四個頁面才會一起繼承
+   （放在 styles.css 只有 index.html 吃得到）
+   ========================================================================== */
+@media (max-width: 992px) {
+  /* 導覽列：桌機橫向選單收合為行動端 Drawer */
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-menu.active {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-card, #FFFFFF);
+    padding: 16px 20px 22px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    border-bottom: 3px solid var(--accent-gold);
+    z-index: 9999;
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+  }
+
+  .nav-menu.active .nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 1.05rem;
+  }
+
+  .nav-menu.active .nav-link::after {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+  }
+
+  /* 頁尾單欄化 */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer {
+    padding: 56px 0 28px;
+  }
+
+  /* 懸浮按鈕內縮，避免遮擋內容 */
+  .floating-actions {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-bar .container {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .top-bar-badges {
+    justify-content: center;
+  }
+
+  .navbar .container {
+    height: 76px;
+  }
+
+  .brand-logo {
+    gap: 10px;
+  }
+
+  .brand-logo img {
+    height: 42px;
+  }
+
+  .brand-text-box h1 {
+    font-size: 1.2rem;
+  }
+
+  .brand-text-box p {
+    font-size: 0.65rem;
+  }
+
+  .btn {
+    padding: 12px 22px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 576px) {
+  /* 小螢幕隱藏 CTA 文字按鈕，保留漢堡與品牌，避免導覽列擠壓溢出 */
+  .navbar .container > div > .btn {
+    display: none;
+  }
+
+  .top-bar {
+    font-size: 0.78rem;
+  }
+
+  .top-bar-badge {
+    font-size: 0.72rem;
+  }
 }

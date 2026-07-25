@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>港居不動產｜照片 EXIF & 拍攝日期浮水印工具</title>
   <meta name="description" content="港居不動產開發有限公司專屬照片 EXIF 拍攝資訊、拍攝日期與區域物業巡檢浮水印批次合成工具">
-  
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/photo-watermark.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="港居不動產｜照片 EXIF & 拍攝日期浮水印工具">
+  <meta property="og:description" content="不動產點交巡檢與招租照專用，自動讀取 EXIF 拍攝時間並批次合成品牌浮水印。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/photo-watermark.html">
+  <meta property="og:type" content="website">
+
   <!-- Google Fonts matching official site -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,10 +34,20 @@
     "name": "港居照片 EXIF & 拍攝日期浮水印工具",
     "url": "https://ganggo880.github.io/ganju-website/photo-watermark.html",
     "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas & File API.",
+    "inLanguage": "zh-Hant-TW",
     "description": "專為不動產點交巡檢與招租照提供批次照片 EXIF 時間戳記與浮水印合成。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
     "provider": {
       "@type": "RealEstateAgent",
-      "name": "港居不動產開發有限公司"
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
     }
   }
   </script>
@@ -68,11 +87,12 @@
           </div>
         </a>
 
-        <nav class="nav-menu">
+        <nav class="nav-menu" id="navMenu">
           <a href="index.html#home" class="nav-link">官網首頁</a>
           <a href="index.html#landlords" class="nav-link">房東專區</a>
           <a href="index.html#properties" class="nav-link">精選房源</a>
           <a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a>
+          <a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a>
           <a href="photo-watermark.html" class="nav-link active"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印工具</a>
         </nav>
 
@@ -84,6 +104,9 @@
             <i class="fa-solid fa-cloud-arrow-up"></i> 上傳照片
           </label>
           <input type="file" id="photo-upload-input" accept="image/jpeg,image/png,image/webp,image/heic" multiple hidden>
+          <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
         </div>
       </div>
     </header>
@@ -266,14 +289,14 @@
                   <label for="color-picker-text">主題色彩 (金色)</label>
                   <div class="color-picker-wrapper">
                     <input type="color" id="color-picker-text" value="#C5A059">
-                    <input type="text" id="color-text-hex" value="#C5A059">
+                    <input type="text" id="color-text-hex" value="#C5A059" aria-label="主題色彩十六進位色碼">
                   </div>
                 </div>
                 <div class="form-group half">
                   <label for="color-picker-bg">背景底色 (深藍)</label>
                   <div class="color-picker-wrapper">
                     <input type="color" id="color-picker-bg" value="#0F2341">
-                    <input type="text" id="color-bg-hex" value="#0F2341">
+                    <input type="text" id="color-bg-hex" value="#0F2341" aria-label="背景底色十六進位色碼">
                   </div>
                 </div>
               </div>
@@ -366,7 +389,7 @@
                 <option value="0.2">最大 0.2 MB (約 200 KB)</option>
                 <option value="custom">自訂容量 (MB)...</option>
               </select>
-              <input type="number" id="custom-size-input" step="0.1" min="0.1" max="20" placeholder="MB" style="display: none; width: 70px;">
+              <input type="number" id="custom-size-input" step="0.1" min="0.1" max="20" placeholder="MB" aria-label="自訂輸出容量上限（MB）" style="display: none; width: 70px;">
             </div>
 
             <div class="opt-group">

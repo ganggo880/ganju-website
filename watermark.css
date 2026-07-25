@@ -144,10 +144,8 @@ body {
   letter-spacing: 1px;
 }
 
-/* Nav Menu */
+/* Nav Menu — display 由 css/components.css 的 @media 控制（勿在此重新宣告 display） */
 .nav-menu {
-  display: flex;
-  align-items: center;
   gap: 16px;
 }
 
@@ -349,6 +347,12 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
+  /* 觸控熱區 ≥ 44×44px */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .region-chip:hover {
@@ -386,6 +390,7 @@ body {
 .form-group input[type="datetime-local"],
 .form-group select {
   width: 100%;
+  min-height: 44px;
   padding: 9px 12px;
   background-color: var(--bg-input);
   border: 1px solid var(--border-color);
@@ -411,7 +416,8 @@ body {
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  min-height: 44px;
   font-size: 13px;
   color: var(--text-main);
   cursor: pointer;
@@ -419,8 +425,9 @@ body {
 
 .checkbox-label input[type="checkbox"] {
   accent-color: var(--accent-gold);
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
   cursor: pointer;
 }
 
@@ -800,10 +807,16 @@ input[type="range"] {
   gap: 12px;
 }
 
-/* Responsive Hide for Nav links on mobile */
+/* 行動端導覽：收合與 Drawer 展開規則統一由 css/components.css 提供，
+   此處僅補上本頁 navbar 為 flex 排版時 Drawer 的定位基準。 */
 @media (max-width: 992px) {
-  .nav-menu {
-    display: none;
+  .navbar-inner {
+    position: relative;
+  }
+  .nav-menu.active {
+    left: 0;
+    right: 0;
+    width: auto;
   }
 }
 

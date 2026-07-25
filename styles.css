@@ -1,5 +1,7 @@
 /* 港居不動產 品牌官網 CSS 樣式系統 - 極致 UI/UX 與 RWD 響應式規範 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+/* ⚠️ Google Fonts 改由各頁 HTML <link rel="preconnect"> + <link rel="stylesheet"> 載入，
+   不要在此使用 @import：CSS @import 會產生「HTML → styles.css → fonts.googleapis.com」
+   的串聯阻塞式請求鏈，明顯拖慢 FCP/LCP。 */
 @import url('css/tokens.css');
 @import url('css/components.css');
 
@@ -132,39 +134,11 @@ body {
   letter-spacing: 1px;
 }
 
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-  list-style: none;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: var(--text-dark);
-  font-weight: 700;
-  font-size: 0.98rem;
-  transition: var(--transition);
-  position: relative;
-  padding: 6px 0;
-}
-
-.nav-link:hover, .nav-link.active {
-  color: var(--accent-gold-hover);
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 3px;
-  background: var(--accent-gold);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-
+/* ⚠️ .nav-menu 的基礎樣式由 css/components.css 提供。
+   請勿在此重新宣告 display，否則會蓋掉 components.css 內的 RWD @media 規則
+   （@import 進來的規則排在本檔案所有規則之前，同權重時本檔會勝出）。 */
+/* .nav-link 及其底線動畫同樣由 css/components.css 統一提供（含隨寬度縮放的字級），
+   此處不再重複宣告，以免蓋掉 @media 內的響應式設定。 */
 .nav-link:hover::after, .nav-link.active::after {
   width: 100%;
 }
@@ -219,15 +193,9 @@ body {
   transform: translateY(-3px);
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Menu Toggle — display 由 css/components.css 的 @media 控制，此處只微調外觀 */
 .mobile-toggle {
-  display: none;
-  background: none;
-  border: none;
   font-size: 1.8rem;
-  color: var(--primary-navy);
-  cursor: pointer;
-  padding: 8px;
 }
 
 /* HERO 主視覺區 (極致留白與視覺動線) */
@@ -1053,6 +1021,45 @@ img, svg, iframe, video {
 }
 
 /* RWD 響應式佈局 (Mobile & Tablet 最佳化) */
+/* 專欄「閱讀全文」連結：確保觸控熱區達 44px 高 */
+.read-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--accent-gold-hover);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.read-more-link:hover {
+  color: var(--accent-gold);
+}
+
+/* 隱私同意核取方塊：放大點擊尺寸 */
+.form-checkbox input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  accent-color: var(--accent-gold-hover);
+  cursor: pointer;
+}
+
+.form-checkbox label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+/* ROI 滑桿：以 padding 外擴拖曳熱區至 44px，軌道視覺仍維持 10px */
+.calc-range-wrapper input[type="range"] {
+  box-sizing: content-box;
+  height: 10px;
+  padding: 17px 0;
+  background-clip: content-box;
+}
+
 @media (max-width: 992px) {
   .hero-grid, .calc-grid, .footer-grid, .plans-grid {
     grid-template-columns: 1fr;
@@ -1072,36 +1079,8 @@ img, svg, iframe, video {
     max-width: 500px;
     margin: 0 auto;
   }
-  .nav-menu {
-    display: none;
-  }
-  .nav-menu.active {
-    display: flex !important;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #FFFFFF;
-    padding: 24px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-    border-bottom: 3px solid var(--accent-gold);
-    z-index: 9999;
-  }
-  .nav-menu.active .nav-link {
-    width: 100%;
-    padding: 12px 16px;
-    min-height: 44px;
-    font-size: 1.05rem;
-  }
-  .mobile-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0;
-  }
+  /* 導覽列 Drawer 與 .mobile-toggle 規則已統一移至 css/components.css，
+     四個頁面共同繼承，避免此處與公用組件出現兩份真相。 */
   .form-grid {
     grid-template-columns: 1fr;
   }

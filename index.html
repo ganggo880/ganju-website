@@ -6,13 +6,21 @@
   <title>港居不動產｜高雄高質感住宅包租代管首選・屋況免改裝直上</title>
   <meta name="description" content="港居不動產開發有限公司專注高雄高質感住宅包租與代管服務。提供屋主免改裝直上、嚴審優質租客、原狀還原保障與零空置穩定收益。特許登記證號：(108)登字第354198號、(112)登字第013739號。">
   
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/">
+  <meta name="theme-color" content="#1A365D">
+
   <!-- Open Graph / Social Media -->
   <meta property="og:title" content="港居不動產｜高雄高質感住宅包租代管">
   <meta property="og:description" content="專注高質感住宅資產管理。嚴審外商與工程師租客，提供完整資產維護與穩定收益。">
-  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/">
   <meta property="og:type" content="website">
 
-  <!-- Icons & Fonts -->
+  <!-- Icons & Fonts（字型改由 HTML 直接 link，避免 CSS @import 造成的三層阻塞式載入鏈） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 
@@ -21,24 +29,40 @@
   {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
+    "@id": "https://ganggo880.github.io/ganju-website/#organization",
     "name": "港居不動產開發有限公司",
-    "alternateName": "Harbor Residence Real Estate",
+    "alternateName": "GANJU Real Estate Co., Ltd.",
     "url": "https://ganggo880.github.io/ganju-website/",
     "logo": "https://ganggo880.github.io/ganju-website/assets/logo.png",
-    "telephone": "+886-968-863-880",
+    "image": "https://ganggo880.github.io/ganju-website/assets/logo.png",
+    "telephone": "+886-7-791-2288",
     "email": "ganggo880@gmail.com",
     "taxID": "96797997",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "中安路825號",
-      "addressLocality": "小港區合作里",
+      "streetAddress": "合作里中安路825號",
+      "addressLocality": "小港區",
       "addressRegion": "高雄市",
+      "postalCode": "812",
       "addressCountry": "TW"
     },
+    "areaServed": {
+      "@type": "City",
+      "name": "高雄市"
+    },
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "name": "陳俊銘 經理",
+      "telephone": "+886-968-863-880",
+      "email": "ganggo880@gmail.com",
+      "availableLanguage": ["zh-Hant"]
+    }],
+    "sameAs": ["https://lin.ee/NVFhBDE"],
     "description": "港居不動產專注高雄高質感住宅包租與代管服務，特許登記證號：(108)登字第354198號、(112)登字第013739號。"
   }
   </script>
-  
+
   <script type="module" src="js/navigation.js"></script>
 </head>
 <body>
@@ -62,7 +86,7 @@
   <nav class="navbar">
     <div class="container">
       <a href="#" class="brand-logo">
-        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <img src="assets/logo.png" alt="港居不動產 LOGO" width="279" height="57" fetchpriority="high" decoding="async">
         <div class="brand-text-box">
           <h1>港居不動產</h1>
           <p>GANJU REAL ESTATE</p>
@@ -83,7 +107,7 @@
 
       <div style="display: flex; gap: 12px; align-items: center;">
         <a href="#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
-        <button class="mobile-toggle" id="mobileToggle"><i class="fa-solid fa-bars"></i></button>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </nav>
@@ -129,12 +153,12 @@
       <div class="hero-mascot-card">
         <div class="mascot-container">
           <div class="mascot-box">
-            <img src="assets/pixar_horse.jpg" alt="阿港經理" class="mascot-img">
+            <img src="assets/pixar_horse.jpg" alt="阿港經理" class="mascot-img" width="896" height="1200" loading="lazy" decoding="async">
             <div class="mascot-name">阿港經理 🐴</div>
             <div class="mascot-role">誠信・嚴謹・穩定收益</div>
           </div>
           <div class="mascot-box">
-            <img src="assets/pixar_sheep.jpg" alt="阿居管家" class="mascot-img">
+            <img src="assets/pixar_sheep.jpg" alt="阿居管家" class="mascot-img" width="896" height="1200" loading="lazy" decoding="async">
             <div class="mascot-name">阿居管家 🐑</div>
             <div class="mascot-role">細心・溫馨・屋況護全</div>
           </div>
@@ -223,12 +247,12 @@
             <p style="color: #CBD5E1; margin-bottom: 24px;">移動下方滑桿，即刻估算港居為您帶來的年度預估穩定收入！</p>
             
             <div class="calc-range-wrapper">
-              <label>預估每月租金行情：<span class="calc-range-val" id="rentValue">NT$ 35,000</span></label>
-              <input type="range" id="rentSlider" min="15000" max="80000" step="1000" value="35000">
+              <label for="rentSlider">預估每月租金行情：<span class="calc-range-val" id="rentValue">NT$ 35,000</span></label>
+              <input type="range" id="rentSlider" min="15000" max="80000" step="1000" value="35000" aria-label="預估每月租金行情（新台幣）">
             </div>
 
             <div class="calc-range-wrapper">
-              <label>委託服務模式：</label>
+              <label for="planSelect">委託服務模式：</label>
               <select id="planSelect" class="form-control" style="background: rgba(255,255,255,0.15); color: #FFF; border-color: rgba(255,255,255,0.3);">
                 <option value="managed" style="color:#000;">精緻代管模式</option>
               </select>
@@ -271,7 +295,7 @@
         <!-- 房源卡片 1 -->
         <div class="property-card" data-category="xiaogang pet">
           <div class="property-img-box">
-            <img src="assets/apartment_living.jpg" alt="小港中安路質感景觀3房" loading="lazy" decoding="async">
+            <img src="assets/apartment_living.jpg" alt="小港中安路質感景觀3房" width="1376" height="768" loading="lazy" decoding="async">
             <span class="property-badge">精品裝潢・包租熱銷</span>
             <span class="property-price">$ 36,000 / 月</span>
           </div>
@@ -293,7 +317,7 @@
         <!-- 房源卡片 2 -->
         <div class="property-card" data-category="qianzhen">
           <div class="property-img-box">
-            <img src="assets/apartment_bedroom.jpg" alt="前鎮亞灣區精品高層大兩房">
+            <img src="assets/apartment_bedroom.jpg" alt="前鎮亞灣區精品高層大兩房" width="1376" height="768" loading="lazy" decoding="async">
             <span class="property-badge">外商最愛・高層視野</span>
             <span class="property-price">$ 42,000 / 月</span>
           </div>
@@ -314,7 +338,7 @@
         <!-- 房源卡片 3 (已出租標籤) -->
         <div class="property-card" data-category="fengshan">
           <div class="property-img-box">
-            <img src="assets/apartment_living.jpg" alt="鳳山文山特區公園景觀宅">
+            <img src="assets/apartment_living.jpg" alt="鳳山文山特區公園景觀宅" width="1376" height="768" loading="lazy" decoding="async">
             <span class="property-badge rented">已出租 (Rented Out)</span>
             <span class="property-price">$ 32,000 / 月</span>
           </div>
@@ -379,21 +403,21 @@
           <span style="font-size: 0.8rem; color: var(--accent-gold-hover); font-weight: 800;">稅務減免指南</span>
           <h3 style="font-size: 1.2rem; margin: 10px 0; color: var(--primary-navy);">房東輕鬆省稅！包租代管租金所得稅減免試算</h3>
           <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">委託特許包租代管業者，每月每屋享有 1.5 萬元免稅額度，必要費用率更高達 60%...</p>
-          <a href="#contact" style="color: var(--accent-gold-hover); font-weight: 700; text-decoration: none;">閱讀全文 <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#contact" class="read-more-link">閱讀全文 <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="advantage-card" style="padding: 30px;">
           <span style="font-size: 0.8rem; color: var(--accent-gold-hover); font-weight: 800;">屋況維護撇步</span>
           <h3 style="font-size: 1.2rem; margin: 10px 0; color: var(--primary-navy);">屋況免改裝直上！如何吸引外商高管與工程師優質租客？</h3>
           <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">良好屋況搭配採光與現代簡約家具，無需耗費數十萬裝修即可獲得優質客群青睞...</p>
-          <a href="#contact" style="color: var(--accent-gold-hover); font-weight: 700; text-decoration: none;">閱讀全文 <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#contact" class="read-more-link">閱讀全文 <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="advantage-card" style="padding: 30px;">
           <span style="font-size: 0.8rem; color: var(--accent-gold-hover); font-weight: 800;">法規與保障</span>
           <h3 style="font-size: 1.2rem; margin: 10px 0; color: var(--primary-navy);">點交原狀還原！港居退租四重深層檢查標準</h3>
           <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">從牆面漆面、水電設備到高質感家電，港居點交紀錄確保您的房屋恢復質感現況...</p>
-          <a href="#contact" style="color: var(--accent-gold-hover); font-weight: 700; text-decoration: none;">閱讀全文 <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#contact" class="read-more-link">閱讀全文 <i class="fa-solid fa-arrow-right"></i></a>
         </article>
       </div>
     </div>
@@ -417,7 +441,7 @@
             </div>
 
             <div class="form-group">
-              <label for="phone"><div class="fa-solid fa-phone"></div> 聯絡電話 *</label>
+              <label for="phone"><i class="fa-solid fa-phone"></i> 聯絡電話 *</label>
               <input type="tel" id="phone" class="form-control" placeholder="例如：0968-863-880" required>
             </div>
 
@@ -472,7 +496,7 @@
       <div class="footer-grid">
         <div>
           <h4 style="display: flex; align-items: center; gap: 10px;">
-            <img src="assets/logo.png" alt="港居" style="height: 36px;">
+            <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async" style="height: 36px; width: auto;">
             港居不動產開發有限公司
           </h4>
           <p>特許經營包租代管服務，專注高質感住宅資產護全與穩定收益增值。</p>
@@ -504,31 +528,32 @@
           <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
           <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
           <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
-          <a href="https://lin.ee/NVFhBDE" target="_blank" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+          <a href="https://lin.ee/NVFhBDE" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
             <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
           </a>
         </div>
-
-        <div class="footer-bottom">
-          <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
-        </div>
       </div>
-    </footer>
+
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
 
     <!-- 懸浮 Line 與電話快速按鈕 -->
     <div class="floating-actions">
-      <a href="https://lin.ee/NVFhBDE" target="_blank" class="float-btn float-btn-line" title="Line 專員一對一諮詢">
+      <a href="https://lin.ee/NVFhBDE" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
         <i class="fa-brands fa-line"></i>
       </a>
-    <a href="tel:0968863880" class="float-btn float-btn-phone" title="致電 陳俊銘 經理">
-      <i class="fa-solid fa-phone"></i>
-    </a>
-  </div>
+      <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+        <i class="fa-solid fa-phone"></i>
+      </a>
+    </div>
 
   <!-- 房源 VR 彈窗 Modal -->
-  <div class="modal-overlay" id="propertyModal">
+  <div class="modal-overlay" id="propertyModal" role="dialog" aria-modal="true" aria-label="房源詳情與 VR 預覽">
     <div class="modal-card">
-      <button class="modal-close" id="modalClose">&times;</button>
+      <button class="modal-close" id="modalClose" type="button" aria-label="關閉房源詳情視窗">&times;</button>
       <div id="modalContent">
         <!-- 動態內容代入 -->
       </div>

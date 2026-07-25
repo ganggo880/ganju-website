@@ -6,17 +6,23 @@
   <title>線上檔案轉換工具｜港居不動產專屬多功能轉換神器</title>
   <meta name="description" content="港居不動產開發有限公司專用線上檔案轉換工具。支援PDF、Word文檔、圖片(PNG/JPG/WEBP)、音訊(MP3/WAV)、視訊與電子書在線即時免費轉換，資安防護零洩漏。特許登記證號：(108)登字第354198號。">
   
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/file-converter.html">
+  <meta name="theme-color" content="#1A365D">
+
   <!-- Open Graph -->
   <meta property="og:title" content="線上檔案轉換工具｜港居不動產專屬多功能轉檔神器">
   <meta property="og:description" content="免費即時在線轉換PDF、文檔、圖像、音效與視訊格式。隱私安全，港居不動產貼心提供。">
-  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/file-converter.html">
   <meta property="og:type" content="website">
 
-  <!-- Icons & Fonts Preconnect -->
+  <!-- Icons & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="css/converter.css">
 
@@ -30,10 +36,18 @@
     "applicationCategory": "UtilitiesApplication",
     "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas & Blob API.",
     "operatingSystem": "All",
+    "inLanguage": "zh-Hant-TW",
     "description": "提供 PDF、Word、圖片 (PNG/JPG/WEBP)、音訊與視訊極速安全的瀏覽器本機端檔案格式轉換。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
     "provider": {
       "@type": "RealEstateAgent",
-      "name": "港居不動產開發有限公司"
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
     }
   }
   </script>
@@ -62,7 +76,7 @@
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="brand-logo">
-        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <img src="assets/logo.png" alt="港居不動產 LOGO" width="279" height="57" fetchpriority="high" decoding="async">
         <div class="brand-text-box">
           <h1>港居不動產</h1>
           <p>GANJU REAL ESTATE</p>
@@ -87,7 +101,7 @@
           <i class="fa-solid fa-moon icon-moon"></i>
         </button>
         <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
-        <button class="mobile-toggle" id="mobileToggle"><i class="fa-solid fa-bars"></i></button>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </nav>
@@ -140,11 +154,11 @@
           </div>
 
           <!-- 檔案拖曳上傳 Dropzone -->
-          <div class="dropzone-box" id="dropzone">
+          <div class="dropzone-box" id="dropzone" role="button" tabindex="0" aria-controls="fileInput" aria-label="選擇要轉換的檔案，或將檔案拖曳至此處">
             <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
             <div class="dropzone-title">點擊選擇檔案，或將檔案拖曳至此處</div>
             <div class="dropzone-sub">支援單檔上限 100MB，極速轉換無需等待</div>
-            <input type="file" id="fileInput" class="file-input-hidden">
+            <input type="file" id="fileInput" class="file-input-hidden" aria-label="選擇要轉換的檔案">
           </div>
 
           <div id="selectedFileName" style="font-size: 0.95rem; text-align: center; margin-bottom: 1.5rem; min-height: 24px;"></div>
@@ -160,10 +174,10 @@
               </select>
             </div>
             <div>
-              <label style="display: block; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.92rem; color: var(--text-primary);">
+              <label for="qualitySelect" style="display: block; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.92rem; color: var(--text-primary);">
                 <i class="fa-solid fa-gear" style="color: var(--accent-gold);"></i> 轉換品質 / 模式
               </label>
-              <select class="form-select-custom">
+              <select id="qualitySelect" class="form-select-custom">
                 <option value="high" selected>最佳品質 (推薦品質優先)</option>
                 <option value="medium">標準品質 (兼顧檔案大小)</option>
                 <option value="compressed">極致壓縮 (檔案最小化)</option>
@@ -244,7 +258,7 @@
       <div class="footer-grid">
         <div>
           <h4 style="display: flex; align-items: center; gap: 10px;">
-            <img src="assets/logo.png" alt="港居" style="height: 36px;">
+            <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async" style="height: 36px; width: auto;">
             港居不動產開發有限公司
           </h4>
           <p>特許經營包租代管服務，專注高質感住宅資產護全與穩定收益增值。</p>
@@ -276,7 +290,7 @@
           <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
           <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
           <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
-          <a href="https://lin.ee/NVFhBDE" target="_blank" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+          <a href="https://lin.ee/NVFhBDE" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
             <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
           </a>
         </div>
@@ -289,10 +303,10 @@
 
   <!-- 懸浮 Line 與電話快速按鈕 -->
   <div class="floating-actions">
-    <a href="https://lin.ee/NVFhBDE" target="_blank" class="float-btn float-btn-line" title="Line 專員一對一諮詢">
+    <a href="https://lin.ee/NVFhBDE" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
       <i class="fa-brands fa-line"></i>
     </a>
-    <a href="tel:0968863880" class="float-btn float-btn-phone" title="致電 陳俊銘 經理">
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
       <i class="fa-solid fa-phone"></i>
     </a>
   </div>
