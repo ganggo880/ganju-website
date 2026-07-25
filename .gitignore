@@ -10,3 +10,13 @@ Thumbs.db
 # Obsidian workspace
 .obsidian/workspace*
 .obsidian/cache
+
+# Google Drive / Office 暫存
+desktop.ini
+~$*
+
+# 敏感資訊（嚴禁提交）
+.env
+.env.*
+*.key
+credentials.*

@@ -1,7 +1,40 @@
 # 🤝 AI 交接說明文件 (AI Handover Document)
 
-> 💡 **给接續工作的 AI Agent**：
-> 歡迎閱讀本專案！本文件記錄了「港居不動產」全站系統目前的完成狀態、架構規範、已部署網址與開發約定。
+> 💡 **給接續工作的 AI Agent**：
+> 任何 Agent、任何電腦接手前**必讀**；收工時**必更新**。本檔只放交接必需的精簡資訊，詳細脈絡放 Obsidian：`obsidian/港居不動產官網/專案工作流程.md`。
+> 專案藍圖請讀 [`AGENTS.md`](AGENTS.md)。
+
+---
+
+## ⏯️ 目前做到哪
+
+完成專案三層級初始化：`AGENTS.md` 由空殼擴寫為完整專案藍圖、`handoff.md` 補上標準交接欄位、`.gitignore` 加上敏感檔封鎖、Obsidian 建立 `港居不動產官網/專案工作流程.md`。全站 4 個頁面功能均已完成並上線。
+
+## 🚦 目前狀態
+
+- ✅ **可運行**：4 個頁面全數上線於 GitHub Pages，無已知阻斷性錯誤
+- ✅ 工作區乾淨，上一輪變更已 push（`e7a6460`）
+- 🔸 未完成：全站 RWD 與 44×44px 觸控區域逐頁複檢、Lighthouse 效能／無障礙優化
+
+## ➡️ 下一步
+
+1. 逐頁複檢 RWD 斷點（360px / 768px / 1280px）與觸控區域 ≥ 44×44px
+2. 跑 Lighthouse，針對效能與無障礙評分做優化
+3. 檢查 4 個頁面的 JSON-LD 結構化資料是否通過 Google Rich Results Test
+
+## ⚠️ 注意事項
+
+- 本機**未安裝 `gh` CLI** → GitHub 操作一律用原生 `git`（remote 已設好，不需重建）
+- 專案在 Google 雲端硬碟上，已設 `git config windows.appendAtomically false`，換電腦務必確認同步完成再開工
+- **不要死寫色碼**：改樣式一律走 `css/tokens.css` 變數
+- `css/tokens.css`、`css/components.css`、`js/layout.js` 是全站共用，改動前先讀最新內容
+- AI 產出的文件一律歸檔 `output/`，不要散落根目錄
+
+## 🕐 最後更新
+
+- 時間：2026-07-25 10:06
+- 更新者：Claude Code (Opus 5) @ KEN-PC
+- Git push：⏳ 待本次初始化變更 commit 後推送
 
 ---
 
