@@ -30,7 +30,7 @@
 - [x] 階段七：身份證照裁剪與租賃水印工具 `id-card-watermark.html`（含七項缺陷修正）
 - [x] 階段八：JSON-LD 結構化資料校正（修掉不存在的 `FinancialCalculator` 型別、補 `offers`、補 canonical／絕對路徑 og:image）
 - [x] 階段九：SEO／無障礙／載入效能／RWD 觸控熱區優化（共用組件 RWD 規則歸位 `components.css`）
-- [ ] 階段十：**RWD 收尾**——`file-converter.html` 在 360px 仍水平溢出（`.category-tabs` 未在窄螢幕收合）、`rent-calculator.html` 360px 溢出 9px（`.bg-glow` 裝飾層未裁切）
+- [x] 階段十：**RWD 收尾**（`file-converter.html` 在 360px 螢幕下 `.category-tabs` 橫向滑動與 grid 子項 `min-width: 0` 修正、`rent-calculator.html` 360px 下 `.bg-glow` 9px 光暈溢出消除與 `.brand-logo` 44px 觸控熱區）
 - [ ] 階段十一：實機跑 Lighthouse 取得正式分數（本機無 Node/npx，僅完成等效的腳本化稽核）
 - [ ] 階段十二：Google Rich Results Test 線上實測 4 頁 JSON-LD
 

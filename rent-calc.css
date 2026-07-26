@@ -3,6 +3,12 @@
 @import url('css/components.css');
 
 /* Base Body Adjustment */
+/* Base Body Adjustment */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   background-color: var(--bg-light);
   display: block; /* Override flex center so header & footer stretch naturally */
@@ -15,22 +21,35 @@ body {
   position: fixed;
   width: 550px;
   height: 550px;
+  max-width: 100vw;
+  max-height: 100vh;
   border-radius: 50%;
   filter: blur(120px);
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
 }
+
 .bg-glow-1 {
   background: var(--calc-bg-glow-1);
   top: -10%;
   left: -10%;
   animation: float-glow 20s infinite alternate;
 }
+
 .bg-glow-2 {
   background: var(--calc-bg-glow-2);
   bottom: -10%;
   right: -10%;
   animation: float-glow 25s infinite alternate-reverse;
+}
+
+@media (max-width: 576px) {
+  .bg-glow {
+    width: 280px;
+    height: 280px;
+    filter: blur(60px);
+  }
 }
 
 @keyframes float-glow {

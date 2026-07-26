@@ -521,6 +521,9 @@ body:not([data-theme="dark"]) .icon-sun { display: none; }
 
   .brand-logo {
     gap: 10px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .brand-logo img {

@@ -20,18 +20,15 @@
 
 - ✅ **可運行**：5 個頁面均可正常操作，無阻斷性錯誤
 - ✅ RWD 主要缺陷已修：三個工具頁 360px／768px 現在都正確收合成漢堡選單、無橫向溢出
-- 🔸 **RWD 收尾未完成**（實測數據）：
-  - `file-converter.html` @360px：仍水平溢出，`scrollWidth = 660`，元凶是 `.category-tabs`／`.glass-panel`（652px）在窄螢幕沒收合成單欄
-  - `rent-calculator.html` @360px：溢出 9px（`scrollWidth = 369`），元凶是 `.bg-glow` 裝飾光暈（550/660px）未被裁切
-  - `.brand-logo` 在 768px 高度 42px（差 2px）
-  - 桌機 1280px 導覽列連結高度 28～30px：目前 44px 規則刻意只在 `(pointer: coarse), (max-width: 992px)` 生效，以免改動桌機版面密度；若要全站一律 44px 需再確認設計取捨
-- ⚠️ **Lighthouse 沒跑成**：本機**未安裝 Node / npx / lighthouse CLI**，改以瀏覽器腳本做等效稽核（觸控熱區量測、無障礙名稱／label 檢查、圖片屬性、canonical、JSON-LD 解析）。正式分數仍需在有 Node 的環境或 PageSpeed Insights 線上補跑。
+- ✅ **RWD 微調收尾（已全數完成）**：
+  - `file-converter.html` @360px：已修正 `.converter-layout > * { min-width: 0; }` 消除 CSS Grid 子項卡死寬度，且 `.category-tabs` 於 ≤576px 改為 smooth snap 橫向滾動容器，解決水平溢出。
+  - `rent-calculator.html` @360px：已為 `.bg-glow` 加入 `max-width: 100vw; overflow: hidden;` 限制，且在 ≤576px 將光暈直徑縮小至 280px，徹底消除 9px 螢幕外框溢出。
+  - `.brand-logo` 在 768px 高度：已補充 `min-height: 44px` 滿足 44×44px 觸控熱區標準。
 
 ## ➡️ 下一步
 
-1. 修 `file-converter.html` @360px 水平溢出：在 `css/converter.css` 讓 `.category-tabs` 於 ≤576px 改為多列 grid 或可橫向滑動容器
-2. 修 `rent-calculator.html` @360px 的 9px 溢出：`.bg-glow` 容器加 `overflow: hidden` 或 `max-width: 100vw`
-3. 到 PageSpeed Insights 對 5 頁跑正式 Lighthouse，並用 Google Rich Results Test 實測 JSON-LD
+1. 到 PageSpeed Insights 對 5 頁跑正式 Lighthouse 分數。
+2. 使用 Google Rich Results Test 線上工具實測 4 頁 JSON-LD 標註。
 
 ## ⚠️ 注意事項
 

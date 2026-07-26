@@ -286,7 +286,11 @@ body {
   color: var(--text-muted);
 }
 
-/* RWD Media Queries */
+/* RWD Media Queries & 防溢出極致微調 */
+.converter-layout > * {
+  min-width: 0; /* 防止 CSS Grid 子項依據內部 content 寬度爆開 */
+}
+
 /* 觸控熱區：類別分頁鈕與下拉選單補足 44px */
 .cat-tab-btn,
 .form-select-custom {
@@ -300,9 +304,32 @@ body {
 }
 
 @media (max-width: 576px) {
+  .converter-section {
+    padding: 30px 0 60px;
+  }
+
+  .category-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    margin-bottom: 1.25rem;
+  }
+
+  .cat-tab-btn {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+  }
+
   .convert-options-grid {
     grid-template-columns: 1fr;
   }
+
   .dropzone-box {
     padding: 2rem 1rem;
   }
