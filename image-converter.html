@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圖像格式與尺寸轉換神器｜JPG, PNG, WEBP, GIF, SVG, BMP 互轉｜港居不動產線上工具集</title>
+  <meta name="description" content="港居不動產線上圖像格式與尺寸轉換神器。支援 JPG, PNG, WEBP, GIF, SVG, BMP 六大格式雙向互相轉換，最多可同時處理 20 張圖片，並提供大 (1920px)、中 (1280px)、小 (800px) 與原圖尺寸縮放。瀏覽器本地極速轉檔，安全免上傳。">
+  
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/image-converter.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="圖像格式與尺寸轉換神器｜JPG, PNG, WEBP, GIF, SVG, BMP 互轉｜港居不動產">
+  <meta property="og:description" content="支援 JPG, PNG, WEBP, GIF, SVG, BMP 六大格式互相轉換，最多可放入 20 張圖片並可自由選擇大、中、小縮放尺寸。全本機處理，隱私安全無虞。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/image-converter.html">
+  <meta property="og:type" content="website">
+
+  <!-- Icons & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/image-converter.css">
+
+  <!-- Schema.org JSON-LD for WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居線上圖像格式與尺寸轉換神器",
+    "url": "https://ganggo880.github.io/ganju-website/image-converter.html",
+    "applicationCategory": "MultimediaApplication",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas API.",
+    "operatingSystem": "All",
+    "inLanguage": "zh-Hant-TW",
+    "description": "提供 JPG, PNG, WEBP, GIF, SVG, BMP 六大格式雙向互相轉換，最多支援 20 張圖片批量處理與大中小尺寸壓縮。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script type="module" src="js/layout.js"></script>
+  <script type="module" src="js/image-converter.js"></script>
+</head>
+<body>
+
+  <!-- 頂部宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 營業員證號：(108) 登字第354198號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主導覽列 Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="港居不動產 LOGO" width="279" height="57" fetchpriority="high" decoding="async">
+        <div class="brand-text-box">
+          <h1>港居不動產</h1>
+          <p>GANJU REAL ESTATE</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算</a></li>
+        <li><a href="image-converter.html" class="nav-link active"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+        <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換</a></li>
+        <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+        <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件水印</a></li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="開啟導覽選單" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主要轉換器內容區塊 -->
+  <main class="converter-section container">
+    <div class="converter-hero">
+      <h1><i class="fa-solid fa-photo-film" style="color: var(--accent-color);"></i> 圖像格式與尺寸轉換神器</h1>
+      <p>支援 <strong>JPG, PNG, WEBP, GIF, SVG, BMP</strong> 6 大格式自由互相轉換。一次最多可上傳 <strong>20 張圖片</strong>，並可自由切換大 (1920px)、中 (1280px)、小 (800px) 與原圖尺寸。全本機 Canvas 運算，零檔案上傳，隱私安全無虞。</p>
+    </div>
+
+    <!-- 控盤與批次設定條 (Global Controls Bar) -->
+    <div class="controls-bar">
+      <div class="controls-row">
+        <div class="control-group">
+          <span class="control-label"><i class="fa-solid fa-repeat"></i> 目標格式：</span>
+          <div class="format-pills" id="formatPills">
+            <button class="btn-pill" data-format="jpeg">JPG</button>
+            <button class="btn-pill" data-format="png">PNG</button>
+            <button class="btn-pill active" data-format="webp">WEBP</button>
+            <button class="btn-pill" data-format="gif">GIF</button>
+            <button class="btn-pill" data-format="svg">SVG</button>
+            <button class="btn-pill" data-format="bmp">BMP</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="control-label"><i class="fa-solid fa-expand"></i> 尺寸 preset：</span>
+          <div class="size-pills" id="sizePills">
+            <button class="btn-pill active" data-preset="original">原始尺寸</button>
+            <button class="btn-pill" data-preset="large">大圖 (1920px)</button>
+            <button class="btn-pill" data-preset="medium">中圖 (1280px)</button>
+            <button class="btn-pill" data-preset="small">小圖 (800px)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <span class="control-label"><i class="fa-solid fa-sliders"></i> 輸出品質：</span>
+          <div class="quality-slider-container">
+            <input type="range" id="qualityRange" min="10" max="100" value="90" step="5">
+            <span class="quality-val" id="qualityVal">90%</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="control-label"><i class="fa-solid fa-border-all"></i> 卡片視圖大小：</span>
+          <div class="grid-view-pills" id="gridViewPills">
+            <button class="btn-pill" data-view="view-large">大卡片</button>
+            <button class="btn-pill active" data-view="view-medium">中卡片</button>
+            <button class="btn-pill" data-view="view-small">小卡片</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 拖曳上傳 Dropzone (限制 20 張) -->
+    <div class="dropzone-container" id="dropzone" role="button" tabindex="0" aria-label="點擊或拖拽圖片至此處上傳">
+      <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,image/bmp" style="display: none;">
+      <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+      <div class="dropzone-title">點擊選取圖片 或 將圖片拖拽至此處</div>
+      <div class="dropzone-desc">支援 JPG, PNG, WEBP, GIF, SVG, BMP 圖像格式</div>
+      <div class="dropzone-counter" id="imageCounter">0 / 20 張</div>
+    </div>
+
+    <!-- 圖片卡片 Grid 容器 -->
+    <div class="grid-header">
+      <div class="grid-title"><i class="fa-solid fa-images"></i> 圖片清單與獨立設定</div>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <i class="fa-regular fa-images"></i>
+      <p>尚未新增任何圖片，請從上方拖曳或選擇圖片開始轉換</p>
+    </div>
+
+    <div class="image-grid view-medium" id="imageGrid" style="display: none;">
+      <!-- 卡片內容將由 JavaScript 動態繪製 -->
+    </div>
+
+    <!-- 底部通用批量操作按鈕欄 -->
+    <div class="batch-actions-bar">
+      <button class="btn btn-outline" id="clearAllBtn" disabled>
+        <i class="fa-solid fa-trash-can"></i> 清空全部圖片
+      </button>
+
+      <div class="batch-btn-group">
+        <button class="btn btn-primary" id="convertAllBtn" disabled>
+          <i class="fa-solid fa-bolt"></i> 批量全部轉換
+        </button>
+
+        <button class="btn btn-secondary" id="downloadZipBtn" disabled>
+          <i class="fa-solid fa-file-zipper"></i> 一鍵打包下載 ZIP
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>港居不動產開發有限公司</h3>
+          <p>GANJU REAL ESTATE DEVELOPMENT CO., LTD.</p>
+          <p>特許包租代管團隊 / 專業租務託管 / 線上數位工具</p>
+          <p style="margin-top: 8px;">統一編號：96797997</p>
+        </div>
+        <div class="footer-col">
+          <h4>線上工具集</h4>
+          <ul class="footer-links">
+            <li><a href="image-converter.html"><i class="fa-solid fa-image"></i> 圖像格式與尺寸轉換</a></li>
+            <li><a href="rent-calculator.html"><i class="fa-solid fa-calculator"></i> 租金與代管費換算</a></li>
+            <li><a href="file-converter.html"><i class="fa-solid fa-file-export"></i> 線上多功能檔案轉換</a></li>
+            <li><a href="photo-watermark.html"><i class="fa-solid fa-camera"></i> 房源照片 EXIF 水印</a></li>
+            <li><a href="id-card-watermark.html"><i class="fa-solid fa-id-card"></i> 身份證照裁剪與水印</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>聯絡我們</h4>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+          <p><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</p>
+          <p><i class="fa-solid fa-envelope"></i> ganggo880@gmail.com</p>
+          <p><i class="fa-solid fa-certificate"></i> 營業員證號：(108) 登字第354198號</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 港居不動產開發有限公司 版權所有 GANJU Real Estate Co., Ltd. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

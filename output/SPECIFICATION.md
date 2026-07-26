@@ -38,19 +38,22 @@
 Matt Pocock skills/
 ├── index.html               # 品牌官網主頁 (Landing Page)
 ├── rent-calculator.html     # 租金與代管服務費精確換算工具子網頁
+├── image-converter.html     # 圖像格式與尺寸轉換神器 (JPG, PNG, WEBP, GIF, SVG, BMP 互轉)
 ├── file-converter.html      # 線上多功能檔案轉換神器 (Aconvert 轉檔機制)
 ├── photo-watermark.html     # 房源照片 EXIF 水印工具頁面
+├── id-card-watermark.html   # 身份證照裁剪與租賃水印工具
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
-├── script.js                # 主頁互動邏輯 (ROI計算器, 房源篩選, Modal, Lead表單)
-├── rent-calc.js             # 租金換算邏輯、代管拆分與歷史紀錄
 ├── css/
 │   ├── tokens.css           # 品牌設計 Token、色彩、陰影、字體與深淺模式變數
 │   ├── components.css       # 公用組件樣式 (TopBar, Navbar, Footer, Buttons, Toast)
-│   └── converter.css        # 檔案轉換工具專屬樣式
+│   ├── converter.css        # 檔案轉換工具專屬樣式
+│   └── image-converter.css  # 圖像格式與尺寸轉換神器專用樣式
 ├── js/
 │   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast, 主題切換)
+│   ├── layout.js            # 頁面 Layout, Active 狀態點亮與 Mobile Drawer 控制
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 選單控制模組
+│   ├── image-converter.js   # 圖像格式 (JPG/PNG/WEBP/GIF/SVG/BMP) 與大中小尺寸轉換引擎
 │   ├── converter.js         # 檔案轉換核心邏輯 (Canvas轉檔, 拖曳上傳, 進度條)
 │   ├── watermark-app.js     # 水印應用邏輯
 │   ├── watermark-engine.js  # 水印渲染引擎

@@ -1,0 +1,460 @@
+@import "tokens.css";
+@import "components.css";
+
+/* --------------------------------------------------
+   圖像格式轉換神器 - 專用樣式 (Image Converter CSS)
+-------------------------------------------------- */
+
+.converter-section {
+  padding: 40px 0 80px;
+}
+
+.converter-hero {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.converter-hero h1 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.converter-hero p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 控盤與批次設定條 (Global Controls Bar) */
+.controls-bar {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.control-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.format-pills, .size-pills, .grid-view-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.btn-pill {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-pill:hover {
+  background: var(--hover-color);
+  color: var(--primary-color);
+}
+
+.btn-pill.active {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.25);
+}
+
+.quality-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-tertiary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.quality-slider-container input[type="range"] {
+  width: 100px;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+.quality-val {
+  font-weight: 700;
+  color: var(--accent-color);
+  min-width: 36px;
+  font-size: 0.9rem;
+}
+
+/* 拖曳 Dropzone 區域 */
+.dropzone-container {
+  background: var(--card-bg);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.dropzone-container:hover, .dropzone-container.drag-over {
+  border-color: var(--accent-color);
+  background: rgba(197, 160, 89, 0.05);
+  transform: translateY(-2px);
+}
+
+.dropzone-icon {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.dropzone-container:hover .dropzone-icon {
+  transform: scale(1.1);
+}
+
+.dropzone-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.dropzone-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.dropzone-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-tertiary);
+  color: var(--primary-color);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1px solid var(--border-color);
+}
+
+.dropzone-counter.limit-reached {
+  background: #fff5f5;
+  color: #e53e3e;
+  border-color: #feb2b2;
+}
+
+/* 圖片卡片列表 (Image Grid) */
+.grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.grid-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.image-grid {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+/* 預覽視圖大小 (Large / Medium / Small) */
+.image-grid.view-large {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.image-grid.view-medium {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.image-grid.view-small {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+/* 單張圖片卡片 (Image Card) */
+.image-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25 ease;
+  position: relative;
+}
+
+.image-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.card-preview-box {
+  width: 100%;
+  height: 180px;
+  background: var(--bg-tertiary);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(45deg, #eee 25%, transparent 25%), 
+                    linear-gradient(-45deg, #eee 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #eee 75%), 
+                    linear-gradient(-45deg, transparent 75%, #eee 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
+
+[data-theme="dark"] .card-preview-box {
+  background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%), 
+                    linear-gradient(-45deg, #2a2a2a 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #2a2a2a 75%), 
+                    linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+}
+
+.view-small .card-preview-box {
+  height: 120px;
+}
+
+.card-preview-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.card-remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 2;
+}
+
+.card-remove-btn:hover {
+  background: #e53e3e;
+}
+
+.card-badge-orig {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(26, 54, 93, 0.85);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.card-filename {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.card-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.card-select {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.card-result-box {
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.size-badge {
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.size-badge.reduced {
+  background: #e6fffa;
+  color: #234e52;
+}
+
+.size-badge.increased {
+  background: #fff5f5;
+  color: #9b2c2c;
+}
+
+.card-action-btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  min-height: 40px;
+}
+
+/* 底部通用批量操作按鈕欄 */
+.batch-actions-bar {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.batch-btn-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* 靜態 / 空狀態區 */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state i {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+/* 響應式優化 @360px ~ 768px */
+@media (max-width: 768px) {
+  .converter-hero h1 {
+    font-size: 1.75rem;
+  }
+  
+  .controls-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .batch-actions-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .batch-btn-group {
+    flex-direction: column;
+  }
+
+  .image-grid.view-large,
+  .image-grid.view-medium,
+  .image-grid.view-small {
+    grid-template-columns: 1fr;
+  }
+}

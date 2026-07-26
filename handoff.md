@@ -49,6 +49,7 @@
 | `file-converter.html` | PDF/DOCX/PNG/JPG/WEBP/MP3/MP4/ZIP 瀏覽器端本地轉檔與歷史紀錄 | `WebApplication` (UtilitiesApplication) |
 | `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成 | `WebApplication` (MultimediaApplication) |
 | `id-card-watermark.html` | 身份證照裁剪與租賃用途水印 | — |
+| `image-converter.html` | JPG, PNG, WEBP, GIF, SVG, BMP 六大格式雙向互轉、最多20張上限、大/中/小/原圖尺寸調控與 ZIP 打包 | `WebApplication` (MultimediaApplication) |
 
 ## 🔗 線上營運與倉庫網址
 
@@ -58,8 +59,8 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-07-26 23:02
-- 更新者：Claude Code (Opus 5) @ KEN-PC
+- 時間：2026-07-26 23:33
+- 更新者：Antigravity (Gemini 3.6 Flash) @ KEN-PC
 - Git push：✅ 已推
   - `origin/feat/seo-a11y-rwd-optimize` → `4e13986`（保留逐一 commit 歷史）
   - `origin/main` → `5881365`（GitHub Pages 已更新）
