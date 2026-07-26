@@ -15,6 +15,11 @@ Thumbs.db
 desktop.ini
 ~$*
 
+# Claude Code 本機工作區設定（不進版控）
+# 此目錄在本機為系統保護狀態（讀取權限被拒），一旦納入版控會導致
+# git checkout / merge 直接失敗：cannot stat '.claude': Permission denied
+.claude/
+
 # 敏感資訊（嚴禁提交）
 .env
 .env.*

@@ -287,6 +287,12 @@ body {
 }
 
 /* RWD Media Queries */
+/* 觸控熱區：類別分頁鈕與下拉選單補足 44px */
+.cat-tab-btn,
+.form-select-custom {
+  min-height: 44px;
+}
+
 @media (max-width: 992px) {
   .converter-layout {
     grid-template-columns: 1fr;

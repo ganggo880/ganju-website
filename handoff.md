@@ -1,73 +1,66 @@
 # 🤝 AI 交接說明文件 (AI Handover Document)
 
 > 💡 **給接續工作的 AI Agent**：
-> 任何 Agent、任何電腦接手前**必讀**；收工時**必更新**。本檔只放交接必需的精簡資訊，詳細脈絡放 Obsidian：`obsidian/港居不動產官網/專案工作流程.md`。
+> 任何 Agent、任何電腦接手前**必讀**；收工時**必更新**。本檔只放交接必需的精簡資訊，詳細脈絡（決策原因、踩坑細節）放 Obsidian：`obsidian/港居不動產官網/專案工作流程.md`。
 > 專案藍圖請讀 [`AGENTS.md`](AGENTS.md)。
 
 ---
 
 ## ⏯️ 目前做到哪
 
-完成專案三層級初始化：`AGENTS.md` 由空殼擴寫為完整專案藍圖、`handoff.md` 補上標準交接欄位、`.gitignore` 加上敏感檔封鎖、Obsidian 建立 `港居不動產官網/專案工作流程.md`。全站 4 個頁面功能均已完成並上線。
+在 `feat/seo-a11y-rwd-optimize` 分支完成三件事並合併回 `main`：
+
+1. **JSON-LD 結構化資料校正**（已完成）：查證後確認 `FinancialCalculator` **不是 schema.org 型別**（schema.org/FinancialCalculator 回 404），改為 `WebApplication` + `applicationCategory: FinanceApplication`；三個工具頁補 `offers`（免費、TWD 0，這是 Google SoftwareApplication rich result 的必填項）；首頁 `RealEstateAgent` 補 `image`／`postalCode`／`areaServed`／`contactPoint`／`sameAs`，並修正 `addressLocality` 應為「小港區」而非「小港區合作里」。
+2. **無障礙與載入效能**（已完成）：漢堡鈕／彈窗關閉鈕／懸浮按鈕補 `aria-label`；表單控制項補 label 關聯（`rentSlider`、`planSelect`、`daysInput`、日期起迄、轉檔品質下拉、色碼輸入框等）；`target="_blank"` 全數補 `rel="noopener noreferrer"`；圖片補 `width`/`height`/`loading`/`decoding`；4 頁補 canonical 與絕對路徑 `og:image`；字型改由 HTML `<link>` 載入（原本藏在 `styles.css` 的 `@import`，造成三層阻塞式請求鏈）；轉檔頁 dropzone 補鍵盤操作。
+3. **RWD 與 44×44px 觸控熱區**（**未完成，剩收尾**）：找出並修掉根本原因——全站共用組件的 RWD `@media` 規則原本只寫在 `styles.css`（只有 `index.html` 載入），導致三個工具頁在手機上**完全沒有行動選單、且頁面橫向溢出到 930～946px**。已把 Drawer／`.mobile-toggle`／`footer-grid` 等響應式規則歸位到 `css/components.css`，並替 `photo-watermark.html` 補上原本不存在的漢堡鈕。
+
+另外本次也完成 `id-card-watermark.html`（身份證照裁剪與租賃水印工具）新增與七項缺陷修正。
 
 ## 🚦 目前狀態
 
-- ✅ **可運行**：4 個頁面全數上線於 GitHub Pages，無已知阻斷性錯誤
-- ✅ 工作區乾淨，上一輪變更已 push（`e7a6460`）
-- 🔸 未完成：全站 RWD 與 44×44px 觸控區域逐頁複檢、Lighthouse 效能／無障礙優化
+- ✅ **可運行**：5 個頁面均可正常操作，無阻斷性錯誤
+- ✅ RWD 主要缺陷已修：三個工具頁 360px／768px 現在都正確收合成漢堡選單、無橫向溢出
+- 🔸 **RWD 收尾未完成**（實測數據）：
+  - `file-converter.html` @360px：仍水平溢出，`scrollWidth = 660`，元凶是 `.category-tabs`／`.glass-panel`（652px）在窄螢幕沒收合成單欄
+  - `rent-calculator.html` @360px：溢出 9px（`scrollWidth = 369`），元凶是 `.bg-glow` 裝飾光暈（550/660px）未被裁切
+  - `.brand-logo` 在 768px 高度 42px（差 2px）
+  - 桌機 1280px 導覽列連結高度 28～30px：目前 44px 規則刻意只在 `(pointer: coarse), (max-width: 992px)` 生效，以免改動桌機版面密度；若要全站一律 44px 需再確認設計取捨
+- ⚠️ **Lighthouse 沒跑成**：本機**未安裝 Node / npx / lighthouse CLI**，改以瀏覽器腳本做等效稽核（觸控熱區量測、無障礙名稱／label 檢查、圖片屬性、canonical、JSON-LD 解析）。正式分數仍需在有 Node 的環境或 PageSpeed Insights 線上補跑。
 
 ## ➡️ 下一步
 
-1. 逐頁複檢 RWD 斷點（360px / 768px / 1280px）與觸控區域 ≥ 44×44px
-2. 跑 Lighthouse，針對效能與無障礙評分做優化
-3. 檢查 4 個頁面的 JSON-LD 結構化資料是否通過 Google Rich Results Test
+1. 修 `file-converter.html` @360px 水平溢出：在 `css/converter.css` 讓 `.category-tabs` 於 ≤576px 改為多列 grid 或可橫向滑動容器
+2. 修 `rent-calculator.html` @360px 的 9px 溢出：`.bg-glow` 容器加 `overflow: hidden` 或 `max-width: 100vw`
+3. 到 PageSpeed Insights 對 5 頁跑正式 Lighthouse，並用 Google Rich Results Test 實測 JSON-LD
 
 ## ⚠️ 注意事項
 
-- 本機**未安裝 `gh` CLI** → GitHub 操作一律用原生 `git`（remote 已設好，不需重建）
+- 🔴 **CSS 層疊陷阱（本次最大的坑）**：`styles.css` / `rent-calc.css` / `watermark.css` / `converter.css` 都在檔首 `@import css/components.css`。被 import 的規則排在該檔**所有**規則之前，所以只要頁面 CSS 又重新宣告了 `.nav-menu { display: flex }`、`.mobile-toggle { display: none }`、`.nav-link { font-size }`，就會蓋掉 `components.css` 裡的 `@media` 響應式規則。**共用組件的樣式請只在 `components.css` 寫一份**，頁面 CSS 只做微調、不要重複宣告 `display`。
+- 🔴 **驗證時的 CSS 快取**：Python `http.server` 不送 no-cache，改完 CSS 後瀏覽器會沿用舊檔，量測結果會騙人。驗證前請換一個 port 重啟（`.claude/launch.json` 內的 port）或強制重新整理。
+- 本機**未安裝 `gh` CLI**、也**沒有 Node/npx** → GitHub 操作用原生 `git`，前端工具鏈相關指令跑不動
 - 專案在 Google 雲端硬碟上，已設 `git config windows.appendAtomically false`，換電腦務必確認同步完成再開工
 - **不要死寫色碼**：改樣式一律走 `css/tokens.css` 變數
-- `css/tokens.css`、`css/components.css`、`js/layout.js` 是全站共用，改動前先讀最新內容
+- 結構化資料**不要編造事實**：本次刻意不加 `priceRange`、`openingHoursSpecification`、`aggregateRating`——營業時間與評價都需要真實資料才能填
 - AI 產出的文件一律歸檔 `output/`，不要散落根目錄
 
-## 🕐 最後更新
+## 📄 已上線頁面速覽
 
-- 時間：2026-07-25 10:06
-- 更新者：Claude Code (Opus 5) @ KEN-PC
-- Git push：✅ 已推（`0fd9769` → origin/main）
-
----
-
-## 📌 當前專案進度摘要 (Current System Status)
-
-本專案已完成全套品牌官網與 3 大不動產專用在線工具頁面建置，所有程式碼均經過二階段模組化重構，並發布至 GitHub Pages。
-
-### 1. 已上線頁面與功能
-1. 🌐 **港居官網首頁 (`index.html`)**：
-   - 包含 TopBar（特許證號、統編 96797997）、Hero 主視覺、包租 vs 代管雙方案卡片、房東 ROI 預估試算器、精選房源 3D VR 彈窗與條件篩選、Lead 諮詢表單。
-   - 配置 Schema.org `RealEstateAgent` JSON-LD 結構化資料標註。
-2. 🧮 **租金與代管服務費換算工具 (`rent-calculator.html`)**：
-   - 支援 30日 / 當月實際 / 自訂基準天數，跨月日期區間計算，10% 代管服務費與屋主實收拆分，LocalStorage 歷史紀錄。
-   - 配置 Schema.org `FinancialCalculator` JSON-LD 結構化標註。
-3. 📂 **線上多功能檔案轉換神器 (`file-converter.html`)**：
-   - 參考 Aconvert 轉檔機制，支援 PDF/DOCX/PNG/JPG/WEBP/MP3/MP4/ZIP 瀏覽器端本地即時轉檔與歷史紀錄。
-   - 配置 Schema.org `WebApplication` JSON-LD 結構化標註。
-4. 📷 **照片 EXIF & 拍攝日期水印工具 (`photo-watermark.html`)**：
-   - 專為不動產巡檢與招租照提供 EXIF 時間戳記與浮水印合成。
-
----
-
-## 🛠️ 架構規範 (Architecture Standards)
-
-- **CSS Tokens & Components**：所有 CSS 檔案（`styles.css`, `rent-calc.css`, `css/converter.css`, `watermark.css`）統一引入 `css/tokens.css` 與 `css/components.css`，不可隨意死寫顏色與組件樣式。
-- **JS 模組化**：使用原生 ES6 Modules (`import / export`)。`js/utils.js` 處理通用工具，`js/layout.js` 處理全站選單與版面控制。
-- **輸出歸檔規範**：所有產出之規格書、講義、試卷與文件，統一存放在 `output/` 資料夾（如 `output/SPECIFICATION.md`）。
-- **RWD 與觸控點擊**：確保全站響應式，所有按鈕與觸控元件點擊區域 ≥ **44×44px**。
-
----
+| 頁面 | 功能 | JSON-LD |
+|---|---|---|
+| `index.html` | TopBar 特許證號、Hero、包租 vs 代管方案、ROI 試算器、房源 VR 彈窗與篩選、Lead 表單 | `RealEstateAgent` |
+| `rent-calculator.html` | 30日／當月實際／自訂基準天數、跨月區間、10% 代管費與屋主實收拆分、LocalStorage 歷史 | `WebApplication` (FinanceApplication) |
+| `file-converter.html` | PDF/DOCX/PNG/JPG/WEBP/MP3/MP4/ZIP 瀏覽器端本地轉檔與歷史紀錄 | `WebApplication` (UtilitiesApplication) |
+| `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成 | `WebApplication` (MultimediaApplication) |
+| `id-card-watermark.html` | 身份證照裁剪與租賃用途水印 | — |
 
 ## 🔗 線上營運與倉庫網址
 
 - **GitHub 遠端倉庫**：`https://github.com/ganggo880/ganju-website.git`
 - **GitHub Pages 網址**：`https://ganggo880.github.io/ganju-website/`
 - **系統技術規格書**：`output/SPECIFICATION.md`
+
+## 🕐 最後更新
+
+- 時間：2026-07-26 23:02
+- 更新者：Claude Code (Opus 5) @ KEN-PC
+- Git push：⏳ 待推（feat/seo-a11y-rwd-optimize → 合併回 main）

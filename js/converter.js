@@ -97,6 +97,14 @@ function updateFormatSelectOptions() {
 function setupDropzone() {
   dropzone.addEventListener('click', () => fileInput.click());
 
+  // 鍵盤操作：Enter / Space 等同點擊，讓不使用滑鼠的使用者也能選檔
+  dropzone.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
   dropzone.addEventListener('dragover', (e) => {
     e.preventDefault();
     dropzone.classList.add('dragover');
