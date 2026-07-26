@@ -77,8 +77,17 @@ function setupCategoryTabs() {
       
       state.currentCategory = tab.dataset.cat;
       updateFormatSelectOptions();
+
+      // 切換分類時收合舊轉檔卡片
+      resetResultUI();
     });
   });
+
+  if (targetFormatSelect) {
+    targetFormatSelect.addEventListener('change', () => {
+      resetResultUI();
+    });
+  }
 }
 
 function updateFormatSelectOptions() {
@@ -95,12 +104,16 @@ function updateFormatSelectOptions() {
 
 // Drag & Drop File Upload Handler
 function setupDropzone() {
-  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('click', () => {
+    fileInput.value = ''; // 重置 input.value 確保每次選檔（即便是同名或連續選檔）均觸發 change
+    fileInput.click();
+  });
 
   // 鍵盤操作：Enter / Space 等同點擊，讓不使用滑鼠的使用者也能選檔
   dropzone.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
       e.preventDefault();
+      fileInput.value = '';
       fileInput.click();
     }
   });
@@ -131,9 +144,26 @@ function setupDropzone() {
 
 function handleFileSelected(file) {
   state.selectedFile = file;
+  state.convertedBlob = null;
+  state.convertedFileName = '';
+
+  // 選擇新檔案時，徹底重置上次的結果卡片與下載網址
+  resetResultUI();
+
   const sizeKB = (file.size / 1024).toFixed(1);
-  selectedFileNameEl.innerHTML = `<i class="fa-solid fa-file-check" style="color: var(--accent-gold);"></i> 常用檔案：<strong>${file.name}</strong> (${sizeKB} KB)`;
-  showToast(`📁 已選擇檔案：${file.name}`);
+  selectedFileNameEl.innerHTML = `<i class="fa-solid fa-file-check" style="color: var(--accent-gold);"></i> 常用檔案：<strong>${escapeHtml(file.name)}</strong> (${sizeKB} KB)`;
+  showToast(`📁 已選擇新檔案：${file.name}`);
+}
+
+function resetResultUI() {
+  if (resultCard) resultCard.style.display = 'none';
+  if (progressContainer) progressContainer.style.display = 'none';
+  if (progressBarFill) progressBarFill.style.width = '0%';
+  
+  if (downloadBtn && downloadBtn.href && downloadBtn.href.startsWith('blob:')) {
+    URL.revokeObjectURL(downloadBtn.href);
+    downloadBtn.href = '#';
+  }
 }
 
 // Converter Action Execution
@@ -162,8 +192,8 @@ function setupConverterActions() {
 
 // Core Real-Time Converter Engine
 async function runConversionProcess(file, targetFormat) {
+  resetResultUI();
   progressContainer.style.display = 'block';
-  resultCard.style.display = 'none';
   progressBarFill.style.width = '10%';
   progressText.innerText = '正在解析原始檔案...';
 
@@ -190,16 +220,17 @@ async function runConversionProcess(file, targetFormat) {
       convertedBlob = new Blob([await file.arrayBuffer()], { type: getMimeType(targetFormat) });
     }
 
-    await delay(400);
+    await delay(350);
     progressBarFill.style.width = '100%';
     progressText.innerText = '轉檔成功！即可下載檔案！';
 
     state.convertedBlob = convertedBlob;
     state.convertedFileName = outputName;
 
-    // Show Result Box
-    resultFileNameEl.innerHTML = `<i class="fa-solid fa-file-arrow-down" style="color: var(--accent-gold);"></i> ${outputName}`;
-    downloadBtn.href = URL.createObjectURL(convertedBlob);
+    // 生成全新下載連結，並掛載至下載按鈕
+    const objectUrl = URL.createObjectURL(convertedBlob);
+    resultFileNameEl.innerHTML = `<i class="fa-solid fa-file-arrow-down" style="color: var(--accent-gold);"></i> ${escapeHtml(outputName)}`;
+    downloadBtn.href = objectUrl;
     downloadBtn.download = outputName;
     resultCard.style.display = 'block';
 
