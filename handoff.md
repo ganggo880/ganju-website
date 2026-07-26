@@ -63,4 +63,10 @@
 
 - 時間：2026-07-26 23:02
 - 更新者：Claude Code (Opus 5) @ KEN-PC
-- Git push：⏳ 待推（feat/seo-a11y-rwd-optimize → 合併回 main）
+- Git push：✅ 已推
+  - `origin/feat/seo-a11y-rwd-optimize` → `4e13986`（保留逐一 commit 歷史）
+  - `origin/main` → `5881365`（GitHub Pages 已更新）
+- ⚠️ 本次**無法用 `git merge` 合併**：`.claude/` 目錄在本機被系統保護（`cannot stat '.claude': Permission denied`），
+  只要它在版控內，`git checkout` / `git merge` 就會直接失敗。已把 `.claude/` 加入 `.gitignore` 並改用
+  `git checkout <branch> -- ':(exclude).claude'` 把分支內容帶進 main 後單一 commit。
+  下次若還要跨分支切換，記得 `.claude/` 已不在版控、不會再擋路。
