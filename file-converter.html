@@ -52,6 +52,9 @@
   }
   </script>
 
+  <!-- External Libraries (JSZip for Batch ZIP Download) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
   <!-- JS Modules -->
   <script type="module" src="js/layout.js"></script>
 </head>
@@ -154,11 +157,11 @@
           </div>
 
           <!-- 檔案拖曳上傳 Dropzone -->
-          <div class="dropzone-box" id="dropzone" role="button" tabindex="0" aria-controls="fileInput" aria-label="選擇要轉換的檔案，或將檔案拖曳至此處">
+          <div class="dropzone-box" id="dropzone" role="button" tabindex="0" aria-controls="fileInput" aria-label="選擇要轉換的檔案，或將檔案拖曳至此處（最多支援20張照片）">
             <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
             <div class="dropzone-title">點擊選擇檔案，或將檔案拖曳至此處</div>
-            <div class="dropzone-sub">支援單檔上限 100MB，極速轉換無需等待</div>
-            <input type="file" id="fileInput" class="file-input-hidden" aria-label="選擇要轉換的檔案">
+            <div class="dropzone-sub">放上去自動幫您轉檔！支援單次最多 20 張照片批次轉換</div>
+            <input type="file" id="fileInput" class="file-input-hidden" multiple aria-label="選擇要轉換的檔案（最多可選20張）">
           </div>
 
           <div id="selectedFileName" style="font-size: 0.95rem; text-align: center; margin-bottom: 1.5rem; min-height: 24px;"></div>
@@ -187,7 +190,7 @@
 
           <!-- 開始轉換按鈕 -->
           <button type="button" id="startConvertBtn" class="btn btn-gold" style="width: 100%; font-size: 1.1rem; padding: 15px;">
-            <i class="fa-solid fa-play"></i> 立即開始在線轉換
+            <i class="fa-solid fa-play"></i> 重新手動觸發轉檔
           </button>
 
           <!-- 轉檔動態進度條 -->
@@ -200,11 +203,21 @@
 
           <!-- 下載結果卡片 -->
           <div class="result-card" id="resultCard">
-            <div class="result-file-info">
-              <div class="result-name" id="resultFileName"></div>
-              <a id="downloadBtn" href="#" class="btn btn-primary" download style="padding: 10px 22px; font-size: 0.9rem;">
-                <i class="fa-solid fa-download"></i> 立即下載轉檔結果
-              </a>
+            <div id="batchDownloadHeader" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px dashed rgba(197, 160, 89, 0.4);">
+              <span style="font-weight: 800; color: var(--primary-navy); font-size: 0.98rem;">
+                <i class="fa-solid fa-layer-group" style="color: var(--accent-gold);"></i> 批次轉檔完成（共 <span id="batchCount">0</span> 個檔案）
+              </span>
+              <button type="button" id="downloadZipBtn" class="btn btn-gold" style="padding: 8px 18px; font-size: 0.88rem;">
+                <i class="fa-solid fa-file-zipper"></i> 一鍵打包下載全部 (.zip)
+              </button>
+            </div>
+            <div id="batchResultList" style="display: flex; flex-direction: column; gap: 10px;">
+              <div class="result-file-info">
+                <div class="result-name" id="resultFileName"></div>
+                <a id="downloadBtn" href="#" class="btn btn-primary" download style="padding: 10px 22px; font-size: 0.9rem;">
+                  <i class="fa-solid fa-download"></i> 立即下載轉檔結果
+                </a>
+              </div>
             </div>
           </div>
         </section>
