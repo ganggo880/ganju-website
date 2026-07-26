@@ -202,8 +202,8 @@
           </div>
 
           <!-- 下載結果卡片 -->
-          <div class="result-card" id="resultCard">
-            <div id="batchDownloadHeader" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px dashed rgba(197, 160, 89, 0.4);">
+          <div class="result-card" id="resultCard" style="display: none;">
+            <div id="batchDownloadHeader" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px dashed rgba(197, 160, 89, 0.4); flex-wrap: wrap; gap: 10px;">
               <span style="font-weight: 800; color: var(--primary-navy); font-size: 0.98rem;">
                 <i class="fa-solid fa-layer-group" style="color: var(--accent-gold);"></i> 批次轉檔完成（共 <span id="batchCount">0</span> 個檔案）
               </span>
@@ -212,12 +212,7 @@
               </button>
             </div>
             <div id="batchResultList" style="display: flex; flex-direction: column; gap: 10px;">
-              <div class="result-file-info">
-                <div class="result-name" id="resultFileName"></div>
-                <a id="downloadBtn" href="#" class="btn btn-primary" download style="padding: 10px 22px; font-size: 0.9rem;">
-                  <i class="fa-solid fa-download"></i> 立即下載轉檔結果
-                </a>
-              </div>
+              <!-- 動態渲染每個轉檔完成之項目與下載連結 -->
             </div>
           </div>
         </section>

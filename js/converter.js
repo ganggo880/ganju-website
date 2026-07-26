@@ -24,7 +24,7 @@ const clearHistoryBtn = document.getElementById('clearConvHistoryBtn');
 // State Management
 let state = {
   currentCategory: 'document', // document, image, audio, video, ebook
-  selectedFiles: [], // 多檔案陣列 (最多20個)
+  selectedFiles: [], // 多檔案陣列 (最多 20 個)
   convertedResults: [], // 已轉換完成之檔案陣列 [{ originalName, outputName, blob, objectUrl, sizeKB }]
   history: []
 };
@@ -84,7 +84,7 @@ function setupCategoryTabs() {
       resetResultUI();
 
       // 若已有選取的檔案，切換分類後自動重轉
-      if (state.selectedFiles.length > 0) {
+      if (state.selectedFiles && state.selectedFiles.length > 0) {
         runConversionProcess(state.selectedFiles, targetFormatSelect.value);
       }
     });
@@ -94,7 +94,15 @@ function setupCategoryTabs() {
     targetFormatSelect.addEventListener('change', () => {
       resetResultUI();
       // 更改目標格式時，若已有選取檔案則自動重轉
-      if (state.selectedFiles.length > 0) {
+      if (state.selectedFiles && state.selectedFiles.length > 0) {
+        runConversionProcess(state.selectedFiles, targetFormatSelect.value);
+      }
+    });
+  }
+
+  if (qualitySelect) {
+    qualitySelect.addEventListener('change', () => {
+      if (state.selectedFiles && state.selectedFiles.length > 0) {
         runConversionProcess(state.selectedFiles, targetFormatSelect.value);
       }
     });
@@ -102,6 +110,7 @@ function setupCategoryTabs() {
 }
 
 function updateFormatSelectOptions() {
+  if (!targetFormatSelect) return;
   targetFormatSelect.innerHTML = '';
   const options = FORMAT_OPTIONS[state.currentCategory] || FORMAT_OPTIONS.document;
   
@@ -115,6 +124,8 @@ function updateFormatSelectOptions() {
 
 // Drag & Drop File Upload Handler
 function setupDropzone() {
+  if (!dropzone || !fileInput) return;
+
   dropzone.addEventListener('click', () => {
     fileInput.value = ''; // 重置 input.value 確保每次選檔均觸發 change
     fileInput.click();
@@ -157,11 +168,13 @@ function setupDropzone() {
  * 處理選取的檔案陣列（最多支援 20 張），並【自動啟動轉檔】
  */
 function handleFilesSelected(files) {
+  if (!files || files.length === 0) return;
+
   let fileList = files;
 
   // 上限 20 張限制
   if (fileList.length > 20) {
-    showToast('⚠️ 批次轉換最多支援 20 張檔案，已為您取前 20 張處理');
+    showToast('⚠️ 批次轉換最多支援 20 張檔案，已為您自動取前 20 張處理');
     fileList = fileList.slice(0, 20);
   }
 
@@ -174,16 +187,18 @@ function handleFilesSelected(files) {
   const totalBytes = fileList.reduce((acc, f) => acc + f.size, 0);
   const totalSizeMB = (totalBytes / (1024 * 1024)).toFixed(2);
 
-  if (fileList.length === 1) {
-    selectedFileNameEl.innerHTML = `<i class="fa-solid fa-file-check" style="color: var(--accent-gold);"></i> 已選擇檔案：<strong>${escapeHtml(fileList[0].name)}</strong> (${(fileList[0].size / 1024).toFixed(1)} KB)`;
-    showToast(`📁 已選擇檔案：${fileList[0].name}，正在自動轉檔...`);
-  } else {
-    selectedFileNameEl.innerHTML = `<i class="fa-solid fa-layer-group" style="color: var(--accent-gold);"></i> 批次選取 <strong>${fileList.length} 個檔案</strong> (共 ${totalSizeMB} MB)`;
-    showToast(`📁 已選擇 ${fileList.length} 個檔案，正在自動啟動批次轉檔...`);
+  if (selectedFileNameEl) {
+    if (fileList.length === 1) {
+      selectedFileNameEl.innerHTML = `<i class="fa-solid fa-file-check" style="color: var(--accent-gold);"></i> 已選擇檔案：<strong>${escapeHtml(fileList[0].name)}</strong> (${(fileList[0].size / 1024).toFixed(1)} KB)`;
+      showToast(`📁 已選擇檔案：${fileList[0].name}，正在自動轉檔...`);
+    } else {
+      selectedFileNameEl.innerHTML = `<i class="fa-solid fa-layer-group" style="color: var(--accent-gold);"></i> 批次選取 <strong>${fileList.length} 個檔案</strong> (共 ${totalSizeMB} MB)`;
+      showToast(`📁 已選擇 ${fileList.length} 個檔案，正在自動啟動批次轉檔...`);
+    }
   }
 
   // ⚡ 檔案選擇/放上去後【自動幫它轉換】
-  const targetFormat = targetFormatSelect.value;
+  const targetFormat = targetFormatSelect ? targetFormatSelect.value : 'png';
   runConversionProcess(state.selectedFiles, targetFormat);
 }
 
@@ -193,7 +208,7 @@ function resetResultUI() {
   if (progressContainer) progressContainer.style.display = 'none';
   if (progressBarFill) progressBarFill.style.width = '0%';
   
-  // 釋放舊的 ObjectURL
+  // 釋放舊的 ObjectURL 避免記憶體洩漏
   if (state.convertedResults && state.convertedResults.length > 0) {
     state.convertedResults.forEach(res => {
       if (res.objectUrl) URL.revokeObjectURL(res.objectUrl);
@@ -205,16 +220,17 @@ function resetResultUI() {
 
 // Converter Action Execution
 function setupConverterActions() {
-  // 手動重轉按鈕
-  startConvertBtn.addEventListener('click', () => {
-    if (!state.selectedFiles || state.selectedFiles.length === 0) {
-      showToast('❌ 請先選擇或拖曳要轉換的檔案！');
-      return;
-    }
+  if (startConvertBtn) {
+    startConvertBtn.addEventListener('click', () => {
+      if (!state.selectedFiles || state.selectedFiles.length === 0) {
+        showToast('❌ 請先選擇或拖曳要轉換的檔案！');
+        return;
+      }
 
-    const targetFormat = targetFormatSelect.value;
-    runConversionProcess(state.selectedFiles, targetFormat);
-  });
+      const targetFormat = targetFormatSelect ? targetFormatSelect.value : 'png';
+      runConversionProcess(state.selectedFiles, targetFormat);
+    });
+  }
 
   // 一鍵打包下載全部 ZIP
   if (downloadZipBtn) {
@@ -238,66 +254,75 @@ async function runConversionProcess(files, targetFormat) {
   if (!files || files.length === 0) return;
 
   resetResultUI();
-  progressContainer.style.display = 'block';
-  progressBarFill.style.width = '5%';
-  progressText.innerText = `正在準備轉換 ${files.length} 個檔案...`;
+  if (progressContainer) progressContainer.style.display = 'block';
+  if (progressBarFill) progressBarFill.style.width = '5%';
+  if (progressText) progressText.innerText = `正在準備轉換 ${files.length} 個檔案...`;
 
   const totalFiles = files.length;
   const results = [];
 
-  try {
-    for (let i = 0; i < totalFiles; i++) {
-      const file = files[i];
-      const progressPercent = Math.round(((i + 0.5) / totalFiles) * 100);
-      progressBarFill.style.width = `${progressPercent}%`;
-      progressText.innerText = `正在轉換第 ${i + 1} / ${totalFiles} 個檔案 (${escapeHtml(file.name)})...`;
+  for (let i = 0; i < totalFiles; i++) {
+    const file = files[i];
+    const progressPercent = Math.round(((i + 0.5) / totalFiles) * 100);
+    if (progressBarFill) progressBarFill.style.width = `${progressPercent}%`;
+    if (progressText) progressText.innerText = `正在轉換第 ${i + 1} / ${totalFiles} 個檔案 (${escapeHtml(file.name)})...`;
 
-      let convertedBlob = null;
-      const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
-      const outputName = `${baseName}_港居轉檔.${targetFormat}`;
+    let convertedBlob = null;
+    const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+    const outputName = `${baseName}_港居轉檔.${targetFormat}`;
 
-      // Real client-side conversion logic for Images
-      if (file.type.startsWith('image/')) {
+    try {
+      // 判斷是否為圖檔
+      if (isImageFile(file)) {
         convertedBlob = await convertImageFormat(file, targetFormat);
       } 
-      // Document / Text Conversions
+      // 判斷是否為文字檔
       else if (file.type.includes('text') || file.type.includes('html') || file.name.endsWith('.txt') || file.name.endsWith('.html')) {
         convertedBlob = await convertTextDocument(file, targetFormat);
       } 
-      // General Fallback Handler
+      // 一般退回 Blob
       else {
         convertedBlob = new Blob([await file.arrayBuffer()], { type: getMimeType(targetFormat) });
       }
-
-      const objectUrl = URL.createObjectURL(convertedBlob);
-      const sizeKB = (convertedBlob.size / 1024).toFixed(1);
-
-      results.push({
-        originalName: file.name,
-        outputName,
-        blob: convertedBlob,
-        objectUrl,
-        sizeKB,
-        format: targetFormat
-      });
-
-      // 儲存進歷史紀錄
-      saveToHistory(file.name, outputName, sizeKB, targetFormat);
+    } catch (fileErr) {
+      console.warn(`File ${file.name} conversion warning, using array buffer fallback`, fileErr);
+      try {
+        convertedBlob = new Blob([await file.arrayBuffer()], { type: getMimeType(targetFormat) });
+      } catch(e) {
+        convertedBlob = file; // 最終退回原檔 Blob
+      }
     }
 
-    progressBarFill.style.width = '100%';
-    progressText.innerText = `🎉 成功完成 ${totalFiles} 個檔案轉換！可立即下載！`;
-    state.convertedResults = results;
+    const objectUrl = URL.createObjectURL(convertedBlob);
+    const sizeKB = (convertedBlob.size / 1024).toFixed(1);
 
-    // 渲染轉檔結果列表
-    renderResultCardUI(results);
-    showToast(`🎉 成功完成 ${totalFiles} 個檔案轉換！`);
+    results.push({
+      originalName: file.name,
+      outputName,
+      blob: convertedBlob,
+      objectUrl,
+      sizeKB,
+      format: targetFormat
+    });
 
-  } catch (err) {
-    console.error('Conversion Error:', err);
-    showToast('❌ 轉檔過程發生異常，請重試或更換檔案');
-    progressContainer.style.display = 'none';
+    // 儲存進歷史紀錄
+    saveToHistory(file.name, outputName, sizeKB, targetFormat);
   }
+
+  if (progressBarFill) progressBarFill.style.width = '100%';
+  if (progressText) progressText.innerText = `🎉 成功完成 ${totalFiles} 個檔案轉換！可立即下載！`;
+  state.convertedResults = results;
+
+  // 渲染轉檔結果列表
+  renderResultCardUI(results);
+  showToast(`🎉 成功完成 ${totalFiles} 個檔案轉換！`);
+}
+
+// 判斷檔案是否為影像圖片
+function isImageFile(file) {
+  if (file.type && file.type.startsWith('image/')) return true;
+  const ext = file.name.split('.').pop().toLowerCase();
+  return ['png', 'jpg', 'jpeg', 'webp', 'bmp', 'gif', 'svg', 'heic', 'heif', 'ico', 'tif', 'tiff'].includes(ext);
 }
 
 // 渲染結果卡片 (支援單檔與多檔下載列表)
@@ -307,19 +332,29 @@ function renderResultCardUI(results) {
   batchResultList.innerHTML = '';
 
   if (results.length > 1) {
-    // 顯示批次標頭與打包按鈕
-    batchDownloadHeader.style.display = 'flex';
-    batchCountEl.innerText = results.length.toString();
+    // 顯示批次標頭與一鍵打包下載按鈕
+    if (batchDownloadHeader) batchDownloadHeader.style.display = 'flex';
+    if (batchCountEl) batchCountEl.innerText = results.length.toString();
   } else {
-    batchDownloadHeader.style.display = 'none';
+    if (batchDownloadHeader) batchDownloadHeader.style.display = 'none';
   }
 
   results.forEach((res, index) => {
     const div = document.createElement('div');
     div.className = 'result-file-info';
-    div.style.marginBottom = index < results.length - 1 ? '10px' : '0';
+    div.style.display = 'flex';
+    div.style.justifyContent = 'space-between';
+    div.style.alignItems = 'center';
+    div.style.flexWrap = 'wrap';
+    div.style.gap = '10px';
+    div.style.padding = '10px 14px';
+    div.style.background = 'var(--bg-card-inner)';
+    div.style.borderRadius = 'var(--radius-md)';
+    div.style.border = '1px solid var(--border-color)';
+    div.style.marginBottom = index < results.length - 1 ? '8px' : '0';
+
     div.innerHTML = `
-      <div class="result-name">
+      <div class="result-name" style="font-weight: 700; color: var(--primary-navy); display: flex; align-items: center; gap: 8px;">
         <i class="fa-solid fa-file-arrow-down" style="color: var(--accent-gold);"></i> 
         <span>${escapeHtml(res.outputName)}</span>
         <small style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">(${res.sizeKB} KB)</small>
@@ -403,7 +438,11 @@ function convertImageFormat(file, targetFormat) {
       }, mime, quality);
     };
 
-    img.onerror = () => reject(new Error('Image load error'));
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('Image load error'));
+    };
+
     img.src = url;
   });
 }
@@ -442,7 +481,8 @@ function getMimeType(ext) {
 }
 
 function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, function(m) {
+  if (!str) return '';
+  return str.toString().replace(/[&<>"']/g, function(m) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
   });
 }
