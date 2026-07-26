@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>港居不動產 - 三份房屋租賃契約綜合彙整與標準範本</title>
+    <style>
+        :root {
+            --primary: #1A365D;
+            --primary-dark: #0F2341;
+            --accent: #C5A059;
+            --bg-light: #F8FAFC;
+            --surface: #FFFFFF;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --border: #E2E8F0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+        .tab-content {
+            display: none;
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+        th, td {
+            padding: 0.85rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .badge-success { background-color: #C6F6D5; color: #22543D; }
+        .badge-warning { background-color: #FEFCBF; color: #744210; }
+        .badge-danger { background-color: #FED7D7; color: #742A2A; }
+        .badge-info { background-color: #EBF8FF; color: #2B6CB0; }
+
+        .contract-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--accent);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.25rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        .card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .card-list li {
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #EDF2F7;
+            font-size: 0.92rem;
+        }
+        .card-list li strong {
+            color: var(--primary);
+        }
+        .btn-download {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+        .btn-download:hover {
+            background: #B08C45;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>港居不動產 - 三份房屋租賃契約綜合對照與標準範本</h1>
+    <p>統編：96797997 | 高雄全區專業包租代管 | 歸檔總表與 Master Contract Dashboard</p>
+</header>
+
+<div class="container">
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab(event, 'matrix')">📊 三合一重點對照總表</button>
+        <button class="tab-btn" onclick="switchTab(event, 'details')">🏢 各合約詳細資訊卡片</button>
+        <button class="tab-btn" onclick="switchTab(event, 'master')">📜 整合型標準通用合約範本</button>
+    </div>
+
+    <!-- TAB 1: Comparison Matrix -->
+    <div id="matrix" class="tab-content active">
+        <h2>三份合約核心條款全方位比對</h2>
+        <p>本表彙整小港永順街、林園溪州二路與前鎮廣西路三份 2026 年代表性合約之關鍵資訊：</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>比較項目</th>
+                        <th>小港永順街 (套房型)</th>
+                        <th>林園溪州二路 (寵物型)</th>
+                        <th>前鎮廣西路 (大樓整戶型)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>出租人 (甲方)</strong></td>
+                        <td>陳慧瑜 (代收: 陳俊銘)</td>
+                        <td>陳俊銘</td>
+                        <td>陳俊銘</td>
+                    </tr>
+                    <tr>
+                        <td><strong>承租人 (乙方)</strong></td>
+                        <td>單一承租人</td>
+                        <td>單一承租人 + 連帶保證人</td>
+                        <td><span class="badge badge-info">雙承租人</span> (黃皓 / 黃凱琳)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>租賃標的</strong></td>
+                        <td>永順街193-1號 C房</td>
+                        <td>溪州二路341巷8號1樓</td>
+                        <td>廣西路201號4樓-3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>租期與搬遷期</strong></td>
+                        <td>115/06/05 ~ 116/05/31</td>
+                        <td>115/07/01 ~ 116/06/30</td>
+                        <td>115/04/01 ~ 116/03/31<br><span class="badge badge-success">7天免租搬遷期</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>月租金額</strong></td>
+                        <td>首月$6,250 / 續月$6,500</td>
+                        <td>$15,000 / 月</td>
+                        <td>$23,000 / 月</td>
+                    </tr>
+                    <tr>
+                        <td><strong>押金與繳金日</strong></td>
+                        <td>$13,000 (每月5日)</td>
+                        <td>$30,000 (每月1日)</td>
+                        <td>$46,000 (每月1日)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>管理費條款</strong></td>
+                        <td>無管理費</td>
+                        <td>$500 / 月 (代收代繳)</td>
+                        <td>$2,078 / 月<br><span class="badge badge-success">前3個月免繳優惠</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>水電費用計算</strong></td>
+                        <td>水費$150/人/月<br>電費獨立表$5/度</td>
+                        <td>台水台電憑單付</td>
+                        <td>台水台電憑單付</td>
+                    </tr>
+                    <tr>
+                        <td><strong>汽/機車位號</strong></td>
+                        <td>無</td>
+                        <td>機車位 1F-52</td>
+                        <td><span class="badge badge-warning">汽車位 B3-173</span><br>機車位 B1-547</td>
+                    </tr>
+                    <tr>
+                        <td><strong>寵物條款</strong></td>
+                        <td><span class="badge badge-danger">嚴禁飼養</span></td>
+                        <td><span class="badge badge-success">允許狗1隻</span><br>(含冷氣清洗費$2500對半)</td>
+                        <td><span class="badge badge-danger">嚴禁飼養</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>開門車馬費</strong></td>
+                        <td>白天$500 / 夜間$800</td>
+                        <td>白天$1,000 / 夜間$1,800</td>
+                        <td>白天$500 / 夜間$800</td>
+                    </tr>
+                    <tr>
+                        <td><strong>凶宅條款違約金</strong></td>
+                        <td>$3,000,000 元</td>
+                        <td>$3,000,000 元</td>
+                        <td>$3,000,000 元</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a href="三份房屋租賃契約綜合彙整與標準範本.docx" class="btn-download" download>📥 下載 Word 格式合約彙整報告 (.docx)</a>
+    </div>
+
+    <!-- TAB 2: Contract Details Cards -->
+    <div id="details" class="tab-content">
+        <h2>三份合約個別卡片詳情</h2>
+        <div class="contract-grid">
+            <div class="card">
+                <h3>1. 小港永順街 193 號 (套房型)</h3>
+                <ul class="card-list">
+                    <li><strong>租賃標的：</strong>永順街 193-1 號 2 樓 C 房</li>
+                    <li><strong>出租人：</strong>陳慧瑜（匯款至陳俊銘帳戶）</li>
+                    <li><strong>月租金：</strong>首月優惠 $6,250，次月起 $6,500/月</li>
+                    <li><strong>水電負擔：</strong>水費每人每月 $150，電費每度 $5 元</li>
+                    <li><strong>設備：</strong>冷氣 1 台、遙控器 1 支、鑰匙 1 組</li>
+                    <li><strong>開門車馬費：</strong>白天 $500 / 18:00 後 $800</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>2. 林園溪州二路 (寵物透天型)</h3>
+                <ul class="card-list">
+                    <li><strong>租賃標的：</strong>溪州二路 341 巷 8 號 1 樓</li>
+                    <li><strong>出租人：</strong>陳俊銘（含連帶保證人欄位）</li>
+                    <li><strong>月租金：</strong>$15,000/月 + 管理費 $500/月</li>
+                    <li><strong>寵物特約：</strong>允許狗 1 隻，退租需全屋消毒，冷氣清洗費 $2,500 甲乙雙方各半分擔</li>
+                    <li><strong>設備現況：</strong>冷氣 3 台、熱水器，房東同意增加 1 床組與 1 冷氣</li>
+                    <li><strong>機車位：</strong>1F-52</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>3. 前鎮廣西路 (大樓整戶型)</h3>
+                <ul class="card-list">
+                    <li><strong>租賃標的：</strong>廣西路 201 號 4 樓-3</li>
+                    <li><strong>承租人：</strong>雙承租人 (黃皓 / 黃凱琳)</li>
+                    <li><strong>月租金：</strong>$23,000/月（享 7 天免租搬遷期）</li>
+                    <li><strong>管理費：</strong>$2,078/月（享前 3 個月免繳優惠）</li>
+                    <li><strong>附屬車位：</strong>汽車位 B3-173、機車位 B1-547</li>
+                    <li><strong>社區特約：</strong>擾亂社區安寧經勸導或案立，當月解除合約</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: Master Contract Template -->
+    <div id="master" class="tab-content">
+        <h2>港居不動產 房屋租賃通用標準契約書（Master Template）</h2>
+        <p>本範本整合三大合約條款精華，可供港居不動產未來印製發布或線上簽署：</p>
+        <div style="background: #FAF5FF; border: 1px solid #E9D8FD; padding: 1.5rem; border-radius: 8px; font-size: 0.95rem;">
+            <h3 style="color: var(--primary); margin-top:0;">核心整合亮點：</h3>
+            <ul>
+                <li><strong>標準化條款：</strong>清晰明訂郵局匯款帳戶（700 / 0045003-0000167）、遲繳 2% 日違約金。</li>
+                <li><strong>全面禁菸與香薰：</strong>室內及公設嚴禁吸菸、拜拜香薰，第一次違約開罰 <strong>新台幣 10,000 元</strong>。</li>
+                <li><strong>寵物條款彈性模組：</strong>可依房屋型態勾選啟用，包含退租消毒、冷氣清洗費 $2,500 各半負擔。</li>
+                <li><strong>夜間寧靜與管線保護：</strong>22:00 ~ 07:00 控音 50dB，嚴禁濕紙巾/貓砂倒馬桶；入住 7 天後堵塞由租客負責。</li>
+                <li><strong>凶宅與緊急排除條款：</strong>維護資產價值，凶宅開罰 <strong>300 萬元懲罰性違約金</strong>；授權緊急破門。</li>
+            </ul>
+        </div>
+        <br>
+        <a href="三份房屋租賃契約綜合彙整與標準範本.md" class="btn-download" download style="background: var(--primary);">📥 下載 Markdown 完整文檔 (.md)</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. 版權所有</p>
+</footer>
+
+<script>
+    function switchTab(evt, tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        evt.currentTarget.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
