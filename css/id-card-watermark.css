@@ -301,10 +301,29 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* 注意：不可用 object-fit，否則畫布內容會在元素框內留白，
+   導致拖曳座標換算 (clientWidth / canvas.width) 失準 */
 #main-canvas {
+  display: block;
+  width: auto;
+  height: auto;
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  max-height: 68vh;
+  cursor: grab;
+  /* 觸控裝置上拖曳裁剪框時不觸發頁面捲動 */
+  touch-action: none;
+  border-radius: var(--radius-sm);
+}
+
+#main-canvas:active {
+  cursor: grabbing;
+}
+
+/* 拖放檔案時的視覺回饋 */
+.canvas-viewport.is-dragover .dropzone-area {
+  border-color: var(--accent-gold);
+  background: rgba(197, 160, 89, 0.06);
+  transform: scale(1.01);
 }
 
 .canvas-controls {

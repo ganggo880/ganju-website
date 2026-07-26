@@ -1,4 +1,14 @@
-// 港居身份證照裁剪與水印工具
+// 港居身份證照裁剪與租賃水印工具
+// 座標系統說明：
+//   - 裁剪框以「原圖像素座標」描述 (cropCenter + cropW/cropH)，永遠被夾在原圖範圍內
+//   - 輸出畫布為固定解析度 (outWidth × outWidth/ratio) + 上下左右 padding 空白帶
+//   - 水印優先畫在 padding 空白帶上；空白不足時才壓在照片邊緣
+
+const OUTPUT_PRESETS = {
+  '1011': { w: 1011, label: '300 DPI' },
+  '674': { w: 674, label: '200 DPI' },
+  '506': { w: 506, label: '150 DPI' }
+};
 
 class IDCardWatermarkApp {
   constructor() {
@@ -7,16 +17,21 @@ class IDCardWatermarkApp {
     this.uploadInput = document.getElementById('photo-upload-input');
 
     this.image = null;
-    this.imageData = null;
-    this.scale = 1;
-    this.offsetX = 0;
-    this.offsetY = 0;
+    this.imageName = '';
+
+    // 裁剪框狀態（原圖像素座標）
+    this.cropCX = 0;
+    this.cropCY = 0;
+
+    this.dragging = false;
+    this.dragStart = null;
 
     this.settings = {
       aspectRatio: 1.585,
       zoom: 100,
       padding: 0,
       bgColor: '#FFFFFF',
+      outputWidth: 1011,
       watermarkText: '限租賃房屋使用',
       watermarkPosition: 'bottom',
       fontSize: 24,
@@ -31,177 +46,325 @@ class IDCardWatermarkApp {
       outputSizeLimit: 'unlimited'
     };
 
-    this.init();
+    this.loadSettings();
+    this.setupEventListeners();
+    this.applySettingsToUI();
   }
 
-  init() {
-    this.setupEventListeners();
-    this.loadSettings();
+  /* ---------- 裁剪幾何 ---------- */
+
+  // zoom 100% = 最大可容納的裁剪框；zoom 越大裁得越緊（真正的放大）
+  getCropSize() {
+    const ratio = this.settings.aspectRatio;
+    const iw = this.image.width;
+    const ih = this.image.height;
+
+    // 先求「以此比例能塞進原圖的最大矩形」
+    let baseW = iw;
+    let baseH = baseW / ratio;
+    if (baseH > ih) {
+      baseH = ih;
+      baseW = baseH * ratio;
+    }
+
+    const factor = this.settings.zoom / 100;
+    let w = baseW / factor;
+    let h = baseH / factor;
+
+    // 夾住：裁剪框不得大於原圖（zoom < 100% 時會觸發）
+    if (w > iw) { w = iw; h = w / ratio; }
+    if (h > ih) { h = ih; w = h * ratio; }
+
+    return { w, h };
   }
+
+  // 把裁剪框中心夾回合法範圍，確保四邊都落在原圖內
+  clampCenter() {
+    const { w, h } = this.getCropSize();
+    const halfW = w / 2;
+    const halfH = h / 2;
+    this.cropCX = Math.min(Math.max(this.cropCX, halfW), this.image.width - halfW);
+    this.cropCY = Math.min(Math.max(this.cropCY, halfH), this.image.height - halfH);
+  }
+
+  centerCrop() {
+    this.cropCX = this.image.width / 2;
+    this.cropCY = this.image.height / 2;
+    this.clampCenter();
+  }
+
+  resetZoom() {
+    this.settings.zoom = 100;
+    document.getElementById('zoom-slider').value = 100;
+    document.getElementById('zoom-value').textContent = '100%';
+    this.centerCrop();
+  }
+
+  /* ---------- 繪製 ---------- */
+
+  redraw() {
+    if (!this.image) return;
+    this.clampCenter();
+
+    const { w: cropW, h: cropH } = this.getCropSize();
+    const outW = this.settings.outputWidth;
+    const outH = Math.round(outW / this.settings.aspectRatio);
+    const pad = this.settings.padding;
+
+    this.canvas.width = outW + pad * 2;
+    this.canvas.height = outH + pad * 2;
+
+    this.ctx.fillStyle = this.settings.bgColor;
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    const sx = this.cropCX - cropW / 2;
+    const sy = this.cropCY - cropH / 2;
+
+    this.ctx.imageSmoothingQuality = 'high';
+    this.ctx.drawImage(this.image, sx, sy, cropW, cropH, pad, pad, outW, outH);
+
+    this.drawWatermark(pad, outW, outH);
+    this.updateInfo(cropW, cropH);
+  }
+
+  drawWatermark(pad, outW, outH) {
+    const text = this.settings.watermarkText.trim();
+    if (this.settings.watermarkPosition === 'none' || !text) return;
+
+    const positions = this.settings.watermarkPosition === 'top-bottom'
+      ? ['top', 'bottom']
+      : [this.settings.watermarkPosition];
+
+    positions.forEach(pos => this.drawWatermarkAt(pos, text, pad, outW, outH));
+  }
+
+  drawWatermarkAt(position, text, pad, outW, outH) {
+    const fontSize = this.settings.fontSize;
+    const weight = this.settings.bold ? '700' : '400';
+    const bandH = fontSize + 12;
+
+    this.ctx.font = `${weight} ${fontSize}px ${this.settings.fontFamily}`;
+    this.ctx.textAlign = 'center';
+    this.ctx.textBaseline = 'middle';
+
+    const x = pad + outW / 2;
+
+    // 空白帶塞得下就畫在空白處（使用者要的行為）；塞不下才壓在照片邊緣
+    const inMargin = pad >= bandH;
+    let y;
+    if (position === 'top') {
+      y = inMargin ? pad / 2 : pad + bandH / 2;
+    } else {
+      y = inMargin ? pad + outH + pad / 2 : pad + outH - bandH / 2;
+    }
+
+    if (this.settings.bannerBg) {
+      const bandW = this.ctx.measureText(text).width + 24;
+      this.ctx.globalAlpha = this.settings.bannerOpacity / 100;
+      this.ctx.fillStyle = this.settings.bannerColor;
+      this.ctx.fillRect(x - bandW / 2, y - bandH / 2, bandW, bandH);
+      this.ctx.globalAlpha = 1;
+    }
+
+    this.ctx.globalAlpha = this.settings.fontOpacity / 100;
+    this.ctx.fillStyle = this.settings.fontColor;
+    this.ctx.fillText(text, x, y);
+    this.ctx.globalAlpha = 1;
+  }
+
+  updateInfo(cropW, cropH) {
+    const info = document.getElementById('canvas-info');
+    if (!info) return;
+    const marginNote = this.settings.padding >= this.settings.fontSize + 12
+      ? '水印於空白帶'
+      : '水印壓於照片邊緣（加大邊距可移至空白處）';
+    info.textContent = `輸出 ${this.canvas.width}×${this.canvas.height}px｜取樣 ${Math.round(cropW)}×${Math.round(cropH)}｜${marginNote}`;
+  }
+
+  /* ---------- 拖曳定位 ---------- */
+
+  setupDrag() {
+    const canvas = this.canvas;
+
+    const toImageDelta = (dxScreen, dyScreen) => {
+      const { w: cropW } = this.getCropSize();
+      const displayScale = canvas.clientWidth / canvas.width; // CSS 縮放
+      const outScale = cropW / this.settings.outputWidth;      // 畫布→原圖
+      const k = outScale / displayScale;
+      return { dx: dxScreen * k, dy: dyScreen * k };
+    };
+
+    canvas.addEventListener('pointerdown', (e) => {
+      if (!this.image) return;
+      this.dragging = true;
+      this.dragStart = { x: e.clientX, y: e.clientY, cx: this.cropCX, cy: this.cropCY };
+      canvas.setPointerCapture(e.pointerId);
+      canvas.style.cursor = 'grabbing';
+    });
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (!this.dragging) return;
+      e.preventDefault();
+      const { dx, dy } = toImageDelta(e.clientX - this.dragStart.x, e.clientY - this.dragStart.y);
+      // 拖曳畫面向右 = 裁剪框向左移
+      this.cropCX = this.dragStart.cx - dx;
+      this.cropCY = this.dragStart.cy - dy;
+      this.redraw();
+    });
+
+    const endDrag = (e) => {
+      if (!this.dragging) return;
+      this.dragging = false;
+      canvas.style.cursor = 'grab';
+      if (e.pointerId !== undefined && canvas.hasPointerCapture(e.pointerId)) {
+        canvas.releasePointerCapture(e.pointerId);
+      }
+    };
+    canvas.addEventListener('pointerup', endDrag);
+    canvas.addEventListener('pointercancel', endDrag);
+  }
+
+  /* ---------- 事件 ---------- */
 
   setupEventListeners() {
-    // 檔案上傳
-    this.uploadInput.addEventListener('change', (e) => this.handleFileSelect(e));
+    this.uploadInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) this.loadImage(file);
+    });
 
-    // 拖曳
-    document.getElementById('canvas-viewport').addEventListener('dragover', (e) => e.preventDefault());
-    document.getElementById('canvas-viewport').addEventListener('drop', (e) => this.handleDrop(e));
+    const viewport = document.getElementById('canvas-viewport');
+    viewport.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      viewport.classList.add('is-dragover');
+    });
+    viewport.addEventListener('dragleave', () => viewport.classList.remove('is-dragover'));
+    viewport.addEventListener('drop', (e) => {
+      e.preventDefault();
+      viewport.classList.remove('is-dragover');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) this.loadImage(file);
+    });
 
-    // 頁籤切換
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => this.switchTab(btn));
     });
 
-    // 裁剪設定
-    document.getElementById('aspect-ratio').addEventListener('change', (e) => {
-      this.settings.aspectRatio = parseFloat(e.target.value);
-      this.redraw();
+    // 裁剪：比例變更必須重置縮放與置中，否則裁剪框會跑出原圖
+    this.bind('aspect-ratio', 'change', (el) => {
+      this.settings.aspectRatio = parseFloat(el.value);
+      if (this.image) this.resetZoom();
     });
 
-    document.getElementById('zoom-slider').addEventListener('input', (e) => {
-      this.settings.zoom = parseInt(e.target.value);
-      document.getElementById('zoom-value').textContent = e.target.value + '%';
-      this.redraw();
+    this.bindRange('zoom-slider', 'zoom-value', '%', (v) => {
+      this.settings.zoom = v;
     });
 
     document.getElementById('btn-center').addEventListener('click', () => {
-      this.centerCropBox();
+      if (!this.image) return;
+      this.centerCrop();
       this.redraw();
     });
 
     document.getElementById('btn-fit').addEventListener('click', () => {
-      this.fitCropBox();
+      if (!this.image) return;
+      this.resetZoom();
       this.redraw();
     });
 
-    document.getElementById('bg-color').addEventListener('input', (e) => {
-      this.settings.bgColor = e.target.value;
-      document.getElementById('bg-color-hex').value = e.target.value;
-      this.redraw();
+    this.bindColor('bg-color', 'bg-color-hex', (v) => { this.settings.bgColor = v; });
+    this.bindRange('padding-slider', 'padding-value', 'px', (v) => { this.settings.padding = v; });
+
+    this.bind('output-width', 'change', (el) => {
+      this.settings.outputWidth = parseInt(el.value, 10);
     });
 
-    document.getElementById('bg-color-hex').addEventListener('input', (e) => {
-      if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
-        this.settings.bgColor = e.target.value;
-        document.getElementById('bg-color').value = e.target.value;
-        this.redraw();
-      }
-    });
+    // 水印
+    this.bind('watermark-text', 'input', (el) => { this.settings.watermarkText = el.value; });
+    this.bind('watermark-position', 'change', (el) => { this.settings.watermarkPosition = el.value; });
+    this.bindRange('font-size-slider', 'font-size-value', 'px', (v) => { this.settings.fontSize = v; });
+    this.bindColor('font-color', 'font-color-hex', (v) => { this.settings.fontColor = v; });
+    this.bindRange('font-opacity-slider', 'font-opacity-value', '%', (v) => { this.settings.fontOpacity = v; });
+    this.bind('font-family', 'change', (el) => { this.settings.fontFamily = el.value; });
+    this.bind('chk-bold', 'change', (el) => { this.settings.bold = el.checked; });
 
-    document.getElementById('padding-slider').addEventListener('input', (e) => {
-      this.settings.padding = parseInt(e.target.value);
-      document.getElementById('padding-value').textContent = e.target.value + 'px';
-      this.redraw();
+    this.bind('chk-banner-bg', 'change', (el) => {
+      this.settings.bannerBg = el.checked;
+      document.getElementById('banner-settings').style.display = el.checked ? 'block' : 'none';
     });
+    this.bindColor('banner-color', 'banner-color-hex', (v) => { this.settings.bannerColor = v; });
+    this.bindRange('banner-opacity-slider', 'banner-opacity-value', '%', (v) => { this.settings.bannerOpacity = v; });
 
-    // 水印設定
-    document.getElementById('watermark-text').addEventListener('input', (e) => {
-      this.settings.watermarkText = e.target.value;
-      this.redraw();
+    // 輸出
+    this.bind('output-format', 'change', (el) => {
+      this.settings.outputFormat = el.value;
+      this.syncSizeLimitAvailability();
     });
+    this.bind('output-size-limit', 'change', (el) => { this.settings.outputSizeLimit = el.value; });
 
-    document.getElementById('watermark-position').addEventListener('change', (e) => {
-      this.settings.watermarkPosition = e.target.value;
-      this.redraw();
-    });
-
-    document.getElementById('font-size-slider').addEventListener('input', (e) => {
-      this.settings.fontSize = parseInt(e.target.value);
-      document.getElementById('font-size-value').textContent = e.target.value + 'px';
-      this.redraw();
-    });
-
-    document.getElementById('font-color').addEventListener('input', (e) => {
-      this.settings.fontColor = e.target.value;
-      document.getElementById('font-color-hex').value = e.target.value;
-      this.redraw();
-    });
-
-    document.getElementById('font-color-hex').addEventListener('input', (e) => {
-      if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
-        this.settings.fontColor = e.target.value;
-        document.getElementById('font-color').value = e.target.value;
-        this.redraw();
-      }
-    });
-
-    document.getElementById('font-opacity-slider').addEventListener('input', (e) => {
-      this.settings.fontOpacity = parseInt(e.target.value);
-      document.getElementById('font-opacity-value').textContent = e.target.value + '%';
-      this.redraw();
-    });
-
-    document.getElementById('font-family').addEventListener('change', (e) => {
-      this.settings.fontFamily = e.target.value;
-      this.redraw();
-    });
-
-    document.getElementById('chk-bold').addEventListener('change', (e) => {
-      this.settings.bold = e.target.checked;
-      this.redraw();
-    });
-
-    document.getElementById('chk-banner-bg').addEventListener('change', (e) => {
-      this.settings.bannerBg = e.target.checked;
-      document.getElementById('banner-settings').style.display = e.target.checked ? 'block' : 'none';
-      this.redraw();
-    });
-
-    document.getElementById('banner-color').addEventListener('input', (e) => {
-      this.settings.bannerColor = e.target.value;
-      document.getElementById('banner-color-hex').value = e.target.value;
-      this.redraw();
-    });
-
-    document.getElementById('banner-color-hex').addEventListener('input', (e) => {
-      if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
-        this.settings.bannerColor = e.target.value;
-        document.getElementById('banner-color').value = e.target.value;
-        this.redraw();
-      }
-    });
-
-    document.getElementById('banner-opacity-slider').addEventListener('input', (e) => {
-      this.settings.bannerOpacity = parseInt(e.target.value);
-      document.getElementById('banner-opacity-value').textContent = e.target.value + '%';
-      this.redraw();
-    });
-
-    // 輸出設定
-    document.getElementById('output-format').addEventListener('change', (e) => {
-      this.settings.outputFormat = e.target.value;
-    });
-
-    document.getElementById('output-size-limit').addEventListener('change', (e) => {
-      this.settings.outputSizeLimit = e.target.value;
-    });
-
-    // 下載按鈕
     document.getElementById('btn-download').addEventListener('click', () => this.download());
+
+    this.setupDrag();
+  }
+
+  // 通用綁定：更新設定 → 重繪 → 存檔
+  bind(id, event, handler) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener(event, () => {
+      handler(el);
+      this.redraw();
+      this.saveSettings();
+    });
+  }
+
+  bindRange(id, labelId, suffix, handler) {
+    const el = document.getElementById(id);
+    const label = document.getElementById(labelId);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      const v = parseInt(el.value, 10);
+      if (label) label.textContent = v + suffix;
+      handler(v);
+      this.redraw();
+      this.saveSettings();
+    });
+  }
+
+  bindColor(colorId, hexId, handler) {
+    const color = document.getElementById(colorId);
+    const hex = document.getElementById(hexId);
+    if (!color) return;
+
+    color.addEventListener('input', () => {
+      handler(color.value);
+      if (hex) hex.value = color.value.toUpperCase();
+      this.redraw();
+      this.saveSettings();
+    });
+
+    if (hex) {
+      hex.addEventListener('input', () => {
+        if (!/^#[0-9A-F]{6}$/i.test(hex.value)) return;
+        handler(hex.value);
+        color.value = hex.value;
+        this.redraw();
+        this.saveSettings();
+      });
+    }
   }
 
   switchTab(btn) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-
     btn.classList.add('active');
-    const tabId = btn.getAttribute('data-tab');
-    document.getElementById(tabId).classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    document.getElementById(btn.dataset.tab).classList.add('active');
   }
 
-  handleFileSelect(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    this.loadImage(file);
-  }
-
-  handleDrop(e) {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      this.loadImage(file);
-    }
-  }
+  /* ---------- 載入 ---------- */
 
   loadImage(file) {
     const reader = new FileReader();
@@ -209,248 +372,165 @@ class IDCardWatermarkApp {
       const img = new Image();
       img.onload = () => {
         this.image = img;
-        this.imageData = {
-          name: file.name.replace(/\.[^/.]+$/, ''),
-          type: file.type
-        };
+        this.imageName = file.name.replace(/\.[^/.]+$/, '');
 
         document.getElementById('dropzone-area').style.display = 'none';
         document.getElementById('canvas-container').style.display = 'flex';
         document.getElementById('export-bar').style.display = 'flex';
+        this.canvas.style.cursor = 'grab';
 
-        this.fitCropBox();
+        this.resetZoom();
         this.redraw();
       };
+      img.onerror = () => this.showToast('⚠ 影像解碼失敗，請換一張照片');
       img.src = e.target.result;
     };
+    reader.onerror = () => this.showToast('⚠ 檔案讀取失敗');
     reader.readAsDataURL(file);
   }
 
-  centerCropBox() {
-    this.offsetX = (this.image.width - this.getCropWidth()) / 2;
-    this.offsetY = (this.image.height - this.getCropHeight()) / 2;
-  }
+  /* ---------- 輸出 ---------- */
 
-  fitCropBox() {
-    const maxWidth = this.image.width;
-    const maxHeight = this.image.height;
-    const targetRatio = this.settings.aspectRatio;
-
-    let cropWidth, cropHeight;
-
-    if (maxWidth / maxHeight > targetRatio) {
-      cropHeight = maxHeight;
-      cropWidth = cropHeight * targetRatio;
-    } else {
-      cropWidth = maxWidth;
-      cropHeight = cropWidth / targetRatio;
-    }
-
-    this.scale = cropWidth / 256; // 標準寬度 256px
-    this.centerCropBox();
-  }
-
-  getCropWidth() {
-    return 256 * (this.settings.zoom / 100) * this.scale;
-  }
-
-  getCropHeight() {
-    return this.getCropWidth() / this.settings.aspectRatio;
-  }
-
-  redraw() {
-    if (!this.image) return;
-
-    const cropWidth = this.getCropWidth();
-    const cropHeight = this.getCropHeight();
-    const padding = this.settings.padding;
-
-    // 計算畫布尺寸
-    this.canvas.width = cropWidth + padding * 2;
-    this.canvas.height = cropHeight + padding * 2;
-
-    // 繪製背景
-    this.ctx.fillStyle = this.settings.bgColor;
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-    // 繪製裁剪後的照片
-    this.ctx.drawImage(
-      this.image,
-      this.offsetX, this.offsetY,
-      cropWidth, cropHeight,
-      padding, padding,
-      cropWidth, cropHeight
-    );
-
-    // 繪製水印
-    this.drawWatermark(padding, cropWidth, cropHeight);
-  }
-
-  drawWatermark(padding, cropWidth, cropHeight) {
-    if (this.settings.watermarkPosition === 'none' || !this.settings.watermarkText) {
-      return;
-    }
-
-    const fontSize = this.settings.fontSize;
-    const fontFamily = this.settings.fontFamily;
-    const fontWeight = this.settings.bold ? '700' : '400';
-    const textColor = this.settings.fontColor;
-    const textOpacity = this.settings.fontOpacity / 100;
-
-    const positions = this.settings.watermarkPosition === 'top-bottom'
-      ? ['top', 'bottom']
-      : [this.settings.watermarkPosition];
-
-    positions.forEach(pos => {
-      this.drawWatermarkText(
-        pos, padding, cropWidth, cropHeight,
-        fontSize, fontFamily, fontWeight, textColor, textOpacity
-      );
-    });
-  }
-
-  drawWatermarkText(position, padding, cropWidth, cropHeight, fontSize, fontFamily, fontWeight, textColor, textOpacity) {
-    const text = this.settings.watermarkText;
-    const bannerHeight = fontSize + 12;
-
-    this.ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
-    this.ctx.textAlign = 'center';
-    this.ctx.textBaseline = 'middle';
-
-    const x = padding + cropWidth / 2;
-    let y;
-
-    if (position === 'top') {
-      y = padding + bannerHeight / 2;
-    } else {
-      y = padding + cropHeight - bannerHeight / 2;
-    }
-
-    // 繪製背景橫幅
-    if (this.settings.bannerBg) {
-      const metrics = this.ctx.measureText(text);
-      const textWidth = metrics.width;
-      const bannerWidth = textWidth + 24;
-
-      this.ctx.fillStyle = this.settings.bannerColor;
-      this.ctx.globalAlpha = this.settings.bannerOpacity / 100;
-      this.ctx.fillRect(x - bannerWidth / 2, y - bannerHeight / 2, bannerWidth, bannerHeight);
-      this.ctx.globalAlpha = 1;
-    }
-
-    // 繪製文字
-    this.ctx.fillStyle = textColor;
-    this.ctx.globalAlpha = textOpacity;
-    this.ctx.fillText(text, x, y);
-    this.ctx.globalAlpha = 1;
+  syncSizeLimitAvailability() {
+    const note = document.getElementById('size-limit-note');
+    if (!note) return;
+    note.style.display = this.settings.outputFormat === 'image/png' ? 'inline' : 'none';
   }
 
   async download() {
+    if (!this.image) return;
+
     const format = this.settings.outputFormat;
-    const quality = 0.95;
+    const limitMB = this.settings.outputSizeLimit;
+    let blob = await this.toBlob(this.canvas, format, 0.95);
 
-    this.canvas.toBlob((blob) => {
-      let finalBlob = blob;
+    if (limitMB !== 'unlimited') {
+      const limit = parseFloat(limitMB) * 1024 * 1024;
 
-      // 容量限制
-      if (this.settings.outputSizeLimit !== 'unlimited') {
-        const limit = parseFloat(this.settings.outputSizeLimit) * 1024 * 1024;
-        if (blob.size > limit) {
-          // 簡單降低品質
-          this.canvas.toBlob((smallerBlob) => {
-            this.downloadBlob(smallerBlob);
-          }, format, 0.75);
-          return;
+      if (format === 'image/jpeg') {
+        // JPEG：逐步降品質
+        for (let q = 0.9; q > 0.4 && blob.size > limit; q -= 0.1) {
+          blob = await this.toBlob(this.canvas, format, q);
+        }
+      } else {
+        // PNG 不吃 quality，改為逐步縮小尺寸
+        let scale = 1;
+        while (blob.size > limit && scale > 0.35) {
+          scale -= 0.15;
+          blob = await this.toBlob(this.scaledCopy(scale), format, 1);
         }
       }
 
-      this.downloadBlob(finalBlob);
-    }, format, quality);
+      if (blob.size > limit) {
+        this.showToast(`⚠ 已壓至 ${(blob.size / 1024 / 1024).toFixed(2)}MB，仍超過上限`);
+      }
+    }
+
+    this.downloadBlob(blob);
+  }
+
+  toBlob(canvas, type, quality) {
+    return new Promise(resolve => canvas.toBlob(resolve, type, quality));
+  }
+
+  scaledCopy(scale) {
+    const c = document.createElement('canvas');
+    c.width = Math.round(this.canvas.width * scale);
+    c.height = Math.round(this.canvas.height * scale);
+    const cx = c.getContext('2d');
+    cx.imageSmoothingQuality = 'high';
+    cx.drawImage(this.canvas, 0, 0, c.width, c.height);
+    return c;
   }
 
   downloadBlob(blob) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    const timestamp = new Date().toISOString().slice(0, 10);
+    const stamp = new Date().toISOString().slice(0, 10);
     const ext = this.settings.outputFormat === 'image/jpeg' ? 'jpg' : 'png';
 
     link.href = url;
-    link.download = `${this.imageData.name}_${timestamp}_身份證.${ext}`;
+    link.download = `${this.imageName}_${stamp}_身份證.${ext}`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 
-    this.showToast('✓ 照片已成功下載');
+    this.showToast(`✓ 已下載（${(blob.size / 1024).toFixed(0)} KB）`);
+  }
+
+  /* ---------- 設定持久化 ---------- */
+
+  saveSettings() {
+    try {
+      localStorage.setItem('idCardSettings', JSON.stringify(this.settings));
+    } catch (err) {
+      // 隱私模式或配額用盡時忽略
+    }
   }
 
   loadSettings() {
-    const saved = localStorage.getItem('idCardSettings');
-    if (saved) {
-      this.settings = { ...this.settings, ...JSON.parse(saved) };
-      this.applySettingsToUI();
+    try {
+      const saved = localStorage.getItem('idCardSettings');
+      if (saved) this.settings = { ...this.settings, ...JSON.parse(saved) };
+    } catch (err) {
+      // 損毀的設定不應擋住工具啟動
     }
   }
 
   applySettingsToUI() {
-    document.getElementById('aspect-ratio').value = this.settings.aspectRatio;
-    document.getElementById('zoom-slider').value = this.settings.zoom;
-    document.getElementById('zoom-value').textContent = this.settings.zoom + '%';
-    document.getElementById('bg-color').value = this.settings.bgColor;
-    document.getElementById('bg-color-hex').value = this.settings.bgColor;
-    document.getElementById('padding-slider').value = this.settings.padding;
-    document.getElementById('padding-value').textContent = this.settings.padding + 'px';
-    document.getElementById('watermark-text').value = this.settings.watermarkText;
-    document.getElementById('watermark-position').value = this.settings.watermarkPosition;
-    document.getElementById('font-size-slider').value = this.settings.fontSize;
-    document.getElementById('font-size-value').textContent = this.settings.fontSize + 'px';
-    document.getElementById('font-color').value = this.settings.fontColor;
-    document.getElementById('font-color-hex').value = this.settings.fontColor;
-    document.getElementById('font-opacity-slider').value = this.settings.fontOpacity;
-    document.getElementById('font-opacity-value').textContent = this.settings.fontOpacity + '%';
-    document.getElementById('font-family').value = this.settings.fontFamily;
-    document.getElementById('chk-bold').checked = this.settings.bold;
-    document.getElementById('chk-banner-bg').checked = this.settings.bannerBg;
-    document.getElementById('banner-color').value = this.settings.bannerColor;
-    document.getElementById('banner-color-hex').value = this.settings.bannerColor;
-    document.getElementById('banner-opacity-slider').value = this.settings.bannerOpacity;
-    document.getElementById('banner-opacity-value').textContent = this.settings.bannerOpacity + '%';
-    document.getElementById('banner-settings').style.display = this.settings.bannerBg ? 'block' : 'none';
+    const s = this.settings;
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+    const text = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    const check = (id, val) => { const el = document.getElementById(id); if (el) el.checked = val; };
+
+    set('aspect-ratio', s.aspectRatio);
+    set('zoom-slider', s.zoom);
+    text('zoom-value', s.zoom + '%');
+    set('bg-color', s.bgColor);
+    set('bg-color-hex', s.bgColor.toUpperCase());
+    set('padding-slider', s.padding);
+    text('padding-value', s.padding + 'px');
+    set('output-width', s.outputWidth);
+    set('watermark-text', s.watermarkText);
+    set('watermark-position', s.watermarkPosition);
+    set('font-size-slider', s.fontSize);
+    text('font-size-value', s.fontSize + 'px');
+    set('font-color', s.fontColor);
+    set('font-color-hex', s.fontColor.toUpperCase());
+    set('font-opacity-slider', s.fontOpacity);
+    text('font-opacity-value', s.fontOpacity + '%');
+    set('font-family', s.fontFamily);
+    check('chk-bold', s.bold);
+    check('chk-banner-bg', s.bannerBg);
+    set('banner-color', s.bannerColor);
+    set('banner-color-hex', s.bannerColor.toUpperCase());
+    set('banner-opacity-slider', s.bannerOpacity);
+    text('banner-opacity-value', s.bannerOpacity + '%');
+    set('output-format', s.outputFormat);
+    set('output-size-limit', s.outputSizeLimit);
+
+    const bannerSettings = document.getElementById('banner-settings');
+    if (bannerSettings) bannerSettings.style.display = s.bannerBg ? 'block' : 'none';
+    this.syncSizeLimitAvailability();
   }
 
   showToast(message) {
     const toast = document.createElement('div');
     toast.className = 'toast';
+    toast.setAttribute('role', 'status');
     toast.textContent = message;
     document.body.appendChild(toast);
 
-    setTimeout(() => toast.classList.add('show'), 10);
+    requestAnimationFrame(() => toast.classList.add('show'));
     setTimeout(() => {
       toast.classList.remove('show');
-      setTimeout(() => document.body.removeChild(toast), 350);
+      setTimeout(() => toast.remove(), 350);
     }, 3000);
   }
 }
 
-// 初始化應用
+// 行動選單由 js/layout.js 統一處理，此處不得重複綁定
 document.addEventListener('DOMContentLoaded', () => {
   new IDCardWatermarkApp();
-
-  // 導覽列控制 (共用)
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navMenu = document.getElementById('navMenu');
-
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      mobileToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
-    });
-
-    navMenu.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
 });

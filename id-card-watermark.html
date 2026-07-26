@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>港居不動產｜身份證照裁剪與租賃水印工具</title>
-  <meta name="description" content="港居不動產開發有限公司專屬身份證照自動裁剪、「限租賃房屋使用」水印合成工具">
+  <meta name="description" content="港居不動產開發有限公司專屬身份證照裁剪工具，自動套用身份證比例並加印「限租賃房屋使用」水印">
   <link rel="canonical" href="https://ganggo880.github.io/ganju-website/id-card-watermark.html">
   <meta name="theme-color" content="#1A365D">
 
   <!-- Open Graph -->
   <meta property="og:title" content="港居不動產｜身份證照裁剪與租賃水印工具">
-  <meta property="og:description" content="自動裁剪身份證尺寸，智能加壓「限租賃房屋使用」水印，一鍵下載。">
+  <meta property="og:description" content="自動套用身份證比例裁剪，可拖曳定位，於空白處加印「限租賃房屋使用」水印，一鍵下載。">
   <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
   <meta property="og:url" content="https://ganggo880.github.io/ganju-website/id-card-watermark.html">
   <meta property="og:type" content="website">
@@ -144,14 +144,24 @@
 
               <div class="form-group">
                 <label>裁剪框位置</label>
+                <p class="field-hint">可直接在右側照片上拖曳調整位置</p>
                 <div class="position-buttons">
                   <button class="btn btn-small" id="btn-center">
                     <i class="fa-solid fa-crosshairs"></i> 置中
                   </button>
                   <button class="btn btn-small" id="btn-fit">
-                    <i class="fa-solid fa-maximize"></i> 自適應
+                    <i class="fa-solid fa-maximize"></i> 重設縮放
                   </button>
                 </div>
+              </div>
+
+              <div class="form-group">
+                <label for="output-width">輸出解析度</label>
+                <select id="output-width">
+                  <option value="1011" selected>1011px 寬（300 DPI，可列印）</option>
+                  <option value="674">674px 寬（200 DPI）</option>
+                  <option value="506">506px 寬（150 DPI，網路傳輸）</option>
+                </select>
               </div>
             </div>
 
@@ -168,6 +178,7 @@
               <div class="form-group">
                 <label for="padding-slider">背景邊距 <span id="padding-value">0px</span></label>
                 <input type="range" id="padding-slider" min="0" max="150" value="0" step="5">
+                <p class="field-hint">邊距大於字高時，水印會自動改印在空白帶上，不遮蓋證件內容</p>
               </div>
             </div>
           </div>
@@ -278,7 +289,7 @@
             <div class="canvas-controls">
               <div class="control-hint">
                 <span id="canvas-info">照片已載入</span>
-                <small>使用滑桿調整裁剪框</small>
+                <small><i class="fa-solid fa-up-down-left-right"></i> 直接拖曳照片可調整裁剪位置</small>
               </div>
             </div>
           </div>
@@ -302,6 +313,7 @@
                 <option value="1.0">最大 1.0 MB</option>
                 <option value="0.5">最大 0.5 MB</option>
               </select>
+              <small id="size-limit-note" class="field-hint">PNG 以縮小尺寸達成</small>
             </div>
           </div>
 
