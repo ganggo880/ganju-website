@@ -9,7 +9,7 @@
 ## 專案簡介
 
 「港居不動產開發有限公司」（GANJU Real Estate，統編 `96797997`）的品牌官方網站與全套線上工具集。
-目標是以**一組共用設計 Token 與模組化 JS**，撐起官網主頁與 3 個不動產專用線上工具，全部以純靜態網頁發布於 GitHub Pages，零後端、零部署成本。
+目標是以**一組共用設計 Token 與模組化 JS**，撐起官網主頁與 4 個不動產專用線上工具，全部以純靜態網頁發布於 GitHub Pages，零後端、零部署成本。
 
 同一 repository 另收納 Matt Pocock 技能集（`skills/`、`docs/`、`agent/`）作為 AI 協作素材庫。
 
@@ -27,8 +27,12 @@
 - [x] 階段四：房源照片 EXIF 時間戳記與水印工具 `photo-watermark.html`
 - [x] 階段五：全站模組化重構（`css/tokens.css`＋`css/components.css`＋`js/layout.js`）與 SEO 結構化資料
 - [x] 階段六：專案三層級初始化（AGENTS.md／handoff.md／GitHub／Obsidian）
-- [ ] 階段七：全站 RWD 與 44×44px 觸控區域逐頁複檢
-- [ ] 階段八：Lighthouse 效能與無障礙評分優化
+- [x] 階段七：身份證照裁剪與租賃水印工具 `id-card-watermark.html`（含七項缺陷修正）
+- [x] 階段八：JSON-LD 結構化資料校正（修掉不存在的 `FinancialCalculator` 型別、補 `offers`、補 canonical／絕對路徑 og:image）
+- [x] 階段九：SEO／無障礙／載入效能／RWD 觸控熱區優化（共用組件 RWD 規則歸位 `components.css`）
+- [ ] 階段十：**RWD 收尾**——`file-converter.html` 在 360px 仍水平溢出（`.category-tabs` 未在窄螢幕收合）、`rent-calculator.html` 360px 溢出 9px（`.bg-glow` 裝飾層未裁切）
+- [ ] 階段十一：實機跑 Lighthouse 取得正式分數（本機無 Node/npx，僅完成等效的腳本化稽核）
+- [ ] 階段十二：Google Rich Results Test 線上實測 4 頁 JSON-LD
 
 ## 資料夾結構
 
@@ -43,18 +47,25 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── rent-calculator.html             # 2. 租金與代管服務費換算工具
 ├── file-converter.html              # 3. 線上多功能檔案轉換神器
 ├── photo-watermark.html             # 4. 房源照片 EXIF 水印生成器
+├── id-card-watermark.html           # 5. 身份證照裁剪與租賃用途水印工具
 ├── styles.css / rent-calc.css / watermark.css
 ├── script.js / rent-calc.js
 │
 ├── css/
 │   ├── tokens.css                   # 品牌設計 Token（海軍藍／香檳金、陰影、圓角、深淺模式）
 │   ├── components.css               # 公用組件（TopBar / Navbar / Footer / Buttons / Toast）
-│   └── converter.css                # 檔案轉換工具專屬樣式
+│   │                                # ⚠️ 全站共用組件的 RWD @media 一律寫在這裡
+│   ├── converter.css                # 檔案轉換工具專屬樣式
+│   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── utils.js                     # 千分位、日期差、Toast、主題切換
-│   ├── navigation.js                # 導覽列與 Mobile Drawer
-│   ├── layout.js                    # Active 點亮與跨頁 Layout 控制
-│   └── converter.js                 # 轉檔核心（Canvas / Blob 本地運算）
+│   ├── navigation.js                # 導覽列與 Mobile Drawer（index.html 使用）
+│   ├── layout.js                    # Active 點亮與跨頁 Layout 控制（工具頁使用）
+│   ├── converter.js                 # 轉檔核心（Canvas / Blob 本地運算）
+│   ├── exif-parser.js               # EXIF 解析
+│   ├── watermark-engine.js          # 水印合成引擎（Canvas）
+│   ├── watermark-app.js             # 照片水印工具 UI 控制
+│   └── id-card-watermark.js         # 身份證照裁剪與水印邏輯
 │
 ├── assets/                          # 品牌 LOGO 與房源實景照
 ├── output/                          # ⚠️ 所有 AI 產出一律歸檔於此
