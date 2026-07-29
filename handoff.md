@@ -50,6 +50,7 @@
 | `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成 | `WebApplication` (MultimediaApplication) |
 | `id-card-watermark.html` | 身份證照裁剪與租賃用途水印 | — |
 | `image-converter.html` | JPG, PNG, WEBP, GIF, SVG, BMP 六大格式雙向互轉、最多20張上限、大/中/小/原圖尺寸調控與 ZIP 打包 | `WebApplication` (MultimediaApplication) |
+| `card-merger.html` | 名片正反面/上下對齊拼貼合成、留白與背景色控制、高畫質 JPG 匯出 | `WebApplication` (GraphicsApplication) |
 
 ## 🔗 線上營運與倉庫網址
 
