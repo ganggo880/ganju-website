@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>名片正反面上下合成神器｜港居不動產專屬名片拼貼工具</title>
+  <meta name="description" content="港居不動產開發有限公司專用名片正反面上下合成工具。支援正面與背面名片自動等寬對齊拼貼、留白與背景色調整，即時匯出高解析度 JPG 圖檔。特許登記證號：(108)登字第354198號。">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="名片正反面上下合成神器｜港居不動產專屬工具">
+  <meta property="og:description" content="免費即時在線將名片正面與背面自動拼貼合成一張 JPG 檔。港居不動產貼心提供。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/card-merger.html">
+  <meta property="og:type" content="website">
+
+  <!-- Icons & Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/card-merger.css">
+
+  <!-- Schema.org JSON-LD for WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居名片正反面上下合成神器",
+    "url": "https://ganggo880.github.io/ganju-website/card-merger.html",
+    "applicationCategory": "GraphicsApplication",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
+    "operatingSystem": "All",
+    "description": "提供名片正面與背面圖片自動對齊拼貼、留白調整與 JPG 高畫質匯出服務。",
+    "provider": {
+      "@type": "RealEstateAgent",
+      "name": "港居不動產開發有限公司"
+    }
+  }
+  </script>
+
+  <!-- JS Modules -->
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body>
+
+  <!-- 頂部宣告條 Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 營業員證號：(108) 登字第354198號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主導覽列 Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <h1>港居不動產</h1>
+          <p>GANJU REAL ESTATE</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算</a></li>
+        <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換</a></li>
+        <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+        <li><a href="card-merger.html" class="nav-link active"><i class="fa-solid fa-address-card"></i> 名片合成</a></li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="開啟選單"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 背景光暈 Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- 主內容區塊 Section -->
+  <section class="merger-section">
+    <div class="container">
+
+      <!-- 標頭資訊與吉祥物資安提示 -->
+      <div class="merger-header">
+        <div class="top-bar-badge" style="display: inline-flex; margin-bottom: 12px; background: rgba(197, 160, 89, 0.15); color: var(--accent-gold-hover);">
+          <i class="fa-solid fa-address-card"></i> 港居不動產・名片拼貼工具
+        </div>
+        <h2 class="merger-title">名片正反面 / 上下合成神器</h2>
+        <p class="merger-subtitle">上傳正面（上圖）與背面（下圖），自動等寬對齊並拼接合成一張高畫質 JPG 檔</p>
+      </div>
+
+      <!-- 兩欄主 Layout -->
+      <main class="merger-layout">
+
+        <!-- 左側：上傳區與設定選單 -->
+        <section class="glass-panel" style="padding: 1.75rem;">
+          <!-- 吉祥物提醒 -->
+          <div style="background: var(--accent-light); border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(197, 160, 89, 0.3);">
+            <i class="fa-solid fa-user-shield" style="color: var(--accent-gold); font-size: 1.3rem;"></i>
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary-navy);">
+              阿港經理 🐴 與 阿居管家 🐑 提醒：所有名片圖檔皆在您的瀏覽器端本機合成，個資與資產訊息絕對安全！
+            </span>
+          </div>
+
+          <!-- 正面與背面雙上傳區 -->
+          <div class="upload-pair-grid">
+            <!-- 正面 (上圖) -->
+            <div class="upload-card" id="topDropzone">
+              <i class="fa-solid fa-image" style="font-size: 2rem; color: var(--accent-gold);"></i>
+              <div class="upload-card-title">1. 名片正面 (上圖)</div>
+              <small style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">點擊、拖曳或按 Ctrl+V 貼上</small>
+              <img id="topPreviewImg" src="" alt="正面名片預覽" class="upload-preview-thumb" style="display: none;">
+              <input type="file" id="topFileInput" accept="image/*" style="display: none;">
+            </div>
+
+            <!-- 背面 (下圖) -->
+            <div class="upload-card" id="bottomDropzone">
+              <i class="fa-solid fa-image" style="font-size: 2rem; color: var(--accent-gold);"></i>
+              <div class="upload-card-title">2. 名片背面 (下圖)</div>
+              <small style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">點擊、拖曳或按 Ctrl+V 貼上</small>
+              <img id="bottomPreviewImg" src="" alt="背面名片預覽" class="upload-preview-thumb" style="display: none;">
+              <input type="file" id="bottomFileInput" accept="image/*" style="display: none;">
+            </div>
+          </div>
+
+          <!-- 合成參數設定 -->
+          <div class="options-panel-grid">
+            <div class="form-group-custom">
+              <label for="layoutDirSelect"><i class="fa-solid fa-arrows-up-down" style="color: var(--accent-gold);"></i> 拼貼合成方向</label>
+              <select id="layoutDirSelect" class="form-select-sm">
+                <option value="vertical" selected>上下垂直合成 (預設)</option>
+                <option value="horizontal">左右水平合成</option>
+              </select>
+            </div>
+
+            <div class="form-group-custom">
+              <label for="bgColorSelect"><i class="fa-solid fa-palette" style="color: var(--accent-gold);"></i> 外框與間距背景色</label>
+              <select id="bgColorSelect" class="form-select-sm">
+                <option value="#FFFFFF" selected>純白色背景 (#FFFFFF)</option>
+                <option value="#1A365D">港居海軍藍 (#1A365D)</option>
+                <option value="#C5A059">典雅香檳金 (#C5A059)</option>
+                <option value="#1E293B">極致深灰 (#1E293B)</option>
+              </select>
+            </div>
+
+            <div class="form-group-custom">
+              <label for="paddingRange"><i class="fa-solid fa-border-all" style="color: var(--accent-gold);"></i> 留白邊距: <span id="paddingVal">16px</span></label>
+              <input type="range" id="paddingRange" min="0" max="40" value="16" class="form-input-range">
+            </div>
+
+            <div class="form-group-custom">
+              <label for="qualitySelect"><i class="fa-solid fa-sliders" style="color: var(--accent-gold);"></i> JPG 匯出品質</label>
+              <select id="qualitySelect" class="form-select-sm">
+                <option value="high" selected>最佳品質 (推薦 95%)</option>
+                <option value="medium">標準品質 (85%)</option>
+                <option value="compressed">極致壓縮 (75%)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 操作按鈕按紐組 -->
+          <div style="display: flex; gap: 12px; margin-top: 1.5rem;">
+            <button type="button" id="downloadCardBtn" class="btn btn-gold" style="flex: 2; padding: 14px; font-size: 1.05rem;">
+              <i class="fa-solid fa-download"></i> 一鍵下載合成名片 JPG
+            </button>
+            <button type="button" id="clearCardsBtn" class="btn btn-outline" style="flex: 1; padding: 14px; font-size: 0.95rem; border-color: var(--border-color);">
+              <i class="fa-solid fa-rotate-left"></i> 清除重置
+            </button>
+          </div>
+        </section>
+
+        <!-- 右側：即時 Canvas 預覽卡片 -->
+        <section class="preview-container">
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-eye" style="color: var(--accent-gold);"></i> 即時合成預覽 (Live Preview)
+          </h3>
+          <div class="preview-canvas-wrapper">
+            <canvas id="mergerCanvas"></canvas>
+          </div>
+          <small style="color: var(--text-muted); font-size: 0.82rem;">* 系統已為您自動等寬對齊並即時繪製渲染</small>
+        </section>
+
+      </main>
+
+    </div>
+  </section>
+
+  <!-- 浮動 Toast 訊息 -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/logo.png" alt="港居" style="height: 36px;">
+            港居不動產開發有限公司
+          </h4>
+          <p>特許經營包租代管服務，專注高質感住宅資產護全與穩定收益增值。</p>
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>服務項目</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+            <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+            <li><a href="index.html#about">法拍屋代標服務</a></li>
+            <li><a href="index.html#about">高品質房屋買賣</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>特許證號背書</h4>
+          <ul class="footer-links">
+            <li>營業員證號：(108) 登字第354198號</li>
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/NVFhBDE" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/NVFhBDE" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" title="Line 專員一對一諮詢" aria-label="Line 專員諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" title="致電 陳俊銘 經理" aria-label="致電 陳經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script type="module" src="js/card-merger.js"></script>
+</body>
+</html>
