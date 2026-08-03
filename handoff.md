@@ -8,7 +8,17 @@
 
 ## ⏯️ 目前做到哪
 
-在 `feat/seo-a11y-rwd-optimize` 分支完成三件事並合併回 `main`：
+全站已擴充至 **7 個頁面**。最近一輪（2026-07-29 ~ 08-03）完成：
+
+- **`image-converter.html`**：圖像格式與尺寸轉換神器（JPG/PNG/WEBP/GIF/SVG/BMP 六格式互轉、最多 20 張、大中小原圖尺寸調控、ZIP 打包）
+- **`card-merger.html`**：名片正反面／上下合成神器（對齊拼貼、留白與背景色控制、高畫質 JPG 匯出），並完成全站選單整合
+- **`file-converter.html` 批次強化**：單次最多 20 張照片批次上傳、放上去自動即時轉換、一鍵打包 ZIP；後續重構多檔批次渲染容器、單檔容錯隔離與圖片副檔名聯防，確保 20 張連續轉檔不中斷
+- **RWD 收尾全數完成**（先前的未竟項目已結案，細節見下方「目前狀態」）
+- **GitHub Pages 發布修正**：新增 `.nojekyll` 停用 Jekyll 處理、補 canonical 標籤觸發 CDN 快取更新
+
+---
+
+早前在 `feat/seo-a11y-rwd-optimize` 分支完成三件事並合併回 `main`：
 
 1. **JSON-LD 結構化資料校正**（已完成）：查證後確認 `FinancialCalculator` **不是 schema.org 型別**（schema.org/FinancialCalculator 回 404），改為 `WebApplication` + `applicationCategory: FinanceApplication`；三個工具頁補 `offers`（免費、TWD 0，這是 Google SoftwareApplication rich result 的必填項）；首頁 `RealEstateAgent` 補 `image`／`postalCode`／`areaServed`／`contactPoint`／`sameAs`，並修正 `addressLocality` 應為「小港區」而非「小港區合作里」。
 2. **無障礙與載入效能**（已完成）：漢堡鈕／彈窗關閉鈕／懸浮按鈕補 `aria-label`；表單控制項補 label 關聯（`rentSlider`、`planSelect`、`daysInput`、日期起迄、轉檔品質下拉、色碼輸入框等）；`target="_blank"` 全數補 `rel="noopener noreferrer"`；圖片補 `width`/`height`/`loading`/`decoding`；4 頁補 canonical 與絕對路徑 `og:image`；字型改由 HTML `<link>` 載入（原本藏在 `styles.css` 的 `@import`，造成三層阻塞式請求鏈）；轉檔頁 dropzone 補鍵盤操作。
@@ -18,7 +28,7 @@
 
 ## 🚦 目前狀態
 
-- ✅ **可運行**：5 個頁面均可正常操作，無阻斷性錯誤
+- ✅ **可運行**：7 個頁面均可正常操作，無阻斷性錯誤，已發布於 GitHub Pages
 - ✅ RWD 主要缺陷已修：三個工具頁 360px／768px 現在都正確收合成漢堡選單、無橫向溢出
 - ✅ **RWD 微調收尾（已全數完成）**：
   - `file-converter.html` @360px：已修正 `.converter-layout > * { min-width: 0; }` 消除 CSS Grid 子項卡死寬度，且 `.category-tabs` 於 ≤576px 改為 smooth snap 橫向滾動容器，解決水平溢出。
@@ -27,8 +37,9 @@
 
 ## ➡️ 下一步
 
-1. 到 PageSpeed Insights 對 5 頁跑正式 Lighthouse 分數。
-2. 使用 Google Rich Results Test 線上工具實測 4 頁 JSON-LD 標註。
+1. 到 PageSpeed Insights 對 7 頁跑正式 Lighthouse 分數（本機無 Node/npx，CLI 跑不動）。
+2. 使用 Google Rich Results Test 線上工具實測 7 頁 JSON-LD 標註。
+3. 兩個新工具（`image-converter.html`、`card-merger.html`）比照舊頁補齊 RWD 360/768/1280 三斷點與 44×44px 觸控熱區複檢。
 
 ## ⚠️ 注意事項
 
@@ -60,11 +71,11 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-07-26 23:33
-- 更新者：Antigravity (Gemini 3.6 Flash) @ KEN-PC
-- Git push：✅ 已推
-  - `origin/feat/seo-a11y-rwd-optimize` → `4e13986`（保留逐一 commit 歷史）
-  - `origin/main` → `5881365`（GitHub Pages 已更新）
+- 時間：2026-08-03 09:22
+- 更新者：Claude Code (Opus 5) @ KEN-PC
+- Git push：✅ 已推（`origin/main` 與本地 main 同步）
+- 上一輪更新者：Antigravity (Gemini 3.6 Flash) @ KEN-PC（2026-07-26 23:33）
+- 分支保留：`origin/feat/seo-a11y-rwd-optimize` → `4e13986`（SEO/無障礙/RWD 逐一 commit 歷史）
 - ⚠️ 本次**無法用 `git merge` 合併**：`.claude/` 目錄在本機被系統保護（`cannot stat '.claude': Permission denied`），
   只要它在版控內，`git checkout` / `git merge` 就會直接失敗。已把 `.claude/` 加入 `.gitignore` 並改用
   `git checkout <branch> -- ':(exclude).claude'` 把分支內容帶進 main 後單一 commit。
