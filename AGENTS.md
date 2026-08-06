@@ -53,6 +53,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── id-card-watermark.html           # 5. 身份證照裁剪與租賃用途水印工具
 ├── image-converter.html             # 6. 圖像格式與尺寸轉換神器
 ├── card-merger.html                 # 7. 名片正反面／上下合成神器
+├── photo-time-location.html         # 8. 照片時間與地點浮水印工具
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
 ├── script.js / rent-calc.js

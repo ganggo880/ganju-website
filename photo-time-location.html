@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>港居不動產｜照片時間與地點浮水印工具 (照片增加時間與地點神器)</title>
+  <meta name="description" content="港居不動產開發有限公司專屬照片時間與地點打卡工具。自動讀取照片 EXIF 拍攝時間與 GPS 座標定位，一鍵添加打卡標籤、復古底片與區域文字，支援批次打包下載。">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/photo-time-location.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="港居不動產｜照片時間與地點浮水印工具">
+  <meta property="og:description" content="自動讀取照片 EXIF 時間與 GPS 地點，一鍵為照片加上極致質感時間地點標籤。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/photo-time-location.html">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/photo-time-location.css">
+  
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/exifreader@4.23.3/dist/exif-reader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body class="ganju-theme">
+  <div class="app-container">
+    <!-- 1. 頂部特許宣告條 Top Announcement Bar -->
+    <div class="top-bar">
+      <div class="container top-bar-inner">
+        <div class="top-bar-badges">
+          <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 港居不動產特許包租代管業者</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 營業員：(108) 登字第354198號</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理：(112) 登字第013739號</span>
+        </div>
+        <div class="top-bar-contact">
+          <span>統編：96797997</span>
+          <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 主導覽列 Header -->
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+          <img src="assets/logo.png" alt="港居不動產 LOGO">
+          <div class="brand-text-box">
+            <h1 class="brand-title">港居不動產</h1>
+            <p class="brand-sub">GANJU REAL ESTATE</p>
+          </div>
+        </a>
+
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html#home" class="nav-link">官網首頁</a>
+          <a href="index.html#landlords" class="nav-link">房東專區</a>
+          <a href="index.html#properties" class="nav-link">精選房源</a>
+          <a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a>
+          <a href="photo-time-location.html" class="nav-link active"><i class="fa-solid fa-camera-retro"></i> 照片時間地點工具</a>
+          <a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a>
+          <a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a>
+        </nav>
+
+        <div class="header-actions">
+          <label for="file-input" class="btn btn-gold">
+            <i class="fa-solid fa-cloud-arrow-up"></i> 上傳照片
+          </label>
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/heic" multiple hidden>
+          <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. 主內容區 Main Section -->
+    <main class="tool-page-main">
+      <div class="container">
+
+        <!-- Banner Header -->
+        <div class="tool-header-banner">
+          <div class="tool-header-badge">
+            <i class="fa-solid fa-location-dot"></i> 港居巡檢與打卡工具
+          </div>
+          <h2 class="tool-header-title">照片時間與地點浮水印工具</h2>
+          <p class="tool-header-desc">自動解析照片 EXIF 時間與 GPS 地點，一鍵套用質感標籤，支援單圖與 ZIP 批次打包</p>
+        </div>
+
+        <!-- Tool Workspace -->
+        <div class="tool-workspace">
+
+          <!-- Left Sidebar Controls -->
+          <aside class="control-panel">
+            <div class="panel-title-group">
+              <i class="fa-solid fa-sliders"></i> 浮水印與時間地點設定
+            </div>
+
+            <!-- Section 1: Location -->
+            <div class="section-group">
+              <div class="section-label">
+                <i class="fa-solid fa-location-dot"></i> 照片地點 / 地址設定
+              </div>
+              <div class="form-group mb-2">
+                <label for="input-location" class="form-label-small">自訂地點名稱 / 巡檢地址</label>
+                <input type="text" id="input-location" class="form-control" placeholder="例: 高雄市小港區中安路825號">
+              </div>
+              <div class="section-label-small" style="font-size: 0.78rem; color: var(--color-text-muted);">
+                巡檢區域快捷選擇：
+              </div>
+              <div class="chip-grid">
+                <button type="button" class="chip-btn active" data-region="小港區">小港區</button>
+                <button type="button" class="chip-btn" data-region="前鎮區">前鎮區</button>
+                <button type="button" class="chip-btn" data-region="鳳山區">鳳山區</button>
+                <button type="button" class="chip-btn" data-region="左營區">左營區</button>
+                <button type="button" class="chip-btn" data-region="鼓山區">鼓山區</button>
+                <button type="button" class="chip-btn" data-region="三民區">三民區</button>
+                <button type="button" class="chip-btn" data-region="苓雅區">苓雅區</button>
+              </div>
+            </div>
+
+            <!-- Section 2: Date & Time -->
+            <div class="section-group">
+              <div class="section-label">
+                <i class="fa-solid fa-clock"></i> 拍攝日期與時間設定
+              </div>
+              <div class="form-group mb-2">
+                <label for="date-source-select" class="form-label-small">日期來源</label>
+                <select id="date-source-select" class="form-control">
+                  <option value="exif" selected>優先使用照片 EXIF 拍攝時間</option>
+                  <option value="file">使用照片檔案修改時間</option>
+                  <option value="custom">自訂指定日期時間</option>
+                </select>
+              </div>
+
+              <div class="form-group mb-2" id="custom-date-picker-group" style="display: none;">
+                <label for="custom-date-input" class="form-label-small">指定日期時間</label>
+                <input type="datetime-local" id="custom-date-input" class="form-control">
+              </div>
+
+              <div class="form-group mb-0">
+                <label for="date-format-select" class="form-label-small">時間格式</label>
+                <select id="date-format-select" class="form-control">
+                  <option value="YYYY-MM-DD HH:mm:ss" selected>YYYY-MM-DD HH:mm:ss (2026-08-06 17:14:02)</option>
+                  <option value="YYYY.MM.DD HH:mm">YYYY.MM.DD HH:mm (2026.08.06 17:14)</option>
+                  <option value="YYYY年MM月DD日 HH:mm">YYYY年MM月DD日 HH:mm (2026年08月06日 17:14)</option>
+                  <option value="'YY MM DD HH:mm">'YY MM DD HH:mm (復古底片 '26 08 06 17:14)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Section 3: Style Presets -->
+            <div class="section-group">
+              <div class="section-label">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> 視覺風格與位置
+              </div>
+              <div class="preset-cards-grid">
+                <div class="preset-card active" data-preset="badge">
+                  <i class="fa-solid fa-id-badge preset-card-icon"></i>
+                  <div class="preset-card-title">港居巡檢標籤</div>
+                </div>
+                <div class="preset-card" data-preset="stamp">
+                  <i class="fa-solid fa-stamp preset-card-icon"></i>
+                  <div class="preset-card-title">復古相機戳記</div>
+                </div>
+                <div class="preset-card" data-preset="minimalist">
+                  <i class="fa-solid fa-border-all preset-card-icon"></i>
+                  <div class="preset-card-title">極簡角落文字</div>
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <label for="position-select" class="form-label-small">水印位置</label>
+                <select id="position-select" class="form-control">
+                  <option value="bottom-right" selected>右下角 (Bottom Right)</option>
+                  <option value="bottom-left">左下角 (Bottom Left)</option>
+                  <option value="top-right">右上角 (Top Right)</option>
+                  <option value="top-left">左上角 (Top Left)</option>
+                  <option value="bottom-banner">底部寬條 (Bottom Banner)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Section 4: Advanced Tuning -->
+            <div class="section-group">
+              <div class="section-label">
+                <i class="fa-solid fa-sliders"></i> 微調與色彩
+              </div>
+              <div class="form-group mb-2">
+                <label for="font-size-slider" class="form-label-small">字體大小: <span id="font-size-val">100%</span></label>
+                <input type="range" id="font-size-slider" min="50" max="200" value="100" class="form-range">
+              </div>
+              <div class="form-group mb-2">
+                <label for="margin-slider" class="form-label-small">邊緣距離: <span id="margin-val">40px</span></label>
+                <input type="range" id="margin-slider" min="10" max="120" value="40" class="form-range">
+              </div>
+              <div class="form-group mb-2">
+                <label for="opacity-slider" class="form-label-small">透明度: <span id="opacity-val">90%</span></label>
+                <input type="range" id="opacity-slider" min="20" max="100" value="90" class="form-range">
+              </div>
+              <div class="form-row" style="display: flex; gap: 10px;">
+                <div class="form-group half" style="flex: 1;">
+                  <label for="color-picker-text" class="form-label-small">主題文字色</label>
+                  <input type="color" id="color-picker-text" value="#C5A059" class="form-control form-control-color">
+                </div>
+                <div class="form-group half" style="flex: 1;">
+                  <label for="color-picker-bg" class="form-label-small">背景底色</label>
+                  <input type="color" id="color-picker-bg" value="#0F2341" class="form-control form-control-color">
+                </div>
+              </div>
+            </div>
+
+          </aside>
+
+          <!-- Right Stage Canvas & Actions -->
+          <div class="preview-stage">
+
+            <!-- Empty Notice -->
+            <div id="empty-canvas-notice" class="dropzone-box">
+              <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+              <h3 class="dropzone-title">點擊或拖曳照片至此處上傳</h3>
+              <p class="dropzone-subtitle">支援單張或多張照片批次處理 (JPG, PNG, WEBP)</p>
+            </div>
+
+            <!-- Realtime Canvas Container -->
+            <div class="canvas-container">
+              <canvas id="preview-canvas" class="preview-canvas" style="display: none;"></canvas>
+            </div>
+
+            <!-- Thumbnail Strip -->
+            <div id="thumb-strip-wrapper" class="thumb-strip-wrapper" style="display: none;">
+              <div class="thumb-strip-title">
+                <span><i class="fa-solid fa-images"></i> 批次照片清單 (點擊切換預覽)</span>
+              </div>
+              <div id="thumb-strip" class="thumb-strip"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-bar-group">
+              <button type="button" id="btn-download-single" class="btn btn-gold">
+                <i class="fa-solid fa-download"></i> 下載當前照片
+              </button>
+              <button type="button" id="btn-download-zip" class="btn btn-primary">
+                <i class="fa-solid fa-file-zipper"></i> 批次打包下載 ZIP
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- 4. 頁尾 Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4 style="display: flex; align-items: center; gap: 10px;">
+              <img src="assets/logo.png" alt="港居" style="height: 36px;">
+              港居不動產開發有限公司
+            </h4>
+            <p>特許經營包租代管服務，專注高質感住宅資產護全與穩定收益增值。</p>
+            <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+            <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+          </div>
+
+          <div class="footer-col">
+            <h4>服務項目</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+              <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+              <li><a href="index.html#about">法拍屋代標服務</a></li>
+              <li><a href="index.html#about">高品質房屋買賣</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>特許證號背書</h4>
+            <ul class="footer-links">
+              <li>營業員證號：(108) 登字第354198號</li>
+              <li>租賃管理證號：(112) 登字第013739號</li>
+              <li>經理人：陳俊銘 經理</li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>立即與專員聯繫</h4>
+            <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+            <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+            <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+            <a href="https://lin.ee/NVFhBDE" target="_blank" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+              <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 懸浮 Line 與電話按鈕 -->
+    <div class="floating-actions">
+      <a href="https://lin.ee/NVFhBDE" target="_blank" class="float-btn float-btn-line" title="Line 專員一對一諮詢">
+        <i class="fa-brands fa-line"></i>
+      </a>
+      <a href="tel:0968863880" class="float-btn float-btn-phone" title="致電 陳俊銘 經理">
+        <i class="fa-solid fa-phone"></i>
+      </a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- JavaScript file -->
+  <script type="module" src="js/photo-time-location.js"></script>
+</body>
+</html>
