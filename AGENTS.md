@@ -34,8 +34,10 @@
 - [x] 階段十一：圖像格式與尺寸轉換神器 `image-converter.html`（JPG, PNG, WEBP, GIF, SVG, BMP 互轉、20張上限、大/中/小/原圖調控、ZIP 打包）
 - [x] 階段十二：名片正反面／上下合成神器 `card-merger.html`（對齊拼貼、留白與背景色控制、高畫質 JPG 匯出）與全站選單整合
 - [x] 階段十三：GitHub Pages 發布修正——新增 `.nojekyll` 停用 Jekyll 處理、補 canonical 標籤觸發 CDN 快取更新
-- [ ] 階段十四：實機跑 Lighthouse 取得正式分數（本機無 Node/npx，僅完成等效的腳本化稽核）
-- [ ] 階段十五：Google Rich Results Test 線上實測 7 頁 JSON-LD
+- [x] 階段十四：照片時間與地點浮水印工具 `photo-time-location.html`（EXIF 時間/GPS 解析、自訂時間地點、三樣式五位置合成、ZIP 打包）
+- [x] 階段十五：**全站架構與編排稽核修正**——CSS 基礎重置／`.container`／`.form-control` 歸位 `components.css`、導覽列統一為「線上工具」下拉選單（8 頁一致、解除孤兒頁）、修掉 8 項實機測出的功能缺陷
+- [ ] 階段十六：實機跑 Lighthouse 取得正式分數（本機無 Node/npx，僅完成等效的腳本化稽核）
+- [ ] 階段十七：Google Rich Results Test 線上實測 8 頁 JSON-LD
 
 ## 資料夾結構
 
@@ -62,13 +64,21 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── tokens.css                   # 品牌設計 Token（海軍藍／香檳金、陰影、圓角、深淺模式）
 │   ├── components.css               # 公用組件（TopBar / Navbar / Footer / Buttons / Toast）
 │   │                                # ⚠️ 全站共用組件的 RWD @media 一律寫在這裡
+│   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
+│   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── converter.css                # 檔案轉換工具專屬樣式
+│   ├── card-merger.css              # 名片合成工具樣式
+│   ├── image-converter.css          # 圖像格式轉換工具樣式
+│   ├── photo-time-location.css      # 照片時間地點浮水印工具樣式
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── utils.js                     # 千分位、日期差、Toast、主題切換
 │   ├── navigation.js                # 導覽列與 Mobile Drawer（index.html 使用）
 │   ├── layout.js                    # Active 點亮與跨頁 Layout 控制（工具頁使用）
 │   ├── converter.js                 # 轉檔核心（Canvas / Blob 本地運算）
+│   ├── image-converter.js           # 圖像格式與尺寸轉換邏輯
+│   ├── card-merger.js               # 名片正反面合成邏輯
+│   ├── photo-time-location.js       # 照片時間地點浮水印邏輯
 │   ├── exif-parser.js               # EXIF 解析
 │   ├── watermark-engine.js          # 水印合成引擎（Canvas）
 │   ├── watermark-app.js             # 照片水印工具 UI 控制

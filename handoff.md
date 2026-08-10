@@ -8,47 +8,61 @@
 
 ## ⏯️ 目前做到哪
 
-全站已擴充至 **7 個頁面**。最近一輪（2026-07-29 ~ 08-03）完成：
+全站共 **8 個頁面**，最近兩輪的進度：
 
-- **`image-converter.html`**：圖像格式與尺寸轉換神器（JPG/PNG/WEBP/GIF/SVG/BMP 六格式互轉、最多 20 張、大中小原圖尺寸調控、ZIP 打包）
-- **`card-merger.html`**：名片正反面／上下合成神器（對齊拼貼、留白與背景色控制、高畫質 JPG 匯出），並完成全站選單整合
-- **`file-converter.html` 批次強化**：單次最多 20 張照片批次上傳、放上去自動即時轉換、一鍵打包 ZIP；後續重構多檔批次渲染容器、單檔容錯隔離與圖片副檔名聯防，確保 20 張連續轉檔不中斷
-- **RWD 收尾全數完成**（先前的未竟項目已結案，細節見下方「目前狀態」）
-- **GitHub Pages 發布修正**：新增 `.nojekyll` 停用 Jekyll 處理、補 canonical 標籤觸發 CDN 快取更新
+**2026-08-11（本輪）— 全站架構與編排稽核修正**（commit `e6aec12`，16 檔 +514/−84）
+
+以本地 server 實機量測 8 頁 × 4 斷點（1280/992/768/360），並以使用者視角逐頁點選操作，找出並修掉兩類問題：
+
+- **架構根因**：基礎重置（`box-sizing`／`body margin`）、`.container`、`.form-control` 原本只寫在首頁專用的 `styles.css`，其餘 6 頁完全吃不到 → 已全數歸位至 `css/components.css`
+- **導覽重構**：原本 8 頁選單各不相同、12 個頂層項目在 1280px 溢出 157px 被裁掉；改為「線上工具」下拉選單，頂層收斂為 7 項、7 個工具全數納入且 8 頁一致
+- **8 項實測缺陷**：詳見下方「本輪修掉的缺陷」
+
+**2026-08-06（前一輪）**：新增 `photo-time-location.html` 照片時間與地點浮水印工具並完成全站選單整合（commit `1464efa`）。⚠️ 該輪只補了頁面清單、未做正式收工，敘述與時間戳記已於本輪一併補齊。
 
 ---
 
-早前在 `feat/seo-a11y-rwd-optimize` 分支完成三件事並合併回 `main`：
-
-1. **JSON-LD 結構化資料校正**（已完成）：查證後確認 `FinancialCalculator` **不是 schema.org 型別**（schema.org/FinancialCalculator 回 404），改為 `WebApplication` + `applicationCategory: FinanceApplication`；三個工具頁補 `offers`（免費、TWD 0，這是 Google SoftwareApplication rich result 的必填項）；首頁 `RealEstateAgent` 補 `image`／`postalCode`／`areaServed`／`contactPoint`／`sameAs`，並修正 `addressLocality` 應為「小港區」而非「小港區合作里」。
-2. **無障礙與載入效能**（已完成）：漢堡鈕／彈窗關閉鈕／懸浮按鈕補 `aria-label`；表單控制項補 label 關聯（`rentSlider`、`planSelect`、`daysInput`、日期起迄、轉檔品質下拉、色碼輸入框等）；`target="_blank"` 全數補 `rel="noopener noreferrer"`；圖片補 `width`/`height`/`loading`/`decoding`；4 頁補 canonical 與絕對路徑 `og:image`；字型改由 HTML `<link>` 載入（原本藏在 `styles.css` 的 `@import`，造成三層阻塞式請求鏈）；轉檔頁 dropzone 補鍵盤操作。
-3. **RWD 與 44×44px 觸控熱區**（**未完成，剩收尾**）：找出並修掉根本原因——全站共用組件的 RWD `@media` 規則原本只寫在 `styles.css`（只有 `index.html` 載入），導致三個工具頁在手機上**完全沒有行動選單、且頁面橫向溢出到 930～946px**。已把 Drawer／`.mobile-toggle`／`footer-grid` 等響應式規則歸位到 `css/components.css`，並替 `photo-watermark.html` 補上原本不存在的漢堡鈕。
-
-另外本次也完成 `id-card-watermark.html`（身份證照裁剪與租賃水印工具）新增與七項缺陷修正。
-
 ## 🚦 目前狀態
 
-- ✅ **可運行**：7 個頁面均可正常操作，無阻斷性錯誤，已發布於 GitHub Pages
-- ✅ RWD 主要缺陷已修：三個工具頁 360px／768px 現在都正確收合成漢堡選單、無橫向溢出
-- ✅ **RWD 微調收尾（已全數完成）**：
-  - `file-converter.html` @360px：已修正 `.converter-layout > * { min-width: 0; }` 消除 CSS Grid 子項卡死寬度，且 `.category-tabs` 於 ≤576px 改為 smooth snap 橫向滾動容器，解決水平溢出。
-  - `rent-calculator.html` @360px：已為 `.bg-glow` 加入 `max-width: 100vw; overflow: hidden;` 限制，且在 ≤576px 將光暈直徑縮小至 280px，徹底消除 9px 螢幕外框溢出。
-  - `.brand-logo` 在 768px 高度：已補充 `min-height: 44px` 滿足 44×44px 觸控熱區標準。
+- ✅ **可運行**：8 個頁面均可正常操作，已發布於 GitHub Pages
+- ✅ **版面**：8 頁 × 4 斷點共 32 組，橫向溢出全為 0px
+- ✅ **JS**：8 頁 × 4 斷點零 console 錯誤；全站連結、圖片、CSS/JS 資源、頁內錨點皆可解析
+- ✅ **導覽**：8 頁皆含全部 7 個工具；漢堡選單可開啟、抽屜連結皆 ≥44×44px 且完整落在畫面內、`aria-expanded` 正確
+- ✅ **深色模式**：8 頁文字與底色對比皆達標
+- ✅ **功能迴歸**：租金換算 35,000÷30×12 = 14,000／代管費 1,400／屋主實收 12,600 正確；首頁 ROI 432,000 正確；房源篩選與彈窗正常；圖片轉換 PNG 1.44KB → WEBP 764B；四個上傳型工具（file-converter／card-merger／photo-watermark／id-card-watermark）上傳與輸出皆正常
+
+## 🐞 本輪修掉的缺陷（皆為原本就存在、實機測出）
+
+| # | 缺陷 | 影響 |
+|---|---|---|
+| 1 | `photo-time-location.js` 取用不存在的 `#dropzone`（實際 id 是 `empty-canvas-notice`），`if (dropzone && fileInput)` 整段跳過 | **該頁完全無法上傳照片**——點擊、拖放、上傳鈕全部失效 |
+| 2 | `script.js` 與 `navigation.js`／`layout.js` **各綁一次** `#mobileToggle`，一次點擊切換兩下互相抵銷 | **首頁與租金換算頁的手機漢堡選單點了沒反應** |
+| 3 | `script.js:141` 對不存在的 `#propertyModal` 掛事件且未判空 | 租金換算頁拋未捕捉 TypeError，該檔後續初始化全部中止 |
+| 4 | `watermark.css` 引用 `--text-main` **11 次卻從未定義**，且沿用淺色模式的 `--text-secondary` | `photo-watermark.html` 導覽列／按鈕／輸入框為近黑字壓深藍底（亮度差僅 19～31） |
+| 5 | `data-theme` 掛在 `<html>`，CSS 卻寫 `body:not([data-theme="dark"])`（永遠成立且排序在後） | 主題鈕**永遠顯示月亮圖示**，看不出當前模式 |
+| 6 | `image-converter`／`photo-time-location`／`id-card-watermark` 三頁 CSS 無 `body` 規則 | 深色模式下近白字落在白底，讀不到 |
+| 7 | 隱私權同意框寫死 `checked` | 個資法要求同意須為主動勾選，預設勾選不構成有效同意 |
+| 8 | 行動端抽屜 `max-height: calc(100vh - 100%)` 未計入 top-bar 高度 | 捲動在頂端時抽屜最後一項超出畫面，要先捲頁才點得到 |
 
 ## ➡️ 下一步
 
-1. 到 PageSpeed Insights 對 7 頁跑正式 Lighthouse 分數（本機無 Node/npx，CLI 跑不動）。
-2. 使用 Google Rich Results Test 線上工具實測 7 頁 JSON-LD 標註。
-3. 兩個新工具（`image-converter.html`、`card-merger.html`）比照舊頁補齊 RWD 360/768/1280 三斷點與 44×44px 觸控熱區複檢。
+1. 到 PageSpeed Insights 對 8 頁跑正式 Lighthouse 分數（本機無 Node/npx，CLI 跑不動）。
+2. 使用 Google Rich Results Test 線上實測 8 頁 JSON-LD 標註。
+3. `photo-time-location.html` 尚未補 JSON-LD 以外的 SEO 檢查，且該頁 `output/SPECIFICATION.md` 規格書未同步更新。
+4. （可選）6 個有頁尾的頁面中，只有 `image-converter.html` 的頁尾設有「線上工具集」欄位，其餘 5 頁為 4 欄式標準頁尾。是否要全站統一加上工具集欄位，屬設計決策，待老闆決定。
 
 ## ⚠️ 注意事項
 
-- 🔴 **CSS 層疊陷阱（本次最大的坑）**：`styles.css` / `rent-calc.css` / `watermark.css` / `converter.css` 都在檔首 `@import css/components.css`。被 import 的規則排在該檔**所有**規則之前，所以只要頁面 CSS 又重新宣告了 `.nav-menu { display: flex }`、`.mobile-toggle { display: none }`、`.nav-link { font-size }`，就會蓋掉 `components.css` 裡的 `@media` 響應式規則。**共用組件的樣式請只在 `components.css` 寫一份**，頁面 CSS 只做微調、不要重複宣告 `display`。
-- 🔴 **驗證時的 CSS 快取**：Python `http.server` 不送 no-cache，改完 CSS 後瀏覽器會沿用舊檔，量測結果會騙人。驗證前請換一個 port 重啟（`.claude/launch.json` 內的 port）或強制重新整理。
+- 🔴 **共用樣式一律寫在 `css/components.css`**：基礎重置、`.container`、`.form-control`、`body` 主題底色如果只寫在 `styles.css`，就只有 `index.html` 吃得到——這正是本輪最大的坑（6 頁 body 保留預設 `margin:8px`、`box-sizing` 是 `content-box`、`.container` 毫無樣式）。
+- 🔴 **CSS 層疊陷阱**：各頁 CSS 在檔首 `@import css/components.css`。被 import 的規則排在該檔**所有**規則之前，所以頁面 CSS 重新宣告 `.nav-menu { display: flex }` 之類就會蓋掉 `components.css` 的 `@media`。共用組件樣式只寫一份，頁面 CSS 只做微調。
+- 🔴 **驗證時的 CSS 快取**：Python `http.server` 不送 no-cache，改完 CSS 後瀏覽器會沿用舊檔（連 `@import` 進來的也一樣），量測結果會騙人。**驗證前務必換一個 port 重啟**（改 `.claude/launch.json` 的 port），新 origin 才拿不到舊快取。本輪為此換了 8899→8901→8902→8903→8904→8905→8910→8911→8912。
+- 🟡 **無頭瀏覽器不合成畫面 → CSS transition 會卡住**：`getComputedStyle` 讀到的是 transition 的起始值（例如 dropdown 永遠 `visibility:hidden`），會誤判成功能壞掉。驗證互動前先注入 `*{transition:none!important}` 再量測。
+- 🟡 **量測背景色要處理漸層與 alpha**：`.btn-gold`／`.region-chip.active` 的底色是 `background-image: linear-gradient(...)`，`backgroundColor` 讀到透明，對比度腳本會誤報「字色與底色相同」。
 - 本機**未安裝 `gh` CLI**、也**沒有 Node/npx** → GitHub 操作用原生 `git`，前端工具鏈相關指令跑不動
 - 專案在 Google 雲端硬碟上，已設 `git config windows.appendAtomically false`，換電腦務必確認同步完成再開工
+- `.claude/` 已在 `.gitignore` 內，**不要**再納入版控（曾造成 `git checkout`／`merge` 全面失敗）
 - **不要死寫色碼**：改樣式一律走 `css/tokens.css` 變數
-- 結構化資料**不要編造事實**：本次刻意不加 `priceRange`、`openingHoursSpecification`、`aggregateRating`——營業時間與評價都需要真實資料才能填
+- 結構化資料**不要編造事實**：刻意不加 `priceRange`、`openingHoursSpecification`、`aggregateRating`——營業時間與評價都需要真實資料才能填
 - AI 產出的文件一律歸檔 `output/`，不要散落根目錄
 
 ## 📄 已上線頁面速覽
@@ -58,26 +72,26 @@
 | `index.html` | TopBar 特許證號、Hero、包租 vs 代管方案、ROI 試算器、房源 VR 彈窗與篩選、Lead 表單 | `RealEstateAgent` |
 | `rent-calculator.html` | 30日／當月實際／自訂基準天數、跨月區間、10% 代管費與屋主實收拆分、LocalStorage 歷史 | `WebApplication` (FinanceApplication) |
 | `file-converter.html` | PDF/DOCX/PNG/JPG/WEBP/MP3/MP4/ZIP 瀏覽器端本地轉檔與歷史紀錄 | `WebApplication` (UtilitiesApplication) |
-| `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成 | `WebApplication` (MultimediaApplication) |
-| `id-card-watermark.html` | 身份證照裁剪與租賃用途水印 | — |
-| `image-converter.html` | JPG, PNG, WEBP, GIF, SVG, BMP 六大格式雙向互轉、最多20張上限、大/中/小/原圖尺寸調控與 ZIP 打包 | `WebApplication` (MultimediaApplication) |
+| `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成（常駐深色工作台） | `WebApplication` (MultimediaApplication) |
+| `id-card-watermark.html` | 身份證照裁剪與租賃用途水印（常駐深色工作台） | — |
+| `image-converter.html` | JPG, PNG, WEBP, GIF, SVG, BMP 六大格式雙向互轉、最多 20 張、大/中/小/原圖尺寸調控與 ZIP 打包 | `WebApplication` (MultimediaApplication) |
 | `card-merger.html` | 名片正反面/上下對齊拼貼合成、留白與背景色控制、高畫質 JPG 匯出 | `WebApplication` (GraphicsApplication) |
-| `photo-time-location.html` | 照片時間與地點浮水印工具（EXIF 時間/GPS 解析、自訂時間地點、三樣式五位置合成、ZIP 打包） | `WebApplication` (MultimediaApplication) |
+| `photo-time-location.html` | 照片時間與地點浮水印（EXIF 時間/GPS 解析、自訂時間地點、三樣式五位置合成、ZIP 打包） | `WebApplication` (MultimediaApplication) |
+
+> ℹ️ `photo-watermark.html` 與 `id-card-watermark.html` 是刻意設計的**全螢幕常駐深色工作台**，
+> 沒有全站頁尾、也沒有深淺模式切換鈕，這是設計決定而非缺漏，請勿「順手補上」。
 
 ## 🔗 線上營運與倉庫網址
 
 - **GitHub 遠端倉庫**：`https://github.com/ganggo880/ganju-website.git`
 - **GitHub Pages 網址**：`https://ganggo880.github.io/ganju-website/`
-- **系統技術規格書**：`output/SPECIFICATION.md`
+- **系統技術規格書**：`output/SPECIFICATION.md`（⚠️ 尚未納入 photo-time-location 與本輪重構）
 
 ## 🕐 最後更新
 
-- 時間：2026-08-03 09:22
+- 時間：2026-08-11 01:17
 - 更新者：Claude Code (Opus 5) @ KEN-PC
-- Git push：✅ 已推（`origin/main` 與本地 main 同步）
-- 上一輪更新者：Antigravity (Gemini 3.6 Flash) @ KEN-PC（2026-07-26 23:33）
+- Git push：待推（本輪文件同步 commit）
+- 程式碼 commit：`e6aec12`（已推，`origin/main` 與本地同步）
+- 上一輪更新者：Claude Code @ KEN-PC（2026-08-06 17:27，commit `1464efa`，未做正式收工）
 - 分支保留：`origin/feat/seo-a11y-rwd-optimize` → `4e13986`（SEO/無障礙/RWD 逐一 commit 歷史）
-- ⚠️ 本次**無法用 `git merge` 合併**：`.claude/` 目錄在本機被系統保護（`cannot stat '.claude': Permission denied`），
-  只要它在版控內，`git checkout` / `git merge` 就會直接失敗。已把 `.claude/` 加入 `.gitignore` 並改用
-  `git checkout <branch> -- ':(exclude).claude'` 把分支內容帶進 main 後單一 commit。
-  下次若還要跨分支切換，記得 `.claude/` 已不在版控、不會再擋路。
