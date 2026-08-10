@@ -10,6 +10,16 @@
   --bg-input: #0A192F;
   --bg-hover: #1C3B68;
   --text-gold: #E2C17D;
+
+  /* ⚠️ 本頁是常駐深色工作台（body 固定 --bg-dark，不隨全站深淺模式切換），
+     但文字類 Token 沿用了 tokens.css 的淺色模式值，於是深藍底上出現近乎同色的文字：
+       - --text-main 被本檔引用 11 次卻從未定義，計算後退回黑色 (#000)
+       - --text-secondary 淺色值 #334155 落在 #0F2341 導覽列上，亮度差僅 31
+     此處就地覆寫為深色表面適用的淺色文字。--primary-dark 維持原值，
+     因為它是「金色按鈕上的深色字」，本來就該是深的。 */
+  --text-main: #E2E8F0;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
 }
 
 /* Base Reset & Fonts */

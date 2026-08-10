@@ -3,10 +3,15 @@ import { showToast } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // DOM Cache
-  const dropzone = document.getElementById('dropzone');
   const fileInput = document.getElementById('file-input');
   const previewCanvas = document.getElementById('preview-canvas');
   const emptyCanvasNotice = document.getElementById('empty-canvas-notice');
+  // ⚠️ 頁面上並沒有 id="dropzone" 的元素（空狀態提示區的 id 是 empty-canvas-notice）。
+  // 原本 getElementById('dropzone') 取到 null，讓下方 if (dropzone && fileInput) 整段跳過，
+  // 導致點擊、拖放、甚至 file-input 的 change 監聽全部沒掛上 —— 這頁完全無法上傳照片。
+  // 點擊上傳綁在空狀態提示區；拖放綁在整個預覽舞台，載入照片後仍可繼續拖入新檔。
+  const dropzone = emptyCanvasNotice;
+  const dropStage = document.querySelector('.preview-stage') || emptyCanvasNotice;
   const thumbStripWrapper = document.getElementById('thumb-strip-wrapper');
   const thumbStrip = document.getElementById('thumb-strip');
 
@@ -43,16 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (dropzone && fileInput) {
     dropzone.addEventListener('click', () => fileInput.click());
     
-    dropzone.addEventListener('dragover', (e) => {
+    dropStage.addEventListener('dragover', (e) => {
       e.preventDefault();
       dropzone.classList.add('dragover');
     });
 
-    dropzone.addEventListener('dragleave', () => {
+    dropStage.addEventListener('dragleave', () => {
       dropzone.classList.remove('dragover');
     });
 
-    dropzone.addEventListener('drop', (e) => {
+    dropStage.addEventListener('drop', (e) => {
       e.preventDefault();
       dropzone.classList.remove('dragover');
       if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {

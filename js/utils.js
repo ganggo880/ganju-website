@@ -60,6 +60,55 @@ export function showToast(message) {
 }
 
 /**
+ * 導覽列「線上工具」下拉選單控制器
+ *
+ * CSS 只用 :hover / :focus-within 開啟，觸控裝置（平板橫向、觸控筆電）
+ * 在 >992px 時點一下不會有任何反應。此處補上點擊開合與 Esc 關閉，
+ * 讓滑鼠、鍵盤、觸控三種操作方式都走得通。
+ */
+export function initNavDropdown() {
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  if (!dropdowns.length) return;
+
+  const closeAll = (except) => {
+    dropdowns.forEach(dd => {
+      if (dd === except) return;
+      dd.classList.remove('open');
+      const t = dd.querySelector('.nav-dropdown-toggle');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  };
+
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('.nav-dropdown-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = dd.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      closeAll(dd);
+    });
+  });
+
+  // 點擊選單以外區域關閉
+  document.addEventListener('click', (e) => {
+    if (![...dropdowns].some(dd => dd.contains(e.target))) closeAll(null);
+  });
+
+  // Esc 關閉並把焦點還給觸發鈕
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const open = [...dropdowns].find(dd => dd.classList.contains('open'));
+    if (!open) return;
+    closeAll(null);
+    const t = open.querySelector('.nav-dropdown-toggle');
+    if (t) t.focus();
+  });
+}
+
+/**
  * 全域深淺色主題切換器
  */
 export function initThemeSwitcher() {

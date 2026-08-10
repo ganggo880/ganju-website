@@ -1,5 +1,42 @@
 /* 港居不動產 公用組件樣式 (Reusable UI Components) */
 
+/* ==========================================================================
+   基礎重置 Base Reset
+   ⚠️ 必須放在 components.css，否則只有載入 styles.css 的 index.html 吃得到。
+   先前 6 個工具頁因為缺這段而保留瀏覽器預設 body margin:8px 與 content-box，
+   造成 360px 下 9～42px 橫向溢出、桌機導覽列被裁切。
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* image-converter / photo-time-location / id-card-watermark 三頁的專屬 CSS
+   完全沒有 body 規則，等於沒有頁面底色與文字色。切到深色模式時 --text-dark
+   會變成近白色，落在瀏覽器預設的白底上直接讀不到字。基礎樣式一律走 Token，
+   有自訂需求的頁面 CSS 在 @import 之後覆寫即可。 */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-family: var(--font-primary);
+}
+
+/* ==========================================================================
+   版面容器 Layout Container
+   全站統一置中容器；index.html 的 styles.css 會在 @import 之後重新宣告，
+   同權重時後者勝出，故首頁行為不受影響。
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
 /* 頂部宣告條 Top Bar */
 .top-bar {
   background: var(--primary-dark);
@@ -149,6 +186,110 @@
   }
 }
 
+/* ==========================================================================
+   導覽列「線上工具」下拉選單 Nav Dropdown
+   7 個工具頁若全部平鋪於頂層，1280px 桌機會溢出約 157px，
+   最後的「關於港居／租務專欄」會被 body overflow-x:hidden 裁掉而無法點選。
+   收進單一下拉後頂層僅剩 7 項，並讓 8 個頁面的選單內容完全一致。
+   ========================================================================== */
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown-toggle {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-dropdown-toggle .nav-caret {
+  font-size: 0.7em;
+  transition: var(--transition-fast);
+}
+
+.nav-dropdown:hover .nav-caret,
+.nav-dropdown:focus-within .nav-caret,
+.nav-dropdown.open .nav-caret {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  min-width: 232px;
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+  background: var(--bg-card, #FFFFFF);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 8px);
+  transition: var(--transition-fast);
+  z-index: 1100;
+}
+
+/* 滑鼠自按鈕移到選單之間的空隙橋接，避免中途 hover 中斷 */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 14px;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 10px);
+}
+
+.nav-dropdown-menu .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu .nav-link::after {
+  display: none;
+}
+
+.nav-dropdown-menu .nav-link:hover,
+.nav-dropdown-menu .nav-link.active {
+  background: var(--accent-light);
+}
+
+[data-theme="dark"] .nav-dropdown-menu .nav-link:hover,
+[data-theme="dark"] .nav-dropdown-menu .nav-link.active {
+  background: rgba(197, 160, 89, 0.14);
+}
+
+.nav-dropdown-menu .nav-link i {
+  width: 18px;
+  text-align: center;
+  color: var(--accent-gold-hover);
+}
+
 .nav-link:hover, .nav-link.active {
   color: var(--accent-gold-hover);
 }
@@ -214,10 +355,41 @@
   transform: scale(1.08);
 }
 
+/* data-theme 是由 initThemeSwitcher() 設在 <html> 上，不是 <body>。
+   原本寫成 body:not([data-theme="dark"]) 永遠成立，且排在後面同權重勝出，
+   於是深色模式下月亮圖示照樣顯示、太陽圖示被蓋掉 —— 按鈕永遠是月亮，
+   使用者看不出目前處於哪個模式。改用 :root 對齊實際掛載位置。 */
+:root:not([data-theme="dark"]) .icon-moon { display: inline-block; }
+:root:not([data-theme="dark"]) .icon-sun { display: none; }
 [data-theme="dark"] .icon-moon { display: none; }
 [data-theme="dark"] .icon-sun { display: inline-block; color: var(--accent-gold); }
-body:not([data-theme="dark"]) .icon-moon { display: inline-block; }
-body:not([data-theme="dark"]) .icon-sun { display: none; }
+
+/* ==========================================================================
+   表單控制項 Form Controls
+   ⚠️ 原本只寫在 styles.css，導致 photo-time-location.html 用了 7 次 .form-control
+   卻完全沒有樣式（瀏覽器預設外觀），且 <select> 因內容決定寬度而在 360px 溢出 27px。
+   index.html 的 styles.css 會在 @import 之後重新宣告，首頁行為不受影響。
+   ========================================================================== */
+.form-control {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 16px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition);
+  font-family: inherit;
+  color: var(--text-dark);
+  background: var(--bg-card-inner);
+}
+
+.form-control:focus {
+  border-color: var(--accent-gold);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.2);
+}
 
 /* 按鈕系統 Buttons System */
 .btn {
@@ -460,8 +632,12 @@ body:not([data-theme="dark"]) .icon-sun { display: none; }
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
     border-bottom: 3px solid var(--accent-gold);
     z-index: 9999;
-    max-height: calc(100vh - 100%);
+    /* calc(100vh - 100%) 的 100% 只扣掉 navbar 高度，沒算到上方的 top-bar，
+       捲動位置在頂端時抽屜底部會超出畫面（最後一項要先捲頁才點得到）。
+       再加一道 60vh 上限，任何捲動位置下抽屜都完整落在畫面內、超出則內部捲動。 */
+    max-height: min(calc(100vh - 100%), 60vh);
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .nav-menu.active .nav-link {
@@ -476,6 +652,34 @@ body:not([data-theme="dark"]) .icon-sun { display: none; }
 
   .nav-menu.active .nav-link::after {
     display: none;
+  }
+
+  /* Drawer 內不做下拉，直接攤平成同一層清單（純 CSS，不依賴 JS） */
+  .nav-menu.active .nav-dropdown {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .nav-menu.active .nav-dropdown::after {
+    display: none;
+  }
+
+  .nav-menu.active .nav-dropdown-toggle {
+    display: none;
+  }
+
+  .nav-menu.active .nav-dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    min-width: 0;
+    padding: 0;
+    gap: 4px;
+    background: none;
+    border: none;
+    box-shadow: none;
   }
 
   .mobile-toggle {
@@ -506,6 +710,10 @@ body:not([data-theme="dark"]) .icon-sun { display: none; }
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
   .top-bar .container {
     justify-content: center;
     text-align: center;
@@ -548,6 +756,29 @@ body:not([data-theme="dark"]) .icon-sun { display: none; }
   /* 小螢幕隱藏 CTA 文字按鈕，保留漢堡與品牌，避免導覽列擠壓溢出 */
   .navbar .container > div > .btn {
     display: none;
+  }
+
+  /* 品牌區收斂：logo.png 原寬 206px，加上右側「主題切換 44 + 漢堡 44」
+     在 360px 螢幕必然溢出。logo 圖本身已含「港居不動產」字樣，
+     旁邊的文字區為重複資訊且會被擠成單字直書，故小螢幕隱藏之。 */
+  .brand-logo {
+    min-width: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+
+  .brand-logo img {
+    height: 36px;
+    max-width: 100%;
+  }
+
+  .brand-text-box {
+    display: none;
+  }
+
+  /* 導覽列右側動作區不得被壓縮，確保漢堡鈕維持 44×44 */
+  .navbar .container > div:last-child {
+    flex-shrink: 0;
   }
 
   .top-bar {

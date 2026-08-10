@@ -1,5 +1,5 @@
 // 港居不動產 導覽列與選單控制邏輯 (Navigation Component)
-import { initThemeSwitcher } from './utils.js';
+import { initThemeSwitcher, initNavDropdown } from './utils.js';
 
 export function initNavigation() {
   const mobileToggle = document.getElementById('mobileToggle');
@@ -7,6 +7,9 @@ export function initNavigation() {
 
   // 初始化深淺色主題切換
   initThemeSwitcher();
+
+  //「線上工具」下拉選單（滑鼠 hover 以外補上點擊與鍵盤操作）
+  initNavDropdown();
 
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', (e) => {

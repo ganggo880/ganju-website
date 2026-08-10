@@ -1,31 +1,12 @@
 // 港居不動產 官方網站 互動邏輯腳本
 document.addEventListener('DOMContentLoaded', () => {
   
-  // 1. Mobile Menu Toggle
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navMenu = document.getElementById('navMenu');
-
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navMenu.classList.toggle('active');
-    });
-
-    // 點擊選單項目後自動關閉選單
-    const navLinks = navMenu.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // 點擊頁面其他區域自動關閉選單
-    document.addEventListener('click', (e) => {
-      if (!navMenu.contains(e.target) && e.target !== mobileToggle) {
-        navMenu.classList.remove('active');
-      }
-    });
-  }
+  // 1. 行動端 Drawer 選單
+  //    ⚠️ 已移除此處原有的 toggle 邏輯。載入本檔的兩個頁面（index.html 搭配
+  //    js/navigation.js、rent-calculator.html 搭配 js/layout.js）都另有一份
+  //    相同的 #mobileToggle 監聽，兩份各切換一次 .active 正好互相抵銷，
+  //    造成手機漢堡選單點了完全沒反應。統一由 navigation.js / layout.js 負責
+  //    （那兩份還會同步維護 aria-expanded，無障礙資訊才正確）。
 
   // 2. 房東收益動態試算器 ROI Calculator
   const rentSlider = document.getElementById('rentSlider');
@@ -138,11 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('active');
-    }
-  });
+  // script.js 亦被 rent-calculator.html 載入，該頁沒有 #propertyModal，
+  // 少了這道判空會丟出 TypeError 並中止本檔後續所有初始化。
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  }
 
   // 5. 資產評估預約表單提交處理 Lead Form Handler
   const evaluationForm = document.getElementById('evaluationForm');

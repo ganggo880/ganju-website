@@ -47,6 +47,12 @@
   align-items: start;
 }
 
+/* CSS Grid 子項預設 min-width:auto，會被內容的最小寬度卡死而無法收縮，
+   是本頁 360px 下橫向溢出 62px 的元兇；一律歸零讓子項可正常壓縮。 */
+.tool-workspace > * {
+  min-width: 0;
+}
+
 @media (max-width: 992px) {
   .tool-workspace {
     grid-template-columns: 1fr;
@@ -324,4 +330,48 @@
 .action-bar-group .btn {
   flex: 1;
   min-width: 180px;
+}
+
+/* ==========================================================================
+   響應式斷點 Responsive Breakpoints
+   原本本檔僅有 992px 一個斷點，360/768 皆未處理。
+   ========================================================================== */
+@media (max-width: 768px) {
+  .control-panel,
+  .preview-stage {
+    padding: 18px;
+  }
+
+  .tool-workspace {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .control-panel,
+  .preview-stage {
+    padding: 14px;
+  }
+
+  /* 三欄樣式卡在 360px 會擠成直書，改雙欄 */
+  .preset-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .preset-grid > * {
+    min-width: 0;
+  }
+
+  /* 主要動作鈕改單欄堆疊，min-width:180px 在 360px 會撐爆容器 */
+  .action-bar-group .btn {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  /* 刪除鈕放大至可靠點擊尺寸 */
+  .thumb-remove-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
 }

@@ -1,5 +1,5 @@
 // 港居不動產 全站版面與導覽模組 (Dynamic Layout Controller)
-import { initThemeSwitcher } from './utils.js';
+import { initThemeSwitcher, initNavDropdown } from './utils.js';
 
 export function initLayout() {
   // 1. 初始化全域主題切換器
@@ -10,6 +10,9 @@ export function initLayout() {
 
   // 3. 行動端選單 Drawer 控制
   setupMobileDrawer();
+
+  // 4.「線上工具」下拉選單（滑鼠 hover 以外補上點擊與鍵盤操作）
+  initNavDropdown();
 }
 
 /**
@@ -32,6 +35,12 @@ function highlightActiveNavLink() {
     } else if (currentPath === 'index.html' && href.startsWith('#home')) {
       link.classList.add('active');
     }
+  });
+
+  // 當前頁若是下拉選單內的工具頁，一併點亮「線上工具」觸發鈕
+  document.querySelectorAll('.nav-dropdown').forEach(dd => {
+    const toggle = dd.querySelector('.nav-dropdown-toggle');
+    if (toggle) toggle.classList.toggle('active', !!dd.querySelector('.nav-dropdown-menu .nav-link.active'));
   });
 }
 
