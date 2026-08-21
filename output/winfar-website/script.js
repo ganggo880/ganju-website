@@ -8,13 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.getElementById('navMenu');
 
   if (mobileToggle && navMenu) {
+    const syncToggleState = () => {
+      const open = navMenu.classList.contains('active');
+      mobileToggle.setAttribute('aria-expanded', String(open));
+      mobileToggle.setAttribute('aria-label', open ? '關閉導覽選單' : '開啟導覽選單');
+      const icon = mobileToggle.querySelector('i');
+      if (icon) icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    };
+
     mobileToggle.addEventListener('click', () => {
       navMenu.classList.toggle('active');
+      syncToggleState();
     });
 
     navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
+        syncToggleState();
       });
     });
   }
@@ -95,11 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "創航先驅專傳：台灣魷魚大王謝有志創立穩發漁業半世紀企業傳奇",
       source: "官方網站 (01_histroy_pioneer.htm) / 遠洋漁業專刊",
       date: "官方權威快照 (01_histroy_pioneer.htm)",
-      img: "assets/winfar_launch_ceremony_1784826158058.jpg",
+      img: "穩發集團/照片/01_穩發遠洋鮪延繩釣漁船.jpg",
       milestone: "📍 對應穩發大世紀：1972 創航先驅篇 (01_histroy_pioneer.htm)",
       mdPath: "穩發集團/新聞/06_台灣魷魚大王謝有志創立穩發漁業半世紀企業傳奇.md",
       content: `
-        <div style="background: rgba(244, 162, 97, 0.15); border-left: 4px solid var(--primary-gold); padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+        <div style="background: rgba(244, 162, 97, 0.15); border-left: 4px solid var(--accent-gold); padding: 14px; border-radius: 6px; margin-bottom: 16px;">
           <strong>【官方創航先驅紀錄 (01_histroy_pioneer.htm)】</strong> 穩發漁業集團創始人<strong>謝有志先生</strong>（1940-2000）出生於澎湖縣西嶼鄉竹篙灣。白手起家創立穩發漁業，開創三大洋遠洋捕撈王國，尊稱為「台灣魷魚大王」。
         </div>
         <p><strong>創航五大革命性貢獻：</strong></p>
@@ -119,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "官方集團概況：穩發漁業集團企業簡介與營運架構 Profile",
       source: "官方網站 (01_histroy_profile.htm)",
       date: "官方權威快照 (01_histroy_profile.htm)",
-      img: "assets/winfar_kaohsiung_port_1784826148505.jpg",
+      img: "穩發集團/照片/10_高雄前鎮遠洋漁業基地與港區面貌.jpg",
       milestone: "📍 對應穩發大世紀：官方集團概況 (01_histroy_profile.htm)",
       mdPath: "穩發集團/新聞/02_穩發漁業集團簡介與經營概況_01_histroy_profile.md",
       content: `
@@ -141,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "工研院攜手穩發漁業 導入AIoT低碳無人機探魚系統 顛覆傳統遠洋探魚模式",
       source: "經濟日報 / 中央社",
       date: "2023-11-15",
-      img: "assets/winfar_ai_drone_scout_1784826139054.jpg",
+      img: "穩發集團/照片/09_AIoT工研院低碳智慧漁搜無人機隊.jpg",
       milestone: "📍 對應穩發大世紀：2023 智慧轉型（工研院 AIoT 無人探魚）",
       mdPath: "穩發集團/新聞/01_工研院與穩發漁業合作開發AIoT低碳無人機探魚系統.md",
       content: `
@@ -155,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <li>探魚效率提升 3 倍以上，每年為每艘圍網船節省數千萬元直升機租賃與耗油成本。</li>
         </ul>
         <p><strong>穩發漁業董事長謝龍隱表示：</strong></p>
-        <blockquote style="margin: 12px 0; padding-left: 16px; border-left: 3px solid var(--primary-gold); color: #fff; font-style: italic;">
+        <blockquote style="margin: 12px 0; padding-left: 16px; border-left: 3px solid var(--accent-gold); color: #fff; font-style: italic;">
           「過去遠洋探魚極度依賴老漁撈長經驗與高風險直升機。透過與工研院合作的無人機 AI 探魚系統，我們成功將數十年海洋經驗數位化，作業更安全，更能大幅減少巡航耗油，邁向綠色永續漁業。」
         </blockquote>
       `
@@ -164,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "穩發漁業董事長謝龍隱掌舵全國漁會 扮演產業與政府溝通橋樑",
       source: "聯合報 / 中時新聞網",
       date: "2021-04-12",
-      img: "assets/winfar_kaohsiung_port_1784826148505.jpg",
+      img: "穩發集團/照片/10_高雄前鎮遠洋漁業基地與港區面貌.jpg",
       milestone: "📍 對應穩發大世紀：2021 領袖領航（謝龍隱掌舵全國漁會）",
       mdPath: "穩發集團/新聞/02_穩發漁業董事長謝龍隱接任全國漁會理事長推動產業永續.md",
       content: `
@@ -199,14 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "前鎮漁港81億元改建爭議 穩發漁業謝龍隱重砲發聲：台灣不是只有一個台北",
       source: "三立新聞網 / 風傳媒",
       date: "2023-08-02",
-      img: "assets/winfar_kaohsiung_port_1784826148505.jpg",
+      img: "穩發集團/照片/10_高雄前鎮遠洋漁業基地與港區面貌.jpg",
       milestone: "📍 對應穩發大世紀：2023 前鎮升級（謝龍隱重砲挺前鎮漁港改建）",
       mdPath: "穩發集團/新聞/04_前鎮漁港81億改造案引熱議_穩發漁業董事長謝龍隱出面力挺.md",
       content: `
         <div style="background: rgba(20, 241, 149, 0.08); border-left: 4px solid var(--primary-cyan); padding: 14px; border-radius: 6px; margin-bottom: 16px;">
           <strong>【新聞報導摘要】</strong> 高雄區漁會理事長兼穩發漁業董事長<strong>謝龍隱</strong>公開表示，前鎮漁港建港 50 年設施老舊失修，改建是為了讓台灣遠洋漁業符合日本與歐盟高標準衛檢，不應被政治化抹黑。
         </div>
-        <blockquote style="margin: 12px 0; padding-left: 16px; border-left: 3px solid var(--primary-gold); color: #fff; font-style: italic;">
+        <blockquote style="margin: 12px 0; padding-left: 16px; border-left: 3px solid var(--accent-gold); color: #fff; font-style: italic;">
           「前鎮漁港是全台灣最大的遠洋漁業基地，每年創造數百億元產值。台灣不是只有一個台北，改善卸魚碼頭、船員休憩中心與冷鏈物流，是為了產業的永續競爭力。」
         </blockquote>
       `
@@ -229,11 +239,11 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "創航先驅專傳：台灣魷魚大王謝有志創立穩發漁業半世紀企業傳奇",
       source: "官方網站 (01_histroy_pioneer.htm) / 遠洋漁業專刊",
       date: "2018-05-20 (官方權威快照)",
-      img: "assets/winfar_launch_ceremony_1784826158058.jpg",
+      img: "穩發集團/照片/01_穩發遠洋鮪延繩釣漁船.jpg",
       milestone: "📍 對應穩發大世紀：1972 創航先驅 (01_histroy_pioneer.htm)",
       mdPath: "穩發集團/新聞/06_台灣魷魚大王謝有志創立穩發漁業半世紀企業傳奇.md",
       content: `
-        <div style="background: rgba(244, 162, 97, 0.12); border-left: 4px solid var(--primary-gold); padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+        <div style="background: rgba(244, 162, 97, 0.12); border-left: 4px solid var(--accent-gold); padding: 14px; border-radius: 6px; margin-bottom: 16px;">
           <strong>【官方創航先驅紀錄 (01_histroy_pioneer.htm)】</strong> 穩發漁業集團創始人<strong>謝有志先生</strong>（1940-2000）出生於澎湖縣西嶼鄉竹篙灣。由高雄前鎮白手起家，開創三大洋遠洋捕撈王國，尊稱為「台灣魷魚大王」。
         </div>
         <p><strong>創航五大革命性貢獻：</strong></p>
@@ -253,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "穩發集團穩大冷凍園區擴建 打造前鎮最大-60°C極致急凍供應鏈",
       source: "物流與水產供應鏈專刊",
       date: "2022-09-10",
-      img: "assets/winfar_ultra_cold_storage_1784826128511.jpg",
+      img: "穩發集團/照片/05_穩大冷凍廠零下60度極速保鮮庫.jpg",
       milestone: "📍 對應穩發大世紀：1985-1987 極速保鮮（穩大冷凍廠-60°C保鮮庫）",
       mdPath: "穩發集團/新聞/07_穩大冷凍廠啟用超低溫零下60度智慧倉儲園區.md",
       content: `
