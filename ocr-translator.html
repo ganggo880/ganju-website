@@ -163,8 +163,14 @@
             <div class="image-toolbar">
               <div class="toolbar-row">
                 <div class="toolbar-group">
-                  <button type="button" id="btn-auto-enhance" class="tool-btn tool-btn-primary" title="一鍵 AI 智慧去陰影與邊緣清晰化">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> 一鍵清晰增強
+                  <button type="button" id="btn-auto-enhance" class="tool-btn tool-btn-primary" title="一鍵 AI 智慧去陰影、2x 超解析度與邊緣清晰化">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> 一鍵 AI 超清修復
+                  </button>
+                  <button type="button" id="btn-crop-mode" class="tool-btn" title="在照片上拖曳框選要辨識的文字區塊">
+                    <i class="fa-solid fa-crop-simple"></i> 框選區域辨識
+                  </button>
+                  <button type="button" id="btn-scale-2x" class="tool-btn" title="2倍超解析度放大（顯著提升細小中文字筆畫辨識率）">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> 2x 超解析
                   </button>
                   <button type="button" id="btn-adaptive-thresh" class="tool-btn" title="消除拍照產生的局部陰影與不均勻反光">
                     <i class="fa-solid fa-circle-half-stroke"></i> 局部去陰影
@@ -201,6 +207,7 @@
               <div id="dropzone-notice" style="color: #94A3B8; text-align: center;">
                 <i class="fa-solid fa-camera-viewfinder" style="font-size: 3rem; margin-bottom: 10px; display: block; color: var(--color-gold);"></i>
                 <p style="font-size: 0.95rem; font-weight: 600;">上傳照片後，此處將即時顯示影像與文字識別框線</p>
+                <p style="font-size: 0.82rem; color: #64748B;">可直接按住滑鼠左鍵在照片上拖曳框選局部範圍</p>
               </div>
               <canvas id="ocr-canvas" class="ocr-canvas" style="display: none;"></canvas>
             </div>
@@ -208,22 +215,22 @@
             <!-- OCR Advanced Options Grid -->
             <div class="ocr-options-grid">
               <div class="option-field">
+                <label for="ocr-engine-select">OCR 核心引擎：</label>
+                <select id="ocr-engine-select" class="form-control">
+                  <option value="cloud_ai" selected>🌟 AI 雲端神經網路引擎 (99%+ 準確率推薦)</option>
+                  <option value="local_ultra">🛡️ 本機極致 2x 超解析引擎 (100% 離線隱私)</option>
+                </select>
+              </div>
+              <div class="option-field">
                 <label for="ocr-lang-select">辨識語言語系：</label>
                 <select id="ocr-lang-select" class="form-control">
-                  <option value="chi_tra+eng" selected>繁體中文 + 英文 (推薦)</option>
+                  <option value="chi_tra+eng" selected>繁體中文 + 英文 (預設推薦)</option>
                   <option value="chi_tra">純繁體中文 (Traditional Chinese)</option>
                   <option value="eng">純英文 (English)</option>
                   <option value="chi_sim">簡體中文 (Simplified Chinese)</option>
                   <option value="jpn">日文 (Japanese)</option>
                   <option value="kor">韓文 (Korean)</option>
                   <option value="vie">越南文 (Vietnamese)</option>
-                </select>
-              </div>
-              <div class="option-field">
-                <label for="ocr-model-select">神經網路模型：</label>
-                <select id="ocr-model-select" class="form-control">
-                  <option value="best" selected>🚀 高精準深度學習模型 (推薦)</option>
-                  <option value="fast">⚡ 標準快速模型 (Fast)</option>
                 </select>
               </div>
               <div class="option-field">
@@ -239,7 +246,7 @@
             </div>
 
             <button type="button" id="btn-start-ocr" class="btn btn-gold" style="width: 100%; min-height: 48px; font-size: 1.05rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;">
-              <i class="fa-solid fa-bolt"></i> 執行高精準 OCR 文字辨識
+              <i class="fa-solid fa-bolt"></i> 執行最高精準度 OCR 文字辨識
             </button>
 
             <!-- Progress Bar -->
