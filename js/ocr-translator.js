@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const btnCopyTarget = document.getElementById('btn-copy-target');
   const btnTtsTarget = document.getElementById('btn-tts-target');
-  const btnClearTarget = document.getElementById('btn-clear-target');
+  const btnClearTarget = document.getElementById('btn-clear-target') || document.getElementById('btnClearTarget');
 
   const btnExportTxt = document.getElementById('btn-export-txt');
   const btnExportMd = document.getElementById('btn-export-md');
@@ -54,34 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const sampleChips = document.querySelectorAll('.sample-chip');
 
   // Application State
-  let rawImage = null; // Original Image object
+  let rawImage = null; // Normalized Image / Canvas object
   let rotationAngle = 0; // 0, 90, 180, 270
   let isGrayscale = false;
   let isBinarized = false;
-  let ocrWorker = null;
   let ocrBoxes = []; // Detected bounding boxes
+  let isProcessingOcr = false;
 
   // 1. File Upload & Clipboard Listeners
-  if (dropzone && fileInput) {
-    dropzone.addEventListener('click', () => fileInput.click());
-
-    dropzone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropzone.classList.add('dragover');
-    });
-
-    dropzone.addEventListener('dragleave', () => {
-      dropzone.classList.remove('dragover');
-    });
-
-    dropzone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropzone.classList.remove('dragover');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-        handleImageFile(e.dataTransfer.files[0]);
-      }
-    });
-
+  if (fileInput) {
+    fileInput.addEventListener('click', (e) => e.stopPropagation());
     fileInput.addEventListener('change', (e) => {
       if (e.target.files && e.target.files.length > 0) {
         handleImageFile(e.target.files[0]);
@@ -89,15 +71,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const clickableUploadAreas = [dropzone, canvasViewport, dropzoneNotice].filter(Boolean);
+  clickableUploadAreas.forEach(el => {
+    el.addEventListener('click', (e) => {
+      // Avoid triggering when clicking canvas or toolbar
+      if (e.target === ocrCanvas && rawImage) return;
+      if (fileInput) fileInput.click();
+    });
+
+    el.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      el.classList.add('dragover');
+      if (dropzone) dropzone.classList.add('dragover');
+    });
+
+    el.addEventListener('dragleave', () => {
+      el.classList.remove('dragover');
+      if (dropzone) dropzone.classList.remove('dragover');
+    });
+
+    el.addEventListener('drop', (e) => {
+      e.preventDefault();
+      el.classList.remove('dragover');
+      if (dropzone) dropzone.classList.remove('dragover');
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleImageFile(e.dataTransfer.files[0]);
+      }
+    });
+  });
+
+  // Global Drag & Drop fallback
+  window.addEventListener('dragover', (e) => e.preventDefault());
+  window.addEventListener('drop', (e) => {
+    e.preventDefault();
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      handleImageFile(e.dataTransfer.files[0]);
+    }
+  });
+
   // Paste from Clipboard (Ctrl+V)
   window.addEventListener('paste', (e) => {
-    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+    if (!e.clipboardData) return;
+    const items = e.clipboardData.items;
     for (let item of items) {
       if (item.type.indexOf('image') !== -1) {
         const file = item.getAsFile();
-        handleImageFile(file);
-        showToast('📋 已載入剪貼簿截圖！');
-        break;
+        if (file) {
+          handleImageFile(file);
+          showToast('📋 已載入剪貼簿截圖！');
+          break;
+        }
       }
     }
   });
@@ -110,26 +133,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  function isImageFile(file) {
+    if (!file) return false;
+    if (file.type && file.type.startsWith('image/')) return true;
+    const name = (file.name || '').toLowerCase();
+    return /\.(jpg|jpeg|png|webp|bmp|gif|heic|heif|tiff|svg)$/i.test(name);
+  }
+
   function handleImageFile(file) {
-    if (!file || !file.type.startsWith('image/')) {
+    if (!isImageFile(file)) {
       showToast('❌ 請上傳格式正確的圖片檔案 (JPG / PNG / WEBP / BMP)');
       return;
     }
+
+    showToast('📷 正在載入照片...');
 
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
       img.onload = () => {
-        rawImage = img;
+        // Downscale oversized images to max 1800px for ultra-fast and reliable OCR
+        const maxDim = 1800;
+        let w = img.naturalWidth || img.width;
+        let h = img.naturalHeight || img.height;
+
+        if (w > maxDim || h > maxDim) {
+          if (w > h) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+          const scaledCanvas = document.createElement('canvas');
+          scaledCanvas.width = w;
+          scaledCanvas.height = h;
+          const sCtx = scaledCanvas.getContext('2d');
+          sCtx.drawImage(img, 0, 0, w, h);
+          rawImage = scaledCanvas;
+        } else {
+          rawImage = img;
+        }
+
         rotationAngle = 0;
         isGrayscale = false;
         isBinarized = false;
         ocrBoxes = [];
         updateToolbarState();
         renderCanvas();
-        showToast('📷 照片已載入！準備開始 OCR 辨識...');
-        // Auto trigger OCR
+        showToast('✨ 照片已載入！正在自動執行 OCR 辨識...');
         runOcr();
+      };
+      img.onerror = () => {
+        showToast('❌ 照片讀取失敗，請確認檔案格式');
       };
       img.src = e.target.result;
     };
@@ -197,36 +253,34 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fillText('• 歡迎預約現場賞屋與 360° VR 虛擬實境導覽！', 40, 360);
     }
 
-    const img = new Image();
-    img.onload = () => {
-      rawImage = img;
-      rotationAngle = 0;
-      isGrayscale = false;
-      isBinarized = false;
-      ocrBoxes = [];
-      updateToolbarState();
-      renderCanvas();
-      showToast('📄 範例圖片已載入，正在自動執行 OCR...');
-      runOcr();
-    };
-    img.src = tempCanvas.toDataURL('image/png');
+    rawImage = tempCanvas;
+    rotationAngle = 0;
+    isGrayscale = false;
+    isBinarized = false;
+    ocrBoxes = [];
+    updateToolbarState();
+    renderCanvas();
+    showToast('📄 範例圖片已載入，正在自動執行 OCR...');
+    runOcr();
   }
 
   // 2. Image Pre-processing & Canvas Rendering
   function renderCanvas() {
     if (!rawImage) {
       ocrCanvas.style.display = 'none';
-      dropzoneNotice.style.display = 'block';
+      if (dropzoneNotice) dropzoneNotice.style.display = 'block';
       return;
     }
 
     ocrCanvas.style.display = 'block';
-    dropzoneNotice.style.display = 'none';
+    if (dropzoneNotice) dropzoneNotice.style.display = 'none';
 
     const ctx = ocrCanvas.getContext('2d');
     const isSideways = rotationAngle === 90 || rotationAngle === 270;
-    const width = isSideways ? rawImage.naturalHeight || rawImage.height : rawImage.naturalWidth || rawImage.width;
-    const height = isSideways ? rawImage.naturalWidth || rawImage.width : rawImage.naturalHeight || rawImage.height;
+    const rawW = rawImage.naturalWidth || rawImage.width;
+    const rawH = rawImage.naturalHeight || rawImage.height;
+    const width = isSideways ? rawH : rawW;
+    const height = isSideways ? rawW : rawH;
 
     ocrCanvas.width = width;
     ocrCanvas.height = height;
@@ -237,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply Rotation
     ctx.translate(width / 2, height / 2);
     ctx.rotate((rotationAngle * Math.PI) / 180);
-    ctx.drawImage(rawImage, -rawImage.naturalWidth / 2, -rawImage.naturalHeight / 2);
+    ctx.drawImage(rawImage, -rawW / 2, -rawH / 2);
     ctx.restore();
 
     // Apply Filters (Grayscale / Binarize)
@@ -246,18 +300,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const d = imgData.data;
 
       for (let i = 0; i < d.length; i += 4) {
-        // Luminance formula
         let gray = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-
         if (isBinarized) {
-          // High contrast thresholding (Binarize)
-          const threshold = 135;
-          gray = gray >= threshold ? 255 : 0;
+          gray = gray >= 135 ? 255 : 0;
         }
-
-        d[i] = gray;     // R
-        d[i + 1] = gray; // G
-        d[i + 2] = gray; // B
+        d[i] = gray;
+        d[i + 1] = gray;
+        d[i + 2] = gray;
       }
       ctx.putImageData(imgData, 0, 0);
     }
@@ -265,13 +314,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Draw OCR Bounding Boxes if available
     if (ocrBoxes.length > 0) {
       ctx.lineWidth = Math.max(2, Math.round(width / 500));
-      ctx.strokeStyle = 'rgba(197, 160, 89, 0.85)';
+      ctx.strokeStyle = 'rgba(197, 160, 89, 0.9)';
       ctx.fillStyle = 'rgba(197, 160, 89, 0.15)';
 
       ocrBoxes.forEach(box => {
-        const { x0, y0, x1, y1 } = box.bbox;
-        ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
-        ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+        if (box.bbox) {
+          const { x0, y0, x1, y1 } = box.bbox;
+          ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
+          ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+        }
       });
     }
   }
@@ -334,6 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnStartOcr.addEventListener('click', () => {
       if (!rawImage) {
         showToast('❌ 請先上傳照片！');
+        if (fileInput) fileInput.click();
         return;
       }
       runOcr();
@@ -347,54 +399,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. OCR Execution (Tesseract.js)
   async function runOcr() {
-    if (!rawImage) return;
+    if (!rawImage || isProcessingOcr) return;
 
     if (!window.Tesseract) {
       showToast('❌ 正在載入 Tesseract OCR 模組，請稍候...');
       return;
     }
 
-    const lang = ocrLangSelect.value || 'chi_tra+eng';
-    progressContainer.style.display = 'block';
-    progressStatusText.innerText = '正在初始化 OCR 辨識引擎...';
-    progressBarFill.style.width = '10%';
-    progressPercentText.innerText = '10%';
+    isProcessingOcr = true;
+    const lang = ocrLangSelect ? ocrLangSelect.value || 'chi_tra+eng' : 'chi_tra+eng';
+    
+    if (progressContainer) progressContainer.style.display = 'block';
+    if (progressStatusText) progressStatusText.innerText = '正在初始化 OCR 辨識引擎...';
+    if (progressBarFill) progressBarFill.style.width = '10%';
+    if (progressPercentText) progressPercentText.innerText = '10%';
 
     try {
-      // Get current canvas data as input for OCR (including rotation and filter enhancement)
-      const inputDataUrl = ocrCanvas.toDataURL('image/png');
-
-      const worker = await Tesseract.createWorker(lang, 1, {
+      const result = await Tesseract.recognize(ocrCanvas, lang, {
         logger: m => {
           if (m.status === 'recognizing text') {
             const pct = Math.round(m.progress * 100);
-            progressBarFill.style.width = `${pct}%`;
-            progressPercentText.innerText = `${pct}%`;
-            progressStatusText.innerText = `正在分析影像與萃取文字 (${pct}%)...`;
+            if (progressBarFill) progressBarFill.style.width = `${pct}%`;
+            if (progressPercentText) progressPercentText.innerText = `${pct}%`;
+            if (progressStatusText) progressStatusText.innerText = `正在分析影像與萃取文字 (${pct}%)...`;
           } else if (m.status) {
-            progressStatusText.innerText = `正在載入 ${lang} 語言模型...`;
+            if (progressStatusText) progressStatusText.innerText = `正在載入 ${lang} 語言模型...`;
           }
         }
       });
 
-      const ret = await worker.recognize(inputDataUrl);
-      await worker.terminate();
-
-      // Extracted Text
-      const text = ret.data.text.trim();
-      textareaSource.value = text;
+      const text = (result && result.data && result.data.text) ? result.data.text.trim() : '';
+      if (textareaSource) {
+        textareaSource.value = text;
+      }
       updateWordCounts();
 
-      // Confidence & Bounding Boxes
-      const confidence = Math.round(ret.data.confidence);
-      ocrConfidence.innerText = `辨識信心度：${confidence}%`;
+      const confidence = result && result.data ? Math.round(result.data.confidence || 0) : 0;
+      if (ocrConfidence) {
+        ocrConfidence.innerText = `辨識信心度：${confidence}%`;
+      }
 
-      if (ret.data.words && ret.data.words.length > 0) {
-        ocrBoxes = ret.data.words;
+      if (result && result.data && result.data.words && result.data.words.length > 0) {
+        ocrBoxes = result.data.words;
         renderCanvas();
       }
 
-      progressContainer.style.display = 'none';
+      if (progressContainer) progressContainer.style.display = 'none';
+      isProcessingOcr = false;
       showToast('🎉 OCR 文字辨識完成！');
 
       // Auto trigger translation if text is present
@@ -403,34 +454,47 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (err) {
       console.error('OCR Error:', err);
-      progressContainer.style.display = 'none';
+      if (progressContainer) progressContainer.style.display = 'none';
+      isProcessingOcr = false;
       showToast('❌ OCR 辨識失敗，請嘗試旋轉或調整對比');
     }
   }
 
   // 5. Translation Engine
   async function runTranslation() {
-    const text = textareaSource.value.trim();
+    const text = textareaSource ? textareaSource.value.trim() : '';
     if (!text) {
       showToast('❌ 請先輸入或辨識出原文內容！');
       return;
     }
 
-    const srcLang = sourceLangSelect.value;
-    const tgtLang = targetLangSelect.value;
+    let srcLang = sourceLangSelect ? sourceLangSelect.value : 'auto';
+    const tgtLang = targetLangSelect ? targetLangSelect.value : 'en';
+
+    // Auto Language Detection for source
+    if (srcLang === 'auto') {
+      if (/[\u4e00-\u9fa5]/.test(text)) {
+        srcLang = 'zh-TW';
+      } else if (/[\u3040-\u30ff]/.test(text)) {
+        srcLang = 'ja';
+      } else if (/[\uac00-\ud7af]/.test(text)) {
+        srcLang = 'ko';
+      } else {
+        srcLang = 'en';
+      }
+    }
 
     if (srcLang === tgtLang) {
-      textareaTarget.value = text;
+      if (textareaTarget) textareaTarget.value = text;
       updateWordCounts();
       return;
     }
 
-    textareaTarget.value = '⏳ 正在進行多國語言即時翻譯...';
+    if (textareaTarget) textareaTarget.value = '⏳ 正在進行多國語言即時翻譯...';
     showToast('🌐 正在翻譯文字內容...');
 
     try {
-      // Split into sentences / chunks to prevent URL length limit on free API
-      const chunks = splitTextIntoChunks(text, 400);
+      const chunks = splitTextIntoChunks(text, 350);
       let translatedChunks = [];
 
       for (let chunk of chunks) {
@@ -446,14 +510,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const finalTranslation = translatedChunks.join('\n');
-      textareaTarget.value = finalTranslation;
+      if (textareaTarget) {
+        textareaTarget.value = finalTranslation;
+      }
       updateWordCounts();
       showToast('✨ 翻譯已完成！');
     } catch (err) {
-      console.warn('Translation API error, providing fallback:', err);
-      // Fallback
-      textareaTarget.value = `[翻譯服務連線受限，您可點擊下方「Google 翻譯」快捷查看]\n\n${text}`;
-      showToast('⚠️ 免費翻譯服務連線延遲，已提供快捷翻譯');
+      console.warn('Translation API error, fallback:', err);
+      if (textareaTarget) {
+        textareaTarget.value = `[翻譯服務連線受限，您可點擊下方「Google 翻譯」快捷查看]\n\n${text}`;
+      }
+      showToast('⚠️ 免費翻譯服務連線延遲，已提供快捷對照');
     }
   }
 
@@ -500,12 +567,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Action Handlers (Copy, TTS, Export, Clear)
   function updateWordCounts() {
-    sourceWordCount.innerText = `${textareaSource.value.length} 字`;
-    targetWordCount.innerText = `${textareaTarget.value.length} 字`;
+    if (sourceWordCount && textareaSource) {
+      sourceWordCount.innerText = `${textareaSource.value.length} 字`;
+    }
+    if (targetWordCount && textareaTarget) {
+      targetWordCount.innerText = `${textareaTarget.value.length} 字`;
+    }
   }
 
-  textareaSource.addEventListener('input', updateWordCounts);
-  textareaTarget.addEventListener('input', updateWordCounts);
+  if (textareaSource) textareaSource.addEventListener('input', updateWordCounts);
+  if (textareaTarget) textareaTarget.addEventListener('input', updateWordCounts);
 
   // Copy Buttons
   if (btnCopySource) {
