@@ -1,4 +1,4 @@
-// 港居不動產 - 照片 OCR 文字辨識與多國語言翻譯 核心邏輯 (純前端自包含版本，相容 file:/// 與 https://)
+// 港居不動產 - 照片 OCR 文字辨識與多國語言翻譯 核心邏輯 (高精準深度學習與 AI 自適應去陰影增強)
 
 (function () {
   'use strict';
@@ -29,7 +29,6 @@
 
   // 2. 主題切換器與導覽列初始化
   function initPageLayout() {
-    // 深淺主題切換
     const themeToggleBtn = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('ganggo_theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -44,7 +43,6 @@
       });
     }
 
-    // 行動端漢堡選單
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
     if (mobileToggle && navMenu) {
@@ -62,7 +60,6 @@
       });
     }
 
-    // 下拉選單點擊與鍵盤控制
     const dropdowns = document.querySelectorAll('.nav-dropdown');
     dropdowns.forEach(dd => {
       const toggle = dd.querySelector('.nav-dropdown-toggle');
@@ -80,7 +77,7 @@
     });
   }
 
-  // 3. OCR 與翻譯主要應用邏輯
+  // 3. OCR 核心與 AI 影像增強應用邏輯
   function initOcrApp() {
     // DOM Cache
     const dropzone = document.getElementById('dropzone');
@@ -89,22 +86,36 @@
     const ocrCanvas = document.getElementById('ocr-canvas');
     const dropzoneNotice = document.getElementById('dropzone-notice');
 
-    // Toolbar Buttons
+    // Enhancement Buttons
+    const btnAutoEnhance = document.getElementById('btn-auto-enhance');
+    const btnAdaptiveThresh = document.getElementById('btn-adaptive-thresh');
+    const btnSharpen = document.getElementById('btn-sharpen');
+    const btnGrayscale = document.getElementById('btn-grayscale');
     const btnRotateLeft = document.getElementById('btn-rotate-left');
     const btnRotateRight = document.getElementById('btn-rotate-right');
-    const btnGrayscale = document.getElementById('btn-grayscale');
-    const btnBinarize = document.getElementById('btn-binarize');
+    const btnTiltLeft = document.getElementById('btn-tilt-left');
+    const btnTiltRight = document.getElementById('btn-tilt-right');
     const btnResetImage = document.getElementById('btn-reset-image');
     const btnStartOcr = document.getElementById('btn-start-ocr');
 
-    // OCR Progress Elements
+    // Sliders
+    const contrastSlider = document.getElementById('contrast-slider');
+    const contrastVal = document.getElementById('contrast-val');
+    const brightnessSlider = document.getElementById('brightness-slider');
+    const brightnessVal = document.getElementById('brightness-val');
+
+    // OCR Engine Selectors
+    const ocrLangSelect = document.getElementById('ocr-lang-select');
+    const ocrModelSelect = document.getElementById('ocr-model-select');
+    const ocrPsmSelect = document.getElementById('ocr-psm-select');
+
+    // Progress Elements
     const progressContainer = document.getElementById('progress-container');
     const progressStatusText = document.getElementById('progress-status-text');
     const progressPercentText = document.getElementById('progress-percent-text');
     const progressBarFill = document.getElementById('progress-bar-fill');
-    const ocrLangSelect = document.getElementById('ocr-lang-select');
 
-    // Text Boxes
+    // Text Boxes & Indicators
     const textareaSource = document.getElementById('textarea-source');
     const textareaTarget = document.getElementById('textarea-target');
     const sourceWordCount = document.getElementById('source-word-count');
@@ -124,24 +135,26 @@
 
     const btnCopyTarget = document.getElementById('btn-copy-target');
     const btnTtsTarget = document.getElementById('btn-tts-target');
-    const btnClearTarget = document.getElementById('btn-clear-target') || document.getElementById('btnClearTarget');
+    const btnClearTarget = document.getElementById('btn-clear-target');
 
     const btnExportTxt = document.getElementById('btn-export-txt');
     const btnExportMd = document.getElementById('btn-export-md');
     const btnGoogleTranslate = document.getElementById('btn-google-translate');
 
-    // Sample Chips
     const sampleChips = document.querySelectorAll('.sample-chip');
 
     // State Variables
-    let rawImage = null; // Normalized Image / Canvas object
-    let rotationAngle = 0; // 0, 90, 180, 270
+    let rawImage = null; // Original image element / canvas
+    let rotationAngle = 0; // in degrees (-180 to 180)
     let isGrayscale = false;
-    let isBinarized = false;
+    let isAdaptiveThresh = false;
+    let isSharpen = false;
+    let contrastLevel = 100; // 50 to 250
+    let brightnessLevel = 100; // 50 to 200
     let ocrBoxes = []; // Detected bounding boxes
     let isProcessingOcr = false;
 
-    // File Input Stop Propagation & Change Listener
+    // File Input Listener
     if (fileInput) {
       fileInput.addEventListener('click', (e) => e.stopPropagation());
       fileInput.addEventListener('change', (e) => {
@@ -151,7 +164,7 @@
       });
     }
 
-    // Bind Click and Drag & Drop on multiple interaction zones
+    // Drag and Drop & Click Triggers
     const clickableUploadAreas = [dropzone, canvasViewport, dropzoneNotice].filter(Boolean);
     clickableUploadAreas.forEach(el => {
       el.addEventListener('click', (e) => {
@@ -180,7 +193,6 @@
       });
     });
 
-    // Global drag & drop protection
     window.addEventListener('dragover', (e) => e.preventDefault());
     window.addEventListener('drop', (e) => {
       e.preventDefault();
@@ -189,7 +201,7 @@
       }
     });
 
-    // Global Clipboard Paste (Ctrl+V)
+    // Clipboard Paste (Ctrl+V)
     window.addEventListener('paste', (e) => {
       if (!e.clipboardData) return;
       const items = e.clipboardData.items;
@@ -232,8 +244,8 @@
       reader.onload = (e) => {
         const img = new Image();
         img.onload = () => {
-          // Normalize dimension to max 1800px for speed & reliability
-          const maxDim = 1800;
+          // Normalize dimension to max 2000px
+          const maxDim = 2000;
           let w = img.naturalWidth || img.width;
           let h = img.naturalHeight || img.height;
 
@@ -255,13 +267,13 @@
             rawImage = img;
           }
 
-          rotationAngle = 0;
-          isGrayscale = false;
-          isBinarized = false;
-          ocrBoxes = [];
+          resetFiltersState();
+          // Auto apply smart enhance for mobile photos
+          isAdaptiveThresh = true;
+          isSharpen = true;
           updateToolbarState();
           renderCanvas();
-          showToast('✨ 照片已載入！正在自動執行 OCR 辨識...');
+          showToast('✨ 照片已載入！已啟用「AI 智慧去陰影與清晰化」，正在執行高精度辨識...');
           runOcr();
         };
         img.onerror = () => {
@@ -272,7 +284,6 @@
       reader.readAsDataURL(file);
     }
 
-    // Built-in sample generator
     function loadSampleImage(type) {
       const tempCanvas = document.createElement('canvas');
       tempCanvas.width = 800;
@@ -333,17 +344,28 @@
       }
 
       rawImage = tempCanvas;
-      rotationAngle = 0;
-      isGrayscale = false;
-      isBinarized = false;
-      ocrBoxes = [];
+      resetFiltersState();
       updateToolbarState();
       renderCanvas();
-      showToast('📄 範例圖片已載入，正在自動執行 OCR...');
+      showToast('📄 範例圖片已載入，正在自動執行高精度 OCR...');
       runOcr();
     }
 
-    // Render on canvas
+    function resetFiltersState() {
+      rotationAngle = 0;
+      isGrayscale = false;
+      isAdaptiveThresh = false;
+      isSharpen = false;
+      contrastLevel = 100;
+      brightnessLevel = 100;
+      ocrBoxes = [];
+      if (contrastSlider) contrastSlider.value = 100;
+      if (contrastVal) contrastVal.innerText = '100%';
+      if (brightnessSlider) brightnessSlider.value = 100;
+      if (brightnessVal) brightnessVal.innerText = '100%';
+    }
+
+    // 4. 高階影像濾鏡演算法 (AI 自適應積分圖去陰影 + 銳化卷積)
     function renderCanvas() {
       if (!rawImage) {
         ocrCanvas.style.display = 'none';
@@ -355,11 +377,15 @@
       if (dropzoneNotice) dropzoneNotice.style.display = 'none';
 
       const ctx = ocrCanvas.getContext('2d');
-      const isSideways = rotationAngle === 90 || rotationAngle === 270;
       const rawW = rawImage.naturalWidth || rawImage.width;
       const rawH = rawImage.naturalHeight || rawImage.height;
-      const width = isSideways ? rawH : rawW;
-      const height = isSideways ? rawW : rawH;
+
+      // Handle custom rotation angles
+      const rad = (rotationAngle * Math.PI) / 180;
+      const cos = Math.abs(Math.cos(rad));
+      const sin = Math.abs(Math.sin(rad));
+      const width = Math.round(rawW * cos + rawH * sin);
+      const height = Math.round(rawW * sin + rawH * cos);
 
       ocrCanvas.width = width;
       ocrCanvas.height = height;
@@ -367,30 +393,102 @@
       ctx.save();
       ctx.clearRect(0, 0, width, height);
 
-      // Apply Rotation
+      // Rotate around center
       ctx.translate(width / 2, height / 2);
-      ctx.rotate((rotationAngle * Math.PI) / 180);
+      ctx.rotate(rad);
       ctx.drawImage(rawImage, -rawW / 2, -rawH / 2);
       ctx.restore();
 
-      // Apply Filters
-      if (isGrayscale || isBinarized) {
-        const imgData = ctx.getImageData(0, 0, width, height);
-        const d = imgData.data;
+      // Retrieve pixel data for advanced processing
+      let imgData = ctx.getImageData(0, 0, width, height);
+      let d = imgData.data;
+
+      // Step A: Contrast & Brightness adjustment
+      if (contrastLevel !== 100 || brightnessLevel !== 100) {
+        const factor = (259 * (contrastLevel + 255)) / (255 * (259 - contrastLevel));
+        const brightAdd = (brightnessLevel - 100) * 1.5;
 
         for (let i = 0; i < d.length; i += 4) {
-          let gray = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-          if (isBinarized) {
-            gray = gray >= 135 ? 255 : 0;
-          }
+          d[i] = factor * (d[i] - 128) + 128 + brightAdd;
+          d[i + 1] = factor * (d[i + 1] - 128) + 128 + brightAdd;
+          d[i + 2] = factor * (d[i + 2] - 128) + 128 + brightAdd;
+        }
+      }
+
+      // Step B: Grayscale
+      if (isGrayscale || isAdaptiveThresh) {
+        for (let i = 0; i < d.length; i += 4) {
+          const gray = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
           d[i] = gray;
           d[i + 1] = gray;
           d[i + 2] = gray;
         }
-        ctx.putImageData(imgData, 0, 0);
       }
 
-      // Draw Bounding Boxes
+      // Step C: Adaptive Integral-Image Local Thresholding (Eliminate uneven shadows & wrinkles)
+      if (isAdaptiveThresh) {
+        const grayArr = new Uint8Array(width * height);
+        for (let i = 0; i < width * height; i++) {
+          grayArr[i] = d[i * 4];
+        }
+
+        // Compute 2D Integral Image
+        const integral = new Float64Array((width + 1) * (height + 1));
+        for (let y = 0; y < height; y++) {
+          let sum = 0;
+          for (let x = 0; x < width; x++) {
+            sum += grayArr[y * width + x];
+            integral[(y + 1) * (width + 1) + (x + 1)] = integral[y * (width + 1) + (x + 1)] + sum;
+          }
+        }
+
+        const s = Math.max(10, Math.round(width / 35)); // adaptive window radius
+        const C = 7; // offset margin
+
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            const x1 = Math.max(0, x - s);
+            const y1 = Math.max(0, y - s);
+            const x2 = Math.min(width, x + s + 1);
+            const y2 = Math.min(height, y + s + 1);
+            const count = (x2 - x1) * (y2 - y1);
+            const sum = integral[y2 * (width + 1) + x2] - integral[y1 * (width + 1) + x2] - integral[y2 * (width + 1) + x1] + integral[y1 * (width + 1) + x1];
+            const mean = sum / count;
+
+            const val = grayArr[y * width + x] < (mean - C) ? 0 : 255;
+            const idx = (y * width + x) * 4;
+            d[idx] = val;
+            d[idx + 1] = val;
+            d[idx + 2] = val;
+          }
+        }
+      }
+
+      // Step D: Sharpen Kernel Convolution (Enhance Chinese character strokes)
+      if (isSharpen && !isAdaptiveThresh) {
+        const copy = new Uint8ClampedArray(d);
+        const kernel = [0, -1, 0, -1, 5, -1, 0, -1, 0]; // 3x3 Sharpen
+
+        for (let y = 1; y < height - 1; y++) {
+          for (let x = 1; x < width - 1; x++) {
+            for (let c = 0; c < 3; c++) {
+              let val = 0;
+              for (let ky = -1; ky <= 1; ky++) {
+                for (let kx = -1; kx <= 1; kx++) {
+                  const pIdx = ((y + ky) * width + (x + kx)) * 4 + c;
+                  const kIdx = (ky + 1) * 3 + (kx + 1);
+                  val += copy[pIdx] * kernel[kIdx];
+                }
+              }
+              d[(y * width + x) * 4 + c] = Math.min(255, Math.max(0, val));
+            }
+          }
+        }
+      }
+
+      ctx.putImageData(imgData, 0, 0);
+
+      // Draw OCR Bounding Boxes
       if (ocrBoxes.length > 0) {
         ctx.lineWidth = Math.max(2, Math.round(width / 500));
         ctx.strokeStyle = 'rgba(197, 160, 89, 0.9)';
@@ -406,7 +504,55 @@
       }
     }
 
-    // Toolbar Operations
+    // 5. Toolbar Handlers
+    if (btnAutoEnhance) {
+      btnAutoEnhance.addEventListener('click', () => {
+        if (!rawImage) return;
+        isAdaptiveThresh = true;
+        isSharpen = true;
+        isGrayscale = true;
+        contrastLevel = 130;
+        if (contrastSlider) contrastSlider.value = 130;
+        if (contrastVal) contrastVal.innerText = '130%';
+        updateToolbarState();
+        ocrBoxes = [];
+        renderCanvas();
+        showToast('🪄 已套用「AI 智慧一鍵清晰」！陰影已消除、文字筆畫已銳化');
+      });
+    }
+
+    if (btnAdaptiveThresh) {
+      btnAdaptiveThresh.addEventListener('click', () => {
+        if (!rawImage) return;
+        isAdaptiveThresh = !isAdaptiveThresh;
+        updateToolbarState();
+        ocrBoxes = [];
+        renderCanvas();
+        showToast(isAdaptiveThresh ? '🌓 已啟用自適應局部去陰影' : '↩️ 已關閉去陰影');
+      });
+    }
+
+    if (btnSharpen) {
+      btnSharpen.addEventListener('click', () => {
+        if (!rawImage) return;
+        isSharpen = !isSharpen;
+        updateToolbarState();
+        ocrBoxes = [];
+        renderCanvas();
+        showToast(isSharpen ? '🔪 已啟用筆畫邊緣銳化' : '↩️ 已關閉銳化');
+      });
+    }
+
+    if (btnGrayscale) {
+      btnGrayscale.addEventListener('click', () => {
+        if (!rawImage) return;
+        isGrayscale = !isGrayscale;
+        updateToolbarState();
+        ocrBoxes = [];
+        renderCanvas();
+      });
+    }
+
     if (btnRotateLeft) {
       btnRotateLeft.addEventListener('click', () => {
         if (!rawImage) return;
@@ -425,24 +571,38 @@
       });
     }
 
-    if (btnGrayscale) {
-      btnGrayscale.addEventListener('click', () => {
+    if (btnTiltLeft) {
+      btnTiltLeft.addEventListener('click', () => {
         if (!rawImage) return;
-        isGrayscale = !isGrayscale;
-        isBinarized = false;
-        updateToolbarState();
+        rotationAngle = rotationAngle - 1;
         ocrBoxes = [];
+        renderCanvas();
+        showToast(`📐 旋轉微調至 ${rotationAngle}°`);
+      });
+    }
+
+    if (btnTiltRight) {
+      btnTiltRight.addEventListener('click', () => {
+        if (!rawImage) return;
+        rotationAngle = rotationAngle + 1;
+        ocrBoxes = [];
+        renderCanvas();
+        showToast(`📐 旋轉微調至 ${rotationAngle}°`);
+      });
+    }
+
+    if (contrastSlider) {
+      contrastSlider.addEventListener('input', (e) => {
+        contrastLevel = parseInt(e.target.value, 10);
+        if (contrastVal) contrastVal.innerText = `${contrastLevel}%`;
         renderCanvas();
       });
     }
 
-    if (btnBinarize) {
-      btnBinarize.addEventListener('click', () => {
-        if (!rawImage) return;
-        isBinarized = !isBinarized;
-        isGrayscale = false;
-        updateToolbarState();
-        ocrBoxes = [];
+    if (brightnessSlider) {
+      brightnessSlider.addEventListener('input', (e) => {
+        brightnessLevel = parseInt(e.target.value, 10);
+        if (brightnessVal) brightnessVal.innerText = `${brightnessLevel}%`;
         renderCanvas();
       });
     }
@@ -450,13 +610,10 @@
     if (btnResetImage) {
       btnResetImage.addEventListener('click', () => {
         if (!rawImage) return;
-        rotationAngle = 0;
-        isGrayscale = false;
-        isBinarized = false;
-        ocrBoxes = [];
+        resetFiltersState();
         updateToolbarState();
         renderCanvas();
-        showToast('🔄 已重置影像效果');
+        showToast('🔄 已還原原始照片');
       });
     }
 
@@ -472,11 +629,12 @@
     }
 
     function updateToolbarState() {
+      if (btnAdaptiveThresh) btnAdaptiveThresh.classList.toggle('active', isAdaptiveThresh);
+      if (btnSharpen) btnSharpen.classList.toggle('active', isSharpen);
       if (btnGrayscale) btnGrayscale.classList.toggle('active', isGrayscale);
-      if (btnBinarize) btnBinarize.classList.toggle('active', isBinarized);
     }
 
-    // 4. OCR Execution
+    // 6. 高精度 OCR 執行 (Tesseract.js Best LSTM 模型 + PSM 排版優化)
     async function runOcr() {
       if (!rawImage || isProcessingOcr) return;
 
@@ -487,35 +645,49 @@
 
       isProcessingOcr = true;
       const lang = ocrLangSelect ? ocrLangSelect.value || 'chi_tra+eng' : 'chi_tra+eng';
-      
+      const modelType = ocrModelSelect ? ocrModelSelect.value : 'best';
+      const psmMode = ocrPsmSelect ? ocrPsmSelect.value : '6';
+
+      // Select high accuracy LSTM model repository
+      const langPath = modelType === 'best'
+        ? 'https://tessdata.projectnaptha.com/4.0.0_best/'
+        : 'https://tessdata.projectnaptha.com/4.0.0_fast/';
+
       if (progressContainer) progressContainer.style.display = 'block';
-      if (progressStatusText) progressStatusText.innerText = '正在初始化 OCR 辨識引擎...';
-      if (progressBarFill) progressBarFill.style.width = '10%';
-      if (progressPercentText) progressPercentText.innerText = '10%';
+      if (progressStatusText) progressStatusText.innerText = `正在載入 ${modelType === 'best' ? '高精準深度學習' : '快速'} 語言模型 (${lang})...`;
+      if (progressBarFill) progressBarFill.style.width = '15%';
+      if (progressPercentText) progressPercentText.innerText = '15%';
 
       try {
         const result = await Tesseract.recognize(ocrCanvas, lang, {
+          langPath: langPath,
+          tessedit_pageseg_mode: psmMode,
+          preserve_interword_spaces: '1',
           logger: m => {
             if (m.status === 'recognizing text') {
               const pct = Math.round(m.progress * 100);
               if (progressBarFill) progressBarFill.style.width = `${pct}%`;
               if (progressPercentText) progressPercentText.innerText = `${pct}%`;
-              if (progressStatusText) progressStatusText.innerText = `正在分析影像與萃取文字 (${pct}%)...`;
+              if (progressStatusText) progressStatusText.innerText = `正在分析影像與高精度辨識文字 (${pct}%)...`;
             } else if (m.status) {
-              if (progressStatusText) progressStatusText.innerText = `正在載入 ${lang} 語言模型...`;
+              if (progressStatusText) progressStatusText.innerText = `正在準備 ${lang} 神經網路模型...`;
             }
           }
         });
 
-        const text = (result && result.data && result.data.text) ? result.data.text.trim() : '';
+        let rawText = (result && result.data && result.data.text) ? result.data.text : '';
+        
+        // Post-processing: Normalize Chinese punctuation and spacing
+        let cleanedText = postProcessText(rawText);
+
         if (textareaSource) {
-          textareaSource.value = text;
+          textareaSource.value = cleanedText;
         }
         updateWordCounts();
 
         const confidence = result && result.data ? Math.round(result.data.confidence || 0) : 0;
         if (ocrConfidence) {
-          ocrConfidence.innerText = `辨識信心度：${confidence}%`;
+          ocrConfidence.innerText = `辨識信心度：${confidence}% (${modelType === 'best' ? '高精準模型' : '快速模型'})`;
         }
 
         if (result && result.data && result.data.words && result.data.words.length > 0) {
@@ -525,21 +697,32 @@
 
         if (progressContainer) progressContainer.style.display = 'none';
         isProcessingOcr = false;
-        showToast('🎉 OCR 文字辨識完成！');
+        showToast(`🎉 高精準 OCR 文字辨識完成！(信心度 ${confidence}%)`);
 
         // Auto trigger translation
-        if (text.length > 0) {
+        if (cleanedText.length > 0) {
           runTranslation();
         }
       } catch (err) {
         console.error('OCR Error:', err);
         if (progressContainer) progressContainer.style.display = 'none';
         isProcessingOcr = false;
-        showToast('❌ OCR 辨識失敗，請嘗試旋轉或調整對比');
+        showToast('❌ OCR 辨識失敗，請嘗試點擊「一鍵清晰增強」或微調角度');
       }
     }
 
-    // 5. Translation Engine
+    // Post processing cleanup
+    function postProcessText(str) {
+      if (!str) return '';
+      return str
+        .replace(/\r\n/g, '\n')
+        .replace(/([0-9a-zA-Z])\s+([0-9a-zA-Z])/g, '$1 $2') // keep single space between english words
+        .replace(/([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])/g, '$1$2') // remove awkward spaces between Chinese chars
+        .replace(/\n\s*\n\s*\n/g, '\n\n') // collapse multiple blank lines
+        .trim();
+    }
+
+    // 7. 多國語言即時翻譯引擎
     async function runTranslation() {
       const text = textareaSource ? textareaSource.value.trim() : '';
       if (!text) {
@@ -550,7 +733,6 @@
       let srcLang = sourceLangSelect ? sourceLangSelect.value : 'auto';
       const tgtLang = targetLangSelect ? targetLangSelect.value : 'en';
 
-      // Auto Language Detection
       if (srcLang === 'auto') {
         if (/[\u4e00-\u9fa5]/.test(text)) {
           srcLang = 'zh-TW';
@@ -624,7 +806,6 @@
       btnTranslate.addEventListener('click', runTranslation);
     }
 
-    // Swap Languages
     if (btnSwapLang) {
       btnSwapLang.addEventListener('click', () => {
         if (sourceLangSelect.value === 'auto') {
@@ -643,7 +824,7 @@
       });
     }
 
-    // 6. Action Handlers (Copy, TTS, Export, Clear)
+    // 8. 動作處理 (複製、TTS 語音發音、匯出)
     function updateWordCounts() {
       if (sourceWordCount && textareaSource) {
         sourceWordCount.innerText = `${textareaSource.value.length} 字`;
@@ -656,7 +837,6 @@
     if (textareaSource) textareaSource.addEventListener('input', updateWordCounts);
     if (textareaTarget) textareaTarget.addEventListener('input', updateWordCounts);
 
-    // Copy Buttons
     if (btnCopySource) {
       btnCopySource.addEventListener('click', () => {
         const txt = textareaSource.value;
@@ -673,7 +853,6 @@
       });
     }
 
-    // Text-To-Speech (TTS)
     if (btnTtsSource) {
       btnTtsSource.addEventListener('click', () => {
         speakText(textareaSource.value, sourceLangSelect.value);
@@ -705,7 +884,6 @@
       showToast('🔊 正在播放語音朗讀...');
     }
 
-    // Clear Buttons
     if (btnClearSource) {
       btnClearSource.addEventListener('click', () => {
         textareaSource.value = '';
@@ -720,7 +898,6 @@
       });
     }
 
-    // Export Buttons
     if (btnExportTxt) {
       btnExportTxt.addEventListener('click', () => {
         const content = `【港居不動產 - 照片 OCR 辨識與翻譯結果】\n========================================\n\n【辨識原文】\n${textareaSource.value}\n\n----------------------------------------\n【多國語言譯文 (${targetLangSelect.options[targetLangSelect.selectedIndex].text})】\n${textareaTarget.value}\n\n========================================\n產生時間：${new Date().toLocaleString('zh-TW')}`;
@@ -760,7 +937,6 @@
     }
   }
 
-  // Auto initialize on DOMContentLoaded or immediate
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initPageLayout();

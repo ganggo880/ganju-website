@@ -161,24 +161,38 @@
 
             <!-- Image Enhancement Toolbar -->
             <div class="image-toolbar">
-              <div class="toolbar-group">
-                <button type="button" id="btn-rotate-left" class="tool-btn" title="逆時針旋轉 90 度">
-                  <i class="fa-solid fa-rotate-left"></i> 向左轉
-                </button>
-                <button type="button" id="btn-rotate-right" class="tool-btn" title="順時針旋轉 90 度">
-                  <i class="fa-solid fa-rotate-right"></i> 向右轉
-                </button>
-                <button type="button" id="btn-grayscale" class="tool-btn" title="轉換黑白灰階以提升辨識度">
-                  <i class="fa-solid fa-circle-half-stroke"></i> 黑白灰階
-                </button>
-                <button type="button" id="btn-binarize" class="tool-btn" title="二值化高對比處理">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> 銳利對比
-                </button>
+              <div class="toolbar-row">
+                <div class="toolbar-group">
+                  <button type="button" id="btn-auto-enhance" class="tool-btn tool-btn-primary" title="一鍵 AI 智慧去陰影與邊緣清晰化">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> 一鍵清晰增強
+                  </button>
+                  <button type="button" id="btn-adaptive-thresh" class="tool-btn" title="消除拍照產生的局部陰影與不均勻反光">
+                    <i class="fa-solid fa-circle-half-stroke"></i> 局部去陰影
+                  </button>
+                  <button type="button" id="btn-sharpen" class="tool-btn" title="增強中文字筆畫邊緣">
+                    <i class="fa-solid fa-pen-nib"></i> 筆畫銳化
+                  </button>
+                  <button type="button" id="btn-grayscale" class="tool-btn" title="黑白灰階">
+                    <i class="fa-solid fa-palette"></i> 灰階
+                  </button>
+                </div>
+                <div class="toolbar-group">
+                  <button type="button" id="btn-rotate-left" class="tool-btn" title="逆時針 90 度"><i class="fa-solid fa-rotate-left"></i></button>
+                  <button type="button" id="btn-tilt-left" class="tool-btn" title="微調 -1 度"><small>-1°</small></button>
+                  <button type="button" id="btn-tilt-right" class="tool-btn" title="微調 +1 度"><small>+1°</small></button>
+                  <button type="button" id="btn-rotate-right" class="tool-btn" title="順時針 90 度"><i class="fa-solid fa-rotate-right"></i></button>
+                  <button type="button" id="btn-reset-image" class="tool-btn" title="還原原始照片"><i class="fa-solid fa-arrow-rotate-left"></i> 重置</button>
+                </div>
               </div>
-              <div class="toolbar-group">
-                <button type="button" id="btn-reset-image" class="tool-btn" title="還原原始照片">
-                  <i class="fa-solid fa-arrow-rotate-left"></i> 重置影像
-                </button>
+              <div class="toolbar-slider-group">
+                <div class="slider-item">
+                  <span>對比度：<b id="contrast-val">100%</b></span>
+                  <input type="range" id="contrast-slider" min="50" max="250" value="100">
+                </div>
+                <div class="slider-item">
+                  <span>亮度：<b id="brightness-val">100%</b></span>
+                  <input type="range" id="brightness-slider" min="50" max="200" value="100">
+                </div>
               </div>
             </div>
 
@@ -191,12 +205,12 @@
               <canvas id="ocr-canvas" class="ocr-canvas" style="display: none;"></canvas>
             </div>
 
-            <!-- OCR Language Selection & Recognition Button -->
-            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-              <div style="flex: 1; min-width: 180px;">
-                <label for="ocr-lang-select" style="font-size: 0.82rem; font-weight: 700; color: var(--color-text-muted); display: block; margin-bottom: 4px;">OCR 辨識語系：</label>
+            <!-- OCR Advanced Options Grid -->
+            <div class="ocr-options-grid">
+              <div class="option-field">
+                <label for="ocr-lang-select">辨識語言語系：</label>
                 <select id="ocr-lang-select" class="form-control">
-                  <option value="chi_tra+eng" selected>繁體中文 + 英文 (預設推薦)</option>
+                  <option value="chi_tra+eng" selected>繁體中文 + 英文 (推薦)</option>
                   <option value="chi_tra">純繁體中文 (Traditional Chinese)</option>
                   <option value="eng">純英文 (English)</option>
                   <option value="chi_sim">簡體中文 (Simplified Chinese)</option>
@@ -205,10 +219,28 @@
                   <option value="vie">越南文 (Vietnamese)</option>
                 </select>
               </div>
-              <button type="button" id="btn-start-ocr" class="btn btn-gold" style="align-self: flex-end; min-height: 44px; padding: 10px 24px;">
-                <i class="fa-solid fa-bolt"></i> 開始 OCR 文字辨識
-              </button>
+              <div class="option-field">
+                <label for="ocr-model-select">神經網路模型：</label>
+                <select id="ocr-model-select" class="form-control">
+                  <option value="best" selected>🚀 高精準深度學習模型 (推薦)</option>
+                  <option value="fast">⚡ 標準快速模型 (Fast)</option>
+                </select>
+              </div>
+              <div class="option-field">
+                <label for="ocr-psm-select">排版偵測模式：</label>
+                <select id="ocr-psm-select" class="form-control">
+                  <option value="6" selected>📑 單一區塊 / 合約公文 (最精準)</option>
+                  <option value="3">📄 自動全頁排版偵測</option>
+                  <option value="4">📑 單欄多行文字</option>
+                  <option value="7">🪧 單行文字 / 招牌標題</option>
+                  <option value="11">🔤 零散文字 / 浮水印</option>
+                </select>
+              </div>
             </div>
+
+            <button type="button" id="btn-start-ocr" class="btn btn-gold" style="width: 100%; min-height: 48px; font-size: 1.05rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <i class="fa-solid fa-bolt"></i> 執行高精準 OCR 文字辨識
+            </button>
 
             <!-- Progress Bar -->
             <div class="ocr-progress-container" id="progress-container">
