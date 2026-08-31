@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>港居不動產｜照片 OCR 文字辨識與多國語言翻譯神器 (合約/證件/看板文字辨識)</title>
+  <meta name="description" content="港居不動產開發有限公司專屬線上照片 OCR 文字辨識與多國語言即時翻譯工具。純前端本機運算、隱私安全無虞，支援繁體中文、英文、日文、韓文等文字萃取與語音朗讀。">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/ocr-translator.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="港居不動產｜照片 OCR 文字辨識與多國語言翻譯神器">
+  <meta property="og:description" content="照片放上去自動辨識文字與多國語言即時翻譯，支援合約、招租看板、名片與證件文字萃取。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/ocr-translator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/ocr-translator.css">
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居照片 OCR 文字辨識與翻譯神器",
+    "url": "https://ganggo880.github.io/ganju-website/ocr-translator.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas & WebAssembly.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "專為不動產合約、招租公告、證件名片提供瀏覽器本機純前端 OCR 光學文字辨識與多國語言即時翻譯。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body class="ganju-theme">
+  <div class="app-container">
+    <!-- 1. 頂部宣告條 Top Bar -->
+    <div class="top-bar">
+      <div class="container top-bar-inner">
+        <div class="top-bar-badges">
+          <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 特許包租代管業者</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 營業員證號：(108) 登字第354198號</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+        </div>
+        <div class="top-bar-contact">
+          <span>統編：96797997</span>
+          <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 主導覽列 Navbar -->
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+          <img src="assets/logo.png" alt="港居不動產 LOGO">
+          <div class="brand-text-box">
+            <h1 class="brand-title">港居不動產</h1>
+            <p class="brand-sub">GANJU REAL ESTATE</p>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html#home" class="nav-link">首頁</a></li>
+          <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+          <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+          <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+          <li class="nav-dropdown">
+            <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+            </button>
+            <ul class="nav-dropdown-menu">
+              <li><a href="ocr-translator.html" class="nav-link active"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+              <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+              <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+              <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+              <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+              <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+              <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+              <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        </ul>
+
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+            <i class="fa-solid fa-sun icon-sun"></i>
+            <i class="fa-solid fa-moon icon-moon"></i>
+          </button>
+          <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="開啟選單"><i class="fa-solid fa-bars"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 背景光暈 Glows -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <!-- 3. 主內容區 Section -->
+    <main class="ocr-page-main">
+      <div class="container">
+
+        <!-- Banner Header -->
+        <div class="ocr-header-banner">
+          <div class="ocr-header-badge">
+            <i class="fa-solid fa-language"></i> 智能 OCR 光學文字辨識 & 多國語言翻譯
+          </div>
+          <h2 class="ocr-header-title">照片 OCR 文字辨識與翻譯神器</h2>
+          <p class="ocr-header-desc">照片放上去直接萃取合約/看板/名片文字，純本機高隱私辨識，一鍵即時翻譯與語音朗讀</p>
+        </div>
+
+        <!-- Tool Workspace Layout -->
+        <div class="ocr-workspace">
+
+          <!-- Left Panel: Image Canvas & Tools -->
+          <div class="ocr-panel">
+            <div class="panel-header-title">
+              <span><i class="fa-solid fa-image"></i> 照片載入與影像增強</span>
+              <div class="sample-bar">
+                <span>快速測試範例：</span>
+                <button type="button" class="sample-chip" data-sample="contract">租賃合約</button>
+                <button type="button" class="sample-chip" data-sample="card">名片資訊</button>
+                <button type="button" class="sample-chip" data-sample="notice">招租公告</button>
+              </div>
+            </div>
+
+            <!-- Upload Dropzone -->
+            <div id="dropzone" class="ocr-dropzone">
+              <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/bmp,image/heic" hidden>
+              <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+              <h3 class="dropzone-title">點擊、拖曳照片至此，或直接按 Ctrl+V 貼上截圖</h3>
+              <p class="dropzone-subtitle">支援 JPG、PNG、WEBP、BMP 格式，檔案保留在您的瀏覽器本機運算</p>
+            </div>
+
+            <!-- Image Enhancement Toolbar -->
+            <div class="image-toolbar">
+              <div class="toolbar-group">
+                <button type="button" id="btn-rotate-left" class="tool-btn" title="逆時針旋轉 90 度">
+                  <i class="fa-solid fa-rotate-left"></i> 向左轉
+                </button>
+                <button type="button" id="btn-rotate-right" class="tool-btn" title="順時針旋轉 90 度">
+                  <i class="fa-solid fa-rotate-right"></i> 向右轉
+                </button>
+                <button type="button" id="btn-grayscale" class="tool-btn" title="轉換黑白灰階以提升辨識度">
+                  <i class="fa-solid fa-circle-half-stroke"></i> 黑白灰階
+                </button>
+                <button type="button" id="btn-binarize" class="tool-btn" title="二值化高對比處理">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> 銳利對比
+                </button>
+              </div>
+              <div class="toolbar-group">
+                <button type="button" id="btn-reset-image" class="tool-btn" title="還原原始照片">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> 重置影像
+                </button>
+              </div>
+            </div>
+
+            <!-- Canvas Viewport -->
+            <div class="canvas-viewport" id="canvas-viewport">
+              <div id="dropzone-notice" style="color: #94A3B8; text-align: center;">
+                <i class="fa-solid fa-camera-viewfinder" style="font-size: 3rem; margin-bottom: 10px; display: block; color: var(--color-gold);"></i>
+                <p style="font-size: 0.95rem; font-weight: 600;">上傳照片後，此處將即時顯示影像與文字識別框線</p>
+              </div>
+              <canvas id="ocr-canvas" class="ocr-canvas" style="display: none;"></canvas>
+            </div>
+
+            <!-- OCR Language Selection & Recognition Button -->
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 180px;">
+                <label for="ocr-lang-select" style="font-size: 0.82rem; font-weight: 700; color: var(--color-text-muted); display: block; margin-bottom: 4px;">OCR 辨識語系：</label>
+                <select id="ocr-lang-select" class="form-control">
+                  <option value="chi_tra+eng" selected>繁體中文 + 英文 (預設推薦)</option>
+                  <option value="chi_tra">純繁體中文 (Traditional Chinese)</option>
+                  <option value="eng">純英文 (English)</option>
+                  <option value="chi_sim">簡體中文 (Simplified Chinese)</option>
+                  <option value="jpn">日文 (Japanese)</option>
+                  <option value="kor">韓文 (Korean)</option>
+                  <option value="vie">越南文 (Vietnamese)</option>
+                </select>
+              </div>
+              <button type="button" id="btn-start-ocr" class="btn btn-gold" style="align-self: flex-end; min-height: 44px; padding: 10px 24px;">
+                <i class="fa-solid fa-bolt"></i> 開始 OCR 文字辨識
+              </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="ocr-progress-container" id="progress-container">
+              <div class="progress-header">
+                <span id="progress-status-text">正在載入 OCR 辨識模組...</span>
+                <span id="progress-percent-text">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar-fill"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Panel: OCR Text & Translation Output -->
+          <div class="ocr-panel">
+            
+            <!-- Source Text Box -->
+            <div class="ocr-result-box">
+              <div class="result-card-header">
+                <div class="result-card-title">
+                  <i class="fa-solid fa-file-lines"></i> OCR 辨識結果原文
+                  <span id="ocr-confidence" style="font-size: 0.78rem; font-weight: 600; color: var(--color-gold-dark); background: var(--bg-gold-light); padding: 2px 8px; border-radius: 4px;">辨識信心度：--</span>
+                </div>
+                <div class="result-actions">
+                  <span id="source-word-count" style="font-size: 0.8rem; color: var(--color-text-muted); margin-right: 4px;">0 字</span>
+                  <button type="button" id="btn-tts-source" class="action-icon-btn" title="語音朗讀原文 (TTS)" aria-label="語音朗讀原文">
+                    <i class="fa-solid fa-volume-high"></i>
+                  </button>
+                  <button type="button" id="btn-copy-source" class="action-icon-btn" title="複製原文至剪貼簿" aria-label="複製原文">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                  <button type="button" id="btn-clear-source" class="action-icon-btn" title="清除原文" aria-label="清除原文">
+                    <i class="fa-regular fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+              <textarea id="textarea-source" class="ocr-textarea" placeholder="上傳照片後，OCR 自動萃取的文字將顯示在此處。您亦可直接手動編輯或貼上文字..."></textarea>
+            </div>
+
+            <!-- Translation Control Bar -->
+            <div class="translate-bar">
+              <div class="lang-select-group">
+                <label for="source-lang-select" class="sr-only">來源語言</label>
+                <select id="source-lang-select" class="lang-select">
+                  <option value="auto">自動偵測語系</option>
+                  <option value="zh-TW" selected>繁體中文</option>
+                  <option value="en">英文 (English)</option>
+                  <option value="ja">日文 (日本語)</option>
+                  <option value="ko">韓文 (한국어)</option>
+                  <option value="zh-CN">簡體中文</option>
+                  <option value="vi">越南文 (Tiếng Việt)</option>
+                </select>
+              </div>
+
+              <button type="button" id="btn-swap-lang" class="swap-lang-btn" title="雙向對調語言與文字" aria-label="對調語言">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+              </button>
+
+              <div class="lang-select-group">
+                <label for="target-lang-select" class="sr-only">目標語言</label>
+                <select id="target-lang-select" class="lang-select">
+                  <option value="en" selected>英文 (English)</option>
+                  <option value="zh-TW">繁體中文</option>
+                  <option value="ja">日文 (日本語)</option>
+                  <option value="ko">韓文 (한국어)</option>
+                  <option value="vi">越南文 (Tiếng Việt)</option>
+                  <option value="zh-CN">簡體中文</option>
+                  <option value="es">西班牙文 (Español)</option>
+                  <option value="fr">法文 (Français)</option>
+                  <option value="de">德文 (Deutsch)</option>
+                </select>
+              </div>
+
+              <button type="button" id="btn-translate" class="btn btn-gold" style="min-height: 40px; padding: 8px 18px;">
+                <i class="fa-solid fa-language"></i> 立即翻譯
+              </button>
+            </div>
+
+            <!-- Target Translation Box -->
+            <div class="ocr-result-box">
+              <div class="result-card-header">
+                <div class="result-card-title">
+                  <i class="fa-solid fa-earth-americas"></i> 多國語言即時譯文
+                </div>
+                <div class="result-actions">
+                  <span id="target-word-count" style="font-size: 0.8rem; color: var(--color-text-muted); margin-right: 4px;">0 字</span>
+                  <button type="button" id="btn-tts-target" class="action-icon-btn" title="語音朗讀譯文 (TTS)" aria-label="語音朗讀譯文">
+                    <i class="fa-solid fa-volume-high"></i>
+                  </button>
+                  <button type="button" id="btn-copy-target" class="action-icon-btn" title="複製譯文至剪貼簿" aria-label="複製譯文">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                  <button type="button" id="btnClearTarget" class="action-icon-btn" title="清除譯文" aria-label="清除譯文">
+                    <i class="fa-regular fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+              <textarea id="textarea-target" class="ocr-textarea" placeholder="點擊「立即翻譯」後，多國語言翻譯成果將即時呈現在此處..."></textarea>
+            </div>
+
+            <!-- Export & Utility Buttons -->
+            <div class="export-bar">
+              <button type="button" id="btn-export-txt" class="btn btn-outline" style="color: var(--color-navy-dark); border-color: var(--border-color);">
+                <i class="fa-solid fa-file-lines"></i> 匯出 TXT 檔案
+              </button>
+              <button type="button" id="btn-export-md" class="btn btn-outline" style="color: var(--color-navy-dark); border-color: var(--border-color);">
+                <i class="fa-brands fa-markdown"></i> 匯出 Markdown 筆記
+              </button>
+              <button type="button" id="btn-google-translate" class="btn btn-outline" style="color: var(--color-navy-dark); border-color: var(--border-color);" title="以 Google 翻譯開啟">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Google 翻譯對照
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- 4. 頁尾 Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4 style="display: flex; align-items: center; gap: 10px;">
+              <img src="assets/logo.png" alt="港居" style="height: 36px;">
+              港居不動產開發有限公司
+            </h4>
+            <p>特許經營包租代管服務，專注高質感住宅資產護全與穩定收益增值。</p>
+            <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+            <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+          </div>
+
+          <div class="footer-col">
+            <h4>服務項目</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+              <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+              <li><a href="index.html#about">法拍屋代標服務</a></li>
+              <li><a href="index.html#about">高品質房屋買賣</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>特許證號背書</h4>
+            <ul class="footer-links">
+              <li>營業員證號：(108) 登字第354198號</li>
+              <li>租賃管理證號：(112) 登字第013739號</li>
+              <li>經理人：陳俊銘 經理</li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>立即與專員聯繫</h4>
+            <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+            <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+            <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+            <a href="https://lin.ee/NVFhBDE" target="_blank" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+              <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 懸浮 Line 與電話按鈕 -->
+    <div class="floating-actions">
+      <a href="https://lin.ee/NVFhBDE" target="_blank" class="float-btn float-btn-line" title="Line 專員一對一諮詢" aria-label="Line 專員一對一諮詢">
+        <i class="fa-brands fa-line"></i>
+      </a>
+      <a href="tel:0968863880" class="float-btn float-btn-phone" title="致電 陳俊銘 經理" aria-label="致電 陳俊銘 經理">
+        <i class="fa-solid fa-phone"></i>
+      </a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- JavaScript file -->
+  <script type="module" src="js/ocr-translator.js"></script>
+</body>
+</html>

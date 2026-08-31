@@ -82,6 +82,7 @@
 | `image-converter.html` | JPG, PNG, WEBP, GIF, SVG, BMP 六大格式雙向互轉、最多 20 張、大/中/小/原圖尺寸調控與 ZIP 打包 | `WebApplication` (MultimediaApplication) |
 | `card-merger.html` | 名片正反面/上下對齊拼貼合成、留白與背景色控制、高畫質 JPG 匯出 | `WebApplication` (GraphicsApplication) |
 | `photo-time-location.html` | 照片時間與地點浮水印（EXIF 時間/GPS 解析、自訂時間地點、三樣式五位置合成、ZIP 打包） | `WebApplication` (MultimediaApplication) |
+| `ocr-translator.html` | 照片 OCR 文字辨識與多國語言即時翻譯神器（Tesseract.js 本地辨識、旋轉/灰階/對比影像增強、語音朗讀、TXT/MD 匯出） | `WebApplication` (UtilitiesApplication) |
 
 > ℹ️ `photo-watermark.html` 與 `id-card-watermark.html` 是刻意設計的**全螢幕常駐深色工作台**，
 > 沒有全站頁尾、也沒有深淺模式切換鈕，這是設計決定而非缺漏，請勿「順手補上」。
@@ -94,6 +95,6 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-08-21 17:15
+- 時間：2026-08-31 23:59
 - 更新者：Antigravity Agent @ KEN-PC
-- 狀態：交接至另一個帳號接續執行
+- 狀態：第 9 個線上工具 `ocr-translator.html` 開發完成並完成全站導覽列下拉選單整合

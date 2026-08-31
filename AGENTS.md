@@ -56,6 +56,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── image-converter.html             # 6. 圖像格式與尺寸轉換神器
 ├── card-merger.html                 # 7. 名片正反面／上下合成神器
 ├── photo-time-location.html         # 8. 照片時間與地點浮水印工具
+├── ocr-translator.html              # 9. 照片 OCR 文字辨識與翻譯神器
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
 ├── script.js / rent-calc.js
@@ -66,6 +67,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 全站共用組件的 RWD @media 一律寫在這裡
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
+│   ├── ocr-translator.css           # 照片 OCR 文字辨識與翻譯專屬樣式
 │   ├── converter.css                # 檔案轉換工具專屬樣式
 │   ├── card-merger.css              # 名片合成工具樣式
 │   ├── image-converter.css          # 圖像格式轉換工具樣式
