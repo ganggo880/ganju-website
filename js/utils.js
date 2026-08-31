@@ -1,6 +1,21 @@
 // 港居不動產 公用工具函式 (Shared Utilities)
 
 /**
+ * 轉義 HTML 特殊字元以防禦 XSS 跨站腳本攻擊
+ * @param {string} str
+ * @returns {string}
+ */
+export function escapeHTML(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/**
  * 格式化數字加上千分位點逗號
  * @param {number|string} num 
  * @returns {string}
