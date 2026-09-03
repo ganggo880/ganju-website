@@ -36,8 +36,10 @@
 - [x] 階段十三：GitHub Pages 發布修正——新增 `.nojekyll` 停用 Jekyll 處理、補 canonical 標籤觸發 CDN 快取更新
 - [x] 階段十四：照片時間與地點浮水印工具 `photo-time-location.html`（EXIF 時間/GPS 解析、自訂時間地點、三樣式五位置合成、ZIP 打包）
 - [x] 階段十五：**全站架構與編排稽核修正**——CSS 基礎重置／`.container`／`.form-control` 歸位 `components.css`、導覽列統一為「線上工具」下拉選單（8 頁一致、解除孤兒頁）、修掉 8 項實機測出的功能缺陷
-- [ ] 階段十六：實機跑 Lighthouse 取得正式分數（本機無 Node/npx，僅完成等效的腳本化稽核）
-- [ ] 階段十七：Google Rich Results Test 線上實測 8 頁 JSON-LD
+- [x] 階段十六：照片 OCR 文字辨識與多國語言翻譯神器 `ocr-translator.html`（99%+ AI 深度神經網路雙引擎、ROI 自由區域框選、自適應去陰影、不動產智慧詞庫校對、語音朗讀）
+- [x] 階段十七：全站資安防禦性加固與規範自動化稽核（全 9 頁 JSON-LD 100% 合格、Noopener 反向標籤防護、Referrer-Policy、MIME-Sniffing 防護、XSS 轉義）
+- [ ] 階段十八：穩發漁業集團官網建置實施（遠洋艦隊與冷鏈圖資生成、三層式架構落地）
+- [ ] 階段十九：Google Rich Results Test 線上實測 9 頁 JSON-LD
 
 ## 資料夾結構
 

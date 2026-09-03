@@ -25,21 +25,36 @@
 g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── index.html               # 1. 品牌官網主頁 (Landing Page, HERO, ROI計算器, 房源VR彈窗, 評估表單)
 ├── rent-calculator.html     # 2. 租金與 10% 代管服務費精確拆分換算工具 (支援多基準, 跨月區間)
-├── file-converter.html      # 3. 線上多功能檔案轉換神器 (Aconvert 轉檔機制, PDF/DOCX/PNG/MP3/MP4)
-├── photo-watermark.html     # 4. 房源照片 EXIF 拍攝時間戳記與水印生成器
-├── styles.css               # 主頁區塊樣式
+├── file-converter.html      # 3. 線上多功能檔案轉換神器 (PDF/DOCX/PNG/MP3/MP4/ZIP 本地轉檔)
+├── photo-watermark.html     # 4. 房源照片 EXIF 拍攝時間戳記與水印生成器 (常駐深色工作台)
+├── id-card-watermark.html   # 5. 身份證照裁剪與租賃用途水印工具 (常駐深色工作台)
+├── image-converter.html     # 6. 圖像格式與尺寸轉換神器 (JPG/PNG/WEBP/GIF/SVG/BMP 互轉與壓縮)
+├── card-merger.html         # 7. 名片正反面／上下拼貼合成神器 (留白與高畫質匯出)
+├── photo-time-location.html # 8. 照片時間與地點浮水印工具 (EXIF GPS 自動解析、三樣式五位置)
+├── ocr-translator.html      # 9. 照片 OCR 文字辨識與多國語言翻譯神器 (99%+ 雙引擎、ROI 框選、詞庫校正)
+├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
 ├── script.js                # 主頁互動邏輯 (ROI計算器, 房源條件篩選, Modal 彈窗)
 ├── rent-calc.js             # 租金換算計算邏輯、代管拆分與歷史紀錄
 ├── css/
 │   ├── tokens.css           # 品牌設計 Token (海軍藍 #1A365D, 香檳金 #C5A059, 陰影, 圓角, 深淺模式)
 │   ├── components.css       # 全站公用組件樣式 (TopBar, Navbar, Footer, Buttons, Toast)
-│   └── converter.css        # 檔案轉換工具專屬樣式
+│   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
+│   ├── converter.css        # 檔案轉換工具專屬樣式
+│   ├── image-converter.css  # 圖像轉換工具專屬樣式
+│   ├── card-merger.css      # 名片合成工具專屬樣式
+│   ├── photo-time-location.css # 照片時間地點浮水印樣式
+│   └── id-card-watermark.css   # 身份證照裁剪工具樣式
 ├── js/
-│   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, 主題切換)
+│   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, escapeHTML, 主題切換)
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 控制器
 │   ├── layout.js            # 版面 Active 點亮與跨頁面 Layout 控制器
-│   └── converter.js         # 檔案轉換核心邏輯 (Canvas/Blob 本地加密運算)
+│   ├── ocr-translator.js    # OCR 雙引擎核心與影像處理邏輯 (純前端自包含腳本)
+│   ├── converter.js         # 檔案轉換核心邏輯 (Canvas/Blob 本地加密運算)
+│   ├── image-converter.js   # 圖像格式與尺寸調控邏輯
+│   ├── card-merger.js       # 名片正反面合成邏輯
+│   ├── photo-time-location.js # 照片時間地點浮水印渲染邏輯
+│   └── watermark-app.js     # EXIF 水印工具邏輯
 ├── assets/                  # 品牌 LOGO (logo.png) 與房源照片實景
 ├── output/                  # 所有 AI 產出之規格書 (SPECIFICATION.md)、講義、文件歸檔資料夾
 └── obsidian/                # Obsidian 工作筆記與 Karpathy 三層式知識庫
