@@ -6,7 +6,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <title>港居不動產｜高雄高質感住宅包租代管首選・屋況免改裝直上</title>
-  <meta name="description" content="港居不動產開發有限公司專注高雄高質感住宅包租與代管服務。提供屋主免改裝直上、嚴審優質租客、原狀還原保障與零空置穩定收益。特許登記證號：(108)登字第354198號、(112)登字第013739號。">
+  <meta name="description" content="港居不動產開發有限公司專注高雄高質感住宅包租與代管服務。提供屋主免改裝直上、嚴審優質租客、原狀還原保障與零空置穩定收益。租賃住宅管理人員證號：(112)登字第013739號。">
   
   <link rel="canonical" href="https://ganggo880.github.io/ganju-website/">
   <meta name="theme-color" content="#1A365D">
@@ -60,8 +60,8 @@
       "email": "ganggo880@gmail.com",
       "availableLanguage": ["zh-Hant"]
     }],
-    "sameAs": ["https://lin.ee/NVFhBDE"],
-    "description": "港居不動產專注高雄高質感住宅包租與代管服務，特許登記證號：(108)登字第354198號、(112)登字第013739號。"
+    "sameAs": ["https://lin.ee/Q71pw2I"],
+    "description": "港居不動產專注高雄高質感住宅包租與代管服務，租賃住宅管理人員證號：(112)登字第013739號。"
   }
   </script>
 
@@ -74,7 +74,6 @@
     <div class="container">
       <div class="top-bar-badges">
         <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 特許包租代管業者</span>
-        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 營業員證號：(108) 登字第354198號</span>
         <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
       </div>
       <div class="top-bar-contact">
@@ -301,78 +300,16 @@
         <p class="section-desc">每一間房源皆經過嚴格品質篩選與環境巡檢，提供極致優質生活。</p>
       </div>
 
-      <div class="properties-filter">
-        <button class="filter-btn active" data-filter="all">全部房源</button>
-        <button class="filter-btn" data-filter="xiaogang">小港區</button>
-        <button class="filter-btn" data-filter="qianzhen">前鎮區</button>
-        <button class="filter-btn" data-filter="fengshan">鳳山區</button>
-        <button class="filter-btn" data-filter="pet">可養寵物 🐾</button>
-      </div>
+      <div class="properties-filter" id="propertiesFilter" aria-label="依行政區篩選房源" hidden></div>
 
-      <div class="properties-grid">
-        <!-- 房源卡片 1 -->
-        <div class="property-card" data-category="xiaogang pet">
-          <div class="property-img-box">
-            <img src="assets/apartment_living.jpg" alt="小港中安路質感景觀3房" width="1376" height="768" loading="lazy" decoding="async">
-            <span class="property-badge">精品裝潢・包租熱銷</span>
-            <span class="property-price">$ 36,000 / 月</span>
-          </div>
-          <div class="property-content">
-            <h3 class="property-title">小港中安路高樓綠意極美 3 房</h3>
-            <p class="property-location"><i class="fa-solid fa-location-dot"></i> 高雄市小港區中安路（近捷運草衙站）</p>
-            <div class="property-tags">
-              <span class="property-tag">3房2廳2衛</span>
-              <span class="property-tag">高採光綠意</span>
-              <span class="property-tag">可養寵物</span>
-              <span class="property-tag">附平面車位</span>
-            </div>
-            <button class="btn btn-primary open-modal-btn" data-title="小港中安路高樓綠意極美 3 房" data-price="$ 36,000 / 月" data-img="assets/apartment_living.jpg" style="width: 100%;">
-              <i class="fa-solid fa-vr-cardboard"></i> 查看 VR 與預約看房
-            </button>
-          </div>
-        </div>
+      <!-- 房源由 data/listings.json 產生。該檔由「出租物件自動刊登」系統（listing_auto）以 GitHub API 更新，請勿手動編輯 -->
+      <div class="properties-grid" id="propertiesGrid" aria-live="polite"></div>
 
-        <!-- 房源卡片 2 -->
-        <div class="property-card" data-category="qianzhen">
-          <div class="property-img-box">
-            <img src="assets/apartment_bedroom.jpg" alt="前鎮亞灣區精品高層大兩房" width="1376" height="768" loading="lazy" decoding="async">
-            <span class="property-badge">外商最愛・高層視野</span>
-            <span class="property-price">$ 42,000 / 月</span>
-          </div>
-          <div class="property-content">
-            <h3 class="property-title">前鎮亞洲新灣區設計師時尚 2 房</h3>
-            <p class="property-location"><i class="fa-solid fa-location-dot"></i> 高雄市前鎮區中華五路（近三多商圈）</p>
-            <div class="property-tags">
-              <span class="property-tag">2房2廳1衛</span>
-              <span class="property-tag">進口傢俱裝潢</span>
-              <span class="property-tag">24H飯店管理</span>
-            </div>
-            <button class="btn btn-primary open-modal-btn" data-title="前鎮亞洲新灣區設計師時尚 2 房" data-price="$ 42,000 / 月" data-img="assets/apartment_bedroom.jpg" style="width: 100%;">
-              <i class="fa-solid fa-vr-cardboard"></i> 查看 VR 與預約看房
-            </button>
-          </div>
-        </div>
-
-        <!-- 房源卡片 3 (已出租標籤) -->
-        <div class="property-card" data-category="fengshan">
-          <div class="property-img-box">
-            <img src="assets/apartment_living.jpg" alt="鳳山文山特區公園景觀宅" width="1376" height="768" loading="lazy" decoding="async">
-            <span class="property-badge rented">已出租 (Rented Out)</span>
-            <span class="property-price">$ 32,000 / 月</span>
-          </div>
-          <div class="property-content">
-            <h3 class="property-title">鳳山文山特區親水綠意景觀宅</h3>
-            <p class="property-location"><i class="fa-solid fa-location-dot"></i> 高雄市鳳山區文衡路</p>
-            <div class="property-tags">
-              <span class="property-tag">3房2廳2衛</span>
-              <span class="property-tag">優質工程師已租</span>
-              <span class="property-tag">SEO 成功展示</span>
-            </div>
-            <button class="btn btn-outline" style="width: 100%; cursor: not-allowed;" disabled>
-              <i class="fa-solid fa-check-double"></i> 感謝支持 本房源已順利出租
-            </button>
-          </div>
-        </div>
+      <div class="properties-empty" id="propertiesEmpty" hidden>
+        <p>目前沒有公開的空房。最新空房與預約看房，歡迎加 LINE 詢問。</p>
+        <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+          <i class="fa-brands fa-line"></i> 加 LINE 詢問空房
+        </a>
       </div>
     </div>
   </section>
@@ -394,10 +331,6 @@
         <div class="cred-box">
           <h4>特許代管業者</h4>
           <p>專業租賃管理師親自託管</p>
-        </div>
-        <div class="cred-box">
-          <h4>營業員證號</h4>
-          <p>(108) 登字第354198號</p>
         </div>
         <div class="cred-box">
           <h4>租賃管理證號</h4>
@@ -535,7 +468,6 @@
         <div class="footer-col">
           <h4>特許證號背書</h4>
           <ul class="footer-links">
-            <li>營業員證號：(108) 登字第354198號</li>
             <li>租賃管理證號：(112) 登字第013739號</li>
             <li>經理人：陳俊銘 經理</li>
           </ul>
@@ -546,7 +478,7 @@
           <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
           <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
           <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
-          <a href="https://lin.ee/NVFhBDE" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
             <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
           </a>
         </div>
@@ -560,7 +492,7 @@
 
     <!-- 懸浮 Line 與電話快速按鈕 -->
     <div class="floating-actions">
-      <a href="https://lin.ee/NVFhBDE" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
         <i class="fa-brands fa-line"></i>
       </a>
       <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
@@ -568,8 +500,8 @@
       </a>
     </div>
 
-  <!-- 房源 VR 彈窗 Modal -->
-  <div class="modal-overlay" id="propertyModal" role="dialog" aria-modal="true" aria-label="房源詳情與 VR 預覽">
+  <!-- 房源詳情彈窗 Modal -->
+  <div class="modal-overlay" id="propertyModal" role="dialog" aria-modal="true" aria-label="房源詳情">
     <div class="modal-card">
       <button class="modal-close" id="modalClose" type="button" aria-label="關閉房源詳情視窗">&times;</button>
       <div id="modalContent">

@@ -42,90 +42,177 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateROI(); // 初化執行
   }
 
-  // 3. 精選房源多條件篩選器 Filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const propertyCards = document.querySelectorAll('.property-card');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-
-      propertyCards.forEach(card => {
-        const category = card.dataset.category || '';
-        if (filter === 'all' || category.includes(filter)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // 4. VR 看房與房源詳情 Modal 彈窗
+  // 3. 精選房源：由 data/listings.json 產生
+  //    該檔由「出租物件自動刊登」系統（listing_auto）以 GitHub API 更新，欄位契約見該專案 adapters/website.py。
+  //    🔴 資料來自檔案，一律用 textContent／createElement 寫入，不用 innerHTML。
+  //    script.js 也被 rent-calculator.html 載入，那頁沒有房源區，所以每一步都先判空。
+  const BOOKING_URL_DEFAULT = 'https://lin.ee/Q71pw2I';
+  const propertiesGrid = document.getElementById('propertiesGrid');
+  const propertiesFilter = document.getElementById('propertiesFilter');
+  const propertiesEmpty = document.getElementById('propertiesEmpty');
   const modal = document.getElementById('propertyModal');
   const modalContent = document.getElementById('modalContent');
   const modalClose = document.getElementById('modalClose');
-  const openModalBtns = document.querySelectorAll('.open-modal-btn');
+  let listingData = { listings: [] };
 
-  openModalBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const title = btn.dataset.title;
-      const price = btn.dataset.price;
-      const img = btn.dataset.img;
+  const el = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined && text !== null) node.textContent = text;
+    return node;
+  };
 
-      modalContent.innerHTML = `
-        <div style="margin-bottom: 20px;">
-          <span style="background: var(--accent-gold); color: #FFF; font-size: 0.8rem; padding: 4px 12px; border-radius: 4px; font-weight: 700;">3D VR 實境虛擬導覽</span>
-          <h3 style="font-size: 1.6rem; color: var(--primary-navy); margin-top: 8px;">${title}</h3>
-          <p style="color: var(--accent-gold-hover); font-weight: 800; font-size: 1.3rem;">${price}</p>
-        </div>
+  // 只接受 http(s) 網址，擋掉 javascript: 之類
+  const safeUrl = (value) => {
+    try {
+      const url = new URL(value, window.location.href);
+      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
+    } catch {
+      return '';
+    }
+  };
 
-        <div style="position: relative; width: 100%; height: 320px; border-radius: 12px; overflow: hidden; margin-bottom: 24px; background: #000;">
-          <img src="${img}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
-          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFF;">
-            <i class="fa-solid fa-vr-cardboard" style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 12px;"></i>
-            <p style="font-weight: 700; font-size: 1.1rem;">點擊啟動 360° VR 空間實境瀏覽</p>
-            <p style="font-size: 0.85rem; color: #CBD5E1;">支援全景視角切換與空間細節丈量</p>
-          </div>
-        </div>
+  function renderCards(district) {
+    propertiesGrid.replaceChildren();
+    listingData.listings
+      .filter((item) => district === 'all' || item.district === district)
+      .forEach((item) => {
+        const card = el('div', 'property-card');
+        const imgBox = el('div', 'property-img-box');
+        const photo = safeUrl(item.photo);
+        if (photo) {
+          const img = el('img');
+          img.src = photo;
+          img.alt = item.title || '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          imgBox.append(img);
+        }
+        if (item.available_from) imgBox.append(el('span', 'property-badge', `${item.available_from} 起可入住`));
+        imgBox.append(el('span', 'property-price', item.price_label));
 
-        <div style="background: #F8FAFC; padding: 20px; border-radius: 8px; margin-bottom: 24px;">
-          <h4 style="color: var(--primary-navy); margin-bottom: 10px;"><i class="fa-solid fa-circle-info"></i> 周邊生活機能與配備說明</h4>
-          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;">
-            本物件由港居不動產專責託管維護。周邊擁有便利超商、捷運站與綠意公園。室內採光極佳，配備品牌一級變頻冷氣、系統櫃裝潢與乾濕分離衛浴。
-          </p>
-        </div>
+        const content = el('div', 'property-content');
+        content.append(el('h3', 'property-title', item.title));
+        const location = el('p', 'property-location');
+        location.append(el('i', 'fa-solid fa-location-dot'), ` ${item.location || ''}`);
+        content.append(location);
+        const tags = el('div', 'property-tags');
+        (item.tags || []).forEach((tag) => tags.append(el('span', 'property-tag', tag)));
+        content.append(tags);
+        const button = el('button', 'btn btn-primary property-detail-btn');
+        button.type = 'button';
+        button.append(el('i', 'fa-solid fa-circle-info'), ' 查看詳情與預約看房');
+        button.addEventListener('click', () => openListing(item.id));
+        content.append(button);
 
-        <div style="display: flex; gap: 14px;">
-          <a href="https://lin.ee/NVFhBDE" target="_blank" class="btn btn-gold" style="flex: 1;">
-            <i class="fa-brands fa-line"></i> 專員 Line 立即預約看房
-          </a>
-          <a href="tel:0968863880" class="btn btn-primary" style="flex: 1;">
-            <i class="fa-solid fa-phone"></i> 致電 陳經理 0968-863-880
-          </a>
-        </div>
-      `;
-
-      modal.classList.add('active');
-    });
-  });
-
-  if (modalClose) {
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
+        card.append(imgBox, content);
+        propertiesGrid.append(card);
+      });
+    if (propertiesEmpty) propertiesEmpty.hidden = listingData.listings.length > 0;
   }
+
+  function renderFilters() {
+    if (!propertiesFilter) return;
+    const districts = [...new Set(listingData.listings.map((item) => item.district).filter(Boolean))];
+    propertiesFilter.replaceChildren();
+    const makeButton = (value, label) => {
+      const button = el('button', 'filter-btn', label);
+      button.type = 'button';
+      button.addEventListener('click', () => {
+        propertiesFilter.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+        button.classList.add('active');
+        renderCards(value);
+      });
+      return button;
+    };
+    const all = makeButton('all', '全部房源');
+    all.classList.add('active');
+    propertiesFilter.append(all, ...districts.map((d) => makeButton(d, d)));
+    propertiesFilter.hidden = districts.length < 2; // 只有一個行政區時不必篩選
+  }
+
+  function openListing(id) {
+    const item = listingData.listings.find((listing) => listing.id === id);
+    if (!item || !modal || !modalContent) return;
+    modalContent.replaceChildren();
+
+    const head = el('div', 'modal-listing-head');
+    head.append(el('h3', 'modal-listing-title', item.title), el('p', 'modal-listing-price', item.price_label));
+    const location = el('p', 'property-location');
+    location.append(el('i', 'fa-solid fa-location-dot'), ` ${item.location || ''}`);
+    head.append(location);
+    if (item.available_from) head.append(el('p', 'modal-listing-available', `${item.available_from} 起可入住`));
+    modalContent.append(head);
+
+    const photos = (item.photos || []).map(safeUrl).filter(Boolean);
+    if (photos.length) {
+      const gallery = el('div', 'modal-listing-photos');
+      photos.forEach((src, index) => {
+        const img = el('img');
+        img.src = src;
+        img.alt = `${item.title || ''} 照片 ${index + 1}`;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        gallery.append(img);
+      });
+      modalContent.append(gallery);
+    }
+
+    if (item.detail_text) modalContent.append(el('div', 'modal-listing-detail', item.detail_text));
+
+    const actions = el('div', 'modal-listing-actions');
+    const line = el('a', 'btn btn-gold');
+    line.href = safeUrl(listingData.booking_url) || BOOKING_URL_DEFAULT;
+    line.target = '_blank';
+    line.rel = 'noopener noreferrer';
+    line.append(el('i', 'fa-brands fa-line'), ' 加 LINE 預約看房');
+    actions.append(line);
+    const phone = String(listingData.phone || '').replace(/[^\d+]/g, '');
+    if (phone) {
+      const call = el('a', 'btn btn-primary');
+      call.href = `tel:${phone}`;
+      call.append(el('i', 'fa-solid fa-phone'), ` 致電 ${listingData.phone}`);
+      actions.append(call);
+    }
+    modalContent.append(actions);
+
+    modal.classList.add('active');
+    // 讓這個物件有自己的網址，FB 貼文的「物件詳情」可以直接連過來
+    history.replaceState(null, '', `?listing=${encodeURIComponent(item.id)}#properties`);
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('active');
+    if (new URLSearchParams(window.location.search).has('listing')) {
+      history.replaceState(null, '', `${window.location.pathname}#properties`);
+    }
+  }
+
+  if (propertiesGrid) {
+    fetch('data/listings.json', { cache: 'no-cache' })
+      .then((response) => (response.ok ? response.json() : { listings: [] }))
+      .catch(() => ({ listings: [] }))
+      .then((data) => {
+        listingData = { ...data, listings: Array.isArray(data.listings) ? data.listings : [] };
+        renderFilters();
+        renderCards('all');
+        const requested = new URLSearchParams(window.location.search).get('listing');
+        if (requested) openListing(requested);
+      });
+  }
+
+  // 4. 房源詳情 Modal 彈窗：關閉方式
+  if (modalClose) modalClose.addEventListener('click', closeModal);
 
   // script.js 亦被 rent-calculator.html 載入，該頁沒有 #propertyModal，
   // 少了這道判空會丟出 TypeError 並中止本檔後續所有初始化。
   if (modal) {
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
   }
 

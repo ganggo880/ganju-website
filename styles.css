@@ -1252,3 +1252,94 @@ img, svg, iframe, video {
     font-size: 1.4rem;
   }
 }
+
+/* ===================================================================
+   房源區（資料檔版）：房源由 data/listings.json 產生，見 script.js 第 3 段
+   ⚠️ .modal-card 底色固定白色，彈窗內文字只用深淺模式都不變的
+      --primary-navy／--accent-gold-hover，避免深色模式淺字壓白底
+   =================================================================== */
+.properties-filter[hidden],
+.properties-empty[hidden] {
+  display: none;
+}
+
+.properties-empty {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-dark);
+}
+
+.properties-empty p {
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.properties-empty .btn,
+.property-detail-btn,
+.modal-listing-actions .btn {
+  min-height: 44px;
+}
+
+.property-detail-btn {
+  width: 100%;
+}
+
+.modal-listing-head {
+  margin-bottom: 20px;
+}
+
+.modal-listing-title {
+  font-size: 1.6rem;
+  color: var(--primary-navy);
+  margin-bottom: 6px;
+}
+
+.modal-listing-price {
+  color: var(--accent-gold-hover);
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+
+.modal-listing-available {
+  color: var(--primary-navy);
+  font-weight: 700;
+}
+
+.modal-listing-photos {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-listing-photos img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.modal-listing-detail {
+  white-space: pre-line;
+  background: color-mix(in srgb, var(--primary-navy) 6%, transparent);
+  color: var(--primary-navy);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.modal-listing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.modal-listing-actions .btn {
+  flex: 1 1 220px;
+}
