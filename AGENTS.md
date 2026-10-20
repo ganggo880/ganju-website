@@ -92,7 +92,6 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── output/                          # ⚠️ 所有 AI 產出一律歸檔於此
 │   ├── SPECIFICATION.md             # 全站系統技術規格書
 │   ├── 高優質住宅包租代管官方網站建置需求規格書_完整修訂版(RFP).md
-│   ├── ganju_official_website/      # 官網歷史版本封存
 │   └── winfar-website/
 │
 ├── obsidian/                        # Obsidian 第二大腦 vault（L3）
