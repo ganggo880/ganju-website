@@ -1343,3 +1343,62 @@ img, svg, iframe, video {
 .modal-listing-actions .btn {
   flex: 1 1 220px;
 }
+
+/* ===================================================================
+   法定揭示事項（租賃條例第 33 條）：證書影像固定白底卡片內顯示，
+   文字用 --text-dark／--text-muted，深淺模式都跟著主題走
+   =================================================================== */
+.disclosure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.disclosure-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  color: var(--text-dark);
+}
+
+.disclosure-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.disclosure-card p {
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+.disclosure-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.disclosure-note {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.disclosure-pending {
+  border-style: dashed;
+}
+
+.disclosure-fee {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+
+.disclosure-fee dt {
+  font-weight: 700;
+}

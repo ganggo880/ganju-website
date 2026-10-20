@@ -45,7 +45,7 @@ let state = {
   currency: 'TWD',
   currencySymbol: '$',
   enableFeeSplit: false,
-  feeRate: 10,
+  feeRate: 12, // 代管費月租金 12%～15%，預設取下限（業主 2026-10-21）
   history: []
 };
 

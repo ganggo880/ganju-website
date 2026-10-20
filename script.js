@@ -22,18 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // 更新顯示金額
     rentValue.textContent = `NT$ ${monthlyRent.toLocaleString()}`;
 
-    let annualIncome = 0;
+    let annualText = '';
     if (plan === 'master') {
       // 全包租：約以市場行情 85%-90% 穩定全包年收 (零空置風險)
-      annualIncome = Math.round(monthlyRent * 12 * 0.88);
-      calcSubText.innerHTML = `<strong>全包租優勢</strong>：港居全額承擔空置期與招租成本，全年穩定撥款 NT$ ${annualIncome.toLocaleString()}，屋主零負擔！`;
+      const annualIncome = Math.round(monthlyRent * 12 * 0.88);
+      annualText = `NT$ ${annualIncome.toLocaleString()}`;
+      calcSubText.innerHTML = `<strong>全包租優勢</strong>：港居全額承擔空置期與招租成本，全年穩定撥款 ${annualText}，屋主零負擔！`;
     } else {
-      // 代管：收取市場行情代管服務費 10%，享 90% 年收益
-      annualIncome = Math.round(monthlyRent * 12 * 0.90);
-      calcSubText.innerHTML = `<strong>代管優勢</strong>：收益極大化，預估年扣除服務費後淨收 NT$ ${annualIncome.toLocaleString()}！`;
+      // 代管：代管費月租金 12%～15%（與 #disclosure 法定揭示一致，業主 2026-10-21），淨收 85%～88%
+      const low = Math.round(monthlyRent * 12 * 0.85);
+      const high = Math.round(monthlyRent * 12 * 0.88);
+      annualText = `NT$ ${low.toLocaleString()}～${high.toLocaleString()}`;
+      calcSubText.innerHTML = `<strong>代管優勢</strong>：收益極大化，預估年扣除服務費（月租金 12%～15%）後淨收 ${annualText}！`;
     }
 
-    calcAnnualTotal.textContent = `NT$ ${annualIncome.toLocaleString()}`;
+    calcAnnualTotal.textContent = annualText;
   }
 
   if (rentSlider && planSelect) {

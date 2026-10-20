@@ -317,7 +317,7 @@
         ctx.fillText('📞 電話：0968-863-880 / 07-791-2288', 60, 320);
         ctx.fillText('✉️ 信箱：ganggo880@gmail.com', 60, 365);
         ctx.fillText('📍 地址：高雄市小港區合作里中安路825號', 60, 410);
-        ctx.fillText('🏢 統編：96797997 | 特許包租代管業者', 60, 455);
+        ctx.fillText('🏢 統編：96797997 | 合法登記包租代管業者', 60, 455);
       } else {
         ctx.fillStyle = '#F8FAFC';
         ctx.fillRect(0, 0, 900, 560);
