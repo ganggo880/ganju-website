@@ -150,6 +150,9 @@
           <button type="button" id="btnShareLink" class="tool-action-btn" title="產生唯讀預覽或協作分享連結">
             <i class="fa-solid fa-share-nodes"></i> 分享連結
           </button>
+          <button type="button" id="btnOpenManualModal" class="tool-action-btn gold" title="開啟系統操作使用手冊">
+            <i class="fa-solid fa-book-open"></i> 使用手冊
+          </button>
         </div>
       </div>
     </section>
@@ -661,6 +664,203 @@
           <button type="button" id="btnCloseProjectsModal" class="tool-action-btn"><i class="fa-solid fa-xmark"></i> 關閉</button>
         </div>
         <div id="projectsModalBody"></div>
+      </div>
+    </div>
+
+    <!-- 系統操作使用手冊 Modal -->
+    <div class="planner-modal-backdrop" id="manualModalBackdrop" hidden role="dialog" aria-modal="true" aria-labelledby="manualModalTitle">
+      <div class="planner-modal-box planner-modal-lg">
+        <div class="planner-modal-head">
+          <h3 id="manualModalTitle"><i class="fa-solid fa-book-open"></i> 互動式 2D/3D 空間格局配置系統・同仁操作使用手冊</h3>
+          <button type="button" id="btnCloseManualModal" class="tool-action-btn"><i class="fa-solid fa-xmark"></i> 關閉</button>
+        </div>
+        
+        <!-- 手冊分頁切換 Tabs -->
+        <div class="manual-nav-tabs" role="tablist">
+          <button type="button" class="manual-tab-btn active" data-manual-tab="quickstart" role="tab" aria-selected="true">
+            <i class="fa-solid fa-bolt"></i> 5分鐘快速上手
+          </button>
+          <button type="button" class="manual-tab-btn" data-manual-tab="modules" role="tab" aria-selected="false">
+            <i class="fa-solid fa-cubes"></i> 四大核心模組
+          </button>
+          <button type="button" class="manual-tab-btn" data-manual-tab="shortcuts" role="tab" aria-selected="false">
+            <i class="fa-solid fa-keyboard"></i> 鍵盤快捷鍵
+          </button>
+          <button type="button" class="manual-tab-btn" data-manual-tab="faq" role="tab" aria-selected="false">
+            <i class="fa-solid fa-circle-question"></i> 常見問題 FAQ
+          </button>
+        </div>
+
+        <div class="manual-content-container">
+          <!-- 分頁 1：快速上手 -->
+          <div class="manual-tab-pane active" id="pane-quickstart">
+            <div class="manual-section">
+              <h4><i class="fa-solid fa-route"></i> 標準五步驟空間規劃 SOP</h4>
+              <div class="manual-steps-grid">
+                <div class="manual-step-card">
+                  <div class="step-num">1</div>
+                  <div class="step-content">
+                    <h5>底圖上傳與比例尺校正</h5>
+                    <p>點選「📁 上傳底圖」載入現場草圖，使用「📏 兩點校正」點擊已知長度兩端並輸入實際公分數（cm），全圖即刻 1:1 完美校正。</p>
+                  </div>
+                </div>
+                <div class="manual-step-card">
+                  <div class="step-num">2</div>
+                  <div class="step-content">
+                    <h5>外牆結構鎖定保護</h5>
+                    <p>使用「繪結構外牆 (E)」描繪外框，外牆具備安全鎖定（`locked: true`），自動填充 ANSI31 剖面線，自動隔間演算法絕不位移外牆。</p>
+                  </div>
+                </div>
+                <div class="manual-step-card">
+                  <div class="step-num">3</div>
+                  <div class="step-content">
+                    <h5>設定三大關鍵錨點</h5>
+                    <p>在右側設定「🚪 入口玄關大門」、「💧 水電管道間」與「☀️ 採光開窗面」，系統依動線拓撲自動推理公領域與私領域。</p>
+                  </div>
+                </div>
+                <div class="manual-step-card">
+                  <div class="step-num">4</div>
+                  <div class="step-content">
+                    <h5>點選套用自動隔間與微調</h5>
+                    <p>點選自動方案 1（標準雙臥）、方案 2（外商大主臥）或方案 3（緊湊三房）。滑鼠可直接拖拉隔間牆或點擊尺寸數字直接修改目標淨寬。</p>
+                  </div>
+                </div>
+                <div class="manual-step-card">
+                  <div class="step-num">5</div>
+                  <div class="step-content">
+                    <h5>CAD家具防呆與 3D 出圖</h5>
+                    <p>拖曳家具靠近牆面自動貼齊，開門 85cm 衝突紅框防呆；切換 3D 娃娃屋剖切或 165cm 漫遊，一鍵匯出高解析 PNG / SVG / A4 PDF 報告書！</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 分頁 2：四大核心模組詳解 -->
+          <div class="manual-tab-pane" id="pane-modules">
+            <div class="manual-module-block">
+              <h5>【模組一】既有外牆建置與底圖描繪（外框邊界鎖定）</h5>
+              <ul>
+                <li><strong>兩點比例尺校正：</strong> 在圖上點選 A、B 兩點基準線，輸入實際長度（cm），全圖比例尺自動校正。</li>
+                <li><strong>外牆 vs 隔間牆：</strong> 外牆厚度 24cm 呈海軍藍，受鎖定保護；室內牆厚度 12cm 呈淺石灰，可動態拖拉。</li>
+                <li><strong>CAD 雙斜線剖面：</strong> 符合 ANSI31 標準 45° 剖面填充，嵌入門窗時自動打斷牆體並繪製開啟弧線。</li>
+              </ul>
+            </div>
+            <div class="manual-module-block">
+              <h5>【模組二】玄關連動與參數化自動隔間（智慧空間配置）</h5>
+              <ul>
+                <li><strong>動線拓撲法則：</strong> 玄關入口進門緩衝 → 公領域客餐廳 → 私領域臥室（優先貼採光面）＋ 衛廚（貼緊水電管道間）。</li>
+                <li><strong>免 CAD 指令尺寸微調：</strong> 點擊 2D 畫布上的尺寸標籤（如 <code>↔ 淨寬 380 cm</code>），可直接輸入數字修改淨寬，自動連動隔間牆並更新坪數（1 m² = 0.3025 坪）。</li>
+                <li><strong>三方案一鍵切換：</strong> 方案 1（標準雙臥）、方案 2（大尺度客廳+獨立書房）、方案 3（高收益緊湊三房）。</li>
+              </ul>
+            </div>
+            <div class="manual-module-block">
+              <h5>【模組三】標準 CAD 家具圖塊庫與動線防呆</h5>
+              <ul>
+                <li><strong>11 款標準人體工學圖塊：</strong> 雙人床（152×188）、單人床（106×188）、衣櫃（120×60）、書桌（120×60）、沙發、茶几、電視櫃、馬桶、面盆、淋浴間、流理台。</li>
+                <li><strong>靠牆自動貼齊轉向：</strong> 拖曳家具靠近牆體（≤25cm）自動旋轉平行或垂直貼牆。</li>
+                <li><strong>開門迴轉半徑衝突防呆：</strong> 開門 85cm 扇形動線若與家具重疊，家具即刻顯示亮紅色粗框警示！</li>
+              </ul>
+            </div>
+            <div class="manual-module-block">
+              <h5>【模組四】多版本比對、一鍵轉 3D 與業務成果出圖</h5>
+              <ul>
+                <li><strong>版本橫向對照：</strong> 「原始屋況」vs「方案 A」vs「方案 B」，一鍵展開三方案房間數、坪數、雙人床配置率與預估投報。</li>
+                <li><strong>3D 娃娃屋視角：</strong> 視角側外牆自動調降至 22% 剖切高度，隱藏天花板一眼鳥瞰全室；支援 165cm 第一人稱 WASD 穿梭漫遊。</li>
+                <li><strong>專業成果匯出：</strong> 支援 PNG / SVG / A4 PDF 報告書（含指北針、坪數統計表、港居聯絡資訊與浮水印）。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 分頁 3：鍵盤快捷鍵 -->
+          <div class="manual-tab-pane" id="pane-shortcuts">
+            <table class="manual-table">
+              <thead>
+                <tr>
+                  <th style="width: 130px;">快捷鍵</th>
+                  <th>功能名稱</th>
+                  <th>詳細說明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>V</code></td>
+                  <td>拖拉微調選取</td>
+                  <td>預設工具，可用於選取與移動家具、拖拉隔間牆中心把手。</td>
+                </tr>
+                <tr>
+                  <td><code>W</code></td>
+                  <td>繪製室內隔間牆</td>
+                  <td>厚度 12cm，點擊起點與終點繪製，支援端點磁吸與 90° 正交。</td>
+                </tr>
+                <tr>
+                  <td><code>E</code></td>
+                  <td>繪製結構外牆</td>
+                  <td>厚度 24cm，具備外牆鎖定保護與 ANSI31 剖面填充。</td>
+                </tr>
+                <tr>
+                  <td><code>D</code></td>
+                  <td>嵌入室內門扇</td>
+                  <td>點擊目標牆體自動嵌入單開門，自動打斷牆體並繪製開啟弧線。</td>
+                </tr>
+                <tr>
+                  <td><code>N</code></td>
+                  <td>嵌入採光窗戶</td>
+                  <td>點擊外牆自動嵌入標準四線窗框。</td>
+                </tr>
+                <tr>
+                  <td><code>R</code></td>
+                  <td>旋轉 90°</td>
+                  <td>選取家具時，按下 R 鍵可將家具順時針旋轉 90 度。</td>
+                </tr>
+                <tr>
+                  <td><code>Delete</code> / <code>Backspace</code></td>
+                  <td>刪除物件</td>
+                  <td>刪除目前選取之家具、門窗或室內隔間牆。</td>
+                </tr>
+                <tr>
+                  <td><code>Ctrl + Z</code></td>
+                  <td>復原上一步</td>
+                  <td>復原歷史動作（支援最多 20 步操作歷史）。</td>
+                </tr>
+                <tr>
+                  <td><code>W / A / S / D</code></td>
+                  <td>3D 漫遊移動</td>
+                  <td>在室內第一人稱視角（165cm）下前後左右穿梭走動。</td>
+                </tr>
+                <tr>
+                  <td><code>Esc</code></td>
+                  <td>取消操作</td>
+                  <td>取消當前繪圖動作或關閉浮動彈出視窗。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 分頁 4：常見問題 FAQ -->
+          <div class="manual-tab-pane" id="pane-faq">
+            <div class="manual-faq-item">
+              <div class="faq-q"><i class="fa-solid fa-circle-question"></i> Q1：為什麼我量出來的尺寸跟現場實際長度不一致？</div>
+              <div class="faq-a">A：上傳底圖後，請務必先使用左側的「📏 兩點校正」工具。在底圖已知長度線段上點選起點與終點，輸入現場實際公分數（cm），全圖即刻以 1:1 物理公分比例尺運作。</div>
+            </div>
+            <div class="manual-faq-item">
+              <div class="faq-q"><i class="fa-solid fa-circle-question"></i> Q2：自動隔間方案會不會改動到現場的承重外牆？</div>
+              <div class="faq-a">A：絕對不會。系統中的既有外牆均設有結構鎖定保護（<code>locked: true</code>），自動隔間演算法僅會重新配置內部輕隔間牆與家具，保證外框邊界 100% 穩固不變。</div>
+            </div>
+            <div class="manual-faq-item">
+              <div class="faq-q"><i class="fa-solid fa-circle-question"></i> Q3：門扇開門方向與現場實際不符，該如何切換？</div>
+              <div class="faq-a">A：請在 2D 畫布上點選該門扇，點擊上方工具列的「🔄 翻轉門扇」按鈕，系統會循環切換內開/外開與鉸鏈左/右側。</div>
+            </div>
+            <div class="manual-faq-item">
+              <div class="faq-q"><i class="fa-solid fa-circle-question"></i> Q4：為什麼家具邊框會突然變成紅色粗框？</div>
+              <div class="faq-a">A：這是系統的「開門迴轉半徑動線防呆」機制。表示該家具侵犯了門扇開啟的 85cm 扇形動線，租客看房時容易撞到家具，請以滑鼠將該家具移至遠離門扇處即可解除警示。</div>
+            </div>
+            <div class="manual-faq-item">
+              <div class="faq-q"><i class="fa-solid fa-circle-question"></i> Q5：如何將規劃案傳給其他同仁或屋主看？</div>
+              <div class="faq-a">A：您可以點擊頂部「匯出 JSON」下載專案檔，或點擊「🔗 分享連結」，系統會將完整設計方案壓縮至網址中，對方收到連結打開瀏覽器即可直接檢視與漫遊！</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -1158,6 +1158,7 @@
     }
 
     const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
     ctx.scale(dpr, dpr);
 
@@ -1414,30 +1415,32 @@
         const p3 = { x: bx - nx * halfT, y: by - ny * halfT };
         const p4 = { x: ax - nx * halfT, y: ay - ny * halfT };
 
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.lineTo(p3.x, p3.y);
-        ctx.lineTo(p4.x, p4.y);
-        ctx.closePath();
+        // 建立牆體封閉多邊形 Path2D，徹底隔離路徑，防止剖面斜線外溢污染畫布
+        const wallPath = new Path2D();
+        wallPath.moveTo(p1.x, p1.y);
+        wallPath.lineTo(p2.x, p2.y);
+        wallPath.lineTo(p3.x, p3.y);
+        wallPath.lineTo(p4.x, p4.y);
+        wallPath.closePath();
 
-        // 牆體底色：區分「既有鎖定外牆」與「室內可調隔間牆」
+        ctx.save();
+
+        // 1. 牆體實心底色：區分「既有鎖定外牆」與「室內可調隔間牆」
         if (w.type === 'exterior') {
           ctx.fillStyle = isDark ? '#1E3A5F' : '#CBD5E1';
         } else {
           ctx.fillStyle = isDark ? '#334155' : '#E2E8F0';
         }
-        ctx.fill();
+        ctx.fill(wallPath);
 
-        // 渲染標準 CAD 45度雙斜線剖面填充 (ANSI31 Hatch)
+        // 2. 渲染標準 CAD 45度雙斜線剖面填充 (ANSI31 Hatch)
         if (appState.settings.showHatch) {
           ctx.save();
-          ctx.clip();
-          const minX = Math.min(p1.x, p2.x, p3.x, p4.x) - 20;
-          const maxX = Math.max(p1.x, p2.x, p3.x, p4.x) + 20;
-          const minY = Math.min(p1.y, p2.y, p3.y, p4.y) - 20;
-          const maxY = Math.max(p1.y, p2.y, p3.y, p4.y) + 20;
+          ctx.clip(wallPath);
+          const minX = Math.min(p1.x, p2.x, p3.x, p4.x) - 10;
+          const maxX = Math.max(p1.x, p2.x, p3.x, p4.x) + 10;
+          const minY = Math.min(p1.y, p2.y, p3.y, p4.y) - 10;
+          const maxY = Math.max(p1.y, p2.y, p3.y, p4.y) + 10;
           const span = (maxX - minX) + (maxY - minY);
 
           ctx.strokeStyle = w.type === 'exterior'
@@ -1455,10 +1458,10 @@
             ctx.lineTo(minX + d + 4 + (maxY - minY), maxY);
           }
           ctx.stroke();
-          ctx.restore();
+          ctx.restore(); // 恢復剪裁狀態，斜線完全鎖在 wallPath 內
         }
 
-        // 牆邊框線
+        // 3. 牆邊框線 (嚴格繪製 wallPath 多邊形邊框，絕不殘留或誤描斜線)
         ctx.strokeStyle = isSelected
           ? '#C5A059'
           : isHovered
@@ -1467,7 +1470,7 @@
               ? (isDark ? '#F8FAFC' : '#0F2341')
               : (isDark ? '#CBD5E1' : '#334155'));
         ctx.lineWidth = isSelected || isHovered ? 3 : (w.type === 'exterior' ? 2.4 : 1.8);
-        ctx.stroke();
+        ctx.stroke(wallPath);
         ctx.restore();
       });
 
@@ -3291,6 +3294,37 @@
     });
     document.getElementById('btnCloseProjectsModal')?.addEventListener('click', () => {
       document.getElementById('projectsModalBackdrop').hidden = true;
+    });
+
+    // 2.5 使用手冊 Modal 開啟、關閉與分頁切換
+    document.getElementById('btnOpenManualModal')?.addEventListener('click', () => {
+      const modal = document.getElementById('manualModalBackdrop');
+      if (modal) modal.hidden = false;
+    });
+
+    document.getElementById('btnCloseManualModal')?.addEventListener('click', () => {
+      const modal = document.getElementById('manualModalBackdrop');
+      if (modal) modal.hidden = true;
+    });
+
+    document.getElementById('manualModalBackdrop')?.addEventListener('click', (e) => {
+      if (e.target.id === 'manualModalBackdrop') {
+        e.target.hidden = true;
+      }
+    });
+
+    document.querySelectorAll('.manual-tab-btn[data-manual-tab]').forEach((tabBtn) => {
+      tabBtn.addEventListener('click', () => {
+        const targetTab = tabBtn.getAttribute('data-manual-tab');
+        document.querySelectorAll('.manual-tab-btn').forEach((b) => {
+          const isAct = b === tabBtn;
+          b.classList.toggle('active', isAct);
+          b.setAttribute('aria-selected', isAct ? 'true' : 'false');
+        });
+        document.querySelectorAll('.manual-tab-pane').forEach((pane) => {
+          pane.classList.toggle('active', pane.id === `pane-${targetTab}`);
+        });
+      });
     });
 
     // 3. 2D / 2D+3D / 3D 檢視切換
