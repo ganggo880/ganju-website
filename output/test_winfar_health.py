@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright
 sys.stdout.reconfigure(encoding='utf-8')
 
 PORT = 8892
-DIRECTORY = r"g:\我的雲端硬碟\ai agent\Matt Pocock skills\output\winfar-website"
+DIRECTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "winfar-website")
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
