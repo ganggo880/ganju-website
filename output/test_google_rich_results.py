@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Google Rich Results & Schema.org 結構化資料全自動深度檢驗器
+Schema.org 結構化資料檢驗器（Google 必填欄位本機檢查 ＋ Schema.org 官方驗證器線上實測）
 涵蓋全站 10 個頁面之 JSON-LD 規範性、Google 搜尋豐富摘要 (Rich Snippets) 合規度與線上驗證
 """
 
@@ -174,7 +174,7 @@ def validate_google_requirements(item, page_name):
 
 def main():
     print("=" * 70)
-    print("  🚀 港居不動產全站 10 頁 Google Rich Results & Schema 結構化資料全面檢測")
+    print("  港居不動產全站 10 頁 JSON-LD 結構化資料檢測")
     print("=" * 70)
 
     all_passed = True
@@ -231,6 +231,9 @@ def main():
             if errs > 0:
                 online_status = "FAIL"
                 page_issues.append(f"Schema.org 官方驗證報錯: {errs} 個錯誤")
+            local_count = len([o for o in json_lds if "_parse_error" not in o])
+            if objs != local_count:
+                page_issues.append(f"缺少一致性：線上物件數 {objs} ≠ 本機 {local_count}（線上可能仍是舊版，請等 GitHub Pages 部署完成後重測）")
             print(f"  📊 官方回傳: {objs} 個有效結構化物件 | 錯誤: {errs} | 警告: {warns}")
         else:
             print(f"  ⚠️ 線上驗證連線警告: {online_res.get('error')}")
@@ -243,7 +246,7 @@ def main():
             if status == "FAIL":
                 all_passed = False
         else:
-            print(f"  ✅ 100% 合格通過 Google Rich Results 與 Schema.org 官方檢測！")
+            print(f"  ✅ 本機必填欄位檢查與 Schema.org 線上驗證皆通過")
             status = "PASS"
 
         results.append({
@@ -265,11 +268,12 @@ def main():
 
 def generate_markdown_report(results, filepath):
     md = [
-        "# 港居不動產全站 10 頁 Google Rich Results & Schema.org 結構化資料檢驗報告",
+        "# 港居不動產全站 10 頁 JSON-LD 結構化資料檢驗報告",
         "",
         "> **檢驗標準**：Google Search Central 複合式搜尋結果規範（SoftwareApplication / LocalBusiness / BreadcrumbList）",
         "> **檢驗日期**：2026-10-23",
-        "> **驗證工具**：Schema.org Official Validator API ＋ 本機語意結構合規驗證器",
+        "> **驗證工具**：Schema.org 官方驗證器（validator.schema.org）＋ 本機 Google 必填欄位檢查
+> **注意**：本報告**未使用** Google Rich Results Test（需登入或 API 金鑰）。通過本檢驗代表語法與必填欄位正確，**不保證** Google 一定顯示複合式結果。",
         "> **網站首頁**：`https://ganggo880.github.io/ganju-website/`",
         "",
         "---",
@@ -326,23 +330,23 @@ def generate_markdown_report(results, filepath):
                 md.append("  - `offers`：已標註 0 元 TWD 免費使用，符合 SoftwareApp 豐富摘要必要條件。")
                 md.append("  - `provider`：雙向關聯港居不動產品牌實體（`#organization`）。")
             if "BreadcrumbList" in r["types"]:
-                md.append("  - 階層麵包屑：三層式路徑（港居首頁 > 線上工具集 > 工具名稱），搜尋引擎將直接呈現分類導航階層。")
+                md.append("  - 麵包屑：兩層路徑（港居不動產 > 工具名稱）。")
             if "RealEstateAgent" in r["types"]:
-                md.append("  - `address`、`telephone`、`taxID`（統編 96797997）、`geo` 經緯度座標與聯絡窗口齊全，具備在地品牌商家 rich card 資格。")
+                md.append("  - `address`、`telephone`、`taxID`（統編 96797997）與聯絡窗口齊全。刻意不填 `geo`（無可信的精確座標來源）。")
         md.append("")
 
     md.extend([
         "---",
         "",
-        "## 參、SEO 與 Rich Snippets 效益分析",
+        "## 參、說明",
         "",
-        "1. **SoftwareApplication 搜尋卡片**：全站 9 款線上工具皆滿足 Google 軟體應用摘要門檻，搜尋「高雄 租金換算」、「照片 EXIF 水印工具」、「格局配置 3D 轉換」等字詞時，有機會獲得帶有價格（免費）、開發商與類別徽章的專屬卡片。",
-        "2. **BreadcrumbList 階層導覽**：搜尋結果的網址列不再顯示單調的網址字串，而是以 `港居不動產 > 線上工具集 > 工具名稱` 的階層結構呈現，點擊率（CTR）通常可提升 15%～25%。",
-        "3. **RealEstateAgent 實體知識圖譜**：主頁標記關聯統編、地址、電話、服務範圍與經理人資訊，提升 Google 搜尋引擎對港居不動產實體合法立案商家的識別權重。",
+        "1. **SoftwareApplication**：Google 軟體應用程式複合式結果還需要 `aggregateRating` 或 `review`。本站沒有真實評價，依專案原則**不編造**，所以這 9 頁目前**不具備**軟體卡片資格，只是語法正確。",
+        "2. **BreadcrumbList**：Google 可能在搜尋結果以 `港居不動產 > 工具名稱` 取代網址顯示，但不保證一定顯示。",
+        "3. **最終確認**：請在 https://search.google.com/test/rich-results 手動貼網址測試，或在 Search Console 查看「強化項目」報表。",
         "",
         "---",
         "",
-        "> **結論**：全站 10 頁 JSON-LD 結構化資料全面通過 Google Rich Results 與 Schema.org 官方驗證標準，零語法錯誤，結構完整。"
+        "> **結論**：見上表。"
     ])
 
     with open(filepath, "w", encoding="utf-8") as f:
