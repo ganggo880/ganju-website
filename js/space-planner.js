@@ -225,6 +225,162 @@
     entrance: { label: '落塵玄關', fillLight: 'rgba(100, 116, 139, 0.10)', fillDark: 'rgba(148, 163, 184, 0.14)', floor3D: 0x64748b }
   };
 
+  /**
+   * 五大高質感地面鋪設材質規格 (3D 擬真程序化貼圖與 2D 紋理)
+   */
+  const FLOOR_MATERIALS = {
+    oak_wood: {
+      id: 'oak_wood',
+      name: '溫潤淺橡木地板',
+      color3D: 0xdec8a7,
+      fill2D: 'rgba(222, 200, 167, 0.18)',
+      patternType: 'wood_plank',
+      plankColor: '#DEC8A7',
+      seamColor: '#BCA483'
+    },
+    walnut_wood: {
+      id: 'walnut_wood',
+      name: '沉穩深胡桃木地板',
+      color3D: 0x6e5039,
+      fill2D: 'rgba(110, 80, 57, 0.22)',
+      patternType: 'wood_plank',
+      plankColor: '#6E5039',
+      seamColor: '#4A3423'
+    },
+    porcelain_tile: {
+      id: 'porcelain_tile',
+      name: '60×60 奢華石英磚',
+      color3D: 0xf5f3ee,
+      fill2D: 'rgba(245, 243, 238, 0.20)',
+      patternType: 'tile_grid',
+      tileColor: '#F5F3EE',
+      seamColor: '#D8D2C6'
+    },
+    microcement: {
+      id: 'microcement',
+      name: '淺灰微水泥粉光',
+      color3D: 0xb0b6be,
+      fill2D: 'rgba(176, 182, 190, 0.18)',
+      patternType: 'microcement',
+      cementColor: '#B0B6BE',
+      seamColor: '#9CA3AF'
+    },
+    marble_checker: {
+      id: 'marble_checker',
+      name: '經典黑白石材',
+      color3D: 0xdcd8d0,
+      fill2D: 'rgba(220, 216, 208, 0.22)',
+      patternType: 'checker',
+      lightColor: '#F8F8F8',
+      darkColor: '#2C353F'
+    }
+  };
+
+  /**
+   * 家具風格預設調色盤
+   */
+  const FURNITURE_PRESET_COLORS = [
+    { name: '經典原木', color: '#C8B294' },
+    { name: '沉穩胡桃木', color: '#5D4037' },
+    { name: '港居海軍藍', color: '#1A365D' },
+    { name: '典雅香檳金', color: '#C5A059' },
+    { name: '現代石墨灰', color: '#475569' },
+    { name: '極簡米白', color: '#F8FAFC' }
+  ];
+
+  function hexToRgba(hex, alpha) {
+    if (!hex || typeof hex !== 'string') return `rgba(200, 200, 200, ${alpha})`;
+    let c = hex.replace('#', '');
+    if (c.length === 3) c = c.split('').map((x) => x + x).join('');
+    const num = parseInt(c, 16);
+    if (isNaN(num)) return `rgba(200, 200, 200, ${alpha})`;
+    const r = (num >> 16) & 255;
+    const g = (num >> 8) & 255;
+    const b = num & 255;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  const floorTextureCache = new Map();
+  function getOrCreateProceduralFloorTexture(matKey) {
+    if (typeof THREE === 'undefined') return null;
+    if (floorTextureCache.has(matKey)) {
+      return floorTextureCache.get(matKey);
+    }
+    const matDef = FLOOR_MATERIALS[matKey] || FLOOR_MATERIALS.oak_wood;
+    const canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 256;
+    const ctx = canvas.getContext('2d');
+
+    if (matDef.patternType === 'wood_plank') {
+      ctx.fillStyle = matDef.plankColor;
+      ctx.fillRect(0, 0, 256, 256);
+      ctx.strokeStyle = matDef.seamColor;
+      ctx.lineWidth = 2;
+      for (let y = 0; y <= 256; y += 64) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(256, y);
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.moveTo(128, 0); ctx.lineTo(128, 64);
+      ctx.moveTo(64, 64); ctx.lineTo(64, 128);
+      ctx.moveTo(192, 64); ctx.lineTo(192, 128);
+      ctx.moveTo(128, 128); ctx.lineTo(128, 192);
+      ctx.moveTo(64, 192); ctx.lineTo(64, 256);
+      ctx.moveTo(192, 192); ctx.lineTo(192, 256);
+      ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.06)';
+      ctx.lineWidth = 1;
+      for (let y = 8; y < 256; y += 14) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(256, y + (Math.sin(y) * 2));
+        ctx.stroke();
+      }
+    } else if (matDef.patternType === 'tile_grid') {
+      ctx.fillStyle = matDef.tileColor;
+      ctx.fillRect(0, 0, 256, 256);
+      ctx.strokeStyle = 'rgba(180, 160, 140, 0.12)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(20, 0);
+      ctx.bezierCurveTo(80, 90, 150, 140, 240, 256);
+      ctx.stroke();
+
+      ctx.strokeStyle = matDef.seamColor;
+      ctx.lineWidth = 3;
+      ctx.strokeRect(0, 0, 128, 128);
+      ctx.strokeRect(128, 0, 128, 128);
+      ctx.strokeRect(0, 128, 128, 128);
+      ctx.strokeRect(128, 128, 128, 128);
+    } else if (matDef.patternType === 'checker') {
+      const sz = 128;
+      ctx.fillStyle = matDef.lightColor;
+      ctx.fillRect(0, 0, 256, 256);
+      ctx.fillStyle = matDef.darkColor;
+      ctx.fillRect(0, 0, sz, sz);
+      ctx.fillRect(sz, sz, sz, sz);
+    } else {
+      ctx.fillStyle = matDef.cementColor;
+      ctx.fillRect(0, 0, 256, 256);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+      for (let i = 0; i < 500; i++) {
+        const sx = (Math.sin(i * 13.7) * 0.5 + 0.5) * 256;
+        const sy = (Math.cos(i * 19.3) * 0.5 + 0.5) * 256;
+        ctx.fillRect(sx, sy, 2, 2);
+      }
+    }
+
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.RepeatWrapping;
+    floorTextureCache.set(matKey, tex);
+    return tex;
+  }
+
   // =========================================================================
   // 2. 狀態管理與統一 JSON Schema (State & Multi-Version Store)
   // =========================================================================
@@ -250,6 +406,7 @@
       autoAlignFurniture: true,
       showClearanceZones: true,
       liveTopologySync: true,
+      globalFloorMaterial: 'oak_wood',
       activeScheme: 1,
       exportDim: true,
       exportRoomName: true,
@@ -1262,10 +1419,39 @@
     (ver.rooms || []).forEach((rm) => {
       const meta = ROOM_TYPE_META[rm.roomType] || ROOM_TYPE_META.living;
       const isSelected = uiState.selectedItem && uiState.selectedItem.kind === 'room' && uiState.selectedItem.id === rm.id;
+      const floorMatKey = rm.floorMaterial || appState.settings.globalFloorMaterial || 'oak_wood';
+      const matDef = FLOOR_MATERIALS[floorMatKey] || FLOOR_MATERIALS.oak_wood;
 
       ctx.save();
-      ctx.fillStyle = isDark ? meta.fillDark : meta.fillLight;
+      ctx.fillStyle = isDark ? meta.fillDark : (matDef.fill2D || meta.fillLight);
       ctx.fillRect(rm.x, rm.y, rm.widthCm, rm.heightCm);
+
+      // 繪製極簡擬真木地板/石英磚線條紋理
+      if (matDef.patternType === 'wood_plank') {
+        ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(130, 95, 60, 0.08)';
+        ctx.lineWidth = 1;
+        for (let py = rm.y + 24; py < rm.y + rm.heightCm; py += 24) {
+          ctx.beginPath();
+          ctx.moveTo(rm.x, py);
+          ctx.lineTo(rm.x + rm.widthCm, py);
+          ctx.stroke();
+        }
+      } else if (matDef.patternType === 'tile_grid') {
+        ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.06)';
+        ctx.lineWidth = 1;
+        for (let px = rm.x + 60; px < rm.x + rm.widthCm; px += 60) {
+          ctx.beginPath();
+          ctx.moveTo(px, rm.y);
+          ctx.lineTo(px, rm.y + rm.heightCm);
+          ctx.stroke();
+        }
+        for (let py = rm.y + 60; py < rm.y + rm.heightCm; py += 60) {
+          ctx.beginPath();
+          ctx.moveTo(rm.x, py);
+          ctx.lineTo(rm.x + rm.widthCm, py);
+          ctx.stroke();
+        }
+      }
 
       if (isSelected) {
         ctx.strokeStyle = '#C5A059';
@@ -1655,14 +1841,20 @@
       ctx.rotate(((f.rotation || 0) * Math.PI) / 180);
 
       // 圖塊背景與外框
-      ctx.fillStyle = hasCollision
-        ? 'rgba(239, 68, 68, 0.22)'
-        : (isDark ? 'rgba(30, 41, 59, 0.88)' : 'rgba(255, 255, 255, 0.92)');
+      let bgFill;
+      if (hasCollision) {
+        bgFill = 'rgba(239, 68, 68, 0.22)';
+      } else if (f.customColor) {
+        bgFill = hexToRgba(f.customColor, 0.25);
+      } else {
+        bgFill = isDark ? 'rgba(30, 41, 59, 0.88)' : 'rgba(255, 255, 255, 0.92)';
+      }
+      ctx.fillStyle = bgFill;
       ctx.strokeStyle = hasCollision
         ? '#EF4444'
         : isSelected
           ? '#C5A059'
-          : (isDark ? '#CBD5E1' : '#1E293B');
+          : (f.customColor || (isDark ? '#CBD5E1' : '#1E293B'));
       ctx.lineWidth = hasCollision || isSelected ? 2.6 : 1.5;
 
       ctx.beginPath();
@@ -2158,9 +2350,25 @@
         }
       });
 
+      const floorSelect = createEl('select', {
+        onChange: (e) => {
+          rm.floorMaterial = e.target.value === 'default' ? null : e.target.value;
+          requestRender2D();
+          rebuild3DScene();
+        }
+      }, [
+        createEl('option', { value: 'default', textContent: '(連動全室設定)' }),
+        createEl('option', { value: 'oak_wood', textContent: '溫潤淺橡木地板', ...(rm.floorMaterial === 'oak_wood' ? { selected: 'selected' } : {}) }),
+        createEl('option', { value: 'walnut_wood', textContent: '沉穩深胡桃木地板', ...(rm.floorMaterial === 'walnut_wood' ? { selected: 'selected' } : {}) }),
+        createEl('option', { value: 'porcelain_tile', textContent: '60×60 奢華石英磚', ...(rm.floorMaterial === 'porcelain_tile' ? { selected: 'selected' } : {}) }),
+        createEl('option', { value: 'microcement', textContent: '淺灰微水泥粉光', ...(rm.floorMaterial === 'microcement' ? { selected: 'selected' } : {}) }),
+        createEl('option', { value: 'marble_checker', textContent: '經典黑白石材', ...(rm.floorMaterial === 'marble_checker' ? { selected: 'selected' } : {}) })
+      ]);
+
       container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '空間名稱：' }), nameInput]));
       container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '目標淨寬 (cm)：' }), wInput]));
       container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '目標淨深 (cm)：' }), hInput]));
+      container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '地面材質：' }), floorSelect]));
     } else if (sel.kind === 'wall') {
       const w = (ver.walls || []).find((item) => item.id === sel.id);
       if (!w) return;
@@ -2227,6 +2435,17 @@
         }
       });
 
+      const hInput = createEl('input', {
+        type: 'number',
+        min: '20',
+        max: '280',
+        value: Math.round(f.heightCm || (FURNITURE_CATALOG[f.catalogId]?.heightCm || 60)),
+        onChange: (e) => {
+          f.heightCm = Math.max(20, Number(e.target.value) || 60);
+          rebuild3DScene();
+        }
+      });
+
       const rotInput = createEl('input', {
         type: 'number',
         step: '90',
@@ -2239,10 +2458,69 @@
         }
       });
 
+      // 顏色風格選擇
+      const swatchesWrap = createEl('div', { className: 'color-swatches-grid' });
+      FURNITURE_PRESET_COLORS.forEach((p) => {
+        const isCur = (f.customColor || '').toLowerCase() === p.color.toLowerCase();
+        const swBtn = createEl('button', {
+          type: 'button',
+          className: `color-swatch-btn ${isCur ? 'active' : ''}`,
+          style: { backgroundColor: p.color },
+          title: `套用「${p.name}」風格色彩`,
+          onClick: () => {
+            f.customColor = p.color;
+            requestRender2D();
+            rebuild3DScene();
+            renderInspectorPanel();
+          }
+        });
+        swatchesWrap.appendChild(swBtn);
+      });
+
+      const pickerInput = createEl('input', {
+        type: 'color',
+        className: 'color-picker-input',
+        value: f.customColor || '#C8B294',
+        title: '自訂任意色彩',
+        onInput: (e) => {
+          f.customColor = e.target.value;
+          requestRender2D();
+          rebuild3DScene();
+        },
+        onChange: () => {
+          renderInspectorPanel();
+        }
+      });
+      swatchesWrap.appendChild(pickerInput);
+
+      if (f.customColor) {
+        const resetBtn = createEl('button', {
+          type: 'button',
+          className: 'tool-action-btn',
+          style: { padding: '2px 8px', fontSize: '0.72rem', minHeight: '32px' },
+          textContent: '重設預設色',
+          onClick: () => {
+            delete f.customColor;
+            requestRender2D();
+            rebuild3DScene();
+            renderInspectorPanel();
+          }
+        });
+        swatchesWrap.appendChild(resetBtn);
+      }
+
       container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '圖塊名稱：' }), createEl('strong', { textContent: f.name })]));
       container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '寬度 (cm)：' }), wInput]));
       container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '深度 (cm)：' }), dInput]));
+      container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '高度 (cm)：' }), hInput]));
       container.appendChild(createEl('div', { className: 'inspector-row' }, [createEl('label', { textContent: '旋轉角度：' }), rotInput]));
+      container.appendChild(createEl('div', { className: 'inspector-col-block' }, [
+        createEl('label', {}, [
+          createEl('span', { textContent: '材質色彩風格：' }),
+          createEl('span', { style: { fontSize: '0.74rem', color: 'var(--accent-gold-hover)' }, textContent: f.customColor ? '自訂風格' : '標準預設' })
+        ]),
+        swatchesWrap
+      ]));
     } else if (sel.kind === 'opening') {
       const op = (ver.openings || []).find((item) => item.id === sel.id);
       if (!op) return;
@@ -2408,11 +2686,24 @@
     baseMesh.position.set(bounds.minX + bounds.width / 2, -5, bounds.minY + bounds.height / 2);
     buildingGroup3D.add(baseMesh);
 
-    // 2. 各房間地板材質 (溫潤木地板 / 衛浴石材磚)
+    // 2. 各房間地板材質 (溫潤木地板 / 衛浴石材磚 / 拋光石英磚 / 微水泥 / 黑白石材)
     (ver.rooms || []).forEach((rm) => {
       const meta = ROOM_TYPE_META[rm.roomType] || ROOM_TYPE_META.living;
+      const floorMatKey = rm.floorMaterial || appState.settings.globalFloorMaterial || 'oak_wood';
+      const matDef = FLOOR_MATERIALS[floorMatKey] || FLOOR_MATERIALS.oak_wood;
+      const tex = getOrCreateProceduralFloorTexture(floorMatKey);
+
+      let rMat;
+      if (tex) {
+        const rTex = tex.clone();
+        rTex.needsUpdate = true;
+        rTex.repeat.set(Math.max(1, rm.widthCm / 160), Math.max(1, rm.heightCm / 160));
+        rMat = new THREE.MeshLambertMaterial({ map: rTex, color: 0xffffff });
+      } else {
+        rMat = new THREE.MeshLambertMaterial({ color: matDef.color3D || meta.floor3D });
+      }
+
       const rGeo = new THREE.BoxGeometry(rm.widthCm, 4, rm.heightCm);
-      const rMat = new THREE.MeshLambertMaterial({ color: meta.floor3D });
       const rMesh = new THREE.Mesh(rGeo, rMat);
       rMesh.position.set(rm.x + rm.widthCm / 2, 0, rm.y + rm.heightCm / 2);
       buildingGroup3D.add(rMesh);
@@ -2558,11 +2849,25 @@
     const g = new THREE.Group();
     const w = f.widthCm;
     const d = f.depthCm;
-    const h = f.heightCm || 60;
+    const h = f.heightCm || (FURNITURE_CATALOG[f.catalogId]?.heightCm || 60);
     const cat = FURNITURE_CATALOG[f.catalogId] || FURNITURE_CATALOG.sofa;
 
-    const mainMat = new THREE.MeshLambertMaterial({ color: isColliding ? 0xef4444 : cat.color3D });
-    const accentMat = new THREE.MeshLambertMaterial({ color: isColliding ? 0xb91c1c : cat.accent3D });
+    let mainColorHex = cat.color3D;
+    let accentColorHex = cat.accent3D;
+
+    if (f.customColor) {
+      try {
+        const c = new THREE.Color(f.customColor);
+        mainColorHex = c.getHex();
+        const acc = c.clone().offsetHSL(0, -0.05, -0.18);
+        accentColorHex = acc.getHex();
+      } catch (_) {
+        mainColorHex = cat.color3D;
+      }
+    }
+
+    const mainMat = new THREE.MeshLambertMaterial({ color: isColliding ? 0xef4444 : mainColorHex });
+    const accentMat = new THREE.MeshLambertMaterial({ color: isColliding ? 0xb91c1c : accentColorHex });
 
     if (f.catalogId === 'double_bed' || f.catalogId === 'single_bed') {
       // 床架 + 床頭板 + 枕頭 + 被單
@@ -2946,6 +3251,378 @@
   }
 
   /**
+   * 模組四擴充：匯出 2400×1600 高畫質租賃行銷宣傳格局圖 (591 / FB / LINE 專用)
+   */
+  function exportMarketingFloorplan() {
+    const ver = getActiveVersion();
+    if (!ver) return;
+
+    const bounds = getEnvelopeBounds(ver);
+    if (bounds.width <= 0 || bounds.height <= 0) {
+      showToast('⚠️ 目前畫布尚未建立完整格局，無法匯出行銷圖面');
+      return;
+    }
+
+    const outW = 2400;
+    const outH = 1600;
+    const offCanvas = document.createElement('canvas');
+    offCanvas.width = outW;
+    offCanvas.height = outH;
+    const ctx = offCanvas.getContext('2d');
+
+    // 1. 溫潤雅緻背景 (暖色頂級米白宣紙基底)
+    ctx.fillStyle = '#FAF8F5';
+    ctx.fillRect(0, 0, outW, outH);
+
+    // 2. 奢華雙框邊界
+    ctx.strokeStyle = '#C5A059';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(36, 36, outW - 72, outH - 72);
+    ctx.strokeStyle = '#1A365D';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(46, 46, outW - 92, outH - 92);
+
+    // 3. 頂部奢華品牌橫幅
+    const grad = ctx.createLinearGradient(46, 46, outW - 46, 156);
+    grad.addColorStop(0, '#0F2341');
+    grad.addColorStop(1, '#1A365D');
+    ctx.fillStyle = grad;
+    ctx.fillRect(46, 46, outW - 92, 114);
+
+    // 金色裝飾徽章
+    ctx.fillStyle = '#C5A059';
+    ctx.beginPath();
+    ctx.roundRect(76, 70, 260, 36, 18);
+    ctx.fill();
+    ctx.fillStyle = '#0F2341';
+    ctx.font = '900 16px "Noto Sans TC", sans-serif';
+    ctx.fillText('★ 港居不動產・高質感精選房源', 96, 94);
+
+    // 案名標題
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = '900 32px "Noto Sans TC", sans-serif';
+    ctx.fillText(`${appState.projectName}`, 360, 96);
+
+    // 方案副標
+    ctx.fillStyle = '#FFE8B8';
+    ctx.font = '700 20px "Noto Sans TC", sans-serif';
+    ctx.textAlign = 'right';
+    let totalM2 = 0;
+    (ver.rooms || []).forEach((rm) => {
+      totalM2 += (rm.widthCm * rm.heightCm) / 10000;
+    });
+    const totalPing = totalM2 * 0.3025;
+    ctx.fillText(`【${ver.label || '全配家具配置方案'}】 主建室內：${totalPing.toFixed(1)} 坪 (${totalM2.toFixed(1)} m²)`, outW - 76, 96);
+    ctx.textAlign = 'left';
+
+    // 4. 左側繪圖區縮放與繪製
+    const drawAreaW = 1660;
+    const drawAreaH = 1350;
+    const scale = Math.min((drawAreaW - 200) / bounds.width, (drawAreaH - 200) / bounds.height);
+    const offsetX = 130 - bounds.minX * scale;
+    const offsetY = 220 - bounds.minY * scale;
+
+    const prevZoom = uiState.zoom2D;
+    const prevPanX = uiState.panX2D;
+    const prevPanY = uiState.panY2D;
+    uiState.zoom2D = scale;
+    uiState.panX2D = offsetX;
+    uiState.panY2D = offsetY;
+
+    ctx.save();
+    ctx.translate(offsetX, offsetY);
+    ctx.scale(scale, scale);
+
+    // 繪製房間柔和行銷粉彩色塊
+    const MARKETING_ROOM_FILLS = {
+      living: { fill: '#FFF8EB', border: '#EBD4B4' },
+      master_bed: { fill: '#FDF2E9', border: '#F2D3BE' },
+      single_bed: { fill: '#F0F7F2', border: '#D0E6D7' },
+      study: { fill: '#EDF5FC', border: '#CDE2F4' },
+      bath: { fill: '#EAF6FA', border: '#C4E7F2' },
+      kitchen: { fill: '#FFF9ED', border: '#F4DFB8' },
+      entrance: { fill: '#F1F5F9', border: '#CBD5E1' }
+    };
+
+    (ver.rooms || []).forEach((rm) => {
+      const sty = MARKETING_ROOM_FILLS[rm.roomType] || MARKETING_ROOM_FILLS.living;
+      ctx.fillStyle = sty.fill;
+      ctx.fillRect(rm.x, rm.y, rm.widthCm, rm.heightCm);
+
+      // 地板紋理 (細微木地板紋或石英磚)
+      const floorMatKey = rm.floorMaterial || appState.settings.globalFloorMaterial || 'oak_wood';
+      const matDef = FLOOR_MATERIALS[floorMatKey] || FLOOR_MATERIALS.oak_wood;
+      if (matDef.patternType === 'wood_plank') {
+        ctx.strokeStyle = 'rgba(130, 95, 60, 0.08)';
+        ctx.lineWidth = 1;
+        for (let py = rm.y + 24; py < rm.y + rm.heightCm; py += 24) {
+          ctx.beginPath();
+          ctx.moveTo(rm.x, py);
+          ctx.lineTo(rm.x + rm.widthCm, py);
+          ctx.stroke();
+        }
+      } else if (matDef.patternType === 'tile_grid') {
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.06)';
+        ctx.lineWidth = 1;
+        for (let px = rm.x + 60; px < rm.x + rm.widthCm; px += 60) {
+          ctx.beginPath();
+          ctx.moveTo(px, rm.y);
+          ctx.lineTo(px, rm.y + rm.heightCm);
+          ctx.stroke();
+        }
+        for (let py = rm.y + 60; py < rm.y + rm.heightCm; py += 60) {
+          ctx.beginPath();
+          ctx.moveTo(rm.x, py);
+          ctx.lineTo(rm.x + rm.widthCm, py);
+          ctx.stroke();
+        }
+      }
+
+      ctx.strokeStyle = sty.border;
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(rm.x, rm.y, rm.widthCm, rm.heightCm);
+    });
+
+    // 採光標記
+    drawDaylightIndicators2D(ctx, ver, false);
+
+    // 家具立體陰影與精緻繪製
+    ctx.save();
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.14)';
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 5;
+    drawFurnitureList2D(ctx, ver, false);
+    ctx.restore();
+
+    // 管道間
+    drawPlumbingCoreAnchor2D(ctx, ver, false);
+
+    // 牆體與門窗
+    drawWallsWithANSI31Hatch2D(ctx, ver, false);
+    drawOpenings2D(ctx, ver, false);
+
+    // 空間名稱與坪數膠囊 (行銷高對比優化)
+    (ver.rooms || []).forEach((rm) => {
+      const m2 = (rm.widthCm * rm.heightCm) / 10000;
+      const ping = m2 * 0.3025;
+      const cx = rm.x + rm.widthCm / 2;
+      const cy = rm.y + rm.heightCm / 2;
+
+      ctx.save();
+      const pillW = 200;
+      const pillH = 50;
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.10)';
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetY = 3;
+      ctx.beginPath();
+      ctx.roundRect(cx - pillW / 2, cy - pillH / 2, pillW, pillH, 8);
+      ctx.fill();
+      ctx.shadowColor = 'transparent';
+      ctx.strokeStyle = '#C5A059';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#0F2341';
+      ctx.font = '900 18px "Noto Sans TC", sans-serif';
+      ctx.fillText(rm.name, cx, cy - 9);
+
+      ctx.fillStyle = '#B08C45';
+      ctx.font = '800 14px "Noto Sans TC", sans-serif';
+      ctx.fillText(`${ping.toFixed(1)} 坪 ｜ ${Math.round(rm.widthCm)}×${Math.round(rm.heightCm)} cm`, cx, cy + 12);
+      ctx.restore();
+    });
+
+    // 指北針
+    drawExteriorDimensionsAndCompass2D(ctx, ver, false);
+
+    ctx.restore();
+
+    uiState.zoom2D = prevZoom;
+    uiState.panX2D = prevPanX;
+    uiState.panY2D = prevPanY;
+
+    // 5. 右側行銷資訊卡片
+    const rx = 1800;
+    const ry = 180;
+    const rw = 524;
+    const rh = 1340;
+
+    ctx.save();
+    ctx.fillStyle = '#FFFFFF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
+    ctx.shadowBlur = 18;
+    ctx.shadowOffsetX = -2;
+    ctx.shadowOffsetY = 6;
+    ctx.beginPath();
+    ctx.roundRect(rx, ry, rw, rh, 16);
+    ctx.fill();
+    ctx.shadowColor = 'transparent';
+    ctx.strokeStyle = '#E2E8F0';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // 卡片頂部漸層標籤
+    const cardGrad = ctx.createLinearGradient(rx, ry, rx + rw, ry);
+    cardGrad.addColorStop(0, '#1A365D');
+    cardGrad.addColorStop(1, '#0F2341');
+    ctx.fillStyle = cardGrad;
+    ctx.beginPath();
+    ctx.roundRect(rx, ry, rw, 58, [16, 16, 0, 0]);
+    ctx.fill();
+
+    ctx.fillStyle = '#FFE8B8';
+    ctx.font = '900 20px "Noto Sans TC", sans-serif';
+    ctx.fillText('📋 房源規格與設備摘要', rx + 24, ry + 36);
+
+    let cy = ry + 88;
+
+    // 房型與總坪數高亮膠囊
+    ctx.fillStyle = '#F8FAFC';
+    ctx.fillRect(rx + 20, cy, rw - 40, 78);
+    ctx.strokeStyle = '#C5A059';
+    ctx.lineWidth = 1.2;
+    ctx.strokeRect(rx + 20, cy, rw - 40, 78);
+
+    ctx.fillStyle = '#0F2341';
+    ctx.font = '900 24px "Noto Sans TC", sans-serif';
+    ctx.fillText(`${(ver.rooms || []).length} 房空間規劃 ｜ 全室精裝家具`, rx + 36, cy + 34);
+
+    ctx.fillStyle = '#B08C45';
+    ctx.font = '800 16px "Noto Sans TC", sans-serif';
+    ctx.fillText(`室內主建淨坪數合計：${totalPing.toFixed(2)} 坪 (${totalM2.toFixed(2)} m²)`, rx + 36, cy + 60);
+
+    cy += 104;
+
+    // 空間面積詳細清單
+    ctx.fillStyle = '#1A365D';
+    ctx.font = '800 18px "Noto Sans TC", sans-serif';
+    ctx.fillText('各空間淨坪數明細：', rx + 24, cy);
+    cy += 28;
+
+    (ver.rooms || []).forEach((rm, idx) => {
+      const rm2 = (rm.widthCm * rm.heightCm) / 10000;
+      const rping = rm2 * 0.3025;
+      ctx.fillStyle = idx % 2 === 0 ? '#F8FAFC' : '#FFFFFF';
+      ctx.fillRect(rx + 20, cy, rw - 40, 36);
+
+      ctx.fillStyle = '#334155';
+      ctx.font = '700 15px "Noto Sans TC", sans-serif';
+      ctx.fillText(`• ${rm.name}`, rx + 32, cy + 23);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#1A365D';
+      ctx.fillText(`${rping.toFixed(2)} 坪 (${Math.round(rm.widthCm)}×${Math.round(rm.heightCm)}cm)`, rx + rw - 32, cy + 23);
+      ctx.textAlign = 'left';
+      cy += 40;
+    });
+
+    cy += 16;
+    ctx.strokeStyle = '#E2E8F0';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(rx + 20, cy);
+    ctx.lineTo(rx + rw - 20, cy);
+    ctx.stroke();
+    cy += 24;
+
+    // 全配家具設備列表
+    ctx.fillStyle = '#1A365D';
+    ctx.font = '800 18px "Noto Sans TC", sans-serif';
+    ctx.fillText('🛋️ 隨附家具設備清單：', rx + 24, cy);
+    cy += 24;
+
+    const furnCounts = {};
+    (ver.furniture || []).forEach((f) => {
+      furnCounts[f.name] = (furnCounts[f.name] || 0) + 1;
+    });
+
+    const furnEntries = Object.entries(furnCounts);
+    for (let i = 0; i < furnEntries.length; i += 2) {
+      const [name1, count1] = furnEntries[i];
+      ctx.fillStyle = '#475569';
+      ctx.font = '600 14px "Noto Sans TC", sans-serif';
+      ctx.fillText(`✓ ${name1} ×${count1}`, rx + 32, cy + 16);
+
+      if (furnEntries[i + 1]) {
+        const [name2, count2] = furnEntries[i + 1];
+        ctx.fillText(`✓ ${name2} ×${count2}`, rx + rw / 2 + 10, cy + 16);
+      }
+      cy += 28;
+    }
+
+    // 底部專屬管家聯絡板 (金色底塊)
+    const footY = ry + rh - 260;
+    const footGrad = ctx.createLinearGradient(rx, footY, rx + rw, footY + 260);
+    footGrad.addColorStop(0, '#FFF9EB');
+    footGrad.addColorStop(1, '#FFF3D4');
+    ctx.fillStyle = footGrad;
+    ctx.beginPath();
+    ctx.roundRect(rx + 16, footY, rw - 32, 244, 12);
+    ctx.fill();
+    ctx.strokeStyle = '#C5A059';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.fillStyle = '#1A365D';
+    ctx.font = '900 20px "Noto Sans TC", sans-serif';
+    ctx.fillText('港居不動產開發有限公司', rx + 36, footY + 36);
+
+    ctx.fillStyle = '#B08C45';
+    ctx.font = '700 14px "Noto Sans TC", sans-serif';
+    ctx.fillText('合法租賃住宅服務業 ｜ 統編：96797997', rx + 36, footY + 62);
+    ctx.fillText('租賃管理證號：(112) 登字第013739號', rx + 36, footY + 84);
+
+    ctx.strokeStyle = '#EAD09C';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(rx + 36, footY + 98);
+    ctx.lineTo(rx + rw - 36, footY + 98);
+    ctx.stroke();
+
+    ctx.fillStyle = '#0F2341';
+    ctx.font = '900 17px "Noto Sans TC", sans-serif';
+    ctx.fillText('專案服務窗口：陳俊銘 經理', rx + 36, footY + 128);
+
+    ctx.fillStyle = '#1A365D';
+    ctx.font = '900 22px "Noto Sans TC", sans-serif';
+    ctx.fillText('📞 預約看房專線：0968-863-880', rx + 36, footY + 160);
+
+    ctx.fillStyle = '#059669';
+    ctx.font = '800 16px "Noto Sans TC", sans-serif';
+    ctx.fillText('💬 LINE 官方看房預約：https://lin.ee/Q71pw2I', rx + 36, footY + 192);
+
+    ctx.fillStyle = '#64748B';
+    ctx.font = '600 13px "Noto Sans TC", sans-serif';
+    ctx.fillText('門市地址：高雄市小港區合作里中安路825號 (市話: 07-791-2288)', rx + 36, footY + 222);
+
+    ctx.restore();
+
+    // 6. 底標浮水印
+    ctx.fillStyle = '#94A3B8';
+    ctx.font = '600 14px "Noto Sans TC", sans-serif';
+    ctx.fillText('※ 本圖面由港居不動產 2D/3D 空間格局配置系統自動演算生成，尺寸與家具配置僅供出租行銷與看房示意參考，實際依現場丈量與租賃契約為準。', 52, outH - 52);
+
+    // 7. 觸發高畫質 PNG 下載
+    offCanvas.toBlob((blob) => {
+      if (!blob) {
+        showToast('⚠️ 匯出失敗，請再試一次');
+        return;
+      }
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = `${appState.projectName}_${appState.activeVersionKey}_高質感租賃行銷宣傳圖.png`;
+      link.href = url;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      showToast('🎉 已成功匯出高質感租賃行銷宣傳圖！可直接刊登於 591 與社群廣告。');
+    }, 'image/png');
+  }
+
+  /**
    * 專案持久化 (Save / Load / JSON / 多方案比對 Modal / 分享連結)
    */
   const STORAGE_KEY = 'ganju_space_planner_projects_v1';
@@ -2994,6 +3671,11 @@
 
     const nameInp = document.getElementById('projectNameInput');
     if (nameInp) nameInp.value = appState.projectName;
+
+    const globalFloorSelect = document.getElementById('globalFloorSelect');
+    if (globalFloorSelect && appState.settings.globalFloorMaterial) {
+      globalFloorSelect.value = appState.settings.globalFloorMaterial;
+    }
 
     syncVersionTabsUI();
     recalculateCollisionsAndSchedule();
@@ -3630,6 +4312,18 @@
     document.getElementById('btnExportSvg')?.addEventListener('click', export2DSvg);
     document.getElementById('btnExportPdf')?.addEventListener('click', export2DPdf);
     document.getElementById('btnSnapshot3D')?.addEventListener('click', snapshot3DPng);
+    document.getElementById('btnExportMarketing')?.addEventListener('click', exportMarketingFloorplan);
+
+    const globalFloorSelect = document.getElementById('globalFloorSelect');
+    if (globalFloorSelect) {
+      globalFloorSelect.value = appState.settings.globalFloorMaterial || 'oak_wood';
+      globalFloorSelect.addEventListener('change', (e) => {
+        appState.settings.globalFloorMaterial = e.target.value;
+        requestRender2D();
+        rebuild3DScene();
+        showToast(`✨ 全室預設地面已切換為「${FLOOR_MATERIALS[e.target.value]?.name || '木地板'}」`);
+      });
+    }
 
     document.getElementById('btnSaveProject')?.addEventListener('click', saveProjectToDatabase);
     document.getElementById('btnOpenProjectsModal')?.addEventListener('click', () => openProjectsLibraryModal('load'));

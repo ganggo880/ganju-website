@@ -893,6 +893,73 @@
   font-weight: 700;
 }
 
+.inspector-col-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.83rem;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.inspector-col-block > label {
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-swatches-grid {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.color-swatch-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  padding: 0;
+  position: relative;
+}
+
+.color-swatch-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.color-swatch-btn.active {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 2px var(--accent-gold), 0 2px 8px rgba(197, 160, 89, 0.4);
+  transform: scale(1.12);
+}
+
+.color-picker-input {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn-marketing-export {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover)) !important;
+  color: #0F2341 !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-marketing-export:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.45) !important;
+}
+
 /* 出圖與專案管理 Modal */
 .planner-modal-backdrop {
   position: fixed;
