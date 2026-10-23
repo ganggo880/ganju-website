@@ -38,8 +38,9 @@
 - [x] 階段十五：**全站架構與編排稽核修正**——CSS 基礎重置／`.container`／`.form-control` 歸位 `components.css`、導覽列統一為「線上工具」下拉選單（8 頁一致、解除孤兒頁）、修掉 8 項實機測出的功能缺陷
 - [x] 階段十六：照片 OCR 文字辨識與多國語言翻譯神器 `ocr-translator.html`（99%+ AI 深度神經網路雙引擎、ROI 自由區域框選、自適應去陰影、不動產智慧詞庫校對、語音朗讀）
 - [x] 階段十七：全站資安防禦性加固與規範自動化稽核（全 9 頁 JSON-LD 100% 合格、Noopener 反向標籤防護、Referrer-Policy、MIME-Sniffing 防護、XSS 轉義）
-- [ ] 階段十八：穩發漁業集團官網建置實施（遠洋艦隊與冷鏈圖資生成、三層式架構落地）
-- [ ] 階段十九：Google Rich Results Test 線上實測 9 頁 JSON-LD
+- [x] 階段十八：Web 端互動式 2D 平面格局配置與 3D 即時轉換系統 `space-planner.html`（底圖兩點比例尺校正、ANSI31 45°斜線與門窗開啟弧線、玄關/管道間連動參數化自動隔間、11 款標準 CAD 家具圖塊與 85cm 迴轉半徑防呆、Three.js 60FPS 娃娃屋與第一人稱漫遊、PNG/SVG/PDF 出圖與多方案比對）
+- [ ] 階段十九：穩發漁業集團官網建置實施（遠洋艦隊與冷鏈圖資生成、三層式架構落地）
+- [ ] 階段二十：Google Rich Results Test 線上實測 10 頁 JSON-LD
 
 ## 資料夾結構
 
@@ -59,6 +60,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── card-merger.html                 # 7. 名片正反面／上下合成神器
 ├── photo-time-location.html         # 8. 照片時間與地點浮水印工具
 ├── ocr-translator.html              # 9. 照片 OCR 文字辨識與翻譯神器
+├── space-planner.html               # 10. 2D 平面格局配置與 3D 即時轉換系統
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
 ├── script.js / rent-calc.js
@@ -69,6 +71,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 全站共用組件的 RWD @media 一律寫在這裡
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
+│   ├── space-planner.css            # 2D/3D 空間格局配置系統樣式
 │   ├── ocr-translator.css           # 照片 OCR 文字辨識與翻譯專屬樣式
 │   ├── converter.css                # 檔案轉換工具專屬樣式
 │   ├── card-merger.css              # 名片合成工具樣式
@@ -79,6 +82,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── utils.js                     # 千分位、日期差、Toast、主題切換
 │   ├── navigation.js                # 導覽列與 Mobile Drawer（index.html 使用）
 │   ├── layout.js                    # Active 點亮與跨頁 Layout 控制（工具頁使用）
+│   ├── space-planner.js             # 2D CAD + 3D WebGL 空間格局配置核心引擎
+│   ├── ocr-translator.js            # 照片 OCR 雙引擎與翻譯邏輯
 │   ├── converter.js                 # 轉檔核心（Canvas / Blob 本地運算）
 │   ├── image-converter.js           # 圖像格式與尺寸轉換邏輯
 │   ├── card-merger.js               # 名片正反面合成邏輯

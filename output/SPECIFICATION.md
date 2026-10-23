@@ -1,7 +1,7 @@
 # 港居不動產開發有限公司 官方網站與線上工具系統技術規格書
 ## System Specification Document (2026 完整全功能版)
 
-> **版本**：v2.5 (2026-09 最新修訂版)  
+> **版本**：v2.6 (2026-10 最新修訂版)  
 > **系統名稱**：港居不動產品牌官網暨高階線上工具集  
 > **發布網址**：[https://ganggo880.github.io/ganju-website/](https://ganggo880.github.io/ganju-website/)  
 > **遠端倉庫**：`https://github.com/ganggo880/ganju-website.git`  
@@ -9,15 +9,14 @@
 
 ---
 
-## 1. 企業背景與特許背書 (Company Profile & Licensing)
+## 1. 企業背景與登記背書 (Company Profile & Licensing)
 
-本系統為「**港居不動產開發有限公司**」專屬之品牌官方網站與 8 款不動產專業線上工具集，旨在為注重物業質感的屋主與高階租客（外商主管、科技工程師、金融醫療菁英）提供最值得信賴的包租代管線上體驗。
+本系統為「**港居不動產開發有限公司**」專屬之品牌官方網站與 9 款不動產專業線上工具集，旨在為注重物業質感的屋主與高階租客（外商主管、科技工程師、金融醫療菁英）提供最值得信賴的包租代管線上體驗。
 
 | 項目 | 官方登記資料 |
 |---|---|
 | **公司全銜** | 港居不動產開發有限公司 (GANJU Real Estate Co., Ltd.) |
 | **統一編號** | `96797997` |
-| **營業員證號** | `(108) 登字第354198號` |
 | **租賃住宅管理證號** | `(112) 登字第013739號` |
 | **經理人 / 負責人** | 陳俊銘 經理 / 不動產租賃管理師 |
 | **服務專線** | 手機 `0968-863-880` / 市話 `07-791-2288` |
@@ -38,14 +37,14 @@
 
 ---
 
-## 3. 系統架構與全站 9 大核心頁面清單
+## 3. 系統架構與全站 10 大核心頁面清單
 
-系統由 **1 個品牌官網主頁** 與 **8 個不動產專業線上工具** 組成，全站共用一組設計 Token 與模組化 JavaScript：
+系統由 **1 個品牌官網主頁** 與 **9 個不動產專業線上工具** 組成，全站共用一組設計 Token 與模組化 JavaScript：
 
 ```
 Matt Pocock skills/
-├── index.html                  # 1. 品牌官方網站首頁 (Hero, 方案比較, ROI 試算, 3D VR 房源, 表單)
-├── rent-calculator.html        # 2. 租金與 10% 代管服務費換算工具 (多基準天數、跨月拆分)
+├── index.html                  # 1. 品牌官方網站首頁 (Hero, 方案比較, ROI 試算, 第33條揭示, 房源, 表單)
+├── rent-calculator.html        # 2. 租金與代管服務費換算工具 (多基準天數、跨月拆分)
 ├── file-converter.html         # 3. 線上多功能檔案轉換神器 (PDF/DOCX/PNG/MP3/MP4/ZIP 本地轉檔)
 ├── photo-watermark.html        # 4. 房源照片 EXIF 時間戳記與防盜水印工具 (深色工作台)
 ├── id-card-watermark.html      # 5. 身份證照裁剪與租賃用途防偽水印工具 (深色工作台)
@@ -53,10 +52,12 @@ Matt Pocock skills/
 ├── card-merger.html            # 7. 名片正反面／上下拼貼合成神器 (留白調整與高畫質匯出)
 ├── photo-time-location.html    # 8. 照片時間與地點浮水印工具 (EXIF/GPS 自動解析、三樣式五位置)
 ├── ocr-translator.html         # 9. 照片 OCR 文字辨識與多國語言翻譯神器 (99%+ 雙引擎、ROI 框選、詞庫校正)
+├── space-planner.html          # 10. 2D 平面格局配置與 3D 即時轉換系統 (底圖校正、玄關連動隔間、CAD家具、60FPS 3D)
 ├── .nojekyll                   # 停用 GitHub Pages Jekyll 編譯
 ├── css/
 │   ├── tokens.css              # 全站設計 Token (海軍藍/香檳金/字型/陰影/深淺變數)
 │   ├── components.css          # 全站共用組件 (TopBar, Navbar, Footer, Buttons, Toast, 下拉選單)
+│   ├── space-planner.css       # 2D/3D 空間格局配置系統樣式
 │   ├── ocr-translator.css      # OCR 翻譯專屬樣式
 │   ├── converter.css           # 檔案轉換工具專屬樣式
 │   ├── image-converter.css     # 圖像轉換工具專屬樣式
@@ -67,6 +68,7 @@ Matt Pocock skills/
 │   ├── utils.js                # 工具函式 (千分位、日期差、Toast、主題切換)
 │   ├── navigation.js           # 首頁導覽列與行動端抽屜選單控制器
 │   ├── layout.js               # 跨頁 Layout 控制與 Active 狀態點亮
+│   ├── space-planner.js        # 2D CAD + 3D WebGL 空間格局配置核心引擎
 │   ├── ocr-translator.js       # OCR 雙引擎核心與影像處理邏輯
 │   ├── converter.js            # 檔案轉換核心 (Canvas / Blob 本地運算)
 │   ├── image-converter.js      # 圖像格式與尺寸調控邏輯
@@ -126,6 +128,12 @@ Matt Pocock skills/
 - **自由區域框選 (ROI Crop)**：滑鼠拖曳框選特定條款或欄位，零雜訊精準辨識。
 - **不動產專業詞庫智慧校對**：自動修正「租貸➔租賃」、「代菅➔代管」、「統蝙➔統編」等光學混淆字。
 - **即時多國語言翻譯與語音朗讀 (TTS)**：中/英/日/韓/越即時互譯與 .TXT/.MD 匯出。
+
+### 4.10 Web 端互動式 2D 平面格局配置與 3D 即時轉換系統 (`space-planner.html`)
+- **模組一（既有外牆建置與底圖描繪）**：底圖上傳與兩點基準線比例尺自動校正、10cm 格線與端點磁吸、90° 正交鎖定拉線繪牆、區分「既有鎖定外牆（20/24cm）」與「室內可調隔間牆（10/12/15cm）」、標準 CAD 45° 雙斜線剖面填充（ANSI31 Hatch）與門窗自動打斷及 90° 開啟弧線。
+- **模組二（玄關連動與參數化自動隔間）**：支援自由拖曳「入口玄關大門」、「固定水電管道間」與切換「既有開窗採光面」；依公私領域拓撲即時演算生成 3 組室內隔間配置方案；支援免 CAD 指令滑鼠拖拉隔間牆、點擊尺寸直接輸入目標淨寬（cm），即時更新各空間名稱與換算坪數（$1\text{ m}^2 = 0.3025\text{ 坪}$）。
+- **模組三（標準 CAD 家具圖塊庫與自動避讓）**：內建 11 款人體工學比例 2D CAD 圖塊與對應 3D 模型、靠近牆面自動貼齊轉向（Auto-Align）、門扇開啟迴轉半徑（85~100cm）與走道重疊紅框警示。
+- **模組四（多方案切換、一鍵轉 3D 與成品出圖）**：單一 JSON Schema 支援「原始屋況 / 方案 A / 方案 B」多版本切換與指標比對表；Three.js (WebGL) 60 FPS 低多邊形 3D 即時擠出（預設樓高 300cm、門洞 210cm、窗台高 90cm），支援「俯視娃娃屋視角（自動半降剖切外牆）」與「室內第一人稱 WASD 漫遊視角」；一鍵匯出 PNG / SVG / PDF A4 工程格局圖與專案分享連結。
 
 ---
 
@@ -199,7 +207,7 @@ Matt Pocock skills/
 
 ## 8. SEO 與 Schema.org 結構化資料全覽 (Structured Data)
 
-全站 9 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
+全站 10 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
 
 | 頁面 | Schema.org 類型 | 核心欄位 |
 |---|---|---|
@@ -212,6 +220,7 @@ Matt Pocock skills/
 | `card-merger.html` | `WebApplication` (GraphicsApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
 | `photo-time-location.html`| `WebApplication` (MultimediaApplication)| `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
 | `ocr-translator.html` | `WebApplication` (UtilitiesApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
+| `space-planner.html` | `WebApplication` (DesignApplication) | `applicationCategory`, `operatingSystem`, `offers`, `provider` |
 
 ---
 

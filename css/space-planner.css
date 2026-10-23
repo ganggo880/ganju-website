@@ -1,0 +1,1012 @@
+/* 港居不動產 — Web 端互動式 2D 平面格局配置與 3D 即時轉換系統 專屬樣式表 */
+/* 嚴格繼承 css/tokens.css 與 css/components.css 之品牌設計 Token */
+
+.planner-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* 頂部工具列與專案控制列 */
+.planner-top-header {
+  background: linear-gradient(135deg, var(--primary-navy), var(--primary-dark));
+  color: var(--toast-text);
+  padding: 18px 0;
+  border-bottom: 2px solid var(--accent-gold);
+}
+
+.planner-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.planner-title-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.planner-title-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-gold);
+  color: var(--primary-dark);
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.planner-title-text h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--bg-light);
+  margin: 0;
+  line-height: 1.3;
+}
+
+[data-theme="dark"] .planner-title-text h2 {
+  color: var(--text-primary);
+}
+
+.planner-title-text p {
+  font-size: 0.82rem;
+  color: var(--accent-gold-light);
+  margin: 2px 0 0;
+}
+
+/* 專案名稱與多方案切換列 */
+.planner-control-bar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 0;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 88px;
+  z-index: 90;
+}
+
+.planner-control-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.project-meta-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.project-name-input {
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  font-weight: 700;
+  min-height: 44px;
+  width: 240px;
+  max-width: 100%;
+  transition: var(--transition-fast);
+}
+
+.project-name-input:focus {
+  outline: 2px solid var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+/* 多方案切換 Tabs (原始屋況 / 方案 A / 方案 B) */
+.version-tabs {
+  display: inline-flex;
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.version-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+
+.version-tab-btn:hover {
+  color: var(--primary-navy);
+  background: var(--bg-glow-2);
+}
+
+[data-theme="dark"] .version-tab-btn:hover {
+  color: var(--accent-gold-light);
+}
+
+.version-tab-btn.active {
+  background: var(--primary-navy);
+  color: var(--accent-gold-light);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 2D / Split / 3D 視圖切換器 */
+.view-mode-group {
+  display: inline-flex;
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.view-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+
+.view-mode-btn.active {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+/* 專案動作按鈕群 */
+.planner-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tool-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  min-height: 44px;
+  min-width: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tool-action-btn:hover {
+  border-color: var(--accent-gold);
+  background: var(--bg-glow-2);
+}
+
+.tool-action-btn.primary {
+  background: var(--primary-navy);
+  color: var(--accent-gold-light);
+  border-color: var(--primary-navy);
+}
+
+.tool-action-btn.primary:hover {
+  background: var(--primary-light);
+}
+
+.tool-action-btn.gold {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
+  color: var(--primary-dark);
+  border-color: var(--accent-gold);
+  font-weight: 800;
+}
+
+/* 主工作台三欄佈局 */
+.planner-workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 330px;
+  gap: 16px;
+  padding: 16px 20px 32px;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* 左側與右側面板通用卡片 */
+.planner-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.panel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.panel-header h3 {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.panel-header h3 i {
+  color: var(--accent-gold);
+}
+
+.panel-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-glow-2);
+  color: var(--accent-gold-hover);
+}
+
+/* 繪圖工具矩陣 */
+.draw-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.draw-tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  min-height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-inner);
+  color: var(--text-dark);
+  font-size: 0.83rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: left;
+}
+
+.draw-tool-btn i {
+  color: var(--accent-gold);
+  font-size: 0.95rem;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.draw-tool-btn:hover {
+  border-color: var(--accent-gold);
+  background: var(--bg-glow-2);
+}
+
+.draw-tool-btn.active {
+  background: var(--primary-navy);
+  color: var(--accent-gold-light);
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-sm);
+}
+
+.draw-tool-btn.active i {
+  color: var(--accent-gold-light);
+}
+
+/* 繪牆與吸附設定列 */
+.snap-toggles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.snap-check-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 6px 8px;
+  min-height: 44px;
+  border-radius: 8px;
+  background: var(--bg-card-inner);
+  cursor: pointer;
+}
+
+.snap-check-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-gold);
+  cursor: pointer;
+}
+
+/* 預設房型外框快速載入 */
+.template-pills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.template-pill-btn {
+  padding: 8px 10px;
+  min-height: 44px;
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card-inner);
+  color: var(--text-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.template-pill-btn:hover {
+  border-color: var(--accent-gold);
+  background: var(--bg-glow-2);
+}
+
+/* CAD 家具圖塊庫網格 */
+.furniture-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.furn-item-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 10px;
+  min-height: 54px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-inner);
+  color: var(--text-dark);
+  cursor: grab;
+  transition: var(--transition-fast);
+  text-align: left;
+}
+
+.furn-item-btn:hover {
+  border-color: var(--accent-gold);
+  background: var(--bg-glow-2);
+  transform: translateY(-1px);
+}
+
+.furn-item-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.furn-item-top i {
+  color: var(--accent-gold);
+}
+
+.furn-item-dim {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* 中央畫布與 3D 預覽工作區 */
+.planner-stage-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.stage-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.stage-toolbar-left,
+.stage-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.inline-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.inline-field input,
+.inline-field select {
+  width: 78px;
+  min-height: 44px;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card-inner);
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+
+/* 畫布雙視窗容器 */
+.viewport-split-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  min-height: 620px;
+  position: relative;
+}
+
+.viewport-split-container.mode-split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.viewport-split-container.mode-2d .viewport-3d-pane {
+  display: none;
+}
+
+.viewport-split-container.mode-3d .viewport-2d-pane {
+  display: none;
+}
+
+.viewport-pane {
+  position: relative;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+}
+
+.viewport-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-card-inner);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex-wrap: wrap;
+}
+
+.pane-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dark);
+}
+
+.pane-badge i {
+  color: var(--accent-gold);
+}
+
+.canvas-wrap {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 560px;
+  background: var(--bg-card-inner);
+  overflow: hidden;
+  touch-action: none;
+}
+
+#cadCanvas2D,
+#webglCanvas3D {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+/* 畫布浮動控制列 (縮放 / 置中 / 比例尺輸入彈窗) */
+.canvas-floating-hud {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  z-index: 20;
+}
+
+.hud-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 12px;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.hud-pill-btn:hover {
+  border-color: var(--accent-gold);
+}
+
+.hud-pill-btn.active {
+  background: var(--primary-navy);
+  color: var(--accent-gold-light);
+  border-color: var(--accent-gold);
+}
+
+/* 3D 漫遊虛擬方向鍵控制器 */
+.walkthrough-pad {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  z-index: 25;
+}
+
+.walkthrough-pad[hidden] {
+  display: none;
+}
+
+.walk-row {
+  display: flex;
+  gap: 4px;
+}
+
+.walk-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card-inner);
+  color: var(--text-dark);
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.walk-btn:hover,
+.walk-btn:active {
+  background: var(--accent-gold);
+  color: var(--primary-dark);
+}
+
+/* 畫布內嵌尺寸編輯器與比例尺校正對話框 */
+.canvas-inline-popover {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  box-shadow: var(--shadow-lg);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.canvas-inline-popover[hidden] {
+  display: none;
+}
+
+.canvas-inline-popover label {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.canvas-inline-popover input {
+  width: 95px;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card-inner);
+  color: var(--text-dark);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+/* 底部即時動線與狀態診斷列 */
+.status-diagnostic-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.collision-alert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+.collision-alert-badge.ok {
+  background: var(--bg-glow-2);
+  color: var(--accent-gold-hover);
+}
+
+.collision-alert-badge.warn {
+  background: var(--primary-navy);
+  color: var(--accent-gold-light);
+  border: 1px solid var(--accent-gold);
+}
+
+/* 右側：智慧隔間方案卡片與空間坪數統計 */
+.scheme-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scheme-card-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px 12px;
+  min-height: 56px;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-inner);
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: left;
+}
+
+.scheme-card-btn:hover {
+  border-color: var(--accent-gold);
+  background: var(--bg-glow-2);
+}
+
+.scheme-card-btn.active {
+  border: 2px solid var(--accent-gold);
+  background: var(--bg-glow-2);
+}
+
+.scheme-card-title {
+  font-size: 0.86rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: var(--text-dark);
+}
+
+.scheme-card-desc {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* 採光面方位切換按鈕組 */
+.daylight-sides-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.daylight-btn {
+  min-height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card-inner);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.daylight-btn.active {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
+  color: var(--primary-dark);
+  border-color: var(--accent-gold);
+  font-weight: 800;
+}
+
+/* 坪數與空間清單表格 */
+.room-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-top: 6px;
+}
+
+.room-schedule-table th,
+.room-schedule-table td {
+  padding: 7px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.room-schedule-table th {
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.76rem;
+}
+
+.room-schedule-table td.num {
+  text-align: right;
+  font-weight: 700;
+}
+
+.room-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 2px solid var(--accent-gold);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.room-total-ping {
+  color: var(--accent-gold-hover);
+  font-size: 1.05rem;
+}
+
+/* 選取物件屬性編輯面板 */
+.inspector-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inspector-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.83rem;
+}
+
+.inspector-row label {
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.inspector-row input,
+.inspector-row select {
+  width: 140px;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card-inner);
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+/* 出圖與專案管理 Modal */
+.planner-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--toast-bg);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 2000;
+}
+
+.planner-modal-backdrop[hidden] {
+  display: none;
+}
+
+.planner-modal-box {
+  background: var(--bg-card);
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 720px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+.planner-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.planner-modal-head h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.compare-table th {
+  background: var(--bg-card-inner);
+  font-weight: 800;
+}
+
+/* 響應式 RWD 適配（確保 360px 零橫向溢出且觸控區 >= 44x44px） */
+@media (max-width: 1360px) {
+  .planner-workspace {
+    grid-template-columns: 270px minmax(0, 1fr) 290px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .planner-workspace {
+    grid-template-columns: 1fr;
+  }
+  .planner-control-bar {
+    position: static;
+  }
+  .viewport-split-container.mode-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .planner-workspace {
+    padding: 10px 10px 24px;
+    gap: 12px;
+  }
+  .panel-card {
+    padding: 12px;
+  }
+  .project-name-input {
+    width: 100%;
+  }
+  .version-tabs,
+  .view-mode-group,
+  .planner-actions-group {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .version-tab-btn,
+  .view-mode-btn,
+  .tool-action-btn {
+    flex: 1 1 auto;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  .viewport-pane,
+  .canvas-wrap {
+    min-height: 420px;
+  }
+  .draw-tools-grid,
+  .furniture-catalog-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

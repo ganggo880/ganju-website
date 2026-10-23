@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>港居不動產｜2D 平面格局配置與 3D 即時轉換系統 (智慧自動隔間/CAD家具/坪數換算)</title>
+  <meta name="description" content="港居不動產開發有限公司專屬 Web 端互動式 2D 平面格局配置與 3D 即時轉換系統。支援底圖比例尺校正、玄關連動參數化自動隔間、標準 CAD 家具圖塊避讓、60FPS 3D 娃娃屋與第一人稱漫遊、PNG/SVG/PDF 格局圖匯出。">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/space-planner.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="港居不動產｜2D 平面格局配置與 3D 即時轉換系統">
+  <meta property="og:description" content="免複雜 CAD 指令！直覺拖拉繪牆、玄關驅動自動隔間、標準家具動線防呆與一鍵 3D 娃娃屋即時預覽。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/space-planner.html">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/space-planner.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居 2D 平面格局配置與 3D 即時轉換系統",
+    "url": "https://ganggo880.github.io/ganju-website/space-planner.html",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas & WebGL.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "專供不動產空間規劃、室內隔間調整與格局圖繪製之 Web 端 2D CAD 與 3D WebGL 即時轉換系統。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+
+  <!-- Three.js WebGL & jsPDF (Lightweight Procedural 3D & PDF Sheet Export) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="ganju-theme">
+  <div class="planner-page-wrapper">
+    <!-- 1. 頂部宣告條 Top Bar -->
+    <div class="top-bar">
+      <div class="container top-bar-inner">
+        <div class="top-bar-badges">
+          <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法登記包租代管業者</span>
+          <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+        </div>
+        <div class="top-bar-contact">
+          <span>統編：96797997</span>
+          <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 主導覽列 Navbar -->
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+          <img src="assets/logo.png" alt="港居不動產 LOGO">
+          <div class="brand-text-box">
+            <h1 class="brand-title">港居不動產</h1>
+            <p class="brand-sub">GANJU REAL ESTATE</p>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html#home" class="nav-link">首頁</a></li>
+          <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+          <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+          <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+          <li class="nav-dropdown">
+            <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+            </button>
+            <ul class="nav-dropdown-menu">
+              <li><a href="space-planner.html" class="nav-link active"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+              <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+              <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+              <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+              <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+              <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+              <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+              <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+              <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        </ul>
+
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="切換深淺模式" title="切換深淺模式">
+            <i class="fa-solid fa-sun icon-sun"></i>
+            <i class="fa-solid fa-moon icon-moon"></i>
+          </button>
+          <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+          <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟選單"><i class="fa-solid fa-bars"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. 系統標題橫幅 -->
+    <section class="planner-top-header">
+      <div class="container planner-header-inner">
+        <div class="planner-title-group">
+          <span class="planner-title-badge"><i class="fa-solid fa-compass-drafting"></i> CAD + WebGL 60FPS</span>
+          <div class="planner-title-text">
+            <h2>互動式 2D 平面格局配置與 3D 即時轉換系統</h2>
+            <p>底圖比例尺校正・玄關連動參數化隔間・標準 CAD 家具動線防呆・一鍵 3D 娃娃屋與漫遊出圖</p>
+          </div>
+        </div>
+        <div class="planner-actions-group">
+          <button type="button" id="btnSaveProject" class="tool-action-btn gold" title="儲存至本機資料庫">
+            <i class="fa-solid fa-floppy-disk"></i> 儲存專案
+          </button>
+          <button type="button" id="btnOpenProjectsModal" class="tool-action-btn" title="讀取歷史專案">
+            <i class="fa-solid fa-folder-open"></i> 歷史專案
+          </button>
+          <button type="button" id="btnExportJson" class="tool-action-btn" title="匯出 JSON 專案檔">
+            <i class="fa-solid fa-file-arrow-down"></i> 匯出 JSON
+          </button>
+          <button type="button" id="btnImportJson" class="tool-action-btn" title="載入 JSON 專案檔">
+            <i class="fa-solid fa-file-arrow-up"></i> 匯入 JSON
+          </button>
+          <input type="file" id="jsonFileInput" accept=".json,application/json" hidden>
+          <button type="button" id="btnShareLink" class="tool-action-btn" title="產生唯讀預覽或協作分享連結">
+            <i class="fa-solid fa-share-nodes"></i> 分享連結
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 多版本切換與 2D/3D 檢視控制列 -->
+    <section class="planner-control-bar" aria-label="專案版本與視角切換">
+      <div class="container planner-control-inner">
+        <div class="project-meta-box">
+          <label for="projectNameInput" style="font-size:0.82rem;font-weight:800;">專案名稱：</label>
+          <input type="text" id="projectNameInput" class="project-name-input" value="高雄小港・中安路高質感三房包租規劃案" aria-label="專案名稱">
+        </div>
+
+        <!-- 多方案版本切換 (原始屋況 / 方案 A / 方案 B) -->
+        <div class="version-tabs" role="tablist" aria-label="格局方案版本">
+          <button type="button" class="version-tab-btn" data-version="original" role="tab" aria-selected="false">
+            <i class="fa-solid fa-house-chimney"></i> 原始屋況
+          </button>
+          <button type="button" class="version-tab-btn active" data-version="planA" role="tab" aria-selected="true">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 方案 A
+          </button>
+          <button type="button" class="version-tab-btn" data-version="planB" role="tab" aria-selected="false">
+            <i class="fa-solid fa-layer-group"></i> 方案 B
+          </button>
+          <button type="button" id="btnCloneVersion" class="version-tab-btn" title="將目前格局複製到另一方案">
+            <i class="fa-regular fa-copy"></i> 複製至...
+          </button>
+          <button type="button" id="btnCompareModal" class="version-tab-btn" title="開啟多方案坪數與指標比對表">
+            <i class="fa-solid fa-table-columns"></i> 版本比對
+          </button>
+        </div>
+
+        <!-- 2D / 2D+3D / 3D 即時轉換 -->
+        <div class="view-mode-group" role="group" aria-label="2D 與 3D 檢視切換">
+          <button type="button" class="view-mode-btn" data-viewmode="2d">
+            <i class="fa-solid fa-vector-square"></i> 2D 平面配置
+          </button>
+          <button type="button" class="view-mode-btn active" data-viewmode="split">
+            <i class="fa-solid fa-columns"></i> 2D + 3D 同步視窗
+          </button>
+          <button type="button" class="view-mode-btn" data-viewmode="3d">
+            <i class="fa-solid fa-cube"></i> 3D 立體預覽
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 主工作台三欄區域 -->
+    <main class="planner-workspace">
+      <!-- 左側欄：模組一（底圖校正與繪牆）＋ 模組三（標準 CAD 家具圖塊庫） -->
+      <aside class="planner-sidebar" aria-label="繪圖工具與家具圖塊庫">
+        <!-- 模組一：既有外牆建置與底圖描繪 -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-pen-ruler"></i> 模組一：外牆與底圖描繪</h3>
+            <span class="panel-tag">鎖定外框</span>
+          </div>
+
+          <div class="draw-tools-grid" role="group" aria-label="2D 畫布操作工具">
+            <button type="button" class="draw-tool-btn active" data-tool="select" title="點選或直接拖拉隔間牆、玄關與家具 (快捷鍵 V)">
+              <i class="fa-solid fa-arrows-up-down-left-right"></i> <span>拖拉微調 (V)</span>
+            </button>
+            <button type="button" class="draw-tool-btn" data-tool="wall_int" title="點擊拉線繪製室內可調隔間牆 (快捷鍵 W)">
+              <i class="fa-solid fa-border-all"></i> <span>繪隔間牆 (W)</span>
+            </button>
+            <button type="button" class="draw-tool-btn" data-tool="wall_ext" title="點擊拉線繪製既有鎖定外牆/結構牆 (快捷鍵 E)">
+              <i class="fa-solid fa-shield"></i> <span>繪結構外牆 (E)</span>
+            </button>
+            <button type="button" class="draw-tool-btn" data-tool="add_door" title="點擊牆面嵌入門扇並自動繪製開啟弧線 (快捷鍵 D)">
+              <i class="fa-solid fa-door-open"></i> <span>嵌入門扇 (D)</span>
+            </button>
+            <button type="button" class="draw-tool-btn" data-tool="add_window" title="點擊牆面嵌入標準採光窗 (快捷鍵 N)">
+              <i class="fa-regular fa-window-maximize"></i> <span>嵌入窗戶 (N)</span>
+            </button>
+            <button type="button" class="draw-tool-btn" data-tool="calibrate" title="在底圖上拉一條基準線並輸入實際長度 (cm) 自動校正比例尺">
+              <i class="fa-solid fa-ruler-horizontal"></i> <span>比例尺校正</span>
+            </button>
+          </div>
+
+          <!-- 預設牆厚設定 -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+            <label class="inline-field" style="justify-content:space-between;">
+              <span>外牆厚:</span>
+              <select id="extWallThicknessSelect" aria-label="外牆預設厚度">
+                <option value="20">20 cm</option>
+                <option value="24" selected>24 cm</option>
+              </select>
+            </label>
+            <label class="inline-field" style="justify-content:space-between;">
+              <span>內牆厚:</span>
+              <select id="intWallThicknessSelect" aria-label="室內隔間牆預設厚度">
+                <option value="10">10 cm</option>
+                <option value="12" selected>12 cm</option>
+                <option value="15">15 cm</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- 吸附與 CAD 剖面線開關 -->
+          <div class="snap-toggles-list">
+            <label class="snap-check-label">
+              <span><i class="fa-solid fa-magnet"></i> 格線與端點自動吸附 (Snap)</span>
+              <input type="checkbox" id="chkSnapGrid" checked>
+            </label>
+            <label class="snap-check-label">
+              <span><i class="fa-solid fa-compass"></i> 90° 正交鎖定 (Ortho Lock)</span>
+              <input type="checkbox" id="chkOrthoLock" checked>
+            </label>
+            <label class="snap-check-label">
+              <span><i class="fa-solid fa-lines-leaning"></i> CAD 45°雙斜線剖面 (ANSI31)</span>
+              <input type="checkbox" id="chkShowHatch" checked>
+            </label>
+          </div>
+
+          <!-- 底圖上傳與比例尺校正 -->
+          <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border-color);">
+            <div style="font-size:0.8rem;font-weight:800;margin-bottom:6px;display:flex;justify-content:space-between;">
+              <span><i class="fa-regular fa-image"></i> 既有底圖描繪與比例尺</span>
+              <span id="scaleStatusText" style="color:var(--accent-gold-hover);">1:1 (cm)</span>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button type="button" id="btnUploadBg" class="tool-action-btn" style="flex:1;">
+                <i class="fa-solid fa-upload"></i> 上傳底圖
+              </button>
+              <button type="button" id="btnStartCalibrate" class="tool-action-btn" style="flex:1;" title="於底圖點擊兩點輸入實際公分數">
+                <i class="fa-solid fa-ruler"></i> 兩點校正
+              </button>
+              <button type="button" id="btnClearBg" class="tool-action-btn" title="移除背景底圖" aria-label="移除背景底圖">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+              <input type="file" id="bgFileInput" accept="image/jpeg,image/png,image/webp" hidden>
+            </div>
+            <label class="inline-field" style="width:100%;justify-content:space-between;margin-top:6px;">
+              <span>底圖透明度: <strong id="bgOpacityVal">45%</strong></span>
+              <input type="range" id="bgOpacitySlider" min="10" max="100" value="45" style="width:120px;">
+            </label>
+          </div>
+
+          <!-- 快速屋況外框範本 -->
+          <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border-color);">
+            <div style="font-size:0.8rem;font-weight:800;margin-bottom:4px;">快速載入既有外牆胚體：</div>
+            <div class="template-pills">
+              <button type="button" class="template-pill-btn" data-envelope="standard">標準方正 960×720</button>
+              <button type="button" class="template-pill-btn" data-envelope="large">大三房胚體 1120×780</button>
+              <button type="button" class="template-pill-btn" data-envelope="compact">精巧兩房 780×600</button>
+              <button type="button" class="template-pill-btn" data-envelope="empty">空白畫布自繪</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 模組三：標準 CAD 家具圖塊庫與自動避讓 -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-couch"></i> 模組三：CAD 家具圖塊庫</h3>
+            <span class="panel-tag">動線防呆</span>
+          </div>
+
+          <div class="snap-toggles-list" style="margin-top:0;margin-bottom:10px;">
+            <label class="snap-check-label">
+              <span><i class="fa-solid fa-arrows-to-dot"></i> 靠近牆面自動貼齊轉向</span>
+              <input type="checkbox" id="chkAutoAlignFurn" checked>
+            </label>
+            <label class="snap-check-label">
+              <span><i class="fa-solid fa-triangle-exclamation"></i> 開門迴轉半徑 (85cm) 警示</span>
+              <input type="checkbox" id="chkShowClearance" checked>
+            </label>
+          </div>
+
+          <button type="button" id="btnAutoFurnishAll" class="tool-action-btn gold" style="width:100%;margin-bottom:10px;">
+            <i class="fa-solid fa-wand-sparkles"></i> 依各房屬性自動配置全室家具
+          </button>
+
+          <div style="font-size:0.76rem;color:var(--text-muted);margin-bottom:6px;">
+            💡 點擊或直接拖曳（Drag &amp; Drop）圖塊至右側畫布：
+          </div>
+
+          <div class="furniture-catalog-grid" id="furnitureCatalogGrid">
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="double_bed">
+              <span class="furn-item-top"><i class="fa-solid fa-bed"></i> 雙人床組</span>
+              <span class="furn-item-dim">152 × 188 cm (主臥)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="single_bed">
+              <span class="furn-item-top"><i class="fa-solid fa-bed-pulse"></i> 單人床組</span>
+              <span class="furn-item-dim">106 × 188 cm (次臥)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="wardrobe">
+              <span class="furn-item-top"><i class="fa-solid fa-shirt"></i> 系統衣櫃</span>
+              <span class="furn-item-dim">150 × 60 cm (收納)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="desk">
+              <span class="furn-item-top"><i class="fa-solid fa-desktop"></i> 書桌椅組</span>
+              <span class="furn-item-dim">120 × 60 cm (書房)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="sofa">
+              <span class="furn-item-top"><i class="fa-solid fa-couch"></i> 三人座沙發</span>
+              <span class="furn-item-dim">210 × 85 cm (客廳)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="coffee_table">
+              <span class="furn-item-top"><i class="fa-solid fa-table"></i> 客廳茶几</span>
+              <span class="furn-item-dim">110 × 55 cm (客廳)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="dining_table">
+              <span class="furn-item-top"><i class="fa-solid fa-utensils"></i> 四人餐桌椅</span>
+              <span class="furn-item-dim">130 × 80 cm (餐廳)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="toilet">
+              <span class="furn-item-top"><i class="fa-solid fa-toilet"></i> 單體馬桶</span>
+              <span class="furn-item-dim">42 × 68 cm (衛浴)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="basin">
+              <span class="furn-item-top"><i class="fa-solid fa-sink"></i> 洗手台面盆</span>
+              <span class="furn-item-dim">65 × 48 cm (衛浴)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="shower">
+              <span class="furn-item-top"><i class="fa-solid fa-shower"></i> 淋浴隔間</span>
+              <span class="furn-item-dim">90 × 90 cm (衛浴)</span>
+            </button>
+            <button type="button" class="furn-item-btn" draggable="true" data-furn="kitchen_counter" style="grid-column: span 2;">
+              <span class="furn-item-top"><i class="fa-solid fa-fire-burner"></i> 一字型流理台 (水槽+雙口爐)</span>
+              <span class="furn-item-dim">180 × 60 cm (廚房・建議貼近管道間)</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 中央欄：2D CAD 畫布與 3D WebGL 同步渲染視窗 -->
+      <section class="planner-stage-col" aria-label="2D 與 3D 繪圖視窗">
+        <!-- 畫布頂部快捷控制列 -->
+        <div class="stage-toolbar">
+          <div class="stage-toolbar-left">
+            <label class="inline-field">
+              <span><i class="fa-solid fa-arrows-up-down"></i> 設定樓高(cm):</span>
+              <input type="number" id="floorHeightInput" min="220" max="450" step="10" value="300" aria-label="樓高設定公分">
+            </label>
+            <button type="button" id="btnRotateSelected" class="tool-action-btn" title="旋轉選取之家具或切換開門方向 (快捷鍵 R)">
+              <i class="fa-solid fa-rotate-right"></i> 旋轉 90° (R)
+            </button>
+            <button type="button" id="btnFlipDoor" class="tool-action-btn" title="翻轉選取門扇之內外開或左右鉸鏈">
+              <i class="fa-solid fa-right-left"></i> 翻轉門扇
+            </button>
+            <button type="button" id="btnDeleteSelected" class="tool-action-btn" title="刪除選取之內牆、門窗或家具 (快捷鍵 Delete)">
+              <i class="fa-solid fa-trash"></i> 刪除選取
+            </button>
+            <button type="button" id="btnUndo" class="tool-action-btn" title="復原上一步變更 (Ctrl+Z)">
+              <i class="fa-solid fa-rotate-left"></i> 復原
+            </button>
+          </div>
+
+          <div class="stage-toolbar-right">
+            <button type="button" id="btnCameraDollhouse" class="tool-action-btn active" title="3D 俯視娃娃屋視角（鳥瞰全室格局）">
+              <i class="fa-solid fa-house-laptop"></i> 娃娃屋俯視
+            </button>
+            <button type="button" id="btnCameraFirstPerson" class="tool-action-btn" title="3D 室內第一人稱漫遊視角（眼高 165cm 實境看房）">
+              <i class="fa-solid fa-person-walking"></i> 室內漫遊
+            </button>
+            <label class="inline-field" style="cursor:pointer;" title="自動調降面向鏡頭之外牆高度，方便鳥瞰室內">
+              <input type="checkbox" id="chkCutawayWall" checked style="width:18px;height:18px;accent-color:var(--accent-gold);">
+              <span>自動剖切外牆</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2D / 3D 雙視窗同步容器 -->
+        <div class="viewport-split-container mode-split" id="viewportContainer">
+          <!-- 左視窗：2D CAD 平面配置畫布 -->
+          <div class="viewport-pane viewport-2d-pane">
+            <div class="viewport-pane-header">
+              <span class="pane-badge">
+                <i class="fa-solid fa-compass-drafting"></i> 2D CAD 平面格局圖（點擊尺寸可直接輸入淨寬 cm・拖曳綠門可連動隔間）
+              </span>
+              <span id="cursorCoordText" style="color:var(--text-muted);">X: 0 cm, Y: 0 cm</span>
+            </div>
+
+            <div class="canvas-wrap" id="canvas2DWrap">
+              <canvas id="cadCanvas2D" aria-label="2D 平面格局配置互動畫布"></canvas>
+
+              <!-- 畫布內嵌：點擊尺寸直接修改淨寬 / 比例尺校正輸入框 -->
+              <div class="canvas-inline-popover" id="canvasPopover" hidden>
+                <label id="popoverLabel" for="popoverInput">輸入目標淨寬 (cm)：</label>
+                <input type="number" id="popoverInput" min="30" max="5000" step="1" value="320">
+                <button type="button" id="btnPopoverConfirm" class="tool-action-btn gold">套用</button>
+                <button type="button" id="btnPopoverCancel" class="tool-action-btn">取消</button>
+              </div>
+
+              <!-- 2D 視圖縮放控制 -->
+              <div class="canvas-floating-hud">
+                <button type="button" id="btnZoomIn" class="hud-pill-btn" title="放大畫布"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                <button type="button" id="btnZoomOut" class="hud-pill-btn" title="縮小畫布"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                <button type="button" id="btnZoomReset" class="hud-pill-btn" title="置中並重設縮放"><i class="fa-solid fa-expand"></i> 置中適配</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右視窗：3D WebGL 即時立體渲染 -->
+          <div class="viewport-pane viewport-3d-pane">
+            <div class="viewport-pane-header">
+              <span class="pane-badge">
+                <i class="fa-solid fa-cube"></i> 3D WebGL 即時立體預覽（樓高 <span id="headerFloorHeightText">300</span>cm・門高 210cm・窗台 90cm）
+              </span>
+              <span id="fpsBadgeText" style="color:var(--accent-gold-hover);">60 FPS Low-Poly</span>
+            </div>
+
+            <div class="canvas-wrap" id="canvas3DWrap">
+              <canvas id="webglCanvas3D" aria-label="3D 立體空間即時預覽畫布"></canvas>
+
+              <!-- 3D 浮動快捷鍵說明 -->
+              <div class="canvas-floating-hud">
+                <button type="button" id="btn3DResetCam" class="hud-pill-btn" title="重設 3D 鏡頭角度">
+                  <i class="fa-solid fa-video"></i> 重設鏡頭
+                </button>
+                <button type="button" id="btn3DToggleRoof" class="hud-pill-btn" title="顯示或隱藏全室天花板燈光模擬">
+                  <i class="fa-solid fa-lightbulb"></i> 暖光照明
+                </button>
+              </div>
+
+              <!-- 第一人稱漫遊虛擬方向鍵 (切換至室內漫遊時顯示) -->
+              <div class="walkthrough-pad" id="walkthroughPad" hidden aria-label="第一人稱漫遊移動控制">
+                <div style="font-size:0.72rem;font-weight:800;margin-bottom:2px;">漫遊移動 (WASD)</div>
+                <div class="walk-row">
+                  <button type="button" class="walk-btn" data-move="forward" title="前進 (W)" aria-label="前進"><i class="fa-solid fa-chevron-up"></i></button>
+                </div>
+                <div class="walk-row">
+                  <button type="button" class="walk-btn" data-move="left" title="左轉視角 (A)" aria-label="左轉"><i class="fa-solid fa-rotate-left"></i></button>
+                  <button type="button" class="walk-btn" data-move="backward" title="後退 (S)" aria-label="後退"><i class="fa-solid fa-chevron-down"></i></button>
+                  <button type="button" class="walk-btn" data-move="right" title="右轉視角 (D)" aria-label="右轉"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部動線防呆與即時提示列 -->
+        <div class="status-diagnostic-bar">
+          <div id="statusHintText">
+            💡 <strong>操作提示：</strong>直接拖拉畫布上的「<span style="color:var(--accent-gold-hover);">綠色入口玄關門</span>」或「<span style="color:var(--accent-gold-hover);">藍色水電管道間</span>」，系統即自動依公私領域拓撲重新演算室內隔間！點擊任何尺寸標籤可直接輸入目標淨寬 (cm)。
+          </div>
+          <div id="collisionBadge" class="collision-alert-badge ok" role="status">
+            <i class="fa-solid fa-circle-check"></i> 動線檢測合格：無門扇迴轉或走道衝突
+          </div>
+        </div>
+      </section>
+
+      <!-- 右側欄：模組二（玄關連動與參數化自動隔間）＋ 屬性微調 ＋ 坪數表 ＋ 模組四（出圖匯出） -->
+      <aside class="planner-sidebar" aria-label="智慧隔間與出圖面板">
+        <!-- 模組二：玄關連動與參數化自動隔間 -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-sitemap"></i> 模組二：玄關連動智慧隔間</h3>
+            <span class="panel-tag">參數化拓撲</span>
+          </div>
+
+          <!-- 關鍵錨點快速定位 -->
+          <div style="font-size:0.8rem;font-weight:800;margin-bottom:6px;">
+            1. 入口玄關大門位置（亦可於畫布直接拖曳）：
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
+            <select id="entranceSideSelect" aria-label="玄關所在外牆方位" style="min-height:44px;padding:6px;border-radius:8px;border:1px solid var(--border-color);background:var(--bg-card-inner);color:var(--text-dark);font-weight:700;">
+              <option value="south" selected>南側外牆 (下方)</option>
+              <option value="north">北側外牆 (上方)</option>
+              <option value="west">西側外牆 (左側)</option>
+              <option value="east">東側外牆 (右側)</option>
+            </select>
+            <label class="inline-field" style="justify-content:space-between;">
+              <span>偏移:</span>
+              <input type="range" id="entranceOffsetSlider" min="15" max="85" value="25" style="width:90px;" aria-label="玄關沿牆位置比例">
+            </label>
+          </div>
+
+          <div style="font-size:0.8rem;font-weight:800;margin-bottom:4px;">
+            2. 既有開窗採光面（臥室優先分配於採光側）：
+          </div>
+          <div class="daylight-sides-grid" role="group" aria-label="既有開窗採光面設定">
+            <button type="button" class="daylight-btn active" data-side="north"><i class="fa-solid fa-sun"></i> 北採光</button>
+            <button type="button" class="daylight-btn" data-side="south"><i class="fa-solid fa-sun"></i> 南採光</button>
+            <button type="button" class="daylight-btn active" data-side="east"><i class="fa-solid fa-sun"></i> 東採光</button>
+            <button type="button" class="daylight-btn" data-side="west"><i class="fa-solid fa-sun"></i> 西採光</button>
+          </div>
+
+          <label class="snap-check-label" style="margin-top:8px;margin-bottom:10px;">
+            <span><i class="fa-solid fa-bolt"></i> 拖曳玄關/管道間時即時連動隔間</span>
+            <input type="checkbox" id="chkLiveTopology" checked>
+          </label>
+
+          <div style="font-size:0.8rem;font-weight:800;margin-bottom:6px;">
+            3. 點選套用自動生成之室內隔間方案：
+          </div>
+          <div class="scheme-cards-list">
+            <button type="button" class="scheme-card-btn active" data-scheme="1">
+              <div class="scheme-card-title">
+                <span><i class="fa-solid fa-wand-magic-sparkles"></i> 自動方案 1：標準公私分明雙臥</span>
+                <span class="panel-tag">2房2廳1衛1廚</span>
+              </div>
+              <div class="scheme-card-desc">玄關導引開闊客餐廳，主次臥分配於採光側，衛浴與廚房緊鄰水電管道間。</div>
+            </button>
+
+            <button type="button" class="scheme-card-btn" data-scheme="2">
+              <div class="scheme-card-title">
+                <span><i class="fa-solid fa-gem"></i> 自動方案 2：外商主管大尺度一房一書房</span>
+                <span class="panel-tag">1大房+書房+雙廳</span>
+              </div>
+              <div class="scheme-card-desc">放大公領域客餐廳與豪華主臥尺度，配置獨立採光書房，適合外商高階租客。</div>
+            </button>
+
+            <button type="button" class="scheme-card-btn" data-scheme="3">
+              <div class="scheme-card-title">
+                <span><i class="fa-solid fa-chart-line"></i> 自動方案 3：高收益緊湊三房配置</span>
+                <span class="panel-tag">3房1廳1衛1廚</span>
+              </div>
+              <div class="scheme-card-desc">最大化房間數，沿採光面配置三間臥室並保留公領域與短動線衛廚，提升租金投報。</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 選取物件直覺屬性微調面板 -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-sliders"></i> 選取物件直覺微調</h3>
+            <span class="panel-tag" id="selectedTypeTag">未選取</span>
+          </div>
+          <div id="inspectorContainer" class="inspector-form">
+            <div style="font-size:0.8rem;color:var(--text-muted);line-height:1.6;">
+              👆 點擊畫布上的<strong>隔間牆、門窗、空間名稱或家具圖塊</strong>，即可在此直接輸入精準尺寸（cm）、切換牆厚或修改房間名稱。
+            </div>
+          </div>
+        </div>
+
+        <!-- 各空間名稱與即時坪數統計表 -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-calculator"></i> 空間尺寸與坪數換算表</h3>
+            <span class="panel-tag">1m² = 0.3025坪</span>
+          </div>
+          <table class="room-schedule-table" aria-label="各空間面積與坪數統計表">
+            <thead>
+              <tr>
+                <th>空間名稱</th>
+                <th>淨尺寸 (cm)</th>
+                <th class="num">m²</th>
+                <th class="num">坪數</th>
+              </tr>
+            </thead>
+            <tbody id="roomScheduleBody"></tbody>
+          </table>
+          <div class="room-total-row">
+            <span>室內主建總計：</span>
+            <span class="room-total-ping" id="totalAreaSummaryText">0.00 m² ／ 0.00 坪</span>
+          </div>
+        </div>
+
+        <!-- 模組四：業務成果匯出 (PNG / SVG / PDF) -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-file-export"></i> 模組四：業務成果出圖</h3>
+            <span class="panel-tag">PNG/SVG/PDF</span>
+          </div>
+
+          <div class="snap-toggles-list" style="margin-top:0;margin-bottom:10px;">
+            <label class="snap-check-label">
+              <span>顯示尺寸標註 (Dimensions)</span>
+              <input type="checkbox" id="chkExportDim" checked>
+            </label>
+            <label class="snap-check-label">
+              <span>顯示空間名稱與坪數標籤</span>
+              <input type="checkbox" id="chkExportRoomName" checked>
+            </label>
+            <label class="snap-check-label">
+              <span>附加上方/側邊坪數統計表</span>
+              <input type="checkbox" id="chkExportTable" checked>
+            </label>
+            <label class="snap-check-label">
+              <span>顯示指北針與港居公司浮水印</span>
+              <input type="checkbox" id="chkExportWatermark" checked>
+            </label>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <button type="button" id="btnExportPng" class="tool-action-btn primary">
+              <i class="fa-solid fa-image"></i> 匯出 PNG 圖
+            </button>
+            <button type="button" id="btnExportSvg" class="tool-action-btn primary">
+              <i class="fa-solid fa-bezier-curve"></i> 匯出 SVG 檔
+            </button>
+            <button type="button" id="btnExportPdf" class="tool-action-btn gold" style="grid-column: span 2;">
+              <i class="fa-solid fa-file-pdf"></i> 匯出 A4 標準工程格局圖 (PDF)
+            </button>
+            <button type="button" id="btnSnapshot3D" class="tool-action-btn" style="grid-column: span 2;">
+              <i class="fa-solid fa-camera"></i> 匯出 3D 立體空間渲染圖 (PNG)
+            </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- 多方案比對 Modal -->
+    <div class="planner-modal-backdrop" id="compareModalBackdrop" hidden role="dialog" aria-modal="true" aria-labelledby="compareModalTitle">
+      <div class="planner-modal-box">
+        <div class="planner-modal-head">
+          <h3 id="compareModalTitle"><i class="fa-solid fa-scale-balanced"></i> 原始屋況 vs 方案 A vs 方案 B 多版本評估比對</h3>
+          <button type="button" id="btnCloseCompareModal" class="tool-action-btn"><i class="fa-solid fa-xmark"></i> 關閉</button>
+        </div>
+        <div id="compareModalBody"></div>
+      </div>
+    </div>
+
+    <!-- 歷史專案管理與複製方案 Modal -->
+    <div class="planner-modal-backdrop" id="projectsModalBackdrop" hidden role="dialog" aria-modal="true" aria-labelledby="projectsModalTitle">
+      <div class="planner-modal-box">
+        <div class="planner-modal-head">
+          <h3 id="projectsModalTitle"><i class="fa-solid fa-database"></i> 專案資料庫與多版本管理</h3>
+          <button type="button" id="btnCloseProjectsModal" class="tool-action-btn"><i class="fa-solid fa-xmark"></i> 關閉</button>
+        </div>
+        <div id="projectsModalBody"></div>
+      </div>
+    </div>
+
+    <!-- 頁尾 Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>
+              <img src="assets/logo.png" alt="港居不動產 LOGO" style="height: 32px; filter: brightness(0) invert(1);">
+              港居不動產開發有限公司
+            </h4>
+            <p>依法登記經營包租代管服務，專注高質感住宅資產護全與穩定收益增值。</p>
+            <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+            <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+          </div>
+
+          <div class="footer-col">
+            <h4>服務項目</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+              <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+              <li><a href="index.html#about">法拍屋代標服務</a></li>
+              <li><a href="index.html#about">高品質房屋買賣</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>證照字號</h4>
+            <ul class="footer-links">
+              <li>租賃管理證號：(112) 登字第013739號</li>
+              <li>經理人：陳俊銘 經理</li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>立即與專員聯繫</h4>
+            <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+            <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+            <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+            <a href="https://lin.ee/Q71pw2I" target="_blank" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;" rel="noopener noreferrer">
+              <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 懸浮 Line 與電話按鈕 -->
+    <div class="floating-actions">
+      <a href="https://lin.ee/Q71pw2I" target="_blank" class="float-btn float-btn-line" title="Line 專員一對一諮詢" aria-label="Line 專員一對一諮詢" rel="noopener noreferrer">
+        <i class="fa-brands fa-line"></i>
+      </a>
+      <a href="tel:0968863880" class="float-btn float-btn-phone" title="致電 陳俊銘 經理" aria-label="致電 陳俊銘 經理">
+        <i class="fa-solid fa-phone"></i>
+      </a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- 核心引擎腳本 -->
+  <script src="js/space-planner.js"></script>
+</body>
+</html>

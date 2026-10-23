@@ -14,7 +14,8 @@ HTML_FILES = [
     "image-converter.html",
     "card-merger.html",
     "photo-time-location.html",
-    "ocr-translator.html"
+    "ocr-translator.html",
+    "space-planner.html"
 ]
 
 print("=== 港居不動產全站技術規範與指南自動化稽核 ===")
@@ -90,9 +91,9 @@ for html_file in HTML_FILES:
     print(f"   • 標題: {report['title']}")
     print(f"   • Viewport: {'OK' if report['has_viewport'] else 'MISSING'} | Canonical: {'OK' if report['has_canonical'] else 'MISSING'}")
     print(f"   • JSON-LD: {report['json_ld_type'] if report['json_ld_valid'] else '無或免配置'} (Valid: {report['json_ld_valid']})")
-    print(f"   • 選單整合頁面數: {report['nav_tools_count']}/9 個頁面")
+    print(f"   • 選單整合頁面數: {report['nav_tools_count']}/{len(HTML_FILES)} 個頁面")
     if report["broken_internal_links"]:
         print(f"   • 失效內部連結: {report['broken_internal_links']}")
     print("")
 
-print("=== 全站 9 大頁面規範稽核完畢 ===")
+print(f"=== 全站 {len(HTML_FILES)} 大頁面規範稽核完畢 ===")
