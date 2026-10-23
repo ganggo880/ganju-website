@@ -77,6 +77,9 @@ Matt Pocock skills/
 │   └── watermark-app.js        # EXIF 水印工具邏輯
 ├── assets/                     # 品牌標誌 (logo.png) 與房源實景照片
 └── output/                     # 規格書、技術指南與產出檔案歸檔目錄
+    ├── winfar-website/         # 穩發漁業集團官方形象網站 (艦隊展示/冷鏈/影音新聞/B2B詢價)
+    ├── SPECIFICATION.md        # 全站系統技術規格書 (本檔)
+    └── 2D_3D_空間格局配置系統_使用操作手冊.md
 ```
 
 ---
@@ -85,7 +88,7 @@ Matt Pocock skills/
 
 ### 4.1 品牌官網首頁 (`index.html`)
 - **頂部宣告條 (`.top-bar`)**：標註特許證號、統一編號與經理人專線。
-- **導覽列 (`.navbar`)**：置頂黏著導覽，整合「線上工具」下拉選單（8 頁一致）、深淺切換與預約評估按鈕。
+- **導覽列 (`.navbar`)**：置頂黏著導覽，整合「線上工具」下拉選單（10 頁一致）、深淺切換與預約評估按鈕。
 - **Hero 品牌視覺區**：展示「讓優質資產，穩健增值；免改裝直上，省心收益」標語與雙吉祥物卡片。
 - **包租 vs 代管方案雙卡**：清晰對比服務費率、風險承擔與維護責任。
 - **動態 ROI 收益試算器**：滑動月租金即時試算全年毛收益與代管費明細。
@@ -134,6 +137,13 @@ Matt Pocock skills/
 - **模組二（玄關連動與參數化自動隔間）**：支援自由拖曳「入口玄關大門」、「固定水電管道間」與切換「既有開窗採光面」；依公私領域拓撲即時演算生成 3 組室內隔間配置方案；支援免 CAD 指令滑鼠拖拉隔間牆、點擊尺寸直接輸入目標淨寬（cm），即時更新各空間名稱與換算坪數（$1\text{ m}^2 = 0.3025\text{ 坪}$）。
 - **模組三（標準 CAD 家具圖塊庫與自動避讓）**：內建 11 款人體工學比例 2D CAD 圖塊與對應 3D 模型、靠近牆面自動貼齊轉向（Auto-Align）、門扇開啟迴轉半徑（85~100cm）與走道重疊紅框警示。
 - **模組四（多方案切換、一鍵轉 3D 與成品出圖）**：單一 JSON Schema 支援「原始屋況 / 方案 A / 方案 B」多版本切換與指標比對表；Three.js (WebGL) 60 FPS 低多邊形 3D 即時擠出（預設樓高 300cm、門洞 210cm、窗台高 90cm），支援「俯視娃娃屋視角（自動半降剖切外牆）」與「室內第一人稱 WASD 漫遊視角」；一鍵匯出 PNG / SVG / PDF A4 工程格局圖與專案分享連結。
+- **剖面殘影修復與同仁使用手冊**：以獨立 `Path2D` 嚴密隔離剖面斜線，徹底清除全螢幕斜線外溢；於頂部工具列整合「💡 使用手冊」四分頁互動式 Modal 並編撰獨立 SOP 文件。
+
+### 4.11 穩發漁業集團官方形象網站 (`output/winfar-website/`)
+- **遠洋船隊展示**：四大遠洋主力船隊切換展示（鮪延繩釣、鰹鮪圍網、魷釣秋刀魚兼營、超低溫冷凍運搬船）。
+- **-60°C 極致冷鏈與 ESG 責任漁業**：穩大冷凍廠智慧倉儲、ISO 22000 / HACCP 國際品質認證、海鳥避撞繩與國際保育公約落實。
+- **媒體與歷史專區**：半世紀 1974~2024 大事紀時間軸、10 部影音播放 Modal、10 篇新聞報導 Markdown 彈窗閱讀與 B2B 大宗水產詢價。
+- **結構化資料**：配置 Schema.org `Corporation` 企業標記。
 
 ---
 
@@ -209,18 +219,19 @@ Matt Pocock skills/
 
 全站 10 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
 
-| 頁面 | Schema.org 類型 | 核心欄位 |
+| 頁面 | Schema.org 類型 | 核心欄位與特性 |
 |---|---|---|
-| `index.html` | `RealEstateAgent` | `name`, `taxID`, `telephone`, `address`, `offers`, `openingHours` |
-| `rent-calculator.html` | `WebApplication` (FinanceApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
-| `file-converter.html` | `WebApplication` (UtilitiesApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
-| `photo-watermark.html` | `WebApplication` (MultimediaApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
-| `id-card-watermark.html`| `WebApplication` (UtilitiesApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
-| `image-converter.html` | `WebApplication` (MultimediaApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
-| `card-merger.html` | `WebApplication` (GraphicsApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
-| `photo-time-location.html`| `WebApplication` (MultimediaApplication)| `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
-| `ocr-translator.html` | `WebApplication` (UtilitiesApplication) | `applicationCategory`, `operatingSystem`, `offers`, `publisher` |
-| `space-planner.html` | `WebApplication` (DesignApplication) | `applicationCategory`, `operatingSystem`, `offers`, `provider` |
+| `index.html` | `RealEstateAgent`, `WebSite` | `name`, `taxID`, `telephone`, `address`, `contactPoint`, `sameAs` |
+| `rent-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `file-converter.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `photo-watermark.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `id-card-watermark.html`| `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `image-converter.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `card-merger.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `photo-time-location.html`| `WebApplication`, `BreadcrumbList`| `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `ocr-translator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `space-planner.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `output/winfar-website/` | `Corporation` | `name`, `foundingDate`, `founder`, `address`, `telephone`, `knowsAbout` |
 
 ---
 
