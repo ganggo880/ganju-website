@@ -25,7 +25,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data for WebApplication & BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,6 +35,7 @@
     "url": "https://ganggo880.github.io/ganju-website/photo-time-location.html",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "All",
+    "inLanguage": "zh-Hant-TW",
     "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas support.",
     "offers": {
       "@type": "Offer",
@@ -42,12 +43,38 @@
       "priceCurrency": "TWD"
     },
     "description": "港居不動產專用照片時間與地點浮水印工具，自動解析 EXIF 拍攝時間與 GPS 座標，支援多種質感樣式與批次匯出。",
-    "publisher": {
-      "@type": "Organization",
+    "provider": {
+      "@type": "RealEstateAgent",
       "@id": "https://ganggo880.github.io/ganju-website/#organization",
       "name": "港居不動產開發有限公司",
       "url": "https://ganggo880.github.io/ganju-website/"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "線上工具集",
+        "item": "https://ganggo880.github.io/ganju-website/#tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "照片時間與地點浮水印工具",
+        "item": "https://ganggo880.github.io/ganju-website/photo-time-location.html"
+      }
+    ]
   }
   </script>
 

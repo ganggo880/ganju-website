@@ -26,7 +26,7 @@
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="css/card-merger.css">
 
-  <!-- Schema.org JSON-LD for WebApplication -->
+  <!-- Schema.org JSON-LD for WebApplication & BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,11 +36,45 @@
     "applicationCategory": "GraphicsApplication",
     "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
     "operatingSystem": "All",
+    "inLanguage": "zh-Hant-TW",
     "description": "提供名片正面與背面圖片自動對齊拼貼、留白調整與 JPG 高畫質匯出服務。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
     "provider": {
       "@type": "RealEstateAgent",
-      "name": "港居不動產開發有限公司"
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "線上工具集",
+        "item": "https://ganggo880.github.io/ganju-website/#tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "名片正反面上下合成神器",
+        "item": "https://ganggo880.github.io/ganju-website/card-merger.html"
+      }
+    ]
   }
   </script>
 

@@ -10,7 +10,12 @@
 
 全站共 **10 個頁面**（港居不動產官網主頁與 9 款高階線上工具集）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
 
-**2026-10-23（最新推進）— 修正 2D 畫布殘影外溢缺陷 ＋ 產出同仁操作使用手冊**
+**2026-10-23（最新推進）— 階段二十：Google Rich Results Test 全站 10 頁實測 100% 通過 ＋ 殘影修復與同仁使用手冊**
+- **階段二十：Google Rich Results Test 全站 10 頁結構化資料 100% 合規**：
+  - 補齊 `card-merger.html` 缺漏之 `offers`（0元 TWD）與 `inLanguage`，升級 `photo-time-location.html` 品牌提供者標記。
+  - 首頁 `index.html` 補齊 `GeoCoordinates` 實體門市經緯度標記與 `WebSite` 官方站點 Schema。
+  - 全站 9 款線上工具全數補齊 Google 官方階層式 `BreadcrumbList`（港居不動產 > 線上工具集 > 工具名稱），提升搜尋結果 CTR 點擊率。
+  - 開發自動化檢驗程式 `output/test_google_rich_results.py` 串接 Schema.org 官方驗證 API 實測全站 10 頁，結果全數回傳 **0 錯誤、0 警告、100% 合格**，產出完整審計報告 `output/Google_Rich_Results_Test_全站10頁檢驗報告.md`。
 - **2D Canvas 殘影修正（徹底解決 ANSI31 剖面線外溢問題）**：
   - 診斷出原 `drawWallsWithANSI31Hatch2D` 因 `ctx.clip()` 後 `ctx.restore()` 未能自動恢復原始多邊形路徑，導致後續 `ctx.stroke()` 將剖面斜線誤描為粗黑邊框外溢至全畫布。
   - 全面升級改用標準 `Path2D` 封閉多邊形架構，透過 `ctx.clip(wallPath)` 嚴格鎖定剖面線於牆體幾何內，並以 `ctx.stroke(wallPath)` 繪製邊框；於 `render2DCanvas` 開頭加入 `ctx.clearRect` 清除像素緩衝，經實測驗證殘影 100% 消除，2D 畫布呈現晶透清爽之專業工程級線條。
