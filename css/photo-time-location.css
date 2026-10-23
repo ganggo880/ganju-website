@@ -121,14 +121,14 @@
   background: var(--bg-body);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
-  padding: 6px 12px;
-  font-size: 0.82rem;
+  padding: 8px 14px;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-text-dark);
   cursor: pointer;
   transition: var(--transition-fast);
   touch-action: manipulation;
-  min-height: 38px;
+  min-height: 44px;
 }
 
 .chip-btn:hover {

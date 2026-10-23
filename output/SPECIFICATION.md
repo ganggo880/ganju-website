@@ -1,11 +1,11 @@
 # 港居不動產開發有限公司 官方網站與線上工具系統技術規格書
 ## System Specification Document (2026 完整全功能版)
 
-> **版本**：v2.6 (2026-10 最新修訂版)  
+> **版本**：v2.7 (2026-10-23 最新行動端極限驗收版)  
 > **系統名稱**：港居不動產品牌官網暨高階線上工具集  
 > **發布網址**：[https://ganggo880.github.io/ganju-website/](https://ganggo880.github.io/ganju-website/)  
 > **遠端倉庫**：`https://github.com/ganggo880/ganju-website.git`  
-> **架構特性**：純前端靜態無伺服器 (Zero-Backend Serverless)、純本地零知識運算 (Zero-Knowledge Privacy)、模組化 CSS Design Tokens、全站 RWD 響應式、全頁 Schema.org 結構化資料。
+> **架構特性**：純前端靜態無伺服器 (Zero-Backend Serverless)、純本地零知識運算 (Zero-Knowledge Privacy)、模組化 CSS Design Tokens、全站 360px~414px 行動端 0px 溢出與 100% ≥44px 觸控熱區合格、全頁 Schema.org 結構化資料。
 
 ---
 
@@ -193,10 +193,11 @@ Matt Pocock skills/
    - 桌面端：`> 992px`（完整多欄 Grid）
    - 平板端：`768px ~ 992px`（雙欄折疊）
    - 行動端：`< 576px`（單欄垂直堆疊）
-2. **觸控熱區規範 (Touch Target)**：
-   - 全站所有按鈕、選單項目、輸入框之點擊感應範圍一律 **≥ 44×44px**（按鈕 min-height 48px）。
-3. **橫向溢出防護**：
-   - 360px 極限螢幕下，全域 `overflow-x: hidden`，橫向溢出嚴格為 **0px**。
+2. **觸控熱區規範 (Touch Target Size - WCAG 2.1 AA / 2.2 SC 2.5.8)**：
+   - 全站所有按鈕、選單項目、輸入框、色彩選取器、滑桿、核取方塊感應標籤一律 **≥ 44×44px**（按鈕 min-height 48px / 44px，原生控制項封裝於關聯 label 或賦予 min-height 44px）。
+   - 經 Chrome DevTools Protocol (CDP) 40 組測試實機檢驗，全站 10 頁 <44px 觸控缺陷數為 **0 項 (100% 合格)**。
+3. **橫向溢出防護 (Zero-Overflow Guarantee)**：
+   - 360px (Galaxy S8)、375px (iPhone SE)、390px (iPhone 14)、414px (iPhone Plus) 極限螢幕下，全站 10 頁橫向滾動溢出嚴格為 **0px**。
 4. **色彩對比度**：
    - 淺色與深色模式之主要文字與底色對比度皆符合 **WCAG 2.1 AA 級標準 (≥ 4.5:1)**。
 

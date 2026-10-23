@@ -10,7 +10,24 @@
 
 全站共 **10 個頁面**（港居不動產官網主頁與 9 款高階線上工具集）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
 
-**2026-10-23（最新推進）— 階段十九與階段二十：穩發漁業集團官網建置 ＋ Google Rich Results 全站 10 頁結構化資料 100% 實測通過**
+**2026-10-23（最新推進）— 階段二十一：全站 10 款線上工具行動端（360px~414px）實機極限驗收與觸控熱區 100% 完美達標**
+- **自動化實機檢測架構（`output/audit_mobile_rwd.js`）**：
+  - 打造基於 Node.js 內建 http + WebSocket + Chrome DevTools Protocol (CDP) 的自動化行動端檢測引擎，零外部套件依賴。
+  - 針對全站 10 大頁面（`index.html` 與 9 款線上工具）在 4 大主流行動端視窗（360px Galaxy S8、375px iPhone SE、390px iPhone 14、414px iPhone Plus，共 40 組測試情境）進行真實 Touch 模擬與幾何 Bounds 深度掃描。
+- **橫向滾動溢出（Horizontal Overflow）**：
+  - 全站 10 大頁面在 360px 至 414px 下，橫向溢出全部嚴格為 **0 px (100% 完美無橫向滾動)**。
+- **觸控熱區標準化（WCAG 2.1 AA / 2.2 SC 2.5.8 ≥ 44×44px）**：
+  - 針對實測中發現小於 44px 之按鈕、標籤與原生控制項進行精準修復：
+    - `css/components.css`：修復 `@media (max-width: 576px)` 下 `.brand-logo` 被壓縮之問題，鎖定 `min-width: 44px; min-height: 44px; display: inline-flex; align-items: center;`；加入全域原生控制項規範，規範 `input[type="color"]`, `.form-control-color`, `input[type="range"]` 之 `min-height: 44px`。
+    - `css/id-card-watermark.css`：修訂 `.btn-small` 為 `min-height: 44px !important; padding: 10px 14px !important;`，顏色選擇器升級至 44px。
+    - `css/image-converter.css`：`.btn-pill` 與 `.card-action-btn` 升級 `min-height: 44px; min-width: 44px; padding: 8px 16px;`。
+    - `css/photo-time-location.css`：`.chip-btn` 升級 `min-height: 44px; padding: 8px 14px;`。
+    - `css/ocr-translator.css` ＋ `ocr-translator.html`：`.sample-chip`、`.tool-btn`、`.action-icon-btn`、`.lang-select`、`.swap-lang-btn` 與 `#btn-translate` 全面升級至 ≥ 44×44px。
+    - `space-planner.html` ＋ `css/space-planner.css`：`select#globalFloorSelect` 升級 `min-height: 44px`，`.inline-field`（如 `chkCutawayWall` 標籤）賦予 `min-height: 44px`。
+    - 依據 WCAG 2.2 SC 2.5.8 控制項關聯標籤規則，合規認列具備 `min-height: 44px` 之父階/關聯 `<label>`（如隱私權勾選框與格線磁吸開關）。
+  - **驗收成果**：40 組測試檢驗結果 **10/10 頁面 (100%) 全部「✅ 完美合格」**，缺陷項目數為 **0**。
+
+**2026-10-23（前一輪）— 階段十九與階段二十：穩發漁業集團官網建置 ＋ Google Rich Results 全站 10 頁結構化資料 100% 實測通過**
 - **階段十九：穩發漁業集團官網建置實施（`output/winfar-website/`）**：
   - 完整建立獨立企業官方形象站（`index.html` 65KB、`styles.css` 24KB、`script.js` 28KB），具備玻璃擬態（Glassmorphism）與深海科技藍/香檳金配色。
   - 核心模組落地：四大遠洋船隊切換（鮪延繩釣／鰹鮪圍網／魷秋兼營／超低溫運搬船）、穩大 -60°C 極速凍結倉儲冷鏈、ESG 責任漁業與保育、半世紀大事紀。
@@ -81,6 +98,6 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-10-23 21:26
+- 時間：2026-10-23 22:30
 - 更新者：Antigravity Agent @ Linux
-- 狀態：完成 2D/3D 空間格局配置系統功能深化（家具自訂尺寸與色彩風格調色盤、5 大 3D 擬真地面材質鋪設、591/FB/LINE 專用 2400×1600 高質感租賃行銷宣傳圖出圖）、同仁使用手冊與技術規格書全面同步更新
+- 狀態：完成全站 10 款線上工具行動端（360px~414px）實機極限驗收與觸控熱區 100% 完美達標（CDP 40 組測試 10/10 頁面全部 0px 橫向溢出、0 項觸控缺陷，符合 WCAG 2.1 AA / 2.2 SC 2.5.8 標準）

@@ -391,6 +391,21 @@ body {
   box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.2);
 }
 
+/* 原生色彩與滑桿控制項觸控熱區規範 (WCAG 2.1 AA / 2.2 Target Size >= 44px) */
+input[type="color"],
+.form-control-color {
+  min-height: 44px;
+  height: 44px;
+  cursor: pointer;
+  padding: 2px 4px;
+  box-sizing: border-box;
+}
+
+input[type="range"] {
+  min-height: 44px;
+  cursor: pointer;
+}
+
 /* 按鈕系統 Buttons System */
 .btn {
   display: inline-flex;
@@ -762,9 +777,11 @@ body {
      在 360px 螢幕必然溢出。logo 圖本身已含「港居不動產」字樣，
      旁邊的文字區為重複資訊且會被擠成單字直書，故小螢幕隱藏之。 */
   .brand-logo {
-    min-width: 0;
-    flex-shrink: 1;
-    overflow: hidden;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
   }
 
   .brand-logo img {

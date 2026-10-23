@@ -181,7 +181,8 @@
 
 .color-picker-wrapper input[type="color"] {
   width: 50px;
-  height: 40px;
+  height: 44px;
+  min-height: 44px;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -202,9 +203,9 @@
 
 .btn-small {
   flex: 1;
-  padding: 8px 12px !important;
-  font-size: 0.8rem !important;
-  min-height: auto !important;
+  padding: 10px 14px !important;
+  font-size: 0.85rem !important;
+  min-height: 44px !important;
 }
 
 /* 複選框群組 */

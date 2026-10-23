@@ -181,15 +181,18 @@
   border: 1px solid var(--border-color);
   color: var(--color-text-dark);
   border-radius: var(--radius-sm);
-  padding: 6px 12px;
-  font-size: 0.82rem;
+  padding: 8px 14px;
+  font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   transition: var(--transition-fast);
-  min-height: 36px;
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
 }
 
 .tool-btn:hover {
@@ -363,8 +366,8 @@
   background: var(--bg-body);
   border: 1px solid var(--border-color);
   color: var(--color-text-dark);
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-sm);
   display: inline-flex;
   align-items: center;
@@ -436,15 +439,15 @@
   background: var(--bg-card);
   color: var(--color-text-dark);
   cursor: pointer;
-  min-height: 40px;
+  min-height: 44px;
 }
 
 .swap-lang-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--color-gold-dark);
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -486,11 +489,15 @@
   border: 1px dashed var(--border-color);
   color: var(--color-navy-dark);
   border-radius: var(--radius-sm);
-  padding: 4px 10px;
-  font-size: 0.8rem;
+  padding: 10px 14px;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition-fast);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sample-chip:hover {
