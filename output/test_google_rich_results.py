@@ -10,6 +10,7 @@ import re
 import urllib.parse
 import urllib.request
 import sys
+import time
 
 PAGES = [
     {
@@ -89,7 +90,15 @@ def extract_json_lds(filepath):
             parsed.append({"_parse_error": str(e), "_raw": raw})
     return parsed
 
-def check_schema_org_online(page_url):
+def check_schema_org_online(page_url, retries=3):
+    for attempt in range(retries):
+        res = _check_once(page_url)
+        if res.get("success") or "429" not in str(res.get("error", "")):
+            return res
+        time.sleep(15 * (attempt + 1))
+    return res
+
+def _check_once(page_url):
     """
     呼叫 Schema.org 官方驗證 API 進行驗證
     """
@@ -237,12 +246,14 @@ def main():
             print(f"  📊 官方回傳: {objs} 個有效結構化物件 | 錯誤: {errs} | 警告: {warns}")
         else:
             print(f"  ⚠️ 線上驗證連線警告: {online_res.get('error')}")
+            page_issues.append(f"線上驗證未完成（{online_res.get('error')}），僅通過本機檢查")
+        time.sleep(4)
 
         if page_issues:
             print(f"  ⚠️ 檢驗發現事項:")
             for iss in page_issues:
                 print(f"     - {iss}")
-            status = "WARN" if all("缺少" not in x for x in page_issues) else "FAIL"
+            status = "WARN" if all("缺少" not in x and "報錯" not in x for x in page_issues) else "FAIL"
             if status == "FAIL":
                 all_passed = False
         else:
@@ -272,8 +283,8 @@ def generate_markdown_report(results, filepath):
         "",
         "> **檢驗標準**：Google Search Central 複合式搜尋結果規範（SoftwareApplication / LocalBusiness / BreadcrumbList）",
         "> **檢驗日期**：2026-10-23",
-        "> **驗證工具**：Schema.org 官方驗證器（validator.schema.org）＋ 本機 Google 必填欄位檢查
-> **注意**：本報告**未使用** Google Rich Results Test（需登入或 API 金鑰）。通過本檢驗代表語法與必填欄位正確，**不保證** Google 一定顯示複合式結果。",
+        "> **驗證工具**：Schema.org 官方驗證器（validator.schema.org）＋ 本機 Google 必填欄位檢查",
+        "> **注意**：本報告**未使用** Google Rich Results Test（需登入或 API 金鑰）。通過本檢驗代表語法與必填欄位正確，**不保證** Google 一定顯示複合式結果。",
         "> **網站首頁**：`https://ganggo880.github.io/ganju-website/`",
         "",
         "---",
@@ -302,7 +313,7 @@ def generate_markdown_report(results, filepath):
         if on.get("success"):
             on_str = f"物件數: {on.get('numObjects', 0)}<br>錯誤: {on.get('numErrors', 0)} / 警告: {on.get('numWarnings', 0)}"
         else:
-            on_str = "離線驗證通過"
+            on_str = "線上驗證未完成"
 
         md.append(f"| {idx} | [`{r['page']}`]({r['url']}) | {r['title']} | {types_str} | {features_str} | {on_str} | {status_icon} |")
 
