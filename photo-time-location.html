@@ -9,6 +9,14 @@
   <meta name="description" content="港居不動產開發有限公司專屬照片時間與地點打卡工具。自動讀取照片 EXIF 拍攝時間與 GPS 座標定位，一鍵添加打卡標籤、復古底片與區域文字，支援批次打包下載。">
   <link rel="canonical" href="https://ganggo880.github.io/ganju-website/photo-time-location.html">
   <meta name="theme-color" content="#1A365D">
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="港居不動產｜照片時間與地點浮水印工具">
@@ -390,5 +398,6 @@
 
   <!-- JavaScript file -->
   <script type="module" src="js/photo-time-location.js"></script>
+  <script src="js/pwa.js" defer></script>
 </body>
 </html>

@@ -236,7 +236,26 @@ Matt Pocock skills/
 
 ---
 
-## 9. 維護與版控流程規範 (Governance & Git Workflow)
+## 9. PWA 漸進式網路應用與離線架構 (PWA & Offline First)
+
+1. **Web App Manifest (`manifest.json`)**：
+   - 品牌全銜與簡稱：`港居不動產｜包租代管與線上工具集` / `港居不動產`。
+   - 顯示模式：`standalone`（全螢幕原生體驗，隱藏瀏覽器網址列）。
+   - 色彩規範：`theme_color: #1A365D`、`background_color: #0F2341`。
+   - 圖示庫：支援 192×192、512×512 之標準圖示與 Android Maskable 圖示，以及 Apple Touch Icon。
+   - 快捷捷徑 (App Shortcuts)：直接跳轉 2D/3D 格局、租金試算、EXIF 水印與 OCR 翻譯。
+2. **智慧 Service Worker 快取體系 (`sw.js`)**：
+   - **Pre-caching**：安裝時預載全站 10 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（共 47 項核心資產）。
+   - **導航請求 (Navigate)**：Network-First with Cache Fallback，網路在線時即時獲取最新修正，案場無訊號（地下室、高樓）自動回退至本機快取。
+   - **靜態資源 (Assets/CDN)**：Stale-While-Revalidate 與動態快取，自動緩存 Three.js 與 FontAwesome 等第三方相依庫。
+3. **原生安裝引導與連線監控 (`js/pwa.js`)**：
+   - 攔截 `beforeinstallprompt` 提供符合品牌色系與 ≥ 44×44px 觸控標準之「免費安裝」提示卡片。
+   - 監聽 `online` / `offline` 事件，斷網時浮動顯示離線指示徽章，連線恢復時 Toast 提示自動同步。
+   - 經 CDP 實機模擬斷網驗收，全站 10 頁完全離線可用率達 **10/10 頁 (100%)**。
+
+---
+
+## 10. 維護與版控流程規範 (Governance & Git Workflow)
 
 1. **AI 產出統一歸檔**：所有新產出之技術指南、規格書與教材一律存入專案 `output/` 目錄。
 2. **三處同步維護**：

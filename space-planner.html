@@ -9,6 +9,14 @@
   <meta name="description" content="港居不動產開發有限公司專屬 Web 端互動式 2D 平面格局配置與 3D 即時轉換系統。支援底圖比例尺校正、玄關連動參數化自動隔間、標準 CAD 家具圖塊避讓、60FPS 3D 娃娃屋與第一人稱漫遊、PNG/SVG/PDF 格局圖匯出。">
   <link rel="canonical" href="https://ganggo880.github.io/ganju-website/space-planner.html">
   <meta name="theme-color" content="#1A365D">
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="港居不動產｜2D 平面格局配置與 3D 即時轉換系統">
@@ -962,5 +970,6 @@
 
   <!-- 核心引擎腳本 -->
   <script src="js/space-planner.js"></script>
+  <script src="js/pwa.js" defer></script>
 </body>
 </html>

@@ -10,7 +10,21 @@
 
 全站共 **10 個頁面**（港居不動產官網主頁與 9 款高階線上工具集）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
 
-**2026-10-23（最新推進）— 階段二十一：全站 10 款線上工具行動端（360px~414px）實機極限驗收與觸控熱區 100% 完美達標**
+**2026-10-24（最新推進）— 階段二十二：全站 PWA 漸進式應用支援與案場 100% 離線可用性達成**
+- **全站 PWA 與原生 App 安裝體驗落地（`manifest.json` ＋ `assets/icons/` ＋ `js/pwa.js`）**：
+  - 產出標準 Web App Manifest，配置全螢幕 `standalone` 模式、海軍藍/香檳金主題規範與 4 大核心工具快速捷徑（空間格局、租金換算、EXIF水印、OCR翻譯）。
+  - 使用 Python Pillow 與 Noto Sans CJK TC 字型生成全套標準解析度與 Maskable 圖示（192×192、512×512、apple-touch-icon 180×180、favicon-32×32），建築屋頂輪廓線結合品牌尊榮排版。
+  - 撰寫 `js/pwa.js`：攔截 `beforeinstallprompt` 提供優雅不打擾之原生安裝卡片（符合 ≥44px 觸控熱區）；即時監聽 `online`/`offline` 網路狀態並於完全斷網時浮動提示離線模式徽章。
+  - 全站 10 頁全面整合 PWA Meta 標籤與 `js/pwa.js` 模組。
+- **Service Worker 47 項核心資產預載與智慧快取（`sw.js`）**：
+  - 安裝階段預先快取全站 10 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與核心圖資（47 項精準資產）。
+  - HTML 頁面採用 Network-First with Cache Fallback，網路暢通時保障版本即時更新，在地下室或高樓無基地台訊號時自動降級由 Service Worker 快取秒開。
+  - 靜態資源與第三方 CDN 採用 Stale-While-Revalidate 動態擴充快取。
+- **自動化離線實機驗收（`output/test_pwa_offline.js`）**：
+  - 使用 CDP 協議執行 `Network.emulateNetworkConditions({ offline: true })` 進行 100% 斷網實機檢驗。
+  - **成果**：全站 10 大頁面在完全斷網狀態下 **10/10 頁 (100%) 全部成功載入並正常運作**；CDP 行動端回歸驗收確認 0px 橫向溢出與 0 觸控缺陷保持完美。
+
+**2026-10-23（前一輪）— 階段二十一：全站 10 款線上工具行動端（360px~414px）實機極限驗收與觸控熱區 100% 完美達標**
 - **自動化實機檢測架構（`output/audit_mobile_rwd.js`）**：
   - 打造基於 Node.js 內建 http + WebSocket + Chrome DevTools Protocol (CDP) 的自動化行動端檢測引擎，零外部套件依賴。
   - 針對全站 10 大頁面（`index.html` 與 9 款線上工具）在 4 大主流行動端視窗（360px Galaxy S8、375px iPhone SE、390px iPhone 14、414px iPhone Plus，共 40 組測試情境）進行真實 Touch 模擬與幾何 Bounds 深度掃描。
@@ -98,6 +112,6 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-10-23 22:30
+- 時間：2026-10-24 01:45
 - 更新者：Antigravity Agent @ Linux
-- 狀態：完成全站 10 款線上工具行動端（360px~414px）實機極限驗收與觸控熱區 100% 完美達標（CDP 40 組測試 10/10 頁面全部 0px 橫向溢出、0 項觸控缺陷，符合 WCAG 2.1 AA / 2.2 SC 2.5.8 標準）
+- 狀態：完成全站 PWA 漸進式應用支援與案場 100% 離線可用性達成（`manifest.json` ＋ `sw.js` 47 項核心資產預載 ＋ `assets/icons/` 全套圖示 ＋ CDP 100% 斷網實機檢驗 10 頁全數秒開可用）
