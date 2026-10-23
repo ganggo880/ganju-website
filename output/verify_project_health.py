@@ -21,13 +21,14 @@ HTML_FILES = [
     "image-converter.html",
     "card-merger.html",
     "photo-time-location.html",
-    "ocr-translator.html"
+    "ocr-translator.html",
+    "space-planner.html"
 ]
 
 all_passed = True
 
-# 1. 檢驗 9 大網頁與結構化資料 (Pages & Schema.org)
-print("\n[檢驗 1/5] 9 大線上工具網頁與 SEO 結構化資料...")
+# 1. 檢驗 10 大網頁與結構化資料 (Pages & Schema.org)
+print("\n[檢驗 1/5] 10 大網頁與 SEO 結構化資料...")
 pages_report = []
 for f in HTML_FILES:
     fpath = os.path.join(WORKSPACE, f)
@@ -73,7 +74,7 @@ for f in HTML_FILES:
     expected = set(HTML_FILES) - {f}
     missing = expected - linked_tools
     # index.html links to itself via #home, others link via index.html
-    if f == "index.html" and len(linked_tools) >= 8:
+    if f == "index.html" and len(linked_tools) >= 9:
         missing = set()
     
     if missing:
