@@ -24,9 +24,10 @@
 | 12 | `lease-contract.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃契約與住戶公約線上產生器｜港居不動產包租代管專用 |
 | 13 | `tax-calculator.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 房東節稅與包租代管實質淨收益試算神器｜租賃專法第17條・囤房稅2.0・三方案淨得對比｜港居不動產 |
 | 14 | `repair-inspection.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃修繕點交與屋況瑕疵存證紀錄神器｜起租退租・浮水印拍照・電子簽章・A4點交報告｜港居不動產 |
-| 15 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 15 | `utility-splitter.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 分租水電費與公電分攤結算單產生器｜符合2024租賃電費新制・LINE催繳圖卡・A4公告表｜港居不動產 |
+| 16 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**15 / 15 頁 (100%)**
+**離線可用率**：**16 / 16 頁 (100%)**
 
 ---
 

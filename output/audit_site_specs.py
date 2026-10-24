@@ -20,6 +20,7 @@ HTML_FILES = [
     "lease-contract.html",
     "tax-calculator.html",
     "repair-inspection.html",
+    "utility-splitter.html",
     "privacy.html"
 ]
 

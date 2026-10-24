@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>分租水電費與公電分攤結算單產生器｜符合2024租賃電費新制・LINE催繳圖卡・A4公告表｜港居不動產</title>
+  <meta name="description" content="專為包租代管與分租套房房東打造！100%符合內政部2024年7月15日租賃電費新制（當期每度平均電價上限防呆、零超收檢核），自動計算各房獨立分表度數、公共電費與水費加權分攤，一鍵匯出各房專屬LINE催繳圖卡與A4公佈欄明細表。">
+
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/utility-splitter.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="分租水電費與公電分攤結算單產生器｜港居不動產">
+  <meta property="og:description" content="符合2024租賃電費新制當期平均電價上限防呆，自動計算分表度數與公電水費分攤，一鍵匯出LINE催繳小卡與A4公告表。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/utility-splitter.html">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utility-splitter.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居分租水電費與公電分攤結算單產生器",
+    "url": "https://ganggo880.github.io/ganju-website/utility-splitter.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "符合內政部2024年7月15日住宅租賃電費計收新制，自動核算台電當期每度平均電價上限、各房獨立分表電費、公電與水費加權分攤，支援匯出LINE催繳圖卡與A4公告明細表。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "分租水電費與公電分攤結算單產生器",
+        "item": "https://ganggo880.github.io/ganju-website/utility-splitter.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body>
+
+  <!-- 頂部宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法登記包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+        <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        <span class="brand-text-box">
+          <span class="brand-name">港居不動產</span>
+          <span class="brand-sub">高優質住宅包租代管</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="utility-splitter.html" class="nav-link active"><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> 水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #ed8936;"></i> 屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #c5a059;"></i> 租賃契約產生器</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主工作區 -->
+  <main class="utility-page">
+    <div class="utility-bg-glow"></div>
+    <div class="utility-bg-glow-left"></div>
+
+    <div class="container">
+      <!-- 頂部 Hero -->
+      <header class="utility-hero">
+        <div class="utility-badge-row">
+          <span class="utility-pill gold"><i class="fa-solid fa-scale-balanced"></i> 符合 113.07.15 內政部租賃電費新制</span>
+          <span class="utility-pill"><i class="fa-solid fa-bolt"></i> 當期每度平均電價上限防呆</span>
+          <span class="utility-pill"><i class="fa-solid fa-shield-check"></i> 純瀏覽器本地運算・自動記憶度數</span>
+        </div>
+        <h1>⚡ 分租水電費與公電分攤結算單產生器</h1>
+        <p>輸入台電與自來水帳單總額，自動核算<strong>「當期每度平均電價上限」</strong>、各房獨立分表度數與公共水電加權分攤，一鍵產出<strong>各房專屬 LINE 催繳圖卡</strong>與 <strong>A4 公佈欄明細表</strong>！</p>
+      </header>
+
+      <!-- 快速工具列 -->
+      <div class="utility-toolbar">
+        <div class="utility-toolbar-group">
+          <button type="button" class="utility-btn rollover" id="rolloverMetersBtn" title="將目前所有房間的本期度數自動移入上期度數">
+            <i class="fa-solid fa-rotate"></i> 結轉本期度數至下期
+          </button>
+          <button type="button" class="utility-btn" id="resetDemoBtn">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 載入標準範例
+          </button>
+        </div>
+        <div class="utility-toolbar-group">
+          <button type="button" class="utility-btn primary" id="printSheetBtn">
+            <i class="fa-solid fa-print"></i> 列印 A4 公告總表 / 存 PDF
+          </button>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="utility-btn gold">
+            <i class="fa-brands fa-line"></i> 委託港居代管免抄表
+          </a>
+        </div>
+      </div>
+
+      <!-- 雙欄工作區 -->
+      <div class="utility-workspace">
+        <!-- 左欄：參數與各房分表輸入 -->
+        <div class="utility-input-col">
+
+          <!-- 1. 台電與水費帳單總表設定 -->
+          <section class="utility-card" aria-labelledby="cardBillTitle">
+            <div class="utility-card-header">
+              <h2 class="utility-card-title" id="cardBillTitle">
+                <i class="fa-solid fa-file-invoice-dollar"></i> 步驟一：台電／台水帳單與分攤規則
+              </h2>
+            </div>
+
+            <div class="utility-form-grid">
+              <div class="utility-field full">
+                <label for="propNameInput">物件／棟別名稱</label>
+                <input type="text" id="propNameInput" placeholder="例：高雄市小港區中安路・陽光電梯套房 A 棟">
+              </div>
+
+              <div class="utility-field">
+                <label for="billingPeriodInput">台電計費期間</label>
+                <input type="text" id="billingPeriodInput" placeholder="例：115/07/10 ～ 115/09/09">
+              </div>
+
+              <div class="utility-field">
+                <label for="dueDateInput">房客繳費期限</label>
+                <input type="text" id="dueDateInput" placeholder="例：115年 09月 20日">
+              </div>
+
+              <div class="utility-field">
+                <label for="taipowerAmountInput">台電帳單應繳總金額 (元)</label>
+                <input type="number" id="taipowerAmountInput" min="0" step="1">
+              </div>
+
+              <div class="utility-field">
+                <label for="taipowerKwhInput">台電帳單當期總度數 (度)</label>
+                <input type="number" id="taipowerKwhInput" min="1" step="1">
+              </div>
+
+              <div class="utility-field">
+                <label for="rateModeSelect">電費單價計收模式</label>
+                <select id="rateModeSelect">
+                  <option value="avg">依台電當期每度平均電價 (推薦・100%合規)</option>
+                  <option value="custom">依契約約定固定單價 (自動檢核法定上限)</option>
+                </select>
+              </div>
+
+              <div class="utility-field" id="customRateFieldWrap" style="display: none;">
+                <label for="customRateInput">契約約定每度單價 (元/度)</label>
+                <input type="number" id="customRateInput" min="0" step="0.01">
+              </div>
+
+              <div class="utility-field">
+                <label for="publicElecMethodSelect">公共電費 (公電) 分攤方式</label>
+                <select id="publicElecMethodSelect">
+                  <option value="weighted">依「居住人數 × 入住天數」比例分攤 (最公平)</option>
+                  <option value="equal">依「各房平均分攤 (按戶均攤)」</option>
+                  <option value="usage">依「各房分表用電量比例」分攤</option>
+                  <option value="landlord">房東自行吸收公電 (租客免付公電)</option>
+                </select>
+              </div>
+
+              <div class="utility-field">
+                <label for="waterAmountInput">本期自來水帳單總額 (元)</label>
+                <input type="number" id="waterAmountInput" min="0" step="1">
+              </div>
+
+              <div class="utility-field">
+                <label for="waterMethodSelect">水費與公共雜費分攤方式</label>
+                <select id="waterMethodSelect">
+                  <option value="weighted">依「居住人數 × 入住天數」比例分攤</option>
+                  <option value="equal">依「各房平均分攤 (按戶均攤)」</option>
+                </select>
+              </div>
+
+              <div class="utility-field">
+                <label for="extraPublicFeeInput">其他公共費用總額 (瓦斯/子母車)</label>
+                <input type="number" id="extraPublicFeeInput" min="0" step="1">
+              </div>
+            </div>
+
+            <!-- 2024 電費新制法定上限防呆雷達 -->
+            <div class="legal-rate-banner" id="legalRateBanner">
+              <div class="legal-rate-top">
+                <div class="legal-rate-status" id="legalRateStatus"></div>
+              </div>
+              <div class="legal-rate-numbers" id="legalRateNumbers"></div>
+            </div>
+          </section>
+
+          <!-- 2. 各房獨立分表度數與人數天數設定 -->
+          <section class="utility-card" aria-labelledby="cardRoomsTitle">
+            <div class="utility-card-header">
+              <h2 class="utility-card-title" id="cardRoomsTitle">
+                <i class="fa-solid fa-gauge-high"></i> 步驟二：各房獨立分表度數與入住天數
+              </h2>
+              <button type="button" class="utility-btn gold" id="addRoomBtn">
+                <i class="fa-solid fa-plus"></i> 新增房間分表
+              </button>
+            </div>
+
+            <div class="room-list" id="roomListContainer"></div>
+          </section>
+
+          <!-- 3. 匯款帳號與管理備註 -->
+          <section class="utility-card" aria-labelledby="cardBankTitle">
+            <div class="utility-card-header">
+              <h2 class="utility-card-title" id="cardBankTitle">
+                <i class="fa-solid fa-building-columns"></i> 步驟三：匯款帳戶與公告備註
+              </h2>
+            </div>
+            <div class="utility-form-grid">
+              <div class="utility-field full">
+                <label for="bankInfoInput">收款銀行帳號資訊</label>
+                <input type="text" id="bankInfoInput" placeholder="例：中國信託 (822) 帳號：1234-5678-9012">
+              </div>
+              <div class="utility-field full">
+                <label for="managerNoteInput">繳費說明與溫馨提醒</label>
+                <input type="text" id="managerNoteInput" placeholder="例：匯款後請傳末五碼至 LINE 核銷">
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- 右欄：A4 公告明細總表 ＋ 各房 LINE 催繳與圖卡匯出 -->
+        <div class="utility-output-col">
+
+          <section class="settlement-sheet" aria-label="分租水電費暨公共費用分攤結算公告總表">
+            <div class="sheet-header">
+              <div class="sheet-brand">GANJU REAL ESTATE ｜ 港居不動產包租代管標準結算憑證</div>
+              <h2 class="sheet-title" id="sheetPropertyName">分租套房水電費結算單</h2>
+              <div class="sheet-meta">
+                <span id="sheetPeriodText">計費期間：—</span>
+                <span id="sheetDueDateText">繳費期限：—</span>
+              </div>
+            </div>
+
+            <!-- 4 大核心指標 -->
+            <div class="sheet-kpi-grid">
+              <div class="sheet-kpi-box">
+                <div class="sheet-kpi-label">台電帳單總額</div>
+                <div class="sheet-kpi-val" id="kpiTaipowerBill">$0</div>
+                <div class="sheet-kpi-sub" id="kpiTaipowerKwhSub">總用電 0 度</div>
+              </div>
+              <div class="sheet-kpi-box">
+                <div class="sheet-kpi-label">本期計收單價</div>
+                <div class="sheet-kpi-val" id="kpiAvgRate">0.00 元/度</div>
+                <div class="sheet-kpi-sub" id="kpiAvgRateSub">法定上限 0.00 元</div>
+              </div>
+              <div class="sheet-kpi-box">
+                <div class="sheet-kpi-label">公共用電 (公電)</div>
+                <div class="sheet-kpi-val" id="kpiPublicKwh">0 度</div>
+                <div class="sheet-kpi-sub" id="kpiPublicSub">依人數×天數分攤</div>
+              </div>
+              <div class="sheet-kpi-box">
+                <div class="sheet-kpi-label">水費與公共雜費</div>
+                <div class="sheet-kpi-val" id="kpiWaterTotal">$0</div>
+                <div class="sheet-kpi-sub" id="kpiWaterSub">依人數×天數分攤</div>
+              </div>
+            </div>
+
+            <!-- A4 分攤明細總表 -->
+            <div class="sheet-table-wrap">
+              <table class="sheet-table">
+                <thead>
+                  <tr>
+                    <th>房號 / 租客</th>
+                    <th>上期 → 本期度數</th>
+                    <th>分表用電</th>
+                    <th>分表電費</th>
+                    <th>公電分攤</th>
+                    <th>水費/雜項</th>
+                    <th>本期應繳總計</th>
+                  </tr>
+                </thead>
+                <tbody id="sheetTableBody"></tbody>
+                <tfoot id="sheetTableFoot"></tfoot>
+              </table>
+            </div>
+
+            <!-- 匯款與法規背書 -->
+            <div class="sheet-footer-box">
+              <div><strong>🏦 匯款帳戶：</strong><span id="sheetBankInfo"></span></div>
+              <div style="margin-top: 4px;"><strong>📌 管理備註：</strong><span id="sheetManagerNote"></span></div>
+            </div>
+
+            <div class="sheet-legal-stamp">
+              <span>法令依據：內政部 113.07.15 住宅租賃定型化契約電費新制（按台電當期每度平均電價計收）</span>
+              <span>港居不動產開發有限公司 ｜ 統編：96797997 ｜ (113)高市租登字第0012號</span>
+            </div>
+          </section>
+
+          <!-- 各房獨立 LINE 催繳複製 & 圖卡下載 -->
+          <section class="utility-card tenant-cards-section" aria-labelledby="tenantCardsHeading">
+            <div class="utility-card-header">
+              <h2 class="utility-card-title" id="tenantCardsHeading">
+                <i class="fa-brands fa-line" style="color: #06C755;"></i> 各房專屬 LINE 催繳通知 ＆ 電子繳費圖卡下載
+              </h2>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 14px;">
+              點擊下方任一房間的<strong>「複製 LINE 催繳」</strong>可立即複製含台電平均單價揭露的完整文字；點擊<strong>「下載繳費圖卡」</strong>可生成高畫質 PNG 通知單直接傳給租客！
+            </p>
+            <div class="tenant-cards-grid" id="tenantNoticeCardsGrid"></div>
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async" style="height: 36px; width: auto;">
+            港居不動產開發有限公司
+          </h4>
+          <p>依法特許登記經營租賃住宅包租業與代管業，專注高質感住宅資產護全與穩定收益增值。</p>
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>服務項目</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+            <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+            <li><a href="utility-splitter.html">水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html">屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html">房東節稅試算</a></li>
+            <li><a href="lease-contract.html">租賃契約產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>證照字號</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" style="font-weight: 700; color: var(--accent-gold);">個人資料與隱私權政策</a></li>
+            <li>租賃住宅服務業登記證：(113)高市租登字第0012號</li>
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+            <li><a href="index.html#disclosure">法定揭示事項</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- 專屬邏輯腳本 -->
+  <script type="module" src="js/utility-splitter.js"></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>

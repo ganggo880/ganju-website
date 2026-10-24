@@ -26,6 +26,7 @@ const PAGES = [
   'lease-contract.html',
   'tax-calculator.html',
   'repair-inspection.html',
+  'utility-splitter.html',
   'privacy.html'
 ];
 

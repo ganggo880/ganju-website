@@ -1,0 +1,749 @@
+/* ==========================================================================
+   港居不動產 - 分租水電費與公電分攤結算單產生器 (utility-splitter.css)
+   符合 2024.07.15 租賃電費新制 ｜ 100% 繼承 css/tokens.css ｜ 360px 零溢出 ｜ A4 無痕列印
+   ========================================================================== */
+
+.utility-page {
+  position: relative;
+  padding: 110px 0 80px;
+  min-height: 100vh;
+  background: var(--bg-main);
+  overflow-x: hidden;
+}
+
+.utility-bg-glow {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  max-width: 100vw;
+  height: 480px;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.utility-bg-glow-left {
+  position: absolute;
+  top: 320px;
+  left: -150px;
+  width: 420px;
+  max-width: 100vw;
+  height: 420px;
+  background: radial-gradient(circle, rgba(26, 54, 93, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.utility-page > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 頂部 Hero 標題區 */
+.utility-hero {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 32px;
+}
+
+.utility-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.utility-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: rgba(26, 54, 93, 0.08);
+  color: var(--primary-navy);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+}
+
+[data-theme="dark"] .utility-pill {
+  background: rgba(197, 160, 89, 0.14);
+  color: var(--accent-gold-light);
+}
+
+.utility-pill.gold {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.2), rgba(197, 160, 89, 0.08));
+  color: #9c7426;
+  border-color: var(--accent-gold);
+}
+
+[data-theme="dark"] .utility-pill.gold {
+  color: var(--accent-gold-light);
+}
+
+.utility-hero h1 {
+  font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.utility-hero p {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* 頂部快速操作工具列 */
+.utility-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.utility-toolbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.utility-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.utility-btn:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-1px);
+}
+
+.utility-btn.primary {
+  background: linear-gradient(135deg, var(--primary-navy), var(--primary-navy-dark));
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.utility-btn.gold {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.utility-btn.rollover {
+  background: rgba(56, 161, 105, 0.12);
+  color: #276749;
+  border-color: rgba(56, 161, 105, 0.4);
+}
+
+[data-theme="dark"] .utility-btn.rollover {
+  color: #68d391;
+}
+
+/* 主工作區雙欄佈局 */
+.utility-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.utility-workspace > * {
+  min-width: 0;
+}
+
+/* 卡片樣式 */
+.utility-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.utility-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.utility-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.utility-card-title i {
+  color: var(--accent-gold);
+}
+
+/* 表單網格 */
+.utility-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.utility-form-grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.utility-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.utility-field.full {
+  grid-column: 1 / -1;
+}
+
+.utility-field label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.utility-field input,
+.utility-field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.utility-field input:focus,
+.utility-field select:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.18);
+}
+
+/* 2024 電費新制合規雷達面板 */
+.legal-rate-banner {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(56, 161, 105, 0.09);
+  border: 1px solid rgba(56, 161, 105, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legal-rate-banner.warning {
+  background: rgba(229, 62, 62, 0.1);
+  border-color: rgba(229, 62, 62, 0.5);
+}
+
+.legal-rate-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.legal-rate-status {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #276749;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+[data-theme="dark"] .legal-rate-status {
+  color: #68d391;
+}
+
+.legal-rate-banner.warning .legal-rate-status {
+  color: #c53030;
+}
+
+[data-theme="dark"] .legal-rate-banner.warning .legal-rate-status {
+  color: #fc8181;
+}
+
+.legal-rate-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.legal-rate-numbers strong {
+  color: var(--text-primary);
+  font-size: 0.98rem;
+}
+
+/* 房間分表卡片列表 */
+.room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.room-item-card {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary-navy);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  transition: border-color 0.2s ease;
+}
+
+[data-theme="dark"] .room-item-card {
+  border-left-color: var(--accent-gold);
+}
+
+.room-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.room-index-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--primary-navy);
+}
+
+[data-theme="dark"] .room-index-badge {
+  color: var(--accent-gold-light);
+}
+
+.room-remove-btn {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(229, 62, 62, 0.3);
+  background: rgba(229, 62, 62, 0.08);
+  color: #c53030;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+[data-theme="dark"] .room-remove-btn {
+  color: #fc8181;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.room-quick-summary {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.room-quick-total {
+  font-weight: 800;
+  color: var(--primary-navy);
+  font-size: 0.98rem;
+}
+
+[data-theme="dark"] .room-quick-total {
+  color: var(--accent-gold-light);
+}
+
+/* 右側即時結算預覽與 A4 報表區 */
+.settlement-sheet {
+  background: var(--bg-surface);
+  border: 2px solid var(--primary-navy);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .settlement-sheet {
+  border-color: var(--accent-gold);
+}
+
+.sheet-header {
+  text-align: center;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--primary-navy);
+}
+
+[data-theme="dark"] .sheet-header {
+  border-bottom-color: var(--accent-gold);
+}
+
+.sheet-brand {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent-gold-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .sheet-brand {
+  color: var(--accent-gold-light);
+}
+
+.sheet-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.sheet-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* 總表 KPI 摘要格 */
+.sheet-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.sheet-kpi-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.sheet-kpi-label {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.sheet-kpi-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.sheet-kpi-sub {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* 明細表格容器 */
+.sheet-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 18px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.sheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  min-width: 520px;
+}
+
+.sheet-table th,
+.sheet-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: right;
+}
+
+.sheet-table th:first-child,
+.sheet-table td:first-child {
+  text-align: left;
+}
+
+.sheet-table th {
+  background: rgba(26, 54, 93, 0.08);
+  color: var(--text-primary);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .sheet-table th {
+  background: rgba(197, 160, 89, 0.14);
+}
+
+.sheet-table tfoot td {
+  font-weight: 900;
+  background: rgba(197, 160, 89, 0.1);
+  color: var(--text-primary);
+}
+
+/* 各房專屬催繳卡片 (可一鍵複製 LINE / 下載 PNG 圖卡) */
+.tenant-cards-section {
+  margin-top: 20px;
+}
+
+.tenant-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tenant-notice-card {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tenant-notice-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.tenant-room-name {
+  font-weight: 800;
+  font-size: 0.96rem;
+  color: var(--text-primary);
+}
+
+.tenant-amount-tag {
+  font-weight: 900;
+  font-size: 1.08rem;
+  color: #c53030;
+}
+
+[data-theme="dark"] .tenant-amount-tag {
+  color: #fc8181;
+}
+
+.tenant-notice-lines {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.tenant-notice-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tenant-action-btn {
+  min-height: 44px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.tenant-action-btn:hover {
+  border-color: var(--accent-gold);
+}
+
+.tenant-action-btn.line-copy {
+  background: rgba(6, 199, 85, 0.12);
+  color: #059642;
+  border-color: rgba(6, 199, 85, 0.35);
+}
+
+[data-theme="dark"] .tenant-action-btn.line-copy {
+  color: #48bb78;
+}
+
+/* 匯款與法規備註區 */
+.sheet-footer-box {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.sheet-legal-stamp {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* RWD 行動端響應式 (360px 零溢出與 ≥44px 熱區) */
+@media (max-width: 1024px) {
+  .utility-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .utility-page {
+    padding: 96px 0 60px;
+  }
+
+  .utility-card,
+  .settlement-sheet {
+    padding: 16px 14px;
+  }
+
+  .utility-form-grid,
+  .utility-form-grid.cols-3,
+  .room-grid,
+  .sheet-kpi-grid,
+  .tenant-cards-grid,
+  .tenant-notice-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .utility-toolbar {
+    padding: 12px;
+  }
+
+  .utility-toolbar-group {
+    width: 100%;
+  }
+
+  .utility-toolbar-group .utility-btn {
+    flex: 1 1 calc(50% - 6px);
+    font-size: 0.84rem;
+    padding: 8px 10px;
+  }
+}
+
+/* A4 無痕列印引擎 */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .top-bar,
+  .navbar,
+  .utility-hero,
+  .utility-toolbar,
+  .utility-input-col,
+  .tenant-cards-section,
+  .footer,
+  .floating-actions,
+  .utility-bg-glow,
+  .utility-bg-glow-left {
+    display: none !important;
+  }
+
+  .utility-page {
+    padding: 0 !important;
+    min-height: auto !important;
+    background: #ffffff !important;
+  }
+
+  .utility-workspace {
+    display: block !important;
+  }
+
+  .settlement-sheet {
+    border: 2px solid #1A365D !important;
+    box-shadow: none !important;
+    padding: 18px !important;
+    width: 100% !important;
+  }
+
+  .sheet-kpi-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .sheet-table-wrap {
+    overflow: visible !important;
+  }
+
+  .sheet-table {
+    min-width: 0 !important;
+    width: 100% !important;
+    font-size: 11pt !important;
+  }
+}

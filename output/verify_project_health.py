@@ -27,13 +27,14 @@ HTML_FILES = [
     "lease-contract.html",
     "tax-calculator.html",
     "repair-inspection.html",
+    "utility-splitter.html",
     "privacy.html"
 ]
 
 all_passed = True
 
-# 1. 檢驗 10 大網頁與結構化資料 (Pages & Schema.org)
-print("\n[檢驗 1/5] 10 大網頁與 SEO 結構化資料...")
+# 1. 檢驗 16 大網頁與結構化資料 (Pages & Schema.org)
+print("\n[檢驗 1/5] 16 大網頁與 SEO 結構化資料...")
 pages_report = []
 for f in HTML_FILES:
     fpath = os.path.join(WORKSPACE, f)

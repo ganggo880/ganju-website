@@ -38,7 +38,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── tax-calculator.html      # 13. 房東包租代管節稅效益與實質收益試算神器 (租賃條例17條、囤房稅2.0、三方案PK、LINE諮詢)
 ├── repair-inspection.html   # 14. 租賃修繕點交與屋況瑕疵存證紀錄神器 (租賃條例11條、浮水印拍照、四級責任判定、電子簽章、A4列印)
 ├── privacy.html             # 15. 個人資料保護與隱私權政策專頁 (符合個資法特定目的086/069/040/090、純前端安全宣告)
-├── sitemap.xml              # 全站 15 頁 SEO XML 網站地圖
+├── utility-splitter.html    # 16. 分租水電費與公電分攤結算單產生器 (符合2024電費新制平均電價上限防呆、LINE催繳圖卡、A4公告總表)
+├── sitemap.xml              # 全站 16 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -51,6 +52,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── lease-contract.css   # 租賃契約與公約產生器專用樣式與 A4 列印引擎
 │   ├── tax-calculator.css   # 房東節稅試算樣式與 A4 診斷書列印引擎
 │   ├── repair-inspection.css # 屋況修繕點交與瑕疵存證專用樣式與 A4 排版引擎
+│   ├── utility-splitter.css # 分租水電費與公電分攤結算單樣式與 A4 列印引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
@@ -67,6 +69,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── lease-contract.js    # 租賃契約雙向連動、中文大寫金額與 A4 排版引擎
 │   ├── tax-calculator.js    # 房東節稅試算引擎、三方案 PK 與 LINE 深度帶參串接
 │   ├── repair-inspection.js # 租賃修繕點交、時間浮水印壓印與電子簽章核心引擎
+│   ├── utility-splitter.js  # 分租水電費與公電分攤、2024電費新制防呆與圖卡匯出引擎
 │   ├── ocr-translator.js    # OCR 雙引擎核心與影像處理邏輯 (純前端自包含腳本)
 │   ├── converter.js         # 檔案轉換核心邏輯 (Canvas/Blob 本地加密運算)
 │   ├── image-converter.js   # 圖像格式與尺寸調控邏輯
