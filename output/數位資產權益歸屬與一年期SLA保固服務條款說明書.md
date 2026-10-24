@@ -81,32 +81,29 @@ flowchart TD
 
 ---
 
-## 5. 跨瀏覽器相容性與 PageSpeed 效能達標證明 (Acceptance Validation)
+## 5. 行動端相容性與效能優化驗收說明 (Acceptance Validation)
 
-依據 RFP §5.5「驗收標準與效能指標」，本專案已全數通過以下實機測試與效能驗收：
+依據 RFP §5.5「驗收標準與效能指標」，本專案已完成以下本地自動化實機檢測與效能最佳化措施：
 
-### 5.1 跨裝置與瀏覽器相容性驗收
-- **桌面端**：Google Chrome (最新版)、Apple Safari (macOS)、Microsoft Edge、Mozilla Firefox 100% 渲染正常。
-- **行動端**：iOS Safari、Android Google Chrome、LINE 內建瀏覽器 (In-App Browser) 100% 完美支援。
-- **極限視窗測試**：經 Chrome DevTools 協定 (CDP) 針對 360px、375px、390px、414px 進行 56 組極限測試，橫向滾動溢出值 **嚴格為 0.000000px**，所有按鈕與觸控標籤尺寸 **100% 符合 WCAG $\ge 44\times 44$px 規範**。
+### 5.1 行動端 RWD 與無障礙觸控實機檢測（本機 Headless Chrome CDP 實測）
+- **極限視窗測試**：經 `output/audit_mobile_rwd.js` 透過 Chrome DevTools Protocol (CDP) 針對 360px、375px、390px、414px 進行 56 組視窗檢測，橫向滾動溢出值為 **0px**，可互動元件尺寸符合 **WCAG $\ge 44\times 44$px** 規範。
+- **PWA 離線快取測試**：經 `output/test_pwa_offline.js` 模擬斷網環境，全站 15 頁均可由 Service Worker 快取正常載入。
+- **跨裝置實機驗收建議**：Safari (macOS / iOS)、Microsoft Edge 與 LINE 內建瀏覽器請以正式網址於實機開啟驗收。
 
-### 5.2 PageSpeed 與 Web Vitals 效能指標
-- **電腦端得分**：**98 分**（遠超過 RFP 標準 85 分）。
-- **行動端得分**：**92 分**（遠超過 RFP 標準 75 分）。
-- **最大內容繪製 (LCP)**：$< 1.5$ 秒（優於標準 2.5 秒）。
-- **累計版面位移 (CLS)**：$0.000$（無任何位移跳動）。
-- **首次輸入延遲 (FID / INP)**：$< 30$ 毫秒（極速即時回饋）。
+### 5.2 前端載入效能最佳化措施與 PageSpeed 實測方式
+- **已實施之最佳化**：移除阻塞式 CSS `@import` 改用 HTML `<link rel="preconnect">`、首頁圖片補齊明確 `width`/`height` 屬性避免版面位移（CLS）、非首屏圖片啟用 `loading="lazy" decoding="async"`、JavaScript 採 `defer` 或 ES Module 非同步載入。
+- **PageSpeed 線上實測**：正式驗收時，請直接以 Google 官方 [PageSpeed Insights](https://pagespeed.web.dev/) 輸入正式網址 `https://ganggo880.github.io/ganju-website/` 取得即時實測分數（RFP 目標門檻：電腦端 $\ge 85$ 分、行動端 $\ge 75$ 分）。
 
 ---
 
-## 6. 簽署與交付確認
+## 6. 簽署與交付確認（範本）
 
-本說明書作為《港居不動產高優質住宅包租代管官方網站建置案》之正式結案交付文件，自雙方確認之日起生效。
+本說明書供《港居不動產高優質住宅包租代管官方網站建置案》結案驗收簽署使用，經雙方確認簽章後生效。
 
 - **委託方（甲方）**：港居不動產開發有限公司  
-  代表人 / 簽章：陳俊銘 經理  
-  日期：2026 年 10 月 24 日  
+  代表人 / 簽章：________________________  
+  日期：________ 年 ____ 月 ____ 日  
 
-- **受託開發方（乙方）**：官方網站建置專案工程團隊  
-  專案代表 / 簽章：Antigravity Agent  
-  日期：2026 年 10 月 24 日  
+- **受託開發方（乙方）**：________________________  
+  專案代表 / 簽章：________________________  
+  日期：________ 年 ____ 月 ____ 日  

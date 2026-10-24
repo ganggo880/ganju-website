@@ -99,7 +99,9 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 - **公司名稱**：港居不動產開發有限公司 (GANJU Real Estate Co., Ltd.)
 - **統一編號**：`96797997`
 - **特許證號**：
-  - 租賃管理證號：`(112) 登字第013739號`
+  - 租賃住宅服務業登記證：`(113)高市租登字第0012號`（高雄市政府核發，見 `assets/certs/rental-license.jpg`）
+  - 同業公會會員證號：`高雄市租賃住宅證字第 115-046 號`（見 `assets/certs/association-member-cert.jpg`）
+  - 租賃管理證號：`(112) 登字第013739號`（見 `assets/certs/rental-manager-cert.jpg`）
 - **聯絡窗口**：陳俊銘 經理（`0968-863-880` / 市話 `07-791-2288` / 信箱 `ganggo880@gmail.com`）
 - **Line 官方短網址（預約看房）**：`https://lin.ee/Q71pw2I`（港居｜租屋看房預約）
 - **公司地址**：高雄市小港區合作里中安路825號
