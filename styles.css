@@ -1655,3 +1655,239 @@ img, svg, iframe, video {
     font-size: 1.8rem;
   }
 }
+
+/* ===================================================================
+   房東常見問答手風琴 (FAQ Section & Accordion)
+   =================================================================== */
+.faq-section {
+  background: var(--bg-light);
+  position: relative;
+}
+
+.faq-accordion {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+
+.faq-item:hover {
+  border-color: var(--accent-gold);
+}
+
+.faq-question {
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+}
+
+.faq-question .faq-q-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.faq-question .faq-q-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(197, 160, 89, 0.15);
+  color: var(--accent-gold);
+  font-size: 0.88rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.faq-question .faq-icon {
+  font-size: 1rem;
+  color: var(--accent-gold);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 24px;
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  background: var(--bg-card-inner);
+}
+
+.faq-item.active .faq-answer {
+  max-height: 400px;
+  padding: 18px 24px 22px 24px;
+  border-top: 1px dashed var(--border-color);
+}
+
+/* ===================================================================
+   資產評估預約成功彈窗 (Booking Success Modal)
+   =================================================================== */
+.booking-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.booking-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.booking-modal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  max-width: 520px;
+  width: 100%;
+  padding: 36px 32px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.booking-modal-overlay.active .booking-modal-card {
+  transform: translateY(0);
+}
+
+.booking-success-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.3);
+}
+
+.booking-modal-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 10px;
+}
+
+[data-theme="dark"] .booking-modal-title {
+  color: #FFFFFF;
+}
+
+.booking-modal-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.booking-summary-card {
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  text-align: left;
+  margin-bottom: 24px;
+  font-size: 0.92rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.booking-summary-item {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+.booking-summary-item strong {
+  color: var(--text-primary);
+}
+
+.booking-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-line-instant {
+  background: #00B900;
+  color: #FFFFFF !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px -4px rgba(0, 185, 0, 0.4);
+  transition: var(--transition-fast);
+}
+
+.btn-line-instant:hover {
+  background: #009900;
+  transform: translateY(-2px);
+}
+
+.btn-modal-close {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-modal-close:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}

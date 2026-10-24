@@ -221,20 +221,119 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. 資產評估預約表單提交處理 Lead Form Handler
   const evaluationForm = document.getElementById('evaluationForm');
+  const bookingSuccessModal = document.getElementById('bookingSuccessModal');
+  const bookingModalClose = document.getElementById('bookingModalClose');
+  const btnLineInstantSend = document.getElementById('btnLineInstantSend');
+  const formHoneypot = document.getElementById('formHoneypot');
+
+  function closeBookingModal() {
+    if (bookingSuccessModal) {
+      bookingSuccessModal.classList.remove('active');
+    }
+  }
 
   if (evaluationForm) {
     evaluationForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
+      // 蜜罐防洗檢查：機器人自動填寫的話直接默默靜默處理
+      if (formHoneypot && formHoneypot.value) {
+        evaluationForm.reset();
+        return;
+      }
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
       const region = document.getElementById('region').value;
       const planIntent = document.getElementById('planIntent').value;
+      const note = document.getElementById('note') ? document.getElementById('note').value.trim() : '';
 
-      alert(`【港居不動產】感謝 ${name} 的預約！\n\n系統已成功接收您的預約需求：\n• 評估區域：${region}\n• 意向方案：${planIntent}\n\n陳俊銘 經理與專業團隊將於 24 小時內親自致電（${phone}）為您評估說明！`);
+      // 基本防呆驗證
+      if (!name || !phone || !region) {
+        alert('請填寫完整姓名、聯絡電話與房屋區域！');
+        return;
+      }
+
+      // 組裝 LINE 帶參預約文字
+      const lineMsg = `【港居官網現場評估預約】
+尊稱：${name}
+電話：${phone}
+區域：${region}
+意向方案：${planIntent}
+備註需求：${note || '無特殊需求'}
+
+陳俊銘經理您好，我已在官網送出預約，想與您進一步諮詢評估細節！`;
+
+      const lineUrl = `https://lin.ee/Q71pw2I?text=${encodeURIComponent(lineMsg)}`;
+
+      // 填入彈窗明細卡
+      const smName = document.getElementById('successModalName');
+      const smPhone = document.getElementById('successModalPhone');
+      const smRegion = document.getElementById('successModalRegion');
+      const smPlan = document.getElementById('successModalPlan');
+
+      if (smName) smName.textContent = name;
+      if (smPhone) smPhone.textContent = phone;
+      if (smRegion) smRegion.textContent = region;
+      if (smPlan) smPlan.textContent = planIntent;
+
+      if (btnLineInstantSend) {
+        btnLineInstantSend.href = lineUrl;
+      }
+
+      // 本地儲存預約紀錄 (LocalStorage)
+      try {
+        const historyKey = 'ganju_lead_history';
+        const prev = JSON.parse(localStorage.getItem(historyKey) || '[]');
+        prev.unshift({
+          name,
+          phone,
+          region,
+          planIntent,
+          note,
+          date: new Date().toISOString()
+        });
+        localStorage.setItem(historyKey, JSON.stringify(prev.slice(0, 10)));
+      } catch (err) {
+        console.warn('LocalStorage save failed:', err);
+      }
+
+      // 開啟成功彈窗
+      if (bookingSuccessModal) {
+        bookingSuccessModal.classList.add('active');
+      }
 
       evaluationForm.reset();
     });
   }
+
+  if (bookingModalClose) {
+    bookingModalClose.addEventListener('click', closeBookingModal);
+  }
+
+  if (bookingSuccessModal) {
+    bookingSuccessModal.addEventListener('click', (e) => {
+      if (e.target === bookingSuccessModal) closeBookingModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && bookingSuccessModal.classList.contains('active')) {
+        closeBookingModal();
+      }
+    });
+  }
+
+  // 6. 房東常見問答手風琴互動 (FAQ Accordion Handler)
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const parentItem = btn.closest('.faq-item');
+      if (!parentItem) return;
+      const isExpanded = parentItem.classList.contains('active');
+
+      // 點擊當前項切換開關
+      parentItem.classList.toggle('active', !isExpanded);
+      btn.setAttribute('aria-expanded', (!isExpanded).toString());
+    });
+  });
 
 });

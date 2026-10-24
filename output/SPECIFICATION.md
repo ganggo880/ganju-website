@@ -96,11 +96,15 @@ Matt Pocock skills/
 
 ### 4.1 品牌官網首頁 (`index.html`)
 - **頂部宣告條 (`.top-bar`)**：標註特許證號、統一編號與經理人專線。
-- **導覽列 (`.navbar`)**：置頂黏著導覽，整合「線上工具」下拉選單（10 頁一致）、深淺切換與預約評估按鈕。
+- **導覽列 (`.navbar`)**：置頂黏著導覽，整合「線上工具」下拉選單（13 頁一致）、深淺切換與預約評估按鈕。
 - **Hero 品牌視覺區**：展示「讓優質資產，穩健增值；免改裝直上，省心收益」標語與雙吉祥物卡片。
 - **包租 vs 代管方案雙卡**：清晰對比服務費率、風險承擔與維護責任。
-- **動態 ROI 收益試算器**：滑動月租金即時試算全年毛收益與代管費明細。
+- **動態 ROI 收益試算器**：滑動月租金即時試算全年毛收益與代管費明細，雙向跳轉節稅試算器。
+- **3D 智慧營運島專區 (`#digital-twin`)**：純原生 WebGL 數位孿生微縮世界展示。
 - **精選房源與 3D VR 導覽**：小港、前鎮、鳳山多條件篩選與寵物友善標籤。
+- **房東常見問答 FAQ 手風琴 (`#faq`)**：6 大核心問答解答免改裝直上、包租 vs 代管挑選、節稅法規、欠租催收與工務修繕，配置 Google 官方 `FAQPage` 結構化資料。
+- **Lead 資產評估預約表單 (`#contact`)**：隱形蜜罐 (Honeypot) 防機器人洗表單、LocalStorage 預約備份、尊榮預約成功確認彈窗 (`#bookingSuccessModal`)、一鍵直連 LINE 帶參深層傳送陳俊銘經理。
+- **法定揭示專區 (`#disclosure`)**：租賃住宅服務業登記證、公會會員證書、管理人員證書、收費基準電子揭示。
 
 ### 4.2 租金與代管服務費換算工具 (`rent-calculator.html`)
 - **三大基準天數**：固定 30 日/月、當月實際曆天數、自訂基準天數（如 36.5 天）。
@@ -230,7 +234,7 @@ Matt Pocock skills/
 
 | 頁面 | Schema.org 類型 | 核心欄位與特性 |
 |---|---|---|
-| `index.html` | `RealEstateAgent`, `WebSite` | `name`, `taxID`, `telephone`, `address`, `contactPoint`, `sameAs` |
+| `index.html` | `RealEstateAgent`, `WebSite`, `FAQPage` | `name`, `taxID`, `telephone`, `address`, `contactPoint`, `sameAs`, 6大常見問答 |
 | `rent-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
 | `file-converter.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
 | `photo-watermark.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
