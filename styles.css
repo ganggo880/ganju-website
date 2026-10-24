@@ -695,6 +695,74 @@ input[type="range"] {
   background: #64748B;
 }
 
+.property-badge-vr {
+  top: 16px;
+  right: 16px;
+  left: auto;
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.property-card.is-rented .property-img-box img {
+  filter: grayscale(45%) contrast(90%);
+}
+
+.property-card.is-rented .property-price {
+  background: rgba(100, 116, 139, 0.92);
+  color: #F8FAFC;
+  font-size: 1.05rem;
+}
+
+.rented-alert-banner {
+  background: rgba(197, 160, 89, 0.12);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.rented-alert-banner i {
+  color: var(--accent-gold);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.modal-vr-box {
+  margin-bottom: 22px;
+  background: #000000;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.modal-vr-title {
+  padding: 10px 16px;
+  background: #0F172A;
+  color: #38BDF8;
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-vr-frame {
+  width: 100%;
+  height: 380px;
+  border: 0;
+  display: block;
+}
+
 .property-price {
   position: absolute;
   bottom: 16px;
@@ -774,6 +842,176 @@ input[type="range"] {
 .cred-box p {
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+/* 皮克斯吉祥物展示專區 (Brand Mascots - 馬經理與羊管家) */
+.mascots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.mascot-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.mascot-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-gold);
+}
+
+.mascot-avatar-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.mascot-horse .mascot-avatar-box {
+  background: linear-gradient(135deg, #1A365D 0%, #0F2341 100%);
+  color: var(--accent-gold);
+}
+
+.mascot-sheep .mascot-avatar-box {
+  background: linear-gradient(135deg, #C5A059 0%, #93712C 100%);
+  color: #FFFFFF;
+}
+
+.mascot-info {
+  flex-grow: 1;
+}
+
+.mascot-info h4 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+}
+
+[data-theme="dark"] .mascot-info h4 {
+  color: #FFFFFF;
+}
+
+.mascot-role {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-gold-dark, #93712C);
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .mascot-role {
+  color: var(--accent-gold);
+}
+
+.mascot-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+
+.mascot-motto {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--text-main);
+  background: var(--card-bg, #FFFFFF);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent-gold);
+}
+
+/* 實體據點與門市卡片 */
+.office-location-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  margin-top: 40px;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.office-info {
+  flex: 1 1 300px;
+}
+
+.office-info h4 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .office-info h4 {
+  color: #FFFFFF;
+}
+
+.office-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.office-details li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.office-details i {
+  color: var(--accent-gold);
+  width: 18px;
+  text-align: center;
+}
+
+.btn-office-map {
+  min-height: 44px;
+  padding: 12px 24px;
+  background: var(--primary-navy);
+  color: #FFFFFF !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+.btn-office-map:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
 }
 
 /* 免費預約資產評估表單 */

@@ -104,8 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {
           img.decoding = 'async';
           imgBox.append(img);
         }
-        if (item.available_from) imgBox.append(el('span', 'property-badge', `${item.available_from} 起可入住`));
-        imgBox.append(el('span', 'property-price', item.price_label));
+        const isRented = item.status === 'rented' || item.is_rented;
+        if (isRented) {
+          card.classList.add('is-rented');
+          imgBox.append(el('span', 'property-badge rented', '已圓滿出租'));
+        } else if (item.available_from) {
+          imgBox.append(el('span', 'property-badge', `${item.available_from} 起可入住`));
+        }
+
+        if (item.vr_url || item.has_vr) {
+          const vrBadge = el('span', 'property-badge property-badge-vr');
+          vrBadge.append(el('i', 'fa-solid fa-vr-cardboard'), ' 360° VR');
+          imgBox.append(vrBadge);
+        }
+
+        imgBox.append(el('span', 'property-price', isRented ? '已出租' : item.price_label));
 
         const content = el('div', 'property-content');
         content.append(el('h3', 'property-title', item.title));
@@ -152,13 +165,39 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!item || !modal || !modalContent) return;
     modalContent.replaceChildren();
 
+    const isRented = item.status === 'rented' || item.is_rented;
+
+    // 若已出租，顯示圓滿成交公告橫幅 (SEO 留存與防呆)
+    if (isRented) {
+      const banner = el('div', 'rented-alert-banner');
+      banner.append(
+        el('i', 'fa-solid fa-circle-check'),
+        el('span', '', '🎉 本物件已圓滿出租成交！感謝各界支持，歡迎加 LINE 諮詢同社區或周邊最新釋出優質房源。')
+      );
+      modalContent.append(banner);
+    }
+
     const head = el('div', 'modal-listing-head');
-    head.append(el('h3', 'modal-listing-title', item.title), el('p', 'modal-listing-price', item.price_label));
+    head.append(el('h3', 'modal-listing-title', item.title), el('p', 'modal-listing-price', isRented ? '已圓滿出租' : item.price_label));
     const location = el('p', 'property-location');
     location.append(el('i', 'fa-solid fa-location-dot'), ` ${item.location || ''}`);
     head.append(location);
-    if (item.available_from) head.append(el('p', 'modal-listing-available', `${item.available_from} 起可入住`));
+    if (!isRented && item.available_from) head.append(el('p', 'modal-listing-available', `${item.available_from} 起可入住`));
     modalContent.append(head);
+
+    // 支援 360° VR 虛擬實境導覽嵌入 (RFP §5.3)
+    if (item.vr_url) {
+      const vrBox = el('div', 'modal-vr-box');
+      const vrTitle = el('h4', 'modal-vr-title');
+      vrTitle.append(el('i', 'fa-solid fa-vr-cardboard'), ' 360° VR 虛擬實境線上看房');
+      const vrIframe = el('iframe', 'modal-vr-frame');
+      vrIframe.src = safeUrl(item.vr_url);
+      vrIframe.setAttribute('allowfullscreen', 'true');
+      vrIframe.setAttribute('loading', 'lazy');
+      vrIframe.setAttribute('title', `${item.title || '房源'} 360° VR 導覽`);
+      vrBox.append(vrTitle, vrIframe);
+      modalContent.append(vrBox);
+    }
 
     const photos = (item.photos || []).map(safeUrl).filter(Boolean);
     if (photos.length) {
@@ -178,13 +217,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const actions = el('div', 'modal-listing-actions');
     const line = el('a', 'btn btn-gold');
-    const bookingMsg = `您好，我想預約看房：【${item.title || '精選房源'}】（租金：${item.price_label || '洽詢專員'}）`;
+    const bookingMsg = isRented
+      ? `您好，我看到【${item.title || '精選房源'}】已圓滿出租，想諮詢同社區或周邊是否有相似優質房源釋出？`
+      : `您好，我想預約看房：【${item.title || '精選房源'}】（租金：${item.price_label || '洽詢專員'}）`;
+    const lineBtnText = isRented ? ' 加 LINE 諮詢同社區相似房源' : ' 加 LINE 預約看房';
+
     const lineBase = safeUrl(listingData.booking_url) || BOOKING_URL_DEFAULT;
     const lineUrlWithText = lineBase.includes('?') ? `${lineBase}&text=${encodeURIComponent(bookingMsg)}` : `${lineBase}?text=${encodeURIComponent(bookingMsg)}`;
     line.href = lineUrlWithText;
     line.target = '_blank';
     line.rel = 'noopener noreferrer';
-    line.append(el('i', 'fa-brands fa-line'), ' 加 LINE 預約看房');
+    line.append(el('i', 'fa-brands fa-line'), lineBtnText);
     line.addEventListener('click', () => {
       if (window.GanjuTracker) {
         window.GanjuTracker.track('property_line_book', {
