@@ -37,7 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     calcAnnualTotal.textContent = annualText;
+
+    // ROI 試算器使用事件防抖追蹤
+    clearTimeout(roiTrackTimeout);
+    roiTrackTimeout = setTimeout(() => {
+      if (window.GanjuTracker) {
+        window.GanjuTracker.track('roi_calculator_use', {
+          monthly_rent: monthlyRent,
+          plan_mode: isSublease ? 'sublease' : 'management'
+        });
+      }
+    }, 1000);
   }
+
+  let roiTrackTimeout = null;
 
   if (rentSlider && planSelect) {
     rentSlider.addEventListener('input', calculateROI);
@@ -172,6 +185,15 @@ document.addEventListener('DOMContentLoaded', () => {
     line.target = '_blank';
     line.rel = 'noopener noreferrer';
     line.append(el('i', 'fa-brands fa-line'), ' 加 LINE 預約看房');
+    line.addEventListener('click', () => {
+      if (window.GanjuTracker) {
+        window.GanjuTracker.track('property_line_book', {
+          listing_id: item.id,
+          listing_title: item.title,
+          price: item.price_label
+        });
+      }
+    });
     actions.append(line);
     const phone = String(listingData.phone || '').replace(/[^\d+]/g, '');
     if (phone) {
@@ -185,6 +207,16 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.add('active');
     // 讓這個物件有自己的網址，FB 貼文的「物件詳情」可以直接連過來
     history.replaceState(null, '', `?listing=${encodeURIComponent(item.id)}#properties`);
+
+    // 觸發房源瀏覽轉換事件
+    if (window.GanjuTracker) {
+      window.GanjuTracker.track('property_view', {
+        listing_id: item.id,
+        listing_title: item.title,
+        price: item.price_label,
+        district: item.district || ''
+      });
+    }
   }
 
   function closeModal() {
@@ -299,6 +331,15 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(historyKey, JSON.stringify(prev.slice(0, 10)));
       } catch (err) {
         console.warn('LocalStorage save failed:', err);
+      }
+
+      // 觸發關鍵轉換事件：資產評估表單送出
+      if (window.GanjuTracker) {
+        window.GanjuTracker.track('lead_form_submit', {
+          region: region,
+          plan_intent: planIntent,
+          has_note: !!note
+        });
       }
 
       // 開啟成功彈窗
@@ -453,6 +494,27 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     articleModal.classList.add('active');
+
+    // 觸發專欄文章閱讀與 CTA 追蹤
+    if (window.GanjuTracker) {
+      window.GanjuTracker.track('blog_article_view', {
+        article_id: id,
+        article_title: data.title,
+        category: data.category
+      });
+    }
+
+    const ctaBtn = articleModalContent.querySelector('.article-cta-btn');
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', () => {
+        if (window.GanjuTracker) {
+          window.GanjuTracker.track('blog_cta_click', {
+            article_id: id,
+            target_tool: data.ctaUrl
+          });
+        }
+      });
+    }
   }
 
   function closeArticleModal() {

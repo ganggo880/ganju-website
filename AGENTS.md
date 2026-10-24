@@ -50,6 +50,7 @@
 - [x] 階段二十七：租賃修繕點交與屋況瑕疵存證紀錄神器 `repair-inspection.html`（依據租賃專法第11條與民法第429/432條法定點交規範，支援起租交付/退租返還/修繕存證三大模式、六大空間分區、相機拍照自動壓印時間存證浮水印、四級責任歸屬判定、水電瓦斯指針登錄、雙畫布高靈敏電子手寫簽章、A4無痕列印出圖、JSON匯入匯出與LINE深度帶參回報，全站14頁100% PWA離線可用與零溢出通過）
 - [x] 階段二十八：全站 SEO 搜尋引擎架構部署（`sitemap.xml` ＋ `robots.txt`）＋ 租務專欄現代化深度閱讀彈窗 ＋ Google `BlogPosting` 結構化資料全面整合（14頁Sitemap完整索引、專欄法規1.5萬與60%校正、3大專欄文章彈窗與工具轉化閉環、PWA 59項資產100%離線可用與52組情境零溢出通過）
 - [x] 階段二十九：個人資料保護與隱私權政策專頁 `privacy.html` ＋ 房源 LINE 帶參預約看房深度串接（符合台灣《個人資料保護法》法定特定目的 086/069/040/090 與《租賃住宅市場發展及管理條例》規範、純前端零上傳本地運算安全透明化宣告、首頁 Lead 表單隱私權同意書直連、房源彈窗看房帶房名與租金一鍵加 LINE、全站 15 頁 100% PWA 離線可用與 56 組行動端 0px 溢出通過）
+- [x] 階段三十：全站 MarTech 行銷科技與關鍵轉換追蹤系統（`js/tracking.js` ＋ GTM/GA4/Meta Pixel 雙向事件映射 ＋ 電話與 LINE 點擊全域 Capture 代理監聽 ＋ 離線靜默容錯 ＋ `GTM_GA4_事件追蹤設定規格說明書.md` 正式交付）
 
 ## 資料夾結構
 
@@ -100,6 +101,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── photo-time-location.css      # 照片時間地點浮水印工具樣式
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
+│   ├── tracking.js                  # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js                     # 千分位、日期差、Toast、主題切換
 │   ├── navigation.js                # 導覽列與 Mobile Drawer（index.html 使用）
 │   ├── layout.js                    # Active 點亮與跨頁 Layout 控制（工具頁使用）

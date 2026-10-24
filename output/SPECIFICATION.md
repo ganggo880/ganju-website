@@ -77,6 +77,7 @@ Matt Pocock skills/
 │   ├── photo-time-location.css # 照片時間地點浮水印樣式
 │   └── id-card-watermark.css   # 身分證照裁剪樣式
 ├── js/
+│   ├── tracking.js             # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js                # 工具函式 (千分位、日期差、Toast、主題切換)
 │   ├── navigation.js           # 首頁導覽列與行動端抽屜選單控制器
 │   ├── layout.js               # 跨頁 Layout 控制與 Active 狀態點亮
@@ -93,6 +94,7 @@ Matt Pocock skills/
 └── output/                     # 規格書、技術指南與產出檔案歸檔目錄
     ├── winfar-website/         # 穩發漁業集團官方形象網站 (艦隊展示/冷鏈/影音新聞/B2B詢價)
     ├── SPECIFICATION.md        # 全站系統技術規格書 (本檔)
+    ├── GTM_GA4_事件追蹤設定規格說明書.md # MarTech 追蹤設定技術交付書 (RFP §5.1, §6.2)
     └── 2D_3D_空間格局配置系統_使用操作手冊.md
 ```
 
@@ -376,6 +378,26 @@ Matt Pocock skills/
    - 頁尾版權資訊欄全面整合隱私權專頁連結，杜絕死連結（Dead Links）。
 3. **房源彈窗 (`#propertyModal`) LINE 帶參預約**：
    - 房源物件卡點擊「加 LINE 預約看房」時，自動依據物件名稱與月租金預填文字（`您好，我想預約看房：【房源名稱】（租金：XXXX元/月）`），強化預約轉換率與客服追蹤效益。
+
+### 13.8 MarTech 行銷科技與關鍵轉換追蹤架構 (`js/tracking.js` ＋ GTM/GA4/Meta Pixel)
+
+1. **依據標準**：嚴格落實 RFP §5.1 行銷與成效追蹤規範、§5.2 個資法合規及 §6.2 專案交付項目。
+2. **中介層設計與雙向事件派送 (`js/tracking.js`)**：
+   - 全站建立統一資料層中介 `window.dataLayer = window.dataLayer || [];` 與 `window.GanjuTracker`。
+   - 具備 GTM DataLayer 推播、Google Analytics 4 (`gtag`) 及 Meta Pixel (`fbq`) 自動雙向事件映射。
+   - 全域自動監聽全站所有外連 LINE（`href*="lin.ee"`）與電話點擊（`href^="tel:"`），透過 Capture 階段事件代理達成 0 遺漏監聽。
+   - 支援離線 PWA 與廣告阻擋器平滑靜默容錯，案場斷網環境保證零例外報錯。
+3. **關鍵轉換事件清單**：
+   - `lead_form_submit`：首頁資產評估表單送出（主要轉換 / Meta: `Lead`）。
+   - `line_consult_click`：全站 LINE 官方諮詢點擊（主要轉換 / Meta: `Contact`）。
+   - `phone_call_click`：全站撥打經理電話點擊（主要轉換 / Meta: `Contact`）。
+   - `property_line_book`：房源彈窗加 LINE 看房點擊（主要轉換 / Meta: `Schedule`）。
+   - `property_view`：房源卡片詳情點擊（次要轉換 / Meta: `ViewContent`）。
+   - `roi_calculator_use`：首頁 ROI 收益試算器互動（互動事件 / Meta: `CustomizeProduct`）。
+   - `blog_article_view`：專欄文章彈窗閱讀（內容互動 / Meta: `ViewContent`）。
+   - `blog_cta_click`：專欄文末專用工具轉換推薦點擊（漏斗推進）。
+4. **專案交付規格書**：
+   - 完整產出獨立交付文檔：[`output/GTM_GA4_事件追蹤設定規格說明書.md`](file:///home/ken-ubuntu/gdrive_folder/ai agent/Matt Pocock skills/output/GTM_GA4_事件追蹤設定規格說明書.md)，涵蓋 Data Layer 規格、GTM 代碼觸發程序設定、GA4 自訂維度與 Meta Pixel 受眾建立指南。
 
 ---
 

@@ -10,7 +10,30 @@
 
 全站共 **15 個頁面**（港居不動產官網首頁、13 款高階線上工具集、3D 智慧營運島與個人資料保護政策專頁）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
 
-**2026-10-24（最新推進）— 階段二十九：個人資料保護與隱私權政策專頁 (`privacy.html`) ＋ 房源 LINE 帶參預約看房深度串接**
+**2026-10-24（最新推進）— 階段三十：全站 MarTech 行銷科技與關鍵轉換追蹤系統 (`js/tracking.js` ＋ GTM/GA4/Meta Pixel 雙向事件映射 ＋ 規格說明書交付)**
+- **遵循 RFP §5.1 行銷追蹤規範與 §6.2 交付標準落地**：
+  - **資料層與追蹤核心模組化 (`js/tracking.js`)**：
+    - 全站統一初始化標準 `window.dataLayer = window.dataLayer || [];` 與全域控制器 `window.GanjuTracker`。
+    - 具備 GTM DataLayer 推播、Google Analytics 4 (`gtag`) 及 Meta Pixel (`fbq`) 自動雙向標準/自訂事件映射。
+    - 支援離線 PWA、廣告阻擋器 (AdBlocker) 與嚴格隱私環境平滑靜默容錯，零外部網路依賴與零主機報錯。
+  - **全站全域自動監聽 (Delegated Capture Listeners)**：
+    - 透過 Capture 階段全域事件代理，自動攔截全站所有點擊外連 LINE（`href*="lin.ee"`），自動發送 `line_consult_click` 並附帶來源位置。
+    - 自動攔截全站所有撥打電話（`href^="tel:"`），自動發送 `phone_call_click` 並附帶撥打門號與按鈕位置。
+    - 支援 HTML 標記自訂元素 `data-track-event="event_name"` 與 `data-track-*` 彈性埋設。
+  - **首頁關鍵轉換點深度綁定 (`script.js` ＋ `index.html`)**：
+    - **表單轉換**：首頁資產評估表單（Lead Form）成功送出自動觸發 `lead_form_submit`（Meta: `Lead`）。
+    - **房源轉換**：物件卡點擊觸發 `property_view`（Meta: `ViewContent`）；彈窗加 LINE 點擊觸發 `property_line_book`（Meta: `Schedule`）。
+    - **互動與漏斗**：ROI 試算器滑動防抖觸發 `roi_calculator_use`；專欄文章彈窗閱讀觸發 `blog_article_view`；文末工具 CTA 點擊觸發 `blog_cta_click`。
+  - **全工具頁 Layout 動態預載 (`js/layout.js`)**：
+    - 在 `initLayout()` 中自動動態注入 `js/tracking.js`，使全站 13 款工具頁全面自動具備完整的 MarTech 事件追蹤能力。
+  - **交付技術規格書**：
+    - 產出完整交付文件 [`output/GTM_GA4_事件追蹤設定規格說明書.md`](file:///home/ken-ubuntu/gdrive_folder/ai agent/Matt Pocock skills/output/GTM_GA4_事件追蹤設定規格說明書.md)（涵蓋架構圖、9 大核心事件字典、Data Layer 規格、GTM 代碼觸發器設定、GA4 自訂維度與主要轉換配置、Meta Pixel 受眾建立指南、QA 驗證流程）。
+  - **PWA 62 項核心資產 100% 離線秒開**：
+    - `sw.js` 升級至 `ganju-pwa-v1.6`，預載核心資產擴增至 62 項（包含 `js/tracking.js`）。
+    - 經 `output/test_tracking.js` 實機測試：DataLayer 推播與全域代理事件 100% 正常觸發。
+    - 經 `output/test_pwa_offline.js` 100% 完全斷網模擬：全站 **15/15 頁 (100%) 全部成功秒開離線運作**。
+
+**2026-10-24（前一輪）— 階段二十九：個人資料保護與隱私權政策專頁 (`privacy.html`) ＋ 房源 LINE 帶參預約看房深度串接**
 - **法規合規與個人資料保護政策專頁 (`privacy.html` ＋ `css/privacy.css`)**：
   - **台灣《個人資料保護法》（PDPA）與《租賃住宅市場發展及管理條例》法定事項嚴格遵循**：
     - 完整宣告特定目的法定代號：`086 不動產服務業`、`069 契約、類似契約或其他法律關係事務`、`040 行銷`、`090 消費者、客戶管理與服務`。
@@ -217,7 +240,8 @@
 - ✅ **版面**：全站頁面在 360px 極限螢幕下橫向溢出嚴格為 0px，觸控熱區皆 ≥ 44×44px。
 - ✅ **JS**：零語法與執行期錯誤；安全 DOM 操作與資料綁定。
 - ✅ **導覽**：全站工具頁「線上工具」下拉選單皆含全部 13 款工具＋3D營運島（14/14 頁面全面互通）。
-- ✅ **離線 PWA**：`sw.js` 預載 61 項核心資產，15/15 頁 (100%) 在完全斷網模擬下秒開可用。
+- ✅ **離線 PWA**：`sw.js` 預載 62 項核心資產（升級 `ganju-pwa-v1.6`），15/15 頁 (100%) 在完全斷網模擬下秒開可用。
+- ✅ **MarTech 數據追蹤**：`js/tracking.js` 模組化就緒，全域代理監聽 LINE 與電話點擊，9 大核心事件 DataLayer 注入。
 - ✅ **深色模式**：全站文字與底色對比皆符合 WCAG 2.1 AA 級標準，100% 繼承 `css/tokens.css`。
 
 ---
@@ -226,7 +250,7 @@
 
 | # | 頁面 | 功能說明 | JSON-LD |
 |---|---|---|---|
-| 1 | `index.html` | TopBar 登記證號、Hero、包租 vs 代管方案、ROI 試算器、3D營運島專區、第 33 條法定揭示、房源區、蜜罐防洗 Lead 表單、FAQ 手風琴 | `RealEstateAgent`, `WebSite`, `FAQPage`, `Blog` |
+| 1 | `index.html` | TopBar 登記證號、Hero、包租 vs 代管方案、ROI 試算器、3D營運島專區、第 33 條法定揭示、房源區、蜜罐防洗 Lead 表單、FAQ 手風琴、MarTech 追蹤 | `RealEstateAgent`, `WebSite`, `FAQPage`, `Blog` |
 | 2 | `rent-calculator.html` | 30日／當月實際／自訂基準天數、跨月區間、代管費與屋主實收拆分、LocalStorage 歷史 | `WebApplication` (FinanceApplication) |
 | 3 | `file-converter.html` | PDF/DOCX/PNG/JPG/WEBP/MP3/MP4/ZIP 瀏覽器端本地轉檔與歷史紀錄 | `WebApplication` (UtilitiesApplication) |
 | 4 | `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成（常駐深色工作台） | `WebApplication` (MultimediaApplication) |
@@ -249,10 +273,11 @@
 - **GitHub 遠端倉庫**：`https://github.com/ganggo880/ganju-website.git`
 - **GitHub Pages 網址**：`https://ganggo880.github.io/ganju-website/`
 - **系統技術規格書**：`output/SPECIFICATION.md`、`output/2D_3D_空間格局配置系統技術規格書.md`
+- **MarTech 規格說明書**：`output/GTM_GA4_事件追蹤設定規格說明書.md`
 - **資安架構指南**：`output/information_security_architecture_guide.md`
 
 ## 🕐 最後更新
 
-- 時間：2026-10-24 20:45
+- 時間：2026-10-24 21:00
 - 更新者：Antigravity Agent @ Linux
-- 狀態：完成階段二十九「個人資料保護與隱私權政策專頁 (`privacy.html`) ＋ 房源 LINE 帶參預約看房深度串接」，全站 15 頁法規遵循合規、首頁 Lead 表單同意書直連、房源看房參數一鍵帶入 LINE、PWA 61 項資產 100% 離線可用，行動端 56 組情境 360px~414px 零溢出與 0 觸控缺陷全數通過。
+- 狀態：完成階段三十「全站 MarTech 行銷科技與關鍵轉換追蹤系統（`js/tracking.js` ＋ GTM/GA4/Meta Pixel 雙向事件映射 ＋ 規格說明書交付）」，完成 9 大核心轉換事件 DataLayer 注入、全域電話與 LINE 點擊自動代理監聽、PWA 62 項資產 100% 離線可用與實機測試通過。

@@ -59,6 +59,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── photo-time-location.css # 照片時間地點浮水印樣式
 │   └── id-card-watermark.css   # 身份證照裁剪工具樣式
 ├── js/
+│   ├── tracking.js          # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, escapeHTML, 主題切換)
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 控制器
 │   ├── layout.js            # 版面 Active 點亮與跨頁面 Layout 控制器

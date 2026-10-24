@@ -2,6 +2,14 @@
 import { initThemeSwitcher, initNavDropdown } from './utils.js';
 
 export function initLayout() {
+  // 0. 確保全站 MarTech 轉換追蹤模組就緒
+  if (!window.GanjuTracker && !document.querySelector('script[src*="tracking.js"]')) {
+    const trackScript = document.createElement('script');
+    trackScript.src = 'js/tracking.js';
+    trackScript.async = true;
+    document.head.appendChild(trackScript);
+  }
+
   // 1. 初始化全域主題切換器
   initThemeSwitcher();
 
