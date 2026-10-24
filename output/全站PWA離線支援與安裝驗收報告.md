@@ -22,8 +22,9 @@
 | 10 | `space-planner.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 港居不動產｜2D 平面格局配置與 3D 即時轉換系統 (智慧自動隔間/CAD家具/坪數換算) |
 | 11 | `island.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 港居不動產・智慧包租代管營運島 | 3D 微縮世界 |
 | 12 | `lease-contract.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃契約與住戶公約線上產生器｜港居不動產包租代管專用 |
+| 13 | `tax-calculator.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 房東節稅與包租代管實質淨收益試算神器｜租賃專法第17條・囤房稅2.0・三方案淨得對比｜港居不動產 |
 
-**離線可用率**：**12 / 12 頁 (100%)**
+**離線可用率**：**13 / 13 頁 (100%)**
 
 ---
 

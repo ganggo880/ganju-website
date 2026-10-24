@@ -45,6 +45,7 @@
 - [x] 階段二十二：全站 PWA 離線漸進式應用支援與原生桌面/手機安裝（`manifest.json` ＋ `sw.js` 48 項核心資產預載 ＋ Network-First 導航快取 ＋ 案場 100% 完全斷網實機 11 頁可用性通過）
 - [x] 階段二十三：港居 3D 智慧營運島（數位孿生）全站選單、PWA 快取與 Schema.org 結構化資料全面整合（11/11 頁面導覽互通、離線秒開、首頁 iframe 嵌入與 360px~414px 零溢出通過）
 - [x] 階段二十四：租賃契約與住戶公約線上套印產生器 `lease-contract.html`（雙欄即時連動、中文大寫自動轉換、搬遷免租期、水電度數計費、凶宅防範300萬違約金、27項通用標準住戶公約與設備點交清單、A4標準無痕列印與PDF匯出、全站12頁100% PWA離線可用與零溢出通過）
+- [x] 階段二十五：房東包租代管節稅效益與實質收益試算神器 `tax-calculator.html`（精算法定1.5萬免稅額、60%必要費用率、房屋稅比照自住1.2%與地價稅千分之2減徵，對比自租/代管/全包租三大方案實質全年度淨收益PK，視覺化能量條、A4無痕列印節稅診斷書與LINE深度帶參預約評估、全站13頁100% PWA離線可用與零溢出通過）
 
 ## 資料夾結構
 
@@ -68,6 +69,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── island.html                      # 11. 3D 智慧營運島（數位孿生）微縮世界
 ├── island_standalone.html           # 11b. 3D 智慧營運島獨立全螢幕版本
 ├── lease-contract.html              # 12. 租賃契約與住戶公約線上套印產生器
+├── tax-calculator.html              # 13. 房東包租代管節稅效益與實質收益試算神器
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
 ├── script.js / rent-calc.js
@@ -80,6 +82,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── space-planner.css            # 2D/3D 空間格局配置系統樣式
 │   ├── lease-contract.css           # 租賃契約與公約產生器樣式與 A4 列印引擎
+│   ├── tax-calculator.css           # 房東節稅試算樣式與 A4 診斷書列印引擎
 │   ├── ocr-translator.css           # 照片 OCR 文字辨識與翻譯專屬樣式
 │   ├── converter.css                # 檔案轉換工具專屬樣式
 │   ├── card-merger.css              # 名片合成工具樣式
@@ -92,6 +95,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── layout.js                    # Active 點亮與跨頁 Layout 控制（工具頁使用）
 │   ├── space-planner.js             # 2D CAD + 3D WebGL 空間格局配置核心引擎
 │   ├── lease-contract.js            # 租賃契約雙向連動、中文大寫金額與 A4 排版引擎
+│   ├── tax-calculator.js            # 房東節稅試算引擎、三方案 PK 與 LINE 深度帶參串接
 │   ├── ocr-translator.js            # 照片 OCR 雙引擎與翻譯邏輯
 │   ├── converter.js                 # 轉檔核心（Canvas / Blob 本地運算）
 │   ├── image-converter.js           # 圖像格式與尺寸轉換邏輯

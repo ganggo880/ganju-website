@@ -23,7 +23,8 @@ const PAGES = [
   'ocr-translator.html',
   'space-planner.html',
   'island.html',
-  'lease-contract.html'
+  'lease-contract.html',
+  'tax-calculator.html'
 ];
 
 const MIME_TYPES = {

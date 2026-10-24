@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>房東節稅與包租代管實質淨收益試算神器｜租賃專法第17條・囤房稅2.0・三方案淨得對比｜港居不動產</title>
+  <meta name="description" content="專為房東打造之節稅與收益試算神器！依據《租賃住宅市場發展及管理條例》第17條與2024囤房稅2.0新制，精算每月1.5萬免稅額、60%必要費用率、房屋稅1.2%與地價稅0.2%減徵，對比自租、代管與全包租三大方案實質全年度淨得！">
+
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/tax-calculator.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="房東節稅與包租代管實質淨收益試算神器｜港居不動產">
+  <meta property="og:description" content="依據租賃專法第17條與囤房稅2.0，精算房東自租 vs 港居代管 vs 港居包租三大方案節稅效益與全年實質淨得。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/tax-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/tax-calculator.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居房東節稅與包租代管實質淨收益試算神器",
+    "url": "https://ganggo880.github.io/ganju-website/tax-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "提供房東精準試算依據租賃專法第17條所得稅免稅額、費用率60%、房屋稅1.2%與地價稅0.2%減徵，並對比自租與包租代管之全年實質淨得。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "房東節稅與包租代管實質淨收益試算神器",
+        "item": "https://ganggo880.github.io/ganju-website/tax-calculator.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body>
+
+  <!-- 頂部宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法登記包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+        <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        <span class="brand-text-box">
+          <span class="brand-name">港居不動產</span>
+          <span class="brand-sub">高優質住宅包租代管</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="tax-calculator.html" class="nav-link active"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #c5a059;"></i> 租賃契約產生器</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 試算頁面主容器 -->
+  <main class="tax-calc-page">
+    <div class="tax-bg-glow"></div>
+    <div class="tax-bg-glow-left"></div>
+
+    <div class="tax-container">
+
+      <!-- 列印專用表頭 (@media print) -->
+      <div class="tax-print-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h2 style="font-size: 16pt; margin: 0; color: #1A365D;">港居不動產開發有限公司</h2>
+            <p style="font-size: 10pt; margin: 2px 0; color: #666;">特許租賃住宅服務業｜租賃管理證號：(112)登字第013739號｜統編：96797997</p>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 13pt; font-weight: bold; color: #C5A059;">房東節稅效益與包租代管資產評估報告</div>
+            <div style="font-size: 9pt; color: #888;" id="printDate"></div>
+          </div>
+        </div>
+        <div style="font-size: 9.5pt; color: #333; margin-top: 8px;" id="printParams"></div>
+      </div>
+
+      <!-- 標題與簡介區 -->
+      <header class="tax-header">
+        <div class="tax-badge">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <span>法規基準：《租賃條例》第 17 條 ＋ 囤房稅 2.0 新制</span>
+        </div>
+        <h1 class="tax-title">房東節稅效益與包租代管實質淨收益試算</h1>
+        <p class="tax-desc">
+          委託港居包租代管，讓您的物業享有法定每月 1.5 萬元免稅額、60% 必要費用率，房屋稅比照自住 1.2% 與地價稅 0.2% 減徵。立即試算自租 vs 代管 vs 全包租實質全年度淨收益！
+        </p>
+      </header>
+
+      <!-- 試算雙欄工作台 -->
+      <div class="tax-workstation-grid">
+
+        <!-- 左欄：參數設定控制面板 -->
+        <div class="tax-card">
+          <div class="tax-card-header">
+            <h2 class="tax-card-title"><i class="fa-solid fa-sliders"></i> 試算條件設定</h2>
+            <span style="font-size: 0.82rem; color: var(--text-muted);">即時動態運算</span>
+          </div>
+
+          <!-- 1. 預估月租金 -->
+          <div class="tax-form-group">
+            <div class="tax-label-row">
+              <label for="rentInput" class="tax-label"><i class="fa-solid fa-coins"></i> 房屋預估每月租金</label>
+              <div class="tax-value-display" id="rentDisplay">NT$ 28,000</div>
+            </div>
+            <div class="tax-slider-box">
+              <input type="range" class="tax-range-input" id="rentSlider" min="8000" max="100000" step="1000" value="28000" aria-label="每月租金滑桿">
+              <input type="number" class="form-control" id="rentInput" min="5000" max="200000" step="500" value="28000" style="font-size: 1.1rem; font-weight: 700;" aria-label="每月租金數字輸入">
+            </div>
+            <!-- 快速租金晶片 -->
+            <div class="tax-quick-chips">
+              <button type="button" class="tax-chip" data-rent="15000">1.5 萬 (免稅上限)</button>
+              <button type="button" class="tax-chip active" data-rent="28000">2.8 萬 (高雄兩房)</button>
+              <button type="button" class="tax-chip" data-rent="38000">3.8 萬 (三房平車)</button>
+              <button type="button" class="tax-chip" data-rent="50000">5.0 萬 (景觀大宅)</button>
+              <button type="button" class="tax-chip" data-rent="70000">7.0 萬 (精裝透天)</button>
+            </div>
+          </div>
+
+          <!-- 2. 房東個人綜所稅級距 -->
+          <div class="tax-form-group">
+            <div class="tax-label-row">
+              <label class="tax-label"><i class="fa-solid fa-landmark"></i> 房東個人綜合所得稅級距</label>
+              <span style="font-size: 0.78rem; color: var(--text-muted);">影響租賃所得課稅額</span>
+            </div>
+            <div class="tax-rate-grid">
+              <button type="button" class="tax-rate-btn" data-rate="0.05">
+                <span class="rate-val">5%</span>
+                <span class="rate-tag">小資級</span>
+              </button>
+              <button type="button" class="tax-rate-btn active" data-rate="0.12">
+                <span class="rate-val">12%</span>
+                <span class="rate-tag">主流級</span>
+              </button>
+              <button type="button" class="tax-rate-btn" data-rate="0.20">
+                <span class="rate-val">20%</span>
+                <span class="rate-tag">中高所得</span>
+              </button>
+              <button type="button" class="tax-rate-btn" data-rate="0.30">
+                <span class="rate-val">30%</span>
+                <span class="rate-tag">高階主管</span>
+              </button>
+              <button type="button" class="tax-rate-btn" data-rate="0.40">
+                <span class="rate-val">40%</span>
+                <span class="rate-tag">最高級距</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. 高級資產參數 (摺疊展開) -->
+          <button type="button" class="tax-accordion-toggle" id="accordionToggle" aria-expanded="false" aria-controls="advancedPanel">
+            <span><i class="fa-solid fa-gear"></i> 自訂房屋現值、地價與空置期參數</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+
+          <div class="tax-advanced-panel" id="advancedPanel">
+            <!-- 房屋評定現值 -->
+            <div class="tax-form-group">
+              <div class="tax-label-row">
+                <label for="houseValueInput" class="tax-label">房屋課稅評定現值 (元)</label>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">見房屋稅單</span>
+              </div>
+              <input type="number" class="form-control" id="houseValueInput" value="600000" step="50000" min="50000" max="10000000">
+            </div>
+
+            <!-- 申報地價總額 -->
+            <div class="tax-form-group">
+              <div class="tax-label-row">
+                <label for="landValueInput" class="tax-label">申報地價總額 (元)</label>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">見地價稅單</span>
+              </div>
+              <input type="number" class="form-control" id="landValueInput" value="350000" step="50000" min="50000" max="10000000">
+            </div>
+
+            <!-- 自租空置期預估 -->
+            <div class="tax-form-group">
+              <label for="vacancySelect" class="tax-label">自租預估空置期損失</label>
+              <select id="vacancySelect" class="form-control">
+                <option value="0.5">0.5 個月 (秒殺熱區)</option>
+                <option value="1.0" selected>1.0 個月 (一般市場平均招租期)</option>
+                <option value="1.5">1.5 個月 (換約重新粉刷招租)</option>
+                <option value="2.0">2.0 個月 (屋況挑客較嚴)</option>
+                <option value="0">0 個月 (假設全年滿租無空窗)</option>
+              </select>
+            </div>
+
+            <!-- 自租非自住房屋稅率 -->
+            <div class="tax-form-group">
+              <label for="selfTaxRateSelect" class="tax-label">自租非自住房屋稅率 (囤房稅 2.0)</label>
+              <select id="selfTaxRateSelect" class="form-control">
+                <option value="0.015">1.5% (申報租賃達標準最優)</option>
+                <option value="0.024" selected>2.4% (一般申報出租平均稅率)</option>
+                <option value="0.032">3.2% (持有 2~3 戶非自住標準)</option>
+                <option value="0.048">4.8% (多戶囤房最高上限稅率)</option>
+              </select>
+            </div>
+
+            <!-- 港居代管服務費率 -->
+            <div class="tax-form-group" style="margin-bottom: 0;">
+              <label for="feeRateSelect" class="tax-label">代管服務費率</label>
+              <select id="feeRateSelect" class="form-control">
+                <option value="0.12" selected>12% (標準全方位精緻代管)</option>
+                <option value="0.15">15% (含密集短租點交代管)</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 右欄：試算分析結果儀表板 -->
+        <div class="tax-result-dashboard">
+
+          <!-- 亮點 1：全年度總節稅金牌 Hero Banner -->
+          <div class="tax-grand-savings-banner">
+            <div class="tax-banner-tag">
+              <i class="fa-solid fa-crown"></i>
+              <span>包租代管租賃專法節稅效益</span>
+            </div>
+            <div class="tax-banner-title">委託港居每年預估為您省下稅金總額</div>
+            <div class="tax-banner-amount-row">
+              <div class="tax-banner-amount" id="grandTaxSavings">NT$ 25,984</div>
+              <span style="font-size: 1.1rem; color: #FFE8B8; font-weight: 700;">／ 年</span>
+            </div>
+            <div class="tax-banner-sub" id="bannerSubDetail">
+              合法享有租賃專法 1.5 萬免稅額＋60% 費用率，比照自住房屋稅 1.2% 與地價稅 0.2%，每年實質多留下一筆可觀財富！
+            </div>
+          </div>
+
+          <!-- 亮點 2：三大稅負減免對照矩陣 -->
+          <div class="tax-matrix-grid">
+
+            <!-- 綜所稅 -->
+            <div class="tax-metric-card">
+              <div>
+                <div class="tax-metric-header">
+                  <div class="tax-metric-name"><i class="fa-solid fa-file-invoice-dollar"></i> 綜合所得稅</div>
+                  <span class="tax-metric-save-tag" id="incomeTaxSave">省 NT$ 15,984</span>
+                </div>
+                <div class="tax-metric-diff-row">
+                  <div>自租預估稅額：<strong id="incomeTaxSelf">NT$ 24,624</strong></div>
+                  <div>代管減徵後：<strong id="incomeTaxManaged" style="color: var(--accent-gold);">NT$ 8,640</strong></div>
+                </div>
+              </div>
+              <div class="tax-metric-rule">
+                <strong>《租賃條例》第17條</strong>：月免稅額 1.5 萬，逾額以 60% 費用率扣除（自租僅43%）。
+              </div>
+            </div>
+
+            <!-- 房屋稅 -->
+            <div class="tax-metric-card">
+              <div>
+                <div class="tax-metric-header">
+                  <div class="tax-metric-name"><i class="fa-solid fa-house-chimney"></i> 房屋稅 (囤房2.0)</div>
+                  <span class="tax-metric-save-tag" id="houseTaxSave">省 NT$ 7,200</span>
+                </div>
+                <div class="tax-metric-diff-row">
+                  <div>自租非自住稅：<strong id="houseTaxSelf">NT$ 14,400</strong></div>
+                  <div>代管比照自住：<strong id="houseTaxManaged" style="color: var(--accent-gold);">NT$ 7,200</strong></div>
+                </div>
+              </div>
+              <div class="tax-metric-rule">
+                <strong>地方減徵自治條例</strong>：非自住 2.4% 降至自住 <strong>1.2%</strong>，直接省下一半！
+              </div>
+            </div>
+
+            <!-- 地價稅 -->
+            <div class="tax-metric-card">
+              <div>
+                <div class="tax-metric-header">
+                  <div class="tax-metric-name"><i class="fa-solid fa-map-location-dot"></i> 地價稅</div>
+                  <span class="tax-metric-save-tag" id="landTaxSave">省 NT$ 2,800</span>
+                </div>
+                <div class="tax-metric-diff-row">
+                  <div>自租一般稅率：<strong id="landTaxSelf">NT$ 3,500</strong></div>
+                  <div>代管優惠稅率：<strong id="landTaxManaged" style="color: var(--accent-gold);">NT$ 700</strong></div>
+                </div>
+              </div>
+              <div class="tax-metric-rule">
+                <strong>減徵 80%</strong>：一般用地千分之 10 降為自用住宅千分之 <strong>2</strong>！
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 亮點 3：三大方案實質全年度總淨得大 PK -->
+          <div class="tax-pk-card">
+            <div class="tax-pk-header">
+              <h2 class="tax-pk-title"><i class="fa-solid fa-chart-column"></i> 三大方案實質年度淨收益大 PK</h2>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">扣除稅費與空置後的口袋實拿金額</span>
+            </div>
+
+            <!-- 三方案並排卡片 -->
+            <div class="tax-pk-grid">
+
+              <!-- 方案 1：自租 -->
+              <div class="tax-plan-box">
+                <div>
+                  <div class="tax-plan-title">房東自行出租</div>
+                  <div class="tax-plan-tagline">自行帶看、修繕、催收，自擔空置期與非自住重稅。</div>
+                  <div class="tax-plan-net-label">全年實質淨得</div>
+                  <div class="tax-plan-net-amount" id="netPlanSelf">NT$ 265,476</div>
+                </div>
+                <ul class="tax-breakdown-list">
+                  <li class="tax-breakdown-item">
+                    <span>租金毛收入</span>
+                    <strong id="breakdownSelfGross">NT$ 308,000</strong>
+                  </li>
+                  <li class="tax-breakdown-item deduct">
+                    <span>各項稅負合計</span>
+                    <strong id="breakdownSelfTax">- NT$ 42,524</strong>
+                  </li>
+                  <li class="tax-breakdown-item" style="color: var(--text-muted);">
+                    <span>空置招租期</span>
+                    <span id="breakdownSelfVacancy">自擔 (估1.0個月)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 方案 2：精緻代管 (推薦首選) -->
+              <div class="tax-plan-box recommended">
+                <span class="tax-plan-badge"><i class="fa-solid fa-star"></i> 收益極大首選</span>
+                <div>
+                  <div class="tax-plan-title">港居精緻代管</div>
+                  <div class="tax-plan-tagline">專業嚴格審客、租約公約保護、合法節稅三大優惠。</div>
+                  <div class="tax-plan-net-label">全年實質淨得</div>
+                  <div class="tax-plan-net-amount" id="netPlanManaged">NT$ 279,080</div>
+                </div>
+                <ul class="tax-breakdown-list">
+                  <li class="tax-breakdown-item">
+                    <span>租金毛收入</span>
+                    <strong id="breakdownManagedGross">NT$ 336,000</strong>
+                  </li>
+                  <li class="tax-breakdown-item deduct">
+                    <span>代管服務費</span>
+                    <strong id="breakdownManagedFee">- NT$ 40,320</strong>
+                  </li>
+                  <li class="tax-breakdown-item deduct">
+                    <span>優惠後稅負</span>
+                    <strong id="breakdownManagedTax">- NT$ 16,600</strong>
+                  </li>
+                  <li class="tax-breakdown-item benefit">
+                    <span id="diffPlanManaged">比自租多賺 ＋NT$ 13,604</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 方案 3：全包租 -->
+              <div class="tax-plan-box">
+                <div>
+                  <div class="tax-plan-title">港居住宅全包租</div>
+                  <div class="tax-plan-tagline">港居承租承擔空置，每月保證定額撥款，極致省心。</div>
+                  <div class="tax-plan-net-label">全年實質淨得</div>
+                  <div class="tax-plan-net-amount" id="netPlanMaster">NT$ 281,416</div>
+                </div>
+                <ul class="tax-breakdown-list">
+                  <li class="tax-breakdown-item">
+                    <span>保證租金收入</span>
+                    <strong id="breakdownMasterGross">NT$ 295,680</strong>
+                  </li>
+                  <li class="tax-breakdown-item deduct">
+                    <span>優惠後稅負</span>
+                    <strong id="breakdownMasterTax">- NT$ 14,264</strong>
+                  </li>
+                  <li class="tax-breakdown-item" style="color: #2B6CB0; font-weight: 600;">
+                    <span>空置修繕風險</span>
+                    <span>100% 港居全額承擔</span>
+                  </li>
+                  <li class="tax-breakdown-item benefit">
+                    <span id="diffPlanMaster">比自租多賺 ＋NT$ 15,940</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+            <!-- 視覺化能量比較條 -->
+            <div class="tax-visual-bars">
+              <div class="tax-bar-row">
+                <div class="tax-bar-meta">
+                  <span>房東自行出租（扣除空置損失與重稅）</span>
+                  <span id="barSelfLabel">NT$ 265,476</span>
+                </div>
+                <div class="tax-bar-track">
+                  <div class="tax-bar-fill bar-self" id="barSelf" style="width: 85%;"></div>
+                </div>
+              </div>
+
+              <div class="tax-bar-row">
+                <div class="tax-bar-meta">
+                  <span style="color: var(--accent-gold-hover); font-weight: 700;">港居精緻代管（收益極大化＋合法節稅）</span>
+                  <span id="barManagedLabel" style="color: var(--accent-gold-hover); font-weight: 700;">NT$ 279,080</span>
+                </div>
+                <div class="tax-bar-track">
+                  <div class="tax-bar-fill bar-managed" id="barManaged" style="width: 95%;"></div>
+                </div>
+              </div>
+
+              <div class="tax-bar-row">
+                <div class="tax-bar-meta">
+                  <span style="color: #3182CE; font-weight: 700;">港居全包租（保證月月定額撥款＋零空置期風險）</span>
+                  <span id="barMasterLabel" style="color: #3182CE; font-weight: 700;">NT$ 281,416</span>
+                </div>
+                <div class="tax-bar-track">
+                  <div class="tax-bar-fill bar-master" id="barMaster" style="width: 98%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 動作按鈕列 -->
+            <div class="tax-actions-row">
+              <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="tax-action-btn tax-btn-line" id="btnLineConsult">
+                <i class="fa-brands fa-line" style="font-size: 1.3rem;"></i>
+                <span>加 LINE 諮詢陳經理節稅方案</span>
+              </a>
+              <button type="button" class="tax-action-btn tax-btn-print" id="btnPrintReport">
+                <i class="fa-solid fa-print"></i>
+                <span>列印 A4 節稅診斷書</span>
+              </button>
+              <button type="button" class="tax-action-btn tax-btn-copy" id="btnCopyReport">
+                <i class="fa-regular fa-copy"></i>
+                <span>複製試算報告摘要</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- 法規解析與問答專區 (Legal Knowledge) -->
+      <section class="tax-legal-section">
+        <h2 class="tax-legal-title"><i class="fa-solid fa-book-bookmark"></i> 包租代管節稅小百科與常見疑問</h2>
+        <div class="tax-faq-grid">
+          <div class="tax-faq-card">
+            <div class="tax-faq-q"><i class="fa-solid fa-circle-question" style="color: var(--accent-gold);"></i> 房客申請 300 億租金補貼，房東會被查稅嗎？</div>
+            <div class="tax-faq-a">
+              依照現行法規，租金補貼申請資料會由內政部自動勾稽送交稅捐稽徵處。房東自租若未誠實申報，可能面臨追溯 5~7 年補稅加罰；但若<strong>委託合格包租代管業者（如港居）</strong>或成為公益出租人，依法每屋每月享有 1.5 萬免稅額與 60% 費用率，反而享有極大節稅保護！
+            </div>
+          </div>
+          <div class="tax-faq-card">
+            <div class="tax-faq-q"><i class="fa-solid fa-circle-question" style="color: var(--accent-gold);"></i> 為什麼委託港居代管，實質淨得常常「比自租還高」？</div>
+            <div class="tax-faq-a">
+              自租常有三大隱形成本：① 平均 1~2 個月空置招租期無收入；② 囤房稅 2.0 高達 2.4%~4.8% 與一般地價稅 1.0%；③ 綜所稅無 1.5 萬免稅額且費用率僅 43%。港居透過<strong>專業快速招租降低空置期</strong>，加上三大稅賦減徵，省下來的稅負與空置往往直接補貼了代管服務費還有剩！
+            </div>
+          </div>
+          <div class="tax-faq-card">
+            <div class="tax-faq-q"><i class="fa-solid fa-circle-question" style="color: var(--accent-gold);"></i> 什麼條件可以享有《租賃條例》第 17 條減稅？</div>
+            <div class="tax-faq-a">
+              個人住宅所有權人，將住宅委託依法特許登記之<strong>租賃住宅包租業或代管業（如港居不動產）</strong>，契約約定供居住使用 1 年以上，即可依法享有租金所得稅每月 1.5 萬元免稅額、超過部分 60% 必要費用率，並享有地方自治條例之房屋稅與地價稅比照自住減徵。
+            </div>
+          </div>
+          <div class="tax-faq-card">
+            <div class="tax-faq-q"><i class="fa-solid fa-circle-question" style="color: var(--accent-gold);"></i> 「全包租」與「精緻代管」我該如何挑選？</div>
+            <div class="tax-faq-a">
+              若您追求<strong>100% 穩定、零空置風險、不在意小額折數、完全不想處理任何租客瑣事與小修繕</strong>，推薦「全包租」方案；若您的房屋地段佳、屋況優，希望<strong>追求租金收益極大化、享有資產透明巡檢報告</strong>，推薦「精緻代管」方案。陳俊銘經理皆可為您現場評估！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 列印專用頁尾 (@media print) -->
+      <div class="tax-print-footer">
+        <div>
+          <strong>港居不動產開發有限公司</strong> ｜ 統一編號：96797997 ｜ 租賃管理證號：(112)登字第013739號<br>
+          地址：高雄市小港區合作里中安路825號 ｜ 電話：07-791-2288
+        </div>
+        <div style="text-align: right;">
+          業務經理人：陳俊銘 (0968-863-880)<br>
+          本試算報告僅供資產配置參考，實際稅額以國稅局核定為準。
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async" style="height: 36px; width: auto;">
+            港居不動產開發有限公司
+          </h4>
+          <p>依法特許登記經營租賃住宅包租業與代管業，專注高質感住宅資產護全與穩定收益增值。</p>
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>服務項目</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+            <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+            <li><a href="tax-calculator.html">房東節稅試算</a></li>
+            <li><a href="lease-contract.html">租賃契約產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>證照字號</h4>
+          <ul class="footer-links">
+            <li>租賃住宅服務業登記證：(113)高市租登字第0012號</li>
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+            <li><a href="index.html#disclosure">法定揭示事項</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- 專屬邏輯腳本 -->
+  <script type="module" src="js/tax-calculator.js"></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>

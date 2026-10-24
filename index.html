@@ -127,6 +127,7 @@
           </button>
           <ul class="nav-dropdown-menu">
             <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
             <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
             <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract"></i> 租賃契約產生器</a></li>
             <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
@@ -298,6 +299,7 @@
               <label for="planSelect">委託服務模式：</label>
               <select id="planSelect" class="form-control" style="background: rgba(255,255,255,0.15); color: #FFF; border-color: rgba(255,255,255,0.3);">
                 <option value="managed" style="color:#000;">精緻代管模式</option>
+                <option value="master" style="color:#000;">住宅全包租模式</option>
               </select>
             </div>
           </div>
@@ -309,7 +311,10 @@
               省去招租時間、修繕聯絡約 150 小時／年，並享有資產原狀還原保證！
             </div>
             <a href="#contact" class="btn btn-gold" style="margin-bottom: 10px;"><i class="fa-solid fa-paper-plane"></i> 預約現場資產評估</a>
-            <a href="rent-calculator.html" class="btn btn-outline" style="color: #FFF; border-color: rgba(255,255,255,0.4); width: 100%; display: inline-flex; justify-content: center; align-items: center; gap: 8px;"><i class="fa-solid fa-calculator"></i> 日租金與服務費拆分工具</a>
+            <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+              <a href="tax-calculator.html" class="btn btn-outline" style="color: #FFF; border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.2); width: 100%; display: inline-flex; justify-content: center; align-items: center; gap: 8px;"><i class="fa-solid fa-percent" style="color: #68D391;"></i> 房東節稅與三方案淨得試算</a>
+              <a href="rent-calculator.html" class="btn btn-outline" style="color: #FFF; border-color: rgba(255,255,255,0.4); width: 100%; display: inline-flex; justify-content: center; align-items: center; gap: 8px;"><i class="fa-solid fa-calculator"></i> 日租金與服務費拆分工具</a>
+            </div>
           </div>
         </div>
       </div>
@@ -609,6 +614,8 @@
           <ul class="footer-links">
             <li><a href="#landlords">租賃住宅包租業</a></li>
             <li><a href="#landlords">租賃住宅代管業</a></li>
+            <li><a href="tax-calculator.html">房東節稅與收益試算</a></li>
+            <li><a href="lease-contract.html">租賃契約產生器</a></li>
             <li><a href="#about">法拍屋代標服務</a></li>
             <li><a href="#about">高品質房屋買賣</a></li>
           </ul>

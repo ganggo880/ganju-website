@@ -22,7 +22,8 @@ const PAGES = [
   'photo-time-location.html',
   'ocr-translator.html',
   'space-planner.html',
-  'lease-contract.html'
+  'lease-contract.html',
+  'tax-calculator.html'
 ];
 
 const VIEWPORTS = [

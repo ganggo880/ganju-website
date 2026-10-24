@@ -1,0 +1,942 @@
+/* ==========================================================================
+   港居不動產 房東節稅與包租代管實質淨收益試算神器專用樣式
+   Tax & Net Yield Calculator Stylesheet
+   依據 Tokens 規範建立，支援深淺色切換、高對比度、RWD 與無痕 A4 列印
+   ========================================================================== */
+
+/* 頁面主體與背景光暈 */
+.tax-calc-page {
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 100px; /* 給予 Navbar 空間 */
+  padding-bottom: 80px;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.tax-bg-glow {
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--bg-glow-2) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tax-bg-glow-left {
+  position: absolute;
+  top: 400px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--bg-glow-1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 主工作台容器 */
+.tax-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 標題與引導區塊 */
+.tax-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 36px;
+}
+
+.tax-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(197, 160, 89, 0.12);
+  color: var(--accent-gold);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.tax-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+[data-theme="dark"] .tax-title {
+  color: #FFFFFF;
+}
+
+.tax-desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 試算雙欄網格工作台 */
+.tax-workstation-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .tax-workstation-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 控制面板 Card */
+.tax-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 28px;
+  transition: var(--transition);
+}
+
+.tax-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tax-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .tax-card-title {
+  color: #FFFFFF;
+}
+
+.tax-card-title i {
+  color: var(--accent-gold);
+}
+
+/* 輸入控制項區塊 */
+.tax-form-group {
+  margin-bottom: 24px;
+}
+
+.tax-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.tax-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tax-value-display {
+  font-family: var(--font-primary);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+}
+
+/* 滑桿與輸入框組合 */
+.tax-slider-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tax-range-input {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--border-color);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  min-height: 44px; /* 符合 WCAG 觸控熱區規範 */
+}
+
+.tax-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.tax-range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* 快速租金晶片快捷鍵 */
+.tax-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tax-chip {
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card-inner);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tax-chip:hover,
+.tax-chip.active {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+}
+
+/* 綜所稅率選擇器網格 */
+.tax-rate-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .tax-rate-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tax-rate-btn {
+  min-height: 52px;
+  padding: 8px 4px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card-inner);
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.tax-rate-btn .rate-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: var(--font-primary);
+}
+
+.tax-rate-btn .rate-tag {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.tax-rate-btn:hover {
+  border-color: var(--accent-gold);
+}
+
+.tax-rate-btn.active {
+  border-color: var(--accent-gold);
+  background: rgba(197, 160, 89, 0.15);
+  color: var(--accent-gold-hover);
+  box-shadow: 0 0 0 2px var(--accent-gold);
+}
+
+[data-theme="dark"] .tax-rate-btn.active {
+  color: var(--accent-gold);
+}
+
+/* 高級參數手風琴 */
+.tax-accordion-toggle {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-inner);
+  border: 1px dashed var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: var(--transition-fast);
+}
+
+.tax-accordion-toggle:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.tax-accordion-toggle i.chevron {
+  transition: transform 0.3s ease;
+}
+
+.tax-accordion-toggle.expanded i.chevron {
+  transform: rotate(180deg);
+}
+
+.tax-advanced-panel {
+  display: none;
+  padding-top: 18px;
+  animation: fadeIn 0.3s ease;
+}
+
+.tax-advanced-panel.show {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 試算結果儀表板 (右欄) */
+.tax-result-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 全年總省稅金牌 Hero Banner */
+.tax-grand-savings-banner {
+  background: linear-gradient(135deg, #1A365D 0%, #0F2341 100%);
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 36px -8px rgba(197, 160, 89, 0.3);
+}
+
+.tax-grand-savings-banner::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.tax-banner-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-gold-light);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.tax-banner-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin-bottom: 8px;
+}
+
+.tax-banner-amount-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.tax-banner-amount {
+  font-family: var(--font-primary);
+  font-size: 3.1rem;
+  font-weight: 900;
+  color: #FFDE8A;
+  line-height: 1;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.tax-banner-sub {
+  font-size: 0.95rem;
+  color: #CBD5E1;
+  line-height: 1.5;
+}
+
+/* 三大稅負減免矩陣 (3 Cards) */
+.tax-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .tax-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tax-metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition-fast);
+}
+
+.tax-metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-gold);
+}
+
+.tax-metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.tax-metric-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tax-metric-name i {
+  color: var(--accent-gold);
+}
+
+.tax-metric-save-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(72, 187, 120, 0.15);
+  color: #2F855A;
+}
+
+[data-theme="dark"] .tax-metric-save-tag {
+  color: #68D391;
+  background: rgba(72, 187, 120, 0.25);
+}
+
+.tax-metric-diff-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.tax-metric-save-num {
+  font-family: var(--font-primary);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #2F855A;
+}
+
+[data-theme="dark"] .tax-metric-save-num {
+  color: #68D391;
+}
+
+.tax-metric-rule {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border-color);
+  padding-top: 8px;
+}
+
+/* 三大方案年度實質淨得大 PK 區塊 */
+.tax-pk-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+}
+
+.tax-pk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tax-pk-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .tax-pk-title {
+  color: #FFFFFF;
+}
+
+.tax-pk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .tax-pk-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tax-plan-box {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px 18px;
+  background: var(--bg-card-inner);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.tax-plan-box.recommended {
+  border: 2px solid var(--accent-gold);
+  background: linear-gradient(180deg, rgba(197, 160, 89, 0.08) 0%, var(--bg-card-inner) 100%);
+  box-shadow: 0 8px 24px -6px rgba(197, 160, 89, 0.25);
+}
+
+.tax-plan-badge {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  background: var(--accent-gold);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 10px rgba(197, 160, 89, 0.4);
+}
+
+.tax-plan-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.tax-plan-tagline {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  min-height: 38px;
+}
+
+.tax-plan-net-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.tax-plan-net-amount {
+  font-family: var(--font-primary);
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--primary-navy);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+[data-theme="dark"] .tax-plan-net-amount {
+  color: #FFFFFF;
+}
+
+.tax-plan-box.recommended .tax-plan-net-amount {
+  color: var(--accent-gold-hover);
+}
+
+[data-theme="dark"] .tax-plan-box.recommended .tax-plan-net-amount {
+  color: var(--accent-gold-light);
+}
+
+.tax-breakdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tax-breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+.tax-breakdown-item.deduct {
+  color: #E53E3E;
+}
+
+[data-theme="dark"] .tax-breakdown-item.deduct {
+  color: #FC8181;
+}
+
+.tax-breakdown-item.benefit {
+  color: #2F855A;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .tax-breakdown-item.benefit {
+  color: #68D391;
+}
+
+/* 視覺化比較長條圖 (Visual Bar) */
+.tax-visual-bars {
+  background: var(--bg-card-inner);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 24px;
+}
+
+.tax-bar-row {
+  margin-bottom: 14px;
+}
+
+.tax-bar-row:last-child {
+  margin-bottom: 0;
+}
+
+.tax-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.tax-bar-track {
+  height: 12px;
+  background: var(--border-color);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.tax-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tax-bar-fill.bar-self {
+  background: #94A3B8;
+}
+
+.tax-bar-fill.bar-managed {
+  background: var(--accent-gold);
+}
+
+.tax-bar-fill.bar-master {
+  background: #3182CE;
+}
+
+/* 轉換行動與診斷書匯出按鈕列 */
+.tax-actions-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.tax-action-btn {
+  flex: 1;
+  min-width: 200px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  border: none;
+}
+
+.tax-btn-line {
+  background: #00B900;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 20px -4px rgba(0, 185, 0, 0.35);
+}
+
+.tax-btn-line:hover {
+  background: #009900;
+  transform: translateY(-2px);
+}
+
+.tax-btn-print {
+  background: var(--primary-navy);
+  color: #FFFFFF !important;
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .tax-btn-print {
+  background: #2B4C7E;
+}
+
+.tax-btn-print:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.tax-btn-copy {
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.tax-btn-copy:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+/* 法規解析小百科專區 (Legal Knowledge) */
+.tax-legal-section {
+  margin-top: 50px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.tax-legal-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .tax-legal-title {
+  color: #FFFFFF;
+}
+
+.tax-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .tax-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tax-faq-card {
+  background: var(--bg-card-inner);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  border-left: 4px solid var(--accent-gold);
+}
+
+.tax-faq-q {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tax-faq-a {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   A4 診斷書列印專用樣式 (@media print)
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt;
+  }
+
+  /* 隱藏導覽列、頁尾、懸浮按鈕、控制項輸入面板與背景光暈 */
+  .top-bar,
+  .navbar,
+  .footer,
+  .floating-actions,
+  .tax-bg-glow,
+  .tax-bg-glow-left,
+  .tax-card,
+  .tax-actions-row,
+  .tax-legal-section,
+  .mobile-toggle,
+  .theme-toggle-btn {
+    display: none !important;
+  }
+
+  .tax-calc-page {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .tax-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .tax-workstation-grid {
+    display: block !important;
+  }
+
+  .tax-result-dashboard {
+    display: block !important;
+  }
+
+  .tax-grand-savings-banner {
+    background: #F8FAFC !important;
+    color: #000000 !important;
+    border: 2px solid #C5A059 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+    padding: 16px !important;
+  }
+
+  .tax-banner-title,
+  .tax-banner-sub {
+    color: #333333 !important;
+  }
+
+  .tax-banner-amount {
+    color: #B08C45 !important;
+    text-shadow: none !important;
+    font-size: 28pt !important;
+  }
+
+  .tax-matrix-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+
+  .tax-metric-card {
+    border: 1px solid #CCCCCC !important;
+    box-shadow: none !important;
+    padding: 12px !important;
+  }
+
+  .tax-pk-card {
+    border: 1px solid #CCCCCC !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    padding: 16px !important;
+  }
+
+  .tax-pk-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .tax-plan-box {
+    border: 1px solid #CCCCCC !important;
+    padding: 12px !important;
+    background: #FFFFFF !important;
+    box-shadow: none !important;
+  }
+
+  /* 列印專屬表頭與蓋章用印資訊 */
+  .tax-print-header {
+    display: block !important;
+    border-bottom: 2px solid #1A365D;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+
+  .tax-print-footer {
+    display: flex !important;
+    justify-content: space-between;
+    margin-top: 24px;
+    border-top: 1px solid #CCCCCC;
+    padding-top: 14px;
+    font-size: 9pt;
+    color: #555555;
+  }
+}
+
+.tax-print-header,
+.tax-print-footer {
+  display: none;
+}

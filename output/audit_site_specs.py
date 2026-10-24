@@ -17,7 +17,8 @@ HTML_FILES = [
     "ocr-translator.html",
     "space-planner.html",
     "island.html",
-    "lease-contract.html"
+    "lease-contract.html",
+    "tax-calculator.html"
 ]
 
 print("=== 港居不動產全站技術規範與指南自動化稽核 ===")

@@ -1,17 +1,17 @@
 # 港居不動產開發有限公司 官方網站與線上工具系統技術規格書
 ## System Specification Document (2026 完整全功能版)
 
-> **版本**：v2.7 (2026-10-23 最新行動端極限驗收版)  
+> **版本**：v2.8 (2026-10-24 房東包租代管節稅效益與實質收益試算神器上線版)  
 > **系統名稱**：港居不動產品牌官網暨高階線上工具集  
 > **發布網址**：[https://ganggo880.github.io/ganju-website/](https://ganggo880.github.io/ganju-website/)  
 > **遠端倉庫**：`https://github.com/ganggo880/ganju-website.git`  
-> **架構特性**：純前端靜態無伺服器 (Zero-Backend Serverless)、純本地零知識運算 (Zero-Knowledge Privacy)、模組化 CSS Design Tokens、全站 360px~414px 行動端 0px 溢出與 100% ≥44px 觸控熱區合格、全頁 Schema.org 結構化資料。
+> **架構特性**：純前端靜態無伺服器 (Zero-Backend Serverless)、純本地零知識運算 (Zero-Knowledge Privacy)、模組化 CSS Design Tokens、全站 360px~414px 行動端 0px 溢出與 100% ≥44px 觸控熱區合格、全頁 Schema.org 結構化資料、PWA 100% 離線可用。
 
 ---
 
 ## 1. 企業背景與登記背書 (Company Profile & Licensing)
 
-本系統為「**港居不動產開發有限公司**」專屬之品牌官方網站與 9 款不動產專業線上工具集，旨在為注重物業質感的屋主與高階租客（外商主管、科技工程師、金融醫療菁英）提供最值得信賴的包租代管線上體驗。
+本系統為「**港居不動產開發有限公司**」專屬之品牌官方網站與 12 款不動產專業線上工具集，旨在為注重物業質感的屋主與高階租客（外商主管、科技工程師、金融醫療菁英）提供最值得信賴的包租代管線上體驗。
 
 | 項目 | 官方登記資料 |
 |---|---|
@@ -37,9 +37,9 @@
 
 ---
 
-## 3. 系統架構與全站 10 大核心頁面清單
+## 3. 系統架構與全站 13 大核心頁面清單
 
-系統由 **1 個品牌官網主頁** 與 **9 個不動產專業線上工具** 組成，全站共用一組設計 Token 與模組化 JavaScript：
+系統由 **1 個品牌官網主頁** 與 **12 個不動產專業線上工具** 組成，全站共用一組設計 Token 與模組化 JavaScript：
 
 ```
 Matt Pocock skills/
@@ -55,11 +55,15 @@ Matt Pocock skills/
 ├── space-planner.html          # 10. 2D 平面格局配置與 3D 即時轉換系統 (底圖校正、玄關連動隔間、CAD家具、60FPS 3D)
 ├── island.html                 # 11. 3D 智慧營運島 (數位孿生微縮世界，12六角島/48矩陣/10協作流)
 ├── island_standalone.html      # 11b. 3D 智慧營運島 (獨立全螢幕版本)
+├── lease-contract.html         # 12. 租賃契約與住戶公約線上產生器 (雙欄即時連動、中文大寫、A4無痕列印)
+├── tax-calculator.html         # 13. 房東節稅與包租代管實質淨收益試算 (租賃條例17條/囤房稅2.0/三方案PK)
 ├── .nojekyll                   # 停用 GitHub Pages Jekyll 編譯
 ├── css/
 │   ├── tokens.css              # 全站設計 Token (海軍藍/香檳金/字型/陰影/深淺變數)
 │   ├── components.css          # 全站共用組件 (TopBar, Navbar, Footer, Buttons, Toast, 下拉選單)
 │   ├── space-planner.css       # 2D/3D 空間格局配置系統樣式
+│   ├── lease-contract.css      # 租賃契約產生器樣式與 A4 排版引擎
+│   ├── tax-calculator.css      # 房東節稅試算專屬樣式與 A4 診斷書列印引擎
 │   ├── ocr-translator.css      # OCR 翻譯專屬樣式
 │   ├── converter.css           # 檔案轉換工具專屬樣式
 │   ├── image-converter.css     # 圖像轉換工具專屬樣式
@@ -71,6 +75,8 @@ Matt Pocock skills/
 │   ├── navigation.js           # 首頁導覽列與行動端抽屜選單控制器
 │   ├── layout.js               # 跨頁 Layout 控制與 Active 狀態點亮
 │   ├── space-planner.js        # 2D CAD + 3D WebGL 空間格局配置核心引擎
+│   ├── lease-contract.js       # 租賃契約雙向連動、中文大寫金額與 A4 排版引擎
+│   ├── tax-calculator.js       # 房東節稅試算引擎、三方案 PK 與 LINE 深度帶參串接
 │   ├── ocr-translator.js       # OCR 雙引擎核心與影像處理邏輯
 │   ├── converter.js            # 檔案轉換核心 (Canvas / Blob 本地運算)
 │   ├── image-converter.js      # 圖像格式與尺寸調控邏輯
@@ -235,6 +241,8 @@ Matt Pocock skills/
 | `ocr-translator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
 | `space-planner.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
 | `island.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 數位孿生營運島 |
+| `lease-contract.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租賃契約與公約產生器 |
+| `tax-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 房東節稅與收益試算神器 |
 | `output/winfar-website/` | `Corporation` | `name`, `foundingDate`, `founder`, `address`, `telephone`, `knowsAbout` |
 
 ---
@@ -248,13 +256,13 @@ Matt Pocock skills/
    - 圖示庫：支援 192×192、512×512 之標準圖示與 Android Maskable 圖示，以及 Apple Touch Icon。
    - 快捷捷徑 (App Shortcuts)：直接跳轉 2D/3D 格局、租金試算、EXIF 水印與 OCR 翻譯。
 2. **智慧 Service Worker 快取體系 (`sw.js`)**：
-   - **Pre-caching**：安裝時預載全站 11 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（共 48 項核心資產）。
+   - **Pre-caching**：安裝時預載全站 13 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（共 54 項核心資產）。
    - **導航請求 (Navigate)**：Network-First with Cache Fallback，網路在線時即時獲取最新修正，案場無訊號（地下室、高樓）自動回退至本機快取。
    - **靜態資源 (Assets/CDN)**：Stale-While-Revalidate 與動態快取，自動緩存 Three.js 與 FontAwesome 等第三方相依庫。
 3. **原生安裝引導與連線監控 (`js/pwa.js`)**：
    - 攔截 `beforeinstallprompt` 提供符合品牌色系與 ≥ 44×44px 觸控標準之「免費安裝」提示卡片。
    - 監聽 `online` / `offline` 事件，斷網時浮動顯示離線指示徽章，連線恢復時 Toast 提示自動同步。
-   - 經 CDP 實機模擬斷網驗收，全站 12 頁完全離線可用率達 **12/12 頁 (100%)**。
+   - 經 CDP 實機模擬斷網驗收，全站 13 頁完全離線可用率達 **13/13 頁 (100%)**。
 
 ---
 
@@ -279,7 +287,32 @@ Matt Pocock skills/
 
 ---
 
-## 11. 維護與版控流程規範 (Governance & Git Workflow)
+## 11. 房東包租代管節稅效益與實質淨收益試算神器系統規格 (`tax-calculator.html`)
+
+1. **法規公式與稅負減免引擎**：
+   - **綜合所得稅（《租賃住宅市場發展及管理條例》第 17 條）**：
+     - 每屋每月租金最高 **NT$ 15,000 元** 免稅額度（年免稅 18 萬元）。
+     - 超過 15,000 元部分，必要費用率提高至 **60%**（自租僅 43%）。
+     - 精算 5 大個人綜所稅級距（5%, 12%, 20%, 30%, 40%）之應稅所得與實質省稅額。
+   - **房屋稅（囤房稅 2.0 新制）**：
+     - 自租非自住稅率 2.0%~4.8%（申報租賃預設 2.4%）。
+     - 委託包租代管地方自治條例減徵比照自住稅率 **1.2%**（省稅達 50%）。
+   - **地價稅**：
+     - 自租一般用地基本稅率 10‰ (1.0%)。
+     - 委託包租代管減徵比照自用住宅用地優惠稅率 **2‰ (0.2%)**（減徵幅度整整 80%）。
+2. **三大方案實質全年度淨收益對比 (Net Cash In Hand PK)**：
+   - **方案 1：房東自行出租**（扣除平均 1~2 個月空置招租期無收入 + 自租三大重稅）。
+   - **方案 2：港居精緻代管**（扣除 12% 服務費 + 三大稅負減徵，專業審客快速出租，淨得往往反超自租）。
+   - **方案 3：港居全包租**（全年 12 個月保證撥款 88% + 零空置期風險 + 三大稅負減徵，極致省心旱澇保收）。
+   - 視覺化能量比較條（CSS 動態 Flex Fill）與「委託港居比自租多賺多少」動態計算。
+3. **行動轉化與資產評估報告匯出**：
+   - **LINE 深度帶參諮詢**：一鍵產生帶有預估租金、綜所稅率、年節稅額與預約評估文字之深層 URL，點擊直達陳俊銘經理對話視窗。
+   - **A4 診斷書無痕列印**：`@media print` 精準印出「港居不動產｜房東節稅效益與包租代管資產評估報告」。
+   - **一鍵複製試算摘要**：格式化純文字便於跨平台分享與歸檔。
+
+---
+
+## 12. 維護與版控流程規範 (Governance & Git Workflow)
 
 1. **AI 產出統一歸檔**：所有新產出之技術指南、規格書與教材一律存入專案 `output/` 目錄。
 2. **三處同步維護**：
