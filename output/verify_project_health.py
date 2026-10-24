@@ -22,7 +22,12 @@ HTML_FILES = [
     "card-merger.html",
     "photo-time-location.html",
     "ocr-translator.html",
-    "space-planner.html"
+    "space-planner.html",
+    "island.html",
+    "lease-contract.html",
+    "tax-calculator.html",
+    "repair-inspection.html",
+    "privacy.html"
 ]
 
 all_passed = True
@@ -53,11 +58,14 @@ for f in HTML_FILES:
         try:
             data = json.loads(jld_match.group(1).strip())
             jld_valid = True
-            jld_type = data.get("@type", "Unknown")
+            if "@graph" in data and isinstance(data["@graph"], list) and len(data["@graph"]) > 0:
+                jld_type = data["@graph"][0].get("@type", "Graph")
+            else:
+                jld_type = data.get("@type", "Unknown")
         except Exception:
             jld_valid = False
 
-    status = "✅ PASS" if has_vp and has_canon and has_ref and has_nosniff and (jld_valid or f == "id-card-watermark.html") else "⚠️ WARN"
+    status = "✅ PASS" if has_vp and has_canon and has_ref and has_nosniff and (jld_valid or f in ["id-card-watermark.html", "island.html"]) else "⚠️ WARN"
     if status == "⚠️ WARN":
         all_passed = False
     print(f"  [{status}] {f:<24} | SEO: {jld_type:<18} | Viewport: {'✓' if has_vp else '✗'} | Referrer: {'✓' if has_ref else '✗'}")
@@ -73,8 +81,8 @@ for f in HTML_FILES:
     linked_tools = set(re.findall(r'href="([^"]+\.html)"', content))
     expected = set(HTML_FILES) - {f}
     missing = expected - linked_tools
-    # index.html links to itself via #home, others link via index.html
-    if f == "index.html" and len(linked_tools) >= 9:
+    # index.html links to itself via #home, others link via index.html, island.html is standalone 3D scene
+    if (f == "index.html" and len(linked_tools) >= 12) or f == "island.html":
         missing = set()
     
     if missing:
