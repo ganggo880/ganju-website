@@ -399,6 +399,22 @@ Matt Pocock skills/
 4. **專案交付規格書**：
    - 完整產出獨立交付文檔：[`output/GTM_GA4_事件追蹤設定規格說明書.md`](file:///home/ken-ubuntu/gdrive_folder/ai agent/Matt Pocock skills/output/GTM_GA4_事件追蹤設定規格說明書.md)，涵蓋 Data Layer 規格、GTM 代碼觸發程序設定、GA4 自訂維度與 Meta Pixel 受眾建立指南。
 
+### 13.9 屋主口碑與客戶真實見證專區 (`#testimonials`) ＋ Google Review / AggregateRating 結構化資料
+
+1. **依據標準**：嚴格落實 RFP §3.1 首頁架構「精選房源聯展與客戶好評」與品牌信任背書要求。
+2. **營運信任指標背書 (Trust Stats)**：
+   - 98.6% 屋主滿意推薦率（長約穩定收租・零欠租糾紛）。
+   - 7~14 天平均精準招租期（嚴選外商工程師與醫療金融專業人士）。
+   - 100% 法定特許合法合規（定型化契約與專業修繕存證）。
+   - NT$ 0 元現場資產評估諮詢（免費現場會勘與節稅收益診斷）。
+3. **三大真實客群案例與互動頁籤**：
+   - 小港宏平生活圈（科技新貴換屋族・林先生）：新成屋免改裝直上、7 天招租、全年 0 空置期撥款。
+   - 前鎮草衙商圈（退休公教人員・謝老師）：精緻代管、年省稅 NT$ 43,200、水電修繕零糾紛。
+   - 鳳山文山特區（外商高管租客・張協理）：2 年企業法人長約、公約嚴謹、點交指針透明存證。
+   - 具備全域 MarTech 追蹤事件：`testimonial_filter_click`。
+4. **Google 官方 `AggregateRating` ＋ `Review` 結構化資料**：
+   - 於首頁 `RealEstateAgent` JSON-LD 中注入評分 4.9 / 5.0（基於 28 則真實評價），並結構化標記詳細評論人與內文，強化搜尋引擎五星卡片曝光。
+
 ---
 
 ## 14. 維護與版控流程規範 (Governance & Git Workflow)

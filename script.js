@@ -544,4 +544,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 8. 客戶好評見證篩選互動 (Testimonials Tabs Handler)
+  const testimonialTabs = document.querySelectorAll('.testimonial-tab-btn');
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+  testimonialTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const filter = tab.dataset.filter;
+      testimonialTabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      testimonialCards.forEach((card) => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (window.GanjuTracker) {
+        window.GanjuTracker.track('testimonial_filter_click', { filter_category: filter });
+      }
+    });
+  });
+
 });
