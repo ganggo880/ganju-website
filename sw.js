@@ -1,9 +1,9 @@
 // sw.js - 港居不動產 PWA 離線 Service Worker
 // 提供全站 12 款不動產線上工具、3D 智慧島與隱私權專頁 100% 離線運作與極速快取體驗
 
-const CACHE_NAME = 'ganju-pwa-v2.1';
+const CACHE_NAME = 'ganju-pwa-v2.2';
 
-// 核心離線資源清單 (全站 20 頁、Sitemap、CSS、JS、Icon)
+// 核心離線資源清單 (全站 21 頁、Sitemap、CSS、JS、Icon)
 const PRECACHE_ASSETS = [
   './',
   './index.html',
@@ -25,6 +25,7 @@ const PRECACHE_ASSETS = [
   './rent-subsidy-checker.html',
   './rent-receipt.html',
   './listing-post-generator.html',
+  './legal-notice-generator.html',
   './privacy.html',
   './manifest.json',
   './sitemap.xml',
@@ -45,6 +46,7 @@ const PRECACHE_ASSETS = [
   './css/rent-subsidy-checker.css',
   './css/rent-receipt.css',
   './css/listing-post-generator.css',
+  './css/legal-notice-generator.css',
   './css/ocr-translator.css',
   './css/converter.css',
   './css/card-merger.css',
@@ -70,6 +72,7 @@ const PRECACHE_ASSETS = [
   './js/rent-subsidy-checker.js',
   './js/rent-receipt.js',
   './js/listing-post-generator.js',
+  './js/legal-notice-generator.js',
   './js/ocr-translator.js',
   './js/converter.js',
   './js/image-converter.js',

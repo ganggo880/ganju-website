@@ -25,6 +25,7 @@ HTML_FILES = [
     "rent-subsidy-checker.html",
     "rent-receipt.html",
     "listing-post-generator.html",
+    "legal-notice-generator.html",
     "privacy.html"
 ]
 

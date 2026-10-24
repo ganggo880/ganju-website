@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>欠租催告與終止租約「郵局存證信函」產生器｜民法第440條・20×10標準格線A4列印｜港居不動產</title>
+  <meta name="description" content="房東與包租代管法務必備！依據《民法》第440條、第451條及《租賃住宅市場發展及管理條例》第10條設計，內建「欠租限期催告」、「催告期滿正式終止租約暨限期遷讓」、「違反住戶公約催告」與「租期屆滿不續租」四大標準法務範本，自動轉換為中華郵政標準 20×10 存證信函格線格式與A4無痕列印！">
+
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/legal-notice-generator.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="欠租催告與終止租約「郵局存證信函」產生器｜港居不動產">
+  <meta property="og:description" content="依據民法第440條與租賃專法第10條，內建四大租賃法務存證信函範本，自動排版為中華郵政標準 20×10 格線格式並試算存證規費。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/legal-notice-generator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/legal-notice-generator.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居欠租催告與終止租約郵局存證信函產生器",
+    "url": "https://ganggo880.github.io/ganju-website/legal-notice-generator.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "依據民法第440條、第451條與租賃住宅市場發展及管理條例第10條，提供欠租限期催告、終止租約遷讓、違反公約催告及期滿不續租四大存證信函範本，自動排版為中華郵政20乘10標準格線格式。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "欠租催告與終止租約郵局存證信函產生器",
+        "item": "https://ganggo880.github.io/ganju-website/legal-notice-generator.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body>
+
+  <!-- 頂部宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法登記包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+        <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        <span class="brand-text-box">
+          <span class="brand-name">港居不動產</span>
+          <span class="brand-sub">高優質住宅包租代管</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link active"><i class="fa-solid fa-scale-balanced" style="color: #f56565;"></i> 存證信函產生器</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #fc8181;"></i> 招租文案與首圖合成</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與月結單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-heart" style="color: #f687b3;"></i> 300億租金補貼試算</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #f6ad55;"></i> 退租押金結算單</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> 水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #ed8936;"></i> 屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #c5a059;"></i> 租賃契約產生器</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主工作區 -->
+  <main class="legal-page">
+    <div class="legal-bg-glow"></div>
+    <div class="legal-bg-glow-left"></div>
+
+    <div class="container">
+      <!-- 頂部 Hero -->
+      <header class="legal-hero">
+        <div class="legal-badge-row">
+          <span class="legal-pill gold"><i class="fa-solid fa-gavel"></i> 依據民法第440條＆租賃專法第10條</span>
+          <span class="legal-pill"><i class="fa-solid fa-table-cells"></i> 中華郵政 20×10 標準格線自動分頁</span>
+          <span class="legal-pill"><i class="fa-solid fa-shield-halved"></i> 二個月欠租終止門檻自動檢核</span>
+        </div>
+        <h1>⚖️ 欠租催告與終止租約「郵局存證信函」產生器</h1>
+        <p>遇到租客遲延繳租或違反住戶公約？內建<strong>「第一階段限期催告」、「第二階段正式終止租約暨限期遷讓」、「違反公約催告」與「期滿不續租（防默示更新）」</strong>四大標準法務範本，自動填入<strong>中華郵政 20×10 標準存證信函格線</strong>，一鍵列印一式三份直接交寄！</p>
+      </header>
+
+      <!-- 四大法務範本快速切換工具列 -->
+      <div class="legal-toolbar">
+        <div class="preset-pills-row" aria-label="四大標準租賃存證信函範本">
+          <button type="button" class="preset-chip active" data-preset="rentArrearsNotice">
+            <i class="fa-solid fa-bell"></i> 範本1：積欠租金限期催告函 (第一階段)
+          </button>
+          <button type="button" class="preset-chip" data-preset="leaseTerminationNotice">
+            <i class="fa-solid fa-file-circle-xmark"></i> 範本2：催告期滿正式終止租約函 (第二階段)
+          </button>
+          <button type="button" class="preset-chip" data-preset="bylawBreachNotice">
+            <i class="fa-solid fa-triangle-exclamation"></i> 範本3：違反公約／擅自轉租催告函
+          </button>
+          <button type="button" class="preset-chip" data-preset="expiryNonRenewalNotice">
+            <i class="fa-solid fa-calendar-xmark"></i> 範本4：租期屆滿不續租通知函
+          </button>
+        </div>
+        <div class="toolbar-actions-row">
+          <a href="deposit-settlement.html" class="preset-chip" title="前往退租押金結算單">
+            <i class="fa-solid fa-hand-holding-dollar"></i> 算退租押金扣抵
+          </a>
+        </div>
+      </div>
+
+      <!-- 主雙欄工作區 -->
+      <div class="legal-workspace">
+        <!-- 左欄：當事人資料與催告事由設定 -->
+        <div class="legal-col legal-input-col">
+
+          <!-- 步驟 1：寄件人與收件人資訊 -->
+          <section class="legal-card" aria-labelledby="step1Title">
+            <div class="legal-card-header">
+              <h2 class="legal-card-title" id="step1Title">
+                <span class="step-num">1</span> 寄件人與收件人（當事人）欄位
+              </h2>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field full-span">
+                <label for="templateTypeSelect">選擇存證信函法務事由類型</label>
+                <select id="templateTypeSelect" class="form-control">
+                  <option value="rentArrearsNotice">【第一階段】積欠租金限期催告函（民法第440條第1項）</option>
+                  <option value="leaseTerminationNotice">【第二階段】催告期滿正式終止租約暨限期遷讓函（民法第440條第2項＆專法第10條）</option>
+                  <option value="bylawBreachNotice">【違約改善】違反住戶公約／擅自轉租或毀損限期改善催告函（專法第10條）</option>
+                  <option value="expiryNonRenewalNotice">【期滿不續】租期屆滿不續租暨期滿返還通知函（民法第451條防默示更新）</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="senderNameInput">寄件人（出租人／包租代管公司）</label>
+                <input type="text" id="senderNameInput" class="form-control" value="港居不動產開發有限公司（法定代理人：陳俊銘）">
+              </div>
+              <div class="form-field">
+                <label for="senderAddressInput">寄件人詳細地址</label>
+                <input type="text" id="senderAddressInput" class="form-control" value="高雄市小港區合作里中安路825號">
+              </div>
+              <div class="form-field">
+                <label for="receiverNameInput">收件人（承租人姓名）</label>
+                <input type="text" id="receiverNameInput" class="form-control" value="林志豪 先生">
+              </div>
+              <div class="form-field">
+                <label for="receiverAddressInput">收件人詳細地址（建議填租屋處或戶籍地）</label>
+                <input type="text" id="receiverAddressInput" class="form-control" value="高雄市小港區宏平路168號5樓之2（承租標的物地址）">
+              </div>
+              <div class="form-field">
+                <label for="ccNameInput">副本收件人（如連帶保證人，無則填「無」）</label>
+                <input type="text" id="ccNameInput" class="form-control" value="無（或填寫連帶保證人姓名）">
+              </div>
+              <div class="form-field">
+                <label for="ccAddressInput">副本收件人地址</label>
+                <input type="text" id="ccAddressInput" class="form-control" value="" placeholder="若無副本收件人可留空">
+              </div>
+            </div>
+          </section>
+
+          <!-- 步驟 2：租約事實、欠租金額與限期條件 -->
+          <section class="legal-card" aria-labelledby="step2Title">
+            <div class="legal-card-header">
+              <h2 class="legal-card-title" id="step2Title">
+                <span class="step-num">2</span> 租約標的、欠租金額與限期催告條件
+              </h2>
+            </div>
+
+            <!-- 法定二個月欠租門檻自動檢核提示 -->
+            <div id="statutoryAlertBanner" class="statutory-alert-banner"></div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label for="leaseStartDateInput">原租約簽訂／起算日期</label>
+                <input type="text" id="leaseStartDateInput" class="form-control" value="民國115年03月01日">
+              </div>
+              <div class="form-field">
+                <label for="propertyAddressInput">出租房屋門牌號碼</label>
+                <input type="text" id="propertyAddressInput" class="form-control" value="高雄市小港區宏平路168號5樓之2">
+              </div>
+              <div class="form-field">
+                <label for="monthlyRentInput">約定每月租金 (NT$)</label>
+                <input type="number" id="monthlyRentInput" class="form-control" value="15000" min="0" step="500">
+              </div>
+              <div class="form-field">
+                <label for="arrearsMonthsInput">目前已積欠月數 (月)</label>
+                <input type="number" id="arrearsMonthsInput" class="form-control" value="2" min="0" step="0.5">
+              </div>
+              <div class="form-field">
+                <label for="arrearsTotalInput">累計積欠租金總額 (NT$)</label>
+                <input type="number" id="arrearsTotalInput" class="form-control" value="30000" min="0" step="500">
+              </div>
+              <div class="form-field">
+                <label for="arrearsPeriodDescInput">積欠期別文字說明</label>
+                <input type="text" id="arrearsPeriodDescInput" class="form-control" value="民國115年9月份及10月份共計二個月">
+              </div>
+              <div class="form-field">
+                <label for="graceDaysInput">函到限期履行日數 (建議 5~10 日)</label>
+                <input type="number" id="graceDaysInput" class="form-control" value="7" min="1" max="30">
+              </div>
+              <div class="form-field">
+                <label for="moveOutDeadlineInput">限期騰空遷讓／租期屆滿日</label>
+                <input type="text" id="moveOutDeadlineInput" class="form-control" value="民國115年11月15日">
+              </div>
+              <div class="form-field full-span">
+                <label for="bankAccountInfoInput">指定匯款清償銀行帳戶</label>
+                <input type="text" id="bankAccountInfoInput" class="form-control" value="合作金庫銀行小港分行（代碼006）帳號末五碼66812">
+              </div>
+              <div class="form-field full-span">
+                <label for="prevNoticeInfoInput">前次催告存證信函字號（第二階段終止租約適用）</label>
+                <input type="text" id="prevNoticeInfoInput" class="form-control" value="高雄小港郵局第000128號存證信函">
+              </div>
+              <div class="form-field full-span">
+                <label for="breachReasonDescInput">違約或違反住戶公約具體事由（範本3適用）</label>
+                <input type="text" id="breachReasonDescInput" class="form-control" value="於室內違法飼養大型犬隻且深夜製造噪音妨害社區安寧，經管理委員會多次勸導仍未改善">
+              </div>
+            </div>
+          </section>
+
+          <!-- 步驟 3：存證信函內文微調編輯器 -->
+          <section class="legal-card" aria-labelledby="step3Title">
+            <div class="legal-card-header">
+              <h2 class="legal-card-title" id="step3Title">
+                <span class="step-num">3</span> 存證信函法律正文（可自由修改微調，右側格線即時重排）
+              </h2>
+              <button type="button" id="resetAutoBodyBtn" class="preset-chip">
+                <i class="fa-solid fa-rotate-left"></i> 恢復自動合成內文
+              </button>
+            </div>
+
+            <div class="form-field">
+              <label for="bodyTextPreviewInput">存證信函正文內容（每頁 200 格自動折行分頁）</label>
+              <textarea id="bodyTextPreviewInput" class="form-control legal-textarea"></textarea>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- 右欄：中華郵政標準 20×10 存證信函格線預覽與匯出 -->
+        <div class="legal-col legal-preview-col">
+
+          <section class="legal-card" aria-labelledby="previewTitle">
+            <div class="legal-card-header">
+              <h2 class="legal-card-title" id="previewTitle">
+                <i class="fa-solid fa-envelopes-bulk" style="color: var(--accent-gold);"></i> 中華郵政標準 20×10 存證信函格線預覽
+              </h2>
+            </div>
+
+            <!-- 字數、頁數與郵局存證費即時統計 -->
+            <div class="postal-stats-bar">
+              <div class="postal-stat-card">
+                <span class="postal-stat-label">全文總字數（含標點）</span>
+                <strong class="postal-stat-val" id="statCharCount">0 字</strong>
+              </div>
+              <div class="postal-stat-card">
+                <span class="postal-stat-label">20×10 標準格線頁數</span>
+                <strong class="postal-stat-val" id="statPageCount">共 1 頁</strong>
+              </div>
+              <div class="postal-stat-card">
+                <span class="postal-stat-label">預估郵局存證規費</span>
+                <strong class="postal-stat-val" id="statPostalFee">NT$ 50 元</strong>
+              </div>
+            </div>
+
+            <!-- 存證信函分頁紙張堆疊區 -->
+            <div id="postalPagesStack" class="postal-pages-stack"></div>
+
+            <!-- 三大匯出行動按鈕 -->
+            <div class="export-actions-grid">
+              <button type="button" id="copyLegalTextBtn" class="export-btn primary">
+                <i class="fa-brands fa-line"></i> 複製 LINE 最後通牒＋全文
+              </button>
+              <button type="button" id="downloadPostalCardBtn" class="export-btn gold">
+                <i class="fa-solid fa-image"></i> 下載存證信函預覽圖卡 (PNG)
+              </button>
+              <button type="button" id="printPostalSheetBtn" class="export-btn full-span">
+                <i class="fa-solid fa-print"></i> A4 列印中華郵政標準存證信函（一式三份交寄）
+              </button>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async" style="height: 36px; width: auto;">
+            港居不動產開發有限公司
+          </h4>
+          <p>依法特許登記經營租賃住宅包租業與代管業，專注高質感住宅資產護全與穩定收益增值。</p>
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>服務項目</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+            <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+            <li><a href="legal-notice-generator.html">存證信函產生器</a></li>
+            <li><a href="listing-post-generator.html">招租文案與首圖合成</a></li>
+            <li><a href="rent-receipt.html">租金收據與月結單</a></li>
+            <li><a href="rent-subsidy-checker.html">300億租金補貼試算</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算單</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>證照字號</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" style="font-weight: 700; color: var(--accent-gold);">個人資料與隱私權政策</a></li>
+            <li>租賃住宅服務業登記證：(113)高市租登字第0012號</li>
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+            <li><a href="index.html#disclosure">法定揭示事項</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- 專屬邏輯腳本 -->
+  <script type="module" src="js/legal-notice-generator.js"></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>

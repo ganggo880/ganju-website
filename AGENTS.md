@@ -60,6 +60,7 @@
 - [x] 階段三十七：300 億中央擴大租金補貼資格自檢與實質月租試算器 `rent-subsidy-checker.html`（依據內政部國土管理署高雄市第一至三級基準額與單身 1.2 倍、新婚 1.3 倍、育兒 1.4~2.0 倍、經濟/社會弱勢加碼倍數設計，內建 4 大資格自檢、5 大族群快速試算、租客實付月租比例條、房東公益出租人 vs 港居包租代管 60% 費用率雙贏導流、LINE 複製、Canvas 圖卡下載與 A4 診斷單列印，全站 18 頁 100% 互通與 PWA 離線可用）
 - [x] 階段三十八：租金電子收據與屋主代管月結對帳單產生器 `rent-receipt.html`（支援「租客繳租電子收據」與「屋主代管月結匯款對帳單（自動扣除 10% 代管服務費與代墊修繕費）」雙模式切換，內建繁體中文金融大寫金額自動轉換、跨工具從 `utility-splitter.html` 匯入水電費與從 `repair-inspection.html` 匯入房東修繕費、雙畫布 Retina 2x 電子手寫簽章、港居紅色認證收訖章、LINE 通知文字複製、Canvas 高畫質電子憑證圖卡下載與 A4 正式憑證列印，全站 19 頁 100% 互通與 PWA 離線可用）
 - [x] 階段三十九：591／社群招租文案與第 33 條法定揭露合成器 `listing-post-generator.html`（依據《租賃住宅市場發展及管理條例》第 33 條與 2024 電費新制設計，一鍵生成 591 長文、FB 社團吸睛版與 LINE 招租速報，強制自動帶入港居法定證號防漏寫受罰並攔截營業員證號混淆，同步合成含法定字號浮水印之 1080×1080 社群招租亮點首圖，全站 20 頁 100% 互通與 PWA 離線可用）
+- [x] 階段四十：欠租催告與終止租約「郵局存證信函」產生器 `legal-notice-generator.html`（依據《民法》第 440 條、第 451 條與《租賃專法》第 10 條設計，內建欠租限期催告、催告期滿正式終止租約暨限期遷讓、違反公約催告及期滿不續租四大法務範本，內建二個月欠租法定終止門檻防呆檢核，自動排版為中華郵政標準 20×10 格線格式並試算存證規費，支援 LINE 最後通牒複製、Canvas 存證信函圖卡下載與 A4 標準一式三份列印，全站 21 頁 100% 互通與 PWA 離線可用）
 
 ## 資料夾結構
 
@@ -91,7 +92,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── rent-subsidy-checker.html        # 18. 300億租金補貼資格自檢與實質月租試算器
 ├── rent-receipt.html                # 19. 租金電子收據與屋主代管月結對帳單產生器
 ├── listing-post-generator.html      # 20. 591／社群招租文案與第33條法定揭露合成器
-├── sitemap.xml                      # 全站 20 頁 SEO XML 網站地圖
+├── legal-notice-generator.html      # 21. 欠租催告與終止租約郵局存證信函產生器
+├── sitemap.xml                      # 全站 21 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -112,6 +114,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── rent-subsidy-checker.css     # 300億租金補貼資格自檢與實質月租試算樣式與 A4 列印引擎
 │   ├── rent-receipt.css             # 租金電子收據與屋主代管月結對帳單樣式與 A4 列印引擎
 │   ├── listing-post-generator.css   # 591／社群招租文案與第33條法定揭露合成器樣式
+│   ├── legal-notice-generator.css   # 郵局存證信函 20×10 標準格線與 A4 列印引擎樣式
 │   ├── privacy.css                  # 隱私權政策與個資保護專頁樣式
 │   ├── ocr-translator.css           # 照片 OCR 文字辨識與翻譯專屬樣式
 │   ├── converter.css                # 檔案轉換工具專屬樣式
@@ -133,6 +136,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── rent-subsidy-checker.js      # 300億租金補貼分級加碼試算、公益出租人導流與圖卡匯出引擎
 │   ├── rent-receipt.js              # 租金電子收據與屋主代管月結對帳單雙模式、中文大寫與圖卡匯出引擎
 │   ├── listing-post-generator.js    # 591/FB/LINE招租文案、第33條法定證號防呆與1080x1080首圖合成引擎
+│   ├── legal-notice-generator.js    # 民法440條欠租催告與終止租約、中華郵政20x10存證信函格線排版引擎
 │   ├── ocr-translator.js            # 照片 OCR 雙引擎與翻譯邏輯
 │   ├── converter.js                 # 轉檔核心（Canvas / Blob 本地運算）
 │   ├── image-converter.js           # 圖像格式與尺寸轉換邏輯
