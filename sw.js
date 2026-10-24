@@ -16,6 +16,7 @@ const PRECACHE_ASSETS = [
   './photo-time-location.html',
   './ocr-translator.html',
   './space-planner.html',
+  './island.html',
   './manifest.json',
   
   // 樣式表

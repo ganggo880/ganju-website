@@ -42,7 +42,8 @@
 - [x] 階段十九：穩發漁業集團官網建置實施（遠洋艦隊與冷鏈圖資生成、三層式架構落地、10大船隊影音與新聞彈窗、B2B詢價與企業Corporation結構化標記）
 - [x] 階段二十：Google Rich Results Test 線上實測 10 頁 JSON-LD（全站 10 頁 100% 0錯誤0警告通過、補齊 BreadcrumbList 階層導覽與 WebSite/Geo 標記）
 - [x] 階段二十一：全站 10 款線上工具行動端（360px~414px）實機極限驗收與觸控熱區優化（CDP 40 組測試 100% 完美合格，橫向滾動溢出嚴格為 0px、按鈕/表單/色彩/滑桿等可互動元件 100% 符合 ≥ 44×44px WCAG 規範）
-- [x] 階段二十二：全站 PWA 離線漸進式應用支援與原生桌面/手機安裝（`manifest.json` ＋ `sw.js` 47 項核心資產預載 ＋ Network-First 導航快取 ＋ 案場 100% 完全斷網實機 10 頁可用性通過）
+- [x] 階段二十二：全站 PWA 離線漸進式應用支援與原生桌面/手機安裝（`manifest.json` ＋ `sw.js` 48 項核心資產預載 ＋ Network-First 導航快取 ＋ 案場 100% 完全斷網實機 11 頁可用性通過）
+- [x] 階段二十三：港居 3D 智慧營運島（數位孿生）全站選單、PWA 快取與 Schema.org 結構化資料全面整合（11/11 頁面導覽互通、離線秒開、首頁 iframe 嵌入與 360px~414px 零溢出通過）
 
 ## 資料夾結構
 
@@ -63,6 +64,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── photo-time-location.html         # 8. 照片時間與地點浮水印工具
 ├── ocr-translator.html              # 9. 照片 OCR 文字辨識與翻譯神器
 ├── space-planner.html               # 10. 2D 平面格局配置與 3D 即時轉換系統
+├── island.html                      # 11. 3D 智慧營運島（數位孿生）微縮世界
+├── island_standalone.html           # 11b. 3D 智慧營運島獨立全螢幕版本
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
 ├── script.js / rent-calc.js

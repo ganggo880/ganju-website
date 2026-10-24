@@ -53,6 +53,8 @@ Matt Pocock skills/
 ├── photo-time-location.html    # 8. 照片時間與地點浮水印工具 (EXIF/GPS 自動解析、三樣式五位置)
 ├── ocr-translator.html         # 9. 照片 OCR 文字辨識與多國語言翻譯神器 (99%+ 雙引擎、ROI 框選、詞庫校正)
 ├── space-planner.html          # 10. 2D 平面格局配置與 3D 即時轉換系統 (底圖校正、玄關連動隔間、CAD家具、60FPS 3D)
+├── island.html                 # 11. 3D 智慧營運島 (數位孿生微縮世界，12六角島/48矩陣/10協作流)
+├── island_standalone.html      # 11b. 3D 智慧營運島 (獨立全螢幕版本)
 ├── .nojekyll                   # 停用 GitHub Pages Jekyll 編譯
 ├── css/
 │   ├── tokens.css              # 全站設計 Token (海軍藍/香檳金/字型/陰影/深淺變數)
@@ -232,6 +234,7 @@ Matt Pocock skills/
 | `photo-time-location.html`| `WebApplication`, `BreadcrumbList`| `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
 | `ocr-translator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
 | `space-planner.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 麵包屑階層 |
+| `island.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 數位孿生營運島 |
 | `output/winfar-website/` | `Corporation` | `name`, `foundingDate`, `founder`, `address`, `telephone`, `knowsAbout` |
 
 ---
@@ -245,13 +248,13 @@ Matt Pocock skills/
    - 圖示庫：支援 192×192、512×512 之標準圖示與 Android Maskable 圖示，以及 Apple Touch Icon。
    - 快捷捷徑 (App Shortcuts)：直接跳轉 2D/3D 格局、租金試算、EXIF 水印與 OCR 翻譯。
 2. **智慧 Service Worker 快取體系 (`sw.js`)**：
-   - **Pre-caching**：安裝時預載全站 10 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（共 47 項核心資產）。
+   - **Pre-caching**：安裝時預載全站 11 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（共 48 項核心資產）。
    - **導航請求 (Navigate)**：Network-First with Cache Fallback，網路在線時即時獲取最新修正，案場無訊號（地下室、高樓）自動回退至本機快取。
    - **靜態資源 (Assets/CDN)**：Stale-While-Revalidate 與動態快取，自動緩存 Three.js 與 FontAwesome 等第三方相依庫。
 3. **原生安裝引導與連線監控 (`js/pwa.js`)**：
    - 攔截 `beforeinstallprompt` 提供符合品牌色系與 ≥ 44×44px 觸控標準之「免費安裝」提示卡片。
    - 監聽 `online` / `offline` 事件，斷網時浮動顯示離線指示徽章，連線恢復時 Toast 提示自動同步。
-   - 經 CDP 實機模擬斷網驗收，全站 10 頁完全離線可用率達 **10/10 頁 (100%)**。
+   - 經 CDP 實機模擬斷網驗收，全站 11 頁完全離線可用率達 **11/11 頁 (100%)**。
 
 ---
 

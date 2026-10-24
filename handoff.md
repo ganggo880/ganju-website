@@ -8,9 +8,21 @@
 
 ## ⏯️ 目前做到哪
 
-全站共 **10 個頁面**（港居不動產官網主頁與 9 款高階線上工具集）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
+全站共 **11 個頁面**（港居不動產官網首頁、10 款高階線上工具集與 3D 智慧營運島）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
 
-**2026-10-24（最新推進）— 階段二十二：全站 PWA 漸進式應用支援與案場 100% 離線可用性達成**
+**2026-10-24（最新推進）— 階段二十三：港居 3D 智慧營運島（數位孿生）全站整合與 11 頁 100% 離線支援**
+- **遠端 3D 智慧營運島功能合併與首頁專區落地（`island.html` ＋ `island_standalone.html`）**：
+  - 順暢合併遠端提交 `808c406`，首頁正式上線「3D 智慧營運島（數位孿生）」專區（#digital-twin）與即時 iframe 預覽體驗。
+  - 12 座營運六角島、48 項專業服務矩陣與 10 條智慧協作流完整於瀏覽器本地 WebGL 運行。
+- **全站選單互通與合規整合**：
+  - 全站其餘 9 款工具頁導覽列「線上工具」下拉選單全數統一補齊 `island.html` 項目，達成全站 11 頁導覽 100% 互通。
+  - `island.html` 整合回官網按鈕（`./index.html`，符合 ≥44px 觸控標準）、PWA 核心 Meta 標籤、`manifest.json` 與 Schema.org `WebApplication` ＋ `BreadcrumbList` 結構化資料。
+- **PWA 48 項資產離線秒開與 0px 溢出雙重驗證**：
+  - `sw.js` 擴增 `./island.html` 預載快取（核心資產達 48 項）。
+  - 通過 `output/test_pwa_offline.js` 完全斷網模擬實測，全站 **11/11 頁 (100%) 全部成功秒開離線運作**。
+  - 通過 CDP 40 組行動端斷點驗證，包含首頁新區塊與 `island.html` 在 360px~414px 下橫向溢出嚴格為 **0px**。
+
+**2026-10-24（前一輪）— 階段二十二：全站 PWA 漸進式應用支援與案場 100% 離線可用性達成**
 - **全站 PWA 與原生 App 安裝體驗落地（`manifest.json` ＋ `assets/icons/` ＋ `js/pwa.js`）**：
   - 產出標準 Web App Manifest，配置全螢幕 `standalone` 模式、海軍藍/香檳金主題規範與 4 大核心工具快速捷徑（空間格局、租金換算、EXIF水印、OCR翻譯）。
   - 使用 Python Pillow 與 Noto Sans CJK TC 字型生成全套標準解析度與 Maskable 圖示（192×192、512×512、apple-touch-icon 180×180、favicon-32×32），建築屋頂輪廓線結合品牌尊榮排版。
@@ -86,11 +98,11 @@
 
 ---
 
-## 📄 已上線頁面全景速覽 (全 10 頁)
+## 📄 已上線頁面全景速覽 (全 11 頁)
 
 | # | 頁面 | 功能說明 | JSON-LD |
 |---|---|---|---|
-| 1 | `index.html` | TopBar 登記證號、Hero、包租 vs 代管方案、ROI 試算器、第 33 條法定揭示、房源區、Lead 表單 | `RealEstateAgent` |
+| 1 | `index.html` | TopBar 登記證號、Hero、包租 vs 代管方案、ROI 試算器、3D營運島專區、第 33 條法定揭示、房源區、Lead 表單 | `RealEstateAgent`, `WebSite` |
 | 2 | `rent-calculator.html` | 30日／當月實際／自訂基準天數、跨月區間、代管費與屋主實收拆分、LocalStorage 歷史 | `WebApplication` (FinanceApplication) |
 | 3 | `file-converter.html` | PDF/DOCX/PNG/JPG/WEBP/MP3/MP4/ZIP 瀏覽器端本地轉檔與歷史紀錄 | `WebApplication` (UtilitiesApplication) |
 | 4 | `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成（常駐深色工作台） | `WebApplication` (MultimediaApplication) |
@@ -100,6 +112,7 @@
 | 8 | `photo-time-location.html` | 照片時間與地點浮水印（EXIF 時間/GPS 解析、自訂時間地點、三樣式五位置合成、ZIP 打包） | `WebApplication` (MultimediaApplication) |
 | 9 | `ocr-translator.html` | 照片 OCR 文字辨識與多國語言即時翻譯神器（99%+ 雙引擎、ROI 區域框選、智慧詞庫校對、語音朗讀） | `WebApplication` (UtilitiesApplication) |
 | 10 | `space-planner.html` | Web 端互動式 2D 平面格局配置與 3D 即時轉換系統（底圖比例尺校正、玄關連動自動隔間、CAD 家具防呆、60FPS 3D 娃娃屋與漫遊、PNG/SVG/PDF 出圖） | `WebApplication` (DesignApplication) |
+| 11 | `island.html` | 港居 3D 智慧營運島（數位孿生微縮世界，12座六角島、48項服務矩陣、10條協作流、繁中語音導覽） | `WebApplication` (BusinessApplication) |
 
 ---
 
@@ -112,6 +125,6 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-10-24 01:45
+- 時間：2026-10-24 09:05
 - 更新者：Antigravity Agent @ Linux
-- 狀態：完成全站 PWA 漸進式應用支援與案場 100% 離線可用性達成（`manifest.json` ＋ `sw.js` 47 項核心資產預載 ＋ `assets/icons/` 全套圖示 ＋ CDP 100% 斷網實機檢驗 10 頁全數秒開可用）
+- 狀態：完成港居 3D 智慧營運島（數位孿生）全站選單互通、PWA 離線快取（48 項核心資產）與 Schema.org 結構化資料全面整合，通過 11/11 頁 100% 離線秒開與 360px~414px 零溢出驗收
