@@ -345,6 +345,21 @@
       }
     });
 
+    // 6b. 共同承租人（合租人）連帶責任特約
+    const coTenantSec = $('#viewCoTenantSection');
+    const articleNoJurisdiction = $('#viewArticleNoJurisdiction');
+    if (coTenantSec) {
+      if (data.coTenantName && data.coTenantName.trim() !== '') {
+        coTenantSec.style.display = 'block';
+        $$('.view-cotenant-name').forEach(el => el.textContent = data.coTenantName.trim());
+        $$('.view-cotenant-id').forEach(el => el.textContent = data.coTenantId ? data.coTenantId.trim() : '___________');
+        if (articleNoJurisdiction) articleNoJurisdiction.textContent = '十二';
+      } else {
+        coTenantSec.style.display = 'none';
+        if (articleNoJurisdiction) articleNoJurisdiction.textContent = '十一';
+      }
+    }
+
     // 7. 附表一 住戶公約是否列印控制
     const sheetPage3 = $('#sheetPage3');
     const sheetBadge = $('#sheetCountBadge');
@@ -514,6 +529,119 @@
   }
 
   /**
+   * 匯出合約 Markdown 檔案
+   */
+  function downloadMarkdown() {
+    const data = getFormData();
+    const rentVal = Number(data.monthlyRent) || 0;
+    const rentChinese = numberToChineseAmount(rentVal);
+    const depositVal = Number(data.depositAmount) || (rentVal * 2);
+    const depositChinese = numberToChineseAmount(depositVal);
+    const movingDays = calculateDaysDiff(data.movingStartDate, data.movingEndDate);
+    const leaseDuration = calculateLeaseDuration(data.leaseStartDate, data.leaseEndDate);
+
+    let md = `# 港居不動產開發有限公司 房屋租賃契約書（通用標準版）\n\n`;
+    md += `> **立契約書人**：\n`;
+    md += `> **出租人（甲方）**：${data.landlordCompany} / ${data.landlordRep}\n`;
+    md += `> **承租人代表（乙方）**：${data.tenantName}\n`;
+    if (data.coTenantName) {
+      md += `> **共同承租人（乙方B）**：${data.coTenantName}（身分證字號：${data.coTenantId}）\n`;
+    }
+    if (data.guarantorName) {
+      md += `> **連帶保證人**：${data.guarantorName}（關係：${data.guarantorRelation}，電話：${data.guarantorPhone}）\n`;
+    }
+    md += `\n---\n\n`;
+
+    md += `### 第一條：租賃標的與使用範圍\n`;
+    md += `1. **房屋所在地**：${data.propAddress}（房號代號：${data.propRoomNo}，格局房型：${data.propPattern}）。\n`;
+    md += `2. **附屬車位**：汽車位：${data.parkingCar}；機車位：${data.parkingMoto}。\n`;
+    md += `3. 附屬設備詳如【附表二：房屋附屬設備與現況點交清單】。\n\n`;
+
+    md += `### 第二條：租賃期限與搬遷免租期\n`;
+    md += `1. **免租金搬遷期**：自 ${toMinguoDateString(data.movingStartDate)} 起至 ${toMinguoDateString(data.movingEndDate)} 止（共計 ${movingDays} 天）。\n`;
+    md += `2. **正式租賃期限**：自 ${toMinguoDateString(data.leaseStartDate)} 起至 ${toMinguoDateString(data.leaseEndDate)} 止（共計 ${leaseDuration}）。\n\n`;
+
+    md += `### 第三條：租金約定、繳納方式與違約金\n`;
+    md += `1. **月租金額**：${rentChinese}（NT$ ${rentVal.toLocaleString()} 元），每月 ${data.rentDueDay} 日前繳納。\n`;
+    md += `2. **指定帳戶**：${data.bankName} ｜ 戶名：${data.landlordRep} ｜ 帳號：\`${data.bankAccount}\`\n`;
+    md += `3. **遲延繳納與終止契約法定要件**：遲延超過5日每日按2%加收違約金；積欠租金總額達二個月之租額經相當期限催告仍未付清，甲方得終止租約。逾期返還房屋按房租日額貳倍計算懲罰性違約金。\n\n`;
+
+    md += `### 第四條：押金（保證金）\n`;
+    md += `押金額度為 ${depositChinese}（NT$ ${depositVal.toLocaleString()} 元），簽約時一次全額交付。\n\n`;
+
+    md += `### 第五條：大樓管理費與公用事業水電\n`;
+    if (data.mgmtFeePayer === 'landlord') {
+      md += `1. **大樓管理費**：由甲方負擔。\n`;
+    } else {
+      md += `1. **大樓管理費**：每月 NT$ ${Number(data.mgmtFeeAmount).toLocaleString()} 元，由乙方按期負擔。\n`;
+    }
+    if (data.utilityType === 'bills') {
+      md += `2. **水電費用**：依公用事業獨立帳單由乙方自行繳納。\n\n`;
+    } else {
+      md += `2. **水電費用**：獨立電表每度 NT$ ${data.elecPricePerUnit} 元；定額水費每人每月 NT$ ${data.waterFeePerPerson} 元。\n\n`;
+    }
+
+    md += `### 第六條：房屋用途與嚴禁神明廳\n`;
+    md += `純供住宅使用，嚴禁轉租、分租或作非法用途；室內與陽台嚴禁設立神明廳、神壇或焚香祭拜。\n\n`;
+
+    md += `### 第七條：全面禁菸香薰規範\n`;
+    md += `室內及公共陽台、梯間全面禁止吸菸（含電子煙、加熱菸）與點燃薰香。違者第一次罰款新台幣 10,000 元整並負擔全屋除臭清潔費，累犯得終止租約。\n\n`;
+
+    md += `### 第八條：寵物飼養約定\n`;
+    if (data.petAllowed === 'no') {
+      md += `全區嚴禁飼養任何寵物，違者罰款新台幣 10,000 元並限期帶離。\n\n`;
+    } else {
+      md += `同意飼養指定寵物：${data.petDetail}。退租時每台冷氣機須進行專業深層清洗，乙方分擔每台 NT$ ${Number(data.petAcCleanFee).toLocaleString()} 元。\n\n`;
+    }
+
+    md += `### 第九條：鑰匙磁扣遺失與到場開門費\n`;
+    md += `忘帶鑰匙專人到場開門日間 NT$ 500 元、夜間 NT$ 1,000 元；磁扣或鑰匙補發每支 NT$ 300 元。\n\n`;
+
+    md += `### 第十條：凶宅防範與緊急事故破門授權\n`;
+    md += `若於屋內發生非自然死亡致成凶宅，乙方（或其法定繼承人/連帶保證人）應連帶賠償懲罰性違約金新台幣 300 萬元整。重大緊急事故乙方同意警消村里長會同甲方破門入內排險。\n\n`;
+
+    if (data.coTenantName) {
+      md += `### 第十一條：共同承租人連帶責任專章特約\n`;
+      md += `共同承租人負全部連帶給付責任。一人提前退租時押金不提前拆分發還，待全案期滿騰空點交後由承租人代表受領結算。\n\n`;
+    }
+
+    const jurisdictionNo = data.coTenantName ? '十二' : '十一';
+    md += `### 第${jurisdictionNo}條：通訊送達與管轄法院\n`;
+    md += `雙方通訊送達得以 LINE 為準，傳送滿 24 小時即視為合法送達。爭訟合意以臺灣高雄地方法院為第一審管轄法院。\n\n`;
+
+    if (data.chkIncludeRules) {
+      md += `\n---\n\n## 【附表一】通用標準住戶公約 (Master 版 27 條款)\n\n`;
+      md += `（詳如契約附件，含 22:00~07:00 夜間寧靜、洗衣機 22:00~08:00 禁用、入住前 7 日管線責任劃分、3M 無痕掛鉤損壞每處賠償 500 元等規範）。\n\n`;
+    }
+
+    md += `\n---\n\n## 【附表二】房屋附屬設備點交單\n\n`;
+    md += `- 冷氣：${data.invAc}\n`;
+    md += `- 熱水器：${data.invWaterHeater}\n`;
+    md += `- 門禁鑰匙磁扣：${data.invKeys}\n`;
+    md += `- 電冰箱：${data.invFridge}\n`;
+    md += `- 床組床墊：${data.invBed}\n`;
+    md += `- 衣櫃桌椅：${data.invWardrobe}\n`;
+    md += `- 起租電度：${data.invInitialElec} ｜ 水表瓦斯：${data.invInitialWater}\n`;
+    md += `- 現況特別備註：${data.invOtherNotes}\n\n`;
+
+    md += `\n**立約日期**：中華民國 ${new Date().getFullYear() - 1911} 年 ${new Date().getMonth() + 1} 月 ${new Date().getDate()} 日\n`;
+
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const downloadAnchor = document.createElement('a');
+    const tenantName = data.tenantName ? data.tenantName.trim() : '合約';
+    const dateStr = new Date().toISOString().slice(0, 10);
+    downloadAnchor.href = URL.createObjectURL(blob);
+    downloadAnchor.download = `港居房屋租賃契約書_${tenantName}_${dateStr}.md`;
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+
+    if (window.GanjuUtils && window.GanjuUtils.showToast) {
+      window.GanjuUtils.showToast('合約 Markdown 檔案已成功匯出下載！', 'success');
+    }
+  }
+
+  /**
    * 匯入合約 JSON
    */
   function uploadJson(e) {
@@ -600,6 +728,7 @@
     // 5. 按鈕事件綁定
     $('#btnQuickSample')?.addEventListener('click', loadStandardSample);
     $('#btnResetForm')?.addEventListener('click', resetForm);
+    $('#btnDownloadMd')?.addEventListener('click', downloadMarkdown);
     $('#btnDownloadJson')?.addEventListener('click', downloadJson);
     $('#btnUploadJson')?.addEventListener('change', uploadJson);
     $('#btnPrintContract')?.addEventListener('click', () => {

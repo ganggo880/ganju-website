@@ -633,6 +633,9 @@
           </span>
         </div>
         <div class="preview-toolbar-actions">
+          <button type="button" class="btn btn-navy" id="btnDownloadMd" style="padding:8px 14px; font-size:0.85rem;" title="將目前合約與公約匯出為 Markdown 文字檔">
+            <i class="fa-solid fa-file-lines"></i> 匯出 MD
+          </button>
           <button type="button" class="btn btn-navy" id="btnDownloadJson" style="padding:8px 14px; font-size:0.85rem;" title="將目前輸入的合約資料存成 JSON 備份檔">
             <i class="fa-solid fa-download"></i> 備份資料
           </button>
@@ -685,7 +688,10 @@
             2. <strong>指定租金匯款帳戶</strong>：<br>
             　 金融機構：<strong><span class="view-bank-name">中華郵政（代號：700）</span></strong> ｜ 戶名：<strong><span class="view-bank-holder">陳俊銘</span></strong><br>
             　 帳號：<strong><span class="view-bank-account">0045003-0000167</span></strong><br>
-            3. <strong>遲延繳納罰則</strong>：乙方逾約定期限超過 5 日仍未繳納者，自第 6 日起每日按月租金 <strong>2%</strong> 加計遲延違約金；逾 7 日經催告仍不給付者，視同重大違約，甲方得逕行提前終止契約並沒收押金。
+            3. <strong>遲延繳納與終止契約法定要件</strong>：<br>
+            　 (1) 乙方逾約定期限超過 5 日仍未繳納者，自第 6 日起每日按月租金額 <strong>2%</strong> 加計遲延違約金。<br>
+            　 (2) 依租賃條例與民法第440條規定，若乙方積欠租金總額達<strong>二個月之租額</strong>，經甲方定相當期限催告仍未付清者，甲方得提前終止本契約，並得自押金中扣抵租金與違約金。<br>
+            　 (3) <strong>逾期返還房屋違約金</strong>：租期屆滿或契約終止，乙方未即時將房屋完全騰空遷離返還甲方者，應自翌日起按日向甲方支付按照<strong>房租日額貳倍</strong>計算之懲罰性違約金（含無權占用期間相當於租金之不當得利），至騰空交還完畢為止。
           </p>
         </div>
 
@@ -756,12 +762,21 @@
           </p>
         </div>
 
-        <!-- 第十一條 -->
-        <div class="contract-section">
-          <h3 class="contract-article-title">第十一條：管轄法院與契約效力</h3>
+        <!-- 共同承租人連帶特約（動態呈現） -->
+        <div class="contract-section" id="viewCoTenantSection" style="display: none;">
+          <h3 class="contract-article-title">第十一條：共同承租人（合租人）連帶責任特約</h3>
           <p class="contract-clause">
-            1. 本契約書正本壹式貳份，由甲乙雙方各執壹份為憑。契約各項附件（附表一住戶公約、附表二設備點交單）均為本合約不可分割之一部分，具同等效力。<br>
-            2. 本契約如有爭訟，雙方合意以 <strong>臺灣高雄地方法院</strong> 為第一審管轄法院。
+            承租人代表（乙方 A）與共同承租人（乙方 B：<strong><span class="view-cotenant-name"></span></strong>，身分證字號：<strong><span class="view-cotenant-id"></span></strong>）就本契約所生之全部租金、水電瓦斯管理費、修繕賠償及各項違約金，對甲方<strong>負不分先後之全部連帶清償責任</strong>。合租人中任一人提前退租遷離時，全額押金概不提前拆分發還，須俟本契約全案期滿或依法終止、房屋完全騰空點交完竣後，由承租人代表受領結算。
+          </p>
+        </div>
+
+        <!-- 第十一條/第十二條：管轄法院與送達 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第<span id="viewArticleNoJurisdiction">十一</span>條：通訊送達、管轄法院與契約效力</h3>
+          <p class="contract-clause">
+            1. <strong>通訊送達與 LINE 24小時推定</strong>：雙方通知送達以本契約所載戶籍地址、聯絡電話或雙方約定之 LINE 官方通訊為準。經由 LINE 發送之通知、催告或意思表示，於發送成功並顯示已讀或<strong>傳送滿 24 小時後即視同合法送達通知</strong>。<br>
+            2. 本契約如有爭訟，雙方合意以 <strong>臺灣高雄地方法院</strong> 為第一審管轄法院。<br>
+            3. 本契約書正本壹式貳份，由甲乙雙方各執壹份為憑。契約各項附件（附表一住戶公約、附表二設備點交單）均為本合約不可分割之一部分，具同等法規效力。
           </p>
         </div>
 
