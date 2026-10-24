@@ -37,6 +37,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── lease-contract.html      # 12. 租賃契約與住戶公約線上套印產生器 (雙欄即時連動、中文大寫、凶宅公約、A4列印PDF)
 ├── tax-calculator.html      # 13. 房東包租代管節稅效益與實質收益試算神器 (租賃條例17條、囤房稅2.0、三方案PK、LINE諮詢)
 ├── repair-inspection.html   # 14. 租賃修繕點交與屋況瑕疵存證紀錄神器 (租賃條例11條、浮水印拍照、四級責任判定、電子簽章、A4列印)
+├── sitemap.xml              # 全站 14 頁 SEO XML 網站地圖
+├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
 ├── script.js                # 主頁互動邏輯 (ROI計算器, 房源條件篩選, Modal 彈窗)

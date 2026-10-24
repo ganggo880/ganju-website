@@ -343,7 +343,24 @@ Matt Pocock skills/
 
 ---
 
-## 13. 維護與版控流程規範 (Governance & Git Workflow)
+## 13. 全站 SEO 搜尋引擎架構與租務專欄深度閱讀系統規格
+
+1. **搜尋引擎索引標準架構 (`sitemap.xml` ＋ `robots.txt`)**：
+   - **`sitemap.xml`**：遵循 Sitemaps.org 0.9 協議，涵蓋全站 14 頁（品牌主頁、13 款線上工具與 3D 智慧營運島），嚴格配置標準 Canonical URL、`lastmod` (ISO 8601)、`changefreq` (weekly/monthly) 與權重等級（首頁 1.0、高階法規與節稅工具 0.9、空間格局與營運島 0.8、多媒體轉換 0.7）。
+   - **`robots.txt`**：標準允許搜尋引擎爬取公開頁面，指向 Sitemap 絕對網址，並封鎖 `obsidian/`、`agent/`、`skills/` 等後台知識庫與系統目錄。
+   - **HTML Sitemap 標記**：於 `<head>` 配置 `<link rel="sitemap" type="application/xml" title="Sitemap" href="...">`。
+2. **租務與稅務專欄法規校正與深度閱讀彈窗 (`#articleModal`)**：
+   - **法規數字校正**：將原舊文案徹底修正為現行法定標準：「每屋每月租金 15,000 元以下免稅，超過部分必要費用率高達 60%（《租賃住宅市場發展及管理條例》第 17 條）＋ 2024 囤房稅 2.0 房屋稅減半 1.2% 與地價稅 0.2% 減徵」。
+   - **互動式深度閱讀彈窗**：
+     - 淘汰舊有跳轉至聯絡表單之簡陋互動，點擊「閱讀全文」即刻開啟高質感海軍藍/香檳金專欄彈窗。
+     - 具備文章標籤、作者（陳俊銘 經理 / 特許租賃住宅管理師）、發布日期、預估閱讀時間、重點摘要金牌卡（Key Takeaways）。
+     - 專利轉化漏斗：文末配置專屬工具深度跳轉 CTA（如跳轉 `tax-calculator.html`、`space-planner.html`、`repair-inspection.html`），打造完整業務轉換閉環。
+3. **Google `BlogPosting` 結構化資料**：
+   - 於首頁 `<head>` 注入標準 `Blog` 包含 `BlogPosting` 結構化陣列，精確標記文章標題、發布日期、作者與描述，強化 SERP 文章摘要與 Google Discover 曝光。
+
+---
+
+## 14. 維護與版控流程規範 (Governance & Git Workflow)
 
 1. **AI 產出統一歸檔**：所有新產出之技術指南、規格書與教材一律存入專案 `output/` 目錄。
 2. **三處同步維護**：

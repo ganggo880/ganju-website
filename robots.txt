@@ -1,0 +1,14 @@
+# Robots.txt for 港居不動產開發有限公司 (GANJU Real Estate Co., Ltd.)
+# Official Website: https://ganggo880.github.io/ganju-website/
+
+User-agent: *
+Allow: /
+Disallow: /obsidian/
+Disallow: /agent/
+Disallow: /skills/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /.github/
+
+# XML Sitemap Index
+Sitemap: https://ganggo880.github.io/ganju-website/sitemap.xml

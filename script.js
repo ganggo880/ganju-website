@@ -336,4 +336,147 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 7. 專欄文章深度閱讀彈窗 (Article Reading Modal Handler)
+  const articleModal = document.getElementById('articleModal');
+  const articleModalContent = document.getElementById('articleModalContent');
+  const articleModalClose = document.getElementById('articleModalClose');
+  const articleBtns = document.querySelectorAll('.btn-read-article');
+
+  const BLOG_ARTICLES = {
+    'tax-guide': {
+      category: '稅務減免指南',
+      title: '房東輕鬆省稅！包租代管租金所得稅減免與囤房稅 2.0 攻略',
+      author: '陳俊銘 經理（特許租賃管理師）',
+      date: '2026-10-24',
+      readTime: '3 分鐘',
+      bodyHtml: `
+        <p>許多高雄在地房東常有一大顧慮：「房子出租報稅會不會被課重稅？萬一房客申請租金補貼，國稅局會不會回溯追稅？」事實上，政府為了鼓勵房東將房屋釋出給專業租賃業者，於<strong>《租賃住宅市場發展及管理條例》第 17 條</strong>明文制定了極具吸引力的租稅優惠！</p>
+        
+        <p>個人住宅所有權人只要將房屋委託給<strong>特許登記之包租或代管業者（如港居不動產）</strong>，契約約定供居住使用 1 年以上，即可依法享有三大核心租稅減免：</p>
+
+        <div class="article-takeaway-box">
+          <div class="article-takeaway-title"><i class="fa-solid fa-award" style="color: var(--accent-gold);"></i> 港居包租代管三大法定節稅權益</div>
+          <ul class="article-takeaway-list">
+            <li><strong>租金所得稅免稅額</strong>：每屋每月租金最高 <strong>NT$ 15,000 元</strong> 完全免稅（全年免稅額高達 18 萬元整）。</li>
+            <li><strong>必要費用率加成 60%</strong>：月租金超過 1.5 萬元部分，得以 <strong>60%</strong> 作為法定必要扣除費用（相較房東自行出租僅 43% 費用率，應稅所得大幅縮減）。</li>
+            <li><strong>2024 囤房稅 2.0 地方減徵</strong>：申報自租一般非自住稅率 2.0%~4.8%，委託合法包租代管減徵比照自住稅率 <strong>1.2%</strong>（省稅 50%）；地價稅比照自用優惠稅率 <strong>0.2% (千分之2)</strong>（減徵高達 80%）。</li>
+          </ul>
+        </div>
+
+        <p>舉例來說，若您在小港區有一間月租 28,000 元之大樓住家，綜所稅率 12%：自租全年應繳綜所稅高達 23,000 元以上；若委託港居代管，扣除 15,000 免稅額後僅餘 13,000 元以 40% 計入所得，全年綜所稅僅需約 7,488 元，光是所得稅整整現省 1.5 萬元以上，加上房屋稅與地價稅省下來的差額，往往足以完全抵銷代管服務費！</p>
+      `,
+      ctaText: '立即使用「房東節稅與淨收益試算神器」精算您的物業',
+      ctaUrl: 'tax-calculator.html'
+    },
+    'furnish-tips': {
+      category: '屋況維護撇步',
+      title: '屋況免改裝直上！如何吸引外商高管與工程師優質租客？',
+      author: '陳俊銘 經理（特許租賃管理師）',
+      date: '2026-10-24',
+      readTime: '3 分鐘',
+      bodyHtml: `
+        <p>許多屋主在房子退租或新成屋交屋時，常被傳統統包工程或裝潢公司推銷數十萬甚至上百萬的「全室打掉重練」。然而在港居實務經驗中，對於高雄小港、前鎮、苓雅等區域的外商工程師、航空機師與醫療專業人士而言，<strong>過度花俏的木作裝潢反而不如「乾淨、採光、通風與簡約機能」來得吸引人</strong>。</p>
+
+        <p>港居不動產主打<strong>「屋況免改裝直上」</strong>理念：只要您的物業具備基礎良好的防水水電、明亮採光與乾淨白牆，我們建議房東切勿花費大筆冤枉錢裝修，而是掌握以下三大關鍵微調：</p>
+
+        <div class="article-takeaway-box">
+          <div class="article-takeaway-title"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-gold);"></i> 高投報輕裝修三大核心心法</div>
+          <ul class="article-takeaway-list">
+            <li><strong>色彩回歸中性低彩度</strong>：全室牆面採純白或百合白乳膠漆，視覺放大 20% 以上，為租客保留自由搭配軟裝之餘裕。</li>
+            <li><strong>活動家具取代昂貴固定木作</strong>：挑選線條洗鍊的實木或極簡金屬活動家具（如三人沙發、獨立筒床墊、簡約餐桌椅），日後維護替換彈性高。</li>
+            <li><strong>人體工學動線防呆</strong>：主臥預留至少 85cm 下床與衣櫃開門迴轉半徑，避免空間壓迫感。</li>
+          </ul>
+        </div>
+
+        <p>港居更配備有自研之「2D/3D 平面格局配置系統」，在專員現場場勘後，能即時以 3D 娃娃屋向潛在租客呈現動線與採光格局，讓物件在招租市場脫穎而出，平均縮短空置期達 50% 以上！</p>
+      `,
+      ctaText: '體驗「2D/3D 格局配置系統」規劃最佳動線',
+      ctaUrl: 'space-planner.html'
+    },
+    'inspection-legal': {
+      category: '法規與保障',
+      title: '點交原狀還原！依據租賃專法第 11 條之屋況瑕疵存證與責任劃分',
+      author: '陳俊銘 經理（特許租賃管理師）',
+      date: '2026-10-24',
+      readTime: '4 分鐘',
+      bodyHtml: `
+        <p>租賃市場中最常引發房東與租客糾紛的，莫過於退租時的「押金返還扣抵」與「屋況修繕責任爭議」。牆壁的小刮傷該算誰的？冷氣遙控器不靈敏房東能扣押金嗎？依據<strong>《租賃住宅市場發展及管理條例》第 11 條</strong>，出租人與承租人在交付住宅時，應共同查驗屋況並簽訂<strong>「租賃標的現況確認書」</strong>。</p>
+
+        <p>依據民法第 429 條（出租人修繕義務）及第 432 條（承租人之善良管理人保管義務），點交查驗必須嚴格區分四大法律責任歸屬：</p>
+
+        <div class="article-takeaway-box">
+          <div class="article-takeaway-title"><i class="fa-solid fa-scale-balanced" style="color: var(--accent-gold);"></i> 法律責任判定四大法定基準</div>
+          <ul class="article-takeaway-list">
+            <li><strong>🟢 自然折舊耗損（免責）</strong>：因時間經過與日常正常使用造成之油漆微黃、地板些許磨痕，依民法租客「完全免除還原責任」，房東不得扣抵押金。</li>
+            <li><strong>🔵 出租人修繕改善</strong>：非因租客事由導致之水管自然老化滲漏、冷氣機件老化異音，屬房東法定維持租賃物合於使用收益之責任。</li>
+            <li><strong>🔴 承租人注意義務疏失</strong>：人為重物重擊磁磚破損、牆面未經同意鑽大釘孔、寵物抓咬損壞，租客應負賠償或由押金抵扣。</li>
+            <li><strong>⚪ 雙方合意現況點交</strong>：起租前既已存在之瑕疵（如門框微撞痕），雙方合意註記現況交付，退租時不得再行追究。</li>
+          </ul>
+        </div>
+
+        <p>港居不動產全方位採用數位化存證管理，現場查驗拍照即時壓印不可竄改之時間戳記浮水印，並由甲乙雙方於手機觸控板親筆手寫電子簽章，一鍵匯出正式 A4 存證確認書，讓資產保全滴水不漏！</p>
+      `,
+      ctaText: '前往「租賃修繕點交與屋況瑕疵存證神器」',
+      ctaUrl: 'repair-inspection.html'
+    }
+  };
+
+  function openArticle(articleId) {
+    const data = BLOG_ARTICLES[articleId];
+    if (!data || !articleModal || !articleModalContent) return;
+
+    articleModalContent.innerHTML = `
+      <div class="article-header">
+        <span class="article-badge"><i class="fa-solid fa-tag"></i> ${data.category}</span>
+        <h2 class="article-modal-title" id="articleModalTitle">${data.title}</h2>
+        <div class="article-meta-row">
+          <span class="article-meta-item"><i class="fa-solid fa-user-pen" style="color: var(--accent-gold);"></i> ${data.author}</span>
+          <span class="article-meta-item"><i class="fa-regular fa-calendar-days"></i> ${data.date}</span>
+          <span class="article-meta-item"><i class="fa-regular fa-clock"></i> 閱讀時間約 ${data.readTime}</span>
+        </div>
+      </div>
+      <div class="article-modal-body">
+        ${data.bodyHtml}
+        <div class="article-cta-box">
+          <div class="article-cta-box-text">
+            <h4><i class="fa-solid fa-toolbox" style="color: var(--accent-gold);"></i> 港居專用線上工具連動</h4>
+            <p>免去繁瑣計算，線上立即執行專業試算與合約點交作業</p>
+          </div>
+          <a href="${data.ctaUrl}" class="article-cta-btn">
+            ${data.ctaText} <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+    `;
+
+    articleModal.classList.add('active');
+  }
+
+  function closeArticleModal() {
+    if (articleModal) articleModal.classList.remove('active');
+  }
+
+  articleBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = btn.dataset.articleId;
+      openArticle(id);
+    });
+  });
+
+  if (articleModalClose) {
+    articleModalClose.addEventListener('click', closeArticleModal);
+  }
+
+  if (articleModal) {
+    articleModal.addEventListener('click', (e) => {
+      if (e.target === articleModal) closeArticleModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && articleModal.classList.contains('active')) {
+        closeArticleModal();
+      }
+    });
+  }
+
 });

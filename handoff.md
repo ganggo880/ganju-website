@@ -10,7 +10,25 @@
 
 全站共 **14 個頁面**（港居不動產官網首頁、13 款高階線上工具集與 3D 智慧營運島）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
 
-**2026-10-24（最新推進）— 階段二十七：租賃修繕點交與屋況瑕疵存證紀錄神器 (`repair-inspection.html`) 完整研發與全站整合**
+**2026-10-24（最新推進）— 階段二十八：全站 SEO 搜尋引擎架構部署（`sitemap.xml` ＋ `robots.txt`）＋ 租務專欄現代化深度閱讀彈窗 ＋ Google `BlogPosting` 結構化資料**
+- **全站 SEO 搜尋引擎標準架構落地 (`sitemap.xml` ＋ `robots.txt`)**：
+  - 遵循 Sitemaps.org 0.9 協議建立 [`sitemap.xml`](file:///home/ken-ubuntu/gdrive_folder/ai agent/Matt Pocock skills/sitemap.xml)，收錄全站 14 頁（首頁、13 款核心工具與 3D 營運島），嚴格標註 Canonical URL、`lastmod` (2026-10-24)、`changefreq` 與梯度權重（1.0 / 0.9 / 0.8 / 0.7）。
+  - 建立 [`robots.txt`](file:///home/ken-ubuntu/gdrive_folder/ai agent/Matt Pocock skills/robots.txt)，允許主流搜尋引擎爬蟲完整檢索，指向絕對路徑 Sitemap，並封鎖 `obsidian/`、`agent/`、`skills/` 等後台知識庫目錄。
+  - 首頁 `<head>` 注入 `<link rel="sitemap" type="application/xml" title="Sitemap" href="...">`。
+- **租務與稅務專欄文案校正 ＋ 深度閱讀彈窗 (`#articleModal`)**：
+  - **法定數字全面校正**：將原 6,000 元舊制徹底更新為現行《租賃住宅市場發展及管理條例》第 17 條：每屋每月租金最高 **15,000 元以下免稅**，超過部分必要費用率高達 **60%**，並扣合 2024 囤房稅 2.0 房屋稅減半 1.2% 與地價稅 0.2% 減徵。
+  - **互動式深度閱讀彈窗**：
+    - 使用者點擊「閱讀全文」不再跳轉到聯絡表單，而是開啟高質感專欄彈窗，顯示分類標籤、作者（陳俊銘 經理 / 特許租賃管理師）、發布日期、閱讀時間、排版段落與重點摘要金牌卡。
+    - **專利轉化漏斗**：三篇專欄文末分別配置專屬 CTA 按鈕，分別直通 `tax-calculator.html`（節稅試算）、`space-planner.html`（格局配置）與 `repair-inspection.html`（修繕點交），實現內容行銷與工具轉換閉環。
+- **Google `BlogPosting` JSON-LD 結構化資料**：
+  - 於首頁 `<head>` 注入標準 `Blog` 包含 3 篇 `BlogPosting` 結構化標記，大幅強化 Google SERP 文章摘要與 Google Discover 曝光。
+- **全站 PWA 59 項資產離線可用與極限驗收**：
+  - `sw.js` 升級至 `ganju-pwa-v1.4`，預載核心資產擴增至 59 項（涵蓋 `sitemap.xml` 與 `robots.txt`）。
+  - 經 `output/audit_site_specs.py` 全站 14 頁 100% 合格通過。
+  - 經 `output/audit_mobile_rwd.js` 實機 52 組情境檢測（360px~414px），橫向滾動溢出嚴格為 **0px**，觸控熱區合格率為 **100%**。
+  - 經 `output/test_pwa_offline.js` 100% 完全斷網模擬，全站 **14/14 頁秒開離線運作合格**。
+
+**2026-10-24（前一輪）— 階段二十七：租賃修繕點交與屋況瑕疵存證紀錄神器 (`repair-inspection.html`) 完整研發與全站整合**
 - **第 14 款核心工具 `repair-inspection.html`（`css/repair-inspection.css` ＋ `js/repair-inspection.js`）**：
   - **法定依據與三大模式切換**：
     - 依據《租賃住宅市場發展及管理條例》第 11 條及民法第 429 條（出租人修繕義務）、第 432 條（承租人注意義務）設計。
@@ -215,6 +233,6 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-10-24 19:48
+- 時間：2026-10-24 20:00
 - 更新者：Antigravity Agent @ Linux
-- 狀態：完成第 14 款線上工具 `repair-inspection.html`（租賃修繕點交與屋況瑕疵存證紀錄神器）正式上線與全站整合，包含浮水印相機壓印、水電指針、雙電子簽章、A4 存證書輸出、全站 14 頁全面互通，PWA 57 項核心資產 100% 離線可用，行動端 52 組情境 360px~414px 零溢出與 0 觸控缺陷全數通過。
+- 狀態：完成階段二十八「全站 SEO 搜尋引擎架構部署（`sitemap.xml` ＋ `robots.txt`）＋ 租務專欄現代化深度閱讀彈窗 ＋ Google `BlogPosting` 結構化資料全面整合」，全站 14 頁完整索引、專欄法規 1.5 萬與 60% 全面校正、3 大專欄文章互動彈窗與工具轉化閉環上線，PWA 59 項核心資產 100% 離線可用，行動端 52 組情境 360px~414px 零溢出與 0 觸控缺陷全數通過。

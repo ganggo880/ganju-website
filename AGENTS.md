@@ -48,6 +48,7 @@
 - [x] 階段二十五：房東包租代管節稅效益與實質收益試算神器 `tax-calculator.html`（精算法定1.5萬免稅額、60%必要費用率、房屋稅比照自住1.2%與地價稅千分之2減徵，對比自租/代管/全包租三大方案實質全年度淨收益PK，視覺化能量條、A4無痕列印節稅診斷書與LINE深度帶參預約評估、全站13頁100% PWA離線可用與零溢出通過）
 - [x] 階段二十六：首頁 Lead 表單現代化升級（蜜罐防洗、LINE 深度帶參轉化確認彈窗、LocalStorage 預約備份）＋ 房東常見問答 FAQ 手風琴 ＋ Google FAQPage 結構化資料全面整合（100% 0px 溢出、觸控熱區合格、全站 13 頁 PWA 離線可用）
 - [x] 階段二十七：租賃修繕點交與屋況瑕疵存證紀錄神器 `repair-inspection.html`（依據租賃專法第11條與民法第429/432條法定點交規範，支援起租交付/退租返還/修繕存證三大模式、六大空間分區、相機拍照自動壓印時間存證浮水印、四級責任歸屬判定、水電瓦斯指針登錄、雙畫布高靈敏電子手寫簽章、A4無痕列印出圖、JSON匯入匯出與LINE深度帶參回報，全站14頁100% PWA離線可用與零溢出通過）
+- [x] 階段二十八：全站 SEO 搜尋引擎架構部署（`sitemap.xml` ＋ `robots.txt`）＋ 租務專欄現代化深度閱讀彈窗 ＋ Google `BlogPosting` 結構化資料全面整合（14頁Sitemap完整索引、專欄法規1.5萬與60%校正、3大專欄文章彈窗與工具轉化閉環、PWA 59項資產100%離線可用與52組情境零溢出通過）
 
 ## 資料夾結構
 
@@ -73,6 +74,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── lease-contract.html              # 12. 租賃契約與住戶公約線上套印產生器
 ├── tax-calculator.html              # 13. 房東包租代管節稅效益與實質收益試算神器
 ├── repair-inspection.html           # 14. 租賃修繕點交與屋況瑕疵存證紀錄神器
+├── sitemap.xml                      # 全站 14 頁 SEO XML 網站地圖
+├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
 ├── script.js / rent-calc.js
