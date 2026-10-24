@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>退租押金結算與點交扣款明細單產生器｜破日租金退補・水電預扣・雙向手寫簽章・A4確認書｜港居不動產</title>
+  <meta name="description" content="專為房東與包租代管設計之退租押金結算神器！依據租賃專法第11條與內政部定型化契約規範，內建提前解約1個月違約金上限防呆、破日租金退補、最後一期水電結算、跨工具修繕扣款匯入、雙向電子手寫簽名，一鍵產出LINE結算圖卡與A4返還確認書。">
+
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/deposit-settlement.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="退租押金結算與點交扣款明細單產生器｜港居不動產">
+  <meta property="og:description" content="破日租金退補、最後一期水電結算、違約金法定上限防呆與雙向手寫電子簽章，一鍵匯出A4退租押金返還確認書與LINE圖卡。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/deposit-settlement.html">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/deposit-settlement.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居退租押金結算與點交扣款明細單產生器",
+    "url": "https://ganggo880.github.io/ganju-website/deposit-settlement.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "依據租賃住宅市場發展及管理條例第11條與住宅租賃定型化契約規範，提供退租押金結算、破日租金退補、最後一期水電結算、違約金上限防呆、雙向電子手寫簽名與A4確認書列印。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "退租押金結算與點交扣款明細單產生器",
+        "item": "https://ganggo880.github.io/ganju-website/deposit-settlement.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body>
+
+  <!-- 頂部宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法登記包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+        <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        <span class="brand-text-box">
+          <span class="brand-name">港居不動產</span>
+          <span class="brand-sub">高優質住宅包租代管</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link active"><i class="fa-solid fa-hand-holding-dollar" style="color: #f6ad55;"></i> 退租押金結算單</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> 水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #ed8936;"></i> 屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #c5a059;"></i> 租賃契約產生器</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主工作區 -->
+  <main class="deposit-page">
+    <div class="deposit-bg-glow"></div>
+    <div class="deposit-bg-glow-left"></div>
+
+    <div class="container">
+      <!-- 頂部 Hero -->
+      <header class="deposit-hero">
+        <div class="deposit-badge-row">
+          <span class="deposit-pill gold"><i class="fa-solid fa-scale-balanced"></i> 依據租賃專法第11條＆定型化契約規範</span>
+          <span class="deposit-pill"><i class="fa-solid fa-signature"></i> 雙畫布手寫親簽存證</span>
+          <span class="deposit-pill"><i class="fa-solid fa-link"></i> 支援匯入屋況點交修繕紀錄</span>
+        </div>
+        <h1>💰 退租押金結算與點交扣款明細單產生器</h1>
+        <p>一次完成<strong>破日租金退補、最後一期水電結算、提前解約違約金上限防呆与修繕清潔扣款</strong>，支援雙方現場手寫電子簽章，一鍵匯出 <strong>LINE 結算圖卡</strong>與 <strong>A4 正式返還確認書</strong>！</p>
+      </header>
+
+      <!-- 快速操作工具列 -->
+      <div class="deposit-toolbar">
+        <div class="deposit-toolbar-group">
+          <button type="button" class="deposit-btn sync-btn" id="syncFromInspectionBtn" title="從本機屋況修繕點交神器匯入承租人應賠償之項目">
+            <i class="fa-solid fa-file-import"></i> 從「屋況點交神器」匯入扣款
+          </button>
+          <button type="button" class="deposit-btn" id="resetDepositDemoBtn">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 載入標準範例
+          </button>
+        </div>
+        <div class="deposit-toolbar-group">
+          <button type="button" class="deposit-btn line-btn" id="copyDepositLineBtn">
+            <i class="fa-brands fa-line"></i> 複製 LINE 結算明細
+          </button>
+          <button type="button" class="deposit-btn gold" id="downloadDepositCardBtn">
+            <i class="fa-solid fa-image"></i> 下載結算圖卡 (含簽章)
+          </button>
+          <button type="button" class="deposit-btn primary" id="printDepositSheetBtn">
+            <i class="fa-solid fa-print"></i> 列印 A4 確認書 / 存 PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- 雙欄工作區 -->
+      <div class="deposit-workspace">
+        <!-- 左欄：輸入設定與電子簽章 -->
+        <div class="deposit-input-col">
+
+          <!-- 1. 契約與退租基本資料 -->
+          <section class="deposit-card" aria-labelledby="secBasicTitle">
+            <div class="deposit-card-header">
+              <h2 class="deposit-card-title" id="secBasicTitle">
+                <i class="fa-solid fa-house-circle-check"></i> 步驟一：租賃標的與退租類型設定
+              </h2>
+            </div>
+
+            <div class="deposit-form-grid">
+              <div class="deposit-field full">
+                <label for="propAddressInput">租賃標的物地址</label>
+                <input type="text" id="propAddressInput" placeholder="例：高雄市小港區中安路825號8樓之2">
+              </div>
+
+              <div class="deposit-field">
+                <label for="landlordNameInput">出租人／代管方名稱</label>
+                <input type="text" id="landlordNameInput" placeholder="例：港居不動產開發有限公司">
+              </div>
+
+              <div class="deposit-field">
+                <label for="tenantNameInput">承租人（房客）姓名</label>
+                <input type="text" id="tenantNameInput" placeholder="例：林冠宇 先生">
+              </div>
+
+              <div class="deposit-field">
+                <label for="moveOutDateInput">退租點交日期</label>
+                <input type="date" id="moveOutDateInput">
+              </div>
+
+              <div class="deposit-field">
+                <label for="monthlyRentInput">原約定每月租金 (元)</label>
+                <input type="number" id="monthlyRentInput" min="0" step="100">
+              </div>
+
+              <div class="deposit-field">
+                <label for="depositHeldInput">原收押金總額 (元)</label>
+                <input type="number" id="depositHeldInput" min="0" step="100">
+              </div>
+
+              <div class="deposit-field">
+                <label for="terminationTypeSelect">退租解約原因</label>
+                <select id="terminationTypeSelect">
+                  <option value="normal">租期屆滿 / 雙方合意正常退租 (無違約金)</option>
+                  <option value="tenant_early">承租人提前終止租約 (扣抵違約金・法定最高1個月)</option>
+                  <option value="landlord_early">出租人提前終止租約 (加計補償承租人)</option>
+                </select>
+              </div>
+
+              <div class="deposit-field full" id="penaltyAmountFieldWrap" style="display: none;">
+                <label for="customPenaltyInput">提前終止租約違約金／補償金額 (元)</label>
+                <input type="number" id="customPenaltyInput" min="0" step="100">
+              </div>
+            </div>
+
+            <div class="penalty-alert-banner" id="penaltyAlertBanner"></div>
+          </section>
+
+          <!-- 2. 破日租金退補與最後一期水電瓦斯結算 -->
+          <section class="deposit-card" aria-labelledby="secUtilityTitle">
+            <div class="deposit-card-header">
+              <h2 class="deposit-card-title" id="secUtilityTitle">
+                <i class="fa-solid fa-bolt"></i> 步驟二：破日租金退補 ＆ 最後一期水電結算
+              </h2>
+            </div>
+
+            <div class="deposit-form-grid">
+              <div class="deposit-field">
+                <label for="proratedModeSelect">當期破日租金處理</label>
+                <select id="proratedModeSelect">
+                  <option value="none">剛好滿期（無須退補破日租金）</option>
+                  <option value="refund">預繳未住滿・按日退還租客 (+)</option>
+                  <option value="charge">延後退租／未結天數・按日補收 (-)</option>
+                </select>
+              </div>
+
+              <div class="deposit-field">
+                <label for="baseDaysSelect">日租金換算基準天數</label>
+                <select id="baseDaysSelect">
+                  <option value="30">每月固定以 30 日換算 (最常用)</option>
+                  <option value="31">以大月 31 日換算</option>
+                  <option value="28">以平年二月 28 日換算</option>
+                </select>
+              </div>
+
+              <div class="deposit-field full" id="proratedDaysWrap" style="display: none;">
+                <label for="proratedDaysInput">應退還／應補收之破日天數 (日)</label>
+                <input type="number" id="proratedDaysInput" min="0" max="60" step="1">
+              </div>
+
+              <div class="deposit-field">
+                <label for="elecPrevInput">上次結算電表度數 (度)</label>
+                <input type="number" id="elecPrevInput" min="0" step="0.1">
+              </div>
+
+              <div class="deposit-field">
+                <label for="elecCurrInput">退租當日電表度數 (度)</label>
+                <input type="number" id="elecCurrInput" min="0" step="0.1">
+              </div>
+
+              <div class="deposit-field">
+                <label for="elecRateInput">每度電價 (符合2024新制平均單價)</label>
+                <input type="number" id="elecRateInput" min="0" step="0.01">
+              </div>
+
+              <div class="deposit-field">
+                <label for="waterUnpaidInput">未結清自來水費 (元)</label>
+                <input type="number" id="waterUnpaidInput" min="0" step="1">
+              </div>
+
+              <div class="deposit-field full">
+                <label for="gasMgmtUnpaidInput">未結清天然氣／社區管理費／公電合計 (元)</label>
+                <input type="number" id="gasMgmtUnpaidInput" min="0" step="1">
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. 修繕清潔扣款與保證金退還加減項 -->
+          <section class="deposit-card" aria-labelledby="secAdjustTitle">
+            <div class="deposit-card-header">
+              <h2 class="deposit-card-title" id="secAdjustTitle">
+                <i class="fa-solid fa-screwdriver-wrench"></i> 步驟三：設備損壞修繕、清潔費與磁扣加減項
+              </h2>
+              <button type="button" class="deposit-btn gold" id="addAdjustItemBtn">
+                <i class="fa-solid fa-plus"></i> 新增加減項目
+              </button>
+            </div>
+
+            <div class="adjust-list" id="adjustItemsContainer"></div>
+          </section>
+
+          <!-- 4. 退還匯款帳號與雙方電子手寫親簽 -->
+          <section class="deposit-card" aria-labelledby="secSigTitle">
+            <div class="deposit-card-header">
+              <h2 class="deposit-card-title" id="secSigTitle">
+                <i class="fa-solid fa-pen-nib"></i> 步驟四：匯款退還帳號 ＆ 雙方現場電子親簽
+              </h2>
+            </div>
+
+            <div class="deposit-form-grid" style="margin-bottom: 16px;">
+              <div class="deposit-field full">
+                <label for="refundBankInput">承租人受領押金匯款帳號（或填「現場現金點交」）</label>
+                <input type="text" id="refundBankInput" placeholder="例：玉山銀行 (808) 帳號：0456-978-123456 戶名：林冠宇">
+              </div>
+              <div class="deposit-field full">
+                <label for="settlementMethodInput">押金返還期限與約定事項</label>
+                <input type="text" id="settlementMethodInput" placeholder="例：點交確認無誤後 3 個營業日內匯款退還">
+              </div>
+            </div>
+
+            <div class="sig-pad-grid">
+              <div class="sig-pad-box">
+                <div class="sig-pad-head">
+                  <span><i class="fa-solid fa-user-tie"></i> 出租人／代管方簽章</span>
+                  <button type="button" class="sig-clear-btn" id="clearLandlordSigBtn">清除重簽</button>
+                </div>
+                <canvas id="landlordSigCanvas" class="sig-canvas"></canvas>
+              </div>
+
+              <div class="sig-pad-box">
+                <div class="sig-pad-head">
+                  <span><i class="fa-solid fa-user-check"></i> 承租人（房客）親簽</span>
+                  <button type="button" class="sig-clear-btn" id="clearTenantSigBtn">清除重簽</button>
+                </div>
+                <canvas id="tenantSigCanvas" class="sig-canvas"></canvas>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- 右欄：A4 正式《住宅退租押金結算暨點交返還確認書》 -->
+        <div class="deposit-output-col">
+          <section class="deposit-sheet" aria-label="住宅退租押金結算暨點交返還確認書">
+            <div class="dep-sheet-header">
+              <div class="dep-sheet-brand">GANJU REAL ESTATE ｜ 港居不動產包租代管法定退租點交憑證</div>
+              <h2 class="dep-sheet-title">住宅退租押金結算暨點交返還確認書</h2>
+              <div class="dep-sheet-meta">
+                <span id="sheetMoveOutDate">退租點交日期：—</span>
+                <span id="sheetTermType">退租原因：—</span>
+              </div>
+            </div>
+
+            <!-- 基本資訊欄 -->
+            <div class="dep-info-grid">
+              <div class="dep-info-item" style="grid-column: 1 / -1;">
+                <span>租賃標的物地址：</span>
+                <strong id="infoAddress">—</strong>
+              </div>
+              <div class="dep-info-item">
+                <span>出租人／代管方：</span>
+                <strong id="infoLandlord">—</strong>
+              </div>
+              <div class="dep-info-item">
+                <span>承租人（房客）：</span>
+                <strong id="infoTenant">—</strong>
+              </div>
+              <div class="dep-info-item" style="grid-column: 1 / -1;">
+                <span>原約定每月租金：</span>
+                <strong id="infoMonthlyRent">—</strong>
+              </div>
+            </div>
+
+            <!-- 加減項明細表 -->
+            <div class="dep-table-wrap">
+              <table class="dep-table">
+                <thead>
+                  <tr>
+                    <th>結算項目名稱與計算依據說明</th>
+                    <th>加減金額 (新臺幣)</th>
+                  </tr>
+                </thead>
+                <tbody id="depTableBody"></tbody>
+              </table>
+            </div>
+
+            <!-- 最終應退押金大字卡 -->
+            <div class="dep-final-banner" id="depFinalBanner">
+              <div>
+                <div class="dep-final-label" id="depFinalLabel">結算後應退還承租人押金淨額</div>
+                <div class="dep-final-chinese" id="depFinalChinese">大寫金額：新臺幣 零元整</div>
+              </div>
+              <div class="dep-final-number" id="depFinalNumber">NT$ 0</div>
+            </div>
+
+            <!-- 匯款帳號與法律結清條款 -->
+            <div class="dep-legal-clause">
+              <div><strong>🏦 退還匯款帳戶：</strong><span id="sheetRefundBank"></span></div>
+              <div><strong>⏰ 返還期限約定：</strong><span id="sheetSettlementMethod"></span></div>
+              <div style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border-color);">
+                <strong>⚖️ 點交返還暨債權債務結清確認聲明：</strong><br>
+                租賃雙方已依《租賃住宅市場發展及管理條例》第 11 條規定共同完成本標的物之退租屋況點交、鑰匙磁扣歸還及上開水電、租金、修繕與押金之結算。自上開應退押金依約返還（或差額補繳）完畢時起，除本確認書所載事項外，雙方就本租賃契約再無其他債權債務關係或爭執，特立本確認書為憑。
+              </div>
+            </div>
+
+            <!-- 雙方簽章同步預覽區 -->
+            <div class="dep-sig-preview-grid">
+              <div class="dep-sig-preview-box">
+                <div class="dep-sig-preview-title">出租人／代管方簽章確認：</div>
+                <div id="previewLandlordSig" class="dep-sig-img" role="img" aria-label="出租人或代管方簽章"></div>
+              </div>
+              <div class="dep-sig-preview-box">
+                <div class="dep-sig-preview-title">承租人（房客）親簽確認：</div>
+                <div id="previewTenantSig" class="dep-sig-img" role="img" aria-label="承租人親簽確認"></div>
+              </div>
+            </div>
+
+            <div class="dep-sheet-stamp">
+              <span>法令依據：《租賃住宅市場發展及管理條例》第11條 ＆ 內政部住宅租賃定型化契約應記載事項</span>
+              <span>港居不動產開發有限公司 ｜ 統編：96797997 ｜ (113)高市租登字第0012號</span>
+            </div>
+          </section>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async" style="height: 36px; width: auto;">
+            港居不動產開發有限公司
+          </h4>
+          <p>依法特許登記經營租賃住宅包租業與代管業，專注高質感住宅資產護全與穩定收益增值。</p>
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>服務項目</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+            <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算單</a></li>
+            <li><a href="utility-splitter.html">水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html">屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html">房東節稅試算</a></li>
+            <li><a href="lease-contract.html">租賃契約產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>證照字號</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" style="font-weight: 700; color: var(--accent-gold);">個人資料與隱私權政策</a></li>
+            <li>租賃住宅服務業登記證：(113)高市租登字第0012號</li>
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+            <li><a href="index.html#disclosure">法定揭示事項</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- 專屬邏輯腳本 -->
+  <script type="module" src="js/deposit-settlement.js"></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>

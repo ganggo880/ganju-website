@@ -1,0 +1,697 @@
+/* ==========================================================================
+   港居不動產 - 退租押金結算與點交扣款明細單產生器 (deposit-settlement.css)
+   符合租賃專法第11條與定型化契約規範 ｜ 100% 繼承 css/tokens.css ｜ 360px 零溢出 ｜ A4 列印
+   ========================================================================== */
+
+.deposit-page {
+  position: relative;
+  padding: 110px 0 80px;
+  min-height: 100vh;
+  background: var(--bg-main);
+  overflow-x: hidden;
+}
+
+.deposit-bg-glow {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  max-width: 100vw;
+  height: 480px;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.deposit-bg-glow-left {
+  position: absolute;
+  top: 340px;
+  left: -140px;
+  width: 420px;
+  max-width: 100vw;
+  height: 420px;
+  background: radial-gradient(circle, rgba(26, 54, 93, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.deposit-page > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 頂部 Hero */
+.deposit-hero {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 30px;
+}
+
+.deposit-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.deposit-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: rgba(26, 54, 93, 0.08);
+  color: var(--primary-navy);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+}
+
+[data-theme="dark"] .deposit-pill {
+  background: rgba(197, 160, 89, 0.14);
+  color: var(--accent-gold-light);
+}
+
+.deposit-pill.gold {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.2), rgba(197, 160, 89, 0.08));
+  color: #9c7426;
+  border-color: var(--accent-gold);
+}
+
+[data-theme="dark"] .deposit-pill.gold {
+  color: var(--accent-gold-light);
+}
+
+.deposit-hero h1 {
+  font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.deposit-hero p {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* 快速工具列 */
+.deposit-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.deposit-toolbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.deposit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.deposit-btn:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-1px);
+}
+
+.deposit-btn.primary {
+  background: linear-gradient(135deg, var(--primary-navy), var(--primary-navy-dark));
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.deposit-btn.gold {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.deposit-btn.line-btn {
+  background: rgba(6, 199, 85, 0.12);
+  color: #059642;
+  border-color: rgba(6, 199, 85, 0.35);
+}
+
+[data-theme="dark"] .deposit-btn.line-btn {
+  color: #48bb78;
+}
+
+.deposit-btn.sync-btn {
+  background: rgba(237, 137, 54, 0.12);
+  color: #c05621;
+  border-color: rgba(237, 137, 54, 0.4);
+}
+
+[data-theme="dark"] .deposit-btn.sync-btn {
+  color: #fbd38d;
+}
+
+/* 雙欄佈局 */
+.deposit-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.deposit-workspace > * {
+  min-width: 0;
+}
+
+/* 卡片樣式 */
+.deposit-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.deposit-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.deposit-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.deposit-card-title i {
+  color: var(--accent-gold);
+}
+
+/* 表單網格 */
+.deposit-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.deposit-form-grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.deposit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.deposit-field.full {
+  grid-column: 1 / -1;
+}
+
+.deposit-field label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.deposit-field input,
+.deposit-field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 0.94rem;
+  font-family: inherit;
+}
+
+.deposit-field input:focus,
+.deposit-field select:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.18);
+}
+
+/* 法定違約金防呆橫幅 */
+.penalty-alert-banner {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(56, 161, 105, 0.09);
+  border: 1px solid rgba(56, 161, 105, 0.35);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #276749;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+[data-theme="dark"] .penalty-alert-banner {
+  color: #68d391;
+}
+
+.penalty-alert-banner.warning {
+  background: rgba(229, 62, 62, 0.1);
+  border-color: rgba(229, 62, 62, 0.5);
+  color: #c53030;
+}
+
+[data-theme="dark"] .penalty-alert-banner.warning {
+  color: #fc8181;
+}
+
+/* 加減項明細列 */
+.adjust-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.adjust-item-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1.4fr) 120px 44px;
+  gap: 10px;
+  align-items: center;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px;
+}
+
+.adjust-remove-btn {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(229, 62, 62, 0.3);
+  background: rgba(229, 62, 62, 0.08);
+  color: #c53030;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .adjust-remove-btn {
+  color: #fc8181;
+}
+
+/* 雙畫布電子手寫簽名板 */
+.sig-pad-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.sig-pad-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+
+.sig-pad-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.sig-clear-btn {
+  min-height: 44px;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sig-canvas {
+  width: 100%;
+  height: 130px;
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius-sm);
+  touch-action: none;
+  cursor: crosshair;
+  display: block;
+}
+
+/* 右側 A4 正式退租押金結算確認書 */
+.deposit-sheet {
+  background: var(--bg-surface);
+  border: 2px solid var(--primary-navy);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .deposit-sheet {
+  border-color: var(--accent-gold);
+}
+
+.dep-sheet-header {
+  text-align: center;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--primary-navy);
+}
+
+[data-theme="dark"] .dep-sheet-header {
+  border-bottom-color: var(--accent-gold);
+}
+
+.dep-sheet-brand {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-gold-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .dep-sheet-brand {
+  color: var(--accent-gold-light);
+}
+
+.dep-sheet-title {
+  font-size: 1.38rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+
+.dep-sheet-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+/* 契約基本資訊表 */
+.dep-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 18px;
+  font-size: 0.86rem;
+}
+
+.dep-info-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 4px;
+}
+
+.dep-info-item span:first-child {
+  color: var(--text-secondary);
+}
+
+.dep-info-item strong {
+  color: var(--text-primary);
+  text-align: right;
+}
+
+/* 結算明細表 */
+.dep-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 18px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.dep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.dep-table th,
+.dep-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dep-table th {
+  background: rgba(26, 54, 93, 0.08);
+  color: var(--text-primary);
+  font-weight: 800;
+  text-align: left;
+}
+
+[data-theme="dark"] .dep-table th {
+  background: rgba(197, 160, 89, 0.14);
+}
+
+.dep-table th:last-child,
+.dep-table td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.amt-plus {
+  color: #276749;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .amt-plus {
+  color: #68d391;
+}
+
+.amt-minus {
+  color: #c53030;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .amt-minus {
+  color: #fc8181;
+}
+
+/* 最終應退押金大字卡 */
+.dep-final-banner {
+  background: linear-gradient(135deg, var(--primary-navy), var(--primary-navy-dark));
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dep-final-banner.shortfall {
+  background: linear-gradient(135deg, #9b2c2c, #742a2a);
+}
+
+.dep-final-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dep-final-chinese {
+  font-size: 0.85rem;
+  color: #fbd38d;
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.dep-final-number {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #fbd38d;
+}
+
+/* 法律免責條款與簽章預覽區 */
+.dep-legal-clause {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 0.81rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.dep-sig-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.dep-sig-preview-box {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  background: #ffffff;
+  color: #1e293b;
+}
+
+.dep-sig-preview-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.dep-sig-img {
+  width: 100%;
+  height: 75px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+}
+
+.dep-sheet-stamp {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* RWD 行動端響應式 (360px 零溢出與 ≥44px 觸控熱區) */
+@media (max-width: 1024px) {
+  .deposit-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .deposit-page {
+    padding: 96px 0 60px;
+  }
+
+  .deposit-card,
+  .deposit-sheet {
+    padding: 16px 14px;
+  }
+
+  .deposit-form-grid,
+  .deposit-form-grid.cols-3,
+  .sig-pad-grid,
+  .dep-info-grid,
+  .dep-sig-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .adjust-item-row {
+    grid-template-columns: 1fr;
+  }
+
+  .deposit-toolbar-group {
+    width: 100%;
+  }
+
+  .deposit-toolbar-group .deposit-btn {
+    flex: 1 1 calc(50% - 6px);
+    font-size: 0.84rem;
+    padding: 8px 10px;
+  }
+}
+
+/* A4 無痕列印 */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .top-bar,
+  .navbar,
+  .deposit-hero,
+  .deposit-toolbar,
+  .deposit-input-col,
+  .footer,
+  .floating-actions,
+  .deposit-bg-glow,
+  .deposit-bg-glow-left {
+    display: none !important;
+  }
+
+  .deposit-page {
+    padding: 0 !important;
+    min-height: auto !important;
+    background: #ffffff !important;
+  }
+
+  .deposit-workspace {
+    display: block !important;
+  }
+
+  .deposit-sheet {
+    border: 2px solid #1A365D !important;
+    box-shadow: none !important;
+    padding: 18px !important;
+    width: 100% !important;
+  }
+
+  .dep-info-grid,
+  .dep-sig-preview-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

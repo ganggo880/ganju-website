@@ -1,9 +1,9 @@
 // sw.js - 港居不動產 PWA 離線 Service Worker
 // 提供全站 12 款不動產線上工具、3D 智慧島與隱私權專頁 100% 離線運作與極速快取體驗
 
-const CACHE_NAME = 'ganju-pwa-v1.7';
+const CACHE_NAME = 'ganju-pwa-v1.8';
 
-// 核心離線資源清單 (全站 16 頁、Sitemap、CSS、JS、Icon)
+// 核心離線資源清單 (全站 17 頁、Sitemap、CSS、JS、Icon)
 const PRECACHE_ASSETS = [
   './',
   './index.html',
@@ -21,6 +21,7 @@ const PRECACHE_ASSETS = [
   './tax-calculator.html',
   './repair-inspection.html',
   './utility-splitter.html',
+  './deposit-settlement.html',
   './privacy.html',
   './manifest.json',
   './sitemap.xml',
@@ -37,6 +38,7 @@ const PRECACHE_ASSETS = [
   './css/tax-calculator.css',
   './css/repair-inspection.css',
   './css/utility-splitter.css',
+  './css/deposit-settlement.css',
   './css/ocr-translator.css',
   './css/converter.css',
   './css/card-merger.css',
@@ -58,6 +60,7 @@ const PRECACHE_ASSETS = [
   './js/tax-calculator.js',
   './js/repair-inspection.js',
   './js/utility-splitter.js',
+  './js/deposit-settlement.js',
   './js/ocr-translator.js',
   './js/converter.js',
   './js/image-converter.js',

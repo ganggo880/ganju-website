@@ -21,6 +21,7 @@ HTML_FILES = [
     "tax-calculator.html",
     "repair-inspection.html",
     "utility-splitter.html",
+    "deposit-settlement.html",
     "privacy.html"
 ]
 
