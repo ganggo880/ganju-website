@@ -2599,4 +2599,170 @@ img, svg, iframe, video {
   }
 }
 
+/* ==========================================================================
+   線上工具中心專區 (Online Tools Hub) 樣式
+   ========================================================================== */
+.tools-hub-section {
+  background: var(--bg-body);
+  position: relative;
+  overflow: hidden;
+}
+
+.tools-category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.tools-cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.tools-cat-btn:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-1px);
+}
+
+.tools-cat-btn.active {
+  background: var(--primary-navy);
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-md);
+}
+
+.tools-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.tool-hub-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+  min-width: 0;
+}
+
+.tool-hub-card:hover {
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.tool-hub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.tool-hub-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.tool-hub-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.74rem;
+  font-weight: 800;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-hover);
+  border: 1px solid var(--border-gold);
+}
+
+.tool-hub-body h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+
+.tool-hub-body p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.tool-hub-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  color: var(--primary-navy);
+  border: 1px solid var(--border-color);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  margin-top: auto;
+}
+
+[data-theme="dark"] .tool-hub-btn {
+  color: var(--accent-gold);
+}
+
+.tool-hub-btn:hover {
+  background: var(--primary-navy);
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+@media (max-width: 992px) {
+  .tools-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tools-hub-grid {
+    grid-template-columns: 1fr;
+  }
+  .tool-hub-card {
+    padding: 18px;
+  }
+}
+
+
 

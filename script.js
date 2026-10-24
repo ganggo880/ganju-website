@@ -611,4 +611,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 9. 線上工具中心分類篩選互動 (Online Tools Hub Filter Handler)
+  const toolCatBtns = document.querySelectorAll('.tools-cat-btn');
+  const toolCards = document.querySelectorAll('.tool-hub-card');
+
+  toolCatBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      toolCatBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      toolCards.forEach((card) => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (window.GanjuTracker) {
+        window.GanjuTracker.track('tools_hub_filter_click', { filter_category: filter });
+      }
+    });
+  });
+
 });

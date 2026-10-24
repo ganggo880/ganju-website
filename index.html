@@ -232,6 +232,7 @@
             <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
           </button>
           <ul class="nav-dropdown-menu">
+            <li><a href="#tools" class="nav-link" style="background: var(--accent-gold-light); color: var(--accent-gold-hover); font-weight: 800;"><i class="fa-solid fa-layer-group"></i> 瀏覽線上工具中心 (#tools)</a></li>
             <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
             <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #f56565;"></i> 存證信函產生器</a></li>
             <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #fc8181;"></i> 招租文案與首圖合成</a></li>
@@ -532,6 +533,344 @@
         <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
           <i class="fa-brands fa-line"></i> 加 LINE 詢問空房
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全方位不動產線上工具中心 (Online Tools Hub) -->
+  <section class="section tools-hub-section" id="tools">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">DIGITAL TOOLS HUB</span>
+        <h2 class="section-title">全方位不動產與租務線上工具中心</h2>
+        <p class="section-desc">合法合規・純前端零上傳・專為房東、租客與租管從業人員打造的 18 款高階數位神器，完全免費開放使用。</p>
+      </div>
+
+      <!-- 分類切換按鈕列 -->
+      <div class="tools-category-nav" role="tablist" aria-label="線上工具分類篩選">
+        <button type="button" class="tools-cat-btn active" data-filter="all">
+          <i class="fa-solid fa-layer-group"></i> 全部工具 (18)
+        </button>
+        <button type="button" class="tools-cat-btn" data-filter="landlord">
+          <i class="fa-solid fa-crown" style="color: var(--accent-gold);"></i> 房東節稅與法務 (6)
+        </button>
+        <button type="button" class="tools-cat-btn" data-filter="tenant">
+          <i class="fa-solid fa-hand-holding-heart" style="color: #f687b3;"></i> 租客權益與試算 (4)
+        </button>
+        <button type="button" class="tools-cat-btn" data-filter="utility">
+          <i class="fa-solid fa-wand-magic-sparkles" style="color: #63b3ed;"></i> 空間與數位神器 (8)
+        </button>
+      </div>
+
+      <!-- 工具卡片網格 -->
+      <div class="tools-hub-grid" id="toolsHubGrid">
+
+        <!-- 1. 存證信函產生器 -->
+        <article class="tool-hub-card" data-category="landlord">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #f56565;">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-gavel"></i> 法務必備</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>欠租催告與終止租約存證信函</h3>
+            <p>依民法第440條欠租限期催告、終止租約遷讓與期滿不續租四大法務範本，自動排版中華郵政 20×10 標準格線 A4 列印。</p>
+          </div>
+          <a href="legal-notice-generator.html" class="tool-hub-btn">
+            <span>立即產生存證信函</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 2. 591／社群招租文案與首圖合成 -->
+        <article class="tool-hub-card" data-category="landlord">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #fc8181;">
+              <i class="fa-solid fa-bullhorn"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-bullhorn"></i> 招租神隊友</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>591／社群招租文案與第33條合成器</h3>
+            <p>一鍵生成 591、FB 社團與 LINE 招租文案，強制自動帶入港居法定登記證號防罰，並合成 1080×1080 社群亮點首圖。</p>
+          </div>
+          <a href="listing-post-generator.html" class="tool-hub-btn">
+            <span>立即產出招租文案</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 3. 租金電子收據與屋主月結對帳單 -->
+        <article class="tool-hub-card" data-category="landlord">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #63b3ed;">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-coins"></i> 財務憑證</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>租金電子收據與代管月結對帳單</h3>
+            <p>租客繳租收據與屋主月結對帳（扣除10%代管服務費與代墊修繕）雙模式切換，中文金融大寫金額、電子簽章與圖卡下載。</p>
+          </div>
+          <a href="rent-receipt.html" class="tool-hub-btn">
+            <span>立即開立電子收據</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 4. 房東節稅試算神器 -->
+        <article class="tool-hub-card" data-category="landlord">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #48bb78;">
+              <i class="fa-solid fa-percent"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-hand-holding-dollar"></i> 房東必算</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>房東包租代管節稅效益試算神器</h3>
+            <p>精算租賃專法 1.5 萬免稅額、60% 必要費用率與囤房稅 2.0，自租 vs 代管 vs 全包租三方案年度實質淨利 PK。</p>
+          </div>
+          <a href="tax-calculator.html" class="tool-hub-btn">
+            <span>立即精算房東淨收益</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 5. 租賃契約與住戶公約產生器 -->
+        <article class="tool-hub-card" data-category="landlord">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: var(--accent-gold);">
+              <i class="fa-solid fa-file-contract"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-shield-halved"></i> 簽約必備</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>租賃契約與住戶公約套印產生器</h3>
+            <p>雙欄連動線上套印、中文大寫金額、搬遷免租期、水電度數計費、凶宅防範 300 萬違約金、27 項通用住戶公約 A4 列印。</p>
+          </div>
+          <a href="lease-contract.html" class="tool-hub-btn">
+            <span>立即套印租賃契約</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 6. 租金與代管服務費換算工具 -->
+        <article class="tool-hub-card" data-category="landlord">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #ecc94b;">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-arrow-right-arrow-left"></i> 精準拆分</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>租金與 10% 代管服務費精算拆分</h3>
+            <p>支援多基準天數（28/30/31日）、跨月破日租金換算、10% 代管服務費與未稅/含稅金額拆分，歷史紀錄一覽無遺。</p>
+          </div>
+          <a href="rent-calculator.html" class="tool-hub-btn">
+            <span>立即換算租金服務費</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 7. 300億租金補貼試算 -->
+        <article class="tool-hub-card" data-category="tenant">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #f687b3;">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-gift"></i> 租客激省</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>300億租金補貼資格自檢與實質月租</h3>
+            <p>依內政部國土署高雄市第一至三級基準額與單身1.2倍/新婚1.3倍/育兒1.4~2.0倍加碼倍數，精算補貼後實付月租與診斷單。</p>
+          </div>
+          <a href="rent-subsidy-checker.html" class="tool-hub-btn">
+            <span>立即自檢補貼額度</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 8. 水電與公電分攤單產生器 -->
+        <article class="tool-hub-card" data-category="tenant">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #ecc94b;">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-shield-check"></i> 2024新制</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>分租水電費與公電分攤結算單產生器</h3>
+            <p>依 2024.07.15 電費新制設計，每度平均電價上限防呆、4種公電分攤模式、各房專屬 LINE 催繳文字與繳費圖卡下載。</p>
+          </div>
+          <a href="utility-splitter.html" class="tool-hub-btn">
+            <span>立即結算水電分攤</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 9. 退租押金結算單 -->
+        <article class="tool-hub-card" data-category="tenant">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #f6ad55;">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-handshake"></i> 結算憑據</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>退租押金結算與點交扣款確認單</h3>
+            <p>提前解約1個月違約金上限防呆、破日租金退補、跨工具匯入修繕扣款、中文大寫金額、雙畫布親簽與 A4 確認書列印。</p>
+          </div>
+          <a href="deposit-settlement.html" class="tool-hub-btn">
+            <span>立即產出退租結算單</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 10. 屋況修繕點交神器 -->
+        <article class="tool-hub-card" data-category="tenant">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #ed8936;">
+              <i class="fa-solid fa-clipboard-check"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-camera"></i> 驗屋存證</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>租賃修繕點交與屋況瑕疵存證紀錄</h3>
+            <p>依租賃專法第11條起租交付與退租返還規範，拍照自動壓印時間地點水印、四級責任判定、水電指針登錄與雙向電子親簽。</p>
+          </div>
+          <a href="repair-inspection.html" class="tool-hub-btn">
+            <span>立即執行屋況點交</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 11. 2D/3D 空間格局配置系統 -->
+        <article class="tool-hub-card" data-category="utility">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #00e5ff;">
+              <i class="fa-solid fa-cubes"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-cube"></i> 3D WebGL</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>2D 平面格局配置與 3D 即時轉換</h3>
+            <p>匯入底圖兩點校正比例尺、玄關/管道間連動自動隔間、11 款 CAD 家具圖塊與 Three.js 60FPS 娃娃屋第一人稱漫遊出圖。</p>
+          </div>
+          <a href="space-planner.html" class="tool-hub-btn">
+            <span>立即配置空間格局</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 12. 照片 OCR 文字辨識與翻譯 -->
+        <article class="tool-hub-card" data-category="utility">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #9f7aea;">
+              <i class="fa-solid fa-language"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-brain"></i> AI 雙引擎</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>照片 OCR 文字辨識與多國語言翻譯</h3>
+            <p>純前端 99%+ AI 神經網路雙引擎、合約證件 ROI 自由框選、自適應去陰影與不動產專用語庫自動校對語音朗讀。</p>
+          </div>
+          <a href="ocr-translator.html" class="tool-hub-btn">
+            <span>立即辨識照片文字</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 13. 照片時間地點浮水印 -->
+        <article class="tool-hub-card" data-category="utility">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #ed64a6;">
+              <i class="fa-solid fa-camera-retro"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-location-dot"></i> EXIF GPS</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>照片時間與地點浮水印工具</h3>
+            <p>自動解析 EXIF 原始時間與 GPS 經緯度地址，支援自訂時間地點、三種精美樣式與五種版面位置批次合成與 ZIP 打包。</p>
+          </div>
+          <a href="photo-time-location.html" class="tool-hub-btn">
+            <span>立即壓印時間地點</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 14. 身份證照裁剪與水印 -->
+        <article class="tool-hub-card" data-category="utility">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #48bb78;">
+              <i class="fa-solid fa-id-card"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-lock"></i> 個資防護</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>身份證照裁剪與租賃用途防盜水印</h3>
+            <p>身分證正反面一鍵居中裁剪，壓印「僅供房屋租賃用途塗改無效」斜向防盜浮水印，純瀏覽器端離線加密處理不外洩。</p>
+          </div>
+          <a href="id-card-watermark.html" class="tool-hub-btn">
+            <span>立即製作防盜證件</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 15. 照片 EXIF 水印工具 -->
+        <article class="tool-hub-card" data-category="utility">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #a0aec0;">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-copyright"></i> 品牌保護</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>房源照片 EXIF 拍攝時間戳記水印</h3>
+            <p>自動解析相機拍攝原始時間，批次壓印品牌 LOGO 與時間戳記浮水印，保護房源實景圖不被盜用並作為屋況存證。</p>
+          </div>
+          <a href="photo-watermark.html" class="tool-hub-btn">
+            <span>立即批次壓印水印</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 16. 圖片格式轉換神器 -->
+        <article class="tool-hub-card" data-category="utility">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #4299e1;">
+              <i class="fa-solid fa-image"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-compress"></i> 圖片處理</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>圖像格式與尺寸轉換壓縮神器</h3>
+            <p>支援 JPG, PNG, WEBP, GIF, SVG, BMP 格式互轉，大/中/小尺寸調控與畫質壓縮，一次最多 20 張並可打包 ZIP 下載。</p>
+          </div>
+          <a href="image-converter.html" class="tool-hub-btn">
+            <span>立即轉檔壓縮圖片</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 17. 名片正反面合成神器 -->
+        <article class="tool-hub-card" data-category="utility">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: var(--accent-gold);">
+              <i class="fa-solid fa-address-card"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-object-group"></i> 名片合成</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>名片正反面／上下拼貼合成神器</h3>
+            <p>房仲與租管名片正反面水平左右或垂直上下自動對齊拼貼、留白與背景色控制、一鍵匯出高畫質 JPG/PNG 圖檔。</p>
+          </div>
+          <a href="card-merger.html" class="tool-hub-btn">
+            <span>立即合成業務名片</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 18. 多功能檔案轉換神器 -->
+        <article class="tool-hub-card" data-category="utility">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #805ad5;">
+              <i class="fa-solid fa-file-export"></i>
+            </div>
+            <span class="tool-hub-badge"><i class="fa-solid fa-laptop-code"></i> 本地轉檔</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>線上多功能檔案轉換神器</h3>
+            <p>支援 PDF, DOCX, PNG, MP3, MP4, ZIP 純瀏覽器端本地本地加密轉檔，檔案不傳至第三方伺服器，零個資外洩風險。</p>
+          </div>
+          <a href="file-converter.html" class="tool-hub-btn">
+            <span>立即轉換線上檔案</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
       </div>
     </div>
   </section>
