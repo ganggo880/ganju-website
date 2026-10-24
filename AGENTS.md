@@ -57,6 +57,7 @@
 - [x] 階段三十四：全站個資隱私權政策 (`privacy.html`) 雙向閉環互通 ＋ 專案健康檢測引擎升級 ＋ 誠信資料校核（全站 15 頁頁尾全面補齊個資政策直連、全站 15/15 頁雙向互通度 100%、`verify_project_health.py` 綜合檢測評定 GRADE A+ 滿分、移除未經證實之評價/營業時間/PageSpeed 預填數據、補齊官方登記證號至藍圖）
 - [x] 階段三十五：分租水電費與公電分攤結算單產生器 `utility-splitter.html`（依據 2024.07.15 住宅租賃定型化契約電費新制設計，內建台電當期每度平均電價上限防呆、各房獨立分表度數與公電/水費加權分攤、一鍵結轉本期度數至下期、各房專屬 LINE 催繳文字複製、Canvas 高畫質繳費通知圖卡下載與 A4 公告總表無痕列印，全站 16 頁 100% 互通與 PWA 離線可用）
 - [x] 階段三十六：退租押金結算與點交扣款明細單產生器 `deposit-settlement.html`（依據租賃專法第 11 條與內政部定型化契約第 14 點設計，內建提前解約最高 1 個月違約金上限防呆、破日租金退補、最後一期水電結算、跨工具從 `repair-inspection.html` 匯入修繕扣款、中文大寫金額轉換、雙畫布手寫親簽、LINE 明細複製、Canvas 含簽章圖卡下載與 A4 返還確認書列印，全站 17 頁 100% 互通與 PWA 離線可用）
+- [x] 階段三十七：300 億中央擴大租金補貼資格自檢與實質月租試算器 `rent-subsidy-checker.html`（依據內政部國土管理署高雄市第一至三級基準額與單身 1.2 倍、新婚 1.3 倍、育兒 1.4~2.0 倍、經濟/社會弱勢加碼倍數設計，內建 4 大資格自檢、5 大族群快速試算、租客實付月租比例條、房東公益出租人 vs 港居包租代管 60% 費用率雙贏導流、LINE 複製、Canvas 圖卡下載與 A4 診斷單列印，全站 18 頁 100% 互通與 PWA 離線可用）
 
 ## 資料夾結構
 
@@ -85,7 +86,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── privacy.html                     # 15. 個人資料保護與隱私權政策專頁
 ├── utility-splitter.html            # 16. 分租水電費與公電分攤結算單產生器
 ├── deposit-settlement.html          # 17. 退租押金結算與點交扣款明細單產生器
-├── sitemap.xml                      # 全站 17 頁 SEO XML 網站地圖
+├── rent-subsidy-checker.html        # 18. 300億租金補貼資格自檢與實質月租試算器
+├── sitemap.xml                      # 全站 18 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -103,6 +105,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── repair-inspection.css        # 屋況修繕點交與瑕疵存證專屬樣式與 A4 排版引擎
 │   ├── utility-splitter.css         # 分租水電費與公電分攤結算單專屬樣式與 A4 列印引擎
 │   ├── deposit-settlement.css       # 退租押金結算與點交扣款明細單樣式與 A4 列印引擎
+│   ├── rent-subsidy-checker.css     # 300億租金補貼資格自檢與實質月租試算樣式與 A4 列印引擎
 │   ├── privacy.css                  # 隱私權政策與個資保護專頁樣式
 │   ├── ocr-translator.css           # 照片 OCR 文字辨識與翻譯專屬樣式
 │   ├── converter.css                # 檔案轉換工具專屬樣式
@@ -121,6 +124,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── repair-inspection.js         # 租賃修繕點交、時間浮水印壓印與電子簽章核心引擎
 │   ├── utility-splitter.js          # 分租水電費與公電分攤、2024電費新制防呆與圖卡匯出引擎
 │   ├── deposit-settlement.js        # 退租押金結算、違約金防呆、雙向電子簽名與圖卡匯出引擎
+│   ├── rent-subsidy-checker.js      # 300億租金補貼分級加碼試算、公益出租人導流與圖卡匯出引擎
 │   ├── ocr-translator.js            # 照片 OCR 雙引擎與翻譯邏輯
 │   ├── converter.js                 # 轉檔核心（Canvas / Blob 本地運算）
 │   ├── image-converter.js           # 圖像格式與尺寸轉換邏輯

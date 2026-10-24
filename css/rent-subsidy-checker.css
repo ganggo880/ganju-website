@@ -1,0 +1,657 @@
+/* ==========================================================================
+   港居不動產 - 300億租金補貼資格自檢與實質月租試算器 (rent-subsidy-checker.css)
+   依據內政部國土管理署高雄市分級與加碼標準 ｜ 100% 繼承 css/tokens.css ｜ 360px 零溢出
+   ========================================================================== */
+
+.subsidy-page {
+  position: relative;
+  padding: 110px 0 80px;
+  min-height: 100vh;
+  background: var(--bg-main);
+  overflow-x: hidden;
+}
+
+.subsidy-bg-glow {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  max-width: 100vw;
+  height: 480px;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.subsidy-bg-glow-left {
+  position: absolute;
+  top: 320px;
+  left: -140px;
+  width: 420px;
+  max-width: 100vw;
+  height: 420px;
+  background: radial-gradient(circle, rgba(26, 54, 93, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.subsidy-page > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 頂部 Hero */
+.subsidy-hero {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 30px;
+}
+
+.subsidy-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.subsidy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: rgba(26, 54, 93, 0.08);
+  color: var(--primary-navy);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+}
+
+[data-theme="dark"] .subsidy-pill {
+  background: rgba(197, 160, 89, 0.14);
+  color: var(--accent-gold-light);
+}
+
+.subsidy-pill.gold {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.2), rgba(197, 160, 89, 0.08));
+  color: #9c7426;
+  border-color: var(--accent-gold);
+}
+
+[data-theme="dark"] .subsidy-pill.gold {
+  color: var(--accent-gold-light);
+}
+
+.subsidy-hero h1 {
+  font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.subsidy-hero p {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* 快速工具列 */
+.subsidy-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.subsidy-toolbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.subsidy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.subsidy-btn:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-1px);
+}
+
+.subsidy-btn.primary {
+  background: linear-gradient(135deg, var(--primary-navy), var(--primary-navy-dark));
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.subsidy-btn.gold {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.subsidy-btn.line-btn {
+  background: rgba(6, 199, 85, 0.12);
+  color: #059642;
+  border-color: rgba(6, 199, 85, 0.35);
+}
+
+[data-theme="dark"] .subsidy-btn.line-btn {
+  color: #48bb78;
+}
+
+/* 雙欄佈局 */
+.subsidy-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.subsidy-workspace > * {
+  min-width: 0;
+}
+
+.subsidy-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.subsidy-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.subsidy-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subsidy-card-title i {
+  color: var(--accent-gold);
+}
+
+/* 情境快速切換膠囊 */
+.preset-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preset-chip {
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.preset-chip:hover,
+.preset-chip.active {
+  background: rgba(197, 160, 89, 0.16);
+  border-color: var(--accent-gold);
+  color: var(--primary-navy);
+}
+
+[data-theme="dark"] .preset-chip:hover,
+[data-theme="dark"] .preset-chip.active {
+  color: var(--accent-gold-light);
+}
+
+/* 表單網格 */
+.subsidy-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.subsidy-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.subsidy-field.full {
+  grid-column: 1 / -1;
+}
+
+.subsidy-field label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.subsidy-field input,
+.subsidy-field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 0.94rem;
+  font-family: inherit;
+}
+
+.subsidy-field input:focus,
+.subsidy-field select:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.18);
+}
+
+/* 資格自檢核選清單 */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.check-option-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.check-option-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary-navy);
+  flex-shrink: 0;
+}
+
+/* 資格檢核結果橫幅 */
+.eligibility-banner {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(56, 161, 105, 0.1);
+  border: 1px solid rgba(56, 161, 105, 0.38);
+  color: #276749;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .eligibility-banner {
+  color: #68d391;
+}
+
+.eligibility-banner.ineligible {
+  background: rgba(229, 62, 62, 0.1);
+  border-color: rgba(229, 62, 62, 0.5);
+  color: #c53030;
+}
+
+[data-theme="dark"] .eligibility-banner.ineligible {
+  color: #fc8181;
+}
+
+/* 右側試算結果診斷書 */
+.subsidy-sheet {
+  background: var(--bg-surface);
+  border: 2px solid var(--primary-navy);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .subsidy-sheet {
+  border-color: var(--accent-gold);
+}
+
+.sub-sheet-header {
+  text-align: center;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--primary-navy);
+}
+
+[data-theme="dark"] .sub-sheet-header {
+  border-bottom-color: var(--accent-gold);
+}
+
+.sub-sheet-brand {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-gold-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .sub-sheet-brand {
+  color: var(--accent-gold-light);
+}
+
+.sub-sheet-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.sub-sheet-meta {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+/* 核心實質月租對比大字卡 */
+.sub-hero-result {
+  background: linear-gradient(135deg, var(--primary-navy), var(--primary-navy-dark));
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin-bottom: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  text-align: center;
+}
+
+.sub-hero-col {
+  padding: 6px;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.sub-hero-col:last-child {
+  border-right: none;
+}
+
+.sub-hero-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 4px;
+}
+
+.sub-hero-val {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.sub-hero-val.gold {
+  color: #fbd38d;
+  font-size: 1.65rem;
+}
+
+.sub-hero-sub {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 2px;
+}
+
+/* 視覺化月租負擔比例條 */
+.rent-bar-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 18px;
+}
+
+.rent-bar-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.rent-bar-track {
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(26, 54, 93, 0.14);
+  overflow: hidden;
+  display: flex;
+}
+
+.rent-bar-gov {
+  background: linear-gradient(90deg, #38a169, #48bb78);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.rent-bar-self {
+  background: linear-gradient(90deg, var(--primary-navy), #2b6cb0);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.rent-bar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* 試算拆解明細表 */
+.sub-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.sub-detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  font-size: 0.88rem;
+}
+
+.sub-detail-row span {
+  color: var(--text-secondary);
+}
+
+.sub-detail-row strong {
+  color: var(--text-primary);
+  font-weight: 800;
+  text-align: right;
+}
+
+/* 房東公益出租人＆包租代管雙贏專區 */
+.landlord-bonus-box {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.14), rgba(26, 54, 93, 0.06));
+  border: 1px solid var(--accent-gold);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.landlord-bonus-title {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.landlord-bonus-title i {
+  color: var(--accent-gold);
+}
+
+.landlord-bonus-text {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.landlord-bonus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sub-sheet-stamp {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* RWD 行動端響應式 (360px 零溢出與 ≥44px 觸控熱區) */
+@media (max-width: 1024px) {
+  .subsidy-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .subsidy-page {
+    padding: 96px 0 60px;
+  }
+
+  .subsidy-card,
+  .subsidy-sheet {
+    padding: 16px 14px;
+  }
+
+  .subsidy-form-grid,
+  .check-grid,
+  .sub-hero-result {
+    grid-template-columns: 1fr;
+  }
+
+  .sub-hero-col {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    padding-bottom: 10px;
+  }
+
+  .sub-hero-col:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .subsidy-toolbar-group {
+    width: 100%;
+  }
+
+  .subsidy-toolbar-group .subsidy-btn {
+    flex: 1 1 calc(50% - 6px);
+    font-size: 0.84rem;
+    padding: 8px 10px;
+  }
+}
+
+/* A4 無痕列印 */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .top-bar,
+  .navbar,
+  .subsidy-hero,
+  .subsidy-toolbar,
+  .subsidy-input-col,
+  .landlord-bonus-actions,
+  .footer,
+  .floating-actions,
+  .subsidy-bg-glow,
+  .subsidy-bg-glow-left {
+    display: none !important;
+  }
+
+  .subsidy-page {
+    padding: 0 !important;
+    min-height: auto !important;
+    background: #ffffff !important;
+  }
+
+  .subsidy-workspace {
+    display: block !important;
+  }
+
+  .subsidy-sheet {
+    border: 2px solid #1A365D !important;
+    box-shadow: none !important;
+    padding: 18px !important;
+    width: 100% !important;
+  }
+
+  .sub-hero-result {
+    grid-template-columns: repeat(3, 1fr) !important;
+    background: #1A365D !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

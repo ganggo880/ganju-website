@@ -40,7 +40,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── privacy.html             # 15. 個人資料保護與隱私權政策專頁 (符合個資法特定目的086/069/040/090、純前端安全宣告)
 ├── utility-splitter.html    # 16. 分租水電費與公電分攤結算單產生器 (符合2024電費新制平均電價上限防呆、LINE催繳圖卡、A4公告總表)
 ├── deposit-settlement.html  # 17. 退租押金結算與點交扣款明細單產生器 (破日租金退補、水電預扣、違約金防呆、雙向電子簽章、A4確認書)
-├── sitemap.xml              # 全站 17 頁 SEO XML 網站地圖
+├── rent-subsidy-checker.html # 18. 300億租金補貼資格自檢與實質月租試算器 (高雄分級與加碼倍數、公益出租人與包租代管節稅導流、圖卡下載)
+├── sitemap.xml              # 全站 18 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -55,6 +56,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── repair-inspection.css # 屋況修繕點交與瑕疵存證專用樣式與 A4 排版引擎
 │   ├── utility-splitter.css # 分租水電費與公電分攤結算單樣式與 A4 列印引擎
 │   ├── deposit-settlement.css # 退租押金結算與點交扣款明細單樣式與 A4 列印引擎
+│   ├── rent-subsidy-checker.css # 300億租金補貼資格自檢與實質月租試算樣式與 A4 列印引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
@@ -73,6 +75,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── repair-inspection.js # 租賃修繕點交、時間浮水印壓印與電子簽章核心引擎
 │   ├── utility-splitter.js  # 分租水電費與公電分攤、2024電費新制防呆與圖卡匯出引擎
 │   ├── deposit-settlement.js # 退租押金結算、違約金防呆、雙向電子簽名與圖卡匯出引擎
+│   ├── rent-subsidy-checker.js # 300億租金補貼分級加碼試算、公益出租人導流與圖卡匯出引擎
 │   ├── ocr-translator.js    # OCR 雙引擎核心與影像處理邏輯 (純前端自包含腳本)
 │   ├── converter.js         # 檔案轉換核心邏輯 (Canvas/Blob 本地加密運算)
 │   ├── image-converter.js   # 圖像格式與尺寸調控邏輯

@@ -22,6 +22,7 @@ HTML_FILES = [
     "repair-inspection.html",
     "utility-splitter.html",
     "deposit-settlement.html",
+    "rent-subsidy-checker.html",
     "privacy.html"
 ]
 
