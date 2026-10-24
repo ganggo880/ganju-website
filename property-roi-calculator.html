@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>物業投資實質淨投報率與房貸現金流精算器｜Cap Rate・自備款現金殖利率・三方案淨現金流PK｜港居不動產</title>
+  <meta name="description" content="專為買房收租、老屋翻新與高資產房東設計之物業投資評估神器！精算購置裝修總成本、銀行房貸本息攤還、空屋折減與淨營運收益 (NOI)，精確對比自管 vs 港居代管 vs 全包租保證收益實質每月淨被動現金流！">
+
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/property-roi-calculator.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="物業投資實質淨投報率與房貸現金流精算器｜港居不動產">
+  <meta property="og:description" content="精算 Cap Rate、自備款現金殖利率 (CoC)、房貸本息均攤、空屋折減與自租/代管/包租三大方案實質淨現金流 PK。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/property-roi-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/property-roi-calculator.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居物業投資實質淨投報率與房貸現金流精算器",
+    "url": "https://ganggo880.github.io/ganju-website/property-roi-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "提供房東與不動產投資人精確試算物業購置改造成本、房貸本息攤還、淨營運收益 (NOI)、毛投報率、自備款現金殖利率與每月實質淨現金流。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "線上工具中心",
+        "item": "https://ganggo880.github.io/ganju-website/#tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "物業投報與房貸現金流精算器",
+        "item": "https://ganggo880.github.io/ganju-website/property-roi-calculator.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 頂部資訊條 TopBar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge desktop-only"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+        <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        <span class="brand-text-box">
+          <span class="brand-name">港居不動產</span>
+          <span class="brand-sub">高優質住宅包租代管</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#tools" class="nav-link">工具中心</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link active"><i class="fa-solid fa-chart-line" style="color: #38bdf8;"></i> 物業投報與現金流</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #f56565;"></i> 存證信函產生器</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #fc8181;"></i> 招租文案與首圖合成</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與月結單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-heart" style="color: #f687b3;"></i> 300億租金補貼試算</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #f6ad55;"></i> 退租押金結算單</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> 水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #ed8936;"></i> 屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #c5a059;"></i> 租賃契約產生器</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主試算頁面 -->
+  <main class="roi-calc-page">
+    <div class="roi-bg-glow"></div>
+    <div class="roi-bg-glow-left"></div>
+
+    <div class="roi-container">
+
+      <!-- 列印專用表頭 (@media print) -->
+      <div class="roi-print-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h2 style="font-size: 16pt; margin: 0; color: #1A365D;">港居不動產開發有限公司</h2>
+            <p style="font-size: 10pt; margin: 2px 0; color: #666;">特許租賃住宅服務業｜高市租登字第0012號｜管理證號：(112)登字第013739號｜統編：96797997</p>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 13pt; font-weight: bold; color: #C5A059;">物業投資淨回報與房貸現金流評估診斷書</div>
+            <div style="font-size: 9pt; color: #888;" id="printDate"></div>
+          </div>
+        </div>
+        <div style="font-size: 9.5pt; color: #333; margin-top: 8px;" id="printParams"></div>
+      </div>
+
+      <!-- 標題與簡介區 -->
+      <header class="roi-header">
+        <div class="roi-badge">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>專業財務模型：Gross Cap Rate ｜ NOI Yield ｜ Cash-on-Cash Return</span>
+        </div>
+        <h1 class="roi-title">物業投資實質淨投報率與房貸現金流精算器</h1>
+        <p class="roi-desc">
+          買房收租、老屋改裝或評估包租代管？全方位精算購置裝潢成本、銀行房貸攤還、營運開銷與空屋折減，精準計算自備款現金殖利率與三大營運方案實質每月淨被動現金流！
+        </p>
+      </header>
+
+      <!-- 行動端切換標籤 (小螢幕時顯示) -->
+      <div class="roi-mobile-tabs">
+        <button type="button" class="roi-mobile-tab-btn active" id="tabInputs">
+          <i class="fa-solid fa-sliders"></i> 輸入物業參數
+        </button>
+        <button type="button" class="roi-mobile-tab-btn" id="tabResults">
+          <i class="fa-solid fa-chart-line"></i> 財務診斷看板
+        </button>
+      </div>
+
+      <!-- 試算雙欄網格工作台 -->
+      <div class="roi-workstation-grid">
+
+        <!-- 左欄：輸入與控制面板 -->
+        <div class="roi-panel-inputs" id="panelInputs">
+
+          <!-- 區塊一：購置與裝修成本 (CapEx) -->
+          <div class="roi-card">
+            <div class="roi-card-header">
+              <h2 class="roi-card-title"><i class="fa-solid fa-house-chimney"></i> 購置與改造成本 (CapEx)</h2>
+              <span class="roi-card-subtitle">總投入資本</span>
+            </div>
+
+            <div class="roi-form-group">
+              <label class="roi-label" for="purchasePrice">
+                <span>房屋購買總價</span>
+                <span class="roi-label-tip">萬元</span>
+              </label>
+              <div class="roi-input-wrap">
+                <input type="number" id="purchasePrice" class="roi-input has-unit" value="1000" min="50" max="20000" step="10">
+                <span class="roi-unit">萬元</span>
+              </div>
+              <div class="roi-pills">
+                <button type="button" class="roi-pill" data-price-val="600">600萬</button>
+                <button type="button" class="roi-pill active" data-price-val="1000">1,000萬</button>
+                <button type="button" class="roi-pill" data-price-val="1500">1,500萬</button>
+                <button type="button" class="roi-pill" data-price-val="2000">2,000萬</button>
+                <button type="button" class="roi-pill" data-price-val="3000">3,000萬</button>
+              </div>
+            </div>
+
+            <div class="roi-form-group">
+              <label class="roi-label" for="closingCosts">
+                <span>契稅、印花、代書與仲介費 (預設 2%)</span>
+                <span class="roi-label-tip">元</span>
+              </label>
+              <div class="roi-input-wrap">
+                <input type="number" id="closingCosts" class="roi-input has-unit" value="200000" min="0" step="5000">
+                <span class="roi-unit">元</span>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="roi-form-group">
+                <label class="roi-label" for="renovationCost">
+                  <span>室內裝修/隔間工程</span>
+                  <span class="roi-label-tip">萬元</span>
+                </label>
+                <div class="roi-input-wrap">
+                  <input type="number" id="renovationCost" class="roi-input has-unit" value="80" min="0" max="1000" step="5">
+                  <span class="roi-unit">萬元</span>
+                </div>
+              </div>
+
+              <div class="roi-form-group">
+                <label class="roi-label" for="furnitureCost">
+                  <span>家具家電採購</span>
+                  <span class="roi-label-tip">萬元</span>
+                </label>
+                <div class="roi-input-wrap">
+                  <input type="number" id="furnitureCost" class="roi-input has-unit" value="20" min="0" max="500" step="5">
+                  <span class="roi-unit">萬元</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: rgba(197, 160, 89, 0.08); padding: 12px 16px; border-radius: var(--radius-md); border: 1px dashed rgba(197, 160, 89, 0.4); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-weight: 600; font-size: 0.92rem;">總物業投資成本：</span>
+              <span id="totalProjectCostDisplay" style="font-weight: 800; font-size: 1.15rem; color: var(--accent-gold);">11,000,000 元 (1100.0 萬)</span>
+            </div>
+          </div>
+
+          <!-- 區塊二：銀行房貸與槓桿融資 (Debt Financing) -->
+          <div class="roi-card">
+            <div class="roi-card-header">
+              <h2 class="roi-card-title"><i class="fa-solid fa-landmark"></i> 銀行融資與房貸 (Debt Financing)</h2>
+              <span class="roi-card-subtitle">本息攤還試算</span>
+            </div>
+
+            <div class="roi-form-group">
+              <div class="roi-label">
+                <span>貸款成數 (LTV)：<strong id="ltvDisplay" style="color: var(--accent-gold);">70%</strong></span>
+                <span class="roi-label-tip">貸款額：<span id="loanAmountDisplay">7,000,000 元</span></span>
+              </div>
+              <div class="roi-slider-wrap">
+                <input type="range" id="ltvSlider" class="roi-slider" min="0" max="85" step="5" value="70">
+              </div>
+            </div>
+
+            <div style="background: rgba(43, 108, 176, 0.06); padding: 10px 14px; border-radius: var(--radius-md); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.88rem; font-weight: 600;">實質自備款投入 (總成本 - 房貸)：</span>
+              <strong id="cashInvestedDisplay" style="font-size: 1rem; color: var(--primary-navy);">4,000,000 元 (400.0 萬)</strong>
+            </div>
+
+            <div class="roi-form-group">
+              <label class="roi-label"><span>房貸年限</span></label>
+              <div class="roi-pills">
+                <button type="button" class="roi-pill" data-loan-term="20">20 年期</button>
+                <button type="button" class="roi-pill active" data-loan-term="30">30 年期</button>
+                <button type="button" class="roi-pill" data-loan-term="40">40 年期</button>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="roi-form-group">
+                <label class="roi-label" for="loanRate">
+                  <span>房貸年利率 (%)</span>
+                  <span class="roi-label-tip">主流約 2.185%~2.6%</span>
+                </label>
+                <div class="roi-input-wrap">
+                  <input type="number" id="loanRate" class="roi-input has-unit" value="2.185" min="1.0" max="6.0" step="0.01">
+                  <span class="roi-unit">%</span>
+                </div>
+              </div>
+
+              <div class="roi-form-group">
+                <label class="roi-label">
+                  <span>寬限期 (年)</span>
+                  <span class="roi-label-tip">僅繳利息</span>
+                </label>
+                <div class="roi-pills" style="margin-top: 0;">
+                  <button type="button" class="roi-pill active" data-grace="0">0年</button>
+                  <button type="button" class="roi-pill" data-grace="1">1年</button>
+                  <button type="button" class="roi-pill" data-grace="2">2年</button>
+                  <button type="button" class="roi-pill" data-grace="3">3年</button>
+                  <button type="button" class="roi-pill" data-grace="5">5年</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 區塊三：租金收益與營運開銷 (Income & OpEx) -->
+          <div class="roi-card">
+            <div class="roi-card-header">
+              <h2 class="roi-card-title"><i class="fa-solid fa-coins"></i> 租金收益與營運成本 (Income & OpEx)</h2>
+              <span class="roi-card-subtitle">毛收入與維護支出</span>
+            </div>
+
+            <div class="roi-form-group">
+              <label class="roi-label" for="monthlyRent">
+                <span>每月總租金收入 (Gross Monthly Rent)</span>
+                <span class="roi-label-tip">元/月</span>
+              </label>
+              <div class="roi-input-wrap">
+                <input type="number" id="monthlyRent" class="roi-input has-unit" value="38000" min="5000" max="500000" step="500">
+                <span class="roi-unit">元</span>
+              </div>
+            </div>
+
+            <div class="roi-form-group">
+              <label class="roi-label">
+                <span>預估招租空窗折減 (Vacancy & Credit Loss)</span>
+                <span class="roi-label-tip">換約待租空屋折減</span>
+              </label>
+              <div class="roi-pills">
+                <button type="button" class="roi-pill" data-vacancy="0">0 個月 (無空屋)</button>
+                <button type="button" class="roi-pill" data-vacancy="0.5">0.5 個月 (約 4.2%)</button>
+                <button type="button" class="roi-pill active" data-vacancy="0.8">0.8 個月 (約 6.7%)</button>
+                <button type="button" class="roi-pill" data-vacancy="1.0">1.0 個月 (約 8.3%)</button>
+                <button type="button" class="roi-pill" data-vacancy="1.5">1.5 個月 (約 12.5%)</button>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="roi-form-group">
+                <label class="roi-label" for="propertyTax">
+                  <span>年房屋稅＋地價稅</span>
+                  <span class="roi-label-tip">元/年</span>
+                </label>
+                <div class="roi-input-wrap">
+                  <input type="number" id="propertyTax" class="roi-input has-unit" value="12000" min="0" step="500">
+                  <span class="roi-unit">元</span>
+                </div>
+              </div>
+
+              <div class="roi-form-group">
+                <label class="roi-label" for="monthlyHoaFee">
+                  <span>每月大樓公共管理費</span>
+                  <span class="roi-label-tip">元/月</span>
+                </label>
+                <div class="roi-input-wrap">
+                  <input type="number" id="monthlyHoaFee" class="roi-input has-unit" value="2000" min="0" step="100">
+                  <span class="roi-unit">元</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="roi-form-group">
+                <label class="roi-label" for="maintenanceRate">
+                  <span>修繕耗損儲備率</span>
+                  <span class="roi-label-tip">佔年租金 %</span>
+                </label>
+                <div class="roi-input-wrap">
+                  <input type="number" id="maintenanceRate" class="roi-input has-unit" value="5" min="0" max="20" step="1">
+                  <span class="roi-unit">%</span>
+                </div>
+              </div>
+
+              <div class="roi-form-group">
+                <label class="roi-label" for="annualInsurance">
+                  <span>火險與地震險保費</span>
+                  <span class="roi-label-tip">元/年</span>
+                </label>
+                <div class="roi-input-wrap">
+                  <input type="number" id="annualInsurance" class="roi-input has-unit" value="3000" min="0" step="200">
+                  <span class="roi-unit">元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 右欄：財務指標與分析看板 -->
+        <div class="roi-panel-results" id="panelResults">
+
+          <!-- 核心四大 KPI 卡片 -->
+          <div class="roi-kpi-grid">
+            <div class="roi-kpi-card featured">
+              <div class="roi-kpi-label">
+                <span>每月實質淨被動現金流</span>
+                <i class="fa-solid fa-money-bill-trend-up"></i>
+              </div>
+              <div class="roi-kpi-val" id="kpiMonthlyCashFlow">+6,120</div>
+              <div class="roi-kpi-sub">扣除營運維護、稅費與房貸本息後之實收淨現金</div>
+            </div>
+
+            <div class="roi-kpi-card">
+              <div class="roi-kpi-label">
+                <span>自備款現金殖利率 (CoC)</span>
+                <i class="fa-solid fa-percent"></i>
+              </div>
+              <div class="roi-kpi-val" id="kpiCoC">4.21%</div>
+              <div class="roi-kpi-sub">全年稅前淨現金流 / 實質自備款投入 (槓桿效益)</div>
+            </div>
+
+            <div class="roi-kpi-card">
+              <div class="roi-kpi-label">
+                <span>毛投報率 (Gross Cap Rate)</span>
+                <i class="fa-solid fa-chart-simple"></i>
+              </div>
+              <div class="roi-kpi-val" id="kpiGrossCap">4.15%</div>
+              <div class="roi-kpi-sub">全年潛在毛租金 / 總物業投資成本</div>
+            </div>
+
+            <div class="roi-kpi-card">
+              <div class="roi-kpi-label">
+                <span>淨營運收益率 (NOI Yield)</span>
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="roi-kpi-val" id="kpiNetCap">3.52%</div>
+              <div class="roi-kpi-sub">扣除營運開銷與空屋後之淨營運收益 / 總成本</div>
+            </div>
+          </div>
+
+          <!-- 貸款支出與回本參考 -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px;">
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px;">
+              <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px;">每月銀行房貸還款額：</div>
+              <div id="kpiMonthlyMortgage" style="font-weight: 700; font-size: 1.1rem; color: var(--primary-navy);">26,520 元/月</div>
+            </div>
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px;">
+              <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px;">自備款回本年限 (Payback)：</div>
+              <div id="kpiPayback" style="font-weight: 700; font-size: 1.1rem; color: var(--accent-gold);">23.8 年回本</div>
+            </div>
+          </div>
+
+          <!-- 年度金流瀑布結構細目表 -->
+          <div class="roi-breakdown-card">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: var(--primary-navy); display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-list-check" style="color: var(--accent-gold);"></i> 年度金流瀑布明細 (Cash Flow Waterfall)
+            </h3>
+
+            <div class="roi-flow-item">
+              <span>全年潛在毛租金收入 (Gross Potential Rent) <span class="roi-flow-tag roi-tag-income">收入</span></span>
+              <strong id="flowGrossRent" style="color: #38a169;">+456,000 元</strong>
+            </div>
+
+            <div class="roi-flow-item">
+              <span>(-) 招租空窗折減與收租損失 <span class="roi-flow-tag roi-tag-expense">折減</span></span>
+              <strong id="flowVacancyLoss" style="color: #e53e3e;">-30,400 元</strong>
+            </div>
+
+            <div class="roi-flow-item" style="background: rgba(197, 160, 89, 0.05); padding: 8px 10px; border-radius: 6px;">
+              <span>(=) 全年有效毛租金 (Effective Gross Income)</span>
+              <strong id="flowEGI">425,600 元</strong>
+            </div>
+
+            <div class="roi-flow-item">
+              <span>(-) 營運維護、稅費與保險支出 (OpEx) <span class="roi-flow-tag roi-tag-expense">支出</span></span>
+              <strong id="flowOpEx" style="color: #e53e3e;">-61,800 元</strong>
+            </div>
+
+            <div class="roi-flow-item" style="background: rgba(43, 108, 176, 0.06); padding: 8px 10px; border-radius: 6px;">
+              <span style="font-weight: 700;">(=) 全年淨營運收益 (NOI)</span>
+              <strong id="flowNOI" style="color: var(--primary-navy); font-weight: 800;">363,800 元</strong>
+            </div>
+
+            <div class="roi-flow-item">
+              <span>(-) 全年銀行房貸本息攤還 (Debt Service) <span class="roi-flow-tag roi-tag-debt">融資</span></span>
+              <strong id="flowDebtService" style="color: #dd6b20;">-318,240 元</strong>
+            </div>
+
+            <div class="roi-flow-item total">
+              <span>(=) 全年實質淨現金流 (Net Cash Flow)</span>
+              <strong id="flowNetCashFlow" style="color: var(--accent-gold); font-size: 1.15rem;">+45,560 元/年 (平均每月 3,797 元)</strong>
+            </div>
+          </div>
+
+          <!-- 三大方案比較 PK 卡片 -->
+          <div class="roi-card">
+            <div class="roi-card-header">
+              <h3 class="roi-card-title"><i class="fa-solid fa-trophy" style="color: var(--accent-gold);"></i> 三大營運方案月實質淨得對比 PK</h3>
+              <span class="roi-card-subtitle">自租 vs 代管 vs 全包租</span>
+            </div>
+
+            <div class="roi-pk-grid">
+              <!-- 方案 A: 自租自管 -->
+              <div class="roi-pk-card">
+                <div>
+                  <div class="roi-pk-title">房東自租自管</div>
+                  <div class="roi-pk-sub">自行負擔招租、修繕與催收，無專法節稅</div>
+                  <div class="roi-pk-amount" id="pkSelfAmount">2,850 元/月</div>
+                  <ul class="roi-pk-features">
+                    <li><i class="fa-solid fa-xmark" style="color: #e53e3e;"></i> 承擔完整空屋待租損失</li>
+                    <li><i class="fa-solid fa-xmark" style="color: #e53e3e;"></i> 僅能扣除標準 43% 費用</li>
+                    <li><i class="fa-solid fa-xmark" style="color: #e53e3e;"></i> 需親自處理房客水電與修繕</li>
+                  </ul>
+                </div>
+                <div class="roi-bar-wrap">
+                  <div class="roi-bar-label"><span>相對淨收益</span></div>
+                  <div class="roi-bar-bg"><div class="roi-bar-fill self" id="barSelf" style="width: 45%;"></div></div>
+                </div>
+              </div>
+
+              <!-- 方案 B: 港居代管 -->
+              <div class="roi-pk-card">
+                <div>
+                  <div class="roi-pk-title">委託港居代管</div>
+                  <div class="roi-pk-sub">10%服務費，享1.5萬免稅與60%費用減免</div>
+                  <div class="roi-pk-amount" id="pkManageAmount" style="color: #3182ce;">4,620 元/月</div>
+                  <ul class="roi-pk-features">
+                    <li><i class="fa-solid fa-check" style="color: #38a169;"></i> 嚴選外商優質客，空屋減半</li>
+                    <li><i class="fa-solid fa-check" style="color: #38a169;"></i> 享租賃專法 1.5 萬月免稅額</li>
+                    <li><i class="fa-solid fa-check" style="color: #38a169;"></i> 拍照存證、合約代收全包辦</li>
+                  </ul>
+                </div>
+                <div class="roi-bar-wrap">
+                  <div class="roi-bar-label"><span>相對淨收益</span></div>
+                  <div class="roi-bar-bg"><div class="roi-bar-fill manage" id="barManage" style="width: 75%;"></div></div>
+                </div>
+              </div>
+
+              <!-- 方案 C: 港居全包租保證收益 -->
+              <div class="roi-pk-card highlight">
+                <span class="roi-pk-badge"><i class="fa-solid fa-star"></i> 尊榮首選</span>
+                <div>
+                  <div class="roi-pk-title">港居全包租保證</div>
+                  <div class="roi-pk-sub">3~5年長期保證撥款，0%空屋風險</div>
+                  <div class="roi-pk-amount" id="pkMasterAmount" style="color: var(--accent-gold);">5,800 元/月</div>
+                  <ul class="roi-pk-features">
+                    <li><i class="fa-solid fa-check" style="color: var(--accent-gold);"></i> <strong>0% 空屋風險</strong>，每月準時入帳</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--accent-gold);"></i> 港居吸收日常維護修繕負擔</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--accent-gold);"></i> 專法 1.5 萬免稅 + 60% 費用減免</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--accent-gold);"></i> 真正的 100% 被動現金流！</li>
+                  </ul>
+                </div>
+                <div class="roi-bar-wrap">
+                  <div class="roi-bar-label"><span>相對淨收益 (最高穩定度)</span></div>
+                  <div class="roi-bar-bg"><div class="roi-bar-fill master" id="barMaster" style="width: 100%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 行動按鈕工具列 -->
+          <div class="roi-actions">
+            <button type="button" class="roi-action-btn primary" id="btnPrint">
+              <i class="fa-solid fa-print"></i> 列印 A4 評估書
+            </button>
+            <button type="button" class="roi-action-btn" id="btnDownloadCard">
+              <i class="fa-solid fa-image"></i> 下載診斷圖卡
+            </button>
+            <button type="button" class="roi-action-btn" id="btnCopyLine">
+              <i class="fa-regular fa-copy"></i> 複製 LINE 摘要
+            </button>
+            <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener" class="roi-action-btn navy">
+              <i class="fa-brands fa-line"></i> 預約陳經理會勘
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+          <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-desc">
+          港居不動產開發有限公司（統編：96797997）致力於提供高雄都會區最專業的高優質住宅包租代管服務。讓屋主免改裝直上省心增值，為租客打造安心溫暖的高品質居住體驗。
+        </p>
+        <div class="footer-certs">
+          <span class="cert-pill"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+          <span class="cert-pill"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112)登字第013739號</span>
+          <span class="cert-pill"><i class="fa-solid fa-shield-halved"></i> 公會會員：115-046號</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4 class="footer-col-title">房東首選工具</h4>
+          <ul>
+            <li><a href="property-roi-calculator.html"><i class="fa-solid fa-chart-line"></i> 物業投報與房貸現金流</a></li>
+            <li><a href="tax-calculator.html"><i class="fa-solid fa-percent"></i> 房東節稅與收益試算</a></li>
+            <li><a href="lease-contract.html"><i class="fa-solid fa-file-contract"></i> 租賃契約與公約產生器</a></li>
+            <li><a href="legal-notice-generator.html"><i class="fa-solid fa-scale-balanced"></i> 欠租催告存證信函</a></li>
+            <li><a href="listing-post-generator.html"><i class="fa-solid fa-bullhorn"></i> 591與社群招租文案</a></li>
+            <li><a href="rent-receipt.html"><i class="fa-solid fa-receipt"></i> 租金收據與月結對帳單</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">租客與空間神器</h4>
+          <ul>
+            <li><a href="rent-subsidy-checker.html"><i class="fa-solid fa-hand-holding-heart"></i> 300億租金補貼試算</a></li>
+            <li><a href="utility-splitter.html"><i class="fa-solid fa-bolt"></i> 分租水電與公電分攤</a></li>
+            <li><a href="deposit-settlement.html"><i class="fa-solid fa-hand-holding-dollar"></i> 退租押金結算返還</a></li>
+            <li><a href="repair-inspection.html"><i class="fa-solid fa-clipboard-check"></i> 屋況修繕瑕疵點交</a></li>
+            <li><a href="space-planner.html"><i class="fa-solid fa-cubes"></i> 2D/3D 空間格局配置</a></li>
+            <li><a href="rent-calculator.html"><i class="fa-solid fa-calculator"></i> 租金代管費換算工具</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">聯絡港居</h4>
+          <ul>
+            <li><i class="fa-solid fa-location-dot"></i> 高雄市小港區中安路825號</li>
+            <li><i class="fa-solid fa-phone"></i> 專線：0968-863-880 (陳經理)</li>
+            <li><i class="fa-solid fa-phone-office"></i> 市話：07-791-2288</li>
+            <li><i class="fa-brands fa-line"></i> LINE：@ganggo880</li>
+            <li><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</li>
+            <li><a href="privacy.html" style="color: var(--accent-gold); font-weight: 600;"><i class="fa-solid fa-user-shield"></i> 個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright">
+          &copy; 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved.
+        </p>
+        <p class="footer-privacy-note">
+          本站所有線上工具皆於使用者本地端（瀏覽器記憶體）運算，絕不上傳任何個人資料或證件相片，保障隱私安全。
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 模組化 JavaScript -->
+  <script src="js/tracking.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/property-roi-calculator.js"></script>
+
+</body>
+</html>

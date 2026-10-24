@@ -1,0 +1,797 @@
+/* ==========================================================================
+   港居不動產 物業投資實質淨投報率與房貸現金流精算器專用樣式
+   Property ROI, Mortgage & Cash Flow Calculator Stylesheet
+   依據 Tokens 規範建立，支援深淺色切換、高對比度、RWD 與無痕 A4 列印
+   ========================================================================== */
+
+/* 頁面主體與背景光暈 */
+.roi-calc-page {
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 100px; /* 給予 Navbar 空間 */
+  padding-bottom: 80px;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.roi-bg-glow {
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--bg-glow-2) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.roi-bg-glow-left {
+  position: absolute;
+  top: 400px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--bg-glow-1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 主工作台容器 */
+.roi-container {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 標題與引導區塊 */
+.roi-header {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 36px;
+}
+
+.roi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(197, 160, 89, 0.12);
+  color: var(--accent-gold);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.roi-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+[data-theme="dark"] .roi-title {
+  color: #FFFFFF;
+}
+
+.roi-desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 行動端分頁切換鈕 (小螢幕時顯示) */
+.roi-mobile-tabs {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.roi-mobile-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  min-height: 48px;
+  transition: all 0.2s ease;
+}
+
+.roi-mobile-tab-btn.active {
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  border-color: var(--primary-navy);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+[data-theme="dark"] .roi-mobile-tab-btn.active {
+  background: var(--accent-gold);
+  color: var(--primary-navy-dark);
+  border-color: var(--accent-gold);
+}
+
+/* 試算雙欄網格工作台 */
+.roi-workstation-grid {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .roi-workstation-grid {
+    grid-template-columns: 1fr;
+  }
+  .roi-mobile-tabs {
+    display: grid;
+  }
+  .roi-mobile-hidden {
+    display: none !important;
+  }
+}
+
+/* 面板共用卡片樣式 */
+.roi-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.roi-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.roi-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .roi-card-title {
+  color: #FFFFFF;
+}
+
+.roi-card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* 表單分區組件 */
+.roi-section {
+  margin-bottom: 24px;
+}
+
+.roi-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 表單欄位群組 */
+.roi-form-group {
+  margin-bottom: 18px;
+}
+
+.roi-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.roi-label-tip {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: var(--text-muted);
+}
+
+.roi-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.roi-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-input, #FFFFFF);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+[data-theme="dark"] .roi-input {
+  background: #0f1f38;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.roi-input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.25);
+}
+
+.roi-unit {
+  position: absolute;
+  right: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.roi-input.has-unit {
+  padding-right: 50px;
+}
+
+/* 快速選填膠囊標籤 */
+.roi-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.roi-pill {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.roi-pill:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.roi-pill.active {
+  background: var(--accent-gold);
+  color: #0F172A;
+  border-color: var(--accent-gold);
+}
+
+/* 滑動條 Slider */
+.roi-slider-wrap {
+  margin-top: 8px;
+}
+
+.roi-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border-color);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  cursor: pointer;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease;
+}
+
+.roi-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* 多套房細分開展面板 */
+.roi-subrooms-container {
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-top: 10px;
+  background: rgba(197, 160, 89, 0.04);
+}
+
+.roi-subroom-row {
+  display: grid;
+  grid-template-columns: 1fr 140px auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.roi-subroom-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: #f56565;
+  cursor: pointer;
+}
+
+/* 核心指標卡片 (KPI Dashboard) */
+.roi-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 600px) {
+  .roi-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roi-kpi-card {
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.04) 0%, rgba(197, 160, 89, 0.08) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="dark"] .roi-kpi-card {
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.4) 0%, rgba(15, 35, 65, 0.7) 100%);
+  border-color: rgba(197, 160, 89, 0.25);
+}
+
+.roi-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.roi-kpi-card.featured {
+  background: linear-gradient(135deg, #1A365D 0%, #0F2341 100%);
+  border-color: var(--accent-gold);
+  color: #FFFFFF;
+}
+
+.roi-kpi-card.featured .roi-kpi-label {
+  color: var(--accent-gold);
+}
+
+.roi-kpi-card.featured .roi-kpi-sub {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.roi-kpi-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.roi-kpi-val {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  line-height: 1.15;
+  margin-bottom: 4px;
+  color: var(--primary-navy);
+}
+
+[data-theme="dark"] .roi-kpi-val {
+  color: #FFFFFF;
+}
+
+.roi-kpi-card.featured .roi-kpi-val {
+  color: var(--accent-gold);
+}
+
+.roi-kpi-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* 金流瀑布 / 結構細目表 (Waterfall Breakdown) */
+.roi-breakdown-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 24px;
+}
+
+.roi-flow-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.92rem;
+}
+
+.roi-flow-item:last-child {
+  border-bottom: none;
+}
+
+.roi-flow-item.total {
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding-top: 14px;
+  color: var(--accent-gold);
+}
+
+.roi-flow-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+.roi-tag-income {
+  background: rgba(72, 187, 120, 0.15);
+  color: #276749;
+}
+[data-theme="dark"] .roi-tag-income {
+  color: #68d391;
+}
+
+.roi-tag-expense {
+  background: rgba(245, 101, 101, 0.15);
+  color: #c53030;
+}
+[data-theme="dark"] .roi-tag-expense {
+  color: #fc8181;
+}
+
+.roi-tag-debt {
+  background: rgba(237, 137, 54, 0.15);
+  color: #c05621;
+}
+[data-theme="dark"] .roi-tag-debt {
+  color: #f6ad55;
+}
+
+/* 三大方案比較 PK 卡片 (Three Options Comparison) */
+.roi-pk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 860px) {
+  .roi-pk-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roi-pk-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.roi-pk-card.highlight {
+  border: 2px solid var(--accent-gold);
+  background: linear-gradient(180deg, rgba(197, 160, 89, 0.08) 0%, var(--bg-surface) 100%);
+  box-shadow: 0 8px 24px rgba(197, 160, 89, 0.15);
+}
+
+.roi-pk-badge {
+  position: absolute;
+  top: -12px;
+  right: 14px;
+  background: var(--accent-gold);
+  color: #0F172A;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.roi-pk-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--primary-navy);
+}
+
+[data-theme="dark"] .roi-pk-title {
+  color: #FFFFFF;
+}
+
+.roi-pk-amount {
+  font-size: 1.7rem;
+  font-weight: 800;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  color: var(--accent-gold);
+  margin: 10px 0;
+}
+
+.roi-pk-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.roi-pk-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+  font-size: 0.83rem;
+  line-height: 1.7;
+}
+
+.roi-pk-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.roi-pk-features li i {
+  margin-top: 3px;
+}
+
+/* 視覺化比較能量條 */
+.roi-bar-wrap {
+  margin-top: 16px;
+}
+
+.roi-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.roi-bar-bg {
+  width: 100%;
+  height: 10px;
+  background: var(--border-color);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.roi-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.roi-bar-fill.self {
+  background: #a0aec0;
+}
+
+.roi-bar-fill.manage {
+  background: #4299e1;
+}
+
+.roi-bar-fill.master {
+  background: linear-gradient(90deg, var(--accent-gold) 0%, #d69e2e 100%);
+}
+
+/* 操作按鈕工具列 */
+.roi-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (max-width: 800px) {
+  .roi-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .roi-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roi-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  min-height: 48px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.roi-action-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.roi-action-btn.primary {
+  background: var(--accent-gold);
+  color: #0F172A;
+  border-color: var(--accent-gold);
+}
+
+.roi-action-btn.primary:hover {
+  background: #b08c45;
+  color: #FFFFFF;
+}
+
+.roi-action-btn.navy {
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  border-color: var(--primary-navy);
+}
+
+.roi-action-btn.navy:hover {
+  background: #0f2341;
+}
+
+/* ==========================================================================
+   A4 列印專用樣式 (@media print)
+   ========================================================================== */
+.roi-print-header {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 9.5pt;
+  }
+
+  .navbar,
+  .top-bar,
+  .footer,
+  .roi-bg-glow,
+  .roi-bg-glow-left,
+  .roi-mobile-tabs,
+  .roi-actions,
+  .theme-toggle-btn,
+  .btn-gold {
+    display: none !important;
+  }
+
+  .roi-calc-page {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background: #FFFFFF !important;
+  }
+
+  .roi-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .roi-print-header {
+    display: block !important;
+    border-bottom: 2px solid #1A365D;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+  }
+
+  .roi-workstation-grid {
+    display: block !important;
+  }
+
+  .roi-mobile-hidden {
+    display: block !important;
+  }
+
+  .roi-card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    padding: 14px !important;
+    margin-bottom: 14px !important;
+    page-break-inside: avoid;
+  }
+
+  .roi-kpi-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .roi-kpi-card {
+    padding: 10px !important;
+    border: 1px solid #bbb !important;
+    background: #fdfdfd !important;
+  }
+
+  .roi-kpi-val {
+    font-size: 1.3rem !important;
+    color: #1A365D !important;
+  }
+
+  .roi-pk-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .roi-pk-card {
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+  }
+
+  .roi-pk-amount {
+    font-size: 1.25rem !important;
+    color: #1A365D !important;
+  }
+}

@@ -26,6 +26,7 @@ HTML_FILES = [
     "rent-receipt.html",
     "listing-post-generator.html",
     "legal-notice-generator.html",
+    "property-roi-calculator.html",
     "privacy.html"
 ]
 

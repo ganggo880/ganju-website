@@ -30,9 +30,10 @@
 | 18 | `rent-receipt.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租金電子收據與屋主代管月結對帳單產生器｜雙模式・中文大寫金額・LINE圖卡匯出｜港居不動產 |
 | 19 | `listing-post-generator.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 591／社群招租文案與第33條法定揭露合成器｜防漏證號受罰・社群首圖一鍵生成｜港居不動產 |
 | 20 | `legal-notice-generator.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 欠租催告與終止租約「郵局存證信函」產生器｜民法第440條・20×10標準格線A4列印｜港居不動產 |
-| 21 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 21 | `property-roi-calculator.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 物業投資實質淨投報率與房貸現金流精算器｜Cap Rate・自備款現金殖利率・三方案淨現金流PK｜港居不動產 |
+| 22 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**21 / 21 頁 (100%)**
+**離線可用率**：**22 / 22 頁 (100%)**
 
 ---
 

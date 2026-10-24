@@ -8,9 +8,28 @@
 
 ## ⏯️ 目前做到哪
 
-全站共 **21 個頁面**（港居不動產官網首頁、19 款高階線上工具集、3D 智慧營運島與個人資料保護政策專頁）維持穩定運作，規劃之 6 款進階實務工具已全數開發上線，並完成技術規格書、MarTech 追蹤規範、系統運營操作手冊與一年期 SLA 保固說明書之全套結案交付：
+全站共 **22 個頁面**（港居不動產官網首頁、20 款高階線上工具集、3D 智慧營運島與個人資料保護政策專頁）維持穩定運作，已完成物業投資淨投報率與房貸現金流精算器研發與全站整合：
 
-**2026-10-25（最新推進）— 階段四十一：官網首頁「全方位不動產與租務線上工具中心 (`#tools`)」落地、分類篩選引擎整合與系統規格書 v3.1 定稿**
+**2026-10-25（最新推進）— 階段四十二：物業投資實質淨投報率與房貸現金流精算器 (`property-roi-calculator.html`) 完整研發與全站 22 頁整合**
+- **第 22 個頁面 `property-roi-calculator.html`（`css/property-roi-calculator.css` ＋ `js/property-roi-calculator.js`）**：
+  - **三大模組專業財務模型**：
+    - **購置與改造成本 (CapEx)**：購置總價、契稅代書仲介費（預設 2%）、裝修工程款與家具家電採購，自動精算「總專案投資成本」。
+    - **銀行融資與房貸 (Debt Financing)**：貸款成數（0%~85% 滑桿）、自備款投入額、年限（20/30/40年）、年利率（預設 2.185%）與寬限期（0~5年），精算每月還款額（寬限期僅付息 vs 寬限期後本息均攤 PMT）。
+    - **租金收益與營運成本 (Income & OpEx)**：每月總租金收入、空屋待租折減（0~1.5個月）、房屋稅/地價稅、大樓管理費、修繕儲備金（5%）與火險地震險，精算有效毛租金 (EGI) 與淨營運收益 (NOI)。
+  - **五大核心專業財務 KPI 與金流瀑布**：
+    - 毛投報率 (Gross Cap Rate)、淨營運收益率 (NOI Yield)、自備款現金殖利率 (Cash-on-Cash Return, CoC)、每月實質淨現金流、自備款回本年限 (Payback Period)。
+    - 年度金流瀑布明細 (Gross Potential Rent → Vacancy → EGI → OpEx → NOI → Debt Service → Net Cash Flow)。
+  - **三大營運方案實質淨現金流 PK 與視覺化能量條**：
+    - 方案 A（自租自管，承擔空屋與全額開銷）、方案 B（委託港居代管，10%服務費＋專法1.5萬免稅額＋60%費用減免）、方案 C（港居全包租保證收益，0%空屋風險＋3~5年穩定撥款＋耗損由港居吸收）。
+  - **三大高價值輸出**：
+    - `@media print` A4 無痕列印《港居不動產・物業投資淨回報與房貸現金流評估診斷書》。
+    - HTML5 Canvas 繪製 840×1080px 高畫質 PNG 診斷圖卡下載。
+    - LINE 試算摘要文字一鍵複製，以及加 LINE 預約陳經理現場資產會勘評估。
+- **全站 22 頁導覽互通、首頁工具中心 (#tools) 19 款工具更新、PWA 83 項核心資產離線可用與 84 組行動端極限驗收**：
+  - 全站 22 頁選單與 `sitemap.xml` 全面納入 `property-roi-calculator.html`；首頁工具中心新增投資精算卡片，更新為 19 款工具（房東類 7 款）；`sw.js` 升級至 `ganju-pwa-v2.3`（預載 83 項資產）。
+  - 經 `output/audit_site_specs.py`（22/22 頁 PASS）、`output/audit_mobile_rwd.js`（21 頁 × 4 斷點共 84 組情境 0px 溢出、100% 觸控熱區 ≥ 44×44px）與 `output/test_pwa_offline.js`（22/22 頁 100% 離線秒開）實測全數通過，健康度滿分 GRADE: A+。
+
+**2026-10-25（前一輪）— 階段四十一：官網首頁「全方位不動產與租務線上工具中心 (`#tools`)」落地、分類篩選引擎整合與系統規格書 v3.1 定稿**
 - **官網主頁 `index.html` 升級為全功能不動產數位入口門戶**：
   - 於主頁新增「全方位不動產與租務線上工具中心 (`#tools`)」實體展示專區，完整收錄全站 18 款高階數位工具（房東法務、租客權益、空間影像）。
   - **4 大分類標籤動態篩選引擎（`script.js`）**：
@@ -398,21 +417,21 @@
 
 ## 🚦 目前狀態
 
-- ✅ **可運行**：18 個頁面均可正常操作，純靜態免建置即可於本地與 GitHub Pages 流暢運行。
+- ✅ **可運行**：22 個頁面均可正常操作，純靜態免建置即可於本地與 GitHub Pages 流暢運行。
 - ✅ **版面**：全站頁面在 360px 極限螢幕下橫向溢出嚴格為 0px，觸控熱區皆 ≥ 44×44px。
 - ✅ **JS**：零語法與執行期錯誤；安全 DOM 操作與資料綁定。
-- ✅ **導覽**：全站工具頁「線上工具」下拉選單皆含全部 16 款工具＋3D營運島（18/18 頁面全面互通）。
-- ✅ **離線 PWA**：`sw.js` 預載 71 項核心資產（升級 `ganju-pwa-v1.9`），18/18 頁 (100%) 在完全斷網模擬下秒開可用。
+- ✅ **導覽**：全站工具頁「線上工具」下拉選單皆含全部 20 款工具＋3D營運島（22/22 頁面全面互通）。
+- ✅ **離線 PWA**：`sw.js` 預載 83 項核心資產（升級 `ganju-pwa-v2.3`），22/22 頁 (100%) 在完全斷網模擬下秒開可用。
 - ✅ **MarTech 數據追蹤**：`js/tracking.js` 模組化就緒，全域代理監聽 LINE 與電話點擊，核心事件 DataLayer 注入。
 - ✅ **深色模式**：全站文字與底色對比皆符合 WCAG 2.1 AA 級標準，100% 繼承 `css/tokens.css`。
 
 ---
 
-## 📄 已上線頁面全景速覽 (全 18 頁)
+## 📄 已上線頁面全景速覽 (全 22 頁)
 
 | # | 頁面 | 功能說明 | JSON-LD |
 |---|---|---|---|
-| 1 | `index.html` | TopBar 登記證號、Hero、包租 vs 代管方案、ROI 試算器、3D營運島專區、第 33 條法定揭示、房源區、蜜罐防洗 Lead 表單、FAQ 手風琴、MarTech 追蹤 | `RealEstateAgent`, `WebSite`, `FAQPage`, `Blog` |
+| 1 | `index.html` | TopBar 登記證號、Hero、包租 vs 代管方案、ROI 試算器、3D營運島專區、第 33 條法定揭示、房源區、蜜罐防洗 Lead 表單、FAQ 手風琴、全方位線上工具中心 (`#tools`)、MarTech 追蹤 | `RealEstateAgent`, `WebSite`, `FAQPage`, `Blog` |
 | 2 | `rent-calculator.html` | 30日／當月實際／自訂基準天數、跨月區間、代管費與屋主實收拆分、LocalStorage 歷史 | `WebApplication` (FinanceApplication) |
 | 3 | `file-converter.html` | PDF/DOCX/PNG/JPG/WEBP/MP3/MP4/ZIP 瀏覽器端本地轉檔與歷史紀錄 | `WebApplication` (UtilitiesApplication) |
 | 4 | `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成（常駐深色工作台） | `WebApplication` (MultimediaApplication) |
@@ -430,6 +449,10 @@
 | 16 | `utility-splitter.html` | 分租水電費與公電分攤結算單產生器（符合2024.07.15電費新制平均電價上限防呆、各房獨立分表度數與公電水費加權分攤、一鍵結轉本期度數至下期、LINE催繳文字複製、Canvas繳費圖卡下載、A4公告總表列印） | `WebApplication` (FinanceApplication) |
 | 17 | `deposit-settlement.html` | 退租押金結算與點交扣款明細單產生器（符合租賃專法第11條與定型化契約1個月違約金上限防呆、破日租金退補、最後一期水電結算、跨工具修繕扣款匯入、中文大寫金額、雙畫布手寫親簽、LINE明細複製與含簽章圖卡下載） | `WebApplication` (FinanceApplication) |
 | 18 | `rent-subsidy-checker.html` | 300億中央擴大租金補貼資格自檢與實質月租試算器（依高雄市第一至三級基準與單身/新婚/育兒/弱勢加碼倍數精算實付月租，整合房東公益出租人與包租代管節稅導流、LINE複製與Canvas圖卡下載） | `WebApplication` (FinanceApplication) |
+| 19 | `rent-receipt.html` | 租金電子收據與屋主代管月結對帳單產生器（雙模式切換、中文金融大寫金額、跨工具水電與修繕扣款匯入、雙畫布Retina 2x簽章、紅色數位收訖章、LINE通知、Canvas圖卡下載與A4列印） | `WebApplication` (FinanceApplication) |
+| 20 | `listing-post-generator.html` | 591／社群招租文案與第33條法定揭露合成器（591長文/FB社團/LINE速報三平台文案、法定許可證號防漏寫防呆、1080x1080社群首圖合成與A4招租DM列印） | `WebApplication` (BusinessApplication) |
+| 21 | `legal-notice-generator.html` | 欠租催告與終止租約「郵局存證信函」產生器（民法440條欠租達二個月門檻防呆、四大權威法務範本、中華郵政標準20x10格線排版、存證規費試算、LINE最後通牒複製、Canvas圖卡與A4一式三份列印） | `WebApplication` (BusinessApplication) |
+| 22 | `property-roi-calculator.html` | 物業投資實質淨投報率與房貸現金流精算器（Cap Rate、自備款現金殖利率 CoC、房貸本息均攤、空屋折減、自租/代管/包租三大方案月淨現金流 PK、LINE 複製、Canvas 圖卡下載與 A4 列印） | `WebApplication` (FinanceApplication) |
 
 ---
 

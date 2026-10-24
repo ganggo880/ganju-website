@@ -224,8 +224,14 @@ Matt Pocock skills/
 - **中華郵政標準 20×10 格線排版與規費精算**：自動分頁每頁 200 字、試算存證規費（首頁 50 元、續頁每頁 30 元）、LINE 最後通牒複製、920×1120px PNG 圖卡下載、A4 一式三份列印。
 
 ### 4.23 官網主頁「全方位不動產與租務線上工具中心 (`#tools`)」
-- **全站 18 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
-- **4 大分類標籤動態切換**：全部工具 (18)、房東節稅與法務 (6)、租客權益與試算 (4)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
+- **全站 19 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
+- **4 大分類標籤動態切換**：全部工具 (19)、房東節稅與法務 (7)、租客權益與試算 (4)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
+
+### 4.24 物業投資實質淨投報率與房貸現金流精算器 (`property-roi-calculator.html`)
+- **專業財務模型**：涵蓋購置與改造成本 (CapEx)、銀行融資與房貸 (Debt Financing)、租金收益與營運開銷 (Income & OpEx)。
+- **核心投資指標**：毛投報率 (Gross Cap Rate)、淨營運收益率 (NOI Yield)、自備款現金殖利率 (Cash-on-Cash Return, CoC)、每月實質淨現金流、回本年限 (Payback Period)。
+- **三大營運方案實質淨現金流 PK**：對比「房東自租自管」、「委託港居代管（10%服務費＋專法節稅）」與「港居全包租保證收益（0%空屋風險＋3~5年穩定撥款）」，搭配視覺化能量條。
+- **三大輸出**：支援 A4 物業投資診斷評估書列印、Canvas 840×1080px 高畫質圖卡下載、LINE 試算摘要一鍵複製與預約會勘。
 
 ---
 
@@ -277,7 +283,7 @@ Matt Pocock skills/
    - 行動端：`< 576px`（單欄垂直堆疊）
 2. **觸控熱區規範 (Touch Target Size - WCAG 2.1 AA / 2.2 SC 2.5.8)**：
    - 全站所有按鈕、選單項目、輸入框、色彩選取器、滑桿、核取方塊感應標籤一律 **≥ 44×44px**（按鈕 min-height 48px / 44px，原生控制項封裝於關聯 label 或賦予 min-height 44px）。
-   - 經 Chrome DevTools Protocol (CDP) 80 組測試實機檢驗，全站 21 頁 <44px 觸控缺陷數為 **0 項 (100% 合格)**。
+   - 經 Chrome DevTools Protocol (CDP) 84 組測試實機檢驗，全站 21 頁 <44px 觸控缺陷數為 **0 項 (100% 合格)**。
 3. **橫向溢出防護 (Zero-Overflow Guarantee)**：
    - 360px (Galaxy S8)、375px (iPhone SE)、390px (iPhone 14)、414px (iPhone Plus) 極限螢幕下，全站 21 頁橫向滾動溢出嚴格為 **0px**。
 4. **色彩對比度**：
@@ -300,7 +306,7 @@ Matt Pocock skills/
 
 ## 8. SEO 與 Schema.org 結構化資料全覽 (Structured Data)
 
-全站 21 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
+全站 22 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
 
 | 頁面 | Schema.org 類型 | 核心欄位與特性 |
 |---|---|---|
@@ -325,6 +331,7 @@ Matt Pocock skills/
 | `rent-receipt.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租金電子收據與代管月結對帳單產生器 |
 | `listing-post-generator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 591／社群招租文案與第33條揭露合成器 |
 | `legal-notice-generator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 欠租催告與終止租約郵局存證信函產生器 |
+| `property-roi-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 物業投資實質投報與房貸現金流精算器 |
 | `output/winfar-website/` | `Corporation` | `name`, `foundingDate`, `founder`, `address`, `telephone`, `knowsAbout` |
 
 ---
@@ -338,13 +345,13 @@ Matt Pocock skills/
    - 圖示庫：支援 192×192、512×512 之標準圖示與 Android Maskable 圖示，以及 Apple Touch Icon。
    - 快捷捷徑 (App Shortcuts)：直接跳轉 2D/3D 格局、租金試算、EXIF 水印與 OCR 翻譯。
 2. **智慧 Service Worker 快取體系 (`sw.js`)**：
-   - **Pre-caching**：安裝時預載全站 21 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.2` 共 80 項核心資產）。
+   - **Pre-caching**：安裝時預載全站 22 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.3` 共 83 項核心資產）。
    - **導航請求 (Navigate)**：Network-First with Cache Fallback，網路在線時即時獲取最新修正，案場無訊號（地下室、高樓）自動回退至本機快取。
    - **靜態資源 (Assets/CDN)**：Stale-While-Revalidate 與動態快取，自動緩存 Three.js 與 FontAwesome 等第三方相依庫。
 3. **原生安裝引導與連線監控 (`js/pwa.js`)**：
    - 攔截 `beforeinstallprompt` 提供符合品牌色系與 ≥ 44×44px 觸控標準之「免費安裝」提示卡片。
    - 監聽 `online` / `offline` 事件，斷網時浮動顯示離線指示徽章，連線恢復時 Toast 提示自動同步。
-   - 經 CDP 實機模擬斷網驗收，全站 21 頁完全離線可用率達 **21/21 頁 (100%)**。
+   - 經 CDP 實機模擬斷網驗收，全站 22 頁完全離線可用率達 **22/22 頁 (100%)**。
 
 ---
 
@@ -566,6 +573,24 @@ Matt Pocock skills/
    - 內建「積欠租金限期催告」、「催告期滿正式終止租約暨限期遷讓」、「違反住戶公約／擅自轉租催告」與「租期屆滿不續租通知」四大範本，並自動檢核欠租是否達二個月法定門檻。
 3. **中華郵政標準 20×10 格線自動分頁與規費試算引擎**：
    - 自動將正文拆字填入每行 20 格、每頁 10 行之標準郵局存證信函格線，自動分頁並計算郵局存證規費（首頁 50 元、續頁每頁 30 元），支援 LINE 最後通牒複製、Canvas 920×1120px 預覽圖卡下載與 A4 標準列印。
+
+### 13.17 物業投資實質淨投報率與房貸現金流精算器 (`property-roi-calculator.html`)
+
+1. **財務模型與投資評估架構**：
+   - 專為不動產包租代管屋主、改套投資人與老屋翻新資產配置打造。
+   - 整合總購置裝潢成本 (CapEx)、銀行融資與房貸 (Debt Financing)、租金收益與營運開銷 (Income & OpEx)。
+2. **五大核心專業財務指標**：
+   - 毛投報率 (Gross Cap Rate = 全年毛租金 / 總投資成本)。
+   - 淨營運收益率 (NOI Yield = 全年淨營運收益 / 總投資成本)。
+   - 自備款現金殖利率 (Cash-on-Cash Return, CoC = 全年稅前淨現金流 / 實質自備款)。
+   - 每月實質淨被動現金流 (扣除維護、稅費與銀行房貸本息攤還)。
+   - 自備款回本年限 (Payback Period)。
+3. **三大營運方案實質淨現金流對比與能量條**：
+   - 自租自管 (DIY) vs. 港居代管 (10%服務費＋享租賃條例1.5萬免稅額＋60%費用減免) vs. 港居全包租保證收益 (0%空屋風險＋3~5年穩定撥款＋耗損由港居吸收)。
+4. **三大高質感輸出**：
+   - `@media print` A4 無痕列印《港居不動產・物業投資淨回報與房貸現金流評估診斷書》。
+   - HTML5 Canvas 840×1080px 高畫質 PNG 診斷圖卡下載。
+   - LINE 試算摘要一鍵複製與預約陳經理現場資產會勘。
 
 ---
 
