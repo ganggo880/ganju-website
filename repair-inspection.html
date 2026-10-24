@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>租賃修繕點交與屋況瑕疵存證紀錄神器｜起租退租・浮水印拍照・電子簽章・A4點交報告｜港居不動產</title>
+  <meta name="description" content="專為租賃住宅點交打造之存證紀錄神器！依據《租賃專法》第11條與民法第429/432條，支援起租交付、退租核銷、修繕存證三大模式，分區拍照壓印時間浮水印、水電度數紀錄、責任歸屬判定與雙方電子簽名，一鍵匯出A4存證報告與LINE回傳！">
+
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/repair-inspection.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="租賃修繕點交與屋況瑕疵存證紀錄神器｜港居不動產">
+  <meta property="og:description" content="依據租賃專法第11條與民法第429/432條，起租交付、退租返還與修繕存證一站式管理，拍照時間浮水印與電子簽章即刻生效。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/repair-inspection.html">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/repair-inspection.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居租賃修繕點交與屋況瑕疵存證紀錄神器",
+    "url": "https://ganggo880.github.io/ganju-website/repair-inspection.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "提供房東與租客依據租賃住宅條例第11條進行起租點交、退租核銷與修繕存證，支援拍照自動壓印浮水印、分區責任判定、電子簽章與A4報告匯出。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "租賃修繕點交與屋況瑕疵存證紀錄神器",
+        "item": "https://ganggo880.github.io/ganju-website/repair-inspection.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body>
+
+  <!-- 頂部宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法登記包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+        <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        <span class="brand-text-box">
+          <span class="brand-name">港居不動產</span>
+          <span class="brand-sub">高優質住宅包租代管</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="repair-inspection.html" class="nav-link active"><i class="fa-solid fa-clipboard-check" style="color: #ed8936;"></i> 屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #c5a059;"></i> 租賃契約產生器</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#faq" class="nav-link">常見問答</a></li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 點交存證主容器 -->
+  <main class="inspection-page">
+    <div class="inspection-bg-glow"></div>
+    <div class="inspection-bg-glow-left"></div>
+
+    <div class="inspection-container">
+
+      <!-- 列印專用表頭 (@media print) -->
+      <div class="inspection-print-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h2 style="font-size: 16pt; margin: 0; color: #1A365D;" id="printDocTitle">港居不動產 ｜ 起租交付點交確認書</h2>
+            <p style="font-size: 10pt; margin: 2px 0; color: #666;">特許租賃住宅服務業｜租賃管理證號：(112)登字第013739號｜統編：96797997</p>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 12pt; font-weight: bold; color: #C5A059;">法定屋況瑕疵存證專用表</div>
+            <div style="font-size: 9pt; color: #888;">依據《租賃住宅市場發展及管理條例》第11條規範</div>
+          </div>
+        </div>
+        <div style="font-size: 9.5pt; color: #333; margin-top: 8px; font-weight: 500;" id="printDocMeta"></div>
+      </div>
+
+      <!-- 標題與簡介區 -->
+      <header class="inspection-header">
+        <div class="inspection-badge">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>法定規範：《租賃條例》第 11 條 ＋ 民法第 429/432 條</span>
+        </div>
+        <h1 class="inspection-title">租賃修繕點交與屋況瑕疵存證紀錄神器</h1>
+        <p class="inspection-desc">
+          起租交付、退租返還與修繕存證一站式管理。現場拍照即時壓印點交浮水印，分區判定責任歸屬，雙方電子簽章即刻生效，一鍵匯出 A4 存證確認書與 LINE 傳送備查。
+        </p>
+      </header>
+
+      <!-- 操作工具列 -->
+      <div class="inspection-toolbar">
+        <div class="toolbar-group">
+          <button type="button" class="inspection-tool-btn" id="btnQuickSample">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-gold);"></i> 載入示範範本
+          </button>
+          <button type="button" class="inspection-tool-btn" id="btnResetForm">
+            <i class="fa-solid fa-rotate-left"></i> 重設表單
+          </button>
+          <button type="button" class="inspection-tool-btn" id="btnExportJson">
+            <i class="fa-solid fa-file-arrow-down"></i> 匯出備份 (JSON)
+          </button>
+          <button type="button" class="inspection-tool-btn" id="btnImportJson">
+            <i class="fa-solid fa-file-arrow-up"></i> 匯入備份
+          </button>
+          <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
+        </div>
+
+        <div class="toolbar-group">
+          <div class="mode-toggle-group">
+            <button type="button" class="mode-btn active" data-mode="checkin">
+              <i class="fa-solid fa-key"></i> 起租交付點交
+            </button>
+            <button type="button" class="mode-btn" data-mode="checkout">
+              <i class="fa-solid fa-person-walking-luggage"></i> 退租返還核銷
+            </button>
+            <button type="button" class="mode-btn" data-mode="repair">
+              <i class="fa-solid fa-screwdriver-wrench"></i> 現況修繕存證
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 基本資訊卡片 -->
+      <section class="inspection-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fa-solid fa-house-chimney-user"></i>
+            點交標的與租賃當事人基本資訊
+          </h2>
+          <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fa-solid fa-circle-check" style="color: #48BB78;"></i> 自動草稿暫存中</span>
+        </div>
+
+        <div class="meta-form-grid">
+          <div>
+            <label for="inpAddress" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">房屋租賃標的地址</label>
+            <input type="text" id="inpAddress" class="form-control" placeholder="例：高雄市小港區中安路825號 3F">
+          </div>
+          <div>
+            <label for="inpLandlord" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">出租人／管理受託人（甲方）</label>
+            <input type="text" id="inpLandlord" class="form-control" placeholder="例：港居不動產開發有限公司">
+          </div>
+          <div>
+            <label for="inpTenant" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">承租人姓名（乙方）</label>
+            <input type="text" id="inpTenant" class="form-control" placeholder="例：張建銘 先生">
+          </div>
+          <div>
+            <label for="inpInspector" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">點交物業專員</label>
+            <input type="text" id="inpInspector" class="form-control" placeholder="例：陳俊銘 經理">
+          </div>
+          <div>
+            <label for="inpDate" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">點交查驗日期</label>
+            <input type="date" id="inpDate" class="form-control">
+          </div>
+        </div>
+
+        <!-- 水電度數儀表紀錄 -->
+        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 24px 0 12px; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-gauge-high" style="color: var(--accent-gold);"></i> 起租／退租水電瓦斯指針紀錄
+        </h3>
+
+        <div class="meters-grid">
+          <div class="meter-card">
+            <div class="meter-header">
+              <span><i class="fa-solid fa-bolt" style="color: #ECC94B;"></i> 台電總表</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">度 (kWh)</span>
+            </div>
+            <div class="meter-input-row">
+              <input type="text" id="inpPowerMeter" class="form-control" placeholder="例如：14,820">
+            </div>
+          </div>
+
+          <div class="meter-card">
+            <div class="meter-header">
+              <span><i class="fa-solid fa-plug" style="color: #4299E1;"></i> 獨立分表</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">度 (kWh)</span>
+            </div>
+            <div class="meter-input-row">
+              <input type="text" id="inpSubMeter" class="form-control" placeholder="例如：3,210.5">
+            </div>
+          </div>
+
+          <div class="meter-card">
+            <div class="meter-header">
+              <span><i class="fa-solid fa-droplet" style="color: #3182CE;"></i> 自來水表</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">度 (m³)</span>
+            </div>
+            <div class="meter-input-row">
+              <input type="text" id="inpWaterMeter" class="form-control" placeholder="例如：285">
+            </div>
+          </div>
+
+          <div class="meter-card">
+            <div class="meter-header">
+              <span><i class="fa-solid fa-fire-flame-simple" style="color: #ED8936;"></i> 天然氣 / 瓦斯表</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">度 (m³)</span>
+            </div>
+            <div class="meter-input-row">
+              <input type="text" id="inpGasMeter" class="form-control" placeholder="例如：792">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 空間分區瑕疵存證清單 -->
+      <section class="inspection-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fa-solid fa-camera"></i>
+            分區屋況現況與瑕疵存證清單
+          </h2>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">
+            <i class="fa-solid fa-shield-halved" style="color: var(--accent-gold);"></i> 支援拍照自動壓印港居存證時間戳記
+          </span>
+        </div>
+
+        <div id="zonesContainer" class="zone-list">
+          <!-- 由 js/repair-inspection.js 動態渲染 6 大分區與瑕疵卡片 -->
+        </div>
+      </section>
+
+      <!-- 電子簽名板 -->
+      <section class="inspection-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fa-solid fa-signature"></i>
+            點交確認雙方電子簽章
+          </h2>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">
+            <i class="fa-solid fa-check-double" style="color: #48BB78;"></i> 雙方親簽即具備契約存證效力
+          </span>
+        </div>
+
+        <div class="signature-section-grid">
+          <!-- 出租人 / 物業專員簽章 -->
+          <div class="sig-box">
+            <div class="sig-header">
+              <span><i class="fa-solid fa-user-tie"></i> 出租人／管理受託人 簽名</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">手指或滑鼠書寫</span>
+            </div>
+            <div class="sig-canvas-wrap">
+              <canvas id="landlordSignatureCanvas" class="sig-canvas"></canvas>
+              <span id="hintLandlordSig" class="sig-placeholder-hint">請在此簽名（出租人／物業專員）</span>
+            </div>
+            <div class="sig-actions">
+              <button type="button" class="btn-sig-clear" id="btnClearLandlordSig">
+                <i class="fa-solid fa-eraser"></i> 清除重簽
+              </button>
+            </div>
+          </div>
+
+          <!-- 承租人簽章 -->
+          <div class="sig-box">
+            <div class="sig-header">
+              <span><i class="fa-solid fa-user-pen"></i> 承租人 簽名確認</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">手指或滑鼠書寫</span>
+            </div>
+            <div class="sig-canvas-wrap">
+              <canvas id="tenantSignatureCanvas" class="sig-canvas"></canvas>
+              <span id="hintTenantSig" class="sig-placeholder-hint">請在此簽名（承租人）</span>
+            </div>
+            <div class="sig-actions">
+              <button type="button" class="btn-sig-clear" id="btnClearTenantSig">
+                <i class="fa-solid fa-eraser"></i> 清除重簽
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 操作動作與法規背書卡片 -->
+      <div class="inspection-action-card">
+        <div>
+          <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: var(--primary-navy); display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-scale-balanced" style="color: var(--accent-gold);"></i> 法律效力與資產保全宣告
+          </h4>
+          <p style="margin: 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+            依據《租賃住宅市場發展及管理條例》第11條及民法第429、432條規定，本紀錄與照片浮水印由甲乙雙方親簽核認後，作為租賃起租點交、押金退還與修繕責任劃分之合法證據力文件。
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button type="button" class="inspection-action-btn btn-print-inspection" id="btnPrintInspection">
+            <i class="fa-solid fa-print"></i> 列印 / 匯出 A4 點交存證書
+          </button>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="inspection-action-btn btn-line-inspection" id="btnLineShare">
+            <i class="fa-brands fa-line"></i> LINE 回報管理專員備查
+          </a>
+        </div>
+      </div>
+
+      <!-- 列印專用頁尾 (@media print) -->
+      <div class="inspection-print-footer">
+        <div>
+          <strong>港居不動產開發有限公司</strong> ｜ 統一編號：96797997 ｜ 租賃管理證號：(112)登字第013739號<br>
+          地址：高雄市小港區合作里中安路825號 ｜ 電話：07-791-2288
+        </div>
+        <div style="text-align: right;">
+          物業專員：陳俊銘 經理 (0968-863-880)<br>
+          本點交存證確認書由甲乙雙方現場查驗無誤並簽署，各執一份為憑。
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async" style="height: 36px; width: auto;">
+            港居不動產開發有限公司
+          </h4>
+          <p>依法特許登記經營租賃住宅包租業與代管業，專注高質感住宅資產護全與穩定收益增值。</p>
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>服務項目</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">租賃住宅包租業</a></li>
+            <li><a href="index.html#landlords">租賃住宅代管業</a></li>
+            <li><a href="repair-inspection.html">屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html">房東節稅試算</a></li>
+            <li><a href="lease-contract.html">租賃契約產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>證照字號</h4>
+          <ul class="footer-links">
+            <li>租賃住宅服務業登記證：(113)高市租登字第0012號</li>
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+            <li><a href="index.html#disclosure">法定揭示事項</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- 專屬邏輯腳本 -->
+  <script type="module" src="js/repair-inspection.js"></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>

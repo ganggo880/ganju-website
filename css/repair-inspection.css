@@ -1,0 +1,794 @@
+/* ==========================================================================
+   港居不動產 租賃修繕點交與屋況瑕疵存證紀錄神器專屬樣式
+   Repair & Defect Inspection Report Stylesheet
+   依據 Tokens 規範建立，支援深淺色切換、高對比度、RWD 與無痕 A4 列印
+   ========================================================================== */
+
+/* 頁面主體與背景光暈 */
+.inspection-page {
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 100px; /* 給予 Navbar 空間 */
+  padding-bottom: 80px;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.inspection-bg-glow {
+  position: absolute;
+  top: -160px;
+  right: -160px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, var(--bg-glow-2) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.inspection-bg-glow-left {
+  position: absolute;
+  top: 450px;
+  left: -220px;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, var(--bg-glow-1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 主工作台容器 */
+.inspection-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 標題與簡介 */
+.inspection-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 36px;
+}
+
+.inspection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(197, 160, 89, 0.12);
+  color: var(--accent-gold);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.inspection-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+[data-theme="dark"] .inspection-title {
+  color: #FFFFFF;
+}
+
+.inspection-desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 頂部操作工具列 */
+.inspection-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+  background: var(--bg-card);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.inspection-tool-btn {
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card-inner);
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.inspection-tool-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.inspection-tool-btn.primary {
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  border-color: var(--primary-navy);
+}
+
+.inspection-tool-btn.primary:hover {
+  background: var(--primary-light);
+}
+
+.inspection-tool-btn.gold {
+  background: var(--accent-gold);
+  color: #FFFFFF;
+  border-color: var(--accent-gold);
+}
+
+.inspection-tool-btn.gold:hover {
+  background: var(--accent-gold-hover);
+}
+
+/* 卡片區塊 */
+.inspection-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 28px;
+  margin-bottom: 28px;
+  transition: var(--transition);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .card-title {
+  color: #FFFFFF;
+}
+
+.card-title i {
+  color: var(--accent-gold);
+}
+
+/* 檢驗模式切換器 (Pills) */
+.mode-toggle-group {
+  display: inline-flex;
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  gap: 4px;
+}
+
+.mode-btn {
+  min-height: 44px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mode-btn.active {
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.25);
+}
+
+[data-theme="dark"] .mode-btn.active {
+  background: var(--accent-gold);
+  color: #0F172A;
+}
+
+/* 基本資料表單網格 */
+.meta-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 900px) {
+  .meta-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .meta-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 水電度數專用儀表卡 */
+.meters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 14px;
+}
+
+@media (max-width: 768px) {
+  .meters-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.meter-card {
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.meter-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 空間分區清單與折疊卡 */
+.zone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.zone-block {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-card-inner);
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+
+.zone-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.zone-name-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.zone-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-add-defect {
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(197, 160, 89, 0.15);
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold-hover);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition-fast);
+}
+
+[data-theme="dark"] .btn-add-defect {
+  color: var(--accent-gold);
+}
+
+.btn-add-defect:hover {
+  background: var(--accent-gold);
+  color: #FFFFFF;
+}
+
+.zone-body {
+  padding: 18px 20px;
+}
+
+.defects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 單項瑕疵紀錄卡片 */
+.defect-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 140px 1fr 36px;
+  gap: 16px;
+  align-items: start;
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+@media (max-width: 680px) {
+  .defect-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.defect-card:hover {
+  border-color: var(--accent-gold);
+}
+
+.defect-photo-box {
+  width: 140px;
+  height: 120px;
+  border-radius: var(--radius-sm);
+  border: 2px dashed var(--border-color);
+  background: var(--bg-card-inner);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+@media (max-width: 680px) {
+  .defect-photo-box {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+.defect-photo-box:hover {
+  border-color: var(--accent-gold);
+}
+
+.defect-photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.defect-photo-prompt {
+  text-align: center;
+  padding: 8px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.defect-photo-prompt i {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+  color: var(--accent-gold);
+}
+
+.defect-photo-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.defect-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.defect-row-1 {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.defect-type-select {
+  flex: 1;
+  min-width: 180px;
+}
+
+.defect-resp-select {
+  flex: 1;
+  min-width: 180px;
+}
+
+.defect-desc-input {
+  width: 100%;
+}
+
+.btn-remove-defect {
+  width: 36px;
+  height: 36px;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #E53E3E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-remove-defect:hover {
+  background: rgba(229, 62, 62, 0.1);
+}
+
+/* 責任判定顏色徽章 */
+.resp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.resp-normal {
+  background: rgba(72, 187, 120, 0.15);
+  color: #2F855A;
+}
+
+.resp-landlord {
+  background: rgba(49, 130, 206, 0.15);
+  color: #2B6CB0;
+}
+
+.resp-tenant {
+  background: rgba(229, 62, 62, 0.15);
+  color: #C53030;
+}
+
+.resp-as-is {
+  background: rgba(160, 174, 192, 0.2);
+  color: #4A5568;
+}
+
+[data-theme="dark"] .resp-normal { color: #68D391; }
+[data-theme="dark"] .resp-landlord { color: #63B3ED; }
+[data-theme="dark"] .resp-tenant { color: #FC8181; }
+[data-theme="dark"] .resp-as-is { color: #CBD5E1; }
+
+/* 電子簽章板區塊 */
+.signature-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .signature-section-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sig-box {
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sig-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sig-canvas-wrap {
+  width: 100%;
+  height: 160px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  touch-action: none; /* 防止手機滑動干擾手寫簽名 */
+}
+
+.sig-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+.sig-placeholder-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #A0AEC0;
+  font-size: 0.92rem;
+  pointer-events: none;
+  user-select: none;
+  font-style: italic;
+}
+
+.sig-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn-sig-clear {
+  min-height: 44px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-sig-clear:hover {
+  border-color: #E53E3E;
+  color: #E53E3E;
+}
+
+/* 底部送出與匯出動作列 */
+.inspection-action-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.inspection-action-btn {
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  border: none;
+}
+
+.btn-print-inspection {
+  background: var(--primary-navy);
+  color: #FFFFFF !important;
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .btn-print-inspection {
+  background: #2B4C7E;
+}
+
+.btn-print-inspection:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.btn-line-inspection {
+  background: #00B900;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 20px -4px rgba(0, 185, 0, 0.35);
+}
+
+.btn-line-inspection:hover {
+  background: #009900;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   A4 存證點交報告列印專用樣式 (@media print)
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 12mm 12mm 12mm;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 10pt;
+    font-family: 'Noto Sans TC', serif, sans-serif !important;
+  }
+
+  /* 隱藏全站導覽、頁尾、懸浮鈕、工具列與按鈕 */
+  .top-bar,
+  .navbar,
+  .footer,
+  .floating-actions,
+  .inspection-bg-glow,
+  .inspection-bg-glow-left,
+  .inspection-toolbar,
+  .inspection-action-card,
+  .btn-add-defect,
+  .btn-remove-defect,
+  .btn-sig-clear,
+  .defect-photo-input,
+  .mobile-toggle,
+  .theme-toggle-btn {
+    display: none !important;
+  }
+
+  .inspection-page {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .inspection-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .inspection-card {
+    border: 1px solid #999999 !important;
+    box-shadow: none !important;
+    padding: 12px !important;
+    margin-bottom: 14px !important;
+    page-break-inside: avoid;
+  }
+
+  .card-header {
+    border-bottom: 1px solid #CCCCCC !important;
+    margin-bottom: 10px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .card-title {
+    font-size: 12pt !important;
+    color: #000000 !important;
+  }
+
+  .meta-form-grid,
+  .meters-grid {
+    gap: 8px !important;
+  }
+
+  .form-control {
+    border: none !important;
+    border-bottom: 1px solid #666666 !important;
+    border-radius: 0 !important;
+    padding: 2px 4px !important;
+    background: transparent !important;
+    font-size: 9.5pt !important;
+  }
+
+  .zone-block {
+    border: 1px solid #CCCCCC !important;
+    background: #FFFFFF !important;
+    page-break-inside: avoid;
+    margin-bottom: 12px;
+  }
+
+  .zone-block-header {
+    background: #F3F4F6 !important;
+    padding: 8px 12px !important;
+    border-bottom: 1px solid #CCCCCC !important;
+  }
+
+  .defect-card {
+    border: 1px solid #E5E7EB !important;
+    padding: 8px 10px !important;
+    grid-template-columns: 110px 1fr !important;
+    page-break-inside: avoid;
+  }
+
+  .defect-photo-box {
+    width: 110px !important;
+    height: 90px !important;
+    border: 1px solid #CCCCCC !important;
+  }
+
+  .sig-canvas-wrap {
+    height: 100px !important;
+    border: 1px solid #000000 !important;
+  }
+
+  /* 列印專用表頭與法律背書宣告 */
+  .inspection-print-header {
+    display: block !important;
+    border-bottom: 2px solid #1A365D;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+  }
+
+  .inspection-print-footer {
+    display: flex !important;
+    justify-content: space-between;
+    margin-top: 20px;
+    border-top: 1px solid #CCCCCC;
+    padding-top: 10px;
+    font-size: 8.5pt;
+    color: #444444;
+    page-break-inside: avoid;
+  }
+}
+
+.inspection-print-header,
+.inspection-print-footer {
+  display: none;
+}

@@ -24,7 +24,8 @@ const PAGES = [
   'space-planner.html',
   'island.html',
   'lease-contract.html',
-  'tax-calculator.html'
+  'tax-calculator.html',
+  'repair-inspection.html'
 ];
 
 const MIME_TYPES = {

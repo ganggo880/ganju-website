@@ -23,7 +23,8 @@ const PAGES = [
   'ocr-translator.html',
   'space-planner.html',
   'lease-contract.html',
-  'tax-calculator.html'
+  'tax-calculator.html',
+  'repair-inspection.html'
 ];
 
 const VIEWPORTS = [
