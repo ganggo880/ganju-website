@@ -1,0 +1,523 @@
+/* ==========================================================================
+   港居不動產 - 591/社群招租文案與第33條法定揭露合成器樣式 (listing-post-generator.css)
+   100% 繼承 css/tokens.css 設計變數，支援 360px 零溢出與 A4 物件DM無痕列印
+   ========================================================================== */
+
+.postgen-page {
+  position: relative;
+  padding: 110px 0 80px;
+  min-height: 100vh;
+  background-color: var(--bg-body);
+  overflow-x: clip;
+}
+
+.postgen-bg-glow {
+  position: absolute;
+  top: 40px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, var(--accent-gold-light) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.postgen-bg-glow-left {
+  position: absolute;
+  bottom: 120px;
+  left: -140px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--bg-subtle) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 頂部 Hero */
+.postgen-hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 28px;
+}
+
+.postgen-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.postgen-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.postgen-pill.gold {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-hover);
+  border-color: var(--border-gold);
+}
+
+.postgen-hero h1 {
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.postgen-hero p {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* 範例快速工具列 */
+.postgen-toolbar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.preset-pills-row,
+.toolbar-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.preset-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: var(--bg-subtle);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.preset-chip:hover {
+  border-color: var(--accent-gold);
+}
+
+.preset-chip.active {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-hover);
+  border-color: var(--accent-gold);
+}
+
+/* 主雙欄工作區 */
+.postgen-workspace {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.postgen-col {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 卡片樣式 */
+.postgen-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-md);
+  min-width: 0;
+}
+
+.postgen-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.postgen-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.postgen-card-title .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-navy);
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* 表單網格 */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.form-field.full-span {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.form-control {
+  min-height: 44px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 特色標籤點選網格 */
+.tag-toggles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tag-check-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  color: var(--text-main);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.tag-check-card:hover {
+  border-color: var(--accent-gold);
+}
+
+.tag-check-card input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+/* 法定第 33 條合規護欄狀態卡 */
+.compliance-guard-box {
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.compliance-guard-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.compliance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+  color: var(--text-inverse);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.compliance-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-main);
+}
+
+.compliance-list li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.compliance-list li i {
+  color: var(--color-success);
+}
+
+/* 右側三大平台文案切換頁籤 */
+.platform-tabs-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  background: var(--bg-subtle);
+  padding: 6px;
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+}
+
+.platform-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.platform-tab-btn.active {
+  background: var(--primary-navy);
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-sm);
+}
+
+.copy-output-area {
+  width: 100%;
+  min-height: 330px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+/* 社群亮點首圖 Canvas 預覽區 */
+.poster-preview-wrap {
+  width: 100%;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.poster-canvas {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  display: block;
+  margin: 0 auto;
+}
+
+.photo-upload-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.upload-label-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-hover);
+  border: 1px solid var(--border-gold);
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* 匯出行動按鈕列 */
+.export-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.export-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  transition: var(--transition-fast);
+}
+
+.export-btn:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-1px);
+}
+
+.export-btn.primary {
+  background: var(--primary-navy);
+  color: var(--text-inverse);
+  border-color: var(--primary-navy);
+}
+
+.export-btn.gold {
+  background: var(--accent-gold);
+  color: var(--primary-dark);
+  border-color: var(--accent-gold);
+}
+
+.export-btn.full-span {
+  grid-column: 1 / -1;
+}
+
+/* RWD 響應式適配 */
+@media (max-width: 1080px) {
+  .postgen-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .postgen-page {
+    padding: 94px 0 60px;
+  }
+
+  .form-grid-2,
+  .form-grid-3,
+  .tag-toggles-grid,
+  .compliance-list,
+  .platform-tabs-bar,
+  .export-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .postgen-card {
+    padding: 16px;
+  }
+}
+
+/* A4 物件招租 DM 無痕列印 */
+@media print {
+  .top-bar,
+  .navbar,
+  .postgen-bg-glow,
+  .postgen-bg-glow-left,
+  .postgen-hero,
+  .postgen-toolbar,
+  .postgen-input-col,
+  .platform-tabs-bar,
+  .photo-upload-bar,
+  .export-actions-grid,
+  .footer,
+  .floating-actions {
+    display: none !important;
+  }
+
+  body,
+  .postgen-page {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .postgen-workspace {
+    display: block !important;
+  }
+
+  .postgen-card {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    margin-bottom: 16px !important;
+  }
+}

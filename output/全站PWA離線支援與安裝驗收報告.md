@@ -27,9 +27,11 @@
 | 15 | `utility-splitter.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 分租水電費與公電分攤結算單產生器｜符合2024租賃電費新制・LINE催繳圖卡・A4公告表｜港居不動產 |
 | 16 | `deposit-settlement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 退租押金結算與點交扣款明細單產生器｜破日租金退補・水電預扣・雙向手寫簽章・A4確認書｜港居不動產 |
 | 17 | `rent-subsidy-checker.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 300億租金補貼資格自檢與實質月租試算器｜高雄市分級・單身新婚育兒加碼・公益出租人節稅｜港居不動產 |
-| 18 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 18 | `rent-receipt.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租金電子收據與屋主代管月結對帳單產生器｜雙模式・中文大寫金額・LINE圖卡匯出｜港居不動產 |
+| 19 | `listing-post-generator.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 591／社群招租文案與第33條法定揭露合成器｜防漏證號受罰・社群首圖一鍵生成｜港居不動產 |
+| 20 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**18 / 18 頁 (100%)**
+**離線可用率**：**20 / 20 頁 (100%)**
 
 ---
 

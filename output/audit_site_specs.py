@@ -23,6 +23,8 @@ HTML_FILES = [
     "utility-splitter.html",
     "deposit-settlement.html",
     "rent-subsidy-checker.html",
+    "rent-receipt.html",
+    "listing-post-generator.html",
     "privacy.html"
 ]
 
