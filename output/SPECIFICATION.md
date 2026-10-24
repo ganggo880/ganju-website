@@ -167,6 +167,66 @@ Matt Pocock skills/
 - **媒體與歷史專區**：半世紀 1974~2024 大事紀時間軸、10 部影音播放 Modal、10 篇新聞報導 Markdown 彈窗閱讀與 B2B 大宗水產詢價。
 - **結構化資料**：配置 Schema.org `Corporation` 企業標記。
 
+### 4.12 3D 智慧營運島數位孿生微縮世界 (`island.html` / `island_standalone.html`)
+- **純原生 WebGL / Three.js 數位孿生**：以港居總部為核心打造 3D 智慧物業營運微縮島嶼，支援日夜循環、浮動路燈與即時光影渲染。
+- **四大營運地標即時互動**：包含港居營運總部大樓、優質託管公寓、智慧倉儲中心與綠能巡邏車隊，支援視角平滑聚焦與運營數據彈窗。
+- **雙版型部署**：首頁嵌入式互動體驗與全螢幕獨立沉浸式版本（`island_standalone.html`）。
+
+### 4.13 租賃契約與住戶公約線上套印產生器 (`lease-contract.html`)
+- **住宅租賃定型化契約法定規範**：嚴格依據內政部《住宅租賃定型化契約應記載及不得記載事項》設計，雙欄即時連動預覽。
+- **大寫金額與法定防呆**：租金與押金自動轉換繁體中文金融大寫（例：`新臺幣 貳萬伍仟元整`），自動檢核押金不得超逾 2 個月租金上限。
+- **公約與設備點交**：內建 27 項標準住戶生活公約、家具家電設備點交清單、凶宅防範與 300 萬違約金保障條款。
+- **無痕列印**：支援 `@media print` A4 標準雙面無痕列印與 PDF 匯出。
+
+### 4.14 房東包租代管節稅效益與實質收益試算神器 (`tax-calculator.html`)
+- **住宅法第 15 條與租賃專法第 17 條試算**：精算法定每屋每月 1.5 萬元免稅額、超過部分 60% 必要費用減除率。
+- **三方案實質淨收益 PK**：房東自行出租（無租補/無專法減免）、委託專業代管、全包租保證收益三大方案全年稅後淨利動態能量條比對。
+- **三大高質感輸出**：支援 A4 節稅診斷書無痕列印、LINE 深度帶參諮詢陳經理與試算摘要複製。
+
+### 4.15 租賃修繕點交與屋況瑕疵存證紀錄神器 (`repair-inspection.html`)
+- **民法第 429/432 條與租賃專法第 11 條點交規範**：起租交付、退租返還與修繕存證三大模式切換。
+- **六大空間與四級責任歸屬**：客廳、臥室、衛浴、廚房、陽台、公共區域分區盤點，清晰判定自然耗損、承租人過失、房東修繕與不可抗力責任。
+- **相機拍照存證與電子手寫簽章**：現場拍照自動壓印時間存證浮水印，支援雙畫布 Retina 2x 高靈敏電子簽章板、儀表指針登錄、JSON 備份與 A4 存證報告列印。
+
+### 4.16 個人資料保護與隱私權政策專頁 (`privacy.html`)
+- **個資法法定特定目的規範**：遵循台灣《個人資料保護法》法定特定目的代號 086、069、040、090，明確揭示個資蒐集範疇、利用對象與期間。
+- **純前端零上傳安全透明宣告**：正式對外宣告本站所有線上工具皆於使用者本地端運算，不傳輸儲存合約、證件或影像至遠端伺服器。
+- **全站雙向互通**：全站 21 頁頁尾全面配置直連錨點，首頁預約表單直連隱私權同意書。
+
+### 4.17 分租水電費與公電分攤結算單產生器 (`utility-splitter.html`)
+- **2024.07.15 住宅租賃電費新制防呆**：依台電當期總金額與總度數精算當期每度平均電價上限，超逾上限自動亮紅燈防呆。
+- **四種公電分攤模式**：「人數 × 天數」加權分攤（推薦・最公平）、按戶平均分攤、用電比例分攤、房東吸收。
+- **三大高質感輸出**：A4 公告總表無痕列印、單房專屬 LINE 催繳文字一鍵複製、Canvas 800×980px PNG 繳費通知圖卡下載。
+
+### 4.18 退租押金結算與點交扣款明細單產生器 (`deposit-settlement.html`)
+- **定型化契約第 14 點提前解約違約金上限防呆**：提前終止租約違約金最高不得超過 1 個月租金，超逾自動亮紅燈並提供一鍵修正。
+- **破日租金退補與最後一期水電結算**：支援日割精算退補、跨工具一鍵從 `repair-inspection.html` 匯入承租人修繕扣款。
+- **雙電子簽章與三大輸出**：出租人與承租人雙畫布親簽、A4 退租結算確認書列印、LINE 明細複製、820×1040px PNG 圖卡下載。
+
+### 4.19 300 億中央擴大租金補貼資格自檢與實質月租試算器 (`rent-subsidy-checker.html`)
+- **內政部國土管理署高雄市級距與加碼精算**：四大資格自檢、高雄第一區（$5,000/$4,000/$2,400）與第二區基準額，自動套用單身 1.2 倍、新婚 1.3 倍、育兒 1.4~2.0 倍、弱勢 1.2~1.4 倍加碼。
+- **雙贏導流與動態比例條**：呈現租客實付自負額能量條，宣導房東公益出租人與港居包租代管 60% 費用率雙贏優勢。
+- **三大高質感輸出**：A4 診斷單列印、LINE 試算摘要複製、800×940px PNG 圖卡下載。
+
+### 4.20 租金電子收據與屋主代管月結對帳單產生器 (`rent-receipt.html`)
+- **雙模式架構**：模式一（租客繳租電子收據）、模式二（屋主代管月結匯款對帳單，自動精算 10% 服務費與代墊修繕款）。
+- **跨工具資料串聯**：一鍵從 `utility-splitter.html` 匯入水電費、從 `repair-inspection.html` 匯入房東修繕費。
+- **雙電子簽章與認證紅章**：雙畫布手寫簽章、港居紅色專用收訖章、繁體中文金融大寫金額、LINE 文字複製、840×1060px PNG 圖卡下載、A4 無痕列印。
+
+### 4.21 591／社群招租文案與第 33 條法定揭露合成器 (`listing-post-generator.html`)
+- **租賃專法第 33 條強制合規護欄**：自動帶入港居統編 `96797997`、特許登記證 `(113)高市租登字第0012號`、公會會員字號 `115-046` 與管理人員證號 `(112)登字第013739號`，防範漏報受罰 1~5 萬元並攔截營業員證號。
+- **三平台文案生成**：591 結構長文版、FB 租屋社團吸睛版、LINE 招租速報版。
+- **1080×1080 社群招租首圖合成**：上傳實景照合成含 300 億租補金章、月租價格卡與底部法定浮水印條之高畫質首圖。
+
+### 4.22 欠租催告與終止租約「郵局存證信函」產生器 (`legal-notice-generator.html`)
+- **民法第 440 條二個月欠租法定門檻防呆**：欠租未達二個月自動警示不得主張終止租約，保障程序正當性。
+- **四大權威法務範本**：積欠租金限期催告、催告期滿終止租約暨限期遷讓、違約催告、租期屆滿不續租通知（防默示更新）。
+- **中華郵政標準 20×10 格線排版與規費精算**：自動分頁每頁 200 字、試算存證規費（首頁 50 元、續頁每頁 30 元）、LINE 最後通牒複製、920×1120px PNG 圖卡下載、A4 一式三份列印。
+
+### 4.23 官網主頁「全方位不動產與租務線上工具中心 (`#tools`)」
+- **全站 18 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
+- **4 大分類標籤動態切換**：全部工具 (18)、房東節稅與法務 (6)、租客權益與試算 (4)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
+
 ---
 
 ## 5. 視覺設計系統 (Design Tokens & UI/UX Standards)
@@ -217,9 +277,9 @@ Matt Pocock skills/
    - 行動端：`< 576px`（單欄垂直堆疊）
 2. **觸控熱區規範 (Touch Target Size - WCAG 2.1 AA / 2.2 SC 2.5.8)**：
    - 全站所有按鈕、選單項目、輸入框、色彩選取器、滑桿、核取方塊感應標籤一律 **≥ 44×44px**（按鈕 min-height 48px / 44px，原生控制項封裝於關聯 label 或賦予 min-height 44px）。
-   - 經 Chrome DevTools Protocol (CDP) 40 組測試實機檢驗，全站 10 頁 <44px 觸控缺陷數為 **0 項 (100% 合格)**。
+   - 經 Chrome DevTools Protocol (CDP) 80 組測試實機檢驗，全站 21 頁 <44px 觸控缺陷數為 **0 項 (100% 合格)**。
 3. **橫向溢出防護 (Zero-Overflow Guarantee)**：
-   - 360px (Galaxy S8)、375px (iPhone SE)、390px (iPhone 14)、414px (iPhone Plus) 極限螢幕下，全站 10 頁橫向滾動溢出嚴格為 **0px**。
+   - 360px (Galaxy S8)、375px (iPhone SE)、390px (iPhone 14)、414px (iPhone Plus) 極限螢幕下，全站 21 頁橫向滾動溢出嚴格為 **0px**。
 4. **色彩對比度**：
    - 淺色與深色模式之主要文字與底色對比度皆符合 **WCAG 2.1 AA 級標準 (≥ 4.5:1)**。
 
@@ -240,7 +300,7 @@ Matt Pocock skills/
 
 ## 8. SEO 與 Schema.org 結構化資料全覽 (Structured Data)
 
-全站 10 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
+全站 21 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
 
 | 頁面 | Schema.org 類型 | 核心欄位與特性 |
 |---|---|---|
@@ -257,6 +317,14 @@ Matt Pocock skills/
 | `island.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 數位孿生營運島 |
 | `lease-contract.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租賃契約與公約產生器 |
 | `tax-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 房東節稅與收益試算神器 |
+| `repair-inspection.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租賃修繕點交與屋況瑕疵存證神器 |
+| `privacy.html` | `WebPage`, `BreadcrumbList` | `name`, `description`, `publisher`, `inLanguage`, 個資保護與隱私權專頁 |
+| `utility-splitter.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 分租水電費與公電分攤結算單產生器 |
+| `deposit-settlement.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 退租押金結算與點交扣款明細單產生器 |
+| `rent-subsidy-checker.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 300億租金補貼自檢與月租試算器 |
+| `rent-receipt.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租金電子收據與代管月結對帳單產生器 |
+| `listing-post-generator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 591／社群招租文案與第33條揭露合成器 |
+| `legal-notice-generator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 欠租催告與終止租約郵局存證信函產生器 |
 | `output/winfar-website/` | `Corporation` | `name`, `foundingDate`, `founder`, `address`, `telephone`, `knowsAbout` |
 
 ---
@@ -270,13 +338,13 @@ Matt Pocock skills/
    - 圖示庫：支援 192×192、512×512 之標準圖示與 Android Maskable 圖示，以及 Apple Touch Icon。
    - 快捷捷徑 (App Shortcuts)：直接跳轉 2D/3D 格局、租金試算、EXIF 水印與 OCR 翻譯。
 2. **智慧 Service Worker 快取體系 (`sw.js`)**：
-   - **Pre-caching**：安裝時預載全站 13 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（共 54 項核心資產）。
+   - **Pre-caching**：安裝時預載全站 21 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.2` 共 80 項核心資產）。
    - **導航請求 (Navigate)**：Network-First with Cache Fallback，網路在線時即時獲取最新修正，案場無訊號（地下室、高樓）自動回退至本機快取。
    - **靜態資源 (Assets/CDN)**：Stale-While-Revalidate 與動態快取，自動緩存 Three.js 與 FontAwesome 等第三方相依庫。
 3. **原生安裝引導與連線監控 (`js/pwa.js`)**：
    - 攔截 `beforeinstallprompt` 提供符合品牌色系與 ≥ 44×44px 觸控標準之「免費安裝」提示卡片。
    - 監聽 `online` / `offline` 事件，斷網時浮動顯示離線指示徽章，連線恢復時 Toast 提示自動同步。
-   - 經 CDP 實機模擬斷網驗收，全站 13 頁完全離線可用率達 **13/13 頁 (100%)**。
+   - 經 CDP 實機模擬斷網驗收，全站 21 頁完全離線可用率達 **21/21 頁 (100%)**。
 
 ---
 

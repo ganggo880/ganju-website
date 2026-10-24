@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearTimeout(roiTrackTimeout);
     roiTrackTimeout = setTimeout(() => {
       if (window.GanjuTracker) {
+        const isSublease = plan === 'master';
         window.GanjuTracker.track('roi_calculator_use', {
           monthly_rent: monthlyRent,
           plan_mode: isSublease ? 'sublease' : 'management'
@@ -541,7 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 觸發專欄文章閱讀與 CTA 追蹤
     if (window.GanjuTracker) {
       window.GanjuTracker.track('blog_article_view', {
-        article_id: id,
+        article_id: articleId,
         article_title: data.title,
         category: data.category
       });
@@ -552,7 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctaBtn.addEventListener('click', () => {
         if (window.GanjuTracker) {
           window.GanjuTracker.track('blog_cta_click', {
-            article_id: id,
+            article_id: articleId,
             target_tool: data.ctaUrl
           });
         }
