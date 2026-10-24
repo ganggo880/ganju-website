@@ -1,0 +1,211 @@
+/* ==========================================================================
+   港居不動產 個人資料保護與隱私權政策專用樣式
+   Privacy Policy Stylesheet
+   依據 Tokens 規範建立，支援深淺色切換、高對比度、RWD 與無痕列印
+   ========================================================================== */
+
+.privacy-page {
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 110px;
+  padding-bottom: 90px;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.privacy-bg-glow {
+  position: absolute;
+  top: -160px;
+  right: -160px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, var(--bg-glow-2) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.privacy-bg-glow-left {
+  position: absolute;
+  top: 500px;
+  left: -220px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--bg-glow-1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.privacy-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.privacy-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.privacy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(197, 160, 89, 0.12);
+  color: var(--accent-gold);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.privacy-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+[data-theme="dark"] .privacy-title {
+  color: #FFFFFF;
+}
+
+.privacy-meta {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.privacy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 38px 44px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 640px) {
+  .privacy-card {
+    padding: 24px 20px;
+  }
+}
+
+.privacy-section {
+  margin-bottom: 32px;
+}
+
+.privacy-section:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .privacy-section-title {
+  color: #FFFFFF;
+}
+
+.privacy-section-title i {
+  color: var(--accent-gold);
+}
+
+.privacy-text {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.privacy-list {
+  margin: 0 0 16px;
+  padding-left: 22px;
+  line-height: 1.85;
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+}
+
+.privacy-list li {
+  margin-bottom: 8px;
+}
+
+.privacy-callout {
+  background: rgba(197, 160, 89, 0.08);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 18px 22px;
+  margin: 20px 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.privacy-contact-box {
+  background: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  margin-top: 18px;
+}
+
+.privacy-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+  .privacy-contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.privacy-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+
+.privacy-contact-item i {
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.btn-back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  background: var(--primary-navy);
+  color: #FFFFFF !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  margin-top: 24px;
+}
+
+.btn-back-home:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}

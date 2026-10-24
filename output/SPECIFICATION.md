@@ -57,6 +57,10 @@ Matt Pocock skills/
 ├── island_standalone.html      # 11b. 3D 智慧營運島 (獨立全螢幕版本)
 ├── lease-contract.html         # 12. 租賃契約與住戶公約線上產生器 (雙欄即時連動、中文大寫、A4無痕列印)
 ├── tax-calculator.html         # 13. 房東節稅與包租代管實質淨收益試算 (租賃條例17條/囤房稅2.0/三方案PK)
+├── repair-inspection.html      # 14. 租賃修繕點交與屋況瑕疵存證紀錄神器 (租賃條例11條/存證水印/電子簽章)
+├── privacy.html                # 15. 個人資料保護與隱私權政策專頁 (個資法特定目的086/069/040/090/純前端安全宣告)
+├── sitemap.xml                 # 全站 15 頁 SEO XML 網站地圖
+├── robots.txt                  # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                   # 停用 GitHub Pages Jekyll 編譯
 ├── css/
 │   ├── tokens.css              # 全站設計 Token (海軍藍/香檳金/字型/陰影/深淺變數)
@@ -64,6 +68,8 @@ Matt Pocock skills/
 │   ├── space-planner.css       # 2D/3D 空間格局配置系統樣式
 │   ├── lease-contract.css      # 租賃契約產生器樣式與 A4 排版引擎
 │   ├── tax-calculator.css      # 房東節稅試算專屬樣式與 A4 診斷書列印引擎
+│   ├── repair-inspection.css   # 屋況修繕點交與瑕疵存證專用樣式與 A4 排版引擎
+│   ├── privacy.css             # 隱私權政策與個資保護專用樣式
 │   ├── ocr-translator.css      # OCR 翻譯專屬樣式
 │   ├── converter.css           # 檔案轉換工具專屬樣式
 │   ├── image-converter.css     # 圖像轉換工具專屬樣式
@@ -357,6 +363,19 @@ Matt Pocock skills/
      - 專利轉化漏斗：文末配置專屬工具深度跳轉 CTA（如跳轉 `tax-calculator.html`、`space-planner.html`、`repair-inspection.html`），打造完整業務轉換閉環。
 3. **Google `BlogPosting` 結構化資料**：
    - 於首頁 `<head>` 注入標準 `Blog` 包含 `BlogPosting` 結構化陣列，精確標記文章標題、發布日期、作者與描述，強化 SERP 文章摘要與 Google Discover 曝光。
+
+### 13.7 個人資料保護與隱私權政策專頁 (`privacy.html`) 與房源預約帶參串接
+
+1. **台灣個資法（PDPA）與租賃條例嚴格遵循**：
+   - **特定目的法定代號完整宣告**：086 不動產服務業、069 契約、類似契約或其他法律關係事務、040 行銷、090 消費者、客戶管理與服務。
+   - **法定個資類別透明揭露**：C001 辨識個人者（姓名、電話、LINE ID、地址）、C011 個人描述（性別、職業）、C038 職業、C091 資料主體所取得之財物或服務（租賃歷史、修繕紀錄）。
+   - **純前端零上傳儲存透明化**：明確告知用戶全站工具（OCR、浮水印、身分證裁剪、檔案轉換、格局繪製、點交紀錄）皆在瀏覽器本機記憶體（Canvas / Blob / Web Workers / LocalStorage）中完成，絕不上傳第三方伺服器，保障房東與房客數位私隱。
+   - **當事人五大權益（個資法第 3 條）**：明訂查詢/請求閱覽、請求製給複製本、請求補充或更正、請求停止蒐集處理或利用、請求刪除之行使管道。
+2. **首頁表單與頁尾雙向連結閉環**：
+   - 首頁預約表單核選框 (`#privacyConsent`) 直連 `privacy.html`，符合主管機關對於資料蒐集事前明確同意之規範。
+   - 頁尾版權資訊欄全面整合隱私權專頁連結，杜絕死連結（Dead Links）。
+3. **房源彈窗 (`#propertyModal`) LINE 帶參預約**：
+   - 房源物件卡點擊「加 LINE 預約看房」時，自動依據物件名稱與月租金預填文字（`您好，我想預約看房：【房源名稱】（租金：XXXX元/月）`），強化預約轉換率與客服追蹤效益。
 
 ---
 

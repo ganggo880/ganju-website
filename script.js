@@ -165,7 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const actions = el('div', 'modal-listing-actions');
     const line = el('a', 'btn btn-gold');
-    line.href = safeUrl(listingData.booking_url) || BOOKING_URL_DEFAULT;
+    const bookingMsg = `您好，我想預約看房：【${item.title || '精選房源'}】（租金：${item.price_label || '洽詢專員'}）`;
+    const lineBase = safeUrl(listingData.booking_url) || BOOKING_URL_DEFAULT;
+    const lineUrlWithText = lineBase.includes('?') ? `${lineBase}&text=${encodeURIComponent(bookingMsg)}` : `${lineBase}?text=${encodeURIComponent(bookingMsg)}`;
+    line.href = lineUrlWithText;
     line.target = '_blank';
     line.rel = 'noopener noreferrer';
     line.append(el('i', 'fa-brands fa-line'), ' 加 LINE 預約看房');

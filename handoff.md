@@ -8,9 +8,28 @@
 
 ## ⏯️ 目前做到哪
 
-全站共 **14 個頁面**（港居不動產官網首頁、13 款高階線上工具集與 3D 智慧營運島）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
+全站共 **15 個頁面**（港居不動產官網首頁、13 款高階線上工具集、3D 智慧營運島與個人資料保護政策專頁）維持穩定運作，已完成技術規範全檢與資安防禦性加固：
 
-**2026-10-24（最新推進）— 階段二十八：全站 SEO 搜尋引擎架構部署（`sitemap.xml` ＋ `robots.txt`）＋ 租務專欄現代化深度閱讀彈窗 ＋ Google `BlogPosting` 結構化資料**
+**2026-10-24（最新推進）— 階段二十九：個人資料保護與隱私權政策專頁 (`privacy.html`) ＋ 房源 LINE 帶參預約看房深度串接**
+- **法規合規與個人資料保護政策專頁 (`privacy.html` ＋ `css/privacy.css`)**：
+  - **台灣《個人資料保護法》（PDPA）與《租賃住宅市場發展及管理條例》法定事項嚴格遵循**：
+    - 完整宣告特定目的法定代號：`086 不動產服務業`、`069 契約、類似契約或其他法律關係事務`、`040 行銷`、`090 消費者、客戶管理與服務`。
+    - 揭露法定個人資料類別：`C001 辨識個人者`（姓名、行動電話、電子郵件、通訊地址、LINE 帳號）、`C011 個人描述`（性別、身分證字號）、`C038 職業`、`C091 資料主體所取得之財物或服務`（租賃合約、修繕履歷、水電度數）。
+    - 清楚明訂當事人行使權利管道（個資法第 3 條：查詢、閱覽、製給複製本、補充更正、停止蒐集處理利用、請求刪除）。
+  - **純前端零上傳本地運算安全透明化宣告**：
+    - 明確告知使用者全站所有實用工具（OCR 文字辨識、照片時間地點浮水印、身分證裁剪防偽、多功能檔案轉換、2D/3D 格局規劃、租賃修繕點交）均在瀏覽器本機記憶體（Canvas / Blob / Web Workers / LocalStorage）完成運算，絕無任何照片或證件上傳伺服器之行為。
+  - **全站雙向連結與合規閉環**：
+    - 首頁預約諮詢表單之個資同意核選框（`#privacyConsent`）直接連結至 `privacy.html`，徹底修復原本之 `#` 空錨點。
+    - 首頁與全站頁尾（Footer）資格證照欄位整合「個人資料保護與隱私權政策」直連入口。
+- **房源物件卡彈窗 (`#propertyModal`) LINE 帶參預約升級**：
+  - 於 `script.js` 中優化 `openListing(id)` 邏輯，加 LINE 預約看房按鈕自動帶入房源名稱與租金參數（`您好，我想預約看房：【房源名稱】（租金：XXXX元/月）`），強化預約轉換率與業務對話脈絡。
+- **PWA 61 項資產預載與極限驗收**：
+  - `sw.js` 升級至 `ganju-pwa-v1.5`，預載核心資產擴增至 61 項（涵蓋 `privacy.html` 與 `css/privacy.css`）。
+  - 經 `output/audit_site_specs.py` 稽核：全站 15/15 頁 (100%) 全部合格，0 失效連結。
+  - 經 `output/audit_mobile_rwd.js` 實機 56 組情境檢測（14 頁 × 360px~414px），橫向滾動溢出嚴格為 **0px**，觸控熱區合格率為 **100%**。
+  - 經 `output/test_pwa_offline.js` 100% 完全斷網模擬，全站 **15/15 頁 (100%) 全部成功秒開離線運作**。
+
+**2026-10-24（前一輪）— 階段二十八：全站 SEO 搜尋引擎架構部署（`sitemap.xml` ＋ `robots.txt`）＋ 租務專欄現代化深度閱讀彈窗 ＋ Google `BlogPosting` 結構化資料**
 - **全站 SEO 搜尋引擎標準架構落地 (`sitemap.xml` ＋ `robots.txt`)**：
   - 遵循 Sitemaps.org 0.9 協議建立 [`sitemap.xml`](file:///home/ken-ubuntu/gdrive_folder/ai agent/Matt Pocock skills/sitemap.xml)，收錄全站 14 頁（首頁、13 款核心工具與 3D 營運島），嚴格標註 Canonical URL、`lastmod` (2026-10-24)、`changefreq` 與梯度權重（1.0 / 0.9 / 0.8 / 0.7）。
   - 建立 [`robots.txt`](file:///home/ken-ubuntu/gdrive_folder/ai agent/Matt Pocock skills/robots.txt)，允許主流搜尋引擎爬蟲完整檢索，指向絕對路徑 Sitemap，並封鎖 `obsidian/`、`agent/`、`skills/` 等後台知識庫目錄。
@@ -198,16 +217,16 @@
 - ✅ **版面**：全站頁面在 360px 極限螢幕下橫向溢出嚴格為 0px，觸控熱區皆 ≥ 44×44px。
 - ✅ **JS**：零語法與執行期錯誤；安全 DOM 操作與資料綁定。
 - ✅ **導覽**：全站工具頁「線上工具」下拉選單皆含全部 13 款工具＋3D營運島（14/14 頁面全面互通）。
-- ✅ **離線 PWA**：`sw.js` 預載 57 項核心資產，14/14 頁 (100%) 在完全斷網模擬下秒開可用。
+- ✅ **離線 PWA**：`sw.js` 預載 61 項核心資產，15/15 頁 (100%) 在完全斷網模擬下秒開可用。
 - ✅ **深色模式**：全站文字與底色對比皆符合 WCAG 2.1 AA 級標準，100% 繼承 `css/tokens.css`。
 
 ---
 
-## 📄 已上線頁面全景速覽 (全 14 頁)
+## 📄 已上線頁面全景速覽 (全 15 頁)
 
 | # | 頁面 | 功能說明 | JSON-LD |
 |---|---|---|---|
-| 1 | `index.html` | TopBar 登記證號、Hero、包租 vs 代管方案、ROI 試算器、3D營運島專區、第 33 條法定揭示、房源區、蜜罐防洗 Lead 表單、FAQ 手風琴 | `RealEstateAgent`, `WebSite`, `FAQPage` |
+| 1 | `index.html` | TopBar 登記證號、Hero、包租 vs 代管方案、ROI 試算器、3D營運島專區、第 33 條法定揭示、房源區、蜜罐防洗 Lead 表單、FAQ 手風琴 | `RealEstateAgent`, `WebSite`, `FAQPage`, `Blog` |
 | 2 | `rent-calculator.html` | 30日／當月實際／自訂基準天數、跨月區間、代管費與屋主實收拆分、LocalStorage 歷史 | `WebApplication` (FinanceApplication) |
 | 3 | `file-converter.html` | PDF/DOCX/PNG/JPG/WEBP/MP3/MP4/ZIP 瀏覽器端本地轉檔與歷史紀錄 | `WebApplication` (UtilitiesApplication) |
 | 4 | `photo-watermark.html` | 房源巡檢照 EXIF 時間戳記與品牌浮水印批次合成（常駐深色工作台） | `WebApplication` (MultimediaApplication) |
@@ -221,6 +240,7 @@
 | 12 | `lease-contract.html` | 租賃契約與住戶公約線上套印產生器（雙欄即時連動、中文大寫自動轉換、搬遷免租期、水電度數計費、凶宅防範300萬違約金、27項住戶公約、A4無痕列印與PDF匯出） | `WebApplication` (BusinessApplication) |
 | 13 | `tax-calculator.html` | 房東節稅與包租代管實質淨收益試算神器（租賃專法1.5萬免稅額+60%費用率、囤房稅2.0減半1.2%、地價稅0.2%、自租/代管/全包租三大方案實質淨得大PK、A4診斷書列印與LINE諮詢） | `WebApplication` (FinanceApplication) |
 | 14 | `repair-inspection.html` | 租賃修繕點交與屋況瑕疵存證紀錄神器（租賃專法第11條與民法第429/432條、起租/退租/修繕三大模式、相機時間存證浮水印、四級責任判定、水電指針、雙畫布電子手寫簽章、A4存證書匯出與LINE回傳） | `WebApplication` (BusinessApplication) |
+| 15 | `privacy.html` | 個人資料保護與隱私權政策專頁（符合個資法特定目的086/069/040/090宣告、純前端零上傳儲存安全保證、當事人權益行使管道與表單同意閉環） | `WebPage`, `BreadcrumbList` |
 
 ---
 
@@ -233,6 +253,6 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-10-24 20:00
+- 時間：2026-10-24 20:45
 - 更新者：Antigravity Agent @ Linux
-- 狀態：完成階段二十八「全站 SEO 搜尋引擎架構部署（`sitemap.xml` ＋ `robots.txt`）＋ 租務專欄現代化深度閱讀彈窗 ＋ Google `BlogPosting` 結構化資料全面整合」，全站 14 頁完整索引、專欄法規 1.5 萬與 60% 全面校正、3 大專欄文章互動彈窗與工具轉化閉環上線，PWA 59 項核心資產 100% 離線可用，行動端 52 組情境 360px~414px 零溢出與 0 觸控缺陷全數通過。
+- 狀態：完成階段二十九「個人資料保護與隱私權政策專頁 (`privacy.html`) ＋ 房源 LINE 帶參預約看房深度串接」，全站 15 頁法規遵循合規、首頁 Lead 表單同意書直連、房源看房參數一鍵帶入 LINE、PWA 61 項資產 100% 離線可用，行動端 56 組情境 360px~414px 零溢出與 0 觸控缺陷全數通過。

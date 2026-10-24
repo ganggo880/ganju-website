@@ -24,7 +24,8 @@ const PAGES = [
   'space-planner.html',
   'lease-contract.html',
   'tax-calculator.html',
-  'repair-inspection.html'
+  'repair-inspection.html',
+  'privacy.html'
 ];
 
 const VIEWPORTS = [

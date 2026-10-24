@@ -95,4 +95,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- 法規與個人資料保護政策 -->
+  <url>
+    <loc>https://ganggo880.github.io/ganju-website/privacy.html</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

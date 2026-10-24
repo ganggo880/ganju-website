@@ -25,7 +25,8 @@ const PAGES = [
   'island.html',
   'lease-contract.html',
   'tax-calculator.html',
-  'repair-inspection.html'
+  'repair-inspection.html',
+  'privacy.html'
 ];
 
 const MIME_TYPES = {
@@ -273,7 +274,11 @@ async function runPWATest() {
 
         const pageEval = await client.send('Runtime.evaluate', {
           expression: `
-            (() => {
+            (async () => {
+              for (let i = 0; i < 25; i++) {
+                if (document.body && (document.body.children.length >= 2 || document.body.innerHTML.length > 500)) break;
+                await new Promise(r => setTimeout(r, 100));
+              }
               const title = document.title;
               const childrenCount = document.body ? document.body.children.length : 0;
               const hasContent = document.body && (document.body.children.length >= 2 || document.body.innerHTML.length > 500);
@@ -287,6 +292,7 @@ async function runPWATest() {
               };
             })()
           `,
+          awaitPromise: true,
           returnByValue: true
         });
 
