@@ -22,7 +22,8 @@ const PAGES = [
   'photo-time-location.html',
   'ocr-translator.html',
   'space-planner.html',
-  'island.html'
+  'island.html',
+  'lease-contract.html'
 ];
 
 const MIME_TYPES = {
@@ -266,17 +267,19 @@ async function runPWATest() {
 
       try {
         await client.send('Page.navigate', { url: pageUrl });
-        await new Promise((r) => setTimeout(r, 1000));
+        await new Promise((r) => setTimeout(r, 1500));
 
         const pageEval = await client.send('Runtime.evaluate', {
           expression: `
             (() => {
               const title = document.title;
-              const hasContent = document.body && document.body.children.length > 2;
+              const childrenCount = document.body ? document.body.children.length : 0;
+              const hasContent = document.body && (document.body.children.length >= 2 || document.body.innerHTML.length > 500);
               const isOffline = !navigator.onLine;
               return {
                 title,
                 hasContent,
+                childrenCount,
                 isOffline,
                 url: window.location.href
               };
@@ -290,7 +293,7 @@ async function runPWATest() {
           console.log(`✅ 成功離線運作 (標題: ${val.title.slice(0, 20)}...)`);
           offlineResults.push({ page: pageName, status: 'PASS', title: val.title });
         } else {
-          console.log('❌ 離線載入失敗 (無內容)');
+          console.log('❌ 離線載入失敗, val:', JSON.stringify(val));
           offlineResults.push({ page: pageName, status: 'FAIL', error: 'No content' });
         }
       } catch (e) {

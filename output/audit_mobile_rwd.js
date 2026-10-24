@@ -21,7 +21,8 @@ const PAGES = [
   'card-merger.html',
   'photo-time-location.html',
   'ocr-translator.html',
-  'space-planner.html'
+  'space-planner.html',
+  'lease-contract.html'
 ];
 
 const VIEWPORTS = [

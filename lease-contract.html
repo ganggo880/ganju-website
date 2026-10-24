@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>租賃契約與住戶公約線上產生器｜港居不動產包租代管專用</title>
+  <meta name="description" content="港居不動產開發有限公司專用房屋租賃契約書與住戶公約線上套印產生器，支援中文金額大寫自動換算、免租搬遷期、水電度數計費、凶宅防範與代管公約條款，A4標準列印與PDF匯出。">
+  
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/lease-contract.html">
+  <meta name="theme-color" content="#1A365D">
+  
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="租賃契約與住戶公約線上產生器｜港居不動產包租代管專用">
+  <meta property="og:description" content="港居不動產房屋租賃契約書與住戶公約標準版，即時雙欄編輯、中文大寫自動轉換、A4標準無痕列印。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/lease-contract.html">
+  <meta property="og:type" content="website">
+
+  <!-- Icons & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/lease-contract.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居租賃契約與住戶公約線上套印產生器",
+    "url": "https://ganggo880.github.io/ganju-website/lease-contract.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "提供房東與租賃管理專員快速生成標準租賃契約書、住戶公約27項條款與設備點交清冊，支援中文大寫自動轉換與標準A4即時預覽列印。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "租賃契約與住戶公約產生器",
+        "item": "https://ganggo880.github.io/ganju-website/lease-contract.html"
+      }
+    ]
+  }
+  </script>
+  
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body class="viewing-form">
+
+  <!-- 頂部宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法登記包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主導覽列 Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="港居不動產 LOGO" width="279" height="57" fetchpriority="high" decoding="async">
+        <div class="brand-text-box">
+          <h1>港居不動產</h1>
+          <p>GANJU REAL ESTATE</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="lease-contract.html" class="nav-link active"><i class="fa-solid fa-file-contract" style="color: #c5a059;"></i> 租賃契約產生器</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 行動端檢視切換按鈕 (填表 vs 預覽) -->
+  <div class="mobile-view-toggle">
+    <button type="button" class="mobile-view-btn active" id="btnViewForm">
+      <i class="fa-solid fa-pen-to-square"></i> 填寫合約資料
+    </button>
+    <button type="button" class="mobile-view-btn" id="btnViewPreview">
+      <i class="fa-solid fa-file-invoice"></i> 預覽 A4 合約書
+    </button>
+  </div>
+
+  <!-- 主工作台區塊 -->
+  <main class="contract-workspace">
+
+    <!-- 左側：合約表單設定面板 -->
+    <aside class="contract-form-panel">
+      <div class="panel-header">
+        <h2 class="panel-title"><i class="fa-solid fa-sliders"></i> 合約資料設定</h2>
+        <div class="panel-header-actions">
+          <button type="button" class="quick-fill-btn" id="btnQuickSample" title="載入港居通用示範資料">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 載入範本
+          </button>
+          <button type="button" class="quick-fill-btn" id="btnResetForm" style="border-color:#94a3b8; color:#64748b;" title="清空所有欄位重填">
+            <i class="fa-solid fa-rotate-left"></i> 清空
+          </button>
+        </div>
+      </div>
+
+      <!-- 分頁標籤 -->
+      <nav class="form-tabs" aria-label="合約分頁切換">
+        <button type="button" class="form-tab-btn active" data-tab="tabParties">
+          <i class="fa-solid fa-users"></i> 立約人
+        </button>
+        <button type="button" class="form-tab-btn" data-tab="tabProperty">
+          <i class="fa-solid fa-house"></i> 標的租期
+        </button>
+        <button type="button" class="form-tab-btn" data-tab="tabRent">
+          <i class="fa-solid fa-dollar-sign"></i> 租金費用
+        </button>
+        <button type="button" class="form-tab-btn" data-tab="tabClauses">
+          <i class="fa-solid fa-shield-cat"></i> 特約公約
+        </button>
+        <button type="button" class="form-tab-btn" data-tab="tabInventory">
+          <i class="fa-solid fa-list-check"></i> 設備點交
+        </button>
+      </nav>
+
+      <!-- 表單內容包裝區 -->
+      <div class="form-tab-content-wrap">
+        
+        <!-- 分頁 1: 立約人資料 -->
+        <div class="form-tab-pane active" id="tabParties">
+          <div class="form-section-title">
+            <span><i class="fa-solid fa-building-user"></i> 出租人（甲方）資料</span>
+            <span style="font-size:0.75rem; color:var(--text-secondary);">港居官方預設</span>
+          </div>
+          <div class="field-group">
+            <label for="landlordCompany">出租人公司名稱</label>
+            <input type="text" id="landlordCompany" class="contract-input" value="港居不動產開發有限公司">
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="landlordRep">代表人 / 經理</label>
+              <input type="text" id="landlordRep" class="contract-input" value="陳俊銘">
+            </div>
+            <div class="field-group">
+              <label for="landlordTaxId">統一編號</label>
+              <input type="text" id="landlordTaxId" class="contract-input" value="96797997">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="landlordLicense">租賃管理證號</label>
+              <input type="text" id="landlordLicense" class="contract-input" value="(112) 登字第013739號">
+            </div>
+            <div class="field-group">
+              <label for="landlordPhone">聯絡電話</label>
+              <input type="text" id="landlordPhone" class="contract-input" value="0968-863-880">
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="landlordAddress">通訊聯絡地址</label>
+            <input type="text" id="landlordAddress" class="contract-input" value="高雄市小港區合作里中安路825號">
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="bankName">指定匯款銀行 / 代號</label>
+              <input type="text" id="bankName" class="contract-input" value="中華郵政（代號：700）">
+            </div>
+            <div class="field-group">
+              <label for="bankAccount">指定租金匯款帳號</label>
+              <input type="text" id="bankAccount" class="contract-input" value="0045003-0000167">
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-user-check"></i> 承租人代表（乙方）資料</span>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="tenantName">承租人姓名 *</label>
+              <input type="text" id="tenantName" class="contract-input" placeholder="例：林志豪" value="林志豪">
+            </div>
+            <div class="field-group">
+              <label for="tenantId">身分證字號 *</label>
+              <input type="text" id="tenantId" class="contract-input" placeholder="例：E123456789" value="E123456789">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="tenantPhone">聯絡行動電話 *</label>
+              <input type="tel" id="tenantPhone" class="contract-input" placeholder="例：0912-345-678" value="0912-345-678">
+            </div>
+            <div class="field-group">
+              <label for="tenantBirth">出生年月日 (民國)</label>
+              <input type="text" id="tenantBirth" class="contract-input" placeholder="例：78年5月12日" value="78年5月12日">
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="tenantAddress">戶籍送達地址 *</label>
+            <input type="text" id="tenantAddress" class="contract-input" placeholder="例：高雄市三民區覺民路100號" value="高雄市三民區覺民路100號">
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-user-group"></i> 共同承租人與連帶保證人</span>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="coTenantName">共同承租人姓名</label>
+              <input type="text" id="coTenantName" class="contract-input" placeholder="無則留空">
+            </div>
+            <div class="field-group">
+              <label for="coTenantId">身分證字號</label>
+              <input type="text" id="coTenantId" class="contract-input" placeholder="無則留空">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="guarantorName">連帶保證人姓名</label>
+              <input type="text" id="guarantorName" class="contract-input" placeholder="例：林大明" value="林大明">
+            </div>
+            <div class="field-group">
+              <label for="guarantorRelation">保證人關係</label>
+              <input type="text" id="guarantorRelation" class="contract-input" placeholder="例：父子" value="父子">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="guarantorId">保證人身分證號</label>
+              <input type="text" id="guarantorId" class="contract-input" placeholder="例：E100000000" value="E100000000">
+            </div>
+            <div class="field-group">
+              <label for="guarantorPhone">保證人行動電話</label>
+              <input type="tel" id="guarantorPhone" class="contract-input" placeholder="例：0933-111-222" value="0933-111-222">
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-phone-volume"></i> 緊急聯絡人（必填二位）</span>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="emergencyName1">緊急聯絡人 1 姓名</label>
+              <input type="text" id="emergencyName1" class="contract-input" value="陳美玉">
+            </div>
+            <div class="field-group">
+              <label for="emergencyRel1">關係</label>
+              <input type="text" id="emergencyRel1" class="contract-input" value="母親">
+            </div>
+            <div class="field-group">
+              <label for="emergencyPhone1">電話</label>
+              <input type="tel" id="emergencyPhone1" class="contract-input" value="0922-333-444">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="emergencyName2">緊急聯絡人 2 姓名</label>
+              <input type="text" id="emergencyName2" class="contract-input" value="王建宏">
+            </div>
+            <div class="field-group">
+              <label for="emergencyRel2">關係</label>
+              <input type="text" id="emergencyRel2" class="contract-input" value="同事">
+            </div>
+            <div class="field-group">
+              <label for="emergencyPhone2">電話</label>
+              <input type="tel" id="emergencyPhone2" class="contract-input" value="0955-666-777">
+            </div>
+          </div>
+        </div>
+
+        <!-- 分頁 2: 租賃標的與租期 -->
+        <div class="form-tab-pane" id="tabProperty">
+          <div class="form-section-title">
+            <span><i class="fa-solid fa-location-dot"></i> 房屋租賃標的地址</span>
+          </div>
+          <div class="field-group">
+            <label for="propAddress">房屋所在地（含路段門牌）*</label>
+            <input type="text" id="propAddress" class="contract-input" value="高雄市小港區中安路825號5樓之2">
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="propRoomNo">套房／房號代號</label>
+              <input type="text" id="propRoomNo" class="contract-input" value="502室">
+            </div>
+            <div class="field-group">
+              <label for="propPattern">格局房型</label>
+              <input type="text" id="propPattern" class="contract-input" value="獨立景觀套房">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="parkingCar">汽車停車位</label>
+              <input type="text" id="parkingCar" class="contract-input" placeholder="例：B1-18號（無則填無）" value="無附屬汽車位">
+            </div>
+            <div class="field-group">
+              <label for="parkingMoto">機車停車位</label>
+              <input type="text" id="parkingMoto" class="contract-input" placeholder="例：1樓機車位第26號" value="1樓戶外機車區第15號">
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-truck-ramp-box"></i> 搬遷免租期（承租人優惠）</span>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="movingStartDate">免租期起始日</label>
+              <input type="date" id="movingStartDate" class="contract-input" value="2026-11-01">
+            </div>
+            <div class="field-group">
+              <label for="movingEndDate">免租期截止日</label>
+              <input type="date" id="movingEndDate" class="contract-input" value="2026-11-05">
+            </div>
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:12px;">
+            * 免租期間租金全免，共 <span id="movingDaysText" style="font-weight:700; color:var(--accent-gold);">5</span> 天；衍生水電管理費仍由承租人自理。
+          </p>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-calendar-days"></i> 正式租賃期限</span>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="leaseStartDate">租期起算日 *</label>
+              <input type="date" id="leaseStartDate" class="contract-input" value="2026-11-06">
+            </div>
+            <div class="field-group">
+              <label for="leaseEndDate">租期屆滿日 *</label>
+              <input type="date" id="leaseEndDate" class="contract-input" value="2027-11-05">
+            </div>
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-secondary);">
+            * 租期合計：<strong id="leaseDurationText" style="color:var(--primary-navy);">整整 1 年 0 個月</strong>
+          </p>
+        </div>
+
+        <!-- 分頁 3: 租金與費用 -->
+        <div class="form-tab-pane" id="tabRent">
+          <div class="form-section-title">
+            <span><i class="fa-solid fa-coins"></i> 租金與押金約定</span>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="monthlyRent">每月租金額 (新台幣) *</label>
+              <input type="number" id="monthlyRent" class="contract-input" value="15000" min="0" step="500">
+            </div>
+            <div class="field-group">
+              <label for="rentDueDay">每月租金約定繳納日</label>
+              <input type="number" id="rentDueDay" class="contract-input" value="5" min="1" max="31">
+            </div>
+          </div>
+          <div class="field-group">
+            <label>中文大寫月租金（系統自動轉換）</label>
+            <input type="text" id="monthlyRentChinese" class="contract-input" readonly style="background:#F8FAFC; font-weight:700; color:var(--primary-navy);" value="新台幣壹萬伍仟元整">
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="depositAmount">押金保證金 (預設2個月租金)</label>
+              <input type="number" id="depositAmount" class="contract-input" value="30000" min="0">
+            </div>
+            <div class="field-group">
+              <label>中文大寫押金（系統自動轉換）</label>
+              <input type="text" id="depositAmountChinese" class="contract-input" readonly style="background:#F8FAFC; font-weight:700; color:var(--primary-navy);" value="新台幣參萬元整">
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-building"></i> 大樓管理費約定</span>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="radio" name="mgmtFeePayer" value="landlord" id="mgmtByLandlord">
+              <span>由<strong>甲方（出租人）</strong>負擔</span>
+            </label>
+            <label class="check-item-label">
+              <input type="radio" name="mgmtFeePayer" value="tenant" id="mgmtByTenant" checked>
+              <span>由<strong>乙方（承租人）</strong>負擔，每月新台幣</span>
+            </label>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="mgmtFeeAmount">大樓管理費月額 (NT$)</label>
+              <input type="number" id="mgmtFeeAmount" class="contract-input" value="1200" min="0">
+            </div>
+            <div class="field-group">
+              <label for="mgmtFreeMonths">管理費優惠免繳月數</label>
+              <input type="number" id="mgmtFreeMonths" class="contract-input" value="0" min="0">
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-bolt"></i> 水費、電費與公用事業約定</span>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="radio" name="utilityType" value="bills" id="utilBills">
+              <span><strong>獨立台水台電帳單</strong>：由承租人憑公用事業帳單自行繳納</span>
+            </label>
+            <label class="check-item-label">
+              <input type="radio" name="utilityType" value="submeter" id="utilSubmeter" checked>
+              <span><strong>分錶度數與定額水費</strong>：出租人代收代繳</span>
+            </label>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="elecPricePerUnit">電費每度單價 (NT$)</label>
+              <input type="number" id="elecPricePerUnit" class="contract-input" value="5.0" step="0.5" min="0">
+            </div>
+            <div class="field-group">
+              <label for="waterFeePerPerson">定額水費 (每人每月 NT$)</label>
+              <input type="number" id="waterFeePerPerson" class="contract-input" value="150" min="0">
+            </div>
+          </div>
+        </div>
+
+        <!-- 分頁 4: 特約條款與公約 -->
+        <div class="form-tab-pane" id="tabClauses">
+          <div class="form-section-title">
+            <span><i class="fa-solid fa-ban-smoking"></i> 全面禁菸與香薰規範（法定防護）</span>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="checkbox" id="chkStrictSmoking" checked>
+              <span><strong>室內全區禁菸與香薰</strong>：包含陽台、樓梯間，嚴禁吸菸、電子煙、加熱菸與焚香拜拜</span>
+            </label>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 28px;">
+              違者單次罰款新台幣 <strong>10,000 元</strong>（支應冷氣與室內全屋深層除臭清潔費），累犯甲方得無條件終止契約。
+            </p>
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-paw"></i> 寵物飼養約定</span>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="radio" name="petAllowed" value="no" id="petNo">
+              <span><strong>全區嚴禁飼養寵物</strong>（違者罰款 $10,000 且須立即帶離）</span>
+            </label>
+            <label class="check-item-label">
+              <input type="radio" name="petAllowed" value="yes" id="petYes" checked>
+              <span><strong>同意飼養指定寵物</strong>（須遵守清潔條款與冷氣清洗費分攤）</span>
+            </label>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="petDetail">寵物種類品種 / 數量</label>
+              <input type="text" id="petDetail" class="contract-input" value="貓（英國短毛貓）1 隻">
+            </div>
+            <div class="field-group">
+              <label for="petAcCleanFee">退租冷氣清洗分擔費/台</label>
+              <input type="number" id="petAcCleanFee" class="contract-input" value="1250">
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-triangle-exclamation"></i> 凶宅防範與緊急意外處置（特別加重）</span>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="checkbox" id="chkStigmatized" checked>
+              <span><strong>愛惜生命與凶宅懲罰性違約金</strong>：非自然死亡違約金新台幣 <strong>3,000,000 元整</strong></span>
+            </label>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="checkbox" id="chkEmergencyEntry" checked>
+              <span><strong>重大緊急事故授權破門</strong>：遇火災漏水危難，警消村里長會同甲方得破門進入排險</span>
+            </label>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="checkbox" id="chkSevenDayPlumbing" checked>
+              <span><strong>管線入住 7 日責任切分</strong>：起租 7 日後水管馬桶堵塞視為使用不當，全額由乙方自理</span>
+            </label>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="checkbox" id="chkWallDamageFee" checked>
+              <span><strong>牆面吊掛規定</strong>：僅限 3M 無痕掛鉤，殘膠或損壞每處賠償新台幣 <strong>500 元</strong></span>
+            </label>
+          </div>
+
+          <div class="form-section-title" style="margin-top:20px;">
+            <span><i class="fa-solid fa-book"></i> 附表一：通用標準住戶公約 (27條款)</span>
+          </div>
+          <div class="field-group">
+            <label class="check-item-label">
+              <input type="checkbox" id="chkIncludeRules" checked>
+              <span><strong>同步列印附表一：通用標準住戶公約（完整 27 條 Master 規範）</strong></span>
+            </label>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 28px;">
+              含夜間寧靜時段（22:00~07:00）、洗衣機禁用時段（22:00~08:00）、開門車馬費（$500/$1000）、退租冰箱退冰清潔規範等。
+            </p>
+          </div>
+        </div>
+
+        <!-- 分頁 5: 設備點交清單 -->
+        <div class="form-tab-pane" id="tabInventory">
+          <div class="form-section-title">
+            <span><i class="fa-solid fa-clipboard-check"></i> 附表二：房屋附屬設備點交表</span>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="invAc">冷氣（含遙控器）</label>
+              <input type="text" id="invAc" class="contract-input" value="1 台（附遙控器 1 支，冷房功能正常）">
+            </div>
+            <div class="field-group">
+              <label for="invWaterHeater">熱水器</label>
+              <input type="text" id="invWaterHeater" class="contract-input" value="儲熱式電熱水器 1 台（功能正常）">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="invKeys">門禁鑰匙 / 感應磁扣</label>
+              <input type="text" id="invKeys" class="contract-input" value="大門磁扣 2 支、房門鑰匙 2 支">
+            </div>
+            <div class="field-group">
+              <label for="invFridge">電冰箱</label>
+              <input type="text" id="invFridge" class="contract-input" value="雙門一級能效冰箱 1 台（已退冰清潔）">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="invBed">床組床墊</label>
+              <input type="text" id="invBed" class="contract-input" value="標準雙人獨立筒床墊 1 組、實木床架 1 組">
+            </div>
+            <div class="field-group">
+              <label for="invWardrobe">衣櫃 / 桌椅</label>
+              <input type="text" id="invWardrobe" class="contract-input" value="雙門衣櫃 1 組、書桌椅 1 套">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="invInitialElec">起租獨立電表度數</label>
+              <input type="text" id="invInitialElec" class="contract-input" value="1285.4 度">
+            </div>
+            <div class="field-group">
+              <label for="invInitialWater">起租水表度數 / 瓦斯度數</label>
+              <input type="text" id="invInitialWater" class="contract-input" value="定額水費（瓦斯無）">
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="invOtherNotes">其他點交現況特別備註</label>
+            <textarea id="invOtherNotes" class="contract-input" rows="2" style="resize:vertical;">全屋牆面新油漆無釘孔，窗簾無污損，蓮蓬頭與馬桶水流暢通，已全室細清完成。</textarea>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- 右側：A4 紙張仿真即時預覽區 -->
+    <section class="contract-preview-panel">
+      
+      <!-- 頂部浮動工具列 -->
+      <div class="preview-toolbar">
+        <div class="preview-toolbar-title">
+          <i class="fa-solid fa-file-contract" style="color:var(--accent-gold);"></i>
+          <span>標準 A4 契約書即時排版</span>
+          <span style="font-size:0.75rem; background:rgba(26,54,93,0.08); padding:3px 8px; border-radius:12px; color:var(--primary-navy); font-weight:700;">
+            共 <span id="sheetCountBadge">4</span> 頁
+          </span>
+        </div>
+        <div class="preview-toolbar-actions">
+          <button type="button" class="btn btn-navy" id="btnDownloadJson" style="padding:8px 14px; font-size:0.85rem;" title="將目前輸入的合約資料存成 JSON 備份檔">
+            <i class="fa-solid fa-download"></i> 備份資料
+          </button>
+          <label class="btn btn-navy" style="padding:8px 14px; font-size:0.85rem; margin-bottom:0; cursor:pointer;" title="載入過往匯出的合約 JSON 檔案">
+            <i class="fa-solid fa-upload"></i> 載入資料
+            <input type="file" id="btnUploadJson" accept=".json" style="display:none;">
+          </label>
+          <button type="button" class="btn btn-gold" id="btnPrintContract" style="padding:8px 18px; font-size:0.9rem;">
+            <i class="fa-solid fa-print"></i> 列印合約 / 匯出 PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- ==================== 第一頁：契約主文（一至七條） ==================== -->
+      <article class="a4-paper-sheet" id="sheetPage1">
+        <header class="contract-header-block">
+          <div class="contract-company-name">港居不動產開發有限公司</div>
+          <h2 class="contract-main-title">房屋租賃契約書</h2>
+          <span class="contract-sub-badge">通用標準租賃公約版・具同等法規效力</span>
+        </header>
+
+        <p class="contract-clause" style="margin-bottom:14px;">
+          <strong>立契約書人</strong>：出租人 <strong><span class="view-landlord-company">港居不動產開發有限公司</span></strong> / <strong><span class="view-landlord-rep">陳俊銘</span></strong>（以下簡稱甲方）；承租人 <strong><span class="view-tenant-name">林志豪</span></strong>（以下簡稱乙方）。茲因房屋租賃事件，甲乙雙方本於平等互惠原則，協議訂立本契約，條款如下共同遵守：
+        </p>
+
+        <!-- 第一條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第一條：租賃標的與使用範圍</h3>
+          <p class="contract-clause">
+            1. 房屋所在地：<strong><span class="view-prop-address">高雄市小港區中安路825號5樓之2</span></strong>（房號代號：<strong><span class="view-prop-room">502室</span></strong>，格局房型：<span class="view-prop-pattern">獨立景觀套房</span>）。<br>
+            2. 附屬車位：汽車停車位為 <strong><span class="view-parking-car">無附屬汽車位</span></strong>；機車停車位為 <strong><span class="view-parking-moto">1樓戶外機車區第15號</span></strong>。<br>
+            3. 附屬設備清單詳如本契約【附表二：房屋附屬設備與現況點交清單】，簽約入住即視同功能點交正常完好。
+          </p>
+        </div>
+
+        <!-- 第二條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第二條：租賃期限與搬遷免租期</h3>
+          <p class="contract-clause">
+            1. <strong>免租金搬遷期</strong>：自民國 <strong><span class="view-moving-start">115年11月01日</span></strong> 起至民國 <strong><span class="view-moving-end">115年11月05日</span></strong> 止（共計 <strong><span class="view-moving-days">5</span></strong> 天）。搬遷免租期內租金全免，惟衍生之水電及公用管理費用仍由乙方自理負擔。<br>
+            2. <strong>正式租賃期限</strong>：自民國 <strong><span class="view-lease-start">115年11月06日</span></strong> 起至民國 <strong><span class="view-lease-end">116年11月05日</span></strong> 止（共計 <strong><span class="view-lease-duration">整整 1 年 0 個月</span></strong>）。租期屆滿時，除雙方另行書面續約外，租賃關係即行終止。
+          </p>
+        </div>
+
+        <!-- 第三條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第三條：租金約定、繳納方式與違約金</h3>
+          <p class="contract-clause">
+            1. <strong>月租金額</strong>：每月新台幣 <strong><span class="view-monthly-rent-chinese">壹萬伍仟元整</span></strong>（NT$ <strong><span class="view-monthly-rent">15,000</span></strong> 元），乙方應於每月 <strong><span class="view-rent-due-day">5</span></strong> 日前主動匯入甲方指定帳戶，不得藉詞拖延或藉扣抵押金要求緩繳。<br>
+            2. <strong>指定租金匯款帳戶</strong>：<br>
+            　 金融機構：<strong><span class="view-bank-name">中華郵政（代號：700）</span></strong> ｜ 戶名：<strong><span class="view-bank-holder">陳俊銘</span></strong><br>
+            　 帳號：<strong><span class="view-bank-account">0045003-0000167</span></strong><br>
+            3. <strong>遲延繳納罰則</strong>：乙方逾約定期限超過 5 日仍未繳納者，自第 6 日起每日按月租金 <strong>2%</strong> 加計遲延違約金；逾 7 日經催告仍不給付者，視同重大違約，甲方得逕行提前終止契約並沒收押金。
+          </p>
+        </div>
+
+        <!-- 第四條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第四條：押金（保證金）之交付與返還</h3>
+          <p class="contract-clause">
+            1. 押金額度為新台幣 <strong><span class="view-deposit-chinese">參萬元整</span></strong>（NT$ <strong><span class="view-deposit">30,000</span></strong> 元，相當於兩個月租金總額），乙方於簽約時一次全額交付甲方。<br>
+            2. 租賃期滿且乙方將房屋完全騰空、打掃乾淨、點清設備並結清所有水電瓦斯管理費後，甲方應於 7 日內將押金無息退還乙方。
+          </p>
+        </div>
+
+        <!-- 第五條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第五條：大樓管理費與公用費用負擔</h3>
+          <p class="contract-clause">
+            1. <strong>大樓管理費</strong>：<span class="view-mgmt-clause">每月新台幣 <strong>1,200</strong> 元整，由乙方（承租人）按期自行支付。</span><br>
+            2. <strong>公用事業水電費用</strong>：<span class="view-utility-clause">採用獨立電表依每度新台幣 <strong>5.0</strong> 元計收；定額水費每人每月新台幣 <strong>150</strong> 元整。每月依抄表記算隨租金一併繳納。</span>
+          </p>
+        </div>
+
+        <!-- 第六條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第六條：房屋使用用途限制</h3>
+          <p class="contract-clause">
+            1. 本租賃房屋純供正當合法住宅使用，嚴禁轉租、分租、借他人使用或作為工廠、營業機房、非法聚會、色情、賭博等非法場所。<br>
+            2. 房屋內及陽台<strong>嚴禁設立神明廳、神壇、牌位或焚香、點薰香祭拜</strong>。
+          </p>
+        </div>
+      </article>
+
+      <!-- ==================== 第二頁：契約條文續與簽署欄 ==================== -->
+      <article class="a4-paper-sheet" id="sheetPage2">
+        <!-- 第七條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第七條：全面禁菸、香薰與違約處置</h3>
+          <p class="contract-clause">
+            1. <strong>室內全區禁菸</strong>：本租賃房屋室內（含房間、客廳、衛浴、廚房）及公共陽台、梯間，<strong>全面禁止吸菸（含電子煙、加熱菸）、嚼食檳榔及點燃各類薰香香氛</strong>。<br>
+            2. <strong>重大違約懲罰</strong>：違反禁菸規定經查證屬實者，第一次處以懲罰性違約金 <strong>新台幣 10,000 元整</strong>，乙方並須負擔全室粉刷、窗簾與冷氣深層除臭清潔費用；累犯第二次者，甲方得即刻無條件提前終止本契約，乙方應於 3 日內騰空遷離。
+          </p>
+        </div>
+
+        <!-- 第八條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第八條：寵物飼養特別約定條款</h3>
+          <p class="contract-clause">
+            <span class="view-pet-clause">
+              雙方合意同意飼養指定寵物：<strong>貓（英國短毛貓）1 隻</strong>。乙方應嚴格防止寵物製造噪音、抓咬破壞傢俱裝潢及異味排泄。租期屆滿退租時，除進行全屋無異味打掃外，每台冷氣機須進行專業深層清洗，乙方同意負擔每台新台幣 <strong>1,250</strong> 元之冷氣清洗分攤費。
+            </span>
+          </p>
+        </div>
+
+        <!-- 第九條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第九條：忘帶鑰匙專人開門與遺失補發標準</h3>
+          <p class="contract-clause">
+            1. 承租人因忘帶或遺失鑰匙需管理人員到場開門者，日間（08:00~18:00）每次酌收車馬服務費 <strong>新台幣 500 元</strong>；夜間（18:00 後）每次酌收 <strong>新台幣 1,000 元</strong>。<br>
+            2. 門禁感應磁扣遺失補發每支 <strong>新台幣 300 元</strong>；門鎖鑰匙遺失補發每支 <strong>新台幣 300 元</strong>。
+          </p>
+        </div>
+
+        <!-- 第十條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第十條：凶宅防範懲罰金與緊急事故破門授權</h3>
+          <p class="contract-clause">
+            1. <strong>愛惜生命與凶宅損害懲罰金</strong>：乙方應珍惜生命，不得於租賃處有自傷、自殘、尋短或其他非自然死亡情事。若於本房屋內發生非自然死亡情事致房屋成為凶宅減損產權價值者，<strong>乙方（或其法定繼承人、連帶保證人）應連帶無條件賠償甲方懲罰性違約金 新台幣 3,000,000 元整</strong>。甲方亦擔保本房屋未曾發生非自然死亡事件。<br>
+            2. <strong>緊急事故破門排險授權</strong>：租賃標的內若發生火災、漏水瓦斯外洩或危及公共安全、生命財產之重大緊急事件，乙方無條件同意轄區警員、消防人員、村里長會同甲方得破壞門窗入內排險處置，事後乙方絕不提出侵入住宅或毀損之告訴。
+          </p>
+        </div>
+
+        <!-- 第十一條 -->
+        <div class="contract-section">
+          <h3 class="contract-article-title">第十一條：管轄法院與契約效力</h3>
+          <p class="contract-clause">
+            1. 本契約書正本壹式貳份，由甲乙雙方各執壹份為憑。契約各項附件（附表一住戶公約、附表二設備點交單）均為本合約不可分割之一部分，具同等效力。<br>
+            2. 本契約如有爭訟，雙方合意以 <strong>臺灣高雄地方法院</strong> 為第一審管轄法院。
+          </p>
+        </div>
+
+        <!-- 雙方簽署欄 -->
+        <div class="contract-sign-grid">
+          <!-- 甲方 -->
+          <div class="sign-party-box">
+            <h4>【出租人（甲方）】</h4>
+            <div class="sign-line-item">
+              <span class="sign-line-label">公司名稱：</span>
+              <span class="sign-line-value view-landlord-company">港居不動產開發有限公司</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">統一編號：</span>
+              <span class="sign-line-value view-landlord-taxid">96797997</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">代表人：</span>
+              <span class="sign-line-value view-landlord-rep">陳俊銘</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">證照字號：</span>
+              <span class="sign-line-value view-landlord-license">(112) 登字第013739號</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">聯絡電話：</span>
+              <span class="sign-line-value view-landlord-phone">0968-863-880</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">通訊地址：</span>
+              <span class="sign-line-value view-landlord-address" style="font-size:11px;">高雄市小港區合作里中安路825號</span>
+            </div>
+            <div class="sign-stamp-area">
+              （甲方公司章及經理人印鑑用印處）
+            </div>
+          </div>
+
+          <!-- 乙方 -->
+          <div class="sign-party-box">
+            <h4>【承租人代表（乙方）】</h4>
+            <div class="sign-line-item">
+              <span class="sign-line-label">承租人姓名：</span>
+              <span class="sign-line-value view-tenant-name" style="font-weight:700;">林志豪</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">身分證字號：</span>
+              <span class="sign-line-value view-tenant-id">E123456789</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">行動電話：</span>
+              <span class="sign-line-value view-tenant-phone">0912-345-678</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">戶籍地址：</span>
+              <span class="sign-line-value view-tenant-address" style="font-size:11px;">高雄市三民區覺民路100號</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">連帶保證人：</span>
+              <span class="sign-line-value"><span class="view-guarantor-name">林大明</span>（<span class="view-guarantor-relation">父子</span>／<span class="view-guarantor-phone">0933-111-222</span>）</span>
+            </div>
+            <div class="sign-line-item">
+              <span class="sign-line-label">緊急聯絡人：</span>
+              <span class="sign-line-value" style="font-size:11px;"><span class="view-emergency-1">陳美玉(母親 0922-333-444)</span></span>
+            </div>
+            <div class="sign-stamp-area">
+              （乙方承租人簽名蓋章 ＆ 保證人簽名蓋章處）
+            </div>
+          </div>
+        </div>
+
+        <p style="text-align:center; margin-top:20px; font-weight:700;">
+          立契約書日期：中華民國 <span class="view-sign-year">115</span> 年 <span class="view-sign-month">11</span> 月 <span class="view-sign-day">01</span> 日
+        </p>
+      </article>
+
+      <!-- ==================== 第三頁：附表一 住戶公約（27條款） ==================== -->
+      <article class="a4-paper-sheet" id="sheetPage3">
+        <header class="contract-header-block" style="margin-bottom:12px; padding-bottom:8px;">
+          <div class="contract-company-name">港居不動產開發有限公司</div>
+          <h2 class="contract-main-title" style="font-size:19px;">【附表一】通用標準住戶公約（Master 版）</h2>
+          <span class="contract-sub-badge">本公約為租賃契約書核心附件・具同等法規效力</span>
+        </header>
+
+        <div style="font-size:11px; line-height:1.6; text-align:justify;">
+          <p style="margin-bottom:5px;"><strong>1. 禁菸酒檳榔</strong>：室內及公共走道全面嚴禁吸菸、檳榔與酗酒鬧事，如有亂丟煙蒂或喧嘩查證屬實即依約裁處。</p>
+          <p style="margin-bottom:5px;"><strong>2. 公共區域淨空</strong>：走廊、頂樓、公用通道禁止堆置鞋櫃雜物，違者視為廢棄物逕行清除以策消防安全。</p>
+          <p style="margin-bottom:5px;"><strong>3. 嚴禁違法行為</strong>：嚴禁色情、賭博、吸毒等違法情事，發現立即報警，承租人同意無條件立即解約遷離。</p>
+          <p style="margin-bottom:5px;"><strong>4. 菸害與香薰罰則</strong>：屋內及陽台嚴禁吸煙、電子煙、點香拜拜或香薰。初次違規處罰鍰 <strong>NT$10,000 元</strong>；累犯即終止契約遷離。</p>
+          <p style="margin-bottom:5px;"><strong>5. 寵物管理規範</strong>：未經許可嚴禁攜帶與飼養寵物進入，違者單次處罰款 <strong>NT$10,000 元</strong>並須立即遷出寵物。</p>
+          <p style="margin-bottom:5px;"><strong>6. 夜間寧靜時段</strong>：<strong>每日 22:00 至翌日 07:00</strong> 為安寧時段，音量須低於 50 分貝，禁止拖行重物與非住戶逗留。</p>
+          <p style="margin-bottom:5px;"><strong>7. 水管馬桶保護</strong>：嚴禁丟入濕紙巾、貓砂、衛生棉、廚餘骨頭等異物，若違規導致阻塞由承租人負擔全額疏通費用。</p>
+          <p style="margin-bottom:5px;"><strong>8. 浴室防霉除濕</strong>：衛浴使用後應開啟排風扇或擦乾積水，避免牆面產生發霉水垢。</p>
+          <p style="margin-bottom:5px;"><strong>9. 通風防潮</strong>：室內應保持通風良好，未開窗通風致室內潮濕壁癌或電器故障損害由乙方負責。</p>
+          <p style="margin-bottom:5px;"><strong>10. 報修拍照程序</strong>：設備如有自然損壞，應即時拍照錄影通知甲方，並配合排定師傅進場維修時間。</p>
+          <p style="margin-bottom:5px;"><strong>11. 入住前 7 日管線責任</strong>：起租 7 日內應檢驗排水機能，<strong>入住 7 日後發生水管馬桶阻塞，視為使用不當全由乙方自理</strong>。</p>
+          <p style="margin-bottom:5px;"><strong>12. 玻璃水垢保養</strong>：乾濕分離玻璃與鏡面請隨手刮水拭乾，避免形成頑固硬化水垢。</p>
+          <p style="margin-bottom:5px;"><strong>13. 冷氣濾網清潔</strong>：承租人應定期拆洗濾網，因積塵未清導致冷氣機故障損毀由乙方負擔修復費。</p>
+          <p style="margin-bottom:5px;"><strong>14. 洗衣機使用時段</strong>：<strong>洗衣機夜間 22:00 至翌日 08:00 嚴格禁用</strong>，以免脫水震動噪音妨害鄰居安寧。</p>
+          <p style="margin-bottom:5px;"><strong>15. 神明廳禁設</strong>：租賃處內嚴禁設立神明廳、佛堂、神壇或進行各類焚香祭拜活動。</p>
+          <p style="margin-bottom:5px;"><strong>16. 開門服務費</strong>：忘帶鑰匙由專人到場開門，日間每次 <strong>NT$500 元</strong>；夜間（18:00後）每次 <strong>NT$1,000 元</strong>。</p>
+          <p style="margin-bottom:5px;"><strong>17. 鑰匙磁扣工本費</strong>：大門感應磁扣遺失每支補發 <strong>NT$300 元</strong>；鐵鑰匙遺失每支 <strong>NT$300 元</strong>。</p>
+          <p style="margin-bottom:5px;"><strong>18. 禁止轉租</strong>：不得將房屋全部或部分出租、出借他人或經營日租套房、Airbnb。</p>
+          <p style="margin-bottom:5px;"><strong>19. 守望相助</strong>：發現意外事故或反常可疑跡象應立即通報管委會、甲方或直接報警。</p>
+          <p style="margin-bottom:5px;"><strong>20. 牆面無痕掛鉤</strong>：僅限使用 3M 無痕掛鉤，嚴禁打洞、鋼釘、雙面泡棉膠。損壞或殘膠每處賠償 <strong>NT$500 元</strong>。</p>
+          <p style="margin-bottom:5px;"><strong>21. 緊急破門授權</strong>：發生火警、水管爆裂或危難事故，同意警消里長會同甲方破門進場處置，絕無異議。</p>
+          <p style="margin-bottom:5px;"><strong>22. 凶宅懲罰條款</strong>：租屋處嚴禁自殘或非自然死亡，致成凶宅減損房價者，連帶賠償懲罰金 <strong>新台幣 300 萬元整</strong>。</p>
+          <p style="margin-bottom:5px;"><strong>23. 個人衛生寢具</strong>：床單枕套屬於個人衛生用品由住戶自備鋪設，雙人床規格為 5 尺 × 6.2 尺。</p>
+          <p style="margin-bottom:5px;"><strong>24. 信件自取</strong>：本大樓無代收私人包裹信件，請自行至一樓信箱信箱區領取。</p>
+          <p style="margin-bottom:5px;"><strong>25. 退租清潔標準</strong>：退租時應全屋遷空打掃乾淨，冰箱退冰完成；未清理每處酌收清潔費 <strong>NT$600 元</strong>。</p>
+          <p style="margin-bottom:5px;"><strong>26. 違約效果</strong>：承租人如有違反上述公約視同重大違約，甲方有權終止租約並扣抵沒收保證金。</p>
+          <p style="margin-bottom:8px;"><strong>27. 承諾簽署生效</strong>：承租人簽字即代表完整閱讀並切結願徹底恪遵上述 27 項公約條款。</p>
+        </div>
+
+        <div style="border-top:1.5px solid #000; padding-top:10px; margin-top:12px; display:flex; justify-content:space-between; align-items:flex-end;">
+          <div>
+            <p style="font-size:12px; margin-bottom:4px;"><strong>出租人（甲方）</strong>：港居不動產開發有限公司（簽章）</p>
+            <p style="font-size:11px; color:#475569;">管理專線：0968-863-880 ｜ 市話：07-791-2288</p>
+          </div>
+          <div style="text-align:right;">
+            <p style="font-size:12px; margin-bottom:4px;"><strong>承租人已詳閱確認並簽名（乙方）</strong>：___________________________</p>
+            <p style="font-size:11px; color:#475569;">簽署日期：中華民國 ______ 年 ____ 月 ____ 日</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ==================== 第四頁：附表二 房屋設備點交清冊 ==================== -->
+      <article class="a4-paper-sheet" id="sheetPage4">
+        <header class="contract-header-block" style="margin-bottom:14px;">
+          <div class="contract-company-name">港居不動產開發有限公司</div>
+          <h2 class="contract-main-title" style="font-size:19px;">【附表二】房屋附屬設備與現況點交清單</h2>
+          <span class="contract-sub-badge">租賃起迄點交必備清冊・雙方簽認</span>
+        </header>
+
+        <p style="font-size:12.5px; margin-bottom:8px;">
+          租賃標的地址：<strong><span class="view-prop-address">高雄市小港區中安路825號5樓之2</span></strong>（房號：<span class="view-prop-room">502室</span>）
+        </p>
+
+        <table class="contract-table">
+          <thead>
+            <tr>
+              <th style="width:22%;">點交項目</th>
+              <th style="width:38%;">規格與品名說明</th>
+              <th style="width:20%;">入住點交狀況</th>
+              <th style="width:20%;">退租點交狀況</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>冷氣空調</strong></td>
+              <td><span id="viewInvAc">1 台（附遙控器 1 支，冷房功能正常）</span></td>
+              <td style="text-align:center;">☑ 良好運作中</td>
+              <td style="text-align:center;">□ 正常 / □ 待修</td>
+            </tr>
+            <tr>
+              <td><strong>熱水器設備</strong></td>
+              <td><span id="viewInvWaterHeater">儲熱式電熱水器 1 台（功能正常）</span></td>
+              <td style="text-align:center;">☑ 良好無漏水</td>
+              <td style="text-align:center;">□ 正常 / □ 待修</td>
+            </tr>
+            <tr>
+              <td><strong>門禁鑰匙磁扣</strong></td>
+              <td><span id="viewInvKeys">大門磁扣 2 支、房門鑰匙 2 支</span></td>
+              <td style="text-align:center;">☑ 正式點交收訖</td>
+              <td style="text-align:center;">□ 全數返還</td>
+            </tr>
+            <tr>
+              <td><strong>電冰箱</strong></td>
+              <td><span id="viewInvFridge">雙門一級能效冰箱 1 台（已退冰清潔）</span></td>
+              <td style="text-align:center;">☑ 良好乾淨</td>
+              <td style="text-align:center;">□ 正常 / □ 待清</td>
+            </tr>
+            <tr>
+              <td><strong>床組與床墊</strong></td>
+              <td><span id="viewInvBed">標準雙人獨立筒床墊 1 組、實木床架 1 組</span></td>
+              <td style="text-align:center;">☑ 結構穩固無損</td>
+              <td style="text-align:center;">□ 完好 / □ 毀損</td>
+            </tr>
+            <tr>
+              <td><strong>衣櫃與書桌椅</strong></td>
+              <td><span id="viewInvWardrobe">雙門衣櫃 1 組、書桌椅 1 套</span></td>
+              <td style="text-align:center;">☑ 良好無殘膠</td>
+              <td style="text-align:center;">□ 完好 / □ 毀損</td>
+            </tr>
+            <tr>
+              <td><strong>起租電表度數</strong></td>
+              <td><span id="viewInvInitialElec" style="font-weight:700; color:var(--primary-navy);">1285.4 度</span></td>
+              <td style="text-align:center;">抄表拍照拍照確認</td>
+              <td style="text-align:center;">結算度數：______</td>
+            </tr>
+            <tr>
+              <td><strong>水表 / 瓦斯度數</strong></td>
+              <td><span id="viewInvInitialWater">定額水費（瓦斯無）</span></td>
+              <td style="text-align:center;">無誤確認</td>
+              <td style="text-align:center;">結算：__________</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:14px; font-size:12px;">
+          <strong>現況特別備註與雙方約定：</strong>
+          <div id="viewInvNotes" style="border:1px dashed #64748B; padding:8px 12px; min-height:48px; border-radius:4px; margin-top:4px; background:#F8FAFC;">
+            全屋牆面新油漆無釘孔，窗簾無污損，蓮蓬頭與馬桶水流暢通，已全室細清完成。
+          </div>
+        </div>
+
+        <div style="margin-top:28px; border:1.5px solid #334155; padding:12px 16px; border-radius:4px;">
+          <p style="font-size:12px; margin-bottom:12px; line-height:1.6;">
+            <strong>起租點交聲明</strong>：承租人已於現場依上表逐項親自勘驗完畢，確認屋內所有設施設備均齊備且運作功能良好正常，水電門禁均已收訖無訛。
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+            <div>
+              <p style="font-size:12px; margin-bottom:4px;"><strong>點交專員（甲方）</strong>：___________________________</p>
+              <p style="font-size:11px; color:#475569;">點交日期：中華民國 ______ 年 ____ 月 ____ 日</p>
+            </div>
+            <div>
+              <p style="font-size:12px; margin-bottom:4px;"><strong>承租人驗收簽字（乙方）</strong>：___________________________</p>
+              <p style="font-size:11px; color:#475569;">身分證號：___________________________</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <img src="assets/logo.png" alt="港居不動產 LOGO" width="279" height="57" loading="lazy" decoding="async">
+            <p>港居不動產開發有限公司<br>GANJU Real Estate Co., Ltd.</p>
+            <p class="company-tax-id">統一編號：96797997</p>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>專屬線上工具</h4>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島</a></li>
+            <li><a href="space-planner.html"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置系統</a></li>
+            <li><a href="lease-contract.html"><i class="fa-solid fa-file-contract"></i> 租賃契約與公約產生器</a></li>
+            <li><a href="ocr-translator.html"><i class="fa-solid fa-language"></i> 照片 OCR 辨識翻譯</a></li>
+            <li><a href="rent-calculator.html"><i class="fa-solid fa-calculator"></i> 租金代管換算神器</a></li>
+            <li><a href="photo-time-location.html"><i class="fa-solid fa-camera-retro"></i> 照片時間地點浮水印</a></li>
+            <li><a href="photo-watermark.html"><i class="fa-solid fa-camera"></i> 房源 EXIF 水印工具</a></li>
+            <li><a href="image-converter.html"><i class="fa-solid fa-image"></i> 圖片格式尺寸轉換</a></li>
+            <li><a href="file-converter.html"><i class="fa-solid fa-file-export"></i> 線上檔案轉換工具</a></li>
+            <li><a href="card-merger.html"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>證照字號</h4>
+          <ul class="footer-links">
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- JavaScript files -->
+  <script src="script.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/lease-contract.js"></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>

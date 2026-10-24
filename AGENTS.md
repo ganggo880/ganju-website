@@ -44,6 +44,7 @@
 - [x] 階段二十一：全站 10 款線上工具行動端（360px~414px）實機極限驗收與觸控熱區優化（CDP 40 組測試 100% 完美合格，橫向滾動溢出嚴格為 0px、按鈕/表單/色彩/滑桿等可互動元件 100% 符合 ≥ 44×44px WCAG 規範）
 - [x] 階段二十二：全站 PWA 離線漸進式應用支援與原生桌面/手機安裝（`manifest.json` ＋ `sw.js` 48 項核心資產預載 ＋ Network-First 導航快取 ＋ 案場 100% 完全斷網實機 11 頁可用性通過）
 - [x] 階段二十三：港居 3D 智慧營運島（數位孿生）全站選單、PWA 快取與 Schema.org 結構化資料全面整合（11/11 頁面導覽互通、離線秒開、首頁 iframe 嵌入與 360px~414px 零溢出通過）
+- [x] 階段二十四：租賃契約與住戶公約線上套印產生器 `lease-contract.html`（雙欄即時連動、中文大寫自動轉換、搬遷免租期、水電度數計費、凶宅防範300萬違約金、27項通用標準住戶公約與設備點交清單、A4標準無痕列印與PDF匯出、全站12頁100% PWA離線可用與零溢出通過）
 
 ## 資料夾結構
 
@@ -66,6 +67,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── space-planner.html               # 10. 2D 平面格局配置與 3D 即時轉換系統
 ├── island.html                      # 11. 3D 智慧營運島（數位孿生）微縮世界
 ├── island_standalone.html           # 11b. 3D 智慧營運島獨立全螢幕版本
+├── lease-contract.html              # 12. 租賃契約與住戶公約線上套印產生器
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
 ├── script.js / rent-calc.js
@@ -77,6 +79,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── space-planner.css            # 2D/3D 空間格局配置系統樣式
+│   ├── lease-contract.css           # 租賃契約與公約產生器樣式與 A4 列印引擎
 │   ├── ocr-translator.css           # 照片 OCR 文字辨識與翻譯專屬樣式
 │   ├── converter.css                # 檔案轉換工具專屬樣式
 │   ├── card-merger.css              # 名片合成工具樣式
@@ -88,6 +91,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── navigation.js                # 導覽列與 Mobile Drawer（index.html 使用）
 │   ├── layout.js                    # Active 點亮與跨頁 Layout 控制（工具頁使用）
 │   ├── space-planner.js             # 2D CAD + 3D WebGL 空間格局配置核心引擎
+│   ├── lease-contract.js            # 租賃契約雙向連動、中文大寫金額與 A4 排版引擎
 │   ├── ocr-translator.js            # 照片 OCR 雙引擎與翻譯邏輯
 │   ├── converter.js                 # 轉檔核心（Canvas / Blob 本地運算）
 │   ├── image-converter.js           # 圖像格式與尺寸轉換邏輯

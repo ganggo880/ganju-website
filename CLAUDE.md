@@ -33,6 +33,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── photo-time-location.html # 8. 照片時間與地點浮水印工具 (EXIF GPS 自動解析、三樣式五位置)
 ├── ocr-translator.html      # 9. 照片 OCR 文字辨識與多國語言翻譯神器 (99%+ 雙引擎、ROI 框選、詞庫校正)
 ├── space-planner.html       # 10. 2D 平面格局配置與 3D 即時轉換系統 (底圖校正、玄關連動隔間、CAD家具、60FPS 3D)
+├── island.html              # 11. 3D 智慧營運島 (數位孿生微縮世界)
+├── lease-contract.html      # 12. 租賃契約與住戶公約線上套印產生器 (雙欄即時連動、中文大寫、凶宅公約、A4列印PDF)
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
 ├── script.js                # 主頁互動邏輯 (ROI計算器, 房源條件篩選, Modal 彈窗)
@@ -41,6 +43,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── tokens.css           # 品牌設計 Token (海軍藍 #1A365D, 香檳金 #C5A059, 陰影, 圓角, 深淺模式)
 │   ├── components.css       # 全站公用組件樣式 (TopBar, Navbar, Footer, Buttons, Toast)
 │   ├── space-planner.css    # 2D/3D 空間格局配置系統樣式
+│   ├── lease-contract.css   # 租賃契約與公約產生器專用樣式與 A4 列印引擎
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
 │   ├── image-converter.css  # 圖像轉換工具專屬樣式
@@ -52,6 +55,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 控制器
 │   ├── layout.js            # 版面 Active 點亮與跨頁面 Layout 控制器
 │   ├── space-planner.js     # 2D CAD + 3D WebGL 空間格局配置核心引擎
+│   ├── lease-contract.js    # 租賃契約雙向連動、中文大寫金額與 A4 排版引擎
 │   ├── ocr-translator.js    # OCR 雙引擎核心與影像處理邏輯 (純前端自包含腳本)
 │   ├── converter.js         # 檔案轉換核心邏輯 (Canvas/Blob 本地加密運算)
 │   ├── image-converter.js   # 圖像格式與尺寸調控邏輯
