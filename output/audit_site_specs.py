@@ -52,6 +52,7 @@ HTML_FILES = [
     "ownership-change-notice.html",
     "sublease-consent-agreement.html",
     "business-registration-agreement.html",
+    "fire-safety-agreement.html",
     "privacy.html"
 ]
 

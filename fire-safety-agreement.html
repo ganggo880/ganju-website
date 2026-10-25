@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>住宅租賃用電用火安全暨失火責任切結協議書產生器 ｜ 港居不動產</title>
+  <meta name="description" content="港居不動產線上工具：住宅租賃用電用火安全暨失火責任切結協議書產生器。依據《民法》第432條、第434條（失火責任重大過失特約排除）、《消防法》第6條第4項及住宅定型化契約應記載事項設計。支援高功率電器登錄管制、住警器維護切結、神明香火限制、雙方Retina 2x電子手寫簽章、HTML5 Canvas 840×1080px 圖卡與 A4 無痕列印。">
+  <meta name="keywords" content="租屋失火責任協議書, 民法434條排除特約, 用電用火安全切結, 住宅租賃住警器維護, 高功率電器管制, 租賃火災責任險, 港居不動產">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/fire-safety-agreement.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="住宅租賃用電用火安全暨失火責任切結協議書產生器 ｜ 港居不動產">
+  <meta property="og:description" content="合意排除民法第434條重大過失限制，明定承租人善良管理人注意義務、高耗能電器列管、住警器定期定檢切結、雙方手寫簽名與A4無痕列印。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/fire-safety-agreement.html">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a365d">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <link rel="stylesheet" href="css/fire-safety-agreement.css">
+
+  <!-- 結構化資料 JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://ganggo880.github.io/ganju-website/fire-safety-agreement.html#app",
+        "name": "住宅租賃用電用火安全暨失火責任切結協議書產生器",
+        "url": "https://ganggo880.github.io/ganju-website/fire-safety-agreement.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "zh-TW",
+        "description": "依據民法第432條、第434條及消防法設計之住宅租賃用電用火安全守則、重大過失責任特約排除與火災損害賠償切結系統。",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD"
+        },
+        "author": {
+          "@type": "RealEstateAgent",
+          "name": "港居不動產開發有限公司",
+          "url": "https://ganggo880.github.io/ganju-website/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ganggo880.github.io/ganju-website/fire-safety-agreement.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "首頁",
+            "item": "https://ganggo880.github.io/ganju-website/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "線上工具中心",
+            "item": "https://ganggo880.github.io/ganju-website/#tools"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "用電用火安全暨失火責任切結協議書產生器",
+            "item": "https://ganggo880.github.io/ganju-website/fire-safety-agreement.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 1. 頂部安全與登記宣告 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        <button id="btnAuthLock" class="quick-action-btn" title="鎖定工具並清除授權" style="min-height:44px; padding:6px 12px; font-size:12px; margin-left:8px;">
+          🔒 授權鎖定
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <!-- 桌面與行動版導覽連結 -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (45)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="fire-safety-agreement.html" class="nav-link active"><i class="fa-solid fa-fire-extinguisher" style="color: #EF4444;"></i> 用電用火安全切結協議</a></li>
+            <li><a href="business-registration-agreement.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent-gold);"></i> 設址營業與稅賦補償協議</a></li>
+            <li><a href="sublease-consent-agreement.html" class="nav-link"><i class="fa-solid fa-people-arrows" style="color: #63b3ed;"></i> 承租人轉租同意與協議書</a></li>
+            <li><a href="ownership-change-notice.html" class="nav-link"><i class="fa-solid fa-house-chimney-user" style="color: #63b3ed;"></i> 買賣不破租賃與押金移轉通知</a></li>
+            <li><a href="dispute-mediation-request.html" class="nav-link"><i class="fa-solid fa-scale-unbalanced-flip" style="color: #63b3ed;"></i> 租賃爭議調處與調解聲請</a></li>
+            <li><a href="arrears-installment-agreement.html" class="nav-link"><i class="fa-solid fa-handshake-simple" style="color: #63b3ed;"></i> 欠租分期清償和解協議</a></li>
+            <li><a href="renovation-consent-agreement.html" class="nav-link"><i class="fa-solid fa-hammer" style="color: #63b3ed;"></i> 室內裝修改裝同意切結</a></li>
+            <li><a href="parking-lease-agreement.html" class="nav-link"><i class="fa-solid fa-square-parking" style="color: #63b3ed;"></i> 汽機車停車位租用協議</a></li>
+            <li><a href="pet-addendum-agreement.html" class="nav-link"><i class="fa-solid fa-paw" style="color: #f59e0b;"></i> 飼養寵物特約承諾書</a></li>
+            <li><a href="roommate-agreement.html" class="nav-link"><i class="fa-solid fa-users" style="color: #63b3ed;"></i> 合租公約與承租協議</a></li>
+            <li><a href="proxy-authorization.html" class="nav-link"><i class="fa-solid fa-signature" style="color: #63b3ed;"></i> 租賃代理授權委任書</a></li>
+            <li><a href="rent-arrears-notice.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #63b3ed;"></i> 租金催繳與欠租催告書</a></li>
+            <li><a href="rules-violation-notice.html" class="nav-link"><i class="fa-solid fa-triangle-exclamation" style="color: #63b3ed;"></i> 住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #63b3ed;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #63b3ed;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-wrench" style="color: #63b3ed;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #63b3ed;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #63b3ed;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 房東節稅效益精算</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-list" style="color: #63b3ed;"></i> 點交修繕瑕疵存證</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #63b3ed;"></i> 分租水電公電分攤</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #63b3ed;"></i> 退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-house-chimney-crack" style="color: #63b3ed;"></i> 300億租補資格精算</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #63b3ed;"></i> 591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #63b3ed;"></i> 欠租催告存證信函</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #63b3ed;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #63b3ed;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #63b3ed;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #63b3ed;"></i> 租約提前終止協議書</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #63b3ed;"></i> 租約續約協議書</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #63b3ed;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 租金代管費換算</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-arrow-up" style="color: #63b3ed;"></i> 線上多功能轉檔</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera" style="color: #63b3ed;"></i> 房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #63b3ed;"></i> 證件保護防偽水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image" style="color: #63b3ed;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #63b3ed;"></i> 名片正反合成</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#contact" class="nav-link">預約諮詢</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="開啟選單" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容區 -->
+  <main class="app-container">
+    <div class="tool-header">
+      <div class="tool-badge">
+        <i class="fa-solid fa-shield-halved"></i> 租賃法務安防・民法第 434 條失火責任特約切結
+      </div>
+      <h1>住宅租賃用電用火安全暨失火責任切結協議書產生器</h1>
+      <p>
+        依據《民法》第432條、第434條判例實務及《消防法》合規設計。特約排除民法第434條重大過失抗辯限制，約定承租人因輕過失致失火亦負全額賠償責任；全面管制高功率電器、住警器檢測、香燭明火禁令，保障物業資產安全。
+      </p>
+    </div>
+
+    <div class="workspace-grid">
+      <!-- 左欄：表單編輯面板 -->
+      <div class="editor-card">
+        <div class="legal-alert-banner">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <strong>【重要法務防禦警示】</strong>
+          《民法》第434條規定承租人原則僅因「重大過失」失火負責。司法實務判例確認此條為任意規定，租賃雙方得以「特約排除重大過失限制」。本切結書確立承租人應負善良管理人之高度注意義務，即使因輕微疏失（忘拔插頭、電線負載走火等）致失火，承租人均對出租人負完全賠償責任。
+        </div>
+
+        <!-- 區塊一：契約與物業基本資料 -->
+        <div class="section-title">
+          <i class="fa-solid fa-file-contract"></i> 一、契約與物業標的資訊
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="docNumber">協議書編號</label>
+            <input type="text" id="docNumber" class="form-control" value="GANJU-FIRE-20261025">
+          </div>
+          <div class="form-group">
+            <label for="agreementDate">簽署日期</label>
+            <input type="date" id="agreementDate" class="form-control" value="2026-10-25">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="propertyAddress">租賃住宅標的物地址</label>
+          <input type="text" id="propertyAddress" class="form-control" value="高雄市小港區中安路888號5樓之2">
+        </div>
+
+        <div class="form-group">
+          <label for="leaseTerm">主租賃合約期間</label>
+          <input type="text" id="leaseTerm" class="form-control" value="自民國 115 年 11 月 01 日起至民國 116 年 10 月 31 日止">
+        </div>
+
+        <!-- 區塊二：當事人資訊 -->
+        <div class="section-title">
+          <i class="fa-solid fa-user-shield"></i> 二、租賃雙方當事人資訊
+        </div>
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label for="landlordName">出租人姓名 / 管理業</label>
+            <input type="text" id="landlordName" class="form-control" value="陳美蘭（港居不動產 代管）">
+          </div>
+          <div class="form-group">
+            <label for="landlordId">身分證 / 統編</label>
+            <input type="text" id="landlordId" class="form-control" value="E220198***">
+          </div>
+          <div class="form-group">
+            <label for="landlordPhone">聯絡電話</label>
+            <input type="text" id="landlordPhone" class="form-control" value="0912-345-678">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="landlordAddress">出租人戶籍 / 營業處所</label>
+          <input type="text" id="landlordAddress" class="form-control" value="高雄市小港區中安路825號">
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label for="tenantName">承租人姓名（切結人）</label>
+            <input type="text" id="tenantName" class="form-control" value="黃柏鈞">
+          </div>
+          <div class="form-group">
+            <label for="tenantId">身分證字號</label>
+            <input type="text" id="tenantId" class="form-control" value="S129845***">
+          </div>
+          <div class="form-group">
+            <label for="tenantPhone">聯絡電話</label>
+            <input type="text" id="tenantPhone" class="form-control" value="0975-123-888">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tenantAddress">承租人戶籍地址</label>
+          <input type="text" id="tenantAddress" class="form-control" value="高雄市小港區宏治路168號">
+        </div>
+
+        <!-- 區塊三：失火責任特約與火險規範 -->
+        <div class="section-title">
+          <i class="fa-solid fa-scale-balanced"></i> 三、民法第434條特約宣告與火險責任
+        </div>
+
+        <label class="rule-check-item" for="chkArticle434Exclusion" style="border: 2px solid #EF4444; background: #FFF5F5; margin-bottom: 16px; cursor: pointer;">
+          <input type="checkbox" id="chkArticle434Exclusion" checked>
+          <div class="rule-check-content">
+            <div class="rule-check-title" style="color: #991B1B;">
+              <i class="fa-solid fa-gavel"></i> 【合意排除民法第434條重大過失限制特約】
+            </div>
+            <div class="rule-check-desc" style="color: #7F1D1D;">
+              雙方明確認知並同意排除《民法》第434條規定。承租人縱因「輕過失」（包含但不限於忘關電器、電線走火、香火疏失、烹調空燒等）致失火毀損租賃住宅，亦對出租人負全部損害賠償之責，絕不主張免責抗辯。
+            </div>
+          </div>
+        </label>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="insuranceOption">火災責任險特約方案</label>
+            <select id="insuranceOption" class="form-control">
+              <option value="tenant" selected>承租人自費投保火災責任險（保額500萬以上）</option>
+              <option value="landlord_share">出租人投保住宅火險，承租人年付 50% 保費分攤</option>
+              <option value="none">無額外火險特約（由承租人個人承擔全部賠償）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="firePenaltyAmount">違反安全守則懲罰性違約金 (NT$)</label>
+            <input type="number" id="firePenaltyAmount" class="form-control" value="300000" step="10000">
+            <small style="color: var(--color-gold); font-weight:700;" id="penaltyUpper">新臺幣 參拾萬元整</small>
+          </div>
+        </div>
+
+        <!-- 區塊四：用電用火安全維護六大守則 -->
+        <div class="section-title">
+          <i class="fa-solid fa-clipboard-check"></i> 四、住宅用電用火安全維護守則檢視
+        </div>
+
+        <div class="safety-rules-grid">
+          <label class="rule-check-item" for="ruleHighPower" style="cursor: pointer;">
+            <input type="checkbox" id="ruleHighPower" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">
+                <i class="fa-solid fa-plug-circle-bolt" style="color:#EF4444;"></i> 1. 高耗能發熱電器專用插座管制
+              </div>
+              <div class="rule-check-desc">
+                額定耗電達 800W 以上高功率電器（電暖器、氣炸鍋、微波爐、烤箱等），嚴格限制使用獨立壁面插座，使用後確實關閉並拔除插頭。
+              </div>
+            </div>
+          </label>
+
+          <label class="rule-check-item" for="ruleExtCord" style="cursor: pointer;">
+            <input type="checkbox" id="ruleExtCord" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">
+                <i class="fa-solid fa-link-slash" style="color:#EF4444;"></i> 2. 嚴禁延長線負載串接與遮蔽
+              </div>
+              <div class="rule-check-desc">
+                室內延長線均須具備 BSMI 安全認證及過載自動斷電開關。嚴禁多條延長線串聯供電，嚴禁藏匿於地毯、床墊下方以防積熱走火。
+              </div>
+            </div>
+          </label>
+
+          <label class="rule-check-item" for="ruleAlarmCheck" style="cursor: pointer;">
+            <input type="checkbox" id="ruleAlarmCheck" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">
+                <i class="fa-solid fa-bell" style="color:#EF4444;"></i> 3. 獨立式住警器定檢與電池維護
+              </div>
+              <div class="rule-check-desc">
+                依《消防法》第6條第4項，每季按壓測試住警器蜂鳴測試鈕一次，發出弱電嗶聲即刻自費更換鋰電池，嚴禁私自拆卸或包覆遮蔽。
+              </div>
+            </div>
+          </label>
+
+          <label class="rule-check-item" for="ruleIncenseCandle" style="cursor: pointer;">
+            <input type="checkbox" id="ruleIncenseCandle" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">
+                <i class="fa-solid fa-ban-smoking" style="color:#EF4444;"></i> 4. 神明香火與室內明火祭祀嚴禁
+              </div>
+              <div class="rule-check-desc">
+                全戶全面禁止供奉神明桌、點燃香燭長明油燈、室內焚燒紙錢拜拜及抽菸亂丟煙蒂；離開房間視線絕不留存任何明火。
+              </div>
+            </div>
+          </label>
+
+          <label class="rule-check-item" for="ruleGasVent" style="cursor: pointer;">
+            <input type="checkbox" id="ruleGasVent" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">
+                <i class="fa-solid fa-wind" style="color:#EF4444;"></i> 5. 瓦斯防空燒與熱水器排氣暢通
+              </div>
+              <div class="rule-check-desc">
+                炊事離開廚房即刻熄火，定期檢視瓦斯軟管防龜裂；熱水器強制排氣管維持通暢，陽台嚴禁私加氣密窗封閉以防一氧化碳中毒與悶燒。
+              </div>
+            </div>
+          </label>
+
+          <label class="rule-check-item" for="ruleHazardMaterials" style="cursor: pointer;">
+            <input type="checkbox" id="ruleHazardMaterials" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">
+                <i class="fa-solid fa-skull-crossbones" style="color:#EF4444;"></i> 6. 嚴禁存放各類易燃危險物品
+              </div>
+              <div class="rule-check-desc">
+                室內及公共走道嚴禁存放汽油、工業溶劑、大量酒精、未登記之備用瓦斯鋼瓶、高壓噴霧罐或煙火爆竹等各類易爆易燃危險品。
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- 區塊五：高功率電器登錄表 -->
+        <div class="section-title">
+          <i class="fa-solid fa-list-check"></i> 五、申報攜帶列管高耗能電器（800W以上）
+        </div>
+
+        <table class="appliance-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">電器名稱</th>
+              <th style="width: 20%;">額定功率</th>
+              <th style="width: 25%;">安置空間</th>
+              <th style="width: 15%;">供電規範</th>
+              <th style="width: 10%;">操作</th>
+            </tr>
+          </thead>
+          <tbody id="applianceTableBody">
+            <!-- 動態插入 -->
+          </tbody>
+        </table>
+
+        <!-- 新增電器列表單 -->
+        <div style="background: var(--color-bg-alt, #F8FAFC); padding: 12px; border-radius: 8px; border: 1px dashed var(--color-border, #CBD5E1); margin-bottom: 20px;">
+          <div style="font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; color: var(--color-navy, #1A365D);">
+            <i class="fa-solid fa-plus-circle"></i> 新增申報列管電器
+          </div>
+          <div class="form-grid-3" style="margin-bottom: 8px;">
+            <input type="text" id="newAppName" class="form-control" placeholder="電器名稱 (例: 吹風機/微波爐)">
+            <input type="number" id="newAppWatt" class="form-control" placeholder="瓦數 (例: 1200)" step="50">
+            <input type="text" id="newAppLoc" class="form-control" placeholder="擺設位置 (例: 客廳/主臥)">
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label for="newAppDedicated" style="min-height: 44px; min-width: 44px; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="newAppDedicated" checked style="width:20px; height:20px;"> 具備獨立壁面專插
+            </label>
+            <button type="button" id="btnAddAppliance" class="btn-add-item">
+              <i class="fa-solid fa-plus"></i> 加入電器清單
+            </button>
+          </div>
+        </div>
+
+        <!-- 區塊六：雙方手寫簽章 -->
+        <div class="section-title">
+          <i class="fa-solid fa-signature"></i> 六、雙方立切結書人電子簽名
+        </div>
+
+        <div class="signature-section">
+          <!-- 出租人簽名 -->
+          <div class="sig-box">
+            <div class="sig-title">
+              <span>出租人 / 授權管理業者 簽章</span>
+              <button type="button" id="btnClearLandlord" class="sig-clear-btn">
+                <i class="fa-solid fa-eraser"></i> 清除重新簽署
+              </button>
+            </div>
+            <div class="sig-canvas-wrapper">
+              <canvas id="canvasLandlord" class="sig-canvas"></canvas>
+            </div>
+            <img id="imgPreviewLandlord" class="doc-sig-img" alt="出租人簽章" style="display: none;">
+          </div>
+
+          <!-- 承租人簽名 -->
+          <div class="sig-box">
+            <div class="sig-title">
+              <span>承租人（連帶安全切結人）親簽</span>
+              <button type="button" id="btnClearTenant" class="sig-clear-btn">
+                <i class="fa-solid fa-eraser"></i> 清除重新簽署
+              </button>
+            </div>
+            <div class="sig-canvas-wrapper">
+              <canvas id="canvasTenant" class="sig-canvas"></canvas>
+            </div>
+            <img id="imgPreviewTenant" class="doc-sig-img" alt="承租人簽章" style="display: none;">
+          </div>
+        </div>
+
+        <!-- 操作按鈕列 -->
+        <div class="action-buttons-group">
+          <button type="button" id="btnPrintDoc" class="btn-act btn-primary-red">
+            <i class="fa-solid fa-print"></i> 列印標準 A4 存證合約
+          </button>
+          <button type="button" id="btnDownloadCard" class="btn-act btn-outline-navy">
+            <i class="fa-solid fa-image"></i> 下載 840×1180px 存證圖卡
+          </button>
+          <button type="button" id="btnCopyLine" class="btn-act btn-green-line">
+            <i class="fa-brands fa-line"></i> 複製 LINE 存證備忘
+          </button>
+        </div>
+      </div>
+
+      <!-- 右欄：A4 即時連動公文預覽 -->
+      <div class="preview-sticky-col">
+        <div id="a4PreviewDoc" class="a4-preview-wrapper">
+          <div class="doc-header">
+            <div class="company-name">港居不動產開發有限公司 ｜ 租賃安全法務公文</div>
+            <div class="doc-main-title">住宅租賃用電用火安全暨失火責任切結協議書</div>
+            <div class="doc-meta">
+              <span>協議存證編號：<strong id="pvDocNo">GANJU-FIRE-20261025</strong></span>
+              <span>簽署生效日期：<strong id="pvDate">2026-10-25</strong></span>
+            </div>
+          </div>
+
+          <!-- 當事人與物業資訊 -->
+          <div class="doc-section">
+            <div class="doc-sec-title">一、租賃標的與當事人聲明</div>
+            <table class="doc-table">
+              <tr>
+                <th>租賃住宅地址</th>
+                <td colspan="3" id="pvAddress">高雄市小港區中安路888號5樓之2</td>
+              </tr>
+              <tr>
+                <th>原租賃契約期間</th>
+                <td colspan="3" id="pvLeaseTerm">自民國 115 年 11 月 01 日起至民國 116 年 10 月 31 日止</td>
+              </tr>
+              <tr>
+                <th>出租人 (甲方)</th>
+                <td><span id="pvLandlordName">陳美蘭</span> (<span id="pvLandlordId">E220198***</span>)</td>
+                <th>承租人 (乙方)</th>
+                <td><span id="pvTenantName">黃柏鈞</span> (<span id="pvTenantId">S129845***</span>)</td>
+              </tr>
+              <tr>
+                <th>甲方聯絡電話</th>
+                <td id="pvLandlordPhone">0912-345-678</td>
+                <th>乙方聯絡電話</th>
+                <td id="pvTenantPhone">0975-123-888</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- 核心特約：民法第434條排除 -->
+          <div class="doc-section">
+            <div class="doc-sec-title">二、民法第434條失火責任重大過失排除特約</div>
+            <div class="doc-legal-text" id="pvArticle434Text">
+              <!-- 動態載入特約文字 -->
+            </div>
+          </div>
+
+          <!-- 安全維護守則 -->
+          <div class="doc-section">
+            <div class="doc-sec-title">三、住宅用電用火安全維護守則</div>
+            <div id="pvRulesList" style="font-size: 0.82rem; line-height: 1.6; color: #334155;">
+              <!-- 動態載入六大守則 -->
+            </div>
+          </div>
+
+          <!-- 申報電器清單 -->
+          <div class="doc-section">
+            <div class="doc-sec-title">四、申報列管高功率發熱電器清冊（800W以上）</div>
+            <div id="pvApplianceList">
+              <!-- 動態電器表格 -->
+            </div>
+          </div>
+
+          <!-- 保險與罰則 -->
+          <div class="doc-section">
+            <div class="doc-sec-title">五、火災責任保險與違約懲罰條款</div>
+            <div class="doc-legal-text" id="pvInsuranceText">
+              <!-- 動態載入保險與違約條款 -->
+            </div>
+          </div>
+
+          <!-- 雙方簽名欄 -->
+          <div class="doc-signatures-grid">
+            <div class="doc-sig-block">
+              <strong>出租人 / 授權管理機構：</strong><br>
+              港居不動產開發有限公司（高市租登字第0012號）<br>
+              授權代表簽章：<span id="pvSigLandlordText">（親簽於下方）</span>
+            </div>
+            <div class="doc-sig-block">
+              <strong>承租人（連帶安全切結人）：</strong><br>
+              立切結書人聲明完全理解並願恪遵上述各條款。<br>
+              具結親筆簽署：<span id="pvSigTenantText">（親簽於下方）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="assets/logo.png" alt="港居不動產 LOGO">
+          <span class="brand-title">港居不動產</span>
+        </div>
+        <p class="footer-desc">
+          專注小港、前鎮、鳳山之高品質不動產租賃、包租代管與法務安防服務。<br>
+          首創 45 款全功能線上不動產工具集，合約規章純前端高隱私運算，守護房東與租客權益。
+        </p>
+        <div class="footer-cert-info">
+          <p><i class="fa-solid fa-shield-halved"></i> 租賃住宅服務業登記證：(113)高市租登字第0012號</p>
+          <p><i class="fa-solid fa-award"></i> 高雄市租賃住宅服務商業同業公會 會員證號：第 115-046 號</p>
+          <p><i class="fa-solid fa-id-card"></i> 租賃住宅管理人員證號：(112)登字第013739號</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+          <p><i class="fa-solid fa-phone"></i> 專線：0968-863-880 ｜ 市話：07-791-2288</p>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <div class="footer-col-title">房東法務專區</div>
+          <ul class="footer-links">
+            <li><a href="fire-safety-agreement.html">用電用火安全切結協議</a></li>
+            <li><a href="business-registration-agreement.html">設址營業與稅賦補償協議</a></li>
+            <li><a href="sublease-consent-agreement.html">承租人轉租同意與協議書</a></li>
+            <li><a href="ownership-change-notice.html">買賣不破租賃與押金移轉通知</a></li>
+            <li><a href="dispute-mediation-request.html">租賃爭議調處與調解聲請</a></li>
+            <li><a href="arrears-installment-agreement.html">欠租分期清償和解協議</a></li>
+            <li><a href="tax-calculator.html">房東節稅效益精算</a></li>
+            <li><a href="rent-arrears-notice.html">租金催繳與欠租催告</a></li>
+            <li><a href="rules-violation-notice.html">住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html">承租人遺留物拋棄切結</a></li>
+            <li><a href="mandate-contract.html">住宅租賃委託管理契約</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">租客與實用工具</div>
+          <ul class="footer-links">
+            <li><a href="renovation-consent-agreement.html">室內裝修改裝同意切結</a></li>
+            <li><a href="parking-lease-agreement.html">汽機車停車位租用協議</a></li>
+            <li><a href="pet-addendum-agreement.html">飼養寵物特約承諾書</a></li>
+            <li><a href="roommate-agreement.html">合租公約與承租協議</a></li>
+            <li><a href="lease-contract.html">租賃契約與公約產生器</a></li>
+            <li><a href="rent-receipt.html">租金收據與代管對帳</a></li>
+            <li><a href="utility-splitter.html">分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html">300億租金補貼試算</a></li>
+            <li><a href="listing-post-generator.html">591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html">郵局存證信函產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">數位影像與系統</div>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank">3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html">2D/3D格局配置系統</a></li>
+            <li><a href="photo-watermark.html">房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html">證件保護防偽水印</a></li>
+            <li><a href="file-converter.html">線上多功能轉檔神器</a></li>
+            <li><a href="privacy.html">個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 港居不動產開發有限公司 GANJU Real Estate Development Co., Ltd. 版權所有</p>
+        <p><a href="privacy.html" style="color: var(--accent-gold); text-decoration: underline;">隱私權政策與個資保護</a> ｜ <a href="sitemap.xml" style="color: var(--accent-gold); text-decoration: underline;">網站地圖</a> ｜ 純前端運算・零上傳雲端・個資安全零外洩</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 核心 JS 模組 -->
+  <script src="js/auth-guard.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/fire-safety-agreement.js"></script>
+</body>
+</html>
