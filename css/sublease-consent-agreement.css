@@ -1,0 +1,565 @@
+/* ==========================================================================
+   港居不動產 - 住宅租賃承租人轉租同意書與轉租管理協議產生器專用樣式
+   File: css/sublease-consent-agreement.css
+   依據《民法》第443/444條與《租賃住宅市場發展及管理條例》第9條合規設計
+   ========================================================================== */
+
+/* 工作區雙欄排版 */
+.sublease-workspace {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-6, 24px);
+  max-width: 1320px;
+  margin: var(--space-8, 32px) auto;
+  padding: 0 var(--space-4, 16px);
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .sublease-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* 編輯面板與預覽面板卡片 */
+.editor-panel,
+.preview-panel {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-xl, 16px);
+  padding: var(--space-6, 24px);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.07));
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-5, 20px);
+  padding-bottom: var(--space-3, 12px);
+  border-bottom: 2px solid var(--color-gold-light, #fef3c7);
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+}
+
+.panel-title {
+  font-size: var(--text-xl, 1.25rem);
+  font-weight: 700;
+  color: var(--color-navy, #1a365d);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+/* 快速操作工具列 */
+.quick-actions-bar {
+  display: flex;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+}
+
+.btn-tool-action {
+  padding: 8px 14px;
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border, #e2e8f0);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-navy, #1a365d);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.btn-tool-action:hover {
+  background: var(--color-gold-light, #fef3c7);
+  border-color: var(--color-gold, #c5a880);
+}
+
+.btn-tool-action.primary {
+  background: var(--color-navy, #1a365d);
+  color: #ffffff;
+  border-color: var(--color-navy, #1a365d);
+}
+
+.btn-tool-action.primary:hover {
+  background: var(--color-navy-dark, #0f2038);
+}
+
+/* 編輯區各區塊 */
+.form-section {
+  margin-bottom: var(--space-6, 24px);
+  padding: var(--space-4, 16px);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  background: var(--color-surface-soft, #f8fafc);
+}
+
+.form-section-title {
+  font-size: var(--text-base, 1rem);
+  font-weight: 700;
+  color: var(--color-navy, #1a365d);
+  margin-bottom: var(--space-3, 12px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  border-left: 3px solid var(--color-gold, #c5a880);
+  padding-left: 8px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3, 12px);
+}
+
+.form-grid.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 768px) {
+  .form-grid,
+  .form-grid.grid-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 600;
+  color: var(--color-text-secondary, #475569);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-size: var(--text-sm, 0.875rem);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text, #1e293b);
+  min-height: 44px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-gold, #c5a880);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.25);
+}
+
+/* 轉租範圍單選按鈕組 */
+.scope-radio-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .scope-radio-group {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.scope-radio-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+  min-height: 44px;
+  transition: all 0.2s ease;
+}
+
+.scope-radio-card:hover {
+  border-color: var(--color-gold, #c5a880);
+  background: #fefce8;
+}
+
+.scope-radio-card input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-navy, #1a365d);
+}
+
+/* 法規合規提示卡 */
+.legal-banner-card {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-lg, 12px);
+  padding: 12px 16px;
+  margin-bottom: var(--space-4, 16px);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.legal-banner-card i {
+  color: #2563eb;
+  font-size: 1.25rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.legal-banner-text {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #1e40af;
+}
+
+.legal-banner-text strong {
+  color: #1e3a8a;
+}
+
+/* 轉租租期檢核警示卡 */
+.date-alert-card {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-lg, 12px);
+  padding: 10px 14px;
+  margin-top: 8px;
+  display: none;
+  color: #b91c1c;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* 轉租租金金額卡 */
+.rent-highlight-card {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-lg, 12px);
+  padding: 12px 16px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rent-chinese-text {
+  font-size: 0.8125rem;
+  color: #166534;
+  font-weight: 700;
+}
+
+/* 簽名板三欄佈局 */
+.signature-triple-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4, 16px);
+  margin-top: var(--space-4, 16px);
+}
+
+@media (max-width: 900px) {
+  .signature-triple-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.signature-box {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-3, 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.signature-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.signature-box-title {
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 700;
+  color: var(--color-navy, #1a365d);
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background: #ffffff;
+  border: 1px dashed var(--color-border, #cbd5e1);
+  border-radius: var(--radius-md, 8px);
+  touch-action: none;
+  overflow: hidden;
+}
+
+.signature-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+.canvas-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  pointer-events: none;
+  user-select: none;
+}
+
+.btn-clear-sig {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-end;
+  min-height: 44px;
+  min-width: 44px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-clear-sig:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* 預覽面板 - A4 模擬紙張 */
+.preview-sticky {
+  position: sticky;
+  top: 80px;
+}
+
+.paper-sheet {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 36px 32px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+  line-height: 1.6;
+}
+
+.paper-header {
+  text-align: center;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.paper-company {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.paper-title {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 6px 0 4px;
+  letter-spacing: 1px;
+}
+
+.paper-doc-no {
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.paper-intro {
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-left: 3px solid #1a365d;
+  border-radius: 4px;
+}
+
+.paper-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+}
+
+.paper-table th,
+.paper-table td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.paper-table th {
+  background: #f1f5f9;
+  font-weight: 700;
+  color: #1e293b;
+  width: 25%;
+}
+
+.paper-terms {
+  margin-bottom: 20px;
+  font-size: 0.84375rem;
+  color: #334155;
+}
+
+.paper-terms ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.paper-terms li {
+  margin-bottom: 8px;
+  line-height: 1.65;
+}
+
+.paper-signatures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed #cbd5e1;
+}
+
+@media (max-width: 640px) {
+  .paper-signatures {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.paper-sig-col {
+  font-size: 0.8125rem;
+}
+
+.paper-sig-title {
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.paper-sig-preview {
+  height: 55px;
+  border-bottom: 1px solid #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paper-sig-preview img {
+  max-height: 50px;
+  max-width: 100%;
+}
+
+.paper-footer-stamp {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 10px;
+}
+
+/* @media print A4 標準列印專用樣式 */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  .top-bar,
+  .navbar,
+  .site-footer,
+  .editor-panel,
+  .panel-header,
+  .quick-actions-bar,
+  .auth-overlay,
+  .theme-switch-btn {
+    display: none !important;
+  }
+
+  .sublease-workspace {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .preview-panel {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .preview-sticky {
+    position: static !important;
+  }
+
+  .paper-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .paper-table th,
+  .paper-table td {
+    border-color: #000000 !important;
+  }
+
+  .paper-header {
+    border-color: #000000 !important;
+  }
+
+  .paper-sig-preview {
+    border-color: #000000 !important;
+  }
+}

@@ -55,6 +55,7 @@ const PAGES = [
   'arrears-installment-agreement.html',
   'dispute-mediation-request.html',
   'ownership-change-notice.html',
+  'sublease-consent-agreement.html',
   'privacy.html'
 ];
 
