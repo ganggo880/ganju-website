@@ -1,0 +1,708 @@
+/**
+ * accessibility-agreement.css
+ * 住宅租賃無障礙設備使用與安全特約切結書產生器專用樣式
+ * 遵循港居不動產設計規範 (tokens.css / components.css / auth-guard.css)
+ * 嚴格符合 WCAG 2.1 AA 規範：可點擊元素 ≥ 44×44px，極限響應式 (360px~414px) 橫向滾動溢出嚴格為 0px
+ */
+
+/* 頁面背景與主容器 */
+.access-tool-body {
+  background-color: var(--color-bg-dark, #0b192c);
+  color: var(--color-text-main, #f8fafc);
+  font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* 工具橫幅區塊 */
+.tool-header {
+  padding: var(--spacing-xl, 2.5rem) 0 var(--spacing-lg, 1.5rem);
+  text-align: center;
+  background: radial-gradient(circle at 50% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tool-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.tool-title {
+  font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+  font-weight: 800;
+  color: var(--color-text-bright, #ffffff);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.tool-subtitle {
+  font-size: 0.92rem;
+  color: var(--color-text-muted, #94a3b8);
+  max-width: 860px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 主操作佈局：雙欄自適應 */
+.access-wrapper {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.15fr) minmax(340px, 0.85fr);
+  gap: 1.75rem;
+  padding: 1.75rem 0 3.5rem;
+  align-items: start;
+}
+
+/* 左欄表單容器 */
+.access-form-card {
+  background: var(--color-card-bg, #1e293b);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg, 16px);
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* 法律合規提示橫幅 */
+.access-legal-banner {
+  background: rgba(59, 130, 246, 0.08);
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.access-legal-banner strong {
+  color: #60a5fa;
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.92rem;
+}
+
+/* 表單分區與標題 */
+.access-form-section {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.access-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--accent-gold, #c5a059);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.access-section-title i {
+  color: #60a5fa;
+}
+
+/* 模式選擇單選卡片群組 */
+.access-mode-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.access-mode-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.access-mode-card:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.access-mode-card.selected {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.access-mode-card input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: #3b82f6;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.access-mode-content {
+  flex: 1;
+}
+
+.access-mode-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.access-mode-desc {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* 輸入框網格配置 */
+.access-form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+}
+
+.access-form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+
+.access-input-group {
+  margin-bottom: 0.9rem;
+  min-width: 0;
+}
+
+.access-input-group:last-child {
+  margin-bottom: 0;
+}
+
+.access-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
+}
+
+.access-label .req {
+  color: #f87171;
+  margin-left: 2px;
+}
+
+.access-input,
+.access-select,
+.access-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  color: #ffffff;
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.access-textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.access-input:focus,
+.access-select:focus,
+.access-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+  background: #1e293b;
+}
+
+/* 核取方塊項目 */
+.access-check-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.access-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.access-check-item:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.access-check-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #3b82f6;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.access-check-text {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.access-check-text strong {
+  color: #60a5fa;
+  display: inline-block;
+  margin-right: 0.25rem;
+}
+
+/* 電子手寫簽章區 */
+.access-signature-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.access-signature-card {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.access-signature-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.access-signature-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.access-sign-clear-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.access-sign-clear-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #ffffff;
+}
+
+.access-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  background: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.access-canvas-wrapper canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.access-canvas-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #94a3b8;
+  font-size: 0.8rem;
+  pointer-events: none;
+  user-select: none;
+  font-weight: 500;
+}
+
+/* 右欄預覽與按鈕卡片 */
+.access-preview-card {
+  position: sticky;
+  top: 85px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.access-actions-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.access-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.access-btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.access-btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  transform: translateY(-1px);
+}
+
+.access-btn-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.access-btn-success:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-1px);
+}
+
+.access-btn-line {
+  background: #06c755;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.3);
+}
+
+.access-btn-line:hover {
+  background: #05b34c;
+  transform: translateY(-1px);
+}
+
+/* 擬真 A4 紙本文書預覽 */
+.access-paper {
+  background: #ffffff;
+  color: #1e293b;
+  border-radius: 4px;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  border: 1px solid #cbd5e1;
+}
+
+.access-paper-header {
+  text-align: center;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.access-paper-corp {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #475569;
+  margin-bottom: 0.25rem;
+}
+
+.access-paper-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.25rem 0;
+  letter-spacing: 0.02em;
+}
+
+.access-paper-subtitle {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* 雙方資料基本表格 */
+.access-paper-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+  font-size: 0.82rem;
+}
+
+.access-paper-meta-table td {
+  border: 1px solid #cbd5e1;
+  padding: 0.45rem 0.65rem;
+}
+
+.access-paper-meta-table .label-cell {
+  background: #f1f5f9;
+  font-weight: 700;
+  color: #334155;
+  width: 25%;
+  white-space: nowrap;
+}
+
+.access-paper-meta-table .val-cell {
+  color: #0f172a;
+}
+
+/* 法律條款內文 */
+.access-paper-content {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #1e293b;
+}
+
+.access-clause-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 0.85rem;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.access-clause-body {
+  padding-left: 0.25rem;
+  margin-bottom: 0.65rem;
+}
+
+.access-clause-body p {
+  margin: 0.25rem 0;
+}
+
+.access-clause-body strong {
+  color: #1d4ed8;
+}
+
+/* 雙方簽名框 */
+.access-paper-sign-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  border-top: 1px dashed #cbd5e1;
+  padding-top: 1.25rem;
+}
+
+.access-paper-sign-box {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.75rem;
+  background: #f8fafc;
+}
+
+.access-paper-sign-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 0.4rem;
+}
+
+.access-paper-sign-img-wrap {
+  width: 100%;
+  height: 70px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.access-paper-sign-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.access-paper-sign-date {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 0.4rem;
+  text-align: right;
+}
+
+/* 列印專用樣式 @media print */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
+  }
+
+  body,
+  .access-tool-body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    overflow: visible !important;
+  }
+
+  .top-bar,
+  header,
+  .tool-header,
+  .access-form-card,
+  .access-actions-bar,
+  footer,
+  .auth-guard-overlay {
+    display: none !important;
+  }
+
+  .access-wrapper {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .access-preview-card {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  .access-paper {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    color: #000000 !important;
+    font-size: 9.5pt !important;
+    line-height: 1.5 !important;
+  }
+
+  .access-paper-header {
+    border-bottom: 1.5pt solid #000000 !important;
+  }
+
+  .access-paper-corp {
+    color: #333333 !important;
+  }
+
+  .access-paper-title {
+    color: #000000 !important;
+    font-size: 15pt !important;
+  }
+
+  .access-paper-subtitle {
+    color: #555555 !important;
+  }
+
+  .access-paper-meta-table td {
+    border: 0.5pt solid #555555 !important;
+    padding: 3pt 5pt !important;
+  }
+
+  .access-paper-meta-table .label-cell {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+  }
+
+  .access-clause-title {
+    color: #000000 !important;
+    font-size: 10pt !important;
+    margin-top: 6pt !important;
+  }
+
+  .access-clause-body strong {
+    color: #000000 !important;
+    font-weight: 700 !important;
+  }
+
+  .access-paper-sign-grid {
+    border-top: 0.5pt dashed #555555 !important;
+    margin-top: 10pt !important;
+    padding-top: 8pt !important;
+  }
+
+  .access-paper-sign-box {
+    background: transparent !important;
+    border: 0.5pt solid #555555 !important;
+  }
+
+  .access-paper-sign-img-wrap {
+    border: 0.5pt solid #888888 !important;
+    background: transparent !important;
+    height: 60px !important;
+  }
+}
+
+/* 行動端極限響應式 (360px ~ 414px) 優化 */
+@media screen and (max-width: 991px) {
+  .access-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .access-preview-card {
+    position: static;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .access-form-card {
+    padding: 1.1rem;
+  }
+
+  .access-form-grid-2,
+  .access-form-grid-3,
+  .access-signature-section,
+  .access-paper-sign-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .access-paper {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .access-paper-meta-table .label-cell {
+    width: 32%;
+  }
+}

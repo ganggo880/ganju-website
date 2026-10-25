@@ -59,6 +59,7 @@ HTML_FILES = [
     "smoke-free-agreement.html",
     "mold-prevention-agreement.html",
     "noise-prevention-agreement.html",
+    "accessibility-agreement.html",
     "privacy.html"
 ]
 
