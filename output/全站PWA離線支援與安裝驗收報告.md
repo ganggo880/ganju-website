@@ -49,9 +49,10 @@
 | 37 | `proxy-authorization.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃住宅授權委託代理人委任書產生器 ｜ 港居不動產開發 |
 | 38 | `roommate-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃合租公約與共同承租連帶責任協議書產生器 ｜ 港居不動產開發 |
 | 39 | `pet-addendum-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃飼養寵物特約承諾書產生器 ｜ 港居不動產 |
-| 40 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 40 | `parking-lease-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃汽機車停車位租用與管理協議書產生器 ｜ 港居不動產 |
+| 41 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**40 / 40 頁 (100%)**
+**離線可用率**：**41 / 41 頁 (100%)**
 
 ---
 

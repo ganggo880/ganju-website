@@ -82,6 +82,7 @@
 - [x] 階段五十九：租賃住宅授權委託代理人委任書產生器 `proxy-authorization.html`（依據《民法》第103/167/528/534條特別委任規範設計，支援房東出租代理與租客承租代理雙模式、7大特別代理授權權限矩陣、雙方Retina 2x電子手寫簽章、身分證影本防偽浮水印黏貼格、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE備忘文字複製，全站 38 頁 100% 互通、PWA 133 項資產離線秒開與 148 組行動端 0px 溢出通過）
 - [x] 階段六十：住宅租賃合租公約與共同承租連帶責任協議書產生器 `roommate-agreement.html`（依據《民法》第272/273/280/443條及《公寓大廈管理條例》規範，支援多人合租分攤精算、主約代表指派、對外出租人全額連帶保證、中途退租替補義務、生活公約輪值、多方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE合租速報文字複製，全站 39 頁 100% 互通、PWA 136 項資產離線秒開與 152 組行動端 0px 溢出通過）
 - [x] 階段六十一：住宅租賃飼養寵物特約承諾書產生器 `pet-addendum-agreement.html`（依據《民法》第432/190條、《動物保護法》與《公寓大廈管理條例》第16條規範設計，整合寵物身分晶片相片存證、退租全戶深度除蚤除臭清消約定、抓咬木作新品全額照價賠償、公共走道裝籠推車管束、安寧維護限期移置、動物占有人侵權完全責任、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE通報文字複製，全站 40 頁 100% 互通、PWA 139 項資產離線秒開與 156 組行動端 0px 溢出通過）
+- [x] 階段六十二：住宅租賃汽機車停車位租用與管理協議書產生器 `parking-lease-agreement.html`（依據《民法》第421/432/443條、《公寓大廈管理條例》第15/16/23條與機械停車設備安全規範設計，整合隨屋附租/社區住戶單租/汽機車雙位組合、坡道平面與機械車位限高限重安全防呆、電動車EV充電樁計費特約、車位與車牌相片防偽浮水印存證、門禁遙控器保管押金國字大寫轉換、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE摘要複製，全站 41 頁 100% 互通、PWA 142 項資產離線秒開與 160 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -133,7 +134,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── proxy-authorization.html         # 38. 租賃住宅授權委託代理人委任書產生器
 ├── roommate-agreement.html          # 39. 住宅租賃合租公約與共同承租協議書產生器
 ├── pet-addendum-agreement.html      # 40. 住宅租賃飼養寵物特約承諾書產生器
-├── sitemap.xml                      # 全站 40 頁 SEO XML 網站地圖
+├── parking-lease-agreement.html     # 41. 住宅租賃汽機車停車位租用與管理協議書產生器
+├── sitemap.xml                      # 全站 41 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -146,6 +148,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── auth-guard.css               # 全站線上工具授權驗證防護樣式（毛玻璃、零閃爍防護、RWD）
+│   ├── parking-lease-agreement.css  # 汽機車停車位租用與管理協議書專用樣式與 A4 排版引擎
 │   ├── pet-addendum-agreement.css   # 飼養寵物特約承諾書專用樣式與 A4 排版引擎
 │   ├── roommate-agreement.css       # 合租公約與共同承租協議專用樣式與 A4 排版引擎
 │   ├── proxy-authorization.css      # 租賃代理授權委任書專用樣式與 A4 排版引擎
@@ -176,6 +179,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
+│   ├── parking-lease-agreement.js   # 汽機車停車位租用與管理協議核心邏輯（機械車位限尺防呆、充電樁特約、車牌存證與雙簽章引擎）
 │   ├── pet-addendum-agreement.js    # 飼養寵物特約承諾書核心邏輯（身分建檔、晶片登錄、清潔約定、雙簽章與圖卡輸出）
 │   ├── roommate-agreement.js        # 合租公約與共同承租核心邏輯（成員動態名冊、差額精算、生活公約與多方簽章引擎）
 │   ├── proxy-authorization.js       # 租賃代理授權委任書核心邏輯（雙模式、7大授權清單、大寫轉換與雙簽章引擎）

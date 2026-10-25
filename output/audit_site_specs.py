@@ -45,6 +45,7 @@ HTML_FILES = [
     "proxy-authorization.html",
     "roommate-agreement.html",
     "pet-addendum-agreement.html",
+    "parking-lease-agreement.html",
     "privacy.html"
 ]
 
