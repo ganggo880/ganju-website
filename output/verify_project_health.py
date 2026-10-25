@@ -54,6 +54,7 @@ HTML_FILES = [
     "pet-addendum-agreement.html",
     "parking-lease-agreement.html",
     "renovation-consent-agreement.html",
+    "arrears-installment-agreement.html",
     "privacy.html"
 ]
 

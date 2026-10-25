@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>住宅租賃積欠租金分期清償與和解協議書產生器 ｜ 港居不動產</title>
+  <meta name="description" content="港居不動產線上工具：住宅租賃積欠租金分期清償與和解協議書產生器。依據《民法》第736條（和解）、第737條（創設效力）、第315條（分期給付）、第739～745條（連帶保證）及租賃專法合規設計。內建期限利益喪失條款（Acceleration Clause）、立即終止租約與無條件騰空遷讓自願強制執行切結、雙手寫簽章、HTML5 Canvas 840×1080px 圖卡與 A4 無痕列印。">
+  <meta name="keywords" content="租金分期清償協議書, 欠租和解協議書, 期限利益喪失條款, 租約終止切結, 連帶保證人責任, 港居不動產">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/arrears-installment-agreement.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="住宅租賃積欠租金分期清償與和解協議書產生器 ｜ 港居不動產">
+  <meta property="og:description" content="依據民法第736/737條和解法規與租賃專法合規設計，內建期限利益喪失條款、自願接受強制執行、雙手寫簽章與A4無痕列印。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/arrears-installment-agreement.html">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a365d">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <link rel="stylesheet" href="css/arrears-installment-agreement.css">
+
+  <!-- 結構化資料 JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://ganggo880.github.io/ganju-website/arrears-installment-agreement.html#app",
+        "name": "住宅租賃積欠租金分期清償與和解協議書產生器",
+        "url": "https://ganggo880.github.io/ganju-website/arrears-installment-agreement.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "zh-TW",
+        "description": "依據民法第736條、第737條、第315條與租賃專法設計之租金分期清償與和解協議書產生器，內建期限利益喪失條款與雙方電子手寫簽章。",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD"
+        },
+        "author": {
+          "@type": "RealEstateAgent",
+          "name": "港居不動產開發有限公司",
+          "url": "https://ganggo880.github.io/ganju-website/"
+        },
+        "featureList": [
+          "欠租與水電瓦斯管理費代墊款一鍵清算結算",
+          "2～12 期彈性分期排程試算與每期金額自動平衡",
+          "繁體中文金融大寫金額自動轉換",
+          "民法第315條期限利益喪失條款（Acceleration Clause）防呆宣告",
+          "租約立即終止與3日內騰空遷讓自願強制執行約定",
+          "連帶保證人自願拋棄先訴抗辯權責任約定",
+          "雙方 Retina 2x 高靈敏電子手寫簽章",
+          "@media print A4 標準公文無痕列印引擎",
+          "HTML5 Canvas 840×1080px 高畫質和解存證圖卡下載",
+          "LINE 格式化和解分期摘要文字一鍵複製"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "首頁",
+            "item": "https://ganggo880.github.io/ganju-website/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "線上工具",
+            "item": "https://ganggo880.github.io/ganju-website/#tools"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "住宅租賃積欠租金分期清償與和解協議書產生器",
+            "item": "https://ganggo880.github.io/ganju-website/arrears-installment-agreement.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 1. 頂部安全與登記宣告 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        <button id="btnAuthLock" class="quick-action-btn" title="鎖定工具並清除授權" style="min-height:44px; padding:6px 12px; font-size:12px; margin-left:8px;">
+          🔒 授權鎖定
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <!-- 桌面與行動版導覽連結 -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (40)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="arrears-installment-agreement.html" class="nav-link active"><i class="fa-solid fa-handshake-simple" style="color: var(--accent-gold);"></i> 欠租分期清償和解協議</a></li>
+            <li><a href="renovation-consent-agreement.html" class="nav-link"><i class="fa-solid fa-hammer" style="color: #63b3ed;"></i> 室內裝修改裝同意切結</a></li>
+            <li><a href="parking-lease-agreement.html" class="nav-link"><i class="fa-solid fa-square-parking" style="color: #63b3ed;"></i> 汽機車停車位租用協議</a></li>
+            <li><a href="pet-addendum-agreement.html" class="nav-link"><i class="fa-solid fa-paw" style="color: #f59e0b;"></i> 飼養寵物特約承諾書</a></li>
+            <li><a href="roommate-agreement.html" class="nav-link"><i class="fa-solid fa-users" style="color: #63b3ed;"></i> 合租公約與承租協議</a></li>
+            <li><a href="proxy-authorization.html" class="nav-link"><i class="fa-solid fa-signature" style="color: #63b3ed;"></i> 租賃代理授權委任書</a></li>
+            <li><a href="rent-arrears-notice.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #63b3ed;"></i> 租金催繳與欠租催告書</a></li>
+            <li><a href="rules-violation-notice.html" class="nav-link"><i class="fa-solid fa-triangle-exclamation" style="color: #63b3ed;"></i> 住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #63b3ed;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #63b3ed;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-wrench" style="color: #63b3ed;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #63b3ed;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #63b3ed;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 房東節稅效益精算</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 修繕點交與屋況存證</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #63b3ed;"></i> 分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #63b3ed;"></i> 退租押金結算明細單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #63b3ed;"></i> 300億租補資格自檢</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #63b3ed;"></i> 591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #63b3ed;"></i> 欠租催告存證信函</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #63b3ed;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #63b3ed;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #63b3ed;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #63b3ed;"></i> 租約提前終止協議書</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #63b3ed;"></i> 租約續約協議書</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #63b3ed;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 租金代管費換算</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-arrow-up" style="color: #63b3ed;"></i> 線上多功能轉檔</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera" style="color: #63b3ed;"></i> 房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #63b3ed;"></i> 證件保護防偽水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image" style="color: #63b3ed;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #63b3ed;"></i> 名片正反合成</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#contact" class="nav-link">預約諮詢</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="開啟選單" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主要工作區 -->
+  <main class="installment-workspace">
+    <!-- 左欄：表單編輯面板 -->
+    <section class="editor-panel">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <span>⚖️ 住宅租賃積欠租金分期清償與和解協議產生器</span>
+        </h1>
+        <div class="quick-actions-bar">
+          <button id="btnSample3Months" class="quick-action-btn" type="button">📅 載入積欠3個月分4期範本</button>
+          <button id="btnSampleSmall" class="quick-action-btn" type="button">⚡ 載入小額欠租分2期範本</button>
+          <button id="btnResetForm" class="quick-action-btn" type="button">🔄 重設清空</button>
+        </div>
+      </div>
+
+      <!-- 法定依據宣告 -->
+      <div class="legal-alert-box">
+        <strong>⚖️ 法定合規提示：</strong>
+        本協議書依據《民法》第 736 條（和解契約之創設效力）、第 737 條（消滅與確定法律關係）、第 315 條（清償期與分期給付）、第 739～745 條（連帶保證債務）及《租賃住宅市場發展及管理條例》設計。內建「期限利益喪失條款（Acceleration Clause）」、立即終止租約與無條件騰空遷讓自願接受強制執行切結，在給予承租人清償彈性的同時，以最高法務防線保全出租人債權。
+      </div>
+
+      <!-- 區塊一：原租約標的與立約當事人 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <span class="section-badge">1</span>
+          <span>原租約標的與立約當事人資料</span>
+        </h2>
+
+        <div class="form-group">
+          <label for="inputPropertyAddress">承租住宅標的完整地址 *</label>
+          <input type="text" id="inputPropertyAddress" value="高雄市小港區中安路 825 號 5 樓 A 室">
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="inputLeaseCode">和解協議編號</label>
+            <input type="text" id="inputLeaseCode" value="GJ-202611-ST01">
+          </div>
+          <div class="form-group">
+            <label for="inputLeaseStart">原租約起始日</label>
+            <input type="date" id="inputLeaseStart" value="2025-12-01">
+          </div>
+          <div class="form-group">
+            <label for="inputLeaseEnd">原租約終止日</label>
+            <input type="date" id="inputLeaseEnd" value="2026-11-30">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputLandlordName">出租人 / 受託代管機構 *</label>
+            <input type="text" id="inputLandlordName" value="港居不動產開發有限公司（受託代管）">
+          </div>
+          <div class="form-group">
+            <label for="inputLandlordPhone">出租人聯絡電話 *</label>
+            <input type="text" id="inputLandlordPhone" value="07-791-2288">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputBankInfo">分期清償指定受款金融帳戶 *</label>
+          <input type="text" id="inputBankInfo" value="高雄銀行（016）小港分行 帳號：218-102-888999 戶名：港居不動產開發有限公司">
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="inputTenantName">承租人兼債務人姓名 *</label>
+            <input type="text" id="inputTenantName" value="趙冠廷">
+          </div>
+          <div class="form-group">
+            <label for="inputTenantId">承租人身分證字號 *</label>
+            <input type="text" id="inputTenantId" value="E127890123">
+          </div>
+          <div class="form-group">
+            <label for="inputTenantPhone">承租人聯絡電話 *</label>
+            <input type="text" id="inputTenantPhone" value="0911-333-555">
+          </div>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="inputGuarantorName">連帶保證人姓名（選填）</label>
+            <input type="text" id="inputGuarantorName" value="趙振興">
+          </div>
+          <div class="form-group">
+            <label for="inputGuarantorId">保證人身分證字號</label>
+            <input type="text" id="inputGuarantorId" value="E101234567">
+          </div>
+          <div class="form-group">
+            <label for="inputGuarantorPhone">保證人聯絡電話</label>
+            <input type="text" id="inputGuarantorPhone" value="0922-666-888">
+          </div>
+        </div>
+      </div>
+
+      <!-- 區塊二：積欠債權結算與分期排程 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <span class="section-badge">2</span>
+          <span>積欠債權結算與分期清償排程</span>
+        </h2>
+
+        <div class="form-row-4">
+          <div class="form-group">
+            <label for="inputRentArrears">積欠租金總額 NT$ *</label>
+            <input type="number" id="inputRentArrears" value="45000" min="0" step="1000">
+          </div>
+          <div class="form-group">
+            <label for="inputUtilityArrears">代墊水電瓦斯 NT$</label>
+            <input type="number" id="inputUtilityArrears" value="3800" min="0" step="100">
+          </div>
+          <div class="form-group">
+            <label for="inputManagementFeeArrears">代墊管理費 NT$</label>
+            <input type="number" id="inputManagementFeeArrears" value="2400" min="0" step="100">
+          </div>
+          <div class="form-group">
+            <label for="inputLateFeeWaiver">和解減免滯納金 NT$</label>
+            <input type="number" id="inputLateFeeWaiver" value="3000" min="0" step="500">
+          </div>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="inputInstallmentCount">分期期數 (2~12期) *</label>
+            <input type="number" id="inputInstallmentCount" value="4" min="2" max="12">
+          </div>
+          <div class="form-group">
+            <label for="inputCurrentMonthlyRent">當期正常每月租金 NT$ *</label>
+            <input type="number" id="inputCurrentMonthlyRent" value="15000" min="0" step="500">
+          </div>
+          <div class="form-group">
+            <label for="inputFirstDueDate">第一期還款繳納期日 *</label>
+            <input type="date" id="inputFirstDueDate" value="2026-11-15">
+          </div>
+        </div>
+
+        <div class="installment-table-wrap">
+          <table class="installment-table">
+            <thead>
+              <tr>
+                <th style="width: 15%; text-align: center;">期數</th>
+                <th style="width: 25%;">繳納截止日</th>
+                <th style="width: 20%;">分期款 NT$</th>
+                <th style="width: 20%;">當月租金 NT$</th>
+                <th style="width: 20%;">合計應繳 NT$</th>
+              </tr>
+            </thead>
+            <tbody id="installmentTableBody"></tbody>
+          </table>
+        </div>
+
+        <!-- 財務金額即時試算卡片 -->
+        <div class="amount-summary-card">
+          <div class="amount-summary-row">
+            <span>積欠債務總毛額（租金＋代墊費）：</span>
+            <span id="summaryGrossDebt" style="font-weight: 700;">NT$ 51,200</span>
+          </div>
+          <div class="amount-summary-row">
+            <span>和解協議讓步（減免違約滯納金）：</span>
+            <span id="summaryWaiver" style="color: #86efac; font-weight: 700;">- NT$ 3,000</span>
+          </div>
+          <div class="amount-summary-row">
+            <span>
+              <strong>實質和解清償淨額：</strong>
+              <div class="amount-chinese" id="summaryNetDebtChinese">新臺幣 肆萬捌仟貳佰元整</div>
+            </span>
+            <span class="amount-Highlight" id="summaryNetDebt">NT$ 48,200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 區塊三：和解安全與法務守則 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <span class="section-badge">3</span>
+          <span>和解安全約定與嚴格違約罰則矩陣</span>
+        </h2>
+
+        <div class="installment-rules-grid">
+          <label class="rule-check-card">
+            <input type="checkbox" id="chkRuleAcceleration" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">🚨 期限利益喪失條款（Acceleration Clause）</div>
+              <div class="rule-check-desc">承租人若有任何一期遲延逾 3 日未如期給付，全部未到期分期債務立即視為全部到期，出租人得逕行請求全額清償。</div>
+            </div>
+          </label>
+
+          <label class="rule-check-card">
+            <input type="checkbox" id="chkRuleImmediateTermination" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">🚪 發生違約出租人得立即終止租約</div>
+              <div class="rule-check-desc">承租人喪失期限利益時，出租人得不經事先催告程序，以書面、電子通訊或通訊軟體通知即時終止原租賃契約。</div>
+            </div>
+          </label>
+
+          <label class="rule-check-card">
+            <input type="checkbox" id="chkRuleVacate" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">📦 無條件騰空遷讓交還房屋切結</div>
+              <div class="rule-check-desc">租約經出租人終止後，承租人同意於 3 日內無條件搬遷騰空交還房屋，遺留物品逕依廢棄物合意拋棄清運。</div>
+            </div>
+          </label>
+
+          <label class="rule-check-card">
+            <input type="checkbox" id="chkRuleGuarantor" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">🛡️ 連帶保證人自願拋棄先訴抗辯權</div>
+              <div class="rule-check-desc">連帶保證人依《民法》第 739～745 條切結，自願拋棄先訴抗辯權，就全部清償款項負全部連帶給付責任。</div>
+            </div>
+          </label>
+
+          <label class="rule-check-card">
+            <input type="checkbox" id="chkRuleRegularRent" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">💵 當期正常每月租金合併履行義務</div>
+              <div class="rule-check-desc">分期清償期間，原租約各月之應繳正常租金仍應依約按期繳納，不得藉故扣抵、遲延或作為不履行之抗辯。</div>
+            </div>
+          </label>
+
+          <label class="rule-check-card">
+            <input type="checkbox" id="chkRuleExecution" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">⚖️ 自願接受管轄法院強制執行約定</div>
+              <div class="rule-check-desc">承租人及連帶保證人切結自願接受出租人向臺灣高雄地方法院聲請發支付命令或依法為強制執行程序。</div>
+            </div>
+          </label>
+
+          <label class="rule-check-card">
+            <input type="checkbox" id="chkRuleCleanBreak" checked>
+            <div class="rule-check-content">
+              <div class="rule-check-title">🤝 如期履行完畢之債權消滅確認（Clean Break）</div>
+              <div class="rule-check-desc">承租人如全數按期如數履行清償完畢，出租人同意免除本案原應計之其餘法定遲延利息與違約罰金。</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- 區塊四：電子手寫簽章與輸出 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <span class="section-badge">4</span>
+          <span>立約雙方電子手寫親筆簽章</span>
+        </h2>
+
+        <div class="signature-grid">
+          <div class="sig-box">
+            <div class="sig-box-header">
+              <span class="sig-box-label">✍️ 承租人兼債務人親筆簽章</span>
+              <button type="button" class="sig-clear-btn" id="btnClearSigTenant">清空重簽</button>
+            </div>
+            <div class="sig-canvas-wrap">
+              <canvas id="sigCanvasTenant" class="sig-canvas"></canvas>
+            </div>
+          </div>
+
+          <div class="sig-box">
+            <div class="sig-box-header">
+              <span class="sig-box-label">✍️ 出租人 / 代理機構簽章</span>
+              <button type="button" class="sig-clear-btn" id="btnClearSigLandlord">清空重簽</button>
+            </div>
+            <div class="sig-canvas-wrap">
+              <canvas id="sigCanvasLandlord" class="sig-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons-grid">
+          <button id="btnPrintDoc" class="btn-action btn-print" type="button">
+            <i class="fa-solid fa-print"></i> 列印 A4 協議書 (PDF)
+          </button>
+          <button id="btnDownloadCanvas" class="btn-action btn-canvas" type="button">
+            <i class="fa-solid fa-image"></i> 下載 840×1080px 圖卡
+          </button>
+          <button id="btnCopyLine" class="btn-action btn-line" type="button">
+            <i class="fa-solid fa-comment-dots"></i> 複製 LINE 和解摘要
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右欄：A4 正式和解協議書即時預覽 -->
+    <section class="preview-panel">
+      <div class="panel-header">
+        <h2 class="panel-title">
+          <span>📄 A4 和解協議書即時預覽</span>
+        </h2>
+      </div>
+
+      <div class="a4-paper-wrapper">
+        <article class="a4-document" id="a4Document">
+          <header class="doc-header">
+            <div class="doc-brand-line">港居不動產開發有限公司 ｜ 住宅租賃專業和解契約公文</div>
+            <h1 class="doc-main-title">住宅租賃積欠租金分期清償與和解協議書</h1>
+            <div class="doc-meta-bar">
+              <span>協議編號：<strong id="docLeaseCode">GJ-202611-ST01</strong></span>
+              <span>立約期日：<strong>2026 年 11 月 01 日</strong></span>
+            </div>
+          </header>
+
+          <div class="doc-table-wrapper">
+            <table class="doc-table">
+              <tr>
+                <th>租賃住宅標的</th>
+                <td colspan="3" id="docPropertyAddress">高雄市小港區中安路 825 號 5 樓 A 室</td>
+              </tr>
+              <tr>
+                <th>原租約存續期間</th>
+                <td colspan="3" id="docLeasePeriod">2025-12-01 起至 2026-11-30 止</td>
+              </tr>
+              <tr>
+                <th>出租人/代管方</th>
+                <td colspan="3" id="docLandlordInfo">港居不動產開發有限公司（受託代管）（電話：07-791-2288）</td>
+              </tr>
+              <tr>
+                <th>承租人兼債務人</th>
+                <td colspan="3" id="docTenantInfo">趙冠廷（身分證：E127890123｜電話：0911-333-555）</td>
+              </tr>
+              <tr>
+                <th>連帶保證人</th>
+                <td colspan="3" id="docGuarantorInfo">趙振興（身分證：E101234567｜電話：0922-666-888）</td>
+              </tr>
+              <tr>
+                <th>指定清償帳戶</th>
+                <td colspan="3" id="docBankInfo">高雄銀行（016）小港分行 帳號：218-102-888999 戶名：港居不動產開發有限公司</td>
+              </tr>
+              <tr>
+                <th>積欠租金總額</th>
+                <td id="docRentArrears">NT$ 45,000 元</td>
+                <th>代墊水電及雜費</th>
+                <td id="docUtilityArrears">NT$ 3,800 元</td>
+              </tr>
+              <tr>
+                <th>代墊大樓管理費</th>
+                <td id="docManagementArrears">NT$ 2,400 元</td>
+                <th>和解讓步減免款</th>
+                <td id="docLateFeeWaiver" style="color: #15803d; font-weight: 700;">減免 NT$ 3,000 元（和解讓步）</td>
+              </tr>
+              <tr>
+                <th>結算和解總金額</th>
+                <td colspan="3" style="font-weight: 900; color: #1a365d; font-size: 13px;" id="docNetDebtTotal">新臺幣 肆萬捌仟貳佰元整 (NT$ 48,200)</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="doc-clause-block">
+            <div class="doc-clause-title">第一條：分期清償期日與各期應繳總額附表</div>
+            <p style="margin: 2px 0 6px 0; color: #475569;">承租人承諾依下列各期排程，將分期償還款與當期正常應繳租金如期匯入出租人指定帳戶：</p>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="text-align: center; width: 14%;">期數</th>
+                  <th style="text-align: center; width: 22%;">還款截止期日</th>
+                  <th style="width: 22%;">本期分期款</th>
+                  <th style="width: 20%;">當月正常租金</th>
+                  <th style="width: 22%; font-weight: 800;">當期應繳總額</th>
+                </tr>
+              </thead>
+              <tbody id="docInstallmentScheduleBody"></tbody>
+            </table>
+          </div>
+
+          <div class="doc-clause-block">
+            <div class="doc-clause-title">第二條：重要約定條款與違約罰則（依《民法》第736/737/315條）</div>
+            <ul class="doc-clause-list">
+              <li id="docRuleAcceleration"><strong>【期限利益喪失】</strong>承租人如有任一期款項遲延逾 3 日未入帳，其餘全部未到期期數均視為立即全部到期，承租人喪失期限利益。</li>
+              <li id="docRuleImmediateTermination"><strong>【立即終止租約】</strong>發生前款期限利益喪失時，出租人得不經催告即行以書面或通訊方式通知終止本租賃契約。</li>
+              <li id="docRuleVacate"><strong>【無條件騰空遷讓】</strong>租約終止後 3 日內，承租人同意無條件搬離並騰空交還租賃住宅，留置未取之物品自願視為廢棄物合意拋棄。</li>
+              <li id="docRuleGuarantor"><strong>【連帶保證人責任】</strong>連帶保證人拋棄先訴抗辯權（民法第745條），對本協議所生之一切債權與違約金負全部連帶清償責任。</li>
+              <li id="docRuleRegularRent"><strong>【正常租金合併繳納】</strong>分期清償期間，原租賃契約所約定之每月正常租金仍應按時履行，不得互相抵銷或藉故拖延。</li>
+              <li id="docRuleExecution"><strong>【自願接受強制執行】</strong>承租人兼債務人及連帶保證人，自願受臺灣高雄地方法院核發支付命令與民事強制執行。</li>
+              <li id="docRuleCleanBreak"><strong>【如期履行債權消滅】</strong>承租人如完全依約按期清償完畢，出租人同意免除本件租約衍生之其餘法定遲延利息與罰款。</li>
+            </ul>
+          </div>
+
+          <div class="doc-clause-block">
+            <div class="doc-clause-title">第三條：合意管轄法院與契約份數</div>
+            <p style="margin: 2px 0 0 0;">因本協議書所生之一切爭議，雙方合意以臺灣高雄地方法院為第一審管轄法院。本協議書一式兩份，由立約雙方各執一份為憑。</p>
+          </div>
+
+          <div class="doc-signatures-section">
+            <div class="doc-sig-card">
+              <div class="doc-sig-title">承租人兼債務人（親簽印鑑）</div>
+              <div class="doc-sig-img-container">
+                <img id="docSigTenantImg" alt="承租人簽名">
+                <span id="docSigTenantHint" style="font-size: 11px; color: #94a3b8;">（請於左側畫布簽署）</span>
+              </div>
+              <div class="doc-sig-meta-line">姓名：<strong id="docSigTenantName">趙冠廷</strong></div>
+              <div class="doc-sig-meta-line">身分證字號：<strong id="docSigTenantId">E127890123</strong></div>
+              <div class="doc-sig-meta-line">連帶保證人：<strong id="docSigGuarantorName">趙振興</strong></div>
+            </div>
+
+            <div class="doc-sig-card">
+              <div class="doc-sig-title">出租人兼受託代管機構（蓋章/簽章）</div>
+              <div class="doc-sig-img-container">
+                <img id="docSigLandlordImg" alt="出租人簽名">
+                <span id="docSigLandlordHint" style="font-size: 11px; color: #94a3b8;">（請於左側畫布簽署）</span>
+              </div>
+              <div class="doc-sig-meta-line">機構名稱：<strong id="docSigLandlordName">港居不動產開發有限公司</strong></div>
+              <div class="doc-sig-meta-line">租賃住宅服務業登記：高市租登字第0012號</div>
+              <div class="doc-sig-meta-line">統一編號：96797997 ｜ 電話：0968-863-880</div>
+            </div>
+          </div>
+
+          <div class="doc-footer-notice">
+            本協議書為合法專業法律文件，純前端本地運算無資料外洩風險。港居不動產線上工具中心敬製。
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="assets/logo.png" alt="港居不動產 LOGO">
+          <span>港居不動產開發有限公司</span>
+        </div>
+        <p class="footer-slogan">高雄高質感住宅包租代管首選・專業物業管理特許團隊</p>
+        <div class="footer-info">
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-certificate"></i> 租賃住宅服務業登記證：(113)高市租登字第0012號</p>
+          <p><i class="fa-solid fa-award"></i> 高雄市租賃住宅服務商業同業公會 會員證號：第 115-046 號</p>
+          <p><i class="fa-solid fa-id-card"></i> 租賃住宅管理人員證號：(112)登字第013739號</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+          <p><i class="fa-solid fa-phone"></i> 專線：0968-863-880 ｜ 市話：07-791-2288</p>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <div class="footer-col-title">房東法務專區</div>
+          <ul class="footer-links">
+            <li><a href="arrears-installment-agreement.html">欠租分期清償和解協議</a></li>
+            <li><a href="tax-calculator.html">房東節稅效益精算</a></li>
+            <li><a href="rent-arrears-notice.html">租金催繳與欠租催告</a></li>
+            <li><a href="rules-violation-notice.html">住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html">承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html">屋況定期巡檢維護報告</a></li>
+            <li><a href="mandate-contract.html">住宅租賃委託管理契約</a></li>
+            <li><a href="guarantor-agreement.html">租賃連帶保證人切結</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">租客與實用工具</div>
+          <ul class="footer-links">
+            <li><a href="renovation-consent-agreement.html">室內裝修改裝同意切結</a></li>
+            <li><a href="parking-lease-agreement.html">汽機車停車位租用協議</a></li>
+            <li><a href="pet-addendum-agreement.html">飼養寵物特約承諾書</a></li>
+            <li><a href="roommate-agreement.html">合租公約與承租協議</a></li>
+            <li><a href="lease-contract.html">租賃契約與公約產生器</a></li>
+            <li><a href="rent-receipt.html">租金收據與代管對帳</a></li>
+            <li><a href="utility-splitter.html">分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html">300億租金補貼試算</a></li>
+            <li><a href="listing-post-generator.html">591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html">郵局存證信函產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">數位影像與系統</div>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank">3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html">2D/3D格局配置系統</a></li>
+            <li><a href="photo-watermark.html">房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html">證件保護防偽水印</a></li>
+            <li><a href="file-converter.html">線上多功能轉檔神器</a></li>
+            <li><a href="privacy.html">個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 港居不動產開發有限公司 GANJU Real Estate Development Co., Ltd. 版權所有</p>
+        <p><a href="privacy.html" style="color: var(--accent-gold); text-decoration: underline;">隱私權政策與個資保護</a> ｜ <a href="sitemap.xml" style="color: var(--accent-gold); text-decoration: underline;">網站地圖</a> ｜ 純前端運算・零上傳雲端・個資安全零外洩</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 系統腳本 -->
+  <script src="js/layout.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script src="js/arrears-installment-agreement.js"></script>
+
+  <!-- PWA Service Worker 註冊 -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(reg => {
+          console.log('[PWA] Service Worker registered:', reg.scope);
+        }).catch(err => {
+          console.warn('[PWA] Service Worker registration failed:', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
