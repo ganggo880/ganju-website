@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+  <title>住宅租賃屋況定期巡檢維護報告書產生器｜租賃專法第28條・六大安全檢驗與A4無痕列印｜港居不動產</title>
+  <meta name="description" content="港居不動產專屬「住宅租賃屋況定期巡檢維護報告書產生器」，遵循《租賃住宅市場發展及管理條例》第28條與內政部委託代管契約應記載事項規範。整合消防住警、瓦斯熱水器強制排氣、配電盤負載、給水排水防漏、門窗五金、同住合規六大安全檢驗矩陣，支援相片存證、雙手寫電子簽章、A4無痕列印出圖、840×1080px圖卡下載與LINE通報房東。">
+  <meta name="keywords" content="租屋定期巡檢報告,房屋代管巡檢單,租賃專法第28條,熱水器強制排氣檢查,配電箱檢查,租屋漏水檢查,包租代管工務報告,港居不動產,線上工具">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/routine-inspection-report.html">
+  <meta property="og:title" content="住宅租賃屋況定期巡檢維護報告書產生器｜港居不動產">
+  <meta property="og:description" content="依據《租賃專法》第28條設計，六大安全檢驗矩陣、相片存證、雙手寫簽章與A4無痕列印出圖。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ganggo880.github.io/ganju-website/routine-inspection-report.html">
+  <meta property="twitter:title" content="住宅租賃屋況定期巡檢維護報告書產生器｜港居不動產">
+  <meta property="twitter:description" content="依據《租賃專法》第28條設計，六大安全檢驗矩陣、相片存證、雙手寫簽章與A4無痕列印出圖。">
+  <meta property="twitter:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/routine-inspection-report.html">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- 外部樣式庫與 Google 字型 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- 核心 Token 與組件樣式 -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <link rel="stylesheet" href="css/routine-inspection-report.css">
+
+  <!-- 結構化資料 JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://ganggo880.github.io/routine-inspection-report.html#app",
+        "name": "住宅租賃屋況定期巡檢維護報告書產生器",
+        "url": "https://ganggo880.github.io/routine-inspection-report.html",
+        "description": "遵循《租賃住宅市場發展及管理條例》第28條規範之定期巡檢報告產生器，支援六大安全檢驗矩陣、現場相片存證、雙手寫簽章、A4無痕列印出圖與LINE通報房東。",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "zh-TW",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD"
+        },
+        "publisher": {
+          "@type": "RealEstateAgent",
+          "name": "港居不動產開發有限公司",
+          "url": "https://ganggo880.github.io/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ganggo880.github.io/routine-inspection-report.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "首頁",
+            "item": "https://ganggo880.github.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "線上工具中心",
+            "item": "https://ganggo880.github.io/#tools"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "租賃屋況定期巡檢維護報告書",
+            "item": "https://ganggo880.github.io/routine-inspection-report.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="ganju-theme">
+
+  <!-- 1. 頂部宣告條 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 主導覽列 Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (31)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link active"><i class="fa-solid fa-clipboard-check" style="color: var(--accent-gold);"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #63b3ed;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #63b3ed;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-wrench" style="color: #63b3ed;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #63b3ed;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #63b3ed;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 房東節稅效益精算</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 修繕點交與屋況存證</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #63b3ed;"></i> 分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #63b3ed;"></i> 退租押金結算明細單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #63b3ed;"></i> 300億租補資格自檢</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #63b3ed;"></i> 591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #63b3ed;"></i> 欠租催告存證信函</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #63b3ed;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #63b3ed;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #63b3ed;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #63b3ed;"></i> 租約提前終止協議書</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #63b3ed;"></i> 租約續約協議書</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #63b3ed;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 租金代管費換算</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-arrow-up" style="color: #63b3ed;"></i> 線上多功能轉檔</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera" style="color: #63b3ed;"></i> 房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #63b3ed;"></i> 證件保護防偽水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image" style="color: #63b3ed;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #63b3ed;"></i> 名片正反合成</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#contact" class="nav-link">預約諮詢</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="開啟選單" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. 主內容工作區 -->
+  <main class="inspection-wrapper">
+    <div class="inspection-header">
+      <div class="inspection-badge">
+        <i class="fa-solid fa-clipboard-check"></i> 租賃專法第28條受託巡檢・守護資產安全
+      </div>
+      <h1>住宅租賃屋況定期巡檢維護報告書產生器</h1>
+      <p>依據《租賃住宅市場發展及管理條例》第 28 條與內政部委託管理定型化契約規範設計。整合消防住警、瓦斯熱水器強制排氣、配電盤負載、給水排水防漏、門窗五金、同住合規六大安全檢驗矩陣，支援現場照片存證、雙手寫電子簽章、A4無痕列印出圖與LINE通報房東。</p>
+    </div>
+
+    <div class="inspection-workspace">
+      <!-- 左欄：參數填寫與操作面板 -->
+      <div class="form-card">
+        <!-- 區塊一：巡檢基本資訊 -->
+        <div class="section-title">
+          <i class="fa-solid fa-file-invoice"></i> 壹、巡檢基本資訊
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reportNo">巡檢報告編號 <span class="required">*</span></label>
+            <input type="text" id="reportNo" value="IR-20261025-01" placeholder="例：IR-20261025-01">
+          </div>
+          <div class="form-group">
+            <label for="inspectDate">巡檢實施日期 <span class="required">*</span></label>
+            <input type="date" id="inspectDate">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inspectCycle">巡檢週期類別 <span class="required">*</span></label>
+            <select id="inspectCycle">
+              <option value="第一季例行巡檢 Q1" selected>第一季例行巡檢 Q1</option>
+              <option value="第二季例行巡檢 Q2">第二季例行巡檢 Q2</option>
+              <option value="第三季例行巡檢 Q3">第三季例行巡檢 Q3</option>
+              <option value="第四季例行巡檢 Q4">第四季例行巡檢 Q4</option>
+              <option value="半年度深度安全體檢">半年度深度安全體檢</option>
+              <option value="年度綜合設施總體檢">年度綜合設施總體檢</option>
+              <option value="租約續約前屋況評估">租約續約前屋況評估</option>
+              <option value="房東特別委任專案抽檢">房東特別委任專案抽檢</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="accompanyPerson">巡檢陪同模式 <span class="required">*</span></label>
+            <select id="accompanyPerson">
+              <option value="承租人親自陪同" selected>承租人親自陪同</option>
+              <option value="同住家屬陪同">同住家屬陪同</option>
+              <option value="承租人授權物管獨立檢驗">承租人授權物管獨立檢驗</option>
+              <option value="社區管委會總幹事陪同">社區管委會總幹事陪同</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inspectorName">巡檢專員姓名 <span class="required">*</span></label>
+            <input type="text" id="inspectorName" value="陳俊銘 經理">
+          </div>
+          <div class="form-group">
+            <label for="inspectorCert">租賃管理證號</label>
+            <input type="text" id="inspectorCert" value="(112)登字第013739號">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="propertyAddress">巡檢租賃物業地址與棟別戶號 <span class="required">*</span></label>
+          <input type="text" id="propertyAddress" placeholder="例：港居愛河灣水岸景觀宅 A棟 12F-3 (高雄市苓雅區海邊路)">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tenantName">現行承租人姓名 <span class="required">*</span></label>
+            <input type="text" id="tenantName" placeholder="請輸入承租人真實姓名">
+          </div>
+          <div class="form-group">
+            <label for="tenantPhone">承租人聯絡電話</label>
+            <input type="tel" id="tenantPhone" placeholder="例：0932-888-999">
+          </div>
+        </div>
+
+        <!-- 區塊二：六大安全與設施維護檢驗矩陣 -->
+        <div class="section-title">
+          <i class="fa-solid fa-list-check"></i> 貳、六大安全與設施維護檢驗矩陣
+        </div>
+        <div class="inspection-matrix-container">
+          <!-- 項目 1: 消防與警報設備 -->
+          <div class="inspect-category-box">
+            <div class="inspect-cat-header">
+              <span class="inspect-cat-title"><i class="fa-solid fa-bell"></i> 1. 消防安全與獨立式住警器</span>
+              <select id="smokeAlarmStatus" class="inspect-status-select">
+                <option value="ok" selected>🟢 良好正常</option>
+                <option value="warn">🟡 需留意改善</option>
+                <option value="danger">🔴 瑕疵異常</option>
+              </select>
+            </div>
+            <div class="inspect-items-list">
+              檢驗重點：住警器電力與蜂鳴聲測試、滅火器有效年限與壓力指針、公共逃生動線是否暢通無雜物阻擋。
+            </div>
+            <input type="text" id="smokeAlarmNote" class="inspect-note-input" value="獨立式住警器電力與蜂鳴聲測試正常，公共逃生通道順暢無雜物。">
+          </div>
+
+          <!-- 項目 2: 瓦斯與熱水器排氣 -->
+          <div class="inspect-category-box">
+            <div class="inspect-cat-header">
+              <span class="inspect-cat-title"><i class="fa-solid fa-fire-burner"></i> 2. 瓦斯管線與熱水器強制排氣</span>
+              <select id="gasStatus" class="inspect-status-select">
+                <option value="ok" selected>🟢 良好正常</option>
+                <option value="warn">🟡 需留意改善</option>
+                <option value="danger">🔴 瑕疵異常</option>
+              </select>
+            </div>
+            <div class="inspect-items-list">
+              檢驗重點：熱水器強制排氣管(FE式)是否確實連通戶外、瓦斯橡膠軟管無龜裂老化、肥皂水檢測無洩漏氣味。
+            </div>
+            <input type="text" id="gasNote" class="inspect-note-input" value="強制排氣熱水器排氣管銜接密合無破損，瓦斯管線無老化或洩漏氣味。">
+          </div>
+
+          <!-- 項目 3: 配電盤與用電負載 -->
+          <div class="inspect-category-box">
+            <div class="inspect-cat-header">
+              <span class="inspect-cat-title"><i class="fa-solid fa-bolt"></i> 3. 總配電盤與用電負載安全</span>
+              <select id="electricStatus" class="inspect-status-select">
+                <option value="ok" selected>🟢 良好正常</option>
+                <option value="warn">🟡 需留意改善</option>
+                <option value="danger">🔴 瑕疵異常</option>
+              </select>
+            </div>
+            <div class="inspect-items-list">
+              檢驗重點：無熔絲開關(NFB)無過載異味焦黑、漏電斷路器(ELCB)按鈕正常跳脫、插座無鬆脫發黑或高耗電串接。
+            </div>
+            <input type="text" id="electricNote" class="inspect-note-input" value="配電盤無異常發熱與跳脫痕跡，廚房高功率插座接地正常，用電負載安全。">
+          </div>
+
+          <!-- 項目 4: 給水排水與防水滲漏 -->
+          <div class="inspect-category-box">
+            <div class="inspect-cat-header">
+              <span class="inspect-cat-title"><i class="fa-solid fa-faucet-drip"></i> 4. 給水排水通暢與防水防漏</span>
+              <select id="plumbingStatus" class="inspect-status-select">
+                <option value="ok" selected>🟢 良好正常</option>
+                <option value="warn">🟡 需留意改善</option>
+                <option value="danger">🔴 瑕疵異常</option>
+              </select>
+            </div>
+            <div class="inspect-items-list">
+              檢驗重點：冷熱水水壓穩定、廚房與浴室落水頭排水無逆流回堵、馬桶水箱無常流漏水、窗框天花板無新發壁癌水漬。
+            </div>
+            <input type="text" id="plumbingNote" class="inspect-note-input" value="浴室與陽台落水頭排水通暢，馬桶水箱浮球定位正常無滲水，天花板無壁癌。">
+          </div>
+
+          <!-- 項目 5: 門窗結構與隨附家電 -->
+          <div class="inspect-category-box">
+            <div class="inspect-cat-header">
+              <span class="inspect-cat-title"><i class="fa-solid fa-door-open"></i> 5. 門窗五金五金與隨附設備運作</span>
+              <select id="doorStatus" class="inspect-status-select">
+                <option value="ok">🟢 良好正常</option>
+                <option value="warn" selected>🟡 需留意改善</option>
+                <option value="danger">🔴 瑕疵異常</option>
+              </select>
+            </div>
+            <div class="inspect-items-list">
+              檢驗重點：大門防盜門鎖正常、氣密窗與紗窗推拉滑順無破損、冷氣機運轉安靜無滴水、隨附冰箱洗衣機運作正常。
+            </div>
+            <input type="text" id="doorNote" class="inspect-note-input" value="前陽台氣密落地窗左側滑輪微卡阻，建議工務同仁定期保養上油即可順暢。">
+          </div>
+
+          <!-- 項目 6: 居住合規與環境秩序 -->
+          <div class="inspect-category-box">
+            <div class="inspect-cat-header">
+              <span class="inspect-cat-title"><i class="fa-solid fa-people-roof"></i> 6. 居住秩序合規與社區規約維護</span>
+              <select id="occupancyStatus" class="inspect-status-select">
+                <option value="ok" selected>🟢 良好正常</option>
+                <option value="warn">🟡 需留意改善</option>
+                <option value="danger">🔴 瑕疵異常</option>
+              </select>
+            </div>
+            <div class="inspect-items-list">
+              檢驗重點：無私自轉租或違法分租、實際同住人口與登記名冊相符、無飼養未申報寵物、垃圾資源分類妥善無擾鄰惡臭。
+            </div>
+            <input type="text" id="occupancyNote" class="inspect-note-input" value="同住成員與登記名冊相符（林先生夫婦與長子），寵物柴犬已植入晶片無擾鄰。">
+          </div>
+        </div>
+
+        <!-- 區塊三：綜合評定與處置建議 -->
+        <div class="section-title">
+          <i class="fa-solid fa-award"></i> 參、綜合評定與處置對策
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="overallRating">安全綜合評定等級 <span class="required">*</span></label>
+            <select id="overallRating">
+              <option value="ok" selected>🟢 優良良好（A級・無公安與違規隱患）</option>
+              <option value="warn">🟡 輕微注意（B級・建議日常預防維護）</option>
+              <option value="danger">🔴 重大異常（C級・需盡速派工修繕排險）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="actionPlan">後續處置行動方針 <span class="required">*</span></label>
+            <select id="actionPlan">
+              <option value="屋況維持良好，建議列入下一季定期追蹤" selected>屋況維持良好，建議列入下一季定期追蹤</option>
+              <option value="建議房東授權一般派工檢修">建議房東授權一般派工檢修</option>
+              <option value="啟動5,000元內免報備緊急搶修代墊">啟動5,000元內免報備緊急搶修代墊</option>
+              <option value="限承租人於7日內自行改善完成">限承租人於7日內自行改善完成</option>
+              <option value="建議列入租約屆滿續約評估條件">建議列入租約屆滿續約評估條件</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="defectSummary">巡檢專員專業備忘與綜合評析</label>
+          <textarea id="defectSummary" placeholder="請填寫本次巡檢之整體觀察、設備運作心得或需要房東知悉之特別事項...">全室水電、消防瓦斯安全良好，屋況維護極佳。僅陽台落地窗滑輪略有微塵阻力，已現場潤滑處理完畢。承租人生活習慣優異。</textarea>
+        </div>
+
+        <!-- 區塊四：關鍵部位相片存證 -->
+        <div class="section-title">
+          <i class="fa-solid fa-camera"></i> 肆、關鍵部位現場相片存證（支援即時上傳）
+        </div>
+        <div class="photos-upload-grid">
+          <!-- 相片 1: 配電盤 -->
+          <div class="photo-upload-box">
+            <input type="file" id="inputPhotoElectric" accept="image/*">
+            <img id="thumbPhotoElectric" class="photo-preview-thumb" alt="配電盤縮圖">
+            <div id="labelPhotoElectric" class="photo-upload-label">
+              <i class="fa-solid fa-bolt"></i>
+              <span>上傳【總配電箱】照片</span>
+            </div>
+          </div>
+
+          <!-- 相片 2: 熱水器與瓦斯 -->
+          <div class="photo-upload-box">
+            <input type="file" id="inputPhotoGas" accept="image/*">
+            <img id="thumbPhotoGas" class="photo-preview-thumb" alt="熱水器縮圖">
+            <div id="labelPhotoGas" class="photo-upload-label">
+              <i class="fa-solid fa-fire-burner"></i>
+              <span>上傳【熱水器排氣】照片</span>
+            </div>
+          </div>
+
+          <!-- 相片 3: 衛浴水電 -->
+          <div class="photo-upload-box">
+            <input type="file" id="inputPhotoPlumbing" accept="image/*">
+            <img id="thumbPhotoPlumbing" class="photo-preview-thumb" alt="衛浴排水縮圖">
+            <div id="labelPhotoPlumbing" class="photo-upload-label">
+              <i class="fa-solid fa-faucet-drip"></i>
+              <span>上傳【浴室衛浴給水】照片</span>
+            </div>
+          </div>
+
+          <!-- 相片 4: 整體屋況 -->
+          <div class="photo-upload-box">
+            <input type="file" id="inputPhotoOverview" accept="image/*">
+            <img id="thumbPhotoOverview" class="photo-preview-thumb" alt="整體屋況縮圖">
+            <div id="labelPhotoOverview" class="photo-upload-label">
+              <i class="fa-solid fa-couch"></i>
+              <span>上傳【客餐廳/整體屋況】照片</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 區塊五：雙方親筆手寫簽章 -->
+        <div class="section-title">
+          <i class="fa-solid fa-signature"></i> 伍、雙方確認親筆手寫簽章
+        </div>
+        <div class="signatures-container">
+          <div class="signature-box">
+            <div class="signature-box-header">
+              <span class="signature-title"><i class="fa-solid fa-user-shield"></i> 港居巡檢專員簽章</span>
+              <button type="button" id="btnClearInspector" class="signature-clear-btn" aria-label="清除巡檢專員簽名">
+                <i class="fa-solid fa-rotate-left"></i> 清除重簽
+              </button>
+            </div>
+            <div class="signature-canvas-wrapper">
+              <canvas id="canvasInspector" class="signature-canvas"></canvas>
+              <div class="signature-placeholder"><i class="fa-solid fa-signature"></i> 巡檢專員親筆簽名</div>
+            </div>
+          </div>
+
+          <div class="signature-box">
+            <div class="signature-box-header">
+              <span class="signature-title"><i class="fa-solid fa-pen-nib"></i> 承租人在場簽認</span>
+              <button type="button" id="btnClearTenant" class="signature-clear-btn" aria-label="清除承租人簽名">
+                <i class="fa-solid fa-rotate-left"></i> 清除重簽
+              </button>
+            </div>
+            <div class="signature-canvas-wrapper">
+              <canvas id="canvasTenant" class="signature-canvas"></canvas>
+              <div class="signature-placeholder"><i class="fa-solid fa-signature"></i> 承租人親筆手寫簽名</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 操作按鈕群組 -->
+        <div class="action-buttons-group">
+          <button type="button" id="btnPrint" class="action-btn btn-primary">
+            <i class="fa-solid fa-print"></i> 列印 A4 巡檢報告書 (呈報房東存查)
+          </button>
+          <button type="button" id="btnDownloadCard" class="action-btn btn-secondary">
+            <i class="fa-solid fa-file-image"></i> 下載 840×1080px 成果圖卡
+          </button>
+          <button type="button" id="btnCopyLine" class="action-btn btn-line">
+            <i class="fa-brands fa-line"></i> 複製 LINE 成果通報文字
+          </button>
+          <button type="button" id="btnSaveDraft" class="action-btn btn-secondary">
+            <i class="fa-solid fa-floppy-disk"></i> 儲存本機草稿
+          </button>
+          <button type="button" id="btnLoadSample" class="action-btn btn-secondary">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 載入示範資料
+          </button>
+          <button type="button" id="btnClearDraft" class="action-btn btn-danger">
+            <i class="fa-solid fa-trash-can"></i> 清空內容重新填寫
+          </button>
+        </div>
+      </div>
+
+      <!-- 右欄：即時 A4 紙張預覽區 -->
+      <div class="preview-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="margin: 0; font-size: 1.1rem; color: var(--primary-dark); font-weight: 700;">
+            <i class="fa-solid fa-file-lines" style="color: var(--accent-gold);"></i> 即時 A4 巡檢報告預覽 (呈報房東存查聯)
+          </h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">
+            <i class="fa-solid fa-arrows-rotate"></i> 欄位內容即時連動
+          </span>
+        </div>
+
+        <div class="paper-preview" id="paperPreview">
+          <div class="preview-badge-status">房東委託代管存查聯</div>
+
+          <div class="paper-header">
+            <div class="paper-company-title">
+              <span class="paper-company-name">港居不動產開發有限公司</span>
+              <span class="paper-company-sub">GANJU REAL ESTATE DEVELOPMENT CO., LTD. ｜ 統編：96797997</span>
+            </div>
+            <div class="paper-doc-title">住宅租賃屋況定期巡檢維護報告書</div>
+            <div class="paper-doc-subtitle">依據《租賃住宅市場發展及管理條例》第28條受託業務規範落實巡檢</div>
+
+            <div class="paper-meta-row">
+              <div>巡檢單號：<strong id="prevReportNo">IR-20261025-01</strong></div>
+              <div>巡檢日期：<strong id="prevInspectDate">2026-10-25</strong></div>
+            </div>
+          </div>
+
+          <!-- 物業與受託基本資訊表格 -->
+          <table class="paper-table">
+            <tbody>
+              <tr>
+                <th>巡檢標的物業</th>
+                <td colspan="3" id="prevPropertyAddress">港居愛河灣水岸景觀宅 A棟 12F-3 (高雄市苓雅區海邊路)</td>
+              </tr>
+              <tr>
+                <th>巡檢週期類別</th>
+                <td id="prevInspectCycle">第一季例行巡檢 Q1</td>
+                <th>現場陪同模式</th>
+                <td id="prevAccompany">承租人親自陪同</td>
+              </tr>
+              <tr>
+                <th>受託巡檢專員</th>
+                <td id="prevInspectorInfo">陳俊銘 經理 ((112)登字第013739號)</td>
+                <th>現行承租人</th>
+                <td id="prevTenantInfo">林宇軒 (0932-888-999)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 六大安全檢驗矩陣表格 -->
+          <div style="margin: 0.75rem 0 0.35rem; font-weight: 700; font-size: 0.84rem; color: #2d3748;">
+            【六大核心安全與設施檢驗明細】
+          </div>
+          <table class="paper-matrix-table">
+            <thead>
+              <tr>
+                <th style="width: 28%;">檢驗項目</th>
+                <th style="width: 22%; text-align: center;">判定狀態</th>
+                <th style="width: 50%;">現場實勘紀錄與備忘</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. 消防安全與住警器</strong></td>
+                <td style="text-align: center;" id="prevSmokeStatus"><span class="status-badge-ok">🟢 良好正常</span></td>
+                <td id="prevSmokeNote">獨立式住警器電力與蜂鳴聲測試正常，公共逃生通道順暢無雜物。</td>
+              </tr>
+              <tr>
+                <td><strong>2. 瓦斯與熱水器排氣</strong></td>
+                <td style="text-align: center;" id="prevGasStatus"><span class="status-badge-ok">🟢 良好正常</span></td>
+                <td id="prevGasNote">強制排氣熱水器排氣管銜接密合無破損，瓦斯管線無老化或洩漏氣味。</td>
+              </tr>
+              <tr>
+                <td><strong>3. 配電箱與用電負載</strong></td>
+                <td style="text-align: center;" id="prevElectricStatus"><span class="status-badge-ok">🟢 良好正常</span></td>
+                <td id="prevElectricNote">配電盤無異常發熱與跳脫痕跡，廚房高功率插座接地正常，用電負載安全。</td>
+              </tr>
+              <tr>
+                <td><strong>4. 給排水與防水滲漏</strong></td>
+                <td style="text-align: center;" id="prevPlumbingStatus"><span class="status-badge-ok">🟢 良好正常</span></td>
+                <td id="prevPlumbingNote">浴室與陽台落水頭排水通暢，馬桶水箱浮球定位正常無滲水，天花板無壁癌。</td>
+              </tr>
+              <tr>
+                <td><strong>5. 門窗五金與家電</strong></td>
+                <td style="text-align: center;" id="prevDoorStatus"><span class="status-badge-warn">🟡 需留意改善</span></td>
+                <td id="prevDoorNote">前陽台氣密落地窗左側滑輪微卡阻，建議工務同仁定期保養上油即可順暢。</td>
+              </tr>
+              <tr>
+                <td><strong>6. 居住秩序與環境</strong></td>
+                <td style="text-align: center;" id="prevOccupancyStatus"><span class="status-badge-ok">🟢 良好正常</span></td>
+                <td id="prevOccupancyNote">同住成員與登記名冊相符（林先生夫婦與長子），寵物柴犬已植入晶片無擾鄰。</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 綜合診斷與處置對策 -->
+          <div style="margin: 0.75rem 0 0.35rem; font-weight: 700; font-size: 0.84rem; color: #2d3748;">
+            【巡檢專員綜合評定與處置方針】
+          </div>
+          <table class="paper-table">
+            <tbody>
+              <tr>
+                <th>綜合安全等級</th>
+                <td id="prevOverallRating"><span class="status-badge-ok">🟢 優良良好（A級・無公安與違規隱患）</span></td>
+                <th>後續處置方針</th>
+                <td id="prevActionPlan">屋況維持良好，建議列入下一季定期追蹤</td>
+              </tr>
+              <tr>
+                <th>專員專業評析</th>
+                <td colspan="3" id="prevDefectSummary">全室水電、消防瓦斯安全良好，屋況維護極佳。僅陽台落地窗滑輪略有微塵阻力，已現場潤滑處理完畢。承租人生活習慣優異。</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 現場存證相片網格 -->
+          <div style="margin: 0.65rem 0 0.25rem; font-weight: 700; font-size: 0.84rem; color: #2d3748;">
+            【現場重點部位存證照片】
+          </div>
+          <div class="paper-photos-grid">
+            <div class="paper-photo-item">
+              <img id="prevImgElectric" class="paper-photo-img" alt="總配電箱相片">
+              <div class="paper-photo-caption">① 總配電盤與開關</div>
+            </div>
+            <div class="paper-photo-item">
+              <img id="prevImgGas" class="paper-photo-img" alt="熱水器相片">
+              <div class="paper-photo-caption">② 熱水器強制排氣</div>
+            </div>
+            <div class="paper-photo-item">
+              <img id="prevImgPlumbing" class="paper-photo-img" alt="給水衛浴相片">
+              <div class="paper-photo-caption">③ 衛浴設備與落水頭</div>
+            </div>
+            <div class="paper-photo-item">
+              <img id="prevImgOverview" class="paper-photo-img" alt="整體屋況相片">
+              <div class="paper-photo-caption">④ 客餐廳整體屋況</div>
+            </div>
+          </div>
+
+          <!-- 法定合規宣讀條款 -->
+          <div class="paper-clauses">
+            <h4><i class="fa-solid fa-shield-halved"></i> 委託代管專法巡檢法定職責宣告</h4>
+            <ol>
+              <li><strong>法定檢查職責：</strong>本報告係港居不動產依《租賃住宅市場發展及管理條例》第28條及委託管理契約約定執行之定期屋況巡查，旨在提早發掘隱患以保障出租人資產安全及承租人居住品質。</li>
+              <li><strong>重大瑕疵通報：</strong>若巡檢發現具急迫性公共安全隱患（如瓦斯洩漏、電箱焦損、嚴重漏水），受託人得依契約第5條啟動緊急搶修應變措施，並於24小時內通報委託人。</li>
+              <li><strong>非破壞性檢測：</strong>本巡檢採目視與標準功能性操作檢測，隱蔽部位管線之潛在老化非屬一般目視巡檢保證範疇。</li>
+            </ol>
+          </div>
+
+          <!-- 雙方親筆簽章展示 -->
+          <div class="paper-signatures-display">
+            <div class="paper-sign-col">
+              <span class="paper-sign-role">港居受託巡檢專員簽章：</span>
+              <div class="paper-sign-img-wrapper">
+                <img id="prevSignInspector" alt="巡檢專員親筆簽名" style="display: none;">
+              </div>
+              <span class="paper-sign-time">港居不動產開發有限公司 物業管理部</span>
+            </div>
+
+            <div class="paper-sign-col">
+              <span class="paper-sign-role">承租人現場陪同簽認：</span>
+              <div class="paper-sign-img-wrapper">
+                <img id="prevSignTenant" alt="承租人親筆簽名" style="display: none;">
+              </div>
+              <span class="paper-sign-time">已確認巡檢現況與上述紀錄相符</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 4. 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <img src="assets/logo.png" alt="港居不動產 LOGO">
+          <div class="brand-text-box">
+            <span class="brand-title">港居不動產</span>
+            <span class="brand-sub">GANJU REAL ESTATE</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          港居不動產開發有限公司（統編：96797997）是高雄領先的合法特許專業租賃住宅服務團隊。秉持專業、誠信、透明的理念，為房東與租客提供卓越的包租代管與線上不動產工具服務。
+        </p>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <div class="footer-col-title">房東與合約專區</div>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">包租代管服務方案</a></li>
+            <li><a href="routine-inspection-report.html">屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html">房客遷入登記資料卡</a></li>
+            <li><a href="key-custody-agreement.html">鑰匙借出保管切結</a></li>
+            <li><a href="holding-deposit-receipt.html">租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html">修繕派工與驗收單</a></li>
+            <li><a href="mandate-contract.html">租賃委託管理/包租契約</a></li>
+            <li><a href="guarantor-agreement.html">租賃連帶保證人切結</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">租客與實用工具</div>
+          <ul class="footer-links">
+            <li><a href="lease-contract.html">租賃契約與公約產生器</a></li>
+            <li><a href="rent-receipt.html">租金收據與代管對帳</a></li>
+            <li><a href="utility-splitter.html">分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html">300億租金補貼試算</a></li>
+            <li><a href="listing-post-generator.html">591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html">郵局存證信函產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">數位影像與系統</div>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank">3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html">2D/3D格局配置系統</a></li>
+            <li><a href="photo-watermark.html">房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html">證件保護防偽水印</a></li>
+            <li><a href="file-converter.html">線上多功能轉檔神器</a></li>
+            <li><a href="privacy.html">個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 港居不動產開發有限公司 GANJU Real Estate Development Co., Ltd. 版權所有</p>
+        <p><a href="privacy.html" style="color: var(--accent-gold); text-decoration: underline;">隱私權政策與個資保護</a> ｜ <a href="sitemap.xml" style="color: var(--accent-gold); text-decoration: underline;">網站地圖</a> ｜ 純前端運算・零上傳雲端・個資安全零外洩</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 5. 核心腳本庫 -->
+  <script src="js/layout.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script src="js/routine-inspection-report.js"></script>
+</body>
+</html>

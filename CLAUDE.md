@@ -87,6 +87,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── holding-deposit-receipt.css # 租屋定金收據與承租保留切結專用樣式與 A4 排版引擎
 │   ├── key-custody-agreement.css # 鑰匙借出保管與返還簽收切結專用樣式與 A4 排版引擎
 │   ├── tenant-check-in-form.css # 房客遷入登記與住戶緊急聯絡人卡專用樣式與 A4 排版引擎
+│   ├── routine-inspection-report.css # 住宅租賃屋況定期巡檢維護報告專用樣式與 A4 排版引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
@@ -102,6 +103,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── holding-deposit-receipt.js # 租屋定金收據、民法249條罰則、大寫防篡改與雙簽章引擎
 │   ├── key-custody-agreement.js # 鑰匙借出切結、民法432條保管責任、雙階段簽章點收與輸出引擎
 │   ├── tenant-check-in-form.js # 房客遷入登記、同住人名冊、雙緊急聯絡人與雙簽章引擎
+│   ├── routine-inspection-report.js # 屋況定期巡檢、六大安全矩陣、縮圖存證與雙簽章引擎
 │   ├── tracking.js          # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, escapeHTML, 主題切換)
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 控制器

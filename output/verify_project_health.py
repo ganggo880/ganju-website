@@ -45,6 +45,7 @@ HTML_FILES = [
     "holding-deposit-receipt.html",
     "key-custody-agreement.html",
     "tenant-check-in-form.html",
+    "routine-inspection-report.html",
     "privacy.html"
 ]
 
@@ -143,8 +144,8 @@ for name, exists in sync_files.items():
 # 5. Git 版本控制狀態 (Git Repository Status)
 print("\n[檢驗 5/5] Git 版本控制狀態...")
 try:
-    status_out = subprocess.check_output(["git", "status", "--porcelain"], text=True).strip()
-    branch_out = subprocess.check_output(["git", "status", "-b", "--porcelain"], text=True).strip()
+    status_out = subprocess.check_output(["git", "status", "--porcelain", "-uno"], text=True).strip()
+    branch_out = subprocess.check_output(["git", "status", "-b", "--porcelain", "-uno"], text=True).strip()
     first_line = branch_out.split("\n")[0] if branch_out else ""
     
     if not status_out:

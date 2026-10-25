@@ -38,6 +38,7 @@ HTML_FILES = [
     "holding-deposit-receipt.html",
     "key-custody-agreement.html",
     "tenant-check-in-form.html",
+    "routine-inspection-report.html",
     "privacy.html"
 ]
 
