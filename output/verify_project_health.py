@@ -51,6 +51,7 @@ HTML_FILES = [
     "rent-arrears-notice.html",
     "proxy-authorization.html",
     "roommate-agreement.html",
+    "pet-addendum-agreement.html",
     "privacy.html"
 ]
 
