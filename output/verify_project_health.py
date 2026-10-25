@@ -49,6 +49,7 @@ HTML_FILES = [
     "abandoned-property-agreement.html",
     "rules-violation-notice.html",
     "rent-arrears-notice.html",
+    "proxy-authorization.html",
     "privacy.html"
 ]
 
@@ -147,7 +148,7 @@ for name, exists in sync_files.items():
 # 5. Git 版本控制狀態 (Git Repository Status)
 print("\n[檢驗 5/5] Git 版本控制狀態...")
 try:
-    res = subprocess.run(["git", "status", "-b", "--porcelain", "-uno"], capture_output=True, text=True, timeout=8)
+    res = subprocess.run(["git", "status", "-b", "--porcelain", "-uno"], capture_output=True, text=True, timeout=20)
     branch_out = res.stdout.strip()
     first_line = branch_out.split("\n")[0] if branch_out else ""
     lines = [l for l in branch_out.split("\n") if not l.startswith("##")]

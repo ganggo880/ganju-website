@@ -48,6 +48,7 @@ const PAGES = [
   'abandoned-property-agreement.html',
   'rules-violation-notice.html',
   'rent-arrears-notice.html',
+  'proxy-authorization.html',
   'privacy.html'
 ];
 

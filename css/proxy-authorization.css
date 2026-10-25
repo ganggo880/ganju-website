@@ -1,0 +1,863 @@
+/* ==========================================================================
+   港居不動產 - 租賃住宅授權委託代理人委任書產生器樣式表
+   檔案：css/proxy-authorization.css
+   依據：《民法》第103/167/528/534條、《租賃住宅市場發展及管理條例》
+   ========================================================================== */
+
+/* 主容器與頁面佈局 */
+.proxy-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-4) var(--space-8);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.page-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    color: var(--navy-900);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .page-title {
+    color: var(--champagne-400);
+}
+
+.page-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 雙欄工作區 (表單區 + A4 預覽區) */
+.proxy-workspace {
+    display: grid;
+    grid-template-columns: minmax(360px, 480px) 1fr;
+    gap: var(--space-6);
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .proxy-workspace {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 左側編輯面板 */
+.editor-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    box-shadow: var(--shadow-md);
+}
+
+/* 委託模式選擇按鈕群 */
+.mode-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+}
+
+.mode-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    padding: var(--space-2) var(--space-3);
+    background: var(--bg-surface);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    color: var(--text-main);
+}
+
+.mode-btn:hover {
+    border-color: var(--champagne-500);
+    background: var(--navy-50);
+}
+
+[data-theme="dark"] .mode-btn:hover {
+    background: rgba(197, 160, 89, 0.1);
+}
+
+.mode-btn.active {
+    border-color: var(--champagne-600);
+    background: linear-gradient(135deg, rgba(26, 54, 93, 0.08) 0%, rgba(197, 160, 89, 0.15) 100%);
+    box-shadow: 0 0 0 1px var(--champagne-500);
+}
+
+[data-theme="dark"] .mode-btn.active {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(197, 160, 89, 0.2) 100%);
+    border-color: var(--champagne-400);
+}
+
+.mode-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--navy-900);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+[data-theme="dark"] .mode-title {
+    color: #fff;
+}
+
+.mode-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* 區塊表單組件 */
+.form-section {
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy-800);
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+[data-theme="dark"] .section-title {
+    color: var(--champagne-400);
+}
+
+.section-title i {
+    font-size: 1.05rem;
+    color: var(--champagne-600);
+}
+
+.form-group {
+    margin-bottom: var(--space-3);
+}
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.form-control {
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--champagne-500);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
+}
+
+textarea.form-control {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+@media (max-width: 480px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 授權權限多選清單 */
+.authority-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.authority-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-height: 48px;
+    box-sizing: border-box;
+}
+
+.authority-item:hover {
+    border-color: var(--champagne-400);
+    background: var(--navy-50);
+}
+
+[data-theme="dark"] .authority-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.authority-item input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    accent-color: var(--champagne-600);
+    cursor: pointer;
+}
+
+.authority-label {
+    flex: 1;
+    cursor: pointer;
+}
+
+.authority-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--navy-900);
+    line-height: 1.4;
+}
+
+[data-theme="dark"] .authority-name {
+    color: #fff;
+}
+
+.authority-desc {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.35;
+}
+
+/* 授權全選 / 反選按鈕群 */
+.auth-quick-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.btn-auth-quick {
+    min-height: 44px;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-sizing: border-box;
+}
+
+.btn-auth-quick:hover {
+    border-color: var(--champagne-500);
+    color: var(--champagne-600);
+}
+
+/* 簽章區域 */
+.sig-box-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+}
+
+@media (max-width: 480px) {
+    .sig-box-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.sig-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+}
+
+.sig-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.sig-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--navy-800);
+}
+
+[data-theme="dark"] .sig-title {
+    color: var(--champagne-400);
+}
+
+.sig-clear-btn {
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-sizing: border-box;
+}
+
+.sig-clear-btn:hover {
+    color: #dc2626;
+    border-color: #f87171;
+}
+
+.sig-canvas {
+    width: 100%;
+    height: 100px;
+    background: #ffffff;
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-sm);
+    cursor: crosshair;
+    touch-action: none;
+    box-sizing: border-box;
+}
+
+/* 操作按鈕群 */
+.action-toolbar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-900) 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(26, 54, 93, 0.2);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-800) 100%);
+    box-shadow: 0 4px 8px rgba(26, 54, 93, 0.3);
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, #c5a059 0%, #b38e47 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(197, 160, 89, 0.25);
+}
+
+.btn-gold:hover {
+    background: linear-gradient(135deg, #d4b06a 0%, #c5a059 100%);
+    box-shadow: 0 4px 8px rgba(197, 160, 89, 0.35);
+}
+
+.btn-line {
+    background: #06c755;
+    color: #ffffff;
+}
+
+.btn-line:hover {
+    background: #05b34c;
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: var(--border-color);
+    color: var(--text-main);
+}
+
+.btn-outline:hover {
+    background: var(--bg-surface);
+    border-color: var(--champagne-500);
+}
+
+/* ==========================================================================
+   右側 A4 即時預覽模擬區
+   ========================================================================== */
+.preview-panel {
+    position: sticky;
+    top: 80px;
+}
+
+.preview-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+    padding: 0 4px;
+}
+
+.preview-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--champagne-600);
+    background: rgba(197, 160, 89, 0.12);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+}
+
+[data-theme="dark"] .preview-badge {
+    color: var(--champagne-400);
+    background: rgba(197, 160, 89, 0.2);
+}
+
+.preview-scale-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* A4 紙張本體 (螢幕顯示為 max-width: 800px 自適應) */
+.a4-paper {
+    background: #ffffff;
+    color: #111827;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 38px 46px;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif, sans-serif;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+[data-theme="dark"] .a4-paper {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* A4 內部標頭 */
+.doc-header {
+    text-align: center;
+    border-bottom: 2px solid #1a365d;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.doc-org-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #1a365d;
+    margin-bottom: 2px;
+}
+
+.doc-main-title {
+    font-size: 1.55rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.doc-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #4b5563;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.doc-meta-item {
+    font-weight: 600;
+}
+
+/* A4 法律前言 */
+.doc-preamble {
+    font-size: 0.88rem;
+    text-indent: 2em;
+    margin-bottom: 14px;
+    text-align: justify;
+    line-height: 1.7;
+    color: #1f2937;
+}
+
+/* 雙方當事人資料卡 */
+.doc-parties-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.doc-party-card {
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 10px 14px;
+    background: #f8fafc;
+    font-size: 0.82rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.doc-party-badge {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 0.78rem;
+    background: #1a365d;
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-bottom: 6px;
+}
+
+.doc-party-badge.proxy {
+    background: #c5a059;
+}
+
+.doc-party-detail {
+    margin-bottom: 3px;
+    line-height: 1.45;
+}
+
+.doc-party-detail strong {
+    color: #0f172a;
+}
+
+/* 授權不動產標的 */
+.doc-property-box {
+    border: 1px solid #cbd5e1;
+    background: #fdfdfd;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 0.84rem;
+}
+
+.doc-property-box strong {
+    color: #1a365d;
+}
+
+/* 授權項目清單 (委任條款) */
+.doc-clause-block {
+    margin-bottom: 16px;
+}
+
+.doc-clause-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #1a365d;
+    border-left: 4px solid #c5a059;
+    padding-left: 8px;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+}
+
+.doc-clause-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.65;
+}
+
+.doc-clause-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+    text-align: justify;
+}
+
+.doc-check-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #1a365d;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 900;
+    color: #1a365d;
+    margin-top: 3px;
+    flex-shrink: 0;
+    background: #ffffff;
+}
+
+.doc-check-box.checked {
+    background: #1a365d;
+    color: #ffffff;
+}
+
+.doc-clause-text {
+    flex: 1;
+}
+
+.doc-clause-text strong {
+    color: #0f172a;
+}
+
+/* 法律切結聲明條款 */
+.doc-legal-terms {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: #334155;
+    margin-bottom: 18px;
+}
+
+.doc-legal-terms ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.doc-legal-terms li {
+    margin-bottom: 3px;
+}
+
+/* A4 底部親筆簽署區 */
+.doc-signatures-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed #cbd5e1;
+}
+
+.doc-signature-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.doc-signature-label {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 6px;
+}
+
+.doc-signature-box {
+    height: 75px;
+    border: 1px dashed #94a3b8;
+    border-radius: 3px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.doc-signature-box img {
+    max-height: 65px;
+    max-width: 90%;
+    object-fit: contain;
+}
+
+.doc-signature-placeholder {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.doc-sign-meta {
+    font-size: 0.76rem;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+/* 身分證正反面影本黏貼格 (列印時可選) */
+.doc-id-attachment-section {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px dashed #cbd5e1;
+}
+
+.doc-id-attachment-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #1a365d;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.doc-id-frames-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.doc-id-frame {
+    height: 105px;
+    border: 1.5px dashed #94a3b8;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+    color: #64748b;
+    font-size: 0.75rem;
+    text-align: center;
+    position: relative;
+    padding: 4px;
+}
+
+.doc-id-watermark {
+    position: absolute;
+    transform: rotate(-15deg);
+    color: rgba(26, 54, 93, 0.25);
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    pointer-events: none;
+    border: 1.5px solid rgba(26, 54, 93, 0.3);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   @media print 列印引擎規範
+   ========================================================================== */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 15mm 15mm 15mm 15mm;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+    }
+
+    .top-bar,
+    .navbar,
+    .editor-panel,
+    .preview-header-bar,
+    .action-toolbar,
+    .footer,
+    #authOverlay,
+    .offline-badge {
+        display: none !important;
+    }
+
+    .proxy-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .proxy-workspace {
+        display: block !important;
+    }
+
+    .preview-panel {
+        position: static !important;
+    }
+
+    .a4-paper {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        background: transparent !important;
+        page-break-after: avoid;
+    }
+
+    .doc-header {
+        border-bottom: 2pt solid #000000 !important;
+    }
+
+    .doc-main-title {
+        color: #000000 !important;
+    }
+
+    .doc-party-card,
+    .doc-property-box,
+    .doc-legal-terms,
+    .doc-id-frame {
+        background: #ffffff !important;
+        border-color: #666666 !important;
+    }
+
+    .doc-party-badge {
+        background: #000000 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .doc-check-box.checked {
+        background: #000000 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .doc-id-watermark {
+        color: rgba(0, 0, 0, 0.4) !important;
+        border-color: rgba(0, 0, 0, 0.4) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

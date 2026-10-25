@@ -46,9 +46,10 @@
 | 34 | `abandoned-property-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 承租人遺留物處理授權與拋棄切結書產生器｜港居不動產 |
 | 35 | `rules-violation-notice.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃住宅住戶違規行為勸導限期改善通知單產生器｜港居不動產 |
 | 36 | `rent-arrears-notice.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃租金催繳與欠租限期清償催告書產生器｜港居不動產 |
-| 37 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 37 | `proxy-authorization.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃住宅授權委託代理人委任書產生器 ｜ 港居不動產開發 |
+| 38 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**37 / 37 頁 (100%)**
+**離線可用率**：**38 / 38 頁 (100%)**
 
 ---
 

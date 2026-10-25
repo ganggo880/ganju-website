@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>租賃住宅授權委託代理人委任書產生器 ｜ 港居不動產開發</title>
+  <meta name="description" content="專業租賃住宅委託代理人授權書線上套印產生器，依據《民法》第103/167/528/534條規定，支援房東出租代理與租客承租代理雙模式、7大授權權限矩陣、雙方Retina電子手寫簽章、身分證影本浮水印黏貼格與A4無痕列印。">
+  <meta name="keywords" content="租屋委託書, 租賃授權書, 房屋出租代理人, 租客代理人委任書, 民法534條特別委任, 代簽租約委任書, 港居不動產">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/proxy-authorization.html">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="租賃住宅授權委託代理人委任書產生器 ｜ 港居不動產開發">
+  <meta property="og:description" content="依據民法代理與委任規範，一鍵生成具完全法律效力之租賃授權委任書，支援雙模式、7大授權矩陣、雙方電子簽章與A4標準列印。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/proxy-authorization.html">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1A365D">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- 樣式表架構 -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <link rel="stylesheet" href="css/proxy-authorization.css">
+
+  <!-- 結構化資料 (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "租賃住宅授權委託代理人委任書產生器",
+    "url": "https://ganggo880.github.io/ganju-website/proxy-authorization.html",
+    "description": "專業租賃住宅委託代理人授權書線上套印產生器，依據《民法》第103/167/528/534條規定，支援房東與租客代理雙模式、7大授權矩陣與A4列印。",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "creator": {
+      "@type": "RealEstateAgent",
+      "name": "港居不動產開發有限公司",
+      "telephone": "+886-7-793-3997",
+      "taxID": "96797997",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首頁",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "線上工具",
+        "item": "https://ganggo880.github.io/ganju-website/#tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "租賃授權代理人委任書",
+        "item": "https://ganggo880.github.io/ganju-website/proxy-authorization.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 1. 頂部安全與登記宣告 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 主導覽列 Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <!-- 桌面與行動版導覽連結 -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (35)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="proxy-authorization.html" class="nav-link active"><i class="fa-solid fa-signature" style="color: var(--accent-gold);"></i> 租賃代理授權委任書</a></li>
+            <li><a href="rent-arrears-notice.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #63b3ed;"></i> 租金催繳與欠租催告書</a></li>
+            <li><a href="rules-violation-notice.html" class="nav-link"><i class="fa-solid fa-triangle-exclamation" style="color: #63b3ed;"></i> 住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #63b3ed;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #63b3ed;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-wrench" style="color: #63b3ed;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #63b3ed;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #63b3ed;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 房東節稅效益精算</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 修繕點交與屋況存證</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #63b3ed;"></i> 分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #63b3ed;"></i> 退租押金結算明細單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #63b3ed;"></i> 300億租補資格自檢</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #63b3ed;"></i> 591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #63b3ed;"></i> 欠租催告存證信函</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #63b3ed;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #63b3ed;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #63b3ed;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #63b3ed;"></i> 租約提前終止協議書</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #63b3ed;"></i> 租約續約協議書</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #63b3ed;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 租金代管費換算</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-arrow-up" style="color: #63b3ed;"></i> 線上多功能轉檔</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera" style="color: #63b3ed;"></i> 房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #63b3ed;"></i> 證件保護防偽水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image" style="color: #63b3ed;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #63b3ed;"></i> 名片正反合成</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#contact" class="nav-link">預約諮詢</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="開啟選單" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主操作容器 -->
+  <main class="proxy-container">
+    <!-- 頂部頁面標題說明 -->
+    <section class="page-header">
+      <h1 class="page-title">租賃住宅授權委託代理人委任書產生器</h1>
+      <p class="page-subtitle">
+        依據《民法》第 103 條（代理效力）、第 167 條（意定代理權授與）、第 528 條（委任契約）與第 534 條（特別委任）規定，支援房東出租代理與租客承租代理雙模式、7大授權權限矩陣、雙方 Retina 2x 電子手寫簽章與 A4 無痕列印公文存證。
+      </p>
+    </section>
+
+    <!-- 工作區：雙欄網格 (左側表單 + 右側 A4 即時預覽) -->
+    <div class="proxy-workspace">
+      <!-- 左側：編輯表單面板 -->
+      <aside class="editor-panel">
+        <!-- 委託模式選擇 -->
+        <div class="form-section">
+          <div class="section-title">
+            <i class="fa-solid fa-sliders"></i> 委託代理性質模式
+          </div>
+          <div class="mode-selector">
+            <button type="button" class="mode-btn active" id="modeLandlordBtn">
+              <span class="mode-title"><i class="fa-solid fa-house-chimney-user"></i> 出租人委託代理</span>
+              <span class="mode-desc">房東授權受任人代為招租/簽約/代收租金</span>
+            </button>
+            <button type="button" class="mode-btn" id="modeTenantBtn">
+              <span class="mode-title"><i class="fa-solid fa-user-check"></i> 承租人委託代理</span>
+              <span class="mode-desc">租客授權受任人代為簽約/點交/交付租押金</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 案件與標的門牌資訊 -->
+        <div class="form-section">
+          <div class="section-title">
+            <i class="fa-solid fa-folder-open"></i> 授權書基本資訊與標的門牌
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inputDocNo">授權字號</label>
+              <input type="text" id="inputDocNo" class="form-control" value="POA-20261025-01">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inputAuthDate">委任立書日期</label>
+              <input type="date" id="inputAuthDate" class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inputStartDate">授權起始日期</label>
+              <input type="date" id="inputStartDate" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inputEndDate">授權終止日期</label>
+              <input type="date" id="inputEndDate" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputPropertyAddress">委任租賃標的房屋地址 <span style="color:#dc2626;">*</span></label>
+            <input type="text" id="inputPropertyAddress" class="form-control" placeholder="例：高雄市小港區中安路 880 號 5 樓之 2">
+          </div>
+        </div>
+
+        <!-- 委任人（本人）資料 -->
+        <div class="form-section">
+          <div class="section-title" id="lblPrincipalSectionTitle">
+            <i class="fa-solid fa-user-tie"></i> 委任人（出租人／房屋所有權人）資料
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inputPrincipalName">委任人姓名 <span style="color:#dc2626;">*</span></label>
+              <input type="text" id="inputPrincipalName" class="form-control" placeholder="例：林鴻章">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inputPrincipalId">身分證字號 / 統編 <span style="color:#dc2626;">*</span></label>
+              <input type="text" id="inputPrincipalId" class="form-control" placeholder="例：E123456789">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inputPrincipalPhone">聯絡電話</label>
+              <input type="text" id="inputPrincipalPhone" class="form-control" placeholder="例：0912-345-678">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inputPrincipalAddress">戶籍地址</label>
+              <input type="text" id="inputPrincipalAddress" class="form-control" placeholder="例：高雄市左營區博愛二路 120 號">
+            </div>
+          </div>
+        </div>
+
+        <!-- 受任人（代理人）資料 -->
+        <div class="form-section">
+          <div class="section-title" id="lblProxySectionTitle">
+            <i class="fa-solid fa-handshake"></i> 受任人（代理人）資料
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inputProxyName">受任人姓名 <span style="color:#dc2626;">*</span></label>
+              <input type="text" id="inputProxyName" class="form-control" placeholder="例：陳俊銘">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inputProxyId">身分證字號 <span style="color:#dc2626;">*</span></label>
+              <input type="text" id="inputProxyId" class="form-control" placeholder="例：S189012345">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inputProxyPhone">聯絡電話</label>
+              <input type="text" id="inputProxyPhone" class="form-control" placeholder="例：0988-888-888">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="selectProxyRelation">與委任人關係</label>
+              <select id="selectProxyRelation" class="form-control">
+                <option value="親屬">親屬</option>
+                <option value="配偶">配偶</option>
+                <option value="代管經辦專員" selected>代管經辦專員</option>
+                <option value="合夥人">合夥人</option>
+                <option value="室友">室友</option>
+                <option value="受任代理人">其他受任代理人</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputProxyAddress">受任人通訊地址</label>
+            <input type="text" id="inputProxyAddress" class="form-control" placeholder="例：高雄市小港區中安路 880 號">
+          </div>
+        </div>
+
+        <!-- 授權權限範圍核選清單 (7 大法定權限) -->
+        <div class="form-section">
+          <div class="section-title">
+            <i class="fa-solid fa-shield-halved"></i> 授權委任權限範圍矩陣（依《民法》第534條）
+          </div>
+          <div class="auth-quick-actions">
+            <button type="button" class="btn-auth-quick" id="btnSelectAllScopes"><i class="fa-solid fa-check-double"></i> 全選核准</button>
+            <button type="button" class="btn-auth-quick" id="btnDeselectAllScopes"><i class="fa-solid fa-xmark"></i> 全部清除</button>
+          </div>
+          <div class="authority-list">
+            <label class="authority-item" for="chkScope_lease_sign">
+              <input type="checkbox" id="chkScope_lease_sign" checked>
+              <div class="authority-label">
+                <div class="authority-name" id="scopeName_lease_sign">1. 代理簽訂、變更或換發住宅租賃契約</div>
+                <div class="authority-desc" id="scopeDesc_lease_sign">包含議定各項租賃條件、代為於租賃契約及住戶公約簽名蓋章。</div>
+              </div>
+            </label>
+
+            <label class="authority-item" for="chkScope_payment">
+              <input type="checkbox" id="chkScope_payment" checked>
+              <div class="authority-label">
+                <div class="authority-name" id="scopeName_payment">2. 代理代收各期租金、押金保證金及公用事業代墊款</div>
+                <div class="authority-desc" id="scopeDesc_payment">包含開立收據或將款項轉匯入委任人指定專屬金融帳戶。</div>
+              </div>
+            </label>
+
+            <label class="authority-item" for="chkScope_inspection">
+              <input type="checkbox" id="chkScope_inspection" checked>
+              <div class="authority-label">
+                <div class="authority-name" id="scopeName_inspection">3. 代理起租現場屋況與隨附設備點交驗收、交付房屋鑰匙及門禁磁扣</div>
+                <div class="authority-desc" id="scopeDesc_inspection">包含代簽現場設備點交清冊與水電瓦斯錶指針底數紀錄。</div>
+              </div>
+            </label>
+
+            <label class="authority-item" for="chkScope_repair">
+              <input type="checkbox" id="chkScope_repair" checked>
+              <div class="authority-label">
+                <div class="authority-name" id="scopeName_repair">4. 代理通報修繕協調、代墊修繕款項確認與廠商入室施工現場監督</div>
+                <div class="authority-desc" id="scopeDesc_repair">包含日常修繕通報確認、小額代墊款核可與修繕完工驗收單簽名。</div>
+              </div>
+            </label>
+
+            <label class="authority-item" for="chkScope_hoa">
+              <input type="checkbox" id="chkScope_hoa">
+              <div class="authority-label">
+                <div class="authority-name" id="scopeName_hoa">5. 代理出席公寓大廈區分所有權人會議（區權會）及社區管委會行使權利</div>
+                <div class="authority-desc" id="scopeDesc_hoa">包含代表委任人出席社區會議、參與公共事務發言與行使議案表決權。</div>
+              </div>
+            </label>
+
+            <label class="authority-item" for="chkScope_moveout">
+              <input type="checkbox" id="chkScope_moveout" checked>
+              <div class="authority-label">
+                <div class="authority-name" id="scopeName_moveout">6. 代理租約期滿或終止時現場點交退租、瑕疵責任確認與結算返還押金</div>
+                <div class="authority-desc" id="scopeDesc_moveout">包含代辦退租點驗、鑰匙收回、房屋現況瑕疵查驗及押金扣抵差額結算。</div>
+              </div>
+            </label>
+
+            <label class="authority-item" for="chkScope_terminate">
+              <input type="checkbox" id="chkScope_terminate">
+              <div class="authority-label">
+                <div class="authority-name" id="scopeName_terminate">7. 代理協議提前終止租賃契約、和解協議簽署及點交遷讓交還房屋</div>
+                <div class="authority-desc" id="scopeDesc_terminate">依民法第534條特約特別授權：包含提前解約違約金協商與終止協議書簽署。</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 特別約定事項與身分證黏貼格選項 -->
+        <div class="form-section">
+          <div class="section-title">
+            <i class="fa-solid fa-pen-to-square"></i> 特別約定限制與身分證影本格
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputSpecialNotes">委任特別約定事項（選填）</label>
+            <textarea id="inputSpecialNotes" class="form-control" rows="2" placeholder="例：受任人代收各期租金時，應於受領後三日內匯入委任人指定銀行帳戶。"></textarea>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="authority-item" for="chkShowIdAttachment" style="min-height: 44px;">
+              <input type="checkbox" id="chkShowIdAttachment" checked>
+              <div class="authority-label">
+                <span class="authority-name">於正式 A4 公文中附印雙方身分證影本正反面黏貼格</span>
+                <span class="authority-desc">自動壓印「僅供港居租賃授權查驗使用」防偽浮水印</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 雙方 Retina 2x 電子手寫簽章 -->
+        <div class="form-section">
+          <div class="section-title">
+            <i class="fa-solid fa-signature"></i> 雙方線上電子手寫簽章
+          </div>
+          <div class="sig-box-container">
+            <div class="sig-box">
+              <div class="sig-header">
+                <span class="sig-title"><i class="fa-solid fa-pen-nib"></i> 委任人親簽</span>
+                <button type="button" class="sig-clear-btn" id="clearPrincipalSig"><i class="fa-solid fa-rotate-left"></i> 清除</button>
+              </div>
+              <canvas id="sigPrincipalCanvas" class="sig-canvas"></canvas>
+            </div>
+
+            <div class="sig-box">
+              <div class="sig-header">
+                <span class="sig-title"><i class="fa-solid fa-pen-nib"></i> 受任人親簽</span>
+                <button type="button" class="sig-clear-btn" id="clearProxySig"><i class="fa-solid fa-rotate-left"></i> 清除</button>
+              </div>
+              <canvas id="sigProxyCanvas" class="sig-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部功能操作按鈕群 -->
+        <div class="action-toolbar">
+          <button type="button" class="btn-action btn-primary" id="btnPrintA4">
+            <i class="fa-solid fa-print"></i> 列印 A4 授權書
+          </button>
+          <button type="button" class="btn-action btn-gold" id="btnDownloadCanvas">
+            <i class="fa-solid fa-file-image"></i> 下載圖卡 (PNG)
+          </button>
+          <button type="button" class="btn-action btn-line" id="btnCopyLine">
+            <i class="fa-brands fa-line"></i> 複製 LINE 備忘
+          </button>
+          <button type="button" class="btn-action btn-outline" id="btnLoadSample">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 載入示範資料
+          </button>
+          <button type="button" class="btn-action btn-outline" id="btnResetForm">
+            <i class="fa-solid fa-arrow-rotate-left"></i> 清空重設
+          </button>
+        </div>
+      </aside>
+
+      <!-- 右側：A4 即時預覽模擬區 -->
+      <section class="preview-panel">
+        <div class="preview-header-bar">
+          <span class="preview-badge"><i class="fa-solid fa-file-lines"></i> A4 標準格式即時預覽</span>
+          <span class="preview-scale-hint">支援瀏覽器無痕列印與高解析度圖卡匯出</span>
+        </div>
+
+        <!-- A4 紙張本體 -->
+        <div class="a4-paper" id="a4PaperDoc">
+          <!-- 抬頭與文號 -->
+          <div class="doc-header">
+            <div class="doc-org-name">港居不動產開發有限公司 ｜ GANJU REAL ESTATE</div>
+            <h2 class="doc-main-title" id="previewDocTitle">住宅租賃委託代理人授權書（出租專用）</h2>
+            <div class="doc-meta-row">
+              <span class="doc-meta-item">授權字號：<span id="previewDocNo">POA-20261025-01</span></span>
+              <span class="doc-meta-item">委任立書日：<span id="previewAuthDate">2026 年 10 月 25 日</span></span>
+            </div>
+          </div>
+
+          <!-- 法律前言 -->
+          <p class="doc-preamble" id="previewPreamble">
+            立授權書人（以下簡稱委任人），因事務繁忙或差旅在外，特依《民法》第103條、第167條、第528條及第534條之規定，委任受任人為合法代理人，授權於下列核定之權限範圍內，全權代理處理有關該租賃住宅之一切出租、點交及管理事宜，並具法律完全拘束力。
+          </p>
+
+          <!-- 雙方當事人資料卡片 -->
+          <div class="doc-parties-grid">
+            <div class="doc-party-card">
+              <span class="doc-party-badge" id="previewPrincipalBadge">委任人（出租人）</span>
+              <div class="doc-party-detail"><strong>姓名：</strong><span id="previewPrincipalName">林鴻章</span></div>
+              <div class="doc-party-detail"><strong>身分證號：</strong><span id="previewPrincipalId">E123456789</span></div>
+              <div class="doc-party-detail"><strong>聯絡電話：</strong><span id="previewPrincipalPhone">0912-345-678</span></div>
+              <div class="doc-party-detail"><strong>戶籍地址：</strong><span id="previewPrincipalAddress">高雄市左營區博愛二路 120 號</span></div>
+            </div>
+
+            <div class="doc-party-card">
+              <span class="doc-party-badge proxy" id="previewProxyBadge">受任人（代管代理人）</span>
+              <div class="doc-party-detail"><strong>姓名：</strong><span id="previewProxyName">陳俊銘</span>（關係：<span id="previewProxyRelation">代管經辦專員</span>）</div>
+              <div class="doc-party-detail"><strong>身分證號：</strong><span id="previewProxyId">S189012345</span></div>
+              <div class="doc-party-detail"><strong>聯絡電話：</strong><span id="previewProxyPhone">0988-888-888</span></div>
+              <div class="doc-party-detail"><strong>通訊地址：</strong><span id="previewProxyAddress">高雄市小港區中安路 880 號</span></div>
+            </div>
+          </div>
+
+          <!-- 租賃標的房屋資訊 -->
+          <div class="doc-property-box">
+            <strong>委任授權租賃標的：</strong><span id="previewPropertyAddress">高雄市小港區中安路 880 號 5 樓之 2</span><br>
+            <strong>授權有效期限：</strong>自 <span id="previewStartDate">2026-10-25</span> 起至 <span id="previewEndDate">2027-10-25</span> 止。
+          </div>
+
+          <!-- 授權條款項目清單 -->
+          <div class="doc-clause-block">
+            <div class="doc-clause-title">授權委任具體權限項目（經委任人核定勾選具法律效力）：</div>
+            <ul class="doc-clause-list" id="previewClauseList">
+              <!-- JS 動態渲染 -->
+            </ul>
+          </div>
+
+          <!-- 特別約定事項 -->
+          <div class="doc-property-box" id="previewSpecialNotesBox" style="display: none; margin-bottom: 16px; border-left: 4px solid #1a365d;">
+            <strong>委任特別約定事項：</strong><span id="previewSpecialNotes"></span>
+          </div>
+
+          <!-- 法律效力與切結條款 -->
+          <div class="doc-legal-terms">
+            <ol>
+              <li>本授權書依《民法》第103條規定，代理人於代理權限內以本人名義所為之意思表示，直接對委任人發生效力。</li>
+              <li>委任人特此具結保證，受任人於上述授權權限範圍內所為之簽約、點交、受領租金或管理處分等法律行為，委任人均無條件承受並自負完全法律責任。</li>
+              <li>本授權於有效期間內若欲終止或撤銷，委任人應以書面正式通知受託代管單位及契約相對人，未經書面通知送達前，不得對抗不知情之善意第三人。</li>
+            </ol>
+          </div>
+
+          <!-- 簽署區域 -->
+          <div class="doc-signatures-grid">
+            <div class="doc-signature-block">
+              <span class="doc-signature-label" id="previewPrincipalSigLabel">委任人（出租人）親簽蓋章：</span>
+              <div class="doc-signature-box">
+                <img id="previewPrincipalSigImg" alt="委任人簽名" style="display: none;">
+                <span class="doc-signature-placeholder" id="previewPrincipalSigPlaceholder">（請於左側手寫板簽名）</span>
+              </div>
+              <div class="doc-sign-meta">立書人：<span id="previewPrincipalSignName">林鴻章</span></div>
+            </div>
+
+            <div class="doc-signature-block">
+              <span class="doc-signature-label" id="previewProxySigLabel">受任人（代管代理人）同意受任親簽：</span>
+              <div class="doc-signature-box">
+                <img id="previewProxySigImg" alt="受任人簽名" style="display: none;">
+                <span class="doc-signature-placeholder" id="previewProxySigPlaceholder">（請於左側手寫板簽名）</span>
+              </div>
+              <div class="doc-sign-meta">受任人：<span id="previewProxySignName">陳俊銘</span></div>
+            </div>
+          </div>
+
+          <!-- 身分證影本黏貼格 (可選) -->
+          <div class="doc-id-attachment-section" id="previewIdSection">
+            <div class="doc-id-attachment-title">
+              <i class="fa-solid fa-address-card"></i> 雙方身分證明文件影本查驗留存區
+            </div>
+            <div class="doc-id-frames-grid">
+              <div class="doc-id-frame">
+                <span class="doc-id-watermark">僅供港居租賃授權備查使用</span>
+                <i class="fa-regular fa-image" style="font-size: 1.5rem; margin-bottom: 4px; color: #94a3b8;"></i>
+                委任人身分證正面影本黏貼處
+              </div>
+              <div class="doc-id-frame">
+                <span class="doc-id-watermark">僅供港居租賃授權備查使用</span>
+                <i class="fa-regular fa-image" style="font-size: 1.5rem; margin-bottom: 4px; color: #94a3b8;"></i>
+                受任代理人身分證正面影本黏貼處
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 3. 全站標準頁尾 Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <div class="footer-brand">
+            <img src="assets/logo.png" alt="港居不動產 LOGO" class="footer-logo">
+            <div class="footer-brand-text">
+              <span class="footer-brand-title">港居不動產</span>
+              <span class="footer-brand-sub">GANJU REAL ESTATE</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            港居不動產開發有限公司（統編：96797997）致力於提供高雄在地最專業、合法、透明的包租代管與不動產數位工具服務。全站線上工具均採純前端本機運算，零伺服器資料上傳，守護租賃個資隱私安全。
+          </p>
+          <div class="footer-cert-tags">
+            <span class="footer-cert-tag"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+            <span class="footer-cert-tag"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">房東與合約工具</div>
+          <ul class="footer-links">
+            <li><a href="proxy-authorization.html">租賃代理授權委任書</a></li>
+            <li><a href="rent-arrears-notice.html">租金催繳與欠租催告書</a></li>
+            <li><a href="rules-violation-notice.html">住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html">承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html">屋況定期巡檢維護報告</a></li>
+            <li><a href="mandate-contract.html">住宅租賃委託管理契約</a></li>
+            <li><a href="guarantor-agreement.html">租賃連帶保證人切結</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">租客與實用工具</div>
+          <ul class="footer-links">
+            <li><a href="lease-contract.html">租賃契約與公約產生器</a></li>
+            <li><a href="rent-receipt.html">租金收據與代管對帳</a></li>
+            <li><a href="utility-splitter.html">分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html">300億租金補貼試算</a></li>
+            <li><a href="listing-post-generator.html">591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html">郵局存證信函產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">數位影像與系統</div>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank">3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html">2D/3D格局配置系統</a></li>
+            <li><a href="photo-watermark.html">房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html">證件保護防偽水印</a></li>
+            <li><a href="file-converter.html">線上多功能轉檔神器</a></li>
+            <li><a href="privacy.html">個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 港居不動產開發有限公司 GANJU Real Estate Development Co., Ltd. 版權所有</p>
+        <p><a href="privacy.html" style="color: var(--accent-gold); text-decoration: underline;">隱私權政策與個資保護</a> ｜ <a href="sitemap.xml" style="color: var(--accent-gold); text-decoration: underline;">網站地圖</a> ｜ 純前端運算・零上傳雲端・個資安全零外洩</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 系統核心腳本 -->
+  <script src="js/layout.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script src="js/proxy-authorization.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('[PWA] Service Worker 註冊成功，範圍:', reg.scope))
+          .catch(err => console.error('[PWA] Service Worker 註冊失敗:', err));
+      });
+    }
+  </script>
+</body>
+</html>
