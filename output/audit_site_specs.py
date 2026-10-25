@@ -30,6 +30,7 @@ HTML_FILES = [
     "viewing-checklist.html",
     "depreciation-calculator.html",
     "lease-termination-agreement.html",
+    "lease-renewal-agreement.html",
     "privacy.html"
 ]
 

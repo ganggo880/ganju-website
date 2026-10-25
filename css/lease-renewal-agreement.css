@@ -1,0 +1,525 @@
+/* ==========================================================================
+   港居不動產 - 租約續約協議書與租金調幅精算產生器樣式表
+   File: css/lease-renewal-agreement.css
+   依據: tokens.css, components.css, 租賃專法與民法定期租賃保障標準
+   ========================================================================== */
+
+/* 1. 主工作台佈局 Layout */
+.app-workspace {
+  padding: 32px 0 64px;
+  background-color: var(--color-bg, #f8fafc);
+  min-height: calc(100vh - 180px);
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2. 左側表單控制卡片 */
+.control-card {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 16px);
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  margin-bottom: 24px;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary, #0c1a30);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.card-title i {
+  color: var(--color-accent, #c5a880);
+}
+
+/* 3. 續約模式選擇器 Presets */
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 640px) {
+  .preset-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.preset-btn {
+  background: var(--color-surface, #ffffff);
+  border: 2px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-md, 12px);
+  padding: 14px 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 48px;
+}
+
+.preset-btn:hover {
+  border-color: var(--color-accent, #c5a880);
+  background: rgba(197, 168, 128, 0.04);
+}
+
+.preset-btn.active {
+  border-color: var(--color-accent, #c5a880);
+  background: rgba(197, 168, 128, 0.1);
+  box-shadow: 0 0 0 1px var(--color-accent, #c5a880);
+}
+
+.preset-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.badge-green { background: #dcfce7; color: #15803d; }
+.badge-blue { background: #dbeafe; color: #1d4ed8; }
+.badge-gold { background: #fef3c7; color: #b45309; }
+.badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+.preset-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-primary, #0c1a30);
+}
+
+.preset-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #64748b);
+  line-height: 1.4;
+}
+
+/* 4. 表單分組 Form Groups */
+.form-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary, #0c1a30);
+  margin: 24px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-section-title::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background: var(--color-accent, #c5a880);
+  border-radius: 2px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 540px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 16px;
+  min-width: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text, #1e293b);
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-border, #cbd5e1);
+  border-radius: var(--radius-sm, 8px);
+  background-color: var(--color-surface, #ffffff);
+  color: var(--color-text, #1e293b);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  min-height: 44px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-accent, #c5a880);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+}
+
+/* 5. 租金調幅試算面板 Calculation Highlight Box */
+.calc-summary-box {
+  background: linear-gradient(135deg, #0c1a30 0%, #172a45 100%);
+  color: #ffffff;
+  border-radius: var(--radius-md, 12px);
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.calc-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  text-align: center;
+}
+
+@media (max-width: 580px) {
+  .calc-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summary-item-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.summary-item-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #f1f5f9;
+}
+
+.summary-item-val.highlight-gold {
+  color: #f6ad55;
+}
+
+.summary-item-val.highlight-green {
+  color: #4ade80;
+}
+
+.summary-footer-note {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 6. 附屬特約選填與清單 Checklist */
+.terms-toggle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.custom-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-sm, 8px);
+  background: var(--color-surface, #ffffff);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.custom-checkbox-label:hover {
+  background: #f8fafc;
+}
+
+.custom-checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-accent, #c5a880);
+}
+
+.custom-checkbox-text {
+  font-size: 0.9rem;
+  color: var(--color-text, #1e293b);
+  line-height: 1.4;
+}
+
+/* 7. 雙電子手寫簽名板 Dual Signature Pads */
+.signature-box-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+@media (max-width: 640px) {
+  .signature-box-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.signature-card {
+  border: 1px solid var(--color-border, #cbd5e1);
+  border-radius: var(--radius-sm, 8px);
+  padding: 14px;
+  background: #ffffff;
+}
+
+.sig-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.sig-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary, #0c1a30);
+}
+
+.sig-clear-btn {
+  font-size: 0.85rem;
+  color: #ef4444;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sig-clear-btn:hover {
+  background: #fee2e2;
+}
+
+.sig-canvas {
+  width: 100%;
+  height: 120px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  background-color: #fafafa;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+/* 8. 右側 A4 即時預覽卡片 A4 Preview Panel */
+.preview-sticky-wrap {
+  position: sticky;
+  top: 90px;
+}
+
+.preview-card-outer {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 16px);
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+.preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.preview-actions-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 9. 擬真實體 A4 紙張預覽 Document Sheet */
+.a4-document-sheet {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 36px 32px;
+  border-radius: 4px;
+  font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif, sans-serif;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.doc-main-title {
+  text-align: center;
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #0c1a30;
+  margin-bottom: 6px;
+}
+
+.doc-sub-title {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #475569;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #0c1a30;
+}
+
+.doc-parties-block {
+  margin-bottom: 18px;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.doc-clause-block {
+  margin-bottom: 16px;
+}
+
+.doc-clause-title {
+  font-weight: 700;
+  color: #0c1a30;
+  margin-bottom: 4px;
+}
+
+.doc-clause-body {
+  color: #334155;
+  text-align: justify;
+  font-size: 0.9rem;
+}
+
+.doc-clause-body strong {
+  color: #0c1a30;
+}
+
+.doc-highlight-val {
+  font-weight: 700;
+  color: #0c1a30;
+  text-decoration: underline;
+  padding: 0 2px;
+}
+
+.doc-signatures-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #cbd5e1;
+}
+
+.doc-sig-col {
+  line-height: 1.8;
+  font-size: 0.88rem;
+}
+
+.doc-sig-img {
+  max-width: 150px;
+  max-height: 60px;
+  display: block;
+  margin-top: 8px;
+}
+
+.doc-date-line {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+/* 10. @media print A4 無痕正式列印排版 */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  .topbar,
+  .navbar,
+  .footer,
+  .control-card,
+  .preview-toolbar,
+  .header-actions,
+  .mobile-toggle,
+  .breadcrumb-nav {
+    display: none !important;
+  }
+
+  .app-workspace {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .workspace-grid {
+    display: block !important;
+  }
+
+  .preview-sticky-wrap,
+  .preview-card-outer {
+    position: static !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .a4-document-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .doc-main-title {
+    font-size: 18pt !important;
+  }
+
+  .doc-sub-title {
+    font-size: 10pt !important;
+    margin-bottom: 16pt !important;
+  }
+}
