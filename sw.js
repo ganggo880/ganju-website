@@ -1,13 +1,14 @@
 // sw.js - 港居不動產 PWA 離線 Service Worker
 // 提供全站 27 款不動產線上工具、3D 智慧島與隱私權專頁 100% 離線運作與極速快取體驗
 
-const CACHE_NAME = 'ganju-pwa-v4.5';
+const CACHE_NAME = 'ganju-pwa-v4.6';
 
 // 核心離線資源清單 (全站 30 頁、Sitemap、CSS、JS、Icon 共 109 項)
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './routine-inspection-report.html',
+  './dispute-mediation-request.html',
   './arrears-installment-agreement.html',
   './renovation-consent-agreement.html',
   './parking-lease-agreement.html',
@@ -17,6 +18,7 @@ const PRECACHE_ASSETS = [
   './rent-arrears-notice.html',
   './rules-violation-notice.html',
   './abandoned-property-agreement.html',
+  './css/dispute-mediation-request.css',
   './css/arrears-installment-agreement.css',
   './css/renovation-consent-agreement.css',
   './css/parking-lease-agreement.css',
@@ -26,6 +28,7 @@ const PRECACHE_ASSETS = [
   './css/rent-arrears-notice.css',
   './css/rules-violation-notice.css',
   './css/abandoned-property-agreement.css',
+  './js/dispute-mediation-request.js',
   './js/arrears-installment-agreement.js',
   './js/renovation-consent-agreement.js',
   './js/parking-lease-agreement.js',

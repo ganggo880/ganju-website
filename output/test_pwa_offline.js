@@ -54,6 +54,7 @@ const PAGES = [
   'parking-lease-agreement.html',
   'renovation-consent-agreement.html',
   'arrears-installment-agreement.html',
+  'dispute-mediation-request.html',
   'privacy.html'
 ];
 
