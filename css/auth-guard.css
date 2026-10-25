@@ -1,0 +1,507 @@
+/* ==========================================================================
+   港居不動產 線上工具專屬授權驗證防護系統樣式 (GANJU Auth Guard Styles)
+   設計規範：沉浸式深海藍與香檳金奢華毛玻璃、高對比度無障礙、嚴格 RWD 零溢出
+   ========================================================================== */
+
+/* 1. 預防未授權時內容閃爍 (Flash of Unauthenticated Content, FOUC) */
+html.auth-locked,
+body.auth-locked {
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100vw !important;
+}
+
+html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
+  filter: blur(20px) brightness(0.35) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  opacity: 0.2 !important;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+/* 2. 全螢幕毛玻璃鎖定層 (Fullscreen Glassmorphic Overlay) */
+.ganju-auth-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999999 !important;
+  background: rgba(10, 25, 47, 0.88);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.ganju-auth-overlay.auth-fade-out {
+  opacity: 0 !important;
+  transform: scale(1.02);
+  pointer-events: none !important;
+}
+
+/* 3. 授權驗證對話框卡片 (Auth Modal Card) */
+.auth-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(26, 54, 93, 0.96), rgba(15, 35, 65, 0.98));
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7),
+              0 0 45px -5px rgba(197, 160, 89, 0.25);
+  border-radius: 24px;
+  max-width: 480px;
+  width: 100%;
+  padding: 36px 32px;
+  text-align: center;
+  color: #FFFFFF;
+  box-sizing: border-box;
+  animation: authCardEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes authCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 4. 盾牌鎖定徽章與動畫 */
+.auth-badge-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.2), rgba(26, 54, 93, 0.4));
+  border: 2px solid var(--accent-gold, #C5A059);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold, #C5A059);
+  font-size: 32px;
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
+  animation: authPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes authPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.35);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(197, 160, 89, 0.6);
+  }
+}
+
+.auth-brand-sub {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-gold-light, #FFE8B8);
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.auth-title {
+  margin: 0 0 12px;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  line-height: 1.3;
+}
+
+.auth-title i {
+  color: var(--accent-gold, #C5A059);
+}
+
+.auth-desc {
+  font-size: 0.92rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+/* 5. 表單輸入組 Form Group */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.auth-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.auth-input-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.auth-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-input-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--accent-gold, #C5A059);
+  font-size: 1.05rem;
+  pointer-events: none;
+}
+
+.auth-input {
+  width: 100%;
+  min-height: 50px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1.5px solid rgba(226, 232, 240, 0.25);
+  border-radius: 12px;
+  padding: 12px 50px 12px 46px;
+  font-size: 1.05rem;
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--accent-gold, #C5A059);
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.35);
+}
+
+.auth-toggle-pwd {
+  position: absolute;
+  right: 6px;
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 10px 12px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: color 0.2s ease;
+}
+
+.auth-toggle-pwd:hover,
+.auth-toggle-pwd:focus {
+  color: var(--accent-gold, #C5A059);
+  outline: none;
+}
+
+/* 記住此裝置 Checkbox */
+.auth-remember-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -4px;
+}
+
+.auth-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #CBD5E1;
+  cursor: pointer;
+  user-select: none;
+  min-height: 44px;
+}
+
+.auth-checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-gold, #C5A059);
+  cursor: pointer;
+}
+
+/* 錯誤提示 Banner */
+.auth-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 10px;
+  color: #FCA5A5;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: left;
+  line-height: 1.4;
+  animation: authShake 0.4s ease-in-out;
+}
+
+@keyframes authShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* 解鎖按鈕 Primary Action */
+.btn-auth-unlock {
+  width: 100%;
+  min-height: 50px;
+  background: linear-gradient(135deg, var(--accent-gold, #C5A059), #B08C45);
+  border: none;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 25px -5px rgba(197, 160, 89, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.btn-auth-unlock:hover {
+  background: linear-gradient(135deg, #D4AF37, #997835);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(197, 160, 89, 0.55);
+}
+
+.btn-auth-unlock:active {
+  transform: translateY(1px);
+}
+
+/* 分隔線 Divider */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 22px 0 16px;
+  color: #64748B;
+  font-size: 0.82rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.auth-divider span {
+  padding: 0 12px;
+}
+
+/* 次要行動 Actions */
+.auth-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-auth-line {
+  width: 100%;
+  min-height: 48px;
+  background: rgba(6, 199, 85, 0.15);
+  border: 1px solid rgba(6, 199, 85, 0.4);
+  color: #22C55E;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.btn-auth-line:hover {
+  background: #06C755;
+  color: #FFFFFF;
+  border-color: #06C755;
+  box-shadow: 0 8px 20px rgba(6, 199, 85, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-auth-home {
+  width: 100%;
+  min-height: 44px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94A3B8;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.btn-auth-home:hover {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.auth-footer-note {
+  margin-top: 20px;
+  font-size: 0.78rem;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* 6. 已解鎖時的頂部授權狀態徽章 (Unlocked Status Badge) */
+.auth-status-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(34, 197, 94, 0.15) !important;
+  border: 1px solid rgba(34, 197, 94, 0.35) !important;
+  color: #4ADE80 !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+}
+
+.btn-auth-relock {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-height: 28px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-auth-relock:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #FCA5A5;
+}
+
+/* 7. 首頁工具中心提示橫幅與鎖定標籤 (Tools Hub Auth Banner on index.html) */
+.tools-hub-auth-notice {
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.8), rgba(15, 35, 65, 0.95));
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #E2E8F0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tools-hub-auth-notice i {
+  color: var(--accent-gold, #C5A059);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.tool-hub-badge.locked {
+  background: rgba(197, 160, 89, 0.15);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: var(--accent-gold-light, #FFE8B8);
+}
+
+/* 8. 極限 RWD 適配 (360px ~ 480px) */
+@media (max-width: 480px) {
+  .ganju-auth-overlay {
+    padding: 16px 12px;
+  }
+
+  .auth-card {
+    padding: 28px 20px;
+    border-radius: 20px;
+  }
+
+  .auth-badge-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+    margin-bottom: 14px;
+  }
+
+  .auth-title {
+    font-size: 1.25rem;
+  }
+
+  .auth-desc {
+    font-size: 0.86rem;
+    margin-bottom: 18px;
+  }
+
+  .auth-input {
+    font-size: 16px; /* 防止 iOS 焦點自動放大造成破版 */
+    min-height: 48px;
+    padding: 10px 46px 10px 42px;
+  }
+
+  .auth-input-icon {
+    left: 14px;
+    font-size: 1rem;
+  }
+
+  .btn-auth-unlock {
+    min-height: 48px;
+    font-size: 0.98rem;
+  }
+
+  .btn-auth-line {
+    min-height: 46px;
+    font-size: 0.9rem;
+  }
+
+  .tools-hub-auth-notice {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+}

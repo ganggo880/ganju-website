@@ -80,6 +80,9 @@
     ]
   }
   </script>
+  <!-- Auth Guard: 港居內部專屬線上工具授權驗證系統 -->
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <script src="js/auth-guard.js"></script>
 </head>
 <body class="ganju-theme">
 
@@ -459,65 +462,69 @@
                 <div class="doc-sub-title">（港居特許包租代管專業審查體系・屋主決策專用）</div>
 
                 <!-- 候選人資料表 -->
-                <table class="doc-info-table">
-                  <tr>
-                    <th>申請承租人</th>
-                    <td id="doc-t-name">林小姐 (外商工程師)</td>
-                    <th>身分證字號</th>
-                    <td id="doc-t-id">A223456789</td>
-                  </tr>
-                  <tr>
-                    <th>聯絡電話</th>
-                    <td id="doc-t-phone">0988-123-456</td>
-                    <th>擬租賃標的</th>
-                    <td id="doc-t-address">高雄市小港區中安路825號 10樓之1</td>
-                  </tr>
-                  <tr>
-                    <th>申請月租金</th>
-                    <td id="doc-t-rent">NT$ 24,000 元/月</td>
-                    <th>申報月所得</th>
-                    <td id="doc-t-income">NT$ 80,000 元/月</td>
-                  </tr>
-                  <tr>
-                    <th>房租所得比 (RTI)</th>
-                    <td id="doc-t-rti">30.0%（12 分）</td>
-                    <th>審查機構</th>
-                    <td>港居不動產開發有限公司</td>
-                  </tr>
-                </table>
+                <div class="doc-table-wrap">
+                  <table class="doc-info-table">
+                    <tr>
+                      <th>申請承租人</th>
+                      <td id="doc-t-name">林小姐 (外商工程師)</td>
+                      <th>身分證字號</th>
+                      <td id="doc-t-id">A223456789</td>
+                    </tr>
+                    <tr>
+                      <th>聯絡電話</th>
+                      <td id="doc-t-phone">0988-123-456</td>
+                      <th>擬租賃標的</th>
+                      <td id="doc-t-address">高雄市小港區中安路825號 10樓之1</td>
+                    </tr>
+                    <tr>
+                      <th>申請月租金</th>
+                      <td id="doc-t-rent">NT$ 24,000 元/月</td>
+                      <th>申報月所得</th>
+                      <td id="doc-t-income">NT$ 80,000 元/月</td>
+                    </tr>
+                    <tr>
+                      <th>房租所得比 (RTI)</th>
+                      <td id="doc-t-rti">30.0%（12 分）</td>
+                      <th>審查機構</th>
+                      <td>港居不動產開發有限公司</td>
+                    </tr>
+                  </table>
+                </div>
 
                 <!-- 評分明細表 -->
-                <table class="doc-scores-table">
-                  <thead>
-                    <tr>
-                      <th style="width: 50%;">評審查核維度</th>
-                      <th style="width: 25%;">滿分基準</th>
-                      <th style="width: 25%;">實得分數</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style="text-align: left;">一、房租所得比率 (RTI 30%法則)</td>
-                      <td>15 分</td>
-                      <td id="doc-score-rti">12 / 15</td>
-                    </tr>
-                    <tr>
-                      <td style="text-align: left;">二、職業類別與就業財力穩定度</td>
-                      <td>15 分</td>
-                      <td id="doc-score-job">15 / 15</td>
-                    </tr>
-                    <tr>
-                      <td style="text-align: left;">三、身分查驗、司法清白、前租約照會與公約承諾</td>
-                      <td>70 分</td>
-                      <td id="doc-score-checklist">65 / 70</td>
-                    </tr>
-                    <tr style="font-weight: 700; background-color: #f8fafc;">
-                      <td style="text-align: left;">綜合租賃信用總分合計</td>
-                      <td>100 分</td>
-                      <td id="doc-score-total" style="color: #c5a880; font-size: 1.1rem;">92 分（滿分 100）</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="doc-table-wrap">
+                  <table class="doc-scores-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 50%;">評審查核維度</th>
+                        <th style="width: 25%;">滿分基準</th>
+                        <th style="width: 25%;">實得分數</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style="text-align: left;">一、房租所得比率 (RTI 30%法則)</td>
+                        <td>15 分</td>
+                        <td id="doc-score-rti">12 / 15</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: left;">二、職業類別與就業財力穩定度</td>
+                        <td>15 分</td>
+                        <td id="doc-score-job">15 / 15</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: left;">三、身分查驗、司法清白、前租約照會與公約承諾</td>
+                        <td>70 分</td>
+                        <td id="doc-score-checklist">65 / 70</td>
+                      </tr>
+                      <tr style="font-weight: 700; background-color: #f8fafc;">
+                        <td style="text-align: left;">綜合租賃信用總分合計</td>
+                        <td>100 分</td>
+                        <td id="doc-score-total" style="color: #c5a880; font-size: 1.1rem;">92 分（滿分 100）</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
                 <!-- 綜合結論與建議 -->
                 <div class="doc-result-banner" id="doc-result-banner">

@@ -68,6 +68,7 @@
 - [x] 階段四十五：租約提前終止協議書與遷讓交還切結產生器 `lease-termination-agreement.html`（民法第453/454條與租賃專法第10/11條、四種終止模式與法定免責判定、鑰匙配件設備點交清單、押金淨額結算與跨工具匯入、債權債務清償消滅Clean Break條款、雙畫布Retina 2x簽章、A4無痕列印與Canvas圖卡下載，全站 25 頁 100% 互通與 PWA 離線可用）
 - [x] 階段四十六：租約續約協議書與租金調幅精算產生器 `lease-renewal-agreement.html`（依據民法第451條防範默示更新不定期租賃與土地法第100條限制，內建主計總處房租CPI調幅試算、原押金結轉與法定2個月上限檢核、原約條款繼續拘束宣告、雙畫布Retina 2x電子手寫簽章、A4無痕列印與高畫質圖卡下載，全站 26 頁 100% 互通與 PWA 離線可用）
 - [x] 階段四十七：租客承租資格審查與租賃信用評分表產生器 `tenant-screening-checker.html`（依據30%房租所得比法則與租賃專法注意義務，整合所得負擔能力、職業穩定度、司法裁判查驗、前房東照會履歷、一票否決紅旗防呆、A4診斷書列印出圖、合格房客一鍵匯出至租約，全站 27 頁 100% 互通與 PWA 離線可用）
+- [x] 階段四十八：線上工具專屬授權驗證鎖定防護系統（`css/auth-guard.css` ＋ `js/auth-guard.js`、Zero FOUC 零閃爍防護、沉浸式毛玻璃鎖定遮罩、港居統編與專屬通行碼 SHA-256 驗證、網址免密帶入 `?auth=...` 自動解鎖、30 天記住裝置、頂部重新鎖定、首頁 `#tools` 內部授權提示橫幅、全站 26 頁 104 組極限 RWD 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -118,6 +119,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 全站共用組件的 RWD @media 一律寫在這裡
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
+│   ├── auth-guard.css               # 全站線上工具授權驗證防護樣式（毛玻璃、零閃爍防護、RWD）
 │   ├── space-planner.css            # 2D/3D 空間格局配置系統樣式
 │   ├── lease-contract.css           # 租賃契約與公約產生器樣式與 A4 列印引擎
 │   ├── tax-calculator.css           # 房東節稅試算樣式與 A4 診斷書列印引擎
@@ -136,6 +138,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── photo-time-location.css      # 照片時間地點浮水印工具樣式
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
+│   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
 │   ├── tracking.js                  # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js                     # 千分位、日期差、Toast、主題切換
 │   ├── navigation.js                # 導覽列與 Mobile Drawer（index.html 使用）

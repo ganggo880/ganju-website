@@ -16,6 +16,15 @@
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 32px;
   align-items: start;
+  width: 100%;
+  min-width: 0;
+}
+
+.control-panel-col,
+.preview-panel-col {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -32,6 +41,9 @@
   padding: 28px;
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
   margin-bottom: 24px;
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .card-header-flex {
@@ -161,12 +173,15 @@
 
 .check-item-content {
   flex: 1;
+  min-width: 0;
 }
 
 .check-item-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
   margin-bottom: 2px;
 }
 
@@ -174,6 +189,7 @@
   font-size: 0.92rem;
   font-weight: 700;
   color: var(--color-primary, #0c1a30);
+  word-break: break-word;
 }
 
 .check-item-pts {
@@ -452,6 +468,114 @@
   border-top: 1px solid #cbd5e1;
   font-size: 0.88rem;
   line-height: 1.8;
+}
+
+.doc-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+.doc-table-wrap .doc-info-table,
+.doc-table-wrap .doc-scores-table {
+  margin-bottom: 0;
+  border: none;
+}
+
+/* 8.5 行動端響應式調整 Mobile Responsive */
+@media (max-width: 768px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .control-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  .preview-card-outer {
+    padding: 16px 12px;
+    border-radius: 12px;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .a4-document-sheet {
+    padding: 20px 14px;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .card-header-flex .btn-group {
+    width: 100%;
+    display: flex;
+    gap: 6px;
+  }
+
+  .card-header-flex .btn-group .btn {
+    flex: 1;
+    text-align: center;
+    padding: 6px 4px;
+    font-size: 0.8rem;
+  }
+
+  .preview-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .preview-actions-group {
+    width: 100%;
+    display: flex;
+    gap: 6px;
+  }
+
+  .preview-actions-group .btn {
+    flex: 1;
+    text-align: center;
+    padding: 6px 4px;
+    font-size: 0.8rem;
+  }
+
+  .doc-sign-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .control-card {
+    padding: 16px 12px;
+  }
+
+  .a4-document-sheet {
+    padding: 16px 10px;
+  }
+
+  .score-hero-box {
+    padding: 18px 12px;
+  }
+
+  .score-main-num {
+    font-size: 2.6rem;
+  }
+
+  .doc-main-title {
+    font-size: 1.15rem;
+  }
+
+  .doc-info-table th,
+  .doc-info-table td,
+  .doc-scores-table th,
+  .doc-scores-table td {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
 }
 
 /* 9. @media print A4 無痕列印 */

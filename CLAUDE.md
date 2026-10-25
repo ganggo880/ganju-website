@@ -59,6 +59,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── css/
 │   ├── tokens.css           # 品牌設計 Token (海軍藍 #1A365D, 香檳金 #C5A059, 陰影, 圓角, 深淺模式)
 │   ├── components.css       # 全站公用組件樣式 (TopBar, Navbar, Footer, Buttons, Toast)
+│   ├── auth-guard.css       # 全站線上工具專屬授權驗證防護樣式（毛玻璃、零閃爍防護、RWD）
 │   ├── space-planner.css    # 2D/3D 空間格局配置系統樣式
 │   ├── lease-contract.css   # 租賃契約與公約產生器專用樣式與 A4 列印引擎
 │   ├── tax-calculator.css   # 房東節稅試算樣式與 A4 診斷書列印引擎
@@ -83,6 +84,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── photo-time-location.css # 照片時間地點浮水印樣式
 │   └── id-card-watermark.css   # 身份證照裁剪工具樣式
 ├── js/
+│   ├── auth-guard.js        # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
 │   ├── tracking.js          # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, escapeHTML, 主題切換)
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 控制器

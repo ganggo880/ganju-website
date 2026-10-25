@@ -1,9 +1,9 @@
 // sw.js - 港居不動產 PWA 離線 Service Worker
 // 提供全站 24 款不動產線上工具、3D 智慧島與隱私權專頁 100% 離線運作與極速快取體驗
 
-const CACHE_NAME = 'ganju-pwa-v2.8';
+const CACHE_NAME = 'ganju-pwa-v2.9';
 
-// 核心離線資源清單 (全站 27 頁、Sitemap、CSS、JS、Icon 共 98 項)
+// 核心離線資源清單 (全站 27 頁、Sitemap、CSS、JS、Icon 共 100 項)
 const PRECACHE_ASSETS = [
   './',
   './index.html',
@@ -43,6 +43,7 @@ const PRECACHE_ASSETS = [
   './watermark.css',
   './css/tokens.css',
   './css/components.css',
+  './css/auth-guard.css',
   './css/tenant-screening-checker.css',
   './css/lease-renewal-agreement.css',
   './css/lease-termination-agreement.css',
@@ -70,6 +71,7 @@ const PRECACHE_ASSETS = [
   // 腳本庫
   './script.js',
   './rent-calc.js',
+  './js/auth-guard.js',
   './js/tenant-screening-checker.js',
   './js/lease-renewal-agreement.js',
   './js/lease-termination-agreement.js',
