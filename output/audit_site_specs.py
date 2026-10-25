@@ -40,6 +40,7 @@ HTML_FILES = [
     "tenant-check-in-form.html",
     "routine-inspection-report.html",
     "abandoned-property-agreement.html",
+    "rules-violation-notice.html",
     "privacy.html"
 ]
 

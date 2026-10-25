@@ -47,13 +47,14 @@ HTML_FILES = [
     "tenant-check-in-form.html",
     "routine-inspection-report.html",
     "abandoned-property-agreement.html",
+    "rules-violation-notice.html",
     "privacy.html"
 ]
 
 all_passed = True
 
-# 1. 檢驗 31 大網頁與結構化資料 (Pages & Schema.org)
-print("\n[檢驗 1/5] 31 大網頁與 SEO 結構化資料...")
+# 1. 檢驗全站網頁與結構化資料 (Pages & Schema.org)
+print(f"\n[檢驗 1/5] {len(HTML_FILES)} 大網頁與 SEO 結構化資料...")
 pages_report = []
 for f in HTML_FILES:
     fpath = os.path.join(WORKSPACE, f)
@@ -145,14 +146,15 @@ for name, exists in sync_files.items():
 # 5. Git 版本控制狀態 (Git Repository Status)
 print("\n[檢驗 5/5] Git 版本控制狀態...")
 try:
-    status_out = subprocess.check_output(["git", "status", "--porcelain", "-uno"], text=True).strip()
-    branch_out = subprocess.check_output(["git", "status", "-b", "--porcelain", "-uno"], text=True).strip()
+    res = subprocess.run(["git", "status", "-b", "--porcelain", "-uno"], capture_output=True, text=True, timeout=8)
+    branch_out = res.stdout.strip()
     first_line = branch_out.split("\n")[0] if branch_out else ""
+    lines = [l for l in branch_out.split("\n") if not l.startswith("##")]
     
-    if not status_out:
+    if not lines:
         print(f"  ✅ Working tree clean (無未暫存檔案)")
     else:
-        print(f"  ⚠️ 尚有未提交之檔案變更:\n{status_out}")
+        print(f"  ⚠️ 尚有未提交之檔案變更 ({len(lines)} 個檔案)")
         
     print(f"  📌 當前分支狀態: {first_line}")
 except Exception as e:

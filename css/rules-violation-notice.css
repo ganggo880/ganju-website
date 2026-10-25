@@ -1,0 +1,883 @@
+/* ==========================================================================
+   css/rules-violation-notice.css
+   港居不動產 - 租賃住宅違規行為勸導限期改善通知單產生器專用樣式
+   符合品牌 Token、RWD 響應式規範、雙欄預覽、Retina 簽名板與 A4 無痕列印
+   ========================================================================== */
+
+/* 頁面主容器 */
+.notice-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .notice-container {
+    padding: var(--space-4) var(--space-3);
+  }
+}
+
+/* 標頭區域 */
+.notice-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.notice-header .badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(220, 38, 38, 0.12);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.notice-header h1 {
+  font-size: var(--font-3xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+  word-break: break-word;
+}
+
+.notice-header p {
+  color: var(--color-slate-600);
+  font-size: var(--font-base);
+  max-width: 820px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 主工作區：雙欄佈局 */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+/* 左側：表單卡片面板 */
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.card-box {
+  background: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.04);
+  transition: box-shadow var(--transition-fast);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .card-box {
+    padding: var(--space-4);
+  }
+}
+
+.card-box:hover {
+  box-shadow: 0 6px 24px rgba(10, 25, 47, 0.08);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--color-slate-100);
+}
+
+.card-title h2 {
+  font-size: var(--font-lg);
+  color: var(--color-navy);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.card-title .icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* 違規類別快速選單 (六大類別卡片) */
+.violation-types-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .violation-types-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.violation-type-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-slate-50);
+  border: 2px solid var(--color-slate-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+  min-height: 52px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.violation-type-btn:hover {
+  border-color: #dc2626;
+  background: #ffffff;
+}
+
+.violation-type-btn.active {
+  background: #fef2f2;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 1px #dc2626;
+}
+
+.violation-type-btn input[type="radio"] {
+  display: none;
+}
+
+.v-btn-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.v-btn-title {
+  font-weight: 700;
+  font-size: var(--font-sm);
+  color: var(--color-navy);
+}
+
+.v-btn-sub {
+  font-size: var(--font-xs);
+  color: var(--color-slate-500);
+  margin-top: 2px;
+}
+
+/* 表單欄位群組 */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.form-group label {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-slate-700);
+}
+
+.form-group label .req {
+  color: var(--color-danger, #ef4444);
+  margin-left: 2px;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-slate-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  color: var(--color-slate-800);
+  background-color: #ffffff;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+textarea.form-control {
+  min-height: 90px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* 照片存證縮圖區 */
+.photo-evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .photo-evidence-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.photo-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px dashed var(--color-slate-300);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  text-align: center;
+  position: relative;
+  background: var(--color-slate-50);
+  min-height: 140px;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.photo-slot:hover {
+  border-color: #dc2626;
+  background: #ffffff;
+}
+
+.photo-slot input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-slot-preview {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: none;
+}
+
+.photo-slot-label {
+  font-size: var(--font-xs);
+  color: var(--color-slate-600);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.photo-slot.has-image .photo-slot-icon,
+.photo-slot.has-image .photo-slot-text {
+  display: none;
+}
+
+.photo-slot.has-image .photo-slot-preview {
+  display: block;
+}
+
+.btn-clear-photo {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(239, 68, 68, 0.9);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-full);
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.photo-slot.has-image .btn-clear-photo {
+  display: flex;
+}
+
+/* 罰則警告提示盒 */
+.warning-alert-box {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-left: 5px solid #e11d48;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.warning-alert-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: #9f1239;
+  font-weight: 700;
+  font-size: var(--font-sm);
+  margin-bottom: var(--space-2);
+}
+
+.warning-alert-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: var(--font-xs);
+  color: #881337;
+  line-height: 1.6;
+}
+
+.warning-alert-list li {
+  margin-bottom: 4px;
+}
+
+/* 簽名板區塊 */
+.signature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .signature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.signature-card {
+  background: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.signature-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.signature-card-header h3 {
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0;
+}
+
+.btn-clear-sig {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 6px 14px;
+  font-size: var(--font-xs);
+  background: var(--color-slate-100);
+  border: 1px solid var(--color-slate-300);
+  border-radius: var(--radius-sm);
+  color: var(--color-slate-700);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-clear-sig:hover {
+  background: var(--color-slate-200);
+  color: var(--color-navy);
+}
+
+.signature-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: #f8fafc;
+  border: 2px dashed var(--color-slate-300);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  touch-action: none;
+}
+
+.signature-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sig-placeholder-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-slate-400);
+  font-size: var(--font-xs);
+  pointer-events: none;
+}
+
+.signature-canvas-wrap.signed .sig-placeholder-hint {
+  display: none;
+}
+
+/* 快速填寫範例資料按鈕列 */
+.action-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.btn-tool {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: all var(--transition-fast);
+}
+
+.btn-tool-danger {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.btn-tool-danger:hover {
+  background: #b91c1c;
+}
+
+.btn-tool-primary {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.btn-tool-primary:hover {
+  background: #0f2b48;
+}
+
+.btn-tool-gold {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+.btn-tool-gold:hover {
+  background: #d4b375;
+}
+
+.btn-tool-outline {
+  background: #ffffff;
+  border-color: var(--color-slate-300);
+  color: var(--color-slate-700);
+}
+
+.btn-tool-outline:hover {
+  background: var(--color-slate-50);
+  border-color: var(--color-slate-400);
+}
+
+/* ==========================================================================
+   右側：A4 即時預覽畫布 (Live A4 Preview Engine)
+   ========================================================================== */
+.preview-panel {
+  position: sticky;
+  top: 90px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .preview-panel {
+    position: static;
+  }
+}
+
+.preview-container-box {
+  background: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.04);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .preview-container-box {
+    padding: var(--space-3);
+  }
+}
+
+.preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-slate-200);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.preview-toolbar h2 {
+  font-size: var(--font-base);
+  color: var(--color-navy);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.a4-paper-wrapper {
+  background: #525659;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .a4-paper-wrapper {
+    padding: var(--space-2);
+  }
+}
+
+.a4-paper {
+  background: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  min-height: auto;
+  padding: 16mm 14mm 12mm 14mm;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color: #1f2937;
+  font-size: 10pt;
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .a4-paper {
+    padding: var(--space-4) var(--space-3);
+    font-size: 8.5pt;
+  }
+}
+
+/* A4 紙張內文樣式 */
+.doc-header {
+  border-bottom: 2px solid #b91c1c;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.doc-brand-title {
+  font-size: 14pt;
+  font-weight: 800;
+  color: #0a192f;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.doc-subtitle {
+  font-size: 12.5pt;
+  font-weight: 700;
+  color: #b91c1c;
+  margin-top: 3px;
+}
+
+.doc-meta-block {
+  text-align: right;
+  font-size: 8.5pt;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.doc-meta-block .doc-no {
+  font-weight: 700;
+  color: #b91c1c;
+}
+
+.doc-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+  font-size: 9pt;
+}
+
+.doc-meta-table th {
+  width: 18%;
+  background: #fef2f2;
+  border: 1px solid #fecdd3;
+  padding: 4px 6px;
+  font-weight: 700;
+  color: #991b1b;
+  text-align: justify;
+  text-align-last: justify;
+}
+
+.doc-meta-table td {
+  border: 1px solid #e5e7eb;
+  padding: 4px 6px;
+  color: #1f2937;
+}
+
+.doc-section-title {
+  font-size: 9.5pt;
+  font-weight: 800;
+  color: #991b1b;
+  background: #fef2f2;
+  border-left: 4px solid #dc2626;
+  padding: 3px 6px;
+  margin: 8px 0 5px 0;
+}
+
+.doc-content-box {
+  font-size: 9pt;
+  color: #1f2937;
+  line-height: 1.45;
+  margin-bottom: 6px;
+  text-align: justify;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
+/* 現場照片在 A4 中的呈現 */
+.doc-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.doc-photo-box {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 3px;
+  text-align: center;
+}
+
+.doc-photo-img {
+  width: 100%;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+  background: #f3f4f6;
+}
+
+.doc-photo-caption {
+  font-size: 7.5pt;
+  color: #4b5563;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 法律條款條列 */
+.doc-clauses-list {
+  margin: 4px 0;
+  padding-left: 18px;
+  font-size: 8pt;
+  color: #1f2937;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+.doc-clauses-list li {
+  margin-bottom: 2px;
+}
+
+/* A4 底部簽章與回執聯區 */
+.doc-signatures-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 8px;
+  border-top: 1px solid #cbd5e1;
+  padding-top: 8px;
+}
+
+.doc-sig-col {
+  font-size: 8.5pt;
+  line-height: 1.35;
+}
+
+.doc-sig-preview-img {
+  height: 44px;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+  margin: 2px 0;
+}
+
+.doc-sig-stamp-placeholder {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 8pt;
+}
+
+.doc-receipt-strip {
+  border-top: 1px dashed #94a3b8;
+  margin-top: 8px;
+  padding-top: 6px;
+  font-size: 7.5pt;
+  color: #475569;
+}
+
+.doc-footer-note {
+  margin-top: 6px;
+  padding-top: 4px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 7.5pt;
+  color: #64748b;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   列印模式專用樣式 (@media print)
+   ========================================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .top-bar,
+  .navbar,
+  .footer,
+  .notice-header,
+  .form-panel,
+  .preview-toolbar,
+  #authGuardModal,
+  .toast-container,
+  .auth-banner,
+  .btn-tool,
+  .action-toolbar {
+    display: none !important;
+  }
+
+  .notice-container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .workspace-grid {
+    display: block !important;
+  }
+
+  .preview-panel {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  .preview-container-box {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .a4-paper-wrapper {
+    background: transparent !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .a4-paper {
+    box-shadow: none !important;
+    width: 210mm !important;
+    max-width: 210mm !important;
+    min-height: 297mm !important;
+    padding: 12mm 14mm !important;
+    font-size: 9.5pt !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+}

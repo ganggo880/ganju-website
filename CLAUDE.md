@@ -55,7 +55,11 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── repair-work-order.html           # 30. 租賃住宅修繕通報派工與完工驗收證明單產生器 (民法429/430條、5,000緊急代墊、三方手寫簽章)
 ├── holding-deposit-receipt.html     # 31. 租屋定金收據與承租保留切結產生器 (民法248/249條、保留截止期、大寫防篡改、雙簽章)
 ├── key-custody-agreement.html       # 32. 鑰匙借出保管與返還簽收切結產生器 (民法432條、嚴禁私打、換鎖全額賠償、雙階段點收)
-├── sitemap.xml              # 全站 32 頁 SEO XML 網站地圖
+├── tenant-check-in-form.html        # 33. 房客遷入登記與住戶緊急聯絡人卡產生器 (公寓大廈第35條、緊急聯絡名冊、公約切結)
+├── routine-inspection-report.html   # 34. 住宅租賃屋況定期巡檢維護報告書產生器 (租賃專法第28條、六大安全檢驗、相片存證)
+├── abandoned-property-agreement.html # 35. 租賃住宅承租人遺留物處理授權與拋棄切結書產生器 (租賃專法第12條、民法445條留置權、清運扣抵)
+├── rules-violation-notice.html       # 36. 租賃住宅住戶違規行為勸導限期改善通知單產生器 (租賃專法第10條、公寓大廈16/47條、照片浮水印、送達回執)
+├── sitemap.xml              # 全站 36 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
