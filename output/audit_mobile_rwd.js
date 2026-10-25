@@ -44,6 +44,7 @@ const PAGES = [
   'key-custody-agreement.html',
   'tenant-check-in-form.html',
   'routine-inspection-report.html',
+  'abandoned-property-agreement.html',
   'privacy.html'
 ];
 

@@ -43,9 +43,10 @@
 | 31 | `key-custody-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃住宅現場看屋鑰匙借出保管與返還簽收切結產生器｜民法第432條・雙階段簽章點收與A4無痕列印｜港居不動產 |
 | 32 | `tenant-check-in-form.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃住宅房客遷入登記與住戶緊急聯絡人資料卡產生器｜公寓大廈第35條・緊急聯絡名冊與A4無痕列印｜港居不動產 |
 | 33 | `routine-inspection-report.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃屋況定期巡檢維護報告書產生器｜租賃專法第28條・六大安全檢驗與A4無痕列印｜港居不動產 |
-| 34 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 34 | `abandoned-property-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 承租人遺留物處理授權與拋棄切結書產生器｜港居不動產 |
+| 35 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**34 / 34 頁 (100%)**
+**離線可用率**：**35 / 35 頁 (100%)**
 
 ---
 

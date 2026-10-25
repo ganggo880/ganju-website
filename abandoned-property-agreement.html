@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <title>承租人遺留物處理授權與拋棄切結書產生器｜港居不動產</title>
+  <meta name="description" content="依據《租賃住宅市場發展及管理條例》第12條、內政部定型化契約應記載事項第18點與《民法》第445條出租人留置權規範設計。支援退租現場合意切結、簽約事前約定與欠租失聯催告期滿處置三大模式，動態遺留物造冊、現場拍照存證、清運規費自押金扣抵精算、雙方Retina電子手寫簽章、A4無痕列印出圖與LINE存證通報。">
+  <meta name="keywords" content="承租人遺留物,遺留物處理授權書,遺留物拋棄切結書,租賃專法第12條,民法留置權,租客失聯清運,退租垃圾點交,港居不動產">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/abandoned-property-agreement.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/abandoned-property-agreement.html">
+  <meta property="og:title" content="承租人遺留物處理授權與拋棄切結書產生器｜港居不動產">
+  <meta property="og:description" content="合約終止、退租離場或失聯不遷讓必備！依租賃專法第12條與民法第445條，一鍵生成法務防護切結書，保障房東與代管免於侵占竊盜爭議。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ganggo880.github.io/ganju-website/abandoned-property-agreement.html">
+  <meta property="twitter:title" content="承租人遺留物處理授權與拋棄切結書產生器｜港居不動產">
+  <meta property="twitter:description" content="合約終止、退租離場或失聯不遷讓必備！依租賃專法第12條與民法第445條，一鍵生成法務防護切結書，保障房東與代管免於侵占竊盜爭議。">
+  <meta property="twitter:image" content="https://ganggo880.github.io/ganju-website/assets/og-image.jpg">
+
+  <!-- Favicons & Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <meta name="theme-color" content="#0a192f">
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Style Tokens & Components -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <link rel="stylesheet" href="css/abandoned-property-agreement.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "租賃住宅承租人遺留物處理授權與拋棄切結書產生器",
+    "url": "https://ganggo880.github.io/ganju-website/abandoned-property-agreement.html",
+    "description": "專業租賃住宅承租人退租遺留物、失聯物品處理授權與所有權自願拋棄切結書線上產生器，符合租賃專法第12條與民法第445條規定。",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "creator": {
+      "@type": "RealEstateAgent",
+      "name": "港居不動產開發有限公司",
+      "telephone": "+886-7-793-3997",
+      "taxID": "96797997",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首頁",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "線上工具",
+        "item": "https://ganggo880.github.io/ganju-website/#tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "承租人遺留物處理授權與拋棄切結書",
+        "item": "https://ganggo880.github.io/ganju-website/abandoned-property-agreement.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 1. 頂部安全與登記宣告 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 主導覽列 Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (32)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="abandoned-property-agreement.html" class="nav-link active"><i class="fa-solid fa-file-signature" style="color: var(--accent-gold);"></i> 承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #63b3ed;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #63b3ed;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-wrench" style="color: #63b3ed;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #63b3ed;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #63b3ed;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 房東節稅效益精算</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 修繕點交與屋況存證</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #63b3ed;"></i> 分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #63b3ed;"></i> 退租押金結算明細單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #63b3ed;"></i> 300億租補資格自檢</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #63b3ed;"></i> 591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #63b3ed;"></i> 欠租催告存證信函</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #63b3ed;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #63b3ed;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #63b3ed;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #63b3ed;"></i> 租約提前終止協議書</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #63b3ed;"></i> 租約續約協議書</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #63b3ed;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 租金代管費換算</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-arrow-up" style="color: #63b3ed;"></i> 線上多功能轉檔</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera" style="color: #63b3ed;"></i> 房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #63b3ed;"></i> 證件保護防偽水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image" style="color: #63b3ed;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #63b3ed;"></i> 名片正反合成</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#contact" class="nav-link">預約諮詢</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="開啟選單" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主操作容器 -->
+  <main class="agreement-container">
+    <!-- 頂部標題說明 -->
+    <section class="agreement-header">
+      <span class="badge-tag">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        租賃專法第 12 條 ＆ 民法第 445 條法定留置權標準架構
+      </span>
+      <h1>租賃住宅承租人遺留物處理授權與拋棄切結書產生器</h1>
+      <p>針對退租殘留物品、租客欠租失聯或租約終止逾期未遷讓，建立合法造冊、所有權無償拋棄宣告與清運規費自押金扣抵憑單，徹底免除房東與代管業者之侵占與毀損法律風險。</p>
+    </section>
+
+    <!-- 主工作區：雙欄網格 -->
+    <div class="workspace-grid">
+      <!-- 左側：設定表單 -->
+      <div class="form-panel">
+        
+        <!-- 卡片 1：切結情境模式選擇 -->
+        <div class="card-box">
+          <div class="card-title">
+            <h2><span class="icon-badge">1</span> 切結情境模式選擇</h2>
+          </div>
+          <div class="mode-selector-grid">
+            <button type="button" class="mode-option-btn active" data-mode="on-site">
+              <span class="mode-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                退租點交現場合意
+              </span>
+              <span class="mode-desc">退租日租客自知物品無法帶走，現場造冊切結自願拋棄並全權授權代管清運。</span>
+            </button>
+            <button type="button" class="mode-option-btn" data-mode="pre-auth">
+              <span class="mode-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                簽約事前授權備忘
+              </span>
+              <span class="mode-desc">作為租約特別附件，約定若租期屆滿或終止後逾期未遷讓，視為拋棄並由房東處置。</span>
+            </button>
+            <button type="button" class="mode-option-btn" data-mode="notice-expire">
+              <span class="mode-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                催告期滿依法處置
+              </span>
+              <span class="mode-desc">存證信函催告期滿仍失聯，會同見證人入室開鎖勘查造冊，依法逕行清運拍賣。</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 卡片 2：切結基本資料與雙方當事人 -->
+        <div class="card-box">
+          <div class="card-title">
+            <h2><span class="icon-badge">2</span> 基本資料與契約當事人</h2>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="docNoInput">切結存證單號 <span class="req">*</span></label>
+              <input type="text" id="docNoInput" class="form-control" value="AP-20261025-01" required>
+            </div>
+            <div class="form-group">
+              <label for="dateInput">切結存證日期 <span class="req">*</span></label>
+              <input type="date" id="dateInput" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="propertyAddress">租賃住宅標的物地址 <span class="req">*</span></label>
+            <input type="text" id="propertyAddress" class="form-control" placeholder="例：高雄市前鎮區中華五路 1234 號 12 樓之 3" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tenantName">立切結人（承租人姓名） <span class="req">*</span></label>
+              <input type="text" id="tenantName" class="form-control" placeholder="例：陳志明" required>
+            </div>
+            <div class="form-group">
+              <label for="tenantId">身分證字號 / 居留證號 <span class="req">*</span></label>
+              <input type="text" id="tenantId" class="form-control" placeholder="例：E123456789" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tenantPhone">承租人聯絡電話 <span class="req">*</span></label>
+              <input type="tel" id="tenantPhone" class="form-control" placeholder="例：0912-345-678" required>
+            </div>
+            <div class="form-group">
+              <label for="tenantAddress">戶籍 / 通訊地址</label>
+              <input type="text" id="tenantAddress" class="form-control" placeholder="例：高雄市苓雅區四維三路 88 號 5 樓">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="landlordName">受託代管公司 / 出租人 <span class="req">*</span></label>
+              <input type="text" id="landlordName" class="form-control" value="港居不動產開發有限公司（受託代管公司）" required>
+            </div>
+            <div class="form-group">
+              <label for="landlordTaxId">統一編號 / 身分證號</label>
+              <input type="text" id="landlordTaxId" class="form-control" value="96797997">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="landlordPhone">代管聯絡電話</label>
+              <input type="tel" id="landlordPhone" class="form-control" value="07-793-3997">
+            </div>
+            <div class="form-group">
+              <label for="agentLicense">租賃管理證號</label>
+              <input type="text" id="agentLicense" class="form-control" value="(112)高市字第013739號">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="witnessName">現場陪同 / 見證人員姓名（選填）</label>
+              <input type="text" id="witnessName" class="form-control" placeholder="例：林俊彥（里長 / 大樓管委會 / 警員）">
+            </div>
+            <div class="form-group">
+              <label for="witnessRole">見證人身分 / 職銜</label>
+              <input type="text" id="witnessRole" class="form-control" placeholder="例：大樓管委會管理主任">
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片 3：留置物造冊清冊清單 -->
+        <div class="card-box">
+          <div class="card-title">
+            <h2><span class="icon-badge">3</span> 現場留置物品造冊清冊</h2>
+          </div>
+          <p style="font-size: var(--font-xs); color: var(--color-slate-500); margin-bottom: var(--space-3);">
+            詳細登錄留在租賃住宅內之物品類別、名稱與外觀特徵，作為拋棄與清運之法律依據。
+          </p>
+
+          <div class="items-table-wrapper">
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th style="width: 120px;">類別</th>
+                  <th>物品名稱與特徵描述</th>
+                  <th style="width: 80px;">數量</th>
+                  <th style="width: 70px;">單位</th>
+                  <th style="width: 110px;">判定殘值</th>
+                  <th style="width: 120px;">處置方式</th>
+                  <th style="width: 50px;">操作</th>
+                </tr>
+              </thead>
+              <tbody id="itemsTableBody">
+                <!-- 動態注入 -->
+              </tbody>
+            </table>
+          </div>
+
+          <button type="button" class="btn-add-item" id="btnAddItem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            ＋ 新增一項留置物品紀錄
+          </button>
+        </div>
+
+        <!-- 卡片 4：清運規費精算與押金扣抵 -->
+        <div class="card-box">
+          <div class="card-title">
+            <h2><span class="icon-badge">4</span> 清運處置費用與原押金扣抵</h2>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="disposalFeeInput">廢棄物清運規費 (NT$)</label>
+              <input type="number" id="disposalFeeInput" class="form-control" min="0" step="100" value="3500">
+            </div>
+            <div class="form-group">
+              <label for="laborFeeInput">人工搬運／拆卸工資 (NT$)</label>
+              <input type="number" id="laborFeeInput" class="form-control" min="0" step="100" value="1500">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="storageFeeInput">暫存保管費 (NT$)</label>
+              <input type="number" id="storageFeeInput" class="form-control" min="0" step="100" value="0">
+            </div>
+            <div class="form-group">
+              <label for="securityDepositInput">承租人原預繳押金總額 (NT$)</label>
+              <input type="number" id="securityDepositInput" class="form-control" min="0" step="1000" value="15000">
+            </div>
+          </div>
+
+          <div class="fee-summary-panel" id="feeSummaryBox">
+            <!-- 動態注入結算 -->
+          </div>
+        </div>
+
+        <!-- 卡片 5：現場照片縮圖存證 -->
+        <div class="card-box">
+          <div class="card-title">
+            <h2><span class="icon-badge">5</span> 現場拍照存證紀錄（4 處關鍵視角）</h2>
+          </div>
+          <div class="photo-evidence-grid">
+            <!-- 照片 1 -->
+            <div class="photo-slot" id="photo1Slot">
+              <input type="file" id="photo1Input" accept="image/*">
+              <button type="button" class="btn-clear-photo" id="photo1Clear" title="清除照片">✕</button>
+              <div class="photo-slot-icon">📷</div>
+              <div class="photo-slot-text">點擊上傳 / 拍照</div>
+              <div class="photo-slot-label">圖1. 遺留物全貌存證</div>
+              <img id="photo1Preview" class="photo-slot-preview" alt="照片1">
+            </div>
+            <!-- 照片 2 -->
+            <div class="photo-slot" id="photo2Slot">
+              <input type="file" id="photo2Input" accept="image/*">
+              <button type="button" class="btn-clear-photo" id="photo2Clear" title="清除照片">✕</button>
+              <div class="photo-slot-icon">📷</div>
+              <div class="photo-slot-text">點擊上傳 / 拍照</div>
+              <div class="photo-slot-label">圖2. 大件家具外觀</div>
+              <img id="photo2Preview" class="photo-slot-preview" alt="照片2">
+            </div>
+            <!-- 照片 3 -->
+            <div class="photo-slot" id="photo3Slot">
+              <input type="file" id="photo3Input" accept="image/*">
+              <button type="button" class="btn-clear-photo" id="photo3Clear" title="清除照片">✕</button>
+              <div class="photo-slot-icon">📷</div>
+              <div class="photo-slot-text">點擊上傳 / 拍照</div>
+              <div class="photo-slot-label">圖3. 雜物堆放實況</div>
+              <img id="photo3Preview" class="photo-slot-preview" alt="照片3">
+            </div>
+            <!-- 照片 4 -->
+            <div class="photo-slot" id="photo4Slot">
+              <input type="file" id="photo4Input" accept="image/*">
+              <button type="button" class="btn-clear-photo" id="photo4Clear" title="清除照片">✕</button>
+              <div class="photo-slot-icon">📷</div>
+              <div class="photo-slot-text">點擊上傳 / 拍照</div>
+              <div class="photo-slot-label">圖4. 通道清空現狀</div>
+              <img id="photo4Preview" class="photo-slot-preview" alt="照片4">
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片 6：法律免責與拋棄權利切結條款 -->
+        <div class="card-box">
+          <div class="card-title">
+            <h2><span class="icon-badge">6</span> 拋棄宣告與法務免責具結</h2>
+          </div>
+          <div class="legal-checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" checked required>
+              <span><strong>自願拋棄所有權：</strong>切結人確認上述清冊所列之留置物品所有權自願無償全數拋棄，同意視同廢棄物任由出租人或受託代管公司全權清運、拍賣或銷毀，絕無異議。</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked required>
+              <span><strong>無貴重財物保證：</strong>切結人切結具明所留置之物品中，絕無任何現金、有價證券、金銀首飾、身分證件或具紀念價值之貴重傳家物品，日後絕不對出租人或代管人員提出任何形式之侵占、毀損或竊盜刑事告訴。</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked required>
+              <span><strong>清運費用扣抵同意：</strong>切結人同意清運處理規費優先由預繳之租金保證金（押金）中全額扣抵；若押金不足扣抵時，同意於收到通知後 3 日內補足差額，逾期自願負擔法定遲延利息與催繳規費。</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 卡片 7：雙方 Retina 2x 電子手寫簽章 -->
+        <div class="card-box">
+          <div class="card-title">
+            <h2><span class="icon-badge">7</span> 雙方 Retina 2x 電子手寫簽章</h2>
+          </div>
+          <div class="signature-grid">
+            <!-- 承租人簽名 -->
+            <div class="signature-card">
+              <div class="signature-card-header">
+                <h3>立切結人（承租人親簽）</h3>
+                <button type="button" class="btn-clear-sig" id="btnClearTenantSig">清除重簽</button>
+              </div>
+              <div class="signature-canvas-wrap">
+                <canvas id="tenantSigCanvas" class="signature-canvas"></canvas>
+                <div class="sig-placeholder-hint">請在此以手指或觸控筆親筆簽名</div>
+              </div>
+            </div>
+
+            <!-- 出租人/代管專員簽章 -->
+            <div class="signature-card">
+              <div class="signature-card-header">
+                <h3>港居受託代管專員（簽收核章）</h3>
+                <button type="button" class="btn-clear-sig" id="btnClearLandlordSig">清除重簽</button>
+              </div>
+              <div class="signature-canvas-wrap">
+                <canvas id="landlordSigCanvas" class="signature-canvas"></canvas>
+                <div class="sig-placeholder-hint">請在此簽名或加蓋公司代管章</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 操作工具列 -->
+        <div class="action-toolbar">
+          <button type="button" class="btn-tool btn-tool-gold" id="btnDemoData">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            載入示範資料
+          </button>
+          <button type="button" class="btn-tool btn-tool-outline" id="btnClearForm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            清空所有內容
+          </button>
+          <button type="button" class="btn-tool btn-tool-primary" id="btnPrint">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            A4 無痕列印 / 存為 PDF
+          </button>
+          <button type="button" class="btn-tool btn-tool-primary" id="btnDownloadCard">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            下載高清存證圖卡
+          </button>
+          <button type="button" class="btn-tool btn-tool-gold" id="btnCopyLine">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            複製 LINE 存證文字
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 右側：即時 A4 紙張預覽 (Live A4 Preview) -->
+      <div class="preview-panel">
+        <div class="preview-container-box">
+          <div class="preview-toolbar">
+            <h2>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              A4 存查合約即時預覽
+            </h2>
+            <span style="font-size: var(--font-xs); color: var(--color-slate-500);">標準 210 × 297mm 法務無痕版型</span>
+          </div>
+
+          <div class="a4-paper-wrapper">
+            <article class="a4-paper" id="a4PaperPrintArea">
+              <!-- 文件頂部 -->
+              <div>
+                <header class="doc-header">
+                  <div>
+                    <div class="doc-brand-title">港居不動產開發有限公司</div>
+                    <div class="doc-subtitle" id="previewDocTitle">租賃住宅承租人退租遺留物處理授權與拋棄所有權切結書</div>
+                  </div>
+                  <div class="doc-meta-block">
+                    <div>單號：<span class="doc-no" id="previewDocNo">AP-20261025-01</span></div>
+                    <div>日期：<span id="previewDate">2026-10-25</span></div>
+                  </div>
+                </header>
+
+                <!-- 基本當事人資訊表 -->
+                <table class="doc-meta-table">
+                  <tr>
+                    <th>標的物地址</th>
+                    <td colspan="3" id="previewAddress">高雄市前鎮區中華五路 1234 號 12 樓之 3</td>
+                  </tr>
+                  <tr>
+                    <th>立切結人</th>
+                    <td id="previewTenant">陳志明 (身分證: E123456789) 0912-345-678</td>
+                    <th>受託代管</th>
+                    <td id="previewLandlord">港居不動產開發 (統編: 96797997)</td>
+                  </tr>
+                  <tr>
+                    <th>見證人員</th>
+                    <td colspan="3" id="previewWitness">林俊彥（大樓管委會管理主任）</td>
+                  </tr>
+                </table>
+
+                <!-- 法定緣由依據 -->
+                <div class="doc-statute-intro" id="previewStatuteText">
+                  依據《租賃住宅市場發展及管理條例》第12條、內政部《住宅租賃定型化契約應記載事項》第18點及《民法》第764條規定，立切結書人（承租人）於租賃關係終止退租點交之日，因遷讓考量自願將下列留置於租賃標的物內之物品所有權無償全數拋棄，全權授權出租人或受託代管公司逕行處置、清運、拍賣或轉贈，絕無異議。
+                </div>
+
+                <!-- 遺留物清冊清單 -->
+                <div class="doc-section-title">一、留置物品造冊清冊明細</div>
+                <table class="doc-items-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 28px;">#</th>
+                      <th style="width: 70px;">分類</th>
+                      <th>物品名稱與特徵狀況描述</th>
+                      <th style="width: 50px;">數量</th>
+                      <th style="width: 80px;">殘值判定</th>
+                      <th style="width: 85px;">處置方式</th>
+                    </tr>
+                  </thead>
+                  <tbody id="previewItemsTableBody">
+                    <!-- 動態注入 -->
+                  </tbody>
+                </table>
+
+                <!-- 現場拍照存證紀錄 -->
+                <div class="doc-section-title">二、現場存證相片紀錄</div>
+                <div class="doc-photos-grid" id="previewPhotosGrid">
+                  <!-- 動態注入照片 -->
+                </div>
+
+                <!-- 清運規費與押金扣抵 -->
+                <div class="doc-section-title">三、清運規費結算與保證金扣抵</div>
+                <div class="doc-statute-intro" id="previewFeeText">
+                  清運處理與規費總計新臺幣 5,000 元（清運處置規費 NT$ 3,500、工資吊掛 NT$ 1,500）。經由承租人原預繳押金 NT$ 15,000 元全額扣抵後，剩餘保證金 NT$ 10,000 元（新臺幣 壹萬元整）於點交確認當日無息返還承租人。
+                </div>
+
+                <!-- 具結約定條款 -->
+                <div class="doc-section-title">四、切結人承諾與免責條款</div>
+                <ol class="doc-clauses-list">
+                  <li>立切結人保證上列造冊物品確無任何現金、黃金珠寶、有價證券、印章證件等貴重物品，如有隱匿不報，一切後果概由立切結人自行承擔。</li>
+                  <li>立切結人自簽署本切結書起，對上述物品自願徹底拋棄所有權，全權授權出租人或受託代管公司處置。日後立切結人或其繼承人絕不向出租人、代管公司或其工作人員提出任何民事損害賠償或侵占、毀損、竊盜之刑事告訴。</li>
+                  <li>如因留置物之處置衍生任何第三方權利主張或環境保護局裁罰爭議，立切結人願無條件負擔全部清償與賠償責任。</li>
+                </ol>
+              </div>
+
+              <!-- A4 底部簽章與公司戳記 -->
+              <div>
+                <div class="doc-signatures-block">
+                  <div class="doc-sig-col">
+                    <div><strong>立切結人（承租人親簽）：</strong></div>
+                    <img id="previewTenantSigImg" class="doc-sig-preview-img" style="display: none;" alt="承租人簽名">
+                    <div id="previewTenantSigPlaceholder" class="doc-sig-stamp-placeholder">(承租人親筆電子簽章處)</div>
+                    <div>身分證字號：<span id="previewTenantSigId">同上列載</span></div>
+                  </div>
+                  <div class="doc-sig-col">
+                    <div><strong>受託代管公司（審核認證）：</strong></div>
+                    <img id="previewLandlordSigImg" class="doc-sig-preview-img" style="display: none;" alt="代管簽名">
+                    <div id="previewLandlordSigPlaceholder" class="doc-sig-stamp-placeholder">(港居不動產開發受託代管戳記)</div>
+                    <div>承辦專員：(112)登字第013739號</div>
+                  </div>
+                </div>
+
+                <div class="doc-footer-note">
+                  <span>港居不動產開發有限公司｜高雄市小港區中安路488號1樓｜電話: 07-793-3997</span>
+                  <span>存查效期：法務留存 5 年｜第 1 頁 / 共 1 頁</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 4. 頁尾宣告 Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <img src="assets/logo.png" alt="港居不動產 LOGO" class="footer-logo">
+          <div class="footer-brand-text">
+            <span class="footer-title">港居不動產</span>
+            <span class="footer-sub">GANJU REAL ESTATE</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          港居不動產開發有限公司（統編：96797997）是高雄領先的合法特許專業租賃住宅服務團隊。秉持專業、誠信、透明的理念，為房東與租客提供卓越的包租代管與線上不動產工具服務。
+        </p>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <div class="footer-col-title">房東與合約專區</div>
+          <ul class="footer-links">
+            <li><a href="index.html#landlords">包租代管服務方案</a></li>
+            <li><a href="abandoned-property-agreement.html">承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html">屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html">房客遷入登記資料卡</a></li>
+            <li><a href="key-custody-agreement.html">鑰匙借出保管切結</a></li>
+            <li><a href="holding-deposit-receipt.html">租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html">修繕派工與驗收單</a></li>
+            <li><a href="mandate-contract.html">租賃委託管理/包租契約</a></li>
+            <li><a href="guarantor-agreement.html">租賃連帶保證人切結</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">租客與實用工具</div>
+          <ul class="footer-links">
+            <li><a href="lease-contract.html">租賃契約與公約產生器</a></li>
+            <li><a href="rent-receipt.html">租金收據與代管對帳</a></li>
+            <li><a href="utility-splitter.html">分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html">300億租金補貼試算</a></li>
+            <li><a href="listing-post-generator.html">591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html">郵局存證信函產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">數位影像與系統</div>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank">3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html">2D/3D格局配置系統</a></li>
+            <li><a href="photo-watermark.html">房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html">證件保護防偽水印</a></li>
+            <li><a href="file-converter.html">線上多功能轉檔神器</a></li>
+            <li><a href="privacy.html">個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 港居不動產開發有限公司 GANJU Real Estate Development Co., Ltd. 版權所有</p>
+        <p><a href="privacy.html" style="color: var(--accent-gold); text-decoration: underline;">隱私權政策與個資保護</a> ｜ <a href="sitemap.xml" style="color: var(--accent-gold); text-decoration: underline;">網站地圖</a> ｜ 純前端運算・零上傳雲端・個資安全零外洩</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 系統核心腳本 -->
+  <script src="js/layout.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script src="js/abandoned-property-agreement.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('[PWA] Service Worker 註冊成功，範圍:', reg.scope))
+          .catch(err => console.error('[PWA] Service Worker 註冊失敗:', err));
+      });
+    }
+  </script>
+</body>
+</html>
