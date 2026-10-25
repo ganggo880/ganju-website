@@ -51,7 +51,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── lease-renewal-agreement.html     # 26. 租約續約協議書與租金調幅精算產生器 (民法451條、土地法100條防呆、CPI調幅、押金結轉)
 ├── tenant-screening-checker.html    # 27. 租客承租資格審查與租賃信用評分表產生器 (30%所得比法則、司法查核、一票否決防呆)
 ├── mandate-contract.html            # 28. 住宅租賃委託管理（包租／代管）契約書線上產生器 (租賃專法12/14條、緊急修繕代墊、Retina 2x簽章)
-├── sitemap.xml              # 全站 28 頁 SEO XML 網站地圖
+├── guarantor-agreement.html         # 29. 租賃住宅連帶保證人保證書與履約切結書線上產生器 (民法739~745條、拋棄先訴抗辯權、大寫限額)
+├── sitemap.xml              # 全站 29 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -78,6 +79,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── lease-renewal-agreement.css # 租約續約協議書與租金調幅專用樣式與 A4 列印引擎
 │   ├── tenant-screening-checker.css # 租客承租資格審查與信用評分表專用樣式與 A4 列印引擎
 │   ├── mandate-contract.css # 住宅租賃委託管理與包租契約專用樣式與 A4 列印引擎
+│   ├── guarantor-agreement.css # 租賃連帶保證人保證書專用樣式與 A4 排版引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
@@ -87,6 +89,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   └── id-card-watermark.css   # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js        # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
+│   ├── guarantor-agreement.js # 租賃連帶保證人完全責任、先訴抗辯權拋棄與手寫簽章引擎
 │   ├── mandate-contract.js  # 住宅租賃委託管理與包租契約雙模式、修繕代墊授權與手寫簽章引擎
 │   ├── tracking.js          # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, escapeHTML, 主題切換)

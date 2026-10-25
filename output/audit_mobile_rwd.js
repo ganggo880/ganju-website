@@ -38,6 +38,7 @@ const PAGES = [
   'lease-renewal-agreement.html',
   'tenant-screening-checker.html',
   'mandate-contract.html',
+  'guarantor-agreement.html',
   'privacy.html'
 ];
 

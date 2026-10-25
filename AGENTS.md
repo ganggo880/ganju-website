@@ -70,6 +70,7 @@
 - [x] 階段四十七：租客承租資格審查與租賃信用評分表產生器 `tenant-screening-checker.html`（依據30%房租所得比法則與租賃專法注意義務，整合所得負擔能力、職業穩定度、司法裁判查驗、前房東照會履歷、一票否決紅旗防呆、A4診斷書列印出圖、合格房客一鍵匯出至租約，全站 27 頁 100% 互通與 PWA 離線可用）
 - [x] 階段四十八：線上工具專屬授權驗證鎖定防護系統（`css/auth-guard.css` ＋ `js/auth-guard.js`、Zero FOUC 零閃爍防護、沉浸式毛玻璃鎖定遮罩、港居統編與專屬通行碼 SHA-256 驗證、網址免密帶入 `?auth=...` 自動解鎖、30 天記住裝置、頂部重新鎖定、首頁 `#tools` 內部授權提示橫幅、全站 26 頁 104 組極限 RWD 0px 溢出通過）
 - [x] 階段四十九：住宅租賃委託管理（包租／代管）契約書線上產生器 `mandate-contract.html`（符合內政部定型化契約應記載不得記載事項規範，支援委託代管10%服務費與保證包租雙模式切換、六大受託管理權限授權清單、5,000元免報備快速修繕代墊條款、撥款銀行指定、金融繁體大寫轉換、雙畫布Retina 2x電子手寫簽章、A4無痕列印與高畫質圖卡下載，全站28頁100%互通、PWA 103項離線可用與108組行動端0px溢出通過）
+- [x] 階段五十：租賃住宅連帶保證人保證書與履約切結書線上產生器 `guarantor-agreement.html`（依據《民法》第739~745條連帶保證規範設計，內建六大欠繳債權擔保範圍、明確自願拋棄先訴抗辯權切結宣告、最高清償責任限額國字大寫轉換、雙畫布Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE摘要複製，全站29頁100%互通、PWA 106項資產離線秒開與112組行動端0px溢出通過）
 
 ## 資料夾結構
 
@@ -109,7 +110,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── lease-renewal-agreement.html     # 26. 租約續約協議書與租金調幅精算產生器
 ├── tenant-screening-checker.html    # 27. 租客承租資格審查與租賃信用評分表產生器
 ├── mandate-contract.html            # 28. 住宅租賃委託管理（包租／代管）契約書線上產生器
-├── sitemap.xml                      # 全站 28 頁 SEO XML 網站地圖
+├── guarantor-agreement.html         # 29. 租賃住宅連帶保證人保證書與履約切結書線上產生器
+├── sitemap.xml                      # 全站 29 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -122,6 +124,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── auth-guard.css               # 全站線上工具授權驗證防護樣式（毛玻璃、零閃爍防護、RWD）
+│   ├── guarantor-agreement.css      # 租賃連帶保證人保證書專用樣式與 A4 排版引擎
 │   ├── mandate-contract.css         # 住宅租賃委託管理與包租契約專用樣式與 A4 排版引擎
 │   ├── space-planner.css            # 2D/3D 空間格局配置系統樣式
 │   ├── lease-contract.css           # 租賃契約與公約產生器樣式與 A4 列印引擎
@@ -142,6 +145,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
+│   ├── guarantor-agreement.js       # 租賃連帶保證人完全責任、先訴抗辯權拋棄與手寫簽章引擎
 │   ├── mandate-contract.js          # 住宅租賃委託管理與包租契約雙模式、修繕代墊授權與手寫簽章引擎
 │   ├── tracking.js                  # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js                     # 千分位、日期差、Toast、主題切換
