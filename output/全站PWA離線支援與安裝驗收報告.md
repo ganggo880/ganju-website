@@ -61,10 +61,11 @@
 | 49 | `emergency-entry-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃緊急避難與緊急開門進入授權協議書產生器 ｜ 港居不動產 |
 | 50 | `smoke-free-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃無菸住宅（全面禁菸）特約承諾書產生器 ｜ 港居不動產 |
 | 51 | `mold-prevention-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃室內防潮防黴與環境通風維護承諾書產生器 ｜ 港居不動產 |
-| 52 | `fire-safety-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃用電用火安全暨失火責任切結協議書產生器 ｜ 港居不動產 |
-| 53 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 52 | `noise-prevention-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃噪音防制與生活安寧特約承諾書產生器 ｜ 港居不動產 |
+| 53 | `fire-safety-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃用電用火安全暨失火責任切結協議書產生器 ｜ 港居不動產 |
+| 54 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**53 / 53 頁 (100%)**
+**離線可用率**：**54 / 54 頁 (100%)**
 
 ---
 

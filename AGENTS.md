@@ -95,6 +95,7 @@
 - [x] 階段七十二：住宅租賃緊急避難與緊急開門進入授權協議書產生器 `emergency-entry-agreement.html`（依據《刑法》第24/306條、《民法》第150/432條及《公寓大廈管理條例》第6條合規設計，整合瓦斯漏氣/火災/爆管漏水/失聯急難六大情境、第三方中立會同見證SOP、全程錄影存證、阻卻違法合意宣告、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 51 頁 100% 互通、PWA 172 項資產離線秒開與 200 組行動端 0px 溢出通過）
 - [x] 階段七十三：住宅租賃無菸住宅（全面禁菸）特約承諾書產生器 `smoke-free-agreement.html`（依據《菸害防制法》第18/19/20條與《民法》第432條善良管理人責任，整合傳統紙菸/電子煙/加熱菸全面管制、三級違約處置罰則、深層臭氧燻蒸除味與粉刷賠償、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 52 頁 100% 互通、PWA 175 項資產離線秒開與 204 組行動端 0px 溢出通過）
 - [x] 階段七十四：住宅租賃室內防潮防黴與環境通風維護承諾書產生器 `mold-prevention-agreement.html`（依據《民法》第423/430/432/437條善良管理人注意義務與及時通報責任，整合洗沐抽風排濕、室內除濕晾衣、空調濾網每季清洗、48小時及時通報防損害擴大、發黴賠償責任歸屬判定、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 53 頁 100% 互通、PWA 178 項資產離線秒開與 208 組行動端 0px 溢出通過）
+- [x] 階段七十五：住宅租賃噪音防制與生活安寧特約承諾書產生器 `noise-prevention-agreement.html`（依據《民法》第793/432條、《噪音管制法》第6條、《社會秩序維護法》第72條與《公寓大廈管理條例》第16條，整合Quiet Hours安寧時段、六大防噪要項、地板衝擊音防制、三級違規處置罰則、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 54 頁 100% 互通、PWA 181 項資產離線秒開與 212 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -159,7 +160,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── emergency-entry-agreement.html        # 51. 住宅租賃緊急避難與緊急開門進入授權協議書產生器
 ├── smoke-free-agreement.html             # 52. 住宅租賃無菸住宅（全面禁菸）特約承諾書產生器
 ├── mold-prevention-agreement.html        # 53. 住宅租賃室內防潮防黴與環境通風維護承諾書產生器
-├── sitemap.xml                      # 全站 53 頁 SEO XML 網站地圖
+├── noise-prevention-agreement.html       # 54. 住宅租賃噪音防制與生活安寧特約承諾書產生器
+├── sitemap.xml                      # 全站 54 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -210,6 +212,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── card-merger.css              # 名片合成工具樣式
 │   ├── image-converter.css          # 圖像格式轉換工具樣式
 │   ├── photo-time-location.css      # 照片時間地點浮水印工具樣式
+│   ├── noise-prevention-agreement.css # 住宅租賃噪音防制與生活安寧特約承諾書專用樣式與 A4 排版引擎
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
@@ -254,6 +257,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── image-converter.js           # 圖像格式與尺寸轉換邏輯
 │   ├── card-merger.js               # 名片正反面合成邏輯
 │   ├── photo-time-location.js       # 照片時間地點浮水印邏輯
+│   ├── noise-prevention-agreement.js # 噪音防制承諾書動態計算、Quiet Hours、大寫轉換、簽章與圖卡輸出引擎
 │   ├── exif-parser.js               # EXIF 解析
 │   ├── watermark-engine.js          # 水印合成引擎（Canvas）
 │   ├── watermark-app.js             # 照片水印工具 UI 控制
