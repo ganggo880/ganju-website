@@ -1,0 +1,506 @@
+/* ==========================================================================
+   港居不動產 - 租客承租資格審查與租賃信用評分表專用樣式表
+   File: css/tenant-screening-checker.css
+   依據: tokens.css, components.css, 30%房租所得比法則與個資安全標準
+   ========================================================================== */
+
+/* 1. 主工作台佈局 Layout */
+.app-workspace {
+  padding: 32px 0 64px;
+  background-color: var(--color-bg, #f8fafc);
+  min-height: calc(100vh - 180px);
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2. 控制卡片 Card */
+.control-card {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 16px);
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  margin-bottom: 24px;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary, #0c1a30);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.card-title i {
+  color: var(--color-accent, #c5a880);
+}
+
+/* 3. 審查分區與表單元素 Form Groups */
+.form-section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary, #0c1a30);
+  margin: 24px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-section-title::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  background: var(--color-accent, #c5a880);
+  border-radius: 2px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 540px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 16px;
+  min-width: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text, #1e293b);
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-border, #cbd5e1);
+  border-radius: var(--radius-sm, 8px);
+  background-color: var(--color-surface, #ffffff);
+  color: var(--color-text, #1e293b);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  min-height: 44px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-accent, #c5a880);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+}
+
+/* 4. 勾選清單項目 Checklist Item */
+.check-card-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.check-item-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-sm, 8px);
+  background: var(--color-surface, #ffffff);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+}
+
+.check-item-label:hover {
+  background: #f8fafc;
+  border-color: var(--color-accent, #c5a880);
+}
+
+.check-item-label input[type="checkbox"],
+.check-item-label input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-accent, #c5a880);
+  flex-shrink: 0;
+}
+
+.check-item-content {
+  flex: 1;
+}
+
+.check-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.check-item-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary, #0c1a30);
+}
+
+.check-item-pts {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #16a34a;
+  background: #dcfce7;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.check-item-desc {
+  font-size: 0.82rem;
+  color: var(--color-text-muted, #64748b);
+  line-height: 1.4;
+}
+
+/* 5. 一票否決紅色警示區 Hard Stop Box */
+.red-flag-banner {
+  background: #fef2f2;
+  border: 2px solid #ef4444;
+  border-radius: var(--radius-md, 12px);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.red-flag-title {
+  color: #b91c1c;
+  font-size: 0.95rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.red-flag-desc {
+  font-size: 0.83rem;
+  color: #7f1d1d;
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.red-flag-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.red-flag-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #991b1b;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.red-flag-label input {
+  accent-color: #ef4444;
+  width: 18px;
+  height: 18px;
+}
+
+/* 6. 右側評分預覽面板 Preview Card */
+.preview-sticky-wrap {
+  position: sticky;
+  top: 90px;
+}
+
+.preview-card-outer {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 16px);
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+.preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.preview-actions-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 7. 分數能量條與核心指標 Score Bar */
+.score-hero-box {
+  background: linear-gradient(135deg, #0c1a30 0%, #172a45 100%);
+  color: #ffffff;
+  border-radius: var(--radius-md, 12px);
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-main-num {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #f6ad55;
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.score-max-denom {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.score-tier-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.tier-s { background: #dcfce7; color: #15803d; }
+.tier-a { background: #dbeafe; color: #1d4ed8; }
+.tier-b { background: #fef3c7; color: #b45309; }
+.tier-c { background: #fee2e2; color: #b91c1c; }
+.tier-danger { background: #ef4444; color: #ffffff; }
+
+.score-bar-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  margin: 16px 0 10px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  width: 85%;
+  background: linear-gradient(90deg, #f6ad55 0%, #4ade80 100%);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.score-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@media (max-width: 540px) {
+  .score-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+.score-meta-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 2px;
+}
+
+/* 8. A4 實體紙張報告 Document Sheet */
+.a4-document-sheet {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 32px 28px;
+  border-radius: 4px;
+  font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif, sans-serif;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.doc-main-title {
+  text-align: center;
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #0c1a30;
+  margin-bottom: 4px;
+}
+
+.doc-sub-title {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #475569;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #0c1a30;
+}
+
+.doc-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+  font-size: 0.88rem;
+}
+
+.doc-info-table th,
+.doc-info-table td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+}
+
+.doc-info-table th {
+  background-color: #f8fafc;
+  font-weight: 700;
+  color: #0c1a30;
+  width: 25%;
+}
+
+.doc-scores-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+  font-size: 0.88rem;
+}
+
+.doc-scores-table th,
+.doc-scores-table td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+}
+
+.doc-scores-table th {
+  background-color: #0c1a30;
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+}
+
+.doc-scores-table td:nth-child(2),
+.doc-scores-table td:nth-child(3) {
+  text-align: center;
+}
+
+.doc-result-banner {
+  padding: 14px 16px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.doc-sign-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+/* 9. @media print A4 無痕列印 */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  .topbar,
+  .navbar,
+  .footer,
+  .control-card,
+  .preview-toolbar,
+  .header-actions,
+  .mobile-toggle,
+  .floating-actions,
+  .score-hero-box {
+    display: none !important;
+  }
+
+  .app-workspace {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .workspace-grid {
+    display: block !important;
+  }
+
+  .preview-sticky-wrap,
+  .preview-card-outer {
+    position: static !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .a4-document-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .doc-main-title {
+    font-size: 18pt !important;
+  }
+}

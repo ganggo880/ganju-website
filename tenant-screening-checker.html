@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>租客承租資格審查與租賃信用評分表產生器｜港居不動產・專業嚴選優質房客</title>
+  <meta name="description" content="依據國際房租所得比30%法則、租賃專法注意義務與個資法規範，整合租客所得負擔能力、職業就業穩定度、司法院裁判紀錄查驗、前房東照會履歷、一票否決紅旗防呆、雙畫布電子報告與A4無痕列印。">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/tenant-screening-checker.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="租客承租資格審查與租賃信用評分表產生器｜港居不動產">
+  <meta property="og:description" content="依據30%房租所得比法則與司法查驗規範，100分租賃信用評分體系，協助房東與代管嚴選優質房客，防範惡意租霸與欠租糾紛。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/tenant-screening-checker.html">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/hero-bg.jpg">
+
+  <!-- Favicon & PWA -->
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0c1a30">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/tenant-screening-checker.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "租客承租資格審查與租賃信用評分表產生器",
+    "alternateName": "房客背景信用評估與所得負擔能力自檢工具",
+    "url": "https://ganggo880.github.io/ganju-website/tenant-screening-checker.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
+    "description": "專業租客背景審查與租賃信用評估系統，整合國際30%房租所得比法則、職業財力穩定度、司法院裁判紀錄查驗、前租約照會履歷、一票否決紅旗機制、A4無痕列印與高畫質圖卡下載。",
+    "inLanguage": "zh-TW",
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "線上工具集",
+        "item": "https://ganggo880.github.io/ganju-website/#tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "租客資格審查與信用評分表產生器",
+        "item": "https://ganggo880.github.io/ganju-website/tenant-screening-checker.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="ganju-theme">
+
+  <!-- 1. 頂部宣告條 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 主導覽列 Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (24)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link active"><i class="fa-solid fa-user-check" style="color: #10b981;"></i> 租客審查與信用評分</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #48bb78;"></i> 租約續約協議書</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-circle-xmark" style="color: #f56565;"></i> 提前解約協議與切結</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #38bdf8;"></i> 設備折舊與殘值賠償</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-clipboard-list" style="color: #38bdf8;"></i> 看屋 30 項自檢表</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #38bdf8;"></i> 物業投報與現金流</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #f56565;"></i> 存證信函產生器</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #fc8181;"></i> 招租文案與首圖合成</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與月結單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-heart" style="color: #f687b3;"></i> 300億租金補貼試算</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #f6ad55;"></i> 退租押金結算單</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> 水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #ed8936;"></i> 屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract"></i> 租賃契約產生器</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="privacy.html" class="nav-link">隱私權政策</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <a href="tel:0968863880" class="btn btn-primary btn-sm"><i class="fa-solid fa-phone"></i> 預約諮詢</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. 主工作區 Workspace -->
+  <main class="app-workspace">
+    <div class="container">
+      
+      <!-- 工具簡介標題區 -->
+      <section style="margin-bottom: 28px;">
+        <span class="badge badge-gold"><i class="fa-solid fa-user-shield"></i> 嚴選優質房客・30%所得比法則・司法背景查核</span>
+        <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--color-primary, #0c1a30); margin: 8px 0 6px;">
+          租客承租資格審查與租賃信用評分表產生器
+        </h1>
+        <p style="color: var(--color-text-muted, #64748b); font-size: 0.95rem; margin: 0; line-height: 1.5;">
+          依據國際租賃實務「房租所得比 30% 安全法則」與《租賃住宅市場發展及管理條例》受託專業注意義務，建構 100 分租賃信用評分卡與三大一票否決防呆，協助房東與代管嚴選優質租客，一鍵輸出 A4 診斷報告。
+        </p>
+      </section>
+
+      <div class="workspace-grid">
+        
+        <!-- 左側：控制輸入面板 -->
+        <div class="control-panel-col">
+          
+          <div class="control-card">
+            <div class="card-header-flex">
+              <h2 class="card-title"><i class="fa-solid fa-user-check"></i> 候選租客審核參數</h2>
+              <div class="btn-group">
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-load-draft" title="讀取暫存草稿">
+                  <i class="fa-solid fa-folder-open"></i> 讀取
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-save-draft" title="儲存當前設定">
+                  <i class="fa-solid fa-floppy-disk"></i> 儲存
+                </button>
+                <button type="button" class="btn btn-outline-gold btn-sm" id="btn-export-contract" title="合格房客直接轉入租賃契約">
+                  <i class="fa-solid fa-file-export"></i> 匯入租約
+                </button>
+              </div>
+            </div>
+
+            <!-- 基本資料 -->
+            <div class="form-section-title"><i class="fa-solid fa-id-card"></i> 房客與申請物件基本資料</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="input-tenant-name" class="form-label">候選租客姓名</label>
+                <input type="text" id="input-tenant-name" class="form-control" value="林小姐 (外商工程師)">
+              </div>
+              <div class="form-group">
+                <label for="input-tenant-id" class="form-label">身分證 / 居留證號 (查驗比對)</label>
+                <input type="text" id="input-tenant-id" class="form-control" value="A223456789">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="input-tenant-phone" class="form-label">聯絡電話</label>
+                <input type="text" id="input-tenant-phone" class="form-control" value="0988-123-456">
+              </div>
+              <div class="form-group">
+                <label for="input-property-address" class="form-label">擬承租物件地址</label>
+                <input type="text" id="input-property-address" class="form-control" value="高雄市小港區中安路825號 10樓之1">
+              </div>
+            </div>
+
+            <!-- 維度一：所得負擔比率 (RTI) -->
+            <div class="form-section-title"><i class="fa-solid fa-money-bill-trend-up"></i> 維度一：所得負擔比率 (滿分 15 分・30%法則)</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="input-rent-amount" class="form-label">每月約定租金 (元)</label>
+                <input type="number" id="input-rent-amount" class="form-control" value="24000" step="1000">
+              </div>
+              <div class="form-group">
+                <label for="input-income-amount" class="form-label">租客申報月平均總所得 (元)</label>
+                <input type="number" id="input-income-amount" class="form-control" value="80000" step="5000">
+              </div>
+            </div>
+
+            <!-- 維度二：職業與就業穩定度 -->
+            <div class="form-section-title"><i class="fa-solid fa-briefcase"></i> 維度二：職業類別與工作穩定度 (滿分 15 分)</div>
+            <div class="check-card-group">
+              <label class="check-item-label">
+                <input type="radio" name="job-tier" value="15" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">公教醫事 / 上市櫃科技業 / 百大外商正職</span>
+                    <span class="check-item-pts">+15 分</span>
+                  </div>
+                  <div class="check-item-desc">所得極高且穩定、抗景氣風險強、社會信用良好（附識別證/薪轉憑單）。</div>
+                </div>
+              </label>
+              <label class="check-item-label">
+                <input type="radio" name="job-tier" value="12">
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">一般企業正職員工（任職滿 1 年以上）</span>
+                    <span class="check-item-pts">+12 分</span>
+                  </div>
+                  <div class="check-item-desc">具備固定勞健保與定期撥薪紀錄，工作資歷穩定持續。</div>
+                </div>
+              </label>
+              <label class="check-item-label">
+                <input type="radio" name="job-tier" value="8">
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">正職剛滿 3 個月 / 自由業具 6 個月薪轉存款證明</span>
+                    <span class="check-item-pts">+8 分</span>
+                  </div>
+                  <div class="check-item-desc">通過試用期或能提出足夠存款活存流水，具一定承租支付能力。</div>
+                </div>
+              </label>
+              <label class="check-item-label">
+                <input type="radio" name="job-tier" value="0">
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">待業中 / 無法提出穩定收入薪轉證明</span>
+                    <span class="check-item-pts">+0 分</span>
+                  </div>
+                  <div class="check-item-desc">缺乏明確收入來源或以現金支付無證明，違約欠租風險偏高。</div>
+                </div>
+              </label>
+            </div>
+
+            <!-- 維度三：身分、司法與前租約照會 (滿分 70 分) -->
+            <div class="form-section-title"><i class="fa-solid fa-list-check"></i> 維度三：信用履歷、身分查核與公約承諾 (滿分 70 分)</div>
+            <div class="check-card-group">
+              <label class="check-item-label">
+                <input type="checkbox" id="check-id-verified" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">身分真偽查驗（內政部戶政領補換資料吻合）</span>
+                    <span class="check-item-pts">+5 分</span>
+                  </div>
+                  <div class="check-item-desc">身分證領補換日期及照片經查核無報失或偽變造。</div>
+                </div>
+              </label>
+
+              <label class="check-item-label">
+                <input type="checkbox" id="check-judiciary-clear" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">司法查核清白（無重大刑案或欠債強執紀錄）</span>
+                    <span class="check-item-pts">+10 分</span>
+                  </div>
+                  <div class="check-item-desc">司法院裁判書開放查詢無詐欺、侵佔、租賃重大糾紛或債務執行案。</div>
+                </div>
+              </label>
+
+              <label class="check-item-label">
+                <input type="checkbox" id="check-guarantor-ready" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">附正職連帶保證人（同負履行連帶責任）</span>
+                    <span class="check-item-pts">+10 分</span>
+                  </div>
+                  <div class="check-item-desc">二等親或具正當職業者同意擔任連帶保證人，並附在職或財力佐證。</div>
+                </div>
+              </label>
+
+              <label class="check-item-label">
+                <input type="checkbox" id="check-landlord-referral" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">前房東電話照會（確認如期繳租無糾紛）</span>
+                    <span class="check-item-pts">+10 分</span>
+                  </div>
+                  <div class="check-item-desc">照會前房東確認租客生活習慣良好、無拖延租金或毀損房屋記錄。</div>
+                </div>
+              </label>
+
+              <label class="check-item-label">
+                <input type="checkbox" id="check-deposit-refunded" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">前租約押金全額退還（無爭議點交紀錄）</span>
+                    <span class="check-item-pts">+10 分</span>
+                  </div>
+                  <div class="check-item-desc">前約期滿退租時房屋完整點交，押金無因違規或欠款遭沒收抵扣。</div>
+                </div>
+              </label>
+
+              <label class="check-item-label">
+                <input type="checkbox" id="check-occupants-simple" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">居住成員單純（1~2人自住無複雜出入）</span>
+                    <span class="check-item-pts">+10 分</span>
+                  </div>
+                  <div class="check-item-desc">非多人擁擠合租或出入複雜，無私設聚會據點或日租轉租疑慮。</div>
+                </div>
+              </label>
+
+              <label class="check-item-label">
+                <input type="checkbox" id="check-schedule-regular" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">作息生活規律（無深夜噪音擾鄰之虞）</span>
+                    <span class="check-item-pts">+5 分</span>
+                  </div>
+                  <div class="check-item-desc">非日夜顛倒之高頻訪客職業，無大音量樂器或派對喧鬧習慣。</div>
+                </div>
+              </label>
+
+              <label class="check-item-label">
+                <input type="checkbox" id="check-no-smoking" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">健康生活習慣（無菸、無檳榔、不祀奉神明香火）</span>
+                    <span class="check-item-pts">+5 分</span>
+                  </div>
+                  <div class="check-item-desc">室內全面禁菸、無燒香薰黑牆面與消防隱患，保護室內裝潢與空氣品質。</div>
+                </div>
+              </label>
+
+              <label class="check-item-label">
+                <input type="checkbox" id="check-agreed-rules" checked>
+                <div class="check-item-content">
+                  <div class="check-item-header">
+                    <span class="check-item-name">簽署同意遵守 27 項大樓住戶公約與維護義務</span>
+                    <span class="check-item-pts">+5 分</span>
+                  </div>
+                  <div class="check-item-desc">同意遵守垃圾分類、梯廳不堆雜物及大樓管委會各項規章條款。</div>
+                </div>
+              </label>
+            </div>
+
+            <!-- 一票否決 (Hard Stop) 紅色警示區 -->
+            <div class="red-flag-banner">
+              <div class="red-flag-title"><i class="fa-solid fa-triangle-exclamation"></i> 一票否決紅色警示 (Hard Stop Flags)</div>
+              <div class="red-flag-desc">若勾選下列任何一項嚴重紅旗，綜合信用評分將直接鎖定於危險級，系統強烈建議房東「委婉婉拒承租」：</div>
+              <div class="red-flag-checkboxes">
+                <label class="red-flag-label">
+                  <input type="checkbox" id="rf-criminal">
+                  <span>經查證涉毒品、通緝、聚賭、洗錢或曾有租屋惡意毀損刑事前科。</span>
+                </label>
+                <label class="red-flag-label">
+                  <input type="checkbox" id="rf-fake">
+                  <span>使用變造、借用或偽造之身分證件／工作所得資料，言行嚴重閃爍不實。</span>
+                </label>
+                <label class="red-flag-label">
+                  <input type="checkbox" id="rf-extreme">
+                  <span>房租所得比高達 50% 以上且無法提出任何具償債擔保能力之連帶保證人。</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- 右側：A4 即時診斷報告卡片 -->
+        <div class="preview-panel-col">
+          <div class="preview-sticky-wrap">
+            <div class="preview-card-outer">
+              
+              <!-- 預覽工具列 -->
+              <div class="preview-toolbar">
+                <div style="font-weight: 700; color: var(--color-primary, #0c1a30); font-size: 1.05rem;">
+                  <i class="fa-solid fa-file-shield"></i> 租客審查診斷報告即時排版
+                </div>
+                <div class="preview-actions-group">
+                  <button type="button" class="btn btn-primary btn-sm" id="btn-print-report">
+                    <i class="fa-solid fa-print"></i> 列印報告 (A4)
+                  </button>
+                  <button type="button" class="btn btn-outline-gold btn-sm" id="btn-download-card">
+                    <i class="fa-solid fa-image"></i> 下載圖卡
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-copy-line">
+                    <i class="fa-brands fa-line" style="color: #06c755;"></i> LINE 複製
+                  </button>
+                </div>
+              </div>
+
+              <!-- 評分儀表盒 Score Hero Box -->
+              <div class="score-hero-box">
+                <div style="font-size: 0.85rem; color: #94a3b8; letter-spacing: 1px;">GANJU TENANT RELIABILITY SCORE</div>
+                <div class="score-main-num">
+                  <span id="val-total-score">92</span>
+                  <span class="score-max-denom">/ 100</span>
+                </div>
+                <div>
+                  <span class="score-tier-badge tier-s" id="badge-tier-result">🟢 S級・極品優質房客</span>
+                </div>
+                <div class="score-bar-track">
+                  <div class="score-bar-fill" id="score-bar-fill" style="width: 92%;"></div>
+                </div>
+                <div class="score-meta-grid">
+                  <div>
+                    <div style="color: #94a3b8;">房租所得比 (RTI)</div>
+                    <div class="score-meta-val" id="meta-rti-display">30.0% (標準)</div>
+                  </div>
+                  <div>
+                    <div style="color: #94a3b8;">就業穩定度得分</div>
+                    <div class="score-meta-val" id="meta-job-score">15 分 / 15分</div>
+                  </div>
+                  <div>
+                    <div style="color: #94a3b8;">背景查核得分</div>
+                    <div class="score-meta-val" id="meta-check-score">65 分 / 70分</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- A4 實體紙張報告 Document Sheet -->
+              <div class="a4-document-sheet" id="printable-report">
+                <div class="doc-main-title">租客承租資格審查與租賃信用評估報告書</div>
+                <div class="doc-sub-title">（港居特許包租代管專業審查體系・屋主決策專用）</div>
+
+                <!-- 候選人資料表 -->
+                <table class="doc-info-table">
+                  <tr>
+                    <th>申請承租人</th>
+                    <td id="doc-t-name">林小姐 (外商工程師)</td>
+                    <th>身分證字號</th>
+                    <td id="doc-t-id">A223456789</td>
+                  </tr>
+                  <tr>
+                    <th>聯絡電話</th>
+                    <td id="doc-t-phone">0988-123-456</td>
+                    <th>擬租賃標的</th>
+                    <td id="doc-t-address">高雄市小港區中安路825號 10樓之1</td>
+                  </tr>
+                  <tr>
+                    <th>申請月租金</th>
+                    <td id="doc-t-rent">NT$ 24,000 元/月</td>
+                    <th>申報月所得</th>
+                    <td id="doc-t-income">NT$ 80,000 元/月</td>
+                  </tr>
+                  <tr>
+                    <th>房租所得比 (RTI)</th>
+                    <td id="doc-t-rti">30.0%（12 分）</td>
+                    <th>審查機構</th>
+                    <td>港居不動產開發有限公司</td>
+                  </tr>
+                </table>
+
+                <!-- 評分明細表 -->
+                <table class="doc-scores-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 50%;">評審查核維度</th>
+                      <th style="width: 25%;">滿分基準</th>
+                      <th style="width: 25%;">實得分數</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="text-align: left;">一、房租所得比率 (RTI 30%法則)</td>
+                      <td>15 分</td>
+                      <td id="doc-score-rti">12 / 15</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: left;">二、職業類別與就業財力穩定度</td>
+                      <td>15 分</td>
+                      <td id="doc-score-job">15 / 15</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: left;">三、身分查驗、司法清白、前租約照會與公約承諾</td>
+                      <td>70 分</td>
+                      <td id="doc-score-checklist">65 / 70</td>
+                    </tr>
+                    <tr style="font-weight: 700; background-color: #f8fafc;">
+                      <td style="text-align: left;">綜合租賃信用總分合計</td>
+                      <td>100 分</td>
+                      <td id="doc-score-total" style="color: #c5a880; font-size: 1.1rem;">92 分（滿分 100）</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!-- 綜合結論與建議 -->
+                <div class="doc-result-banner" id="doc-result-banner">
+                  <strong>審查結論：【🟢 S級・極品優質房客】（綜合評分 92 分）</strong><br>
+                  承租人為外商科技正職員工，所得充裕（房租所得比僅 30%），司法裁判查驗清白無負債，前房東照會評價極高，強烈建議直接簽約承租！
+                </div>
+
+                <!-- 審核人員簽署欄 -->
+                <div class="doc-sign-grid">
+                  <div>
+                    <div><strong>受託審查機構：</strong>港居不動產開發有限公司</div>
+                    <div>特許營業登記證：(113)高市租登字第0012號</div>
+                    <div>專業租賃住宅管理人員：陳俊銘 (112)登字第013739號</div>
+                  </div>
+                  <div>
+                    <div><strong>審查人員簽章：</strong>（已完成法規檢核）</div>
+                    <div id="doc-sign-date" style="margin-top: 14px; font-weight: 700;">中 華 民 國 115 年 10 月 25 日</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 4. 全站頁尾 Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+          <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-desc">
+          港居不動產開發有限公司（統編：96797997）致力於提供高雄都會區最專業的高優質住宅包租代管服務。讓屋主免改裝直上省心增值，為租客打造安心溫暖的高品質居住體驗。
+        </p>
+        <div class="footer-certs">
+          <span class="cert-pill"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+          <span class="cert-pill"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112)登字第013739號</span>
+          <span class="cert-pill"><i class="fa-solid fa-shield-halved"></i> 公會會員：115-046號</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4 class="footer-col-title">房東首選工具</h4>
+          <ul>
+            <li><a href="tenant-screening-checker.html"><i class="fa-solid fa-user-check" style="color: #10b981;"></i> 租客審查與信用評分</a></li>
+            <li><a href="lease-renewal-agreement.html"><i class="fa-solid fa-file-signature" style="color: #48bb78;"></i> 租約續約協議書</a></li>
+            <li><a href="lease-termination-agreement.html"><i class="fa-solid fa-file-circle-xmark"></i> 提前解約協議與切結</a></li>
+            <li><a href="depreciation-calculator.html"><i class="fa-solid fa-calculator"></i> 設備折舊與殘值賠償</a></li>
+            <li><a href="property-roi-calculator.html"><i class="fa-solid fa-chart-line"></i> 物業投報與房貸現金流</a></li>
+            <li><a href="tax-calculator.html"><i class="fa-solid fa-percent"></i> 房東節稅與收益試算</a></li>
+            <li><a href="lease-contract.html"><i class="fa-solid fa-file-contract"></i> 租賃契約與公約產生器</a></li>
+            <li><a href="legal-notice-generator.html"><i class="fa-solid fa-scale-balanced"></i> 欠租催告存證信函</a></li>
+            <li><a href="listing-post-generator.html"><i class="fa-solid fa-bullhorn"></i> 591與社群招租文案</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">租客與空間神器</h4>
+          <ul>
+            <li><a href="tenant-screening-checker.html"><i class="fa-solid fa-user-check" style="color: #10b981;"></i> 租客審查與信用評分</a></li>
+            <li><a href="lease-renewal-agreement.html"><i class="fa-solid fa-file-signature" style="color: #48bb78;"></i> 租約續約協議書</a></li>
+            <li><a href="viewing-checklist.html"><i class="fa-solid fa-clipboard-list"></i> 看屋 30 項自檢表</a></li>
+            <li><a href="rent-subsidy-checker.html"><i class="fa-solid fa-hand-holding-heart"></i> 300億租金補貼試算</a></li>
+            <li><a href="utility-splitter.html"><i class="fa-solid fa-bolt"></i> 分租水電與公電分攤</a></li>
+            <li><a href="deposit-settlement.html"><i class="fa-solid fa-hand-holding-dollar"></i> 退租押金結算返還</a></li>
+            <li><a href="repair-inspection.html"><i class="fa-solid fa-clipboard-check"></i> 屋況修繕瑕疵點交</a></li>
+            <li><a href="space-planner.html"><i class="fa-solid fa-cubes"></i> 2D/3D 空間格局配置</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">聯絡港居</h4>
+          <ul>
+            <li><i class="fa-solid fa-location-dot"></i> 高雄市小港區中安路825號</li>
+            <li><i class="fa-solid fa-phone"></i> 專線：0968-863-880 (陳經理)</li>
+            <li><i class="fa-solid fa-phone-office"></i> 市話：07-791-2288</li>
+            <li><i class="fa-brands fa-line"></i> LINE：@ganggo880</li>
+            <li><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</li>
+            <li><a href="privacy.html" style="color: var(--accent-gold); font-weight: 600;"><i class="fa-solid fa-user-shield"></i> 個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright">
+          &copy; 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved.
+        </p>
+        <p class="footer-privacy-note">
+          本站所有線上工具皆於使用者本地端（瀏覽器記憶體）運算，絕不上傳任何個人資料或證件相片，保障隱私安全。
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" class="float-btn float-btn-line" title="Line 專員一對一諮詢" aria-label="Line 專員一對一諮詢" rel="noopener noreferrer">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" title="致電 陳俊銘 經理" aria-label="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- 5. 核心腳本 Scripts -->
+  <script src="js/tracking.js"></script>
+  <script src="js/tenant-screening-checker.js"></script>
+</body>
+</html>

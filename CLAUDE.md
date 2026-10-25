@@ -49,7 +49,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── depreciation-calculator.html # 24. 租賃住宅設備折舊損耗與殘值賠償精算器 (耐用年數、直線折舊、法定殘值、孰低原則)
 ├── lease-termination-agreement.html # 25. 租約提前終止協議書與遷讓交還切結產生器 (民法453/454條、法定免責、配件清點、Clean Break)
 ├── lease-renewal-agreement.html     # 26. 租約續約協議書與租金調幅精算產生器 (民法451條、土地法100條防呆、CPI調幅、押金結轉)
-├── sitemap.xml              # 全站 26 頁 SEO XML 網站地圖
+├── tenant-screening-checker.html    # 27. 租客承租資格審查與租賃信用評分表產生器 (30%所得比法則、司法查核、一票否決防呆)
+├── sitemap.xml              # 全站 27 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -73,6 +74,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── depreciation-calculator.css # 租賃設備折舊與殘值賠償專用樣式與 A4 列印引擎
 │   ├── lease-termination-agreement.css # 提前解約協議與遷讓交還切結專用樣式與 A4 列印引擎
 │   ├── lease-renewal-agreement.css # 租約續約協議書與租金調幅專用樣式與 A4 列印引擎
+│   ├── tenant-screening-checker.css # 租客承租資格審查與信用評分表專用樣式與 A4 列印引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式

@@ -67,6 +67,7 @@
 - [x] 階段四十四：租賃住宅設備損耗折舊與賠償殘值精算器 `depreciation-calculator.html`（行政院固定資產耐用年數表、平均法直線折舊、法定殘值下限、修復費vs現值孰低原則、承租人過失比例分攤、LINE 複製、Canvas 840×1080px 圖卡下載與 A4 列印，全站 24 頁 100% 互通與 PWA 離線可用）
 - [x] 階段四十五：租約提前終止協議書與遷讓交還切結產生器 `lease-termination-agreement.html`（民法第453/454條與租賃專法第10/11條、四種終止模式與法定免責判定、鑰匙配件設備點交清單、押金淨額結算與跨工具匯入、債權債務清償消滅Clean Break條款、雙畫布Retina 2x簽章、A4無痕列印與Canvas圖卡下載，全站 25 頁 100% 互通與 PWA 離線可用）
 - [x] 階段四十六：租約續約協議書與租金調幅精算產生器 `lease-renewal-agreement.html`（依據民法第451條防範默示更新不定期租賃與土地法第100條限制，內建主計總處房租CPI調幅試算、原押金結轉與法定2個月上限檢核、原約條款繼續拘束宣告、雙畫布Retina 2x電子手寫簽章、A4無痕列印與高畫質圖卡下載，全站 26 頁 100% 互通與 PWA 離線可用）
+- [x] 階段四十七：租客承租資格審查與租賃信用評分表產生器 `tenant-screening-checker.html`（依據30%房租所得比法則與租賃專法注意義務，整合所得負擔能力、職業穩定度、司法裁判查驗、前房東照會履歷、一票否決紅旗防呆、A4診斷書列印出圖、合格房客一鍵匯出至租約，全站 27 頁 100% 互通與 PWA 離線可用）
 
 ## 資料夾結構
 
@@ -104,7 +105,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── depreciation-calculator.html     # 24. 租賃住宅設備折舊損耗與殘值賠償精算器
 ├── lease-termination-agreement.html # 25. 租約提前終止協議書與遷讓交還切結產生器
 ├── lease-renewal-agreement.html     # 26. 租約續約協議書與租金調幅精算產生器
-├── sitemap.xml                      # 全站 26 頁 SEO XML 網站地圖
+├── tenant-screening-checker.html    # 27. 租客承租資格審查與租賃信用評分表產生器
+├── sitemap.xml                      # 全站 27 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css

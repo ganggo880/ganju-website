@@ -37,6 +37,7 @@ const PAGES = [
   'depreciation-calculator.html',
   'lease-termination-agreement.html',
   'lease-renewal-agreement.html',
+  'tenant-screening-checker.html',
   'privacy.html'
 ];
 
