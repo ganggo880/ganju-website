@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>租賃住宅修繕通報派工與完工驗收證明單產生器｜港居不動產・物業維護與請款核銷</title>
+  <meta name="description" content="依據《民法》第429/430條修繕義務與定型化契約規範設計，支援六大水電工程分類、施工工項費用明細精算、施工前後照片存證對比、三方電子親筆簽章、5000元緊急代墊標記、A4驗收單列印與高畫質圖卡下載。">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/repair-work-order.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="租賃住宅修繕通報派工與完工驗收證明單產生器｜港居不動產">
+  <meta property="og:description" content="標準物業維修工單數位化產製系統，支援多工項核銷、前後照片對照、三方電子簽章與請款核銷。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/repair-work-order.html">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@600;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/repair-work-order.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "租賃住宅修繕通報派工與完工驗收證明單產生器",
+    "alternateName": "物業維修工單與請款驗收證明單系統",
+    "url": "https://ganggo880.github.io/ganju-website/repair-work-order.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
+    "description": "依據《民法》第429/430條修繕規範設計，提供物業管理業者與房東快速產製修繕派工單與完工驗收證明，內建工項動態計費、前後照片對比存證、三方電子簽章、A4請款單列印與圖卡下載。",
+    "inLanguage": "zh-TW",
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "線上工具中心",
+        "item": "https://ganggo880.github.io/ganju-website/#tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "修繕派工與完工驗收證明單產生器",
+        "item": "https://ganggo880.github.io/ganju-website/repair-work-order.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Auth Guard: 港居內部專屬線上工具授權驗證系統 -->
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <script src="js/auth-guard.js"></script>
+</head>
+<body class="ganju-theme">
+
+  <!-- 1. 頂部宣告條 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 主導覽列 Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (27)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="repair-work-order.html" class="nav-link active"><i class="fa-solid fa-wrench" style="color: var(--accent-gold);"></i> 修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #63b3ed;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #63b3ed;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #10b981;"></i> 租客審查與信用評分</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #48bb78;"></i> 租約續約協議書</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-circle-xmark" style="color: #f56565;"></i> 提前解約協議與切結</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #38bdf8;"></i> 設備折舊與殘值賠償</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-clipboard-list" style="color: #38bdf8;"></i> 看屋 30 項自檢表</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #38bdf8;"></i> 物業投報與現金流</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #f56565;"></i> 存證信函產生器</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #fc8181;"></i> 招租文案與首圖合成</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與月結單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-heart" style="color: #f687b3;"></i> 300億租金補貼試算</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #f6ad55;"></i> 退租押金結算單</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> 水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #ed8936;"></i> 屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract"></i> 租賃契約產生器</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-nav" style="padding: 8px 18px; font-size: 0.88rem;">
+          <i class="fa-brands fa-line"></i> 預約諮詢
+        </a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="開啟功能選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 3. 主工作台頁面 -->
+  <main class="workorder-wrapper">
+    <!-- 標題區域 -->
+    <header class="workorder-header">
+      <div class="badge-tag">
+        <i class="fa-solid fa-screwdriver-wrench"></i> 《民法》第429/430條修繕規範與請款憑證標準
+      </div>
+      <h1>租賃住宅修繕通報派工與完工驗收證明單產生器</h1>
+      <p>專為物業管理專員、修繕廠商與房東量身打造。整合報修工單建檔、多工項材料費用動態計算、施工前後照片存證對比、三方電子手寫簽章與 A4 請款單列印，讓每筆維修透明可稽核。</p>
+    </header>
+
+    <!-- 雙欄工作台 -->
+    <div class="workorder-workspace">
+
+      <!-- 左欄：輸入控制面板 -->
+      <section class="form-card">
+        <form id="workOrderForm" onsubmit="return false;">
+
+          <!-- 第一分區：工單基本資料 -->
+          <div class="section-title">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span>1. 工單編號與案件基本資訊</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="workOrderNo">修繕工單編號 <span class="required">*</span></label>
+              <input type="text" id="workOrderNo" class="form-input" value="RO-20261025-01">
+            </div>
+            <div class="form-group">
+              <label for="repairCategory">修繕工程類別 <span class="required">*</span></label>
+              <select id="repairCategory" class="form-select">
+                <option value="plumbing" selected>水電管路維修</option>
+                <option value="aircon">冷氣空調設備</option>
+                <option value="bathroom">衛浴廚房設備</option>
+                <option value="waterheater">天然瓦斯與熱水器</option>
+                <option value="masonry">門窗五金泥作防水</option>
+                <option value="appliance">附屬家電傢俱</option>
+                <option value="other">其他綜合修繕</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row triple">
+            <div class="form-group">
+              <label for="reportDate">通報日期 <span class="required">*</span></label>
+              <input type="date" id="reportDate" class="form-input" value="2026-10-25">
+            </div>
+            <div class="form-group">
+              <label for="scheduledDate">預計進場日</label>
+              <input type="date" id="scheduledDate" class="form-input" value="2026-10-26">
+            </div>
+            <div class="form-group">
+              <label for="completedDate">完工驗收日 <span class="required">*</span></label>
+              <input type="date" id="completedDate" class="form-input" value="2026-10-26">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="urgencyLevel">急迫維修等級</label>
+              <select id="urgencyLevel" class="form-select">
+                <option value="normal">普通件 (3~5日內進場)</option>
+                <option value="urgent" selected>急件 (24小時內進場)</option>
+                <option value="emergency">特急搶修 (漏水/停電/2小時內)</option>
+              </select>
+            </div>
+            <div class="form-group" style="justify-content: center;">
+              <label for="isEmergencyPreauth" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; min-height: 44px;">
+                <input type="checkbox" id="isEmergencyPreauth" checked style="width: 1.2rem; height: 1.2rem; accent-color: var(--accent-gold);">
+                <span style="font-size: 0.88rem; font-weight: 700; color: #b08c45;">
+                  🚨 符合委託代管 5,000 元免報備緊急搶修代墊
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 第二分區：物業標的與關係人 -->
+          <div class="section-title" style="margin-top: 2rem;">
+            <i class="fa-solid fa-house-chimney-user"></i>
+            <span>2. 租賃物業標的與關係人</span>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <label for="propertyAddress">租賃住宅地址 <span class="required">*</span></label>
+              <input type="text" id="propertyAddress" class="form-input" value="高雄市前鎮區中華五路999號12樓之2">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tenantName">承租人姓名 <span class="required">*</span></label>
+              <input type="text" id="tenantName" class="form-input" value="陳志遠">
+            </div>
+            <div class="form-group">
+              <label for="tenantPhone">承租人聯絡電話 <span class="required">*</span></label>
+              <input type="tel" id="tenantPhone" class="form-input" value="0922-111-222">
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <label for="landlordName">出租人 / 受託管理業者</label>
+              <input type="text" id="landlordName" class="form-input" value="港居不動產開發有限公司（受託代管方）">
+            </div>
+          </div>
+
+          <!-- 第三分區：施工廠商與費用歸屬 -->
+          <div class="section-title" style="margin-top: 2rem;">
+            <i class="fa-solid fa-helmet-safety"></i>
+            <span>3. 施工廠商與費用責任歸屬</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contractorName">施工水電廠商名稱 <span class="required">*</span></label>
+              <input type="text" id="contractorName" class="form-input" value="順捷水電工程行">
+            </div>
+            <div class="form-group">
+              <label for="contractorPhone">技師聯絡電話 <span class="required">*</span></label>
+              <input type="tel" id="contractorPhone" class="form-input" value="0911-888-999">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contractorTaxId">廠商統一編號 / 登記證號</label>
+              <input type="text" id="contractorTaxId" class="form-input" value="82345678">
+            </div>
+            <div class="form-group">
+              <label for="warrantyPeriod">施工責任保固期限</label>
+              <input type="text" id="warrantyPeriod" class="form-input" value="3個月（施工責任保固）">
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <label for="costBearer">修繕費用負擔判定 <span class="required">*</span></label>
+              <select id="costBearer" class="form-select">
+                <option value="landlord" selected>出租人全額負擔（自然耗損、結構管線老化、原附家電故障）</option>
+                <option value="tenant">承租人全額負擔（人為疏失破壞、使用不當、耗材損耗）</option>
+                <option value="ganju">港居包租方案全包（包租合約承諾之日常維護支出）</option>
+                <option value="split">雙方協議共同分攤（各負擔特定比例）</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <label for="problemDesc">故障現況描述 <span class="required">*</span></label>
+              <textarea id="problemDesc" class="form-textarea" rows="2" placeholder="詳細描述故障情況">房客反映主臥衛浴面盆排水管漏水滲至地面，伴隨輕微滴漏水聲，疑似下水金屬軟管鏽蝕破損。</textarea>
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <label for="actionDesc">完工施工處置說明 <span class="required">*</span></label>
+              <textarea id="actionDesc" class="form-textarea" rows="2" placeholder="詳細描述技師施工及測試成果">技師進場拆卸舊鏽蝕存水彎，換裝防臭加厚型金屬下水管並更新橡膠迫緊密封圈；重新測試盛水排水5次無洩漏，功能恢復正常。</textarea>
+            </div>
+          </div>
+
+          <!-- 第四分區：修繕工項與費用清單 -->
+          <div class="section-title" style="margin-top: 2rem;">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <span>4. 修繕項目與材料工資報價清冊</span>
+          </div>
+
+          <div class="items-table-wrapper">
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th>施工工項與材料名稱</th>
+                  <th style="width: 70px;">數量</th>
+                  <th style="width: 100px;">單價</th>
+                  <th style="width: 100px; text-align: right;">小計</th>
+                  <th>備註</th>
+                  <th style="width: 44px; text-align: center;">操作</th>
+                </tr>
+              </thead>
+              <tbody id="itemsContainer">
+                <!-- 動態注入工項 -->
+              </tbody>
+            </table>
+          </div>
+
+          <button type="button" class="btn-add-item" id="btnAddItem">
+            <i class="fa-solid fa-plus"></i> 新增施工材料工項
+          </button>
+
+          <!-- 費用彙總 -->
+          <div class="cost-summary-box">
+            <div>
+              <div class="cost-summary-title">總修繕工程請款金額：</div>
+              <div class="cost-capital-text" id="capitalCostDisplay">【大寫：零元整】</div>
+            </div>
+            <div class="cost-summary-value" id="totalCostDisplay">NT$ 0 元</div>
+          </div>
+
+          <!-- 第五分區：施工前後存證照片 -->
+          <div class="section-title" style="margin-top: 2rem;">
+            <i class="fa-solid fa-camera"></i>
+            <span>5. 施工前後照片對比存證</span>
+          </div>
+
+          <div class="photo-compare-grid">
+            <div class="photo-upload-box" onclick="document.getElementById('filePhotoBefore').click();">
+              <input type="file" id="filePhotoBefore" accept="image/*" style="display: none;">
+              <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 0.5rem;"></i>
+              <div style="font-weight: 600; font-size: 0.9rem;">上傳【施工前 / 損壞現況】照片</div>
+              <span class="hint-text">點擊選取或拍照存證</span>
+              <div class="photo-preview-wrap" id="previewBeforeWrap">
+                <img id="imgBefore" alt="施工前照片">
+              </div>
+            </div>
+
+            <div class="photo-upload-box" onclick="document.getElementById('filePhotoAfter').click();">
+              <input type="file" id="filePhotoAfter" accept="image/*" style="display: none;">
+              <i class="fa-solid fa-circle-check" style="font-size: 2rem; color: #10b981; margin-bottom: 0.5rem;"></i>
+              <div style="font-weight: 600; font-size: 0.9rem;">上傳【施工後 / 完工驗收】照片</div>
+              <span class="hint-text">點擊選取完工修復成果</span>
+              <div class="photo-preview-wrap" id="previewAfterWrap">
+                <img id="imgAfter" alt="完工後照片">
+              </div>
+            </div>
+          </div>
+
+          <!-- 第六分區：三方電子親筆簽章 -->
+          <div class="section-title" style="margin-top: 2rem;">
+            <i class="fa-solid fa-signature"></i>
+            <span>6. 三方電子手寫簽章板 (Retina 2x)</span>
+          </div>
+
+          <div class="signatures-tri-grid">
+            <div class="sig-box">
+              <div class="sig-header">
+                <span class="sig-title"><i class="fa-solid fa-user"></i> 承租人完工驗收</span>
+                <button type="button" class="btn-clear-sig" id="btnClearTenant"><i class="fa-solid fa-rotate-left"></i> 重簽</button>
+              </div>
+              <canvas id="canvasTenant" class="sig-canvas"></canvas>
+              <span class="hint-text">確認修繕完成且功能正常</span>
+            </div>
+
+            <div class="sig-box">
+              <div class="sig-header">
+                <span class="sig-title"><i class="fa-solid fa-wrench"></i> 施工廠商技師</span>
+                <button type="button" class="btn-clear-sig" id="btnClearContractor"><i class="fa-solid fa-rotate-left"></i> 重簽</button>
+              </div>
+              <canvas id="canvasContractor" class="sig-canvas"></canvas>
+              <span class="hint-text">確認完工並依約提供保固</span>
+            </div>
+
+            <div class="sig-box">
+              <div class="sig-header">
+                <span class="sig-title"><i class="fa-solid fa-shield-halved"></i> 港居專員結案</span>
+                <button type="button" class="btn-clear-sig" id="btnClearManager"><i class="fa-solid fa-rotate-left"></i> 重簽</button>
+              </div>
+              <canvas id="canvasManager" class="sig-canvas"></canvas>
+              <span class="hint-text">物業專員審核通過請款</span>
+            </div>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- 右欄：即時預覽與三大操作按鈕 -->
+      <section class="preview-card">
+        <div class="preview-sticky">
+
+          <!-- 工具列按鈕群 -->
+          <div class="preview-toolbar">
+            <button type="button" class="btn-action btn-primary-gold" id="btnPrint">
+              <i class="fa-solid fa-print"></i> 列印標準 A4 請款單
+            </button>
+            <button type="button" class="btn-action btn-outline" id="btnDownloadCard">
+              <i class="fa-solid fa-image"></i> 下載驗收圖卡 (PNG)
+            </button>
+            <button type="button" class="btn-action btn-line-share" id="btnCopyLine">
+              <i class="fa-brands fa-line"></i> 複製 LINE 通報
+            </button>
+            <button type="button" class="btn-action btn-outline" id="btnSaveDraft">
+              <i class="fa-solid fa-floppy-disk"></i> 暫存草稿
+            </button>
+            <button type="button" class="btn-action btn-outline" id="btnLoadSample">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> 範本資料
+            </button>
+            <button type="button" class="btn-action btn-outline" id="btnClearDraft" style="color: #e53e3e;">
+              <i class="fa-solid fa-trash-can"></i> 清空
+            </button>
+          </div>
+
+          <!-- A4 紙本工單即時預覽紙張 -->
+          <article class="contract-paper" id="contractPaper">
+            <h2>租賃住宅修繕通報派工與完工驗收證明單</h2>
+            <div class="paper-sub">依據《民法》第429/430條修繕規範簽署・具會計請款與修繕核銷完全佐證力</div>
+
+            <div class="paper-badge-strip">
+              <strong id="prevOrderNo">工單編號：RO-20261025-01</strong>
+              <span id="prevReportDate">通報日期：2026-10-25 ｜ 完工驗收：2026-10-26</span>
+            </div>
+
+            <!-- 基本資料表格 -->
+            <table class="paper-meta-table">
+              <tr>
+                <th>租賃住宅地址</th>
+                <td colspan="3" id="prevPropertyAddress">高雄市前鎮區中華五路999號12樓之2</td>
+              </tr>
+              <tr>
+                <th>承租人資料</th>
+                <td id="prevTenantInfo">陳志遠（0922-111-222）</td>
+                <th>出租人 / 管理方</th>
+                <td id="prevLandlordInfo">港居不動產開發有限公司</td>
+              </tr>
+              <tr>
+                <th>施工廠商資訊</th>
+                <td id="prevContractorInfo">順捷水電工程行 / 0911-888-999（保固：3個月）</td>
+                <th>修繕類別與急迫度</th>
+                <td id="prevCategoryUrgency">水電管路維修（急件）</td>
+              </tr>
+              <tr>
+                <th>費用負擔與核銷</th>
+                <td colspan="3" id="prevCostBearerBadge">出租人全額負擔 【🚨 符合 5,000 元免報備緊急搶修代墊核銷】</td>
+              </tr>
+              <tr>
+                <th>故障現況說明</th>
+                <td colspan="3" id="prevProblemDesc">房客反映主臥衛浴面盆排水管漏水滲至地面，伴隨輕微滴漏水聲，疑似下水金屬軟管鏽蝕破損。</td>
+              </tr>
+              <tr>
+                <th>施工處置成果</th>
+                <td colspan="3" id="prevActionDesc">技師進場拆卸舊鏽蝕存水彎，換裝防臭加厚型金屬下水管並更新橡膠迫緊密封圈；重新測試盛水排水5次無洩漏，功能恢復正常。</td>
+              </tr>
+            </table>
+
+            <!-- 修繕工項費用表格 -->
+            <table class="paper-items-table">
+              <thead>
+                <tr>
+                  <th>施工工項與材料名稱</th>
+                  <th style="width: 50px; text-align: center;">數量</th>
+                  <th style="width: 80px; text-align: right;">單價</th>
+                  <th style="width: 90px; text-align: right;">小計</th>
+                  <th>備註 / 耗損判定</th>
+                </tr>
+              </thead>
+              <tbody id="prevItemsTableBody">
+                <!-- 動態注入 -->
+              </tbody>
+            </table>
+
+            <div style="text-align: right; margin: 0.5rem 0 1rem;" id="prevTotalAmountText">
+              總計金額：<strong style="color: #1a365d; font-size: 1.15rem;">新臺幣 參仟伍佰元整（NT$ 3,500 元整）</strong>
+            </div>
+
+            <!-- 施工前後照片存證條 -->
+            <div class="paper-photo-strip">
+              <div class="paper-photo-box">
+                <span>【施工前 / 損壞現場拍照存證】</span>
+                <img id="paperImgBefore" style="display: none;" alt="施工前現場存證">
+                <div class="paper-photo-placeholder" id="paperPlaceholderBefore">（未檢附施工前照片）</div>
+              </div>
+              <div class="paper-photo-box">
+                <span>【施工後 / 完工功能恢復存證】</span>
+                <img id="paperImgAfter" style="display: none;" alt="完工後現場存證">
+                <div class="paper-photo-placeholder" id="paperPlaceholderAfter">（未檢附完工照片）</div>
+              </div>
+            </div>
+
+            <!-- 三方簽章欄位 -->
+            <div class="paper-signatures">
+              <div class="paper-sig-block">
+                <span>承租人驗收簽認：</span>
+                <img id="imgSigTenant" class="paper-sig-img" style="display: none;" alt="承租人驗收簽署">
+                <div class="paper-stamp-box">（尚未簽認）</div>
+              </div>
+
+              <div class="paper-sig-block">
+                <span>施工廠商技師簽認：</span>
+                <img id="imgSigContractor" class="paper-sig-img" style="display: none;" alt="施工廠商簽署">
+                <div class="paper-stamp-box">（尚未簽認）</div>
+              </div>
+
+              <div class="paper-sig-block">
+                <span>港居專員審核結案：</span>
+                <img id="imgSigManager" class="paper-sig-img" style="display: none;" alt="港居專員簽署">
+                <div class="paper-stamp-box">（尚未簽認）</div>
+              </div>
+            </div>
+
+            <div class="paper-footer">
+              <span id="prevSignDate">驗收結案日期：中華民國 115 年 10 月 25 日</span> ｜ 港居不動產開發有限公司（統編 96797997）物業管理存卷
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 4. 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>港居品牌專區</h4>
+          <ul>
+            <li><a href="index.html#home">首頁核心概覽</a></li>
+            <li><a href="index.html#landlords">包租代管方案</a></li>
+            <li><a href="index.html#properties">精選高質感房源</a></li>
+            <li><a href="index.html#calculator">房東收益試算</a></li>
+            <li><a href="island.html" target="_blank">3D 智慧營運島</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>房東節稅與法務神器</h4>
+          <ul>
+            <li><a href="repair-work-order.html" class="active" style="color: var(--accent-gold); font-weight: 700;">修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html">連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html">委託代管與包租契約</a></li>
+            <li><a href="tenant-screening-checker.html">租客審查與信用評分</a></li>
+            <li><a href="lease-contract.html">租賃契約與公約產生器</a></li>
+            <li><a href="tax-calculator.html">房東節稅與實質淨收益</a></li>
+            <li><a href="legal-notice-generator.html">郵局存證信函產生器</a></li>
+            <li><a href="lease-renewal-agreement.html">租約續約協議產生器</a></li>
+            <li><a href="lease-termination-agreement.html">提前解約協議與切結</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>點交、水電與折舊工具</h4>
+          <ul>
+            <li><a href="repair-inspection.html">修繕點交與瑕疵存證</a></li>
+            <li><a href="utility-splitter.html">分租水電公電分攤</a></li>
+            <li><a href="deposit-settlement.html">退租押金扣款結算單</a></li>
+            <li><a href="rent-receipt.html">租金收據與月結對帳單</a></li>
+            <li><a href="depreciation-calculator.html">設備損耗折舊殘值精算</a></li>
+            <li><a href="viewing-checklist.html">租客看屋 30 項自檢</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>法令遵循與聯絡港居</h4>
+          <ul>
+            <li><a href="privacy.html">個人資料保護與隱私權政策</a></li>
+            <li><a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a></li>
+            <li><a href="tel:077912288"><i class="fa-solid fa-building"></i> 市話：07-791-2288</a></li>
+            <li><a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-line"></i> LINE 官方專員諮詢</a></li>
+            <li><span>營業登記：(113)高市租登字第0012號</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved.
+        </p>
+        <p class="footer-privacy-note">
+          本站所有線上工具皆於使用者本地端（瀏覽器記憶體）運算，絕不上傳任何個人資料或商業合約，保障隱私與商業機密安全。
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 5. 核心腳本加載 -->
+  <script src="js/tracking.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/repair-work-order.js"></script>
+</body>
+</html>

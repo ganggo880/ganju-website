@@ -39,9 +39,9 @@
 
 ---
 
-## 3. 系統架構與全站 29 大核心頁面清單
+## 3. 系統架構與全站 30 大核心頁面清單
 
-系統由 **1 個品牌官網主頁** 與 **28 個不動產專業線上工具與法規政策專頁** 組成，全站共用一組設計 Token 與模組化 JavaScript：
+系統由 **1 個品牌官網主頁** 與 **29 個不動產專業線上工具與法規政策專頁** 組成，全站共用一組設計 Token 與模組化 JavaScript：
 
 ```
 Matt Pocock skills/
@@ -75,12 +75,14 @@ Matt Pocock skills/
 ├── tenant-screening-checker.html # 27. 租客承租資格審查與租賃信用評分表產生器 (30% RTI法則/100分評分卡/一票否決)
 ├── mandate-contract.html       # 28. 住宅租賃委託管理（包租／代管）契約書線上產生器 (租賃專法12/14條/緊急修繕預授權/A4列印)
 ├── guarantor-agreement.html    # 29. 租賃住宅連帶保證人保證書與履約切結書線上產生器 (民法739~745條/拋棄先訴抗辯權/大寫限額/雙簽章)
-├── sitemap.xml                 # 全站 29 頁 SEO XML 網站地圖
+├── repair-work-order.html      # 30. 租賃住宅修繕通報派工與完工驗收證明單產生器 (民法429/430條/5,000緊急代墊/三方手寫簽章)
+├── sitemap.xml                 # 全站 30 頁 SEO XML 網站地圖
 ├── robots.txt                  # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                   # 停用 GitHub Pages Jekyll 編譯
 ├── css/
 │   ├── tokens.css              # 全站設計 Token (海軍藍/香檳金/字型/陰影/深淺變數)
 │   ├── components.css          # 全站共用組件 (TopBar, Navbar, Footer, Buttons, Toast, 下拉選單)
+│   ├── repair-work-order.css   # 租賃修繕派工與完工驗收單專用樣式與 A4 排版引擎
 │   ├── space-planner.css       # 2D/3D 空間格局配置系統樣式
 │   ├── lease-contract.css      # 租賃契約產生器樣式與 A4 排版引擎
 │   ├── tax-calculator.css      # 房東節稅試算專屬樣式與 A4 診斷書列印引擎
@@ -97,6 +99,7 @@ Matt Pocock skills/
 │   ├── utils.js                # 工具函式 (千分位、日期差、Toast、主題切換)
 │   ├── navigation.js           # 首頁導覽列與行動端抽屜選單控制器
 │   ├── layout.js               # 跨頁 Layout 控制與 Active 狀態點亮
+│   ├── repair-work-order.js    # 租賃修繕三方簽章、動態材料工項明細與 A4/Canvas/LINE 輸出引擎
 │   ├── space-planner.js        # 2D CAD + 3D WebGL 空間格局配置核心引擎
 │   ├── lease-contract.js       # 租賃契約雙向連動、中文大寫金額與 A4 排版引擎
 │   ├── tax-calculator.js       # 房東節稅試算引擎、三方案 PK 與 LINE 深度帶參串接
@@ -774,6 +777,25 @@ Matt Pocock skills/
    - `@media print` A4 無痕列印一式兩份併同租約裝訂。
    - HTML5 Canvas 840×1080px 高畫質 PNG 擔保存證圖卡下載。
    - LINE 擔保協議摘要一鍵複製。
+
+### 13.26 租賃住宅修繕通報派工與完工驗收證明單產生器 (`repair-work-order.html`)
+
+1. **實務背景與法規遵循**：
+   - 依據《民法》第 429/430 條修繕義務與承租人代墊求償權 ＋《租賃住宅市場發展及管理條例》第 11 條法定點交修繕規範設計。
+2. **案件編號與緊急排程管理**：
+   - 工單編號自動帶入時間序號（如 `RO-20261025-01`）。
+   - 六大修繕類別（水電、空調、衛浴、熱水器、門窗、家電）與三級急迫排程。
+   - 與 `mandate-contract.html` 5,000 元免報備緊急搶修代墊條款連動標記。
+3. **動態材料工項明細與金融大寫國字轉換**：
+   - 動態新增/刪除材料與工項，自動計算合計並轉換為金融繁體大寫國字（如「新臺幣 參仟伍佰元整」）。
+   - 四級責任負擔判定（出租人/承租人/港居包租全包/共同分攤）。
+4. **修繕前後照片存證對比與三方電子簽章**：
+   - 損壞現況 vs 完工成效對比照即時預覽與列印出圖。
+   - 承租人驗收親簽 ＋ 施工技師簽署 ＋ 港居專員結案簽章三畫布。
+5. **三大標準輸出引擎**：
+   - `@media print` A4 無痕列印標準驗收與會計請款證明單。
+   - HTML5 Canvas 840×1080px 高畫質 PNG 驗收存證圖卡下載。
+   - LINE 修繕通報進度文字一鍵複製。
 
 ---
 

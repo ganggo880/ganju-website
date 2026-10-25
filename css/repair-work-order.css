@@ -1,0 +1,744 @@
+/* ==========================================================================
+   港居不動產 - 租賃住宅修繕通報派工與完工驗收證明單專用樣式表
+   repair-work-order.css
+   依據《民法》第429/430條修繕義務與包租代管請款核銷標準設計
+   ========================================================================== */
+
+@import url('tokens.css');
+@import url('components.css');
+@import url('auth-guard.css');
+
+/* 全域版面與工具容器 */
+.workorder-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+.workorder-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.workorder-header .badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(197, 160, 89, 0.15);
+  color: var(--accent-gold);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.workorder-header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.workorder-header p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 雙欄主工作台佈局 */
+.workorder-workspace {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .workorder-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 卡片與表單控制項 */
+.form-card, .preview-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem;
+  transition: box-shadow var(--transition-normal);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.form-card:hover, .preview-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(197, 160, 89, 0.25);
+}
+
+.section-title svg {
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-row.single {
+  grid-template-columns: 1fr;
+}
+
+.form-row.triple {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.form-group label .required {
+  color: #e53e3e;
+  margin-left: 0.25rem;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
+}
+
+.hint-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* 修繕項目表格與動態工項 */
+.items-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.items-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.items-table th, .items-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.items-table th {
+  background: rgba(26, 54, 93, 0.05);
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.items-table td input {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.btn-del-item {
+  background: none;
+  border: none;
+  color: #e53e3e;
+  cursor: pointer;
+  padding: 0.35rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-del-item:hover {
+  background: rgba(229, 62, 62, 0.1);
+}
+
+.btn-add-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(197, 160, 89, 0.15);
+  border: 1px dashed var(--accent-gold);
+  color: var(--accent-gold);
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+}
+
+.btn-add-item:hover {
+  background: rgba(197, 160, 89, 0.25);
+  transform: translateY(-1px);
+}
+
+/* 費用小計彙總區塊 */
+.cost-summary-box {
+  background: rgba(26, 54, 93, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cost-summary-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.cost-summary-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+.cost-capital-text {
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+  font-weight: 600;
+  width: 100%;
+}
+
+/* 施工前後照片上傳區 */
+.photo-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.photo-upload-box {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: center;
+  background: var(--bg-surface);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.photo-upload-box:hover {
+  border-color: var(--accent-gold);
+  background: rgba(197, 160, 89, 0.05);
+}
+
+.photo-preview-wrap {
+  width: 100%;
+  height: 150px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: none;
+  margin-top: 0.75rem;
+  background: #000;
+}
+
+.photo-preview-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 三方電子手寫簽章區域 */
+.signatures-tri-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.sig-box {
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  text-align: center;
+}
+
+.sig-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sig-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.btn-clear-sig {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-clear-sig:hover {
+  background: rgba(229, 62, 62, 0.1);
+  color: #e53e3e;
+}
+
+.sig-canvas {
+  width: 100%;
+  height: 120px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-sm);
+  cursor: crosshair;
+  touch-action: none;
+}
+
+/* 右側即時預覽與 A4 樣板 */
+.preview-sticky {
+  position: sticky;
+  top: 5.5rem;
+}
+
+.preview-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: none;
+  min-height: 44px;
+}
+
+.btn-primary-gold {
+  background: linear-gradient(135deg, var(--accent-gold), #b08c45);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.35);
+}
+
+.btn-primary-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(197, 160, 89, 0.45);
+}
+
+.btn-outline {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  background: rgba(197, 160, 89, 0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.btn-line-share {
+  background: #06C755;
+  color: #ffffff;
+}
+
+.btn-line-share:hover {
+  background: #05a847;
+}
+
+/* A4 紙本工單驗收單樣板 */
+.contract-paper {
+  background: #ffffff;
+  color: #111827;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  border: 1px solid #e5e7eb;
+}
+
+.contract-paper h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: #1a365d;
+  letter-spacing: 0.05em;
+}
+
+.contract-paper .paper-sub {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid #1a365d;
+  padding-bottom: 0.6rem;
+}
+
+.paper-badge-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #374151;
+  margin-bottom: 1rem;
+  background: #f9fafb;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+}
+
+.paper-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.85rem 0;
+  font-size: 0.85rem;
+}
+
+.paper-meta-table th, .paper-meta-table td {
+  border: 1px solid #d1d5db;
+  padding: 0.45rem 0.75rem;
+  text-align: left;
+}
+
+.paper-meta-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+  width: 22%;
+}
+
+.paper-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+}
+
+.paper-items-table th, .paper-items-table td {
+  border: 1px solid #d1d5db;
+  padding: 0.45rem 0.75rem;
+  text-align: left;
+}
+
+.paper-items-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.paper-items-table .text-right {
+  text-align: right;
+}
+
+.paper-photo-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.paper-photo-box {
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.paper-photo-box span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4b5563;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.paper-photo-box img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.paper-photo-placeholder {
+  height: 100px;
+  background: #f3f4f6;
+  border: 1px dashed #d1d5db;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.paper-signatures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed #d1d5db;
+}
+
+.paper-sig-block {
+  font-size: 0.8rem;
+  color: #374151;
+}
+
+.paper-sig-img {
+  max-width: 130px;
+  max-height: 50px;
+  display: block;
+  margin-top: 0.35rem;
+}
+
+.paper-stamp-box {
+  border: 1px dashed #9ca3af;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  margin-top: 0.35rem;
+  border-radius: 4px;
+}
+
+.paper-footer {
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.6rem;
+}
+
+/* @media print A4 無痕列印標準引擎 */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm 12mm 15mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+
+  /* 隱藏網頁導覽、頁尾、操作區與未列印元件 */
+  header, footer, nav, .top-bar, .navbar, .footer,
+  .workorder-header, .form-card, .preview-toolbar,
+  #authGuardModal, .theme-toggle-btn, .mobile-toggle,
+  .btn-action, .btn-clear-sig, .btn-add-item, .btn-del-item,
+  .signatures-tri-grid, .photo-upload-box {
+    display: none !important;
+  }
+
+  .workorder-wrapper {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .workorder-workspace {
+    display: block !important;
+  }
+
+  .preview-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .preview-sticky {
+    position: static !important;
+  }
+
+  .contract-paper {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    font-size: 9.5pt !important;
+    color: #000000 !important;
+  }
+
+  .contract-paper h2 {
+    color: #000000 !important;
+    font-size: 14pt !important;
+  }
+
+  .paper-sub {
+    border-bottom: 1.5pt solid #000000 !important;
+    color: #333333 !important;
+  }
+
+  .paper-meta-table th, .paper-items-table th {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+  }
+
+  .paper-meta-table th, .paper-meta-table td,
+  .paper-items-table th, .paper-items-table td {
+    border: 0.5pt solid #666666 !important;
+    padding: 3.5pt 5pt !important;
+  }
+
+  .paper-signatures {
+    border-top: 0.5pt dashed #666666 !important;
+    page-break-inside: avoid;
+  }
+
+  .paper-footer {
+    border-top: 0.5pt solid #999999 !important;
+  }
+}
+
+/* 響應式優化與觸控熱區保證 */
+@media (max-width: 768px) {
+  .workorder-wrapper {
+    padding: 1.25rem 0.75rem 3rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .workorder-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .form-row, .form-row.triple {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .signatures-tri-grid, .photo-compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card, .preview-card {
+    padding: 1.25rem 0.85rem;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .items-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .cost-summary-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .contract-paper {
+    padding: 1.25rem 0.75rem;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .paper-signatures {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .preview-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .preview-toolbar .btn-action:first-child {
+    grid-column: 1 / -1;
+  }
+}

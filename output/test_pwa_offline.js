@@ -40,6 +40,7 @@ const PAGES = [
   'tenant-screening-checker.html',
   'mandate-contract.html',
   'guarantor-agreement.html',
+  'repair-work-order.html',
   'privacy.html'
 ];
 
