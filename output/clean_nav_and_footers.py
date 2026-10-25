@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全面清理與標準化全站 50 頁的導覽列下拉選單與頁尾房東法務專區連結，
+全面清理與標準化全站 51 頁的導覽列下拉選單與頁尾房東法務專區連結，
 去除重複連結，確保全站 100% 乾淨規範。
-支援 Phase 71: lease-notarization-agreement.html
+支援 Phase 72: emergency-entry-agreement.html
 """
 
 import os
@@ -12,8 +12,9 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (47)</a></li>
+CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (48)</a></li>
             <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="emergency-entry-agreement.html" class="nav-link"><i class="fa-solid fa-door-open" style="color: #ef4444;"></i> 緊急避難開門授權協議書</a></li>
             <li><a href="lease-notarization-agreement.html" class="nav-link"><i class="fa-solid fa-stamp" style="color: #c5a059;"></i> 租約公證暨強執約定書</a></li>
             <li><a href="household-registration-agreement.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #3b82f6;"></i> 設籍約定暨遷出切結書</a></li>
             <li><a href="fire-safety-agreement.html" class="nav-link"><i class="fa-solid fa-fire-extinguisher" style="color: #EF4444;"></i> 用電用火安全切結協議</a></li>
@@ -62,7 +63,8 @@ CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="
             <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
             <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>"""
 
-CANONICAL_FOOTER_LANDLORD = """            <li><a href="lease-notarization-agreement.html">租約公證暨強執約定書</a></li>
+CANONICAL_FOOTER_LANDLORD = """            <li><a href="emergency-entry-agreement.html">緊急避難開門授權協議書</a></li>
+            <li><a href="lease-notarization-agreement.html">租約公證暨強執約定書</a></li>
             <li><a href="household-registration-agreement.html">設籍約定暨遷出切結書</a></li>
             <li><a href="fire-safety-agreement.html">用電用火安全切結協議</a></li>
             <li><a href="business-registration-agreement.html">設址營業與稅賦補償協議</a></li>
@@ -79,38 +81,49 @@ CANONICAL_FOOTER_LANDLORD = """            <li><a href="lease-notarization-agree
 
 html_files = [f for f in glob.glob(os.path.join(ROOT, "*.html")) if not f.endswith("island_standalone.html")]
 
-count_dropdown = 0
-count_footer = 0
+def process_file(filepath):
+    fname = os.path.basename(filepath)
+    with open(filepath, 'r', encoding='utf-8') as f:
+        html = f.read()
 
-for fpath in html_files:
-    fname = os.path.basename(fpath)
-    with open(fpath, 'r', encoding='utf-8') as f:
-        content = f.read()
+    changed = False
 
-    # 1. 替換 dropdown menu
-    dropdown_match = re.search(r'<ul class="nav-dropdown-menu">.*?</ul>', content, re.DOTALL)
-    if dropdown_match:
-        # 將當前頁面的 nav-link active 標註加上
-        curr_items = CANONICAL_DROPDOWN_ITEMS
-        curr_target = f'href="{fname}" class="nav-link"'
-        curr_active = f'href="{fname}" class="nav-link active"'
-        if curr_target in curr_items:
-            curr_items = curr_items.replace(curr_target, curr_active)
-        
-        new_dropdown = f'<ul class="nav-dropdown-menu">\n{curr_items}\n          </ul>'
-        content = content[:dropdown_match.start()] + new_dropdown + content[dropdown_match.end():]
-        count_dropdown += 1
+    # 1. 替換整段 <ul class="nav-dropdown-menu">...</ul>
+    # 為當前頁面標註 class="nav-link active"
+    dropdown_for_page = CANONICAL_DROPDOWN_ITEMS
+    if f'href="{fname}"' in dropdown_for_page:
+        dropdown_for_page = dropdown_for_page.replace(
+            f'href="{fname}" class="nav-link"',
+            f'href="{fname}" class="nav-link active"'
+        )
 
-    # 2. 替換 footer 房東法務專區
-    footer_match = re.search(r'(<div class="footer-col-title">房東法務專區</div>\s*<ul class="footer-links">).*?(</ul>)', content, re.DOTALL)
-    if footer_match:
-        prefix = footer_match.group(1)
-        suffix = footer_match.group(2)
-        new_footer = f'{prefix}\n{CANONICAL_FOOTER_LANDLORD}\n          {suffix}'
-        content = content[:footer_match.start()] + new_footer + content[footer_match.end():]
-        count_footer += 1
+    # 針對一般 <ul> 選單
+    nav_pattern = r'(<ul class="nav-dropdown-menu">)([\s\S]*?)(</ul>)'
+    m_nav = re.search(nav_pattern, html)
+    if m_nav:
+        new_nav = f"{m_nav.group(1)}\n{dropdown_for_page}\n          {m_nav.group(3)}"
+        if new_nav != m_nav.group(0):
+            html = html[:m_nav.start()] + new_nav + html[m_nav.end():]
+            changed = True
 
-    with open(fpath, 'w', encoding='utf-8') as f:
-        f.write(content)
+    # 2. 替換整段房東法務專區 <ul>
+    footer_pattern = r'(<div class="footer-col-title">房東法務專區</div>\s*<ul class="footer-links">)([\s\S]*?)(</ul>)'
+    m_footer = re.search(footer_pattern, html)
+    if m_footer:
+        new_footer = f"{m_footer.group(1)}\n{CANONICAL_FOOTER_LANDLORD}\n          {m_footer.group(3)}"
+        if new_footer != m_footer.group(0):
+            html = html[:m_footer.start()] + new_footer + html[m_footer.end():]
+            changed = True
 
-print(f"✅ 已標準化 {count_dropdown} 頁的導覽列下拉選單與 {count_footer} 頁的頁尾法務選單")
+    if changed:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(html)
+        print(f"  [OK] 標準化完成: {fname}")
+    else:
+        print(f"  [-] 無需更動: {fname}")
+
+if __name__ == '__main__':
+    print(f"開始標準化全站 {len(html_files)} 個頁面的下拉選單與頁尾...")
+    for f in sorted(html_files):
+        process_file(f)
+    print("全部標準化完成！")

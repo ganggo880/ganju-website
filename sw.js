@@ -1,14 +1,20 @@
 // sw.js - 港居不動產 PWA 離線 Service Worker
 // 提供全站 27 款不動產線上工具、3D 智慧島與隱私權專頁 100% 離線運作與極速快取體驗
 
-const CACHE_NAME = 'ganju-pwa-v5.2';
+const CACHE_NAME = 'ganju-pwa-v5.3';
 
 // 核心離線資源清單 (全站 30 頁、Sitemap、CSS、JS、Icon 共 109 項)
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './routine-inspection-report.html',
-    './household-registration-agreement.html',
+  './emergency-entry-agreement.html',
+  './css/emergency-entry-agreement.css',
+  './js/emergency-entry-agreement.js',
+  './lease-notarization-agreement.html',
+  './css/lease-notarization-agreement.css',
+  './js/lease-notarization-agreement.js',
+  './household-registration-agreement.html',
   './css/household-registration-agreement.css',
   './js/household-registration-agreement.js',
   './fire-safety-agreement.html',

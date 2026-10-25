@@ -73,7 +73,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── fire-safety-agreement.html        # 48. 住宅租賃用電用火安全暨失火責任切結協議書產生器 (民法432/434條失火責任重大過失特約排除、消防法住警器維護、高耗能電器列管、雙簽章與A4無痕列印)
 ├── household-registration-agreement.html # 49. 住宅租賃設籍約定暨退租遷出切結書產生器 (戶籍法50條第1項、定型化契約規範、設籍名冊、限期遷出、違約金精算、授權逕遷戶所、雙簽章與A4無痕列印)
 ├── lease-notarization-agreement.html     # 50. 住宅租賃租約公證聲請暨逕受強制執行約定書產生器 (公證法13條、強制執行法4條、公證規費孰高精算、逕受強執特約、雙簽章與A4無痕列印)
-├── sitemap.xml              # 全站 50 頁 SEO XML 網站地圖
+├── emergency-entry-agreement.html        # 51. 住宅租賃緊急避難與緊急開門進入授權協議書產生器 (刑法24/306條、民法150條、第三方會同見證SOP、全程錄影存證、雙簽章與A4無痕列印)
+├── sitemap.xml              # 全站 51 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -120,6 +121,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── business-registration-agreement.css # 住宅租賃設址營業與稅賦補償協議專用樣式與 A4 排版引擎
 │   ├── household-registration-agreement.css # 住宅租賃設籍約定暨遷出切結專用樣式與 A4 排版引擎
 │   ├── lease-notarization-agreement.css # 租約公證暨強執約定專用樣式與 A4 排版引擎
+│   ├── emergency-entry-agreement.css # 住宅租賃緊急避難與緊急開門進入授權協議專用樣式與 A4 排版引擎
 │   ├── fire-safety-agreement.css    # 住宅租賃用電用火安全暨失火責任切結專用樣式與 A4 排版引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
@@ -130,6 +132,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   └── id-card-watermark.css   # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js        # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
+│   ├── emergency-entry-agreement.js # 緊急避難開門授權核心邏輯（六大緊急情境、會同見證SOP、錄影存證、阻卻違法與雙簽章引擎）
+│   ├── lease-notarization-agreement.js # 租約公證暨強執約定核心邏輯（司法院規費表、租金與現值孰高、強執加成、四大特約與雙簽章引擎）
 │   ├── guarantor-agreement.js # 租賃連帶保證人完全責任、先訴抗辯權拋棄與手寫簽章引擎
 │   ├── mandate-contract.js  # 住宅租賃委託管理與包租契約雙模式、修繕代墊授權與手寫簽章引擎
 │   ├── repair-work-order.js # 租賃修繕三方簽章、動態材料工項明細與 A4/Canvas/LINE 輸出引擎

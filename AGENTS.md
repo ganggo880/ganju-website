@@ -92,6 +92,7 @@
 - [x] 階段六十九：住宅租賃用電用火安全暨失火責任切結協議書產生器 `fire-safety-agreement.html`（依據《民法》第432/434條失火責任重大過失特約排除、《消防法》第6條第4項住警器設置維護規範設計，整合合意排除重大過失抗辯特約、六大用電用火安全檢驗矩陣、800W高功率電器動態登錄管制、火災責任險特約方案、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 48 頁 100% 互通、PWA 163 項資產離線秒開與 188 組行動端 0px 溢出通過）
 - [x] 階段七十：住宅租賃設籍約定暨退租遷出切結書產生器 `household-registration-agreement.html`（依據《戶籍法》第50條第1項與內政部定型化契約不得記載事項第6點設計，整合合法設籍擔保、設籍人員名冊動態登錄、退租限期遷出切結、逾期每日懲罰性違約金精算、授權逕向戶政事務所申辦暫遷戶籍登記、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 49 頁 100% 互通、PWA 166 項資產離線秒開與 192 組行動端 0px 溢出通過）
 - [x] 階段七十一：住宅租賃租約公證聲請暨逕受強制執行約定書產生器 `lease-notarization-agreement.html`（依據《公證法》第13條、《公證法》第109條、《強制執行法》第4條及司法院公證費用標準設計，整合租金總額與房屋課稅現值孰高核算、逕受強執特約加成精算、4大強制執行條款核取矩陣、連帶保證人連帶責任登錄、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 50 頁 100% 互通、PWA 169 項資產離線秒開與 196 組行動端 0px 溢出通過）
+- [x] 階段七十二：住宅租賃緊急避難與緊急開門進入授權協議書產生器 `emergency-entry-agreement.html`（依據《刑法》第24/306條、《民法》第150/432條及《公寓大廈管理條例》第6條合規設計，整合瓦斯漏氣/火災/爆管漏水/失聯急難六大情境、第三方中立會同見證SOP、全程錄影存證、阻卻違法合意宣告、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 51 頁 100% 互通、PWA 172 項資產離線秒開與 200 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -153,7 +154,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── fire-safety-agreement.html        # 48. 住宅租賃用電用火安全暨失火責任切結協議書產生器
 ├── household-registration-agreement.html # 49. 住宅租賃設籍約定暨退租遷出切結書產生器
 ├── lease-notarization-agreement.html     # 50. 住宅租賃租約公證聲請暨逕受強制執行約定書產生器
-├── sitemap.xml                      # 全站 50 頁 SEO XML 網站地圖
+├── emergency-entry-agreement.html        # 51. 住宅租賃緊急避難與緊急開門進入授權協議書產生器
+├── sitemap.xml                      # 全站 51 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -166,6 +168,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── auth-guard.css               # 全站線上工具授權驗證防護樣式（毛玻璃、零閃爍防護、RWD）
+│   ├── emergency-entry-agreement.css # 住宅租賃緊急避難與緊急開門進入授權協議專用樣式與 A4 排版引擎
 │   ├── lease-notarization-agreement.css # 租約公證暨強執約定專用樣式與 A4 排版引擎
 │   ├── household-registration-agreement.css # 住宅租賃設籍約定暨遷出切結專用樣式與 A4 排版引擎
 │   ├── fire-safety-agreement.css    # 住宅租賃用電用火安全暨失火責任切結專用樣式與 A4 排版引擎
@@ -206,6 +209,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
+│   ├── emergency-entry-agreement.js # 緊急避難開門授權核心邏輯（六大緊急情境、會同見證SOP、錄影存證、阻卻違法與雙簽章引擎）
+│   ├── lease-notarization-agreement.js # 租約公證暨強執約定核心邏輯（司法院規費表、租金與現值孰高、強執加成、四大特約與雙簽章引擎）
 │   ├── household-registration-agreement.js # 設籍約定切結、退租遷出期限、戶籍法50條逕遷授權、每日違約金與雙簽章引擎
 │   ├── fire-safety-agreement.js     # 用電用火安全切結、民法434條排除宣告、高耗能電器登錄與雙簽章引擎
 │   ├── business-registration-agreement.js # 設址營業稅差精算、限期遷址切結、金融大寫與雙方簽章引擎
