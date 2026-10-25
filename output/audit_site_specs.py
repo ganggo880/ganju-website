@@ -54,6 +54,7 @@ HTML_FILES = [
     "business-registration-agreement.html",
     "fire-safety-agreement.html",
     "household-registration-agreement.html",
+    "lease-notarization-agreement.html",
     "privacy.html"
 ]
 

@@ -57,10 +57,11 @@
 | 45 | `sublease-consent-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃承租人轉租同意書與管理協議產生器 ｜ 港居不動產 |
 | 46 | `business-registration-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃設址營業與稅賦補償協議書產生器 ｜ 港居不動產 |
 | 47 | `household-registration-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃設籍約定暨退租遷出切結書產生器 ｜ 港居不動產 |
-| 48 | `fire-safety-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃用電用火安全暨失火責任切結協議書產生器 ｜ 港居不動產 |
-| 49 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 48 | `lease-notarization-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃租約公證聲請暨逕受強制執行約定書產生器 ｜ 港居不動產 |
+| 49 | `fire-safety-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃用電用火安全暨失火責任切結協議書產生器 ｜ 港居不動產 |
+| 50 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**49 / 49 頁 (100%)**
+**離線可用率**：**50 / 50 頁 (100%)**
 
 ---
 

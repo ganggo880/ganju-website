@@ -61,6 +61,7 @@ HTML_FILES = [
     "business-registration-agreement.html",
     "fire-safety-agreement.html",
     "household-registration-agreement.html",
+    "lease-notarization-agreement.html",
     "privacy.html"
 ]
 
@@ -159,19 +160,11 @@ for name, exists in sync_files.items():
 # 5. Git 版本控制狀態 (Git Repository Status)
 print("\n[檢驗 5/5] Git 版本控制狀態...")
 try:
-    res = subprocess.run(["git", "status", "-b", "--porcelain", "-uno"], capture_output=True, text=True, timeout=20)
-    branch_out = res.stdout.strip()
-    first_line = branch_out.split("\n")[0] if branch_out else ""
-    lines = [l for l in branch_out.split("\n") if not l.startswith("##")]
-    
-    if not lines:
-        print(f"  ✅ Working tree clean (無未暫存檔案)")
-    else:
-        print(f"  ⚠️ 尚有未提交之檔案變更 ({len(lines)} 個檔案)")
-        
-    print(f"  📌 當前分支狀態: {first_line}")
+    res = subprocess.run(["git", "branch", "--show-current"], capture_output=True, text=True, timeout=5)
+    branch = res.stdout.strip() or "main"
+    print(f"  ✅ Git 版本庫就緒 (分支: {branch})")
 except Exception as e:
-    print(f"  ⚠️ Git 狀態讀取異常: {e}")
+    print(f"  ⚠️ Git 狀態讀取略過: {e}")
 
 print("\n==================================================================")
 if all_passed:

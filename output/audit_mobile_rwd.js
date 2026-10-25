@@ -58,6 +58,7 @@ const PAGES = [
   'sublease-consent-agreement.html',
   'business-registration-agreement.html',
   'household-registration-agreement.html',
+  'lease-notarization-agreement.html',
   'fire-safety-agreement.html',
   'privacy.html'
 ];

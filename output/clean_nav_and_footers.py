@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全面清理與標準化全站 49 頁的導覽列下拉選單與頁尾房東法務專區連結，
+全面清理與標準化全站 50 頁的導覽列下拉選單與頁尾房東法務專區連結，
 去除重複連結，確保全站 100% 乾淨規範。
+支援 Phase 71: lease-notarization-agreement.html
 """
 
 import os
@@ -11,8 +12,9 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (46)</a></li>
+CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (47)</a></li>
             <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="lease-notarization-agreement.html" class="nav-link"><i class="fa-solid fa-stamp" style="color: #c5a059;"></i> 租約公證暨強執約定書</a></li>
             <li><a href="household-registration-agreement.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #3b82f6;"></i> 設籍約定暨遷出切結書</a></li>
             <li><a href="fire-safety-agreement.html" class="nav-link"><i class="fa-solid fa-fire-extinguisher" style="color: #EF4444;"></i> 用電用火安全切結協議</a></li>
             <li><a href="business-registration-agreement.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent-gold);"></i> 設址營業與稅賦補償協議</a></li>
@@ -60,7 +62,8 @@ CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="
             <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
             <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>"""
 
-CANONICAL_FOOTER_LANDLORD = """            <li><a href="household-registration-agreement.html">設籍約定暨遷出切結書</a></li>
+CANONICAL_FOOTER_LANDLORD = """            <li><a href="lease-notarization-agreement.html">租約公證暨強執約定書</a></li>
+            <li><a href="household-registration-agreement.html">設籍約定暨遷出切結書</a></li>
             <li><a href="fire-safety-agreement.html">用電用火安全切結協議</a></li>
             <li><a href="business-registration-agreement.html">設址營業與稅賦補償協議</a></li>
             <li><a href="sublease-consent-agreement.html">承租人轉租同意與協議書</a></li>
@@ -74,7 +77,7 @@ CANONICAL_FOOTER_LANDLORD = """            <li><a href="household-registration-a
             <li><a href="routine-inspection-report.html">屋況定期巡檢維護報告</a></li>
             <li><a href="mandate-contract.html">住宅租賃委託管理契約</a></li>"""
 
-html_files = [f for f in glob.glob(os.path.join(ROOT, "*.html")) if not f.endswith("island_standalone.html") and not f.endswith("index.html")]
+html_files = [f for f in glob.glob(os.path.join(ROOT, "*.html")) if not f.endswith("island_standalone.html")]
 
 count_dropdown = 0
 count_footer = 0
