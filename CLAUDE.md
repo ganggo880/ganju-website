@@ -54,7 +54,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── guarantor-agreement.html         # 29. 租賃住宅連帶保證人保證書與履約切結書線上產生器 (民法739~745條、拋棄先訴抗辯權、大寫限額)
 ├── repair-work-order.html           # 30. 租賃住宅修繕通報派工與完工驗收證明單產生器 (民法429/430條、5,000緊急代墊、三方手寫簽章)
 ├── holding-deposit-receipt.html     # 31. 租屋定金收據與承租保留切結產生器 (民法248/249條、保留截止期、大寫防篡改、雙簽章)
-├── sitemap.xml              # 全站 31 頁 SEO XML 網站地圖
+├── key-custody-agreement.html       # 32. 鑰匙借出保管與返還簽收切結產生器 (民法432條、嚴禁私打、換鎖全額賠償、雙階段點收)
+├── sitemap.xml              # 全站 32 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -84,6 +85,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── guarantor-agreement.css # 租賃連帶保證人保證書專用樣式與 A4 排版引擎
 │   ├── repair-work-order.css # 租賃修繕派工與完工驗收單專用樣式與 A4 列印引擎
 │   ├── holding-deposit-receipt.css # 租屋定金收據與承租保留切結專用樣式與 A4 排版引擎
+│   ├── key-custody-agreement.css # 鑰匙借出保管與返還簽收切結專用樣式與 A4 排版引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
@@ -97,6 +99,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── mandate-contract.js  # 住宅租賃委託管理與包租契約雙模式、修繕代墊授權與手寫簽章引擎
 │   ├── repair-work-order.js # 租賃修繕三方簽章、動態材料工項明細與 A4/Canvas/LINE 輸出引擎
 │   ├── holding-deposit-receipt.js # 租屋定金收據、民法249條罰則、大寫防篡改與雙簽章引擎
+│   ├── key-custody-agreement.js # 鑰匙借出切結、民法432條保管責任、雙階段簽章點收與輸出引擎
 │   ├── tracking.js          # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, escapeHTML, 主題切換)
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 控制器

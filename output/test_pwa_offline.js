@@ -42,6 +42,7 @@ const PAGES = [
   'guarantor-agreement.html',
   'repair-work-order.html',
   'holding-deposit-receipt.html',
+  'key-custody-agreement.html',
   'privacy.html'
 ];
 
@@ -286,18 +287,18 @@ async function runPWATest() {
 
       try {
         await client.send('Page.navigate', { url: pageUrl });
-        await new Promise((r) => setTimeout(r, 1500));
+        await new Promise((r) => setTimeout(r, 2200));
 
         const pageEval = await client.send('Runtime.evaluate', {
           expression: `
             (async () => {
-              for (let i = 0; i < 25; i++) {
+              for (let i = 0; i < 30; i++) {
                 if (document.body && (document.body.children.length >= 2 || document.body.innerHTML.length > 500)) break;
                 await new Promise(r => setTimeout(r, 100));
               }
               const title = document.title;
               const childrenCount = document.body ? document.body.children.length : 0;
-              const hasContent = document.body && (document.body.children.length >= 2 || document.body.innerHTML.length > 500);
+              const hasContent = !!(document.body && (document.body.children.length >= 2 || document.body.innerHTML.length > 500));
               const isOffline = !navigator.onLine;
               return {
                 title,

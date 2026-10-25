@@ -41,6 +41,7 @@ const PAGES = [
   'guarantor-agreement.html',
   'repair-work-order.html',
   'holding-deposit-receipt.html',
+  'key-custody-agreement.html',
   'privacy.html'
 ];
 
