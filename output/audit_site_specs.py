@@ -29,6 +29,7 @@ HTML_FILES = [
     "property-roi-calculator.html",
     "viewing-checklist.html",
     "depreciation-calculator.html",
+    "lease-termination-agreement.html",
     "privacy.html"
 ]
 

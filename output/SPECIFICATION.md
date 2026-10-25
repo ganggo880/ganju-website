@@ -224,8 +224,8 @@ Matt Pocock skills/
 - **中華郵政標準 20×10 格線排版與規費精算**：自動分頁每頁 200 字、試算存證規費（首頁 50 元、續頁每頁 30 元）、LINE 最後通牒複製、920×1120px PNG 圖卡下載、A4 一式三份列印。
 
 ### 4.23 官網主頁「全方位不動產與租務線上工具中心 (`#tools`)」
-- **全站 21 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
-- **4 大分類標籤動態切換**：全部工具 (21)、房東節稅與法務 (8)、租客權益與試算 (5)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
+- **全站 22 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
+- **4 大分類標籤動態切換**：全部工具 (22)、房東節稅與法務 (9)、租客權益與試算 (5)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
 
 ### 4.24 物業投資實質淨投報率與房貸現金流精算器 (`property-roi-calculator.html`)
 - **專業財務模型**：涵蓋購置與改造成本 (CapEx)、銀行融資與房貸 (Debt Financing)、租金收益與營運開銷 (Income & OpEx)。
@@ -249,6 +249,13 @@ Matt Pocock skills/
 - **修復費用 vs 法定現值「孰低原則」防超額求償**：自動比對廠商維修報價與折舊後現值，維修費高於現值時以現值為賠償上限，杜絕以舊換新不當求償。
 - **承租人過失責任比例分攤**：支援 10%~100% 責任成數調控，自動換算最終應賠償負擔額。
 - **三大輸出**：支援 `@media print` A4 無痕列印《租賃住宅設備折舊損耗與殘值賠償核定書》、HTML5 Canvas 840×1080px 高畫質 PNG 圖卡下載，以及 LINE 試算摘要一鍵複製。
+
+### 4.27 租約提前終止協議書與遷讓交還切結產生器 (`lease-termination-agreement.html`)
+- **法規依據與四種終止模式**：依據《民法》第 453/454 條與《租賃住宅市場發展及管理條例》第 10/11 條及定型化契約應記載第 13/14 點設計。支援「① 雙方合意提前解約」、「② 承租人法定免責終止（因傷病長期療養/未達居住目的修繕未果，依法免付違約金）」、「③ 出租人法定提前終止」與「④ 單方預告解約（約定最高1個月租金之補償金）」。
+- **鑰匙配件與附屬設備清點**：大門鑰匙、房間鑰匙、社區門禁磁扣、信箱鑰匙、冷氣/電視遙控器等完整數量點交。
+- **押金結算與跨工具整合**：擔保金總額、欠繳水電/修繕費用扣除、應退還淨額與受款帳戶設定；支援一鍵從 `deposit-settlement.html` 匯入結算數據。
+- **債權債務清償消滅暨免責條款 (Clean Break)**：明定協議簽署並履行後，原租賃關係之一切債權債務消滅，雙方互不相欠並拋棄民事賠償請求權。
+- **雙畫布電子簽章與三大輸出**：出租人/代管方與承租人雙畫布 Retina 2x 高靈敏電子親簽；支援 `@media print` A4 正式協議書無痕列印、HTML5 Canvas 840×1080px 高畫質圖卡下載，以及 LINE 協議摘要一鍵複製。
 
 ---
 
@@ -351,6 +358,7 @@ Matt Pocock skills/
 | `property-roi-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 物業投資實質投報與房貸現金流精算器 |
 | `viewing-checklist.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租客看屋30項自檢與避坑評分表產生器 |
 | `depreciation-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租賃住宅設備折舊損耗與殘值賠償精算器 |
+| `lease-termination-agreement.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租約提前終止協議書與遷讓交還切結產生器 |
 | `output/winfar-website/` | `Corporation` | `name`, `foundingDate`, `founder`, `address`, `telephone`, `knowsAbout` |
 
 ---
@@ -364,7 +372,7 @@ Matt Pocock skills/
    - 圖示庫：支援 192×192、512×512 之標準圖示與 Android Maskable 圖示，以及 Apple Touch Icon。
    - 快捷捷徑 (App Shortcuts)：直接跳轉 2D/3D 格局、租金試算、EXIF 水印與 OCR 翻譯。
 2. **智慧 Service Worker 快取體系 (`sw.js`)**：
-   - **Pre-caching**：安裝時預載全站 24 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.5` 共 89 項核心資產）。
+   - **Pre-caching**：安裝時預載全站 25 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.6` 共 92 項核心資產）。
    - **導航請求 (Navigate)**：Network-First with Cache Fallback，網路在線時即時獲取最新修正，案場無訊號（地下室、高樓）自動回退至本機快取。
    - **靜態資源 (Assets/CDN)**：Stale-While-Revalidate 與動態快取，自動緩存 Three.js 與 FontAwesome 等第三方相依庫。
 3. **原生安裝引導與連線監控 (`js/pwa.js`)**：
@@ -641,6 +649,21 @@ Matt Pocock skills/
    - `@media print` A4 無痕列印《租賃住宅設備折舊損耗與殘值賠償核定書》。
    - HTML5 Canvas 840×1080px 高畫質 PNG 圖卡下載。
    - LINE 試算摘要一鍵複製與港居官方諮詢連結。
+
+### 13.20 租約提前終止協議書與遷讓交還切結產生器 (`lease-termination-agreement.html`)
+
+1. **實務背景與爭議防範**：
+   - 專為化解租賃雙方提前解約時「口頭約定無白紙黑字、事後追討違約金或提告不告而別」之高風險糾紛設計。
+   - 嚴格遵循《民法》第 453/454 條及《租賃住宅市場發展及管理條例》第 10/11 條法定終止事由規範。
+2. **核心法務模組與法定免責防呆**：
+   - 區分承租人法定免責終止權（傷病醫療、住宅不可抗力瑕疵），依法嚴格鎖定違約金為 0 元，杜絕房東違法索賠。
+   - 內建遺留物視同廢棄物拋棄處理授權條款，防範租客搬離後房東清理遭控侵占。
+   - 內建「債權債務結清消滅條款（Clean Break）」，徹底杜絕退租後翻舊帳提告。
+3. **跨工具串接與三大高價值輸出**：
+   - 支援讀取 `deposit-settlement.html` 之押金結算數據。
+   - `@media print` A4 無痕列印《住宅租賃提前終止協議書暨遷讓交還切結書》。
+   - HTML5 Canvas 840×1080px 高畫質 PNG 協議確認圖卡下載。
+   - LINE 試算摘要一鍵複製與官方專員諮詢。
 
 ---
 

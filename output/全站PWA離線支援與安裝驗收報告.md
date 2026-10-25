@@ -33,9 +33,10 @@
 | 21 | `property-roi-calculator.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 物業投資實質淨投報率與房貸現金流精算器｜Cap Rate・自備款現金殖利率・三方案淨現金流PK｜港居不動產 |
 | 22 | `viewing-checklist.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租客看屋必備：30 項屋況自檢與避坑評分表產生器｜漏水・水壓・電路・隔音・宜居指數評估｜港居不動產 |
 | 23 | `depreciation-calculator.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租賃住宅設備損耗折舊與賠償殘值精算器｜固定資產耐用年數・冷氣熱水器折舊・防超額求償｜港居不動產 |
-| 24 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 24 | `lease-termination-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租約提前終止協議書與遷讓交還切結產生器｜港居不動產 |
+| 25 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**24 / 24 頁 (100%)**
+**離線可用率**：**25 / 25 頁 (100%)**
 
 ---
 
