@@ -64,6 +64,7 @@
 - [x] 階段四十一：官網主頁「全方位不動產與租務線上工具中心 (`#tools`)」實體專區與 4 大分類篩選器整合（收錄全站 18 款高階數位工具、支援全部/房東/租客/空間神器即時動態過濾、GTM/GA4 點擊追蹤、下拉選單錨點直達、80 組行動端 0px 溢出通過）
 - [x] 階段四十二：物業投資實質淨投報率與房貸現金流精算器 `property-roi-calculator.html`（精算 Cap Rate、自備款現金殖利率 CoC、房貸本息均攤、空屋折減與自租/代管/包租三大方案實質淨現金流 PK、LINE 複製、Canvas 圖卡下載與 A4 列印，全站 22 頁 100% 互通與 PWA 離線可用）
 - [x] 階段四十三：租客現場看屋 30 項屋況自檢與避坑評分表產生器 `viewing-checklist.html`（6 大核心分區、30 項實戰檢核、100 分綜合宜居指數、三大一級致命安全警示、待改善地雷備忘錄、LINE 複製、Canvas 840×1080px 圖卡下載與 A4 診斷表列印，全站 23 頁 100% 互通與 PWA 離線可用）
+- [x] 階段四十四：租賃住宅設備損耗折舊與賠償殘值精算器 `depreciation-calculator.html`（行政院固定資產耐用年數表、平均法直線折舊、法定殘值下限、修復費vs現值孰低原則、承租人過失比例分攤、LINE 複製、Canvas 840×1080px 圖卡下載與 A4 列印，全站 24 頁 100% 互通與 PWA 離線可用）
 
 ## 資料夾結構
 
@@ -98,7 +99,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── legal-notice-generator.html      # 21. 欠租催告與終止租約郵局存證信函產生器
 ├── property-roi-calculator.html     # 22. 物業投資實質淨投報率與房貸現金流精算器
 ├── viewing-checklist.html           # 23. 租客看屋 30 項自檢與避坑評分表產生器
-├── sitemap.xml                      # 全站 23 頁 SEO XML 網站地圖
+├── depreciation-calculator.html     # 24. 租賃住宅設備折舊損耗與殘值賠償精算器
+├── sitemap.xml                      # 全站 24 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css

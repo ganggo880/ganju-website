@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>租賃住宅設備損耗折舊與賠償殘值精算器｜固定資產耐用年數・冷氣熱水器折舊・防超額求償｜港居不動產</title>
+  <meta name="description" content="依據行政院財政部固定資產耐用年數表與民法第213~216條損害賠償標準，精算冷氣、家具、熱水器、地板之折舊現值與法定殘值，落實修復費與現值孰低原則，拒絕以舊換新不當求償！支援 LINE 複製、A4 列印與圖卡下載。">
+
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/depreciation-calculator.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="租賃住宅設備損耗折舊與賠償殘值精算器｜港居不動產">
+  <meta property="og:description" content="現場退租點交必備！依行政院耐用年數表精算冷氣/家具/電器折舊現值與法定殘值，杜絕扣押金不當超額求償。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/depreciation-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/depreciation-calculator.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居租賃住宅設備損耗折舊與賠償殘值精算器",
+    "url": "https://ganggo880.github.io/ganju-website/depreciation-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "提供房東與租客依行政院固定資產耐用年數表與民法損害賠償標準，精算租賃設備之折舊額、法定殘值與修繕賠償上限，避免退租扣押金糾紛。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "線上工具中心",
+        "item": "https://ganggo880.github.io/ganju-website/#tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "設備折舊與殘值賠償精算器",
+        "item": "https://ganggo880.github.io/ganju-website/depreciation-calculator.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 頂部資訊條 TopBar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge desktop-only"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+        <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        <span class="brand-text-box">
+          <span class="brand-name">港居不動產</span>
+          <span class="brand-sub">高優質住宅包租代管</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#tools" class="nav-link">工具中心</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link active"><i class="fa-solid fa-calculator" style="color: #38bdf8;"></i> 設備折舊與殘值賠償</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-clipboard-list" style="color: #38bdf8;"></i> 看屋 30 項自檢表</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #38bdf8;"></i> 物業投報與現金流</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-scale-balanced" style="color: #f56565;"></i> 存證信函產生器</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #fc8181;"></i> 招租文案與首圖合成</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與月結單</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-hand-holding-heart" style="color: #f687b3;"></i> 300億租金補貼試算</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #f6ad55;"></i> 退租押金結算單</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #ecc94b;"></i> 水電與公電分攤</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #ed8936;"></i> 屋況修繕點交</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-percent" style="color: #48bb78;"></i> 房東節稅試算</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #c5a059;"></i> 租賃契約產生器</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-cubes"></i> 2D/3D 格局配置</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> 租金換算工具</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-camera-retro"></i> 照片時間地點</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera"></i> 照片 EXIF 水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image"></i> 圖片格式轉換</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export"></i> 檔案轉換神器</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card"></i> 名片正反面合成</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主頁面工作台 -->
+  <main class="deprec-page">
+    <div class="deprec-bg-glow"></div>
+    <div class="deprec-bg-glow-left"></div>
+
+    <div class="deprec-container">
+
+      <!-- 列印專用表頭 (@media print) -->
+      <div class="deprec-print-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h2 style="font-size: 16pt; margin: 0; color: #1A365D;">港居不動產開發有限公司</h2>
+            <p style="font-size: 10pt; margin: 2px 0; color: #666;">特許租賃住宅服務業｜高市租登字第0012號｜管理證號：(112)登字第013739號｜統編：96797997</p>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 13pt; font-weight: bold; color: #C5A059;">租賃住宅設備損耗折舊與殘值賠償核定書</div>
+            <div style="font-size: 9pt; color: #888;" id="printDate"></div>
+          </div>
+        </div>
+        <div style="font-size: 9.5pt; color: #333; margin-top: 8px;" id="printParams"></div>
+      </div>
+
+      <!-- 標題與簡介區 -->
+      <header class="deprec-header">
+        <div class="deprec-badge">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <span>法規依據：行政院固定資產耐用年數表 ＆ 民法第 213~216 條損害賠償標準</span>
+        </div>
+        <h1 class="deprec-title">租賃住宅設備折舊損耗與賠償殘值精算器</h1>
+        <p class="deprec-desc">
+          退租扣押金不再爭吵！冷氣用 5 年不能要求賠全新品！本工具依財政部耐用年數平均法，精算設備折舊現值與法定殘值，落實「修復費 vs 現值孰低原則」，拒絕以舊換新不當求償！
+        </p>
+      </header>
+
+      <!-- 主運算區 Grid -->
+      <div class="deprec-grid">
+
+        <!-- 左側：參數輸入卡片 -->
+        <div class="deprec-card">
+          <div class="deprec-card-title">
+            <i class="fa-solid fa-sliders"></i>
+            <span>評估設備與成本設定</span>
+          </div>
+
+          <!-- 常見租賃設備快速切換 -->
+          <div class="deprec-input-group">
+            <label class="deprec-label">常見租賃設備快速選擇</label>
+            <div class="deprec-preset-wrap">
+              <button type="button" class="deprec-preset-btn active" data-preset="ac"><i class="fa-solid fa-snowflake"></i> 冷氣空調 (5年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="tv"><i class="fa-solid fa-tv"></i> 液晶電視 (5年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="fridge"><i class="fa-solid fa-kitchen-set"></i> 電冰箱 (5年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="washer"><i class="fa-solid fa-soap"></i> 洗衣機 (5年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="heater"><i class="fa-solid fa-fire"></i> 熱水器 (5年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="hood"><i class="fa-solid fa-fan"></i> 抽油煙機 (5年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="bed"><i class="fa-solid fa-bed"></i> 床架床墊 (3年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="sofa"><i class="fa-solid fa-couch"></i> 沙發座椅 (3年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="floor"><i class="fa-solid fa-border-all"></i> 木地板 (3年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="paint"><i class="fa-solid fa-paint-roller"></i> 油漆壁布 (2年)</button>
+              <button type="button" class="deprec-preset-btn" data-preset="custom"><i class="fa-solid fa-pen-to-square"></i> 自訂其他</button>
+            </div>
+            <p class="deprec-hint" id="equipDesc">依固定資產耐用年數表第2類第3項：空氣調節設備耐用年數為 5 年。</p>
+          </div>
+
+          <!-- 設備名稱與購置金額 -->
+          <div class="deprec-row">
+            <div class="deprec-input-group">
+              <label class="deprec-label" for="equipName">設備名稱 / 品牌型號</label>
+              <input type="text" id="equipName" class="deprec-input" value="分離式冷氣空調">
+            </div>
+            <div class="deprec-input-group">
+              <label class="deprec-label" for="origPrice">原購置金額 / 重置新品市價 (元)</label>
+              <input type="number" id="origPrice" class="deprec-input" value="28000" step="500">
+            </div>
+          </div>
+
+          <!-- 耐用年數與日期區間 -->
+          <div class="deprec-row">
+            <div class="deprec-input-group">
+              <label class="deprec-label" for="usefulYears">法定耐用年數 (年)</label>
+              <input type="number" id="usefulYears" class="deprec-input" value="5" min="1" max="50">
+              <span class="deprec-hint">依財政部標準：電器家電5年、家具3年</span>
+            </div>
+            <div class="deprec-input-group">
+              <label class="deprec-label" for="installDate">原購置 / 安裝啟用日期</label>
+              <input type="date" id="installDate" class="deprec-input">
+            </div>
+          </div>
+
+          <div class="deprec-row">
+            <div class="deprec-input-group">
+              <label class="deprec-label" for="damageDate">損壞發現 / 退租點交日期</label>
+              <input type="date" id="damageDate" class="deprec-input">
+            </div>
+            <div class="deprec-input-group">
+              <label class="deprec-label" for="repairCost">廠商維修估價費用 (元)</label>
+              <input type="number" id="repairCost" class="deprec-input" value="4500" step="100" placeholder="若無法修復報廢可留空">
+              <span class="deprec-hint">若填寫將自動與折舊現值比對（孰低原則）</span>
+            </div>
+          </div>
+
+          <!-- 報廢狀態與責任成數 -->
+          <div style="margin-bottom: 18px;">
+            <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; min-height: 44px;">
+              <input type="checkbox" id="isScrapped" style="width: 18px; height: 18px; accent-color: var(--accent-gold);">
+              <span style="font-weight: 700; font-size: 0.95rem;">設備已完全損毀報廢（無法修復，需整台廢棄）</span>
+            </label>
+          </div>
+
+          <div class="deprec-input-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="deprec-label" for="faultRatio" style="margin-bottom: 0;">承租人過失責任比例</label>
+              <span id="faultRatioVal" style="font-weight: 800; color: var(--accent-gold-hover); font-size: 1.05rem;">100%</span>
+            </div>
+            <input type="range" id="faultRatio" min="10" max="100" step="5" value="100" style="width: 100%; min-height: 44px; accent-color: var(--accent-gold);">
+            <span class="deprec-hint">100% 為完全承租人疏失人為破壞；50% 為共同責任或老舊混合因素</span>
+          </div>
+
+          <!-- 視覺折舊進度長條圖 -->
+          <div class="deprec-visual-bar-wrap">
+            <div class="deprec-bar-labels">
+              <span id="barUsedPct">已折舊 60%</span>
+              <span id="barResidualPct">剩餘價值 40%</span>
+            </div>
+            <div class="deprec-bar">
+              <div class="deprec-bar-used" id="barUsed" style="width: 60%;"></div>
+              <div class="deprec-bar-residual" id="barResidual" style="width: 40%;"></div>
+            </div>
+            <div class="deprec-bar-legend">
+              <span><span class="deprec-legend-dot" style="background: #E53E3E;"></span>已使用折舊</span>
+              <span><span class="deprec-legend-dot" style="background: #38A169;"></span>設備折舊後現值</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 右側：核定結果與法規診斷書 -->
+        <div>
+          <!-- 最終核算金額卡片 -->
+          <div class="deprec-kpi-card">
+            <div class="deprec-kpi-label">承租人依法最終應負擔賠償額</div>
+            <div class="deprec-kpi-amount" id="finalCompensation">NT$ 0</div>
+            <div class="deprec-kpi-sub" id="compPrinciple">計算中...</div>
+          </div>
+
+          <!-- 法規警示 (過期或孰低) -->
+          <div class="deprec-alert deprecate-alert-warn" id="alertOverdue" style="display: none;">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.2rem; margin-top: 2px;"></i>
+            <div>
+              <strong>已超過法定耐用年限提示：</strong>
+              本設備使用已逾耐用年限，依最高法院損害賠償判例，房東不得要求以新機賠償，賠償上限嚴格鎖定於「法定殘值」！
+            </div>
+          </div>
+
+          <div class="deprec-alert deprec-alert-info" id="alertWhicheverLower" style="display: none;">
+            <i class="fa-solid fa-scale-balanced" style="font-size: 1.2rem; margin-top: 2px;"></i>
+            <div>
+              <strong>落實民法損害賠償「孰低原則」：</strong>
+              廠商報價之維修費用高於設備折舊後現值，依不當得利禁止原則，以折舊後現值為賠償上限！
+            </div>
+          </div>
+
+          <!-- 詳細核算明細卡片 -->
+          <div class="deprec-card">
+            <div class="deprec-card-title">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+              <span>折舊與殘值法定明細表</span>
+            </div>
+
+            <ul class="deprec-breakdown-list">
+              <li class="deprec-breakdown-item">
+                <span class="deprec-item-title">使用狀態評定</span>
+                <span class="deprec-item-val" id="statStatus">良好</span>
+              </li>
+              <li class="deprec-breakdown-item">
+                <span class="deprec-item-title">實際使用期間</span>
+                <span class="deprec-item-val" id="elapsedMonths">0 個月</span>
+              </li>
+              <li class="deprec-breakdown-item">
+                <span class="deprec-item-title">法定殘值 (下限基準)</span>
+                <span class="deprec-item-val" id="legalResidual">NT$ 0</span>
+              </li>
+              <li class="deprec-breakdown-item">
+                <span class="deprec-item-title">每年平均折舊額</span>
+                <span class="deprec-item-val" id="deprecPerYear">NT$ 0 / 年</span>
+              </li>
+              <li class="deprec-breakdown-item">
+                <span class="deprec-item-title">累計折舊金額</span>
+                <span class="deprec-item-val" id="accumDeprec">NT$ 0</span>
+              </li>
+              <li class="deprec-breakdown-item" style="border-top: 2px solid var(--border-color); padding-top: 12px; margin-top: 6px;">
+                <span class="deprec-item-title" style="font-weight: 800; color: var(--color-navy);">設備折舊後法定現值</span>
+                <span class="deprec-item-val" id="deprecCurrentVal" style="color: var(--accent-gold-hover); font-size: 1.1rem;">NT$ 0</span>
+              </li>
+            </ul>
+
+            <!-- 操作按鈕群 -->
+            <div class="deprec-actions">
+              <button type="button" class="deprec-btn deprec-btn-gold" id="btnCopyLine">
+                <i class="fa-brands fa-line" style="font-size: 1.2rem;"></i>
+                <span>複製 LINE 設備折舊核定摘要</span>
+              </button>
+              <button type="button" class="deprec-btn deprec-btn-outline" id="btnDownloadCard">
+                <i class="fa-solid fa-image"></i>
+                <span>下載高畫質核定圖卡 (840×1080)</span>
+              </button>
+              <button type="button" class="deprec-btn deprec-btn-outline" id="btnPrint">
+                <i class="fa-solid fa-print"></i>
+                <span>列印 A4 正式折舊損耗核定書</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+          <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-desc">
+          港居不動產開發有限公司（統編：96797997）致力於提供高雄都會區最專業的高優質住宅包租代管服務。讓屋主免改裝直上省心增值，為租客打造安心溫暖的高品質居住體驗。
+        </p>
+        <div class="footer-certs">
+          <span class="cert-pill"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+          <span class="cert-pill"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112)登字第013739號</span>
+          <span class="cert-pill"><i class="fa-solid fa-shield-halved"></i> 公會會員：115-046號</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4 class="footer-col-title">房東首選工具</h4>
+          <ul>
+            <li><a href="depreciation-calculator.html"><i class="fa-solid fa-calculator"></i> 設備折舊與殘值賠償</a></li>
+            <li><a href="property-roi-calculator.html"><i class="fa-solid fa-chart-line"></i> 物業投報與房貸現金流</a></li>
+            <li><a href="tax-calculator.html"><i class="fa-solid fa-percent"></i> 房東節稅與收益試算</a></li>
+            <li><a href="lease-contract.html"><i class="fa-solid fa-file-contract"></i> 租賃契約與公約產生器</a></li>
+            <li><a href="legal-notice-generator.html"><i class="fa-solid fa-scale-balanced"></i> 欠租催告存證信函</a></li>
+            <li><a href="listing-post-generator.html"><i class="fa-solid fa-bullhorn"></i> 591與社群招租文案</a></li>
+            <li><a href="rent-receipt.html"><i class="fa-solid fa-receipt"></i> 租金收據與月結對帳單</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">租客與空間神器</h4>
+          <ul>
+            <li><a href="depreciation-calculator.html"><i class="fa-solid fa-calculator"></i> 設備折舊與殘值賠償</a></li>
+            <li><a href="viewing-checklist.html"><i class="fa-solid fa-clipboard-list"></i> 看屋 30 項自檢表</a></li>
+            <li><a href="rent-subsidy-checker.html"><i class="fa-solid fa-hand-holding-heart"></i> 300億租金補貼試算</a></li>
+            <li><a href="utility-splitter.html"><i class="fa-solid fa-bolt"></i> 分租水電與公電分攤</a></li>
+            <li><a href="deposit-settlement.html"><i class="fa-solid fa-hand-holding-dollar"></i> 退租押金結算返還</a></li>
+            <li><a href="repair-inspection.html"><i class="fa-solid fa-clipboard-check"></i> 屋況修繕瑕疵點交</a></li>
+            <li><a href="space-planner.html"><i class="fa-solid fa-cubes"></i> 2D/3D 空間格局配置</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">聯絡港居</h4>
+          <ul>
+            <li><i class="fa-solid fa-location-dot"></i> 高雄市小港區中安路825號</li>
+            <li><i class="fa-solid fa-phone"></i> 專線：0968-863-880 (陳經理)</li>
+            <li><i class="fa-solid fa-phone-office"></i> 市話：07-791-2288</li>
+            <li><i class="fa-brands fa-line"></i> LINE：@ganggo880</li>
+            <li><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</li>
+            <li><a href="privacy.html" style="color: var(--accent-gold); font-weight: 600;"><i class="fa-solid fa-user-shield"></i> 個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright">
+          &copy; 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved.
+        </p>
+        <p class="footer-privacy-note">
+          本站所有線上工具皆於使用者本地端（瀏覽器記憶體）運算，絕不上傳任何個人資料或證件相片，保障隱私安全。
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 模組化 JavaScript -->
+  <script src="js/tracking.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/depreciation-calculator.js"></script>
+
+</body>
+</html>

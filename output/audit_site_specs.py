@@ -28,6 +28,7 @@ HTML_FILES = [
     "legal-notice-generator.html",
     "property-roi-calculator.html",
     "viewing-checklist.html",
+    "depreciation-calculator.html",
     "privacy.html"
 ]
 

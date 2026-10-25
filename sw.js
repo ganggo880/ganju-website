@@ -1,12 +1,13 @@
 // sw.js - 港居不動產 PWA 離線 Service Worker
-// 提供全站 20 款不動產線上工具、3D 智慧島與隱私權專頁 100% 離線運作與極速快取體驗
+// 提供全站 21 款不動產線上工具、3D 智慧島與隱私權專頁 100% 離線運作與極速快取體驗
 
-const CACHE_NAME = 'ganju-pwa-v2.4';
+const CACHE_NAME = 'ganju-pwa-v2.5';
 
-// 核心離線資源清單 (全站 23 頁、Sitemap、CSS、JS、Icon 共 86 項)
+// 核心離線資源清單 (全站 24 頁、Sitemap、CSS、JS、Icon 共 89 項)
 const PRECACHE_ASSETS = [
   './',
   './index.html',
+  './depreciation-calculator.html',
   './viewing-checklist.html',
   './property-roi-calculator.html',
   './rent-calculator.html',
@@ -39,6 +40,7 @@ const PRECACHE_ASSETS = [
   './watermark.css',
   './css/tokens.css',
   './css/components.css',
+  './css/depreciation-calculator.css',
   './css/viewing-checklist.css',
   './css/property-roi-calculator.css',
   './css/space-planner.css',
@@ -62,6 +64,7 @@ const PRECACHE_ASSETS = [
   // 腳本庫
   './script.js',
   './rent-calc.js',
+  './js/depreciation-calculator.js',
   './js/viewing-checklist.js',
   './js/property-roi-calculator.js',
   './js/tracking.js',

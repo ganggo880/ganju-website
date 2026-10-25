@@ -224,8 +224,8 @@ Matt Pocock skills/
 - **中華郵政標準 20×10 格線排版與規費精算**：自動分頁每頁 200 字、試算存證規費（首頁 50 元、續頁每頁 30 元）、LINE 最後通牒複製、920×1120px PNG 圖卡下載、A4 一式三份列印。
 
 ### 4.23 官網主頁「全方位不動產與租務線上工具中心 (`#tools`)」
-- **全站 20 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
-- **4 大分類標籤動態切換**：全部工具 (20)、房東節稅與法務 (7)、租客權益與試算 (5)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
+- **全站 21 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
+- **4 大分類標籤動態切換**：全部工具 (21)、房東節稅與法務 (8)、租客權益與試算 (5)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
 
 ### 4.24 物業投資實質淨投報率與房貸現金流精算器 (`property-roi-calculator.html`)
 - **專業財務模型**：涵蓋購置與改造成本 (CapEx)、銀行融資與房貸 (Debt Financing)、租金收益與營運開銷 (Income & OpEx)。
@@ -242,6 +242,13 @@ Matt Pocock skills/
   - 🔴 0~59 分（高風險地雷・強烈建議換房）
 - **三大一級致命安全警示 (Critical Safety Alerts)**：住警器缺失、瓦斯熱水器排氣隱患、違建頂加／凶宅疑慮時即刻亮紅燈警示。
 - **智慧備忘錄與三大高質感輸出**：自動彙整勾選為「待改善／有缺陷」之項目清單便於向房東交涉要求修繕。支援 `@media print` A4 無痕列印《現場看屋 30 項屋況自檢與避坑評估診斷書》、HTML5 Canvas 840×1080px 高畫質 PNG 診斷圖卡下載，以及 LINE 檢核摘要一鍵複製。
+
+### 4.26 租賃住宅設備損耗折舊與賠償殘值精算器 (`depreciation-calculator.html`)
+- **行政院固定資產耐用年數折舊標準**：依據財政部《固定資產耐用年數表》及民法第 213~216 條損害賠償原則，內建冷氣(5年)、電視(5年)、冰箱(5年)、洗衣機(5年)、熱水器(5年)、抽油煙機(5年)、床組(3年)、沙發(3年)、木地板(3年)、油漆(2年)等 10 大常見租屋設備耐用年數。
+- **直線折舊法與法定殘值下限**：精算購置日與退租日之實際使用月數，計算每年/每月折舊額與法定殘值（原價 / (n+1)），保障設備逾耐用年限時賠償上限嚴格鎖定於殘值。
+- **修復費用 vs 法定現值「孰低原則」防超額求償**：自動比對廠商維修報價與折舊後現值，維修費高於現值時以現值為賠償上限，杜絕以舊換新不當求償。
+- **承租人過失責任比例分攤**：支援 10%~100% 責任成數調控，自動換算最終應賠償負擔額。
+- **三大輸出**：支援 `@media print` A4 無痕列印《租賃住宅設備折舊損耗與殘值賠償核定書》、HTML5 Canvas 840×1080px 高畫質 PNG 圖卡下載，以及 LINE 試算摘要一鍵複製。
 
 ---
 
@@ -316,7 +323,7 @@ Matt Pocock skills/
 
 ## 8. SEO 與 Schema.org 結構化資料全覽 (Structured Data)
 
-全站 23 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
+全站 24 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
 
 | 頁面 | Schema.org 類型 | 核心欄位與特性 |
 |---|---|---|
@@ -343,6 +350,7 @@ Matt Pocock skills/
 | `legal-notice-generator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 欠租催告與終止租約郵局存證信函產生器 |
 | `property-roi-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 物業投資實質投報與房貸現金流精算器 |
 | `viewing-checklist.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租客看屋30項自檢與避坑評分表產生器 |
+| `depreciation-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租賃住宅設備折舊損耗與殘值賠償精算器 |
 | `output/winfar-website/` | `Corporation` | `name`, `foundingDate`, `founder`, `address`, `telephone`, `knowsAbout` |
 
 ---
@@ -356,13 +364,13 @@ Matt Pocock skills/
    - 圖示庫：支援 192×192、512×512 之標準圖示與 Android Maskable 圖示，以及 Apple Touch Icon。
    - 快捷捷徑 (App Shortcuts)：直接跳轉 2D/3D 格局、租金試算、EXIF 水印與 OCR 翻譯。
 2. **智慧 Service Worker 快取體系 (`sw.js`)**：
-   - **Pre-caching**：安裝時預載全站 23 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.4` 共 86 項核心資產）。
+   - **Pre-caching**：安裝時預載全站 24 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.5` 共 89 項核心資產）。
    - **導航請求 (Navigate)**：Network-First with Cache Fallback，網路在線時即時獲取最新修正，案場無訊號（地下室、高樓）自動回退至本機快取。
    - **靜態資源 (Assets/CDN)**：Stale-While-Revalidate 與動態快取，自動緩存 Three.js 與 FontAwesome 等第三方相依庫。
 3. **原生安裝引導與連線監控 (`js/pwa.js`)**：
    - 攔截 `beforeinstallprompt` 提供符合品牌色系與 ≥ 44×44px 觸控標準之「免費安裝」提示卡片。
    - 監聽 `online` / `offline` 事件，斷網時浮動顯示離線指示徽章，連線恢復時 Toast 提示自動同步。
-   - 經 CDP 實機模擬斷網驗收，全站 23 頁完全離線可用率達 **23/23 頁 (100%)**。
+   - 經 CDP 實機模擬斷網驗收，全站 24 頁完全離線可用率達 **24/24 頁 (100%)**。
 
 ---
 
@@ -617,6 +625,22 @@ Matt Pocock skills/
    - `@media print` A4 無痕列印《現場看屋 30 項屋況自檢與避坑評估診斷書》。
    - HTML5 Canvas 840×1080px 高畫質 PNG 診斷圖卡下載。
    - LINE 檢核摘要一鍵複製與港居官方諮詢連結。
+
+### 13.19 租賃住宅設備損耗折舊與賠償殘值精算器 (`depreciation-calculator.html`)
+
+1. **實務背景與爭議防範**：
+   - 專為化解租屋退租點交時「設備損壞賠償金爭議」設計，破除房東要求按原價全新品賠償之陋習。
+   - 依據行政院財政部《固定資產耐用年數表》及民法第 213~216 條損害賠償與不當得利禁止原則。
+2. **直線折舊與法定殘值精算模型**：
+   - 內建 10 大常見設備預設耐用年數（冷氣/電視/冰箱/洗衣機/熱水器/抽油煙機 5 年；家具/沙發/地板 3 年；油漆 2 年）。
+   - 法定殘值公式：$\text{殘值} = \text{原價} / (n + 1)$。
+   - 逾耐用年限時，損害賠償上限嚴格以法定殘值為準。
+3. **修復費用 vs 法定現值「孰低原則」**：
+   - 自動比對廠商維修報價與設備折舊後現值，防範小損害強索新機，並支援 10%~100% 承租人過失責任比例調控。
+4. **三大高質感輸出**：
+   - `@media print` A4 無痕列印《租賃住宅設備折舊損耗與殘值賠償核定書》。
+   - HTML5 Canvas 840×1080px 高畫質 PNG 圖卡下載。
+   - LINE 試算摘要一鍵複製與港居官方諮詢連結。
 
 ---
 
