@@ -46,6 +46,7 @@ HTML_FILES = [
     "roommate-agreement.html",
     "pet-addendum-agreement.html",
     "parking-lease-agreement.html",
+    "renovation-consent-agreement.html",
     "privacy.html"
 ]
 
