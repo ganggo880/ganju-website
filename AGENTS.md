@@ -93,6 +93,7 @@
 - [x] 階段七十：住宅租賃設籍約定暨退租遷出切結書產生器 `household-registration-agreement.html`（依據《戶籍法》第50條第1項與內政部定型化契約不得記載事項第6點設計，整合合法設籍擔保、設籍人員名冊動態登錄、退租限期遷出切結、逾期每日懲罰性違約金精算、授權逕向戶政事務所申辦暫遷戶籍登記、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 49 頁 100% 互通、PWA 166 項資產離線秒開與 192 組行動端 0px 溢出通過）
 - [x] 階段七十一：住宅租賃租約公證聲請暨逕受強制執行約定書產生器 `lease-notarization-agreement.html`（依據《公證法》第13條、《公證法》第109條、《強制執行法》第4條及司法院公證費用標準設計，整合租金總額與房屋課稅現值孰高核算、逕受強執特約加成精算、4大強制執行條款核取矩陣、連帶保證人連帶責任登錄、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 50 頁 100% 互通、PWA 169 項資產離線秒開與 196 組行動端 0px 溢出通過）
 - [x] 階段七十二：住宅租賃緊急避難與緊急開門進入授權協議書產生器 `emergency-entry-agreement.html`（依據《刑法》第24/306條、《民法》第150/432條及《公寓大廈管理條例》第6條合規設計，整合瓦斯漏氣/火災/爆管漏水/失聯急難六大情境、第三方中立會同見證SOP、全程錄影存證、阻卻違法合意宣告、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 51 頁 100% 互通、PWA 172 項資產離線秒開與 200 組行動端 0px 溢出通過）
+- [x] 階段七十三：住宅租賃無菸住宅（全面禁菸）特約承諾書產生器 `smoke-free-agreement.html`（依據《菸害防制法》第18/19/20條與《民法》第432條善良管理人責任，整合傳統紙菸/電子煙/加熱菸全面管制、三級違約處置罰則、深層臭氧燻蒸除味與粉刷賠償、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 52 頁 100% 互通、PWA 175 項資產離線秒開與 204 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -155,7 +156,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── household-registration-agreement.html # 49. 住宅租賃設籍約定暨退租遷出切結書產生器
 ├── lease-notarization-agreement.html     # 50. 住宅租賃租約公證聲請暨逕受強制執行約定書產生器
 ├── emergency-entry-agreement.html        # 51. 住宅租賃緊急避難與緊急開門進入授權協議書產生器
-├── sitemap.xml                      # 全站 51 頁 SEO XML 網站地圖
+├── smoke-free-agreement.html             # 52. 住宅租賃無菸住宅（全面禁菸）特約承諾書產生器
+├── sitemap.xml                      # 全站 52 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css

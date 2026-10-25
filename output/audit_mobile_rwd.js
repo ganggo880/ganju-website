@@ -60,6 +60,7 @@ const PAGES = [
   'household-registration-agreement.html',
   'lease-notarization-agreement.html',
   'emergency-entry-agreement.html',
+  'smoke-free-agreement.html',
   'fire-safety-agreement.html',
   'privacy.html'
 ];
