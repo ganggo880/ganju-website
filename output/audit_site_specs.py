@@ -35,6 +35,7 @@ HTML_FILES = [
     "mandate-contract.html",
     "guarantor-agreement.html",
     "repair-work-order.html",
+    "holding-deposit-receipt.html",
     "privacy.html"
 ]
 
@@ -82,7 +83,10 @@ for html_file in HTML_FILES:
             for jld in json_ld_matches:
                 data = json.loads(jld.strip())
                 report["json_ld_valid"] = True
-                report["json_ld_type"] = data.get("@type")
+                if data.get("@type"):
+                    report["json_ld_type"] = data.get("@type")
+                elif data.get("@graph") and len(data.get("@graph")) > 0:
+                    report["json_ld_type"] = data.get("@graph")[0].get("@type")
         except Exception as e:
             report["json_ld_valid"] = False
             report["json_ld_error"] = str(e)

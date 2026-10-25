@@ -41,6 +41,7 @@ const PAGES = [
   'mandate-contract.html',
   'guarantor-agreement.html',
   'repair-work-order.html',
+  'holding-deposit-receipt.html',
   'privacy.html'
 ];
 

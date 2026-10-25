@@ -72,6 +72,7 @@
 - [x] 階段四十九：住宅租賃委託管理（包租／代管）契約書線上產生器 `mandate-contract.html`（符合內政部定型化契約應記載不得記載事項規範，支援委託代管10%服務費與保證包租雙模式切換、六大受託管理權限授權清單、5,000元免報備快速修繕代墊條款、撥款銀行指定、金融繁體大寫轉換、雙畫布Retina 2x電子手寫簽章、A4無痕列印與高畫質圖卡下載，全站28頁100%互通、PWA 103項離線可用與108組行動端0px溢出通過）
 - [x] 階段五十：租賃住宅連帶保證人保證書與履約切結書線上產生器 `guarantor-agreement.html`（依據《民法》第739~745條連帶保證規範設計，內建六大欠繳債權擔保範圍、明確自願拋棄先訴抗辯權切結宣告、最高清償責任限額國字大寫轉換、雙畫布Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE摘要複製，全站29頁100%互通、PWA 106項資產離線秒開與112組行動端0px溢出通過）
 - [x] 階段五十一：租賃住宅修繕通報派工與完工驗收證明單產生器 `repair-work-order.html`（依據《民法》第429/430條與租賃專法第11條規範，整合六大修繕分類與特急搶修等級、5,000元免報備緊急搶修代墊判定、動態材料工項明細與金融大寫國字金額轉換、修繕前後對比照片存證、租客/廠商/港居三方電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px 圖卡下載與LINE通報文字複製，全站 30 頁 100% 互通、PWA 109 項資產離線秒開與 116 組行動端 0px 溢出通過）
+- [x] 階段五十二：租屋定金收據與承租保留切結產生器 `holding-deposit-receipt.html`（依據《民法》第248條及第249條規範，明定定金契約推定成立、承租保留截止日時與定金折抵條款，支援繁體中文金融大寫金額轉換、雙畫布Retina 2x電子手寫簽章、A4標準無痕列印、Canvas 840×1080px圖卡下載與LINE存證複製，全站 31 頁 100% 互通、PWA 112 項資產離線秒開與 120 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -113,7 +114,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── mandate-contract.html            # 28. 住宅租賃委託管理（包租／代管）契約書線上產生器
 ├── guarantor-agreement.html         # 29. 租賃住宅連帶保證人保證書與履約切結書線上產生器
 ├── repair-work-order.html           # 30. 租賃住宅修繕通報派工與完工驗收證明單產生器
-├── sitemap.xml                      # 全站 30 頁 SEO XML 網站地圖
+├── holding-deposit-receipt.html     # 31. 租屋定金收據與承租保留切結產生器
+├── sitemap.xml                      # 全站 31 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -129,6 +131,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── guarantor-agreement.css      # 租賃連帶保證人保證書專用樣式與 A4 排版引擎
 │   ├── mandate-contract.css         # 住宅租賃委託管理與包租契約專用樣式與 A4 排版引擎
 │   ├── repair-work-order.css        # 租賃修繕派工與完工驗收單專用樣式與 A4 排版引擎
+│   ├── holding-deposit-receipt.css  # 租屋定金收據與承租保留切結專用樣式與 A4 排版引擎
 │   ├── space-planner.css            # 2D/3D 空間格局配置系統樣式
 │   ├── lease-contract.css           # 租賃契約與公約產生器樣式與 A4 列印引擎
 │   ├── tax-calculator.css           # 房東節稅試算樣式與 A4 診斷書列印引擎
@@ -151,6 +154,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── guarantor-agreement.js       # 租賃連帶保證人完全責任、先訴抗辯權拋棄與手寫簽章引擎
 │   ├── mandate-contract.js          # 住宅租賃委託管理與包租契約雙模式、修繕代墊授權與手寫簽章引擎
 │   ├── repair-work-order.js         # 租賃修繕三方簽章、動態材料工項明細與 A4/Canvas/LINE 輸出引擎
+│   ├── holding-deposit-receipt.js   # 租屋定金收據、民法249條罰則聲明、大寫轉換與雙簽章引擎
 │   ├── tracking.js                  # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js                     # 千分位、日期差、Toast、主題切換
 │   ├── navigation.js                # 導覽列與 Mobile Drawer（index.html 使用）
