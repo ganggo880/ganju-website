@@ -36,9 +36,10 @@
 | 24 | `lease-termination-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租約提前終止協議書與遷讓交還切結產生器｜港居不動產 |
 | 25 | `lease-renewal-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租約續約協議書與租金調幅精算產生器｜港居不動產・安心續約定期保障 |
 | 26 | `tenant-screening-checker.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 租客承租資格審查與租賃信用評分表產生器｜港居不動產・專業嚴選優質房客 |
-| 27 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 27 | `mandate-contract.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃委託管理（包租／代管）契約書線上產生器｜港居不動產・官方合法特許範本 |
+| 28 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**27 / 27 頁 (100%)**
+**離線可用率**：**28 / 28 頁 (100%)**
 
 ---
 

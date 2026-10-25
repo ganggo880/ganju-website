@@ -32,6 +32,7 @@ HTML_FILES = [
     "lease-termination-agreement.html",
     "lease-renewal-agreement.html",
     "tenant-screening-checker.html",
+    "mandate-contract.html",
     "privacy.html"
 ]
 
