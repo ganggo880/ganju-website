@@ -88,6 +88,7 @@
 - [x] 階段六十五：住宅租賃爭議調處與調解聲請書產生器 `dispute-mediation-request.html`（依據《租賃住宅市場發展及管理條例》第16條直轄市調處免繳規費規定、《直轄市縣市不動產糾紛調處委員會設置及調處辦法》與《鄉鎮市調解條例》合規設計，整合地政局住宅租賃調處與區公所民事調解雙軌管轄切換、五大爭端類型快速範本套用（押金扣抵、修繕代墊、提前解約違約金、欠租欠費、損耗折舊）、請求事項與爭端事實時序排版、檢附證物清單動態增刪附表、繁體中文金融大寫國字轉換、聲請人Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE摘要複製，全站 44 頁 100% 互通、PWA 151 項資產離線秒開與 172 組行動端 0px 溢出通過）
 - [x] 階段六十六：住宅租賃買賣不破租賃通知與押金移轉確認書產生器 `ownership-change-notice.html`（依據《民法》第425條買賣不破租賃原則與租賃定型化契約規範設計，整合產權異動合法宣告、原契約租期租金維持不變、原收押租保證金全額移交新所有權人簽收承受退租返還義務、繁體中文金融大寫國字防篡改轉換、新租金受款金融帳戶指定與首期起付期日、原出租人／新所有權人／現承租人三方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE摘要複製，全站 45 頁 100% 互通、PWA 154 項資產離線秒開與 176 組行動端 0px 溢出通過）
 - [x] 階段六十七：住宅租賃承租人轉租同意書與管理協議產生器 `sublease-consent-agreement.html`（依據《民法》第443/444條與《租賃住宅市場發展及管理條例》第9條合規設計，整合一部與全部轉租雙模式切換、轉租期間不得逾原契約迄日強制防呆、轉租人對次承租人連帶責任切結、三方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE摘要複製，全站 46 頁 100% 互通、PWA 157 項資產離線秒開與 180 組行動端 0px 溢出通過）
+- [x] 階段六十八：住宅租賃設址營業與稅賦補償協議書產生器 `business-registration-agreement.html`（依據《所得稅法》、《房屋稅條例》、《土地稅法》合規設計，整合特約許可設址稅差精算與嚴格禁止私設營業登記雙模式、自動精算房屋稅/地價稅/租金扣繳所得差額、限期遷址懲罰切結、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE摘要複製，全站 47 頁 100% 互通、PWA 160 項資產離線秒開與 184 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -145,7 +146,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── dispute-mediation-request.html   # 44. 住宅租賃爭議調處與調解聲請書產生器
 ├── ownership-change-notice.html     # 45. 住宅租賃買賣不破租賃通知與押金移轉確認書產生器
 ├── sublease-consent-agreement.html  # 46. 住宅租賃承租人轉租同意書與管理協議產生器
-├── sitemap.xml                      # 全站 46 頁 SEO XML 網站地圖
+├── business-registration-agreement.html # 47. 住宅租賃設址營業與稅賦補償協議書產生器
+├── sitemap.xml                      # 全站 47 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -158,6 +160,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── auth-guard.css               # 全站線上工具授權驗證防護樣式（毛玻璃、零閃爍防護、RWD）
+│   ├── business-registration-agreement.css # 住宅租賃設址營業與稅賦補償協議專用樣式與 A4 排版引擎
 │   ├── sublease-consent-agreement.css # 住宅租賃轉租同意書與管理協議專用樣式與 A4 排版引擎
 │   ├── ownership-change-notice.css  # 住宅租賃買賣不破租賃通知與押金移轉確認書專用樣式與 A4 排版引擎
 │   ├── dispute-mediation-request.css # 住宅租賃爭議調處與調解聲請書專用樣式與 A4 排版引擎
@@ -194,6 +197,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
+│   ├── business-registration-agreement.js # 設址營業稅差精算、限期遷址切結、金融大寫與雙方簽章引擎
 │   ├── sublease-consent-agreement.js # 承租人轉租同意書核心邏輯（一部/全部轉租雙模式、租期防呆、連帶責任與三方簽章引擎）
 │   ├── ownership-change-notice.js   # 買賣不破租賃通知與押金移轉核心邏輯（法定承受宣告、押金大寫、新帳戶與三方簽章引擎）
 │   ├── dispute-mediation-request.js # 租賃爭議調處與調解核心邏輯（雙軌機關、五大爭端、證物附表與手寫簽章引擎）

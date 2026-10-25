@@ -55,9 +55,10 @@
 | 43 | `dispute-mediation-request.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃爭議調處與調解聲請書產生器 ｜ 港居不動產 |
 | 44 | `ownership-change-notice.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃買賣不破租賃通知與押金移轉確認書產生器 ｜ 港居不動產 |
 | 45 | `sublease-consent-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃承租人轉租同意書與管理協議產生器 ｜ 港居不動產 |
-| 46 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
+| 46 | `business-registration-agreement.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 住宅租賃設址營業與稅賦補償協議書產生器 ｜ 港居不動產 |
+| 47 | `privacy.html` | ✅ 成功 (Status 200 From SW Cache) | ✅ 正常完整渲染 | 個人資料保護與隱私權政策｜港居不動產開發有限公司 |
 
-**離線可用率**：**46 / 46 頁 (100%)**
+**離線可用率**：**47 / 47 頁 (100%)**
 
 ---
 

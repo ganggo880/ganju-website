@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>住宅租賃設址營業與稅賦補償協議書產生器 ｜ 港居不動產</title>
+  <meta name="description" content="港居不動產線上工具：住宅租賃設址營業與稅賦補償切結協議書產生器。依據《所得稅法》、《房屋稅條例》、《土地稅法》與租賃法規設計。支援特約同意設址與全額稅差補償／嚴格禁止私設營業登記雙模式、自動精算房屋稅、地價稅與租金扣繳所得差額、限期遷址懲罰切結、雙方Retina 2x手寫簽章、HTML5 Canvas 840×1080px 圖卡與 A4 無痕列印。">
+  <meta name="keywords" content="設址營業協議書, 公司登記租約, 營業登記稅賦補償, 租賃房屋稅營業用, 地價稅營業用補償, 限期遷址切結, 港居不動產">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/business-registration-agreement.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="住宅租賃設址營業與稅賦補償協議書產生器 ｜ 港居不動產">
+  <meta property="og:description" content="依據所得稅法與房屋稅條例合規設計，特約許可設址稅差精算與嚴禁設址雙模式、限期遷址切結、雙方電子手寫簽章與A4無痕列印。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/business-registration-agreement.html">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a365d">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <link rel="stylesheet" href="css/business-registration-agreement.css">
+
+  <!-- 結構化資料 JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://ganggo880.github.io/ganju-website/business-registration-agreement.html#app",
+        "name": "住宅租賃設址營業與稅賦補償協議書產生器",
+        "url": "https://ganggo880.github.io/ganju-website/business-registration-agreement.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "zh-TW",
+        "description": "依據所得稅法、房屋稅條例與土地稅法設計之住宅租賃設址營業同意暨稅費差額全額補償與限期遷離切結協議系統。",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD"
+        },
+        "author": {
+          "@type": "RealEstateAgent",
+          "name": "港居不動產開發有限公司",
+          "url": "https://ganggo880.github.io/ganju-website/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ganggo880.github.io/ganju-website/business-registration-agreement.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "首頁",
+            "item": "https://ganggo880.github.io/ganju-website/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "線上工具中心",
+            "item": "https://ganggo880.github.io/ganju-website/#tools"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "設址營業與稅賦補償協議書產生器",
+            "item": "https://ganggo880.github.io/ganju-website/business-registration-agreement.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 1. 頂部安全與登記宣告 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        <button id="btnAuthLock" class="quick-action-btn" title="鎖定工具並清除授權" style="min-height:44px; padding:6px 12px; font-size:12px; margin-left:8px;">
+          🔒 授權鎖定
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <!-- 桌面與行動版導覽連結 -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (44)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="business-registration-agreement.html" class="nav-link active"><i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent-gold);"></i> 設址營業與稅賦補償協議</a></li>
+            <li><a href="sublease-consent-agreement.html" class="nav-link"><i class="fa-solid fa-people-arrows" style="color: #63b3ed;"></i> 承租人轉租同意與協議書</a></li>
+            <li><a href="ownership-change-notice.html" class="nav-link"><i class="fa-solid fa-house-chimney-user" style="color: #63b3ed;"></i> 買賣不破租賃與押金移轉通知</a></li>
+            <li><a href="dispute-mediation-request.html" class="nav-link"><i class="fa-solid fa-scale-unbalanced-flip" style="color: #63b3ed;"></i> 租賃爭議調處與調解聲請</a></li>
+            <li><a href="arrears-installment-agreement.html" class="nav-link"><i class="fa-solid fa-handshake-simple" style="color: #63b3ed;"></i> 欠租分期清償和解協議</a></li>
+            <li><a href="renovation-consent-agreement.html" class="nav-link"><i class="fa-solid fa-hammer" style="color: #63b3ed;"></i> 室內裝修改裝同意切結</a></li>
+            <li><a href="parking-lease-agreement.html" class="nav-link"><i class="fa-solid fa-square-parking" style="color: #63b3ed;"></i> 汽機車停車位租用協議</a></li>
+            <li><a href="pet-addendum-agreement.html" class="nav-link"><i class="fa-solid fa-paw" style="color: #f59e0b;"></i> 飼養寵物特約承諾書</a></li>
+            <li><a href="roommate-agreement.html" class="nav-link"><i class="fa-solid fa-users" style="color: #63b3ed;"></i> 合租公約與承租協議</a></li>
+            <li><a href="proxy-authorization.html" class="nav-link"><i class="fa-solid fa-signature" style="color: #63b3ed;"></i> 租賃代理授權委任書</a></li>
+            <li><a href="rent-arrears-notice.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #63b3ed;"></i> 租金催繳與欠租催告書</a></li>
+            <li><a href="rules-violation-notice.html" class="nav-link"><i class="fa-solid fa-triangle-exclamation" style="color: #63b3ed;"></i> 住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #63b3ed;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #63b3ed;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-wrench" style="color: #63b3ed;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #63b3ed;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #63b3ed;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 房東節稅效益精算</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-list" style="color: #63b3ed;"></i> 點交修繕瑕疵存證</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #63b3ed;"></i> 分租水電公電分攤</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #63b3ed;"></i> 退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-house-chimney-crack" style="color: #63b3ed;"></i> 300億租補資格精算</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #63b3ed;"></i> 591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #63b3ed;"></i> 欠租催告存證信函</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #63b3ed;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #63b3ed;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #63b3ed;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #63b3ed;"></i> 租約提前終止協議書</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #63b3ed;"></i> 租約續約協議書</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #63b3ed;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 租金代管費換算</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-arrow-up" style="color: #63b3ed;"></i> 線上多功能轉檔</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera" style="color: #63b3ed;"></i> 房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #63b3ed;"></i> 證件保護防偽水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image" style="color: #63b3ed;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #63b3ed;"></i> 名片正反合成</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#contact" class="nav-link">預約諮詢</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="開啟選單" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容區 -->
+  <main class="app-container">
+    <div class="tool-header">
+      <div class="tool-badge"><i class="fa-solid fa-shield-cat"></i> 港居法務與稅務防禦系統</div>
+      <h1>住宅租賃設址營業與稅賦補償協議書產生器</h1>
+      <p>依據《所得稅法》、《房屋稅條例》與《土地稅法》合規設計。支援「特約同意設址全額稅差補償」與「嚴格禁止私設營業登記」雙模式，自動試算房屋稅、地價稅與租金扣繳所得差額，並內建限期遷離懲罰性切結與雙方高靈敏手寫簽章。</p>
+    </div>
+
+    <!-- 編輯區與預覽區雙欄架構 -->
+    <section class="workspace-grid">
+      <!-- 左欄：參數設定面板 -->
+      <div class="editor-card">
+        <!-- 模式切換 -->
+        <div class="mode-toggle-group">
+          <button type="button" class="mode-option-btn active" id="btnModeAllow">
+            <div class="mode-option-title"><i class="fa-solid fa-building-circle-check"></i> 特約許可設址模式</div>
+            <div class="mode-option-desc">同意公司/商號設址，承租人全額負擔稅賦差額並簽署限期遷離切結</div>
+          </button>
+          <button type="button" class="mode-option-btn" id="btnModeForbid">
+            <div class="mode-option-title"><i class="fa-solid fa-ban"></i> 嚴格禁止設址模式</div>
+            <div class="mode-option-desc">純供居住，嚴禁任何公司或稅籍設立，擅自登記者課以3個月租金重罰</div>
+          </button>
+        </div>
+
+        <!-- 區塊一：公文基本資訊 -->
+        <div class="section-title"><i class="fa-solid fa-file-lines"></i> 一、協議基本資料與租賃標的</div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="docNumber">協議書編號</label>
+            <input type="text" id="docNumber" class="form-control" value="GANJU-REG-20261025">
+          </div>
+          <div class="form-group">
+            <label for="agreementDate">簽署協議日期</label>
+            <input type="date" id="agreementDate" class="form-control" value="2026-10-25">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="propertyAddress">租賃住宅地址（完整門牌標的）</label>
+          <input type="text" id="propertyAddress" class="form-control" value="高雄市小港區中安路888號5樓之2">
+        </div>
+        <div class="form-group">
+          <label for="monthlyRent">原租賃契約每月租金 (新臺幣元)</label>
+          <input type="number" id="monthlyRent" class="form-control" value="28000" min="0" step="500">
+          <div class="amount-uppercase-tag" id="monthlyRentUpper">新臺幣 貳萬捌仟元整</div>
+        </div>
+
+        <!-- 區塊二：登記商業法人資料 -->
+        <div class="section-title"><i class="fa-solid fa-briefcase"></i> 二、設立登記營利事業法人資訊</div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="companyName">營利事業/公司/商號名稱</label>
+            <input type="text" id="companyName" class="form-control" value="創益數位行銷有限公司">
+          </div>
+          <div class="form-group">
+            <label for="companyUnifiedId">統一編號 / 稅籍編號</label>
+            <input type="text" id="companyUnifiedId" class="form-control" value="83921045">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="businessType">核定營業項目 / 營業性質</label>
+          <input type="text" id="businessType" class="form-control" value="資訊軟體與數位網路廣告業（純辦公室，無實體門市工廠）">
+        </div>
+
+        <!-- 區塊三：稅賦差額自動試算（僅許可模式顯示） -->
+        <div id="allowCalcSection">
+          <div class="section-title"><i class="fa-solid fa-calculator"></i> 三、營業用稅賦差額自動精算與補償款</div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="houseValue">房屋評定現值（稅單金額，元）</label>
+              <input type="number" id="houseValue" class="form-control" value="450000" min="0" step="10000">
+            </div>
+            <div class="form-group">
+              <label for="landValue">土地申報地價總額（地價稅單，元）</label>
+              <input type="number" id="landValue" class="form-control" value="680000" min="0" step="10000">
+            </div>
+          </div>
+
+          <!-- 精算結果展示卡 -->
+          <div class="tax-calc-box">
+            <div class="tax-calc-title">
+              <span><i class="fa-solid fa-chart-pie"></i> 法定各項稅額差額精算明細</span>
+              <span class="badge">純前端即時精算</span>
+            </div>
+            <div class="tax-calc-item">
+              <span>1. 房屋稅差額 (營業用 3.0% vs 自用 1.2%，差 1.8%)：</span>
+              <span id="calcHouseDiff">NT$ 8,100 元/年</span>
+            </div>
+            <div class="tax-calc-item">
+              <span>2. 地價稅差額 (營業一般用 1.0% vs 自用 0.2%，差 0.8%)：</span>
+              <span id="calcLandDiff">NT$ 5,440 元/年</span>
+            </div>
+            <div class="tax-calc-item">
+              <span>3. 租金所得扣繳 (10%) ＋ 二代健保補充保費 (2.11%)：</span>
+              <span id="calcIncomeDiff">NT$ 40,690 元/年</span>
+            </div>
+            <div class="tax-calc-item">
+              <span>★ 營業稅費差額年度總計（承租人應全額補償款）：</span>
+              <span id="calcTotalAnnual">NT$ 54,230 元/年</span>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>每月隨租金補貼款 (年度總額 ÷ 12)</label>
+              <div class="amount-uppercase-tag" id="compUpper" style="font-size: 1rem; width: 100%; justify-content: center; padding: 10px;">
+                新臺幣 肆仟伍佰壹拾玖元整
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="relocationDays">租約終止限期遷址天數 (日)</label>
+              <input type="number" id="relocationDays" class="form-control" value="15" min="1" max="60">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dailyPenaltyRate">逾期未遷址每日懲罰性違約金 (元/日)</label>
+            <input type="number" id="dailyPenaltyRate" class="form-control" value="2000" min="500" step="500">
+          </div>
+        </div>
+
+        <!-- 區塊四：雙方當事人資料 -->
+        <div class="section-title"><i class="fa-solid fa-users"></i> 四、簽署當事人資料</div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="landlordName">出租人姓名（產權所有權人）</label>
+            <input type="text" id="landlordName" class="form-control" value="陳美蘭">
+          </div>
+          <div class="form-group">
+            <label for="landlordId">身分證字號</label>
+            <input type="text" id="landlordId" class="form-control" value="E220198***">
+          </div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="landlordPhone">聯絡電話</label>
+            <input type="text" id="landlordPhone" class="form-control" value="0912-345-678">
+          </div>
+          <div class="form-group">
+            <label for="landlordAddress">戶籍通訊地址</label>
+            <input type="text" id="landlordAddress" class="form-control" value="高雄市苓雅區四維三路2號">
+          </div>
+        </div>
+
+        <div class="form-grid-2" style="margin-top: 10px;">
+          <div class="form-group">
+            <label for="tenantName">承租人姓名（兼登記公司負責人）</label>
+            <input type="text" id="tenantName" class="form-control" value="張廷浩">
+          </div>
+          <div class="form-group">
+            <label for="tenantId">身分證字號</label>
+            <input type="text" id="tenantId" class="form-control" value="S123456***">
+          </div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="tenantPhone">聯絡電話</label>
+            <input type="text" id="tenantPhone" class="form-control" value="0988-765-432">
+          </div>
+          <div class="form-group">
+            <label for="tenantAddress">戶籍通訊地址</label>
+            <input type="text" id="tenantAddress" class="form-control" value="高雄市小港區大業北路120號">
+          </div>
+        </div>
+
+        <!-- 區塊五：雙方 Retina 2x 高靈敏電子簽章板 -->
+        <div class="section-title"><i class="fa-solid fa-signature"></i> 五、雙方電子手寫簽章</div>
+        <div class="signature-section">
+          <!-- 出租人簽名 -->
+          <div class="sig-box">
+            <div class="sig-title">
+              <span>出租人親筆簽署</span>
+              <button type="button" class="sig-clear-btn" id="btnClearLandlord"><i class="fa-solid fa-eraser"></i> 清除重新簽名</button>
+            </div>
+            <div class="sig-canvas-wrapper">
+              <canvas id="canvasLandlord" class="sig-canvas"></canvas>
+            </div>
+          </div>
+          <!-- 承租人簽名 -->
+          <div class="sig-box">
+            <div class="sig-title">
+              <span>承租人兼負責人親筆簽署</span>
+              <button type="button" class="sig-clear-btn" id="btnClearTenant"><i class="fa-solid fa-eraser"></i> 清除重新簽名</button>
+            </div>
+            <div class="sig-canvas-wrapper">
+              <canvas id="canvasTenant" class="sig-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- 成果輸出按鈕群 -->
+        <div class="action-buttons-group">
+          <button type="button" class="btn-act btn-primary-gold" id="btnPrintDoc">
+            <i class="fa-solid fa-print"></i> 列印 A4 存證協議書
+          </button>
+          <button type="button" class="btn-act btn-outline-navy" id="btnDownloadCard">
+            <i class="fa-solid fa-image"></i> 下載存證圖卡 (PNG)
+          </button>
+          <button type="button" class="btn-act btn-green-line" id="btnCopyLine">
+            <i class="fa-brands fa-line"></i> 複製 LINE 備忘
+          </button>
+        </div>
+      </div>
+
+      <!-- 右欄：A4 標準協議公文即時預覽 -->
+      <div class="preview-sticky-col">
+        <div class="a4-preview-wrapper" id="a4PreviewDoc">
+          <div class="doc-header">
+            <div class="company-name">港居不動產開發有限公司 ｜ 法務租賃合約部</div>
+            <h2 class="doc-main-title" id="pvDocTitle">住宅租賃設址營業同意暨稅賦補償切結協議書</h2>
+            <div class="doc-meta">
+              <span>文件編號：<strong id="pvDocNumber">GANJU-REG-20261025</strong></span>
+              <span id="pvModeBadge" style="font-weight: 700;">【特約許可設址模式】</span>
+              <span>簽署日期：<strong id="pvAgreementDate">2026-10-25</strong></span>
+            </div>
+          </div>
+
+          <div class="doc-section">
+            <div class="doc-sec-title">一、租賃標的與登記營利事業</div>
+            <table class="doc-table">
+              <tr>
+                <th>租賃住宅地址</th>
+                <td colspan="3" id="pvPropertyAddress">高雄市小港區中安路888號5樓之2</td>
+              </tr>
+              <tr>
+                <th>原契約月租金</th>
+                <td colspan="3" id="pvMonthlyRent">新臺幣 28,000 元/月（新臺幣 貳萬捌仟元整）</td>
+              </tr>
+              <tr>
+                <th>商業法人名稱</th>
+                <td id="pvCompanyName">創益數位行銷有限公司</td>
+                <th>統一編號</th>
+                <td id="pvCompanyUnifiedId">83921045</td>
+              </tr>
+              <tr>
+                <th>營業項目性質</th>
+                <td colspan="3" id="pvBusinessType">資訊軟體與數位網路廣告業（純辦公室，無實體門市工廠）</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="doc-section">
+            <div class="doc-sec-title">二、協議特約條款與切結義務</div>
+            <div class="doc-legal-text" id="pvLegalClauses">
+              <!-- 動態由 JS 渲染條款內容 -->
+            </div>
+          </div>
+
+          <div class="doc-section">
+            <div class="doc-sec-title">三、簽署當事人資料確認</div>
+            <table class="doc-table">
+              <tr>
+                <th>出租人（產權方）</th>
+                <td id="pvLandlordName">陳美蘭</td>
+                <th>身分證字號</th>
+                <td id="pvLandlordId">E220198***</td>
+              </tr>
+              <tr>
+                <th>聯絡電話</th>
+                <td colspan="3" id="pvLandlordPhone">0912-345-678</td>
+              </tr>
+              <tr>
+                <th>承租人（負責人）</th>
+                <td id="pvTenantName">張廷浩</td>
+                <th>身分證字號</th>
+                <td id="pvTenantId">S123456***</td>
+              </tr>
+              <tr>
+                <th>聯絡電話</th>
+                <td colspan="3" id="pvTenantPhone">0988-765-432</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- 簽名與受戳印區 -->
+          <div class="doc-signatures-grid">
+            <div class="doc-sig-block">
+              <div><strong>出租人親筆簽名（受款確認）：</strong></div>
+              <img id="imgPreviewLandlord" class="doc-sig-img" style="display: none;" alt="出租人簽署">
+            </div>
+            <div class="doc-sig-block">
+              <div><strong>承租人兼負責人親筆簽名（具結履行）：</strong></div>
+              <img id="imgPreviewTenant" class="doc-sig-img" style="display: none;" alt="承租人簽署">
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; font-size: 0.75rem; color: #64748B; text-align: center; border-top: 1px solid #E2E8F0; padding-top: 10px;">
+            港居不動產開發有限公司 ｜ 統一編號：96797997 ｜ 租賃住宅服務業登記證：(113)高市租登字第0012號<br>
+            營業處所：高雄市小港區中安路825號 ｜ 服務電話：07-791-2288 / 0968-863-880
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 全站標準頁尾 -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="assets/logo.png" alt="港居不動產 LOGO">
+          <span>港居不動產開發有限公司</span>
+        </div>
+        <p class="footer-slogan">高雄高質感住宅包租代管首選・專業物業管理特許團隊</p>
+        <div class="footer-info">
+          <p><i class="fa-solid fa-building"></i> 統一編號：96797997</p>
+          <p><i class="fa-solid fa-certificate"></i> 租賃住宅服務業登記證：(113)高市租登字第0012號</p>
+          <p><i class="fa-solid fa-award"></i> 高雄市租賃住宅服務商業同業公會 會員證號：第 115-046 號</p>
+          <p><i class="fa-solid fa-id-card"></i> 租賃住宅管理人員證號：(112)登字第013739號</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+          <p><i class="fa-solid fa-phone"></i> 專線：0968-863-880 ｜ 市話：07-791-2288</p>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <div class="footer-col-title">房東法務專區</div>
+          <ul class="footer-links">
+            <li><a href="business-registration-agreement.html">設址營業與稅賦補償協議</a></li>
+            <li><a href="sublease-consent-agreement.html">承租人轉租同意與協議書</a></li>
+            <li><a href="ownership-change-notice.html">買賣不破租賃與押金移轉通知</a></li>
+            <li><a href="dispute-mediation-request.html">租賃爭議調處與調解聲請</a></li>
+            <li><a href="arrears-installment-agreement.html">欠租分期清償和解協議</a></li>
+            <li><a href="tax-calculator.html">房東節稅效益精算</a></li>
+            <li><a href="rent-arrears-notice.html">租金催繳與欠租催告</a></li>
+            <li><a href="rules-violation-notice.html">住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html">承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html">屋況定期巡檢維護報告</a></li>
+            <li><a href="mandate-contract.html">住宅租賃委託管理契約</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">租客與實用工具</div>
+          <ul class="footer-links">
+            <li><a href="renovation-consent-agreement.html">室內裝修改裝同意切結</a></li>
+            <li><a href="parking-lease-agreement.html">汽機車停車位租用協議</a></li>
+            <li><a href="pet-addendum-agreement.html">飼養寵物特約承諾書</a></li>
+            <li><a href="roommate-agreement.html">合租公約與承租協議</a></li>
+            <li><a href="lease-contract.html">租賃契約與公約產生器</a></li>
+            <li><a href="rent-receipt.html">租金收據與代管對帳</a></li>
+            <li><a href="utility-splitter.html">分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html">300億租金補貼試算</a></li>
+            <li><a href="listing-post-generator.html">591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html">郵局存證信函產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">數位影像與系統</div>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank">3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html">2D/3D格局配置系統</a></li>
+            <li><a href="photo-watermark.html">房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html">證件保護防偽水印</a></li>
+            <li><a href="file-converter.html">線上多功能轉檔神器</a></li>
+            <li><a href="privacy.html">個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 港居不動產開發有限公司 GANJU Real Estate Development Co., Ltd. 版權所有</p>
+        <p><a href="privacy.html" style="color: var(--accent-gold); text-decoration: underline;">隱私權政策與個資保護</a> ｜ <a href="sitemap.xml" style="color: var(--accent-gold); text-decoration: underline;">網站地圖</a> ｜ 純前端運算・零上傳雲端・個資安全零外洩</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 核心 JS 模組 -->
+  <script src="js/auth-guard.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/business-registration-agreement.js"></script>
+</body>
+</html>

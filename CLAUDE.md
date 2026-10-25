@@ -69,7 +69,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── dispute-mediation-request.html   # 44. 住宅租賃爭議調處與調解聲請書產生器 (租賃專法第16條免收規費、鄉鎮市調解條例、五大爭端快速套用、證物附表與手寫簽章)
 ├── ownership-change-notice.html     # 45. 住宅租賃買賣不破租賃通知與押金移轉確認書產生器 (民法425條買賣不破租賃、法定承繼宣告、押金大寫移轉簽收、新帳戶與三方簽章)
 ├── sublease-consent-agreement.html  # 46. 住宅租賃承租人轉租同意書與管理協議產生器 (民法443/444條轉租合意與連帶損害賠償、租賃專法第9條、一部/全部轉租雙模式、租期不得逾原約防呆、大寫轉換與三方簽章)
-├── sitemap.xml              # 全站 46 頁 SEO XML 網站地圖
+├── business-registration-agreement.html # 47. 住宅租賃設址營業與稅賦補償協議書產生器 (所得稅法、房屋稅條例、土地稅法、特約設址稅差精算、嚴禁設址重罰、限期遷離切結與雙方簽章)
+├── sitemap.xml              # 全站 47 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -113,6 +114,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── dispute-mediation-request.css # 住宅租賃爭議調處與調解聲請書專用樣式與 A4 排版引擎
 │   ├── ownership-change-notice.css  # 住宅租賃買賣不破租賃通知與押金移轉確認書專用樣式與 A4 排版引擎
 │   ├── sublease-consent-agreement.css # 住宅租賃轉租同意書與管理協議專用樣式與 A4 排版引擎
+│   ├── business-registration-agreement.css # 住宅租賃設址營業與稅賦補償協議專用樣式與 A4 排版引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
@@ -140,6 +142,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── dispute-mediation-request.js # 租賃爭議調處與調解核心邏輯（雙軌機關、五大爭端、證物附表與手寫簽章引擎）
 │   ├── ownership-change-notice.js   # 買賣不破租賃通知與押金移轉核心邏輯（法定承受宣告、押金大寫、新帳戶與三方簽章引擎）
 │   ├── sublease-consent-agreement.js # 承租人轉租同意書核心邏輯（一部/全部轉租雙模式、租期防呆、連帶責任與三方簽章引擎）
+│   ├── business-registration-agreement.js # 設址營業稅差精算、限期遷址切結、金融大寫與雙方簽章引擎
 │   ├── tracking.js          # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, escapeHTML, 主題切換)
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 控制器
