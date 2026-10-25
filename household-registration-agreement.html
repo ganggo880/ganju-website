@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>住宅租賃設籍約定暨退租遷出切結書產生器 ｜ 港居不動產</title>
+  <meta name="description" content="港居不動產線上工具：住宅租賃設籍約定暨退租遷出切結書產生器。依據《戶籍法》第50條第1項與內政部住宅租賃定型化契約應記載及不得記載事項合規設計。支援設籍人員名冊登錄、退租限期遷出、每日懲罰性違約金精算、授權逕為遷徙登記切結、雙方Retina 2x電子手寫簽章、HTML5 Canvas 840×1180px 圖卡與 A4 無痕列印。">
+  <meta name="keywords" content="租屋設籍同意書, 退租戶籍遷出切結書, 戶籍法第50條, 逕遷戶政事務所, 設籍違約金, 租客入戶籍, 港居不動產">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/household-registration-agreement.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="住宅租賃設籍約定暨退租遷出切結書產生器 ｜ 港居不動產">
+  <meta property="og:description" content="依據戶籍法第50條第1項與內政部定型化契約規範設計，合法設籍協議、退租限期遷出切結、逕遷戶所授權、雙方手寫簽名與A4無痕列印。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/household-registration-agreement.html">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a365d">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <link rel="stylesheet" href="css/household-registration-agreement.css">
+
+  <!-- 結構化資料 JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://ganggo880.github.io/ganju-website/household-registration-agreement.html#app",
+        "name": "住宅租賃設籍約定暨退租遷出切結書產生器",
+        "url": "https://ganggo880.github.io/ganju-website/household-registration-agreement.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "zh-TW",
+        "description": "依據戶籍法第50條第1項及內政部定型化契約設計之住宅租賃設籍約定、退租限期遷出切結、懲罰性違約金精算與授權逕遷戶政事務所系統。",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD"
+        },
+        "author": {
+          "@type": "RealEstateAgent",
+          "name": "港居不動產開發有限公司",
+          "url": "https://ganggo880.github.io/ganju-website/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ganggo880.github.io/ganju-website/household-registration-agreement.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "首頁",
+            "item": "https://ganggo880.github.io/ganju-website/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "線上工具中心",
+            "item": "https://ganggo880.github.io/ganju-website/#tools"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "設籍約定暨退租遷出切結書產生器",
+            "item": "https://ganggo880.github.io/ganju-website/household-registration-agreement.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 1. 頂部安全與登記宣告 Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+        <button id="btnAuthLock" class="quick-action-btn" title="鎖定工具並清除授權" style="min-height:44px; padding:6px 12px; font-size:12px; margin-left:8px;">
+          🔒 授權鎖定
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" title="回港居不動產官網首頁">
+        <img src="assets/logo.png" alt="港居不動產 LOGO">
+        <div class="brand-text-box">
+          <span class="brand-title">港居不動產</span>
+          <span class="brand-sub">GANJU REAL ESTATE</span>
+        </div>
+      </a>
+
+      <!-- 桌面與行動版導覽連結 -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (46)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="household-registration-agreement.html" class="nav-link active"><i class="fa-solid fa-id-badge" style="color: #3b82f6;"></i> 設籍約定暨遷出切結書</a></li>
+            <li><a href="fire-safety-agreement.html" class="nav-link"><i class="fa-solid fa-fire-extinguisher" style="color: #EF4444;"></i> 用電用火安全切結協議</a></li>
+            <li><a href="business-registration-agreement.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent-gold);"></i> 設址營業與稅賦補償協議</a></li>
+            <li><a href="sublease-consent-agreement.html" class="nav-link"><i class="fa-solid fa-people-arrows" style="color: #63b3ed;"></i> 承租人轉租同意與協議書</a></li>
+            <li><a href="ownership-change-notice.html" class="nav-link"><i class="fa-solid fa-house-chimney-user" style="color: #63b3ed;"></i> 買賣不破租賃與押金移轉通知</a></li>
+            <li><a href="dispute-mediation-request.html" class="nav-link"><i class="fa-solid fa-scale-unbalanced-flip" style="color: #63b3ed;"></i> 租賃爭議調處與調解聲請</a></li>
+            <li><a href="arrears-installment-agreement.html" class="nav-link"><i class="fa-solid fa-handshake-simple" style="color: #63b3ed;"></i> 欠租分期清償和解協議</a></li>
+            <li><a href="renovation-consent-agreement.html" class="nav-link"><i class="fa-solid fa-hammer" style="color: #63b3ed;"></i> 室內裝修改裝同意切結</a></li>
+            <li><a href="parking-lease-agreement.html" class="nav-link"><i class="fa-solid fa-square-parking" style="color: #63b3ed;"></i> 汽機車停車位租用協議</a></li>
+            <li><a href="pet-addendum-agreement.html" class="nav-link"><i class="fa-solid fa-paw" style="color: #f59e0b;"></i> 飼養寵物特約承諾書</a></li>
+            <li><a href="roommate-agreement.html" class="nav-link"><i class="fa-solid fa-users" style="color: #63b3ed;"></i> 合租公約與承租協議</a></li>
+            <li><a href="proxy-authorization.html" class="nav-link"><i class="fa-solid fa-signature" style="color: #63b3ed;"></i> 租賃代理授權委任書</a></li>
+            <li><a href="rent-arrears-notice.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #63b3ed;"></i> 租金催繳與欠租催告書</a></li>
+            <li><a href="rules-violation-notice.html" class="nav-link"><i class="fa-solid fa-triangle-exclamation" style="color: #63b3ed;"></i> 住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #63b3ed;"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #63b3ed;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #63b3ed;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-wrench" style="color: #63b3ed;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #63b3ed;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #63b3ed;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #63b3ed;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 房東節稅效益精算</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-list" style="color: #63b3ed;"></i> 點交修繕瑕疵存證</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #63b3ed;"></i> 分租水電公電分攤</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #63b3ed;"></i> 退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-house-chimney-crack" style="color: #63b3ed;"></i> 300億租補資格精算</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #63b3ed;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #63b3ed;"></i> 591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #63b3ed;"></i> 欠租催告存證信函</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #63b3ed;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #63b3ed;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #63b3ed;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #63b3ed;"></i> 租約提前終止協議書</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #63b3ed;"></i> 租約續約協議書</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #63b3ed;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #63b3ed;"></i> 租金代管費換算</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-arrow-up" style="color: #63b3ed;"></i> 線上多功能轉檔</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera" style="color: #63b3ed;"></i> 房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #63b3ed;"></i> 證件保護防偽水印</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-image" style="color: #63b3ed;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #63b3ed;"></i> 名片正反合成</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#contact" class="btn btn-primary nav-cta">立即諮詢</a></li>
+      </ul>
+
+      <!-- 行動版漢堡按鈕 -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="切換選單" aria-expanded="false" style="min-width: 44px; min-height: 44px;">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- 主要工作區 -->
+  <main class="agreement-workspace">
+    <div class="container">
+      <div class="tool-header">
+        <div class="tool-badge">
+          <i class="fa-solid fa-id-badge"></i> 租賃法務特約・戶籍法第 50 條設籍遷出切結
+        </div>
+        <h1>住宅租賃設籍約定暨退租遷出切結書產生器</h1>
+        <p>
+          依據《戶籍法》第 50 條第 1 項及內政部定型化契約規範合規設計。合法准予承租人設籍，切結期滿限期無條件遷出，授權逕向戶政事務所申辦全戶暫遷戶政事務所登記，兼顧居住權益與產權安防。
+        </p>
+      </div>
+
+      <div class="workspace-grid">
+        <!-- 左欄：表單編輯面板 -->
+        <div class="editor-column">
+          <!-- 法規提示橫幅 -->
+          <div class="legal-compliance-banner">
+            <div class="banner-icon">⚖️</div>
+            <div class="banner-content">
+              <strong>符合《戶籍法》第 50 條第 1 項與內政部定型化契約規範：</strong><br>
+              內政部住宅租賃定型化契約不得記載事項第 6 點明定不得限制承租人依法設籍；本切結書依據《戶籍法》第 50 條第 1 項設計，在合法准予設籍之同時，由承租人立約切結於租約期滿或終止後限期將全戶戶籍遷出，並明確授權出租人得逕向主管戶政事務所申請將其全戶戶籍暫遷至該戶政事務所，避免日後戶籍幽靈人口爭端。
+            </div>
+          </div>
+
+          <!-- 區塊一：基本契約資料 -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h2 class="editor-card-title">
+                <i class="fa-solid fa-house-chimney"></i> 租賃標的與租期資料
+              </h2>
+            </div>
+
+            <div class="form-group">
+              <label for="propAddress" class="form-label">
+                租賃住宅標的地址 <span class="badge-required">*</span>
+              </label>
+              <input type="text" id="propAddress" class="form-control" placeholder="例：高雄市小港區中安路 123 號 5 樓" value="高雄市小港區中安路 123 號 5 樓">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="leaseStartDate" class="form-label">
+                  租賃起始日 <span class="badge-required">*</span>
+                </label>
+                <input type="date" id="leaseStartDate" class="form-control" value="2026-11-01">
+              </div>
+              <div class="form-group">
+                <label for="leaseEndDate" class="form-label">
+                  租賃屆滿日 <span class="badge-required">*</span>
+                </label>
+                <input type="date" id="leaseEndDate" class="form-control" value="2027-10-31">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="landlordName" class="form-label">
+                  出租人姓名／名稱 <span class="badge-required">*</span>
+                </label>
+                <input type="text" id="landlordName" class="form-control" placeholder="產權人姓名或受託管理業" value="港居不動產開發有限公司">
+              </div>
+              <div class="form-group">
+                <label for="landlordIdNo" class="form-label">
+                  身分證字號／統一編號 <span class="badge-required">*</span>
+                </label>
+                <input type="text" id="landlordIdNo" class="form-control" placeholder="身分證或統編" value="96797997">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="landlordPhone" class="form-label">
+                出租人聯絡電話
+              </label>
+              <input type="text" id="landlordPhone" class="form-control" placeholder="電話或手機" value="0968-863-880">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tenantName" class="form-label">
+                  承租人（切結立書人） <span class="badge-required">*</span>
+                </label>
+                <input type="text" id="tenantName" class="form-control" placeholder="承租人完整姓名" value="王小明">
+              </div>
+              <div class="form-group">
+                <label for="tenantIdNo" class="form-label">
+                  身分證統一編號 <span class="badge-required">*</span>
+                </label>
+                <input type="text" id="tenantIdNo" class="form-control" placeholder="A123456789" value="A123456789">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="tenantPhone" class="form-label">
+                承租人聯絡電話 <span class="badge-required">*</span>
+              </label>
+              <input type="text" id="tenantPhone" class="form-control" placeholder="0912-345-678" value="0912-345-678">
+            </div>
+          </div>
+
+          <!-- 區塊二：設籍人員名冊登記 -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h2 class="editor-card-title">
+                <i class="fa-solid fa-users-line"></i> 約定設籍人員名冊
+              </h2>
+            </div>
+            <p class="form-hint">登錄同意遷入本租賃住宅戶籍之承租人及其家屬，以釐清設籍責任範圍：</p>
+
+            <div id="membersContainer" class="members-list-wrapper">
+              <!-- 動態生成人員項目 -->
+            </div>
+
+            <button type="button" id="btnAddMember" class="btn-add-item">
+              <i class="fa-solid fa-user-plus"></i> 新增設籍人員
+            </button>
+          </div>
+
+          <!-- 區塊三：退租遷出期限與違約罰則 -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h2 class="editor-card-title">
+                <i class="fa-solid fa-clock-rotate-left"></i> 退租遷出期限與違約罰則
+              </h2>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="vacateDays" class="form-label">
+                  租約期滿／終止後遷出寬限日數 <span class="badge-required">*</span>
+                </label>
+                <select id="vacateDays" class="form-control" style="min-height: 44px;">
+                  <option value="7">7 日內（特約緊縮）</option>
+                  <option value="10">10 日內</option>
+                  <option value="14" selected>14 日內（標準建議）</option>
+                  <option value="30">30 日內（法定一般上限）</option>
+                </select>
+                <span class="form-hint">自租賃契約期滿、提前終止或合法解除之日起算。</span>
+              </div>
+
+              <div class="form-group">
+                <label for="dailyPenalty" class="form-label">
+                  逾期未遷出每日懲罰性違約金 <span class="badge-required">*</span>
+                </label>
+                <select id="dailyPenalty" class="form-control" style="min-height: 44px;">
+                  <option value="300">新臺幣 300 元／日</option>
+                  <option value="500" selected>新臺幣 500 元／日（推薦通用）</option>
+                  <option value="800">新臺幣 800 元／日</option>
+                  <option value="1000">新臺幣 1,000 元／日</option>
+                </select>
+                <span class="form-hint">自遲延次日起算，出租人得逕自押金中優先扣抵。</span>
+              </div>
+            </div>
+
+            <!-- 切結條款檢視 -->
+            <label class="form-label" style="margin-top: 14px;">切結承諾核心法律規範：</label>
+            <div class="covenant-rules-list">
+              <label class="rule-check-item" for="chkRule1">
+                <input type="checkbox" id="chkRule1" checked>
+                <div class="rule-text-content">
+                  <strong>一、合法居住設籍保證</strong>
+                  出租人同意承租人於租賃期間申辦戶籍遷入。承租人切結保證本設籍僅供正當居住用途，嚴禁作為公司商號營業登記、稅籍設立、幽靈人口借戶籍或任何不法用途。
+                </div>
+              </label>
+
+              <label class="rule-check-item" for="chkRule2">
+                <input type="checkbox" id="chkRule2" checked>
+                <div class="rule-text-content">
+                  <strong>二、期滿限期無條件遷出切結</strong>
+                  租約期滿或因違約終止時，承租人及前開名冊全體設籍人員應於約定之期限內無條件全數將戶籍遷離本住宅，絕不以任何理由拖延。
+                </div>
+              </label>
+
+              <label class="rule-check-item" for="chkRule3">
+                <input type="checkbox" id="chkRule3" checked>
+                <div class="rule-text-content">
+                  <strong>三、授權依戶籍法第 50 條逕為遷徙登記</strong>
+                  若承租人逾期未遷出戶籍，承租人全權無條件同意並授權房屋所有權人或受託管理業，得逕檢具本切結書及終止證明向戶政事務所申辦將其全戶戶籍暫遷至該戶政事務所，承租人絕無異議。
+                </div>
+              </label>
+
+              <label class="rule-check-item" for="chkRule4">
+                <input type="checkbox" id="chkRule4" checked>
+                <div class="rule-text-content">
+                  <strong>四、行政法規罰鍰與損害完全賠償責任</strong>
+                  因未依限遷出戶籍所衍生之戶籍法行政罰鍰、地價稅自用住宅撤銷補稅或任何公法上不利益，概由承租人完全負責賠償。
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group" style="margin-top: 14px;">
+              <label for="specialTerms" class="form-label">特別加註特約事項（選填）</label>
+              <textarea id="specialTerms" class="form-control" rows="2" placeholder="例：立切結書人若已辦妥退租遷出，應出示最新戶籍謄本或新身分證影本供出租人核對。"></textarea>
+            </div>
+          </div>
+
+          <!-- 區塊四：雙方電子手寫簽章 -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h2 class="editor-card-title">
+                <i class="fa-solid fa-signature"></i> 雙方電子手寫簽名簽章
+              </h2>
+            </div>
+            <p class="form-hint">請雙方於下方簽名板完成親筆簽署（支援觸控筆與手機觸控）：</p>
+
+            <div class="signature-section-grid">
+              <!-- 出租人簽名 -->
+              <div class="signature-box">
+                <div class="signature-box-title">
+                  <span>出租人（或代理人）</span>
+                  <button type="button" id="btnClearLandlordSig" class="btn-clear-sig">清除重簽</button>
+                </div>
+                <div class="signature-canvas-wrapper">
+                  <canvas id="landlordSigCanvas" class="signature-canvas"></canvas>
+                </div>
+                <span class="form-hint">產權所有權人或受託管理業簽署</span>
+              </div>
+
+              <!-- 承租人簽名 -->
+              <div class="signature-box">
+                <div class="signature-box-title">
+                  <span>承租人（切結立書人）</span>
+                  <button type="button" id="btnClearTenantSig" class="btn-clear-sig">清除重簽</button>
+                </div>
+                <div class="signature-canvas-wrapper">
+                  <canvas id="tenantSigCanvas" class="signature-canvas"></canvas>
+                </div>
+                <span class="form-hint">承租人本人親簽切結</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右欄：公文即時預覽與產出面板 -->
+        <div class="preview-column">
+          <div class="preview-container">
+            <!-- 操作按鈕列 -->
+            <div class="preview-actions-bar">
+              <button type="button" id="btnPrintDocument" class="btn-action-primary">
+                <i class="fa-solid fa-print"></i> 列印標準公文 (A4)
+              </button>
+              <button type="button" id="btnDownloadCard" class="btn-action-secondary">
+                <i class="fa-solid fa-image"></i> 下載存證圖卡
+              </button>
+              <button type="button" id="btnCopyLineText" class="btn-action-secondary">
+                <i class="fa-solid fa-comment-dots"></i> 複製 LINE 備忘
+              </button>
+            </div>
+
+            <!-- A4 正式公文卡片 -->
+            <div class="document-paper-card" id="documentPaperCard">
+              <div class="doc-header">
+                <div class="doc-org-name">港居不動產開發有限公司 ｜ GANJU REAL ESTATE</div>
+                <h1 class="doc-main-title">住宅租賃設籍約定暨退租遷出切結書</h1>
+                <div class="doc-sub-meta">
+                  <span>存證字號：<strong id="pvDocNo">HR-20261026-0001</strong></span>
+                  <span>法定依據：《戶籍法》第 50 條第 1 項</span>
+                </div>
+              </div>
+
+              <div class="doc-section">
+                <div class="doc-section-title">契約基本當事人與標的明細</div>
+                <p style="margin: 4px 0;"><strong>租賃物標的：</strong><span id="pvPropAddress">高雄市小港區中安路 123 號 5 樓</span></p>
+                <p style="margin: 4px 0;"><strong>原租賃期間：</strong><span id="pvLeasePeriod">自民國 115 年 11 月 1 日起至民國 116 年 10 月 31 日止</span></p>
+                <p style="margin: 4px 0;"><strong>出租人（甲方）：</strong><span id="pvLandlord">港居不動產開發有限公司（統編：96797997）</span></p>
+                <p style="margin: 4px 0;"><strong>承租人（乙方）：</strong><span id="pvTenant">王小明（身分證字號：A123456789）</span></p>
+              </div>
+
+              <div class="doc-section">
+                <div class="doc-section-title">一、約定設籍人員名冊</div>
+                <table class="doc-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 12%; text-align: center;">項次</th>
+                      <th style="width: 28%;">設籍人員姓名</th>
+                      <th style="width: 32%;">身分證統一編號</th>
+                      <th style="width: 28%;">與承租人關係</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pvMembersList">
+                    <!-- 動態帶入 -->
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="doc-section">
+                <div class="doc-section-title">二、設籍約定與遷出切結條款</div>
+                <ol style="padding-left: 20px; margin: 6px 0; font-size: 13px; line-height: 1.8;">
+                  <li><strong>合法居住設籍：</strong>甲方依法同意乙方及同住眷屬於原約定租賃期間內申辦戶籍遷入。乙方切結保證設籍僅供正當居住用途，嚴禁登記營利事業、稅籍或任何不法用途。</li>
+                  <li><strong>退租遷出期限：</strong>租約期滿或因故提前終止交還房屋之日起【<strong id="pvVacateDays">14</strong> 日內】，乙方及全體設籍人員應無條件全數將戶籍遷出本租賃住宅。</li>
+                  <li><strong>懲罰性違約金：</strong>逾期未遷出者，乙方願自遲延之日起每日計付【新臺幣 <strong id="pvDailyPenalty">500</strong> 元整】（國字大寫：<span id="pvDailyPenaltyWords" style="font-weight: 600;">新臺幣 伍佰元整</span>）之懲罰性違約金，甲方得逕自押金中優先扣抵。</li>
+                  <li><strong>授權逕為遷徙：</strong>乙方全權承諾並無條件授權甲方，得逕依《戶籍法》第 50 條第 1 項規定，檢具本切結書及契約終止點交證明，向主管戶政事務所申請將其全戶戶籍暫遷至該戶政事務所，乙方絕無異議。</li>
+                  <li><strong>行政法規自負：</strong>因未依限遷徙所衍生之戶籍法行政罰鍰、地價稅自用住宅撤銷補稅差額或任何公法上不利益，概由乙方完全負責負擔與賠償。</li>
+                  <li id="pvSpecialTermsLi"><strong>特別特約：</strong><span id="pvSpecialTerms">無其他特別加註約定事項。</span></li>
+                </ol>
+              </div>
+
+              <!-- 簽章區域 -->
+              <div class="doc-signatures-block">
+                <div class="doc-sig-slot">
+                  <div><strong>出租人（或租賃住宅管理業）：</strong></div>
+                  <img id="docLandlordSigImg" class="doc-sig-img" src="" alt="出租人簽章" style="display: none;">
+                  <div style="font-size: 12px; color: #64748b; margin-top: 4px;">簽署日：同立書日期</div>
+                </div>
+
+                <div class="doc-sig-slot">
+                  <div><strong>承租人（切結立書人）：</strong></div>
+                  <img id="docTenantSigImg" class="doc-sig-img" src="" alt="承租人簽章" style="display: none;">
+                  <div style="font-size: 12px; color: #64748b; margin-top: 4px;">簽署日：同立書日期</div>
+                </div>
+              </div>
+
+              <div class="doc-footer-legal">
+                <div id="pvDateText">中華民國 115 年 10 月 26 日</div>
+                <div>本協議書一式兩份，由出租人與承租人各執乙份為憑，具民法契約與戶政切結之同等存證效力。</div>
+                <div>港居不動產開發有限公司 ｜ 統一編號：96797997 ｜ 租賃管理證號：(112) 登字第013739號</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="assets/logo.png" alt="港居不動產 LOGO">
+          <span class="brand-title">港居不動產</span>
+        </div>
+        <p class="footer-desc">
+          專注小港、前鎮、鳳山之高品質不動產租賃、包租代管與法務安防服務。<br>
+          首創 46 款全功能線上不動產工具集，合約規章純前端高隱私運算，守護房東與租客權益。
+        </p>
+        <div class="footer-cert-info">
+          <p><i class="fa-solid fa-shield-halved"></i> 租賃住宅服務業登記證：(113)高市租登字第0012號</p>
+          <p><i class="fa-solid fa-award"></i> 高雄市租賃住宅服務商業同業公會 會員證號：第 115-046 號</p>
+          <p><i class="fa-solid fa-id-card"></i> 租賃住宅管理人員證號：(112)登字第013739號</p>
+          <p><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</p>
+          <p><i class="fa-solid fa-phone"></i> 專線：0968-863-880 ｜ 市話：07-791-2288</p>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <div class="footer-col-title">房東法務專區</div>
+          <ul class="footer-links">
+            <li><a href="household-registration-agreement.html">設籍約定暨遷出切結書</a></li>
+            <li><a href="fire-safety-agreement.html">用電用火安全切結協議</a></li>
+            <li><a href="business-registration-agreement.html">設址營業與稅賦補償協議</a></li>
+            <li><a href="sublease-consent-agreement.html">承租人轉租同意與協議書</a></li>
+            <li><a href="ownership-change-notice.html">買賣不破租賃與押金移轉通知</a></li>
+            <li><a href="dispute-mediation-request.html">租賃爭議調處與調解聲請</a></li>
+            <li><a href="arrears-installment-agreement.html">欠租分期清償和解協議</a></li>
+            <li><a href="tax-calculator.html">房東節稅效益精算</a></li>
+            <li><a href="rent-arrears-notice.html">租金催繳與欠租催告</a></li>
+            <li><a href="rules-violation-notice.html">住戶違規改善通知單</a></li>
+            <li><a href="abandoned-property-agreement.html">承租人遺留物拋棄切結</a></li>
+            <li><a href="routine-inspection-report.html">屋況定期巡檢維護報告</a></li>
+            <li><a href="mandate-contract.html">住宅租賃委託管理契約</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">租客與實用工具</div>
+          <ul class="footer-links">
+            <li><a href="renovation-consent-agreement.html">室內裝修改裝同意切結</a></li>
+            <li><a href="parking-lease-agreement.html">汽機車停車位租用協議</a></li>
+            <li><a href="pet-addendum-agreement.html">飼養寵物特約承諾書</a></li>
+            <li><a href="roommate-agreement.html">合租公約與承租協議</a></li>
+            <li><a href="lease-contract.html">租賃契約與公約產生器</a></li>
+            <li><a href="rent-receipt.html">租金收據與代管對帳</a></li>
+            <li><a href="utility-splitter.html">分租水電費公電分攤</a></li>
+            <li><a href="deposit-settlement.html">退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html">300億租金補貼試算</a></li>
+            <li><a href="listing-post-generator.html">591/社群招租文案</a></li>
+            <li><a href="legal-notice-generator.html">郵局存證信函產生器</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">數位影像與系統</div>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank">3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="space-planner.html">2D/3D格局配置系統</a></li>
+            <li><a href="photo-watermark.html">房源照片時間水印</a></li>
+            <li><a href="id-card-watermark.html">證件保護防偽水印</a></li>
+            <li><a href="file-converter.html">線上多功能轉檔神器</a></li>
+            <li><a href="privacy.html">個人資料保護與隱私權政策</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 港居不動產開發有限公司 GANJU Real Estate Development Co., Ltd. 版權所有</p>
+        <p><a href="privacy.html" style="color: var(--accent-gold); text-decoration: underline;">隱私權政策與個資保護</a> ｜ <a href="sitemap.xml" style="color: var(--accent-gold); text-decoration: underline;">網站地圖</a> ｜ 純前端運算・零上傳雲端・個資安全零外洩</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 核心 JS 模組 -->
+  <script src="js/auth-guard.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/household-registration-agreement.js"></script>
+  <script src="js/tracking.js"></script>
+</body>
+</html>

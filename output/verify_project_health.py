@@ -60,6 +60,7 @@ HTML_FILES = [
     "sublease-consent-agreement.html",
     "business-registration-agreement.html",
     "fire-safety-agreement.html",
+    "household-registration-agreement.html",
     "privacy.html"
 ]
 

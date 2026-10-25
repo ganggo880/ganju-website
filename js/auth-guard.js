@@ -207,7 +207,7 @@
           </div>
 
           <div class="auth-remember-row">
-            <label class="auth-checkbox-label">
+            <label class="auth-checkbox-label" for="ganjuRememberDevice">
               <input type="checkbox" id="ganjuRememberDevice" checked />
               <span>記住此裝置（30 天內免重複輸入）</span>
             </label>

@@ -206,6 +206,8 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   padding: 10px 12px;
   min-width: 44px;
   min-height: 44px;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -355,7 +357,7 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
 
 .btn-auth-home {
   width: 100%;
-  min-height: 44px;
+  min-height: 46px;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #94A3B8;
@@ -368,6 +370,8 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   justify-content: center;
   gap: 8px;
   transition: all 0.25s ease;
+  box-sizing: border-box;
+}
   box-sizing: border-box;
 }
 
