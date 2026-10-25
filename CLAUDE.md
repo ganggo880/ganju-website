@@ -61,7 +61,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── rules-violation-notice.html       # 36. 租賃住宅住戶違規行為勸導限期改善通知單產生器 (租賃專法第10條、公寓大廈16/47條、照片浮水印、送達回執)
 ├── rent-arrears-notice.html         # 37. 住宅租賃租金催繳與欠租限期清償催告書產生器 (民法439/440條、229/233條遲延利息、三級催繳、多期明細、雙簽章回執聯)
 ├── proxy-authorization.html         # 38. 租賃住宅授權委託代理人委任書產生器 (民法103/167/528/534條、雙模式、7大授權矩陣、雙簽章與身分證影本格)
-├── sitemap.xml              # 全站 38 頁 SEO XML 網站地圖
+├── roommate-agreement.html          # 39. 住宅租賃合租公約與共同承租連帶責任協議書產生器 (民法272/273/280條連帶責任、室友費用分攤防呆、生活公約與多方簽章)
+├── sitemap.xml              # 全站 39 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -97,6 +98,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── abandoned-property-agreement.css # 租賃住宅承租人遺留物處理授權與拋棄切結專用樣式與 A4 排版引擎
 │   ├── rent-arrears-notice.css  # 租金催繳與欠租限期清償催告書專用樣式與 A4 排版引擎
 │   ├── proxy-authorization.css  # 租賃代理授權委任書專用樣式與 A4 排版引擎
+│   ├── roommate-agreement.css   # 合租公約與共同承租協議專用樣式與 A4 排版引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
@@ -116,6 +118,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── abandoned-property-agreement.js # 承租人遺留物拋棄、民法445條留置權、清運費用扣抵與雙簽章引擎
 │   ├── rent-arrears-notice.js # 租金催繳與欠租限期清償催告書核心邏輯（三級催繳、動態欠繳試算、大寫轉換與雙簽章引擎）
 │   ├── proxy-authorization.js # 租賃代理授權委任書核心邏輯（雙模式、7大授權清單、大寫轉換與雙簽章引擎）
+│   ├── roommate-agreement.js  # 合租公約與共同承租協議核心邏輯（動態室友、加總防呆、生活公約、多方簽章與 A4/Canvas/LINE 輸出）
 │   ├── tracking.js          # 全站 MarTech 追蹤核心 (GTM / GA4 / Meta Pixel)
 │   ├── utils.js             # 公用工具函式 (千分位, 日期差, Toast 提示, escapeHTML, 主題切換)
 │   ├── navigation.js        # 導覽列與 Mobile Drawer 控制器

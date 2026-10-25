@@ -49,6 +49,7 @@ const PAGES = [
   'rules-violation-notice.html',
   'rent-arrears-notice.html',
   'proxy-authorization.html',
+  'roommate-agreement.html',
   'privacy.html'
 ];
 

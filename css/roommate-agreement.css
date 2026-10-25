@@ -1,0 +1,1008 @@
+/* ==========================================================================
+   港居不動產 - 住宅租賃合租公約與共同承租連帶責任協議書產生器樣式表
+   檔案：css/roommate-agreement.css
+   法源：《民法》第272/273/280/443條、《公寓大廈管理條例》第16條
+   ========================================================================== */
+
+/* 主容器與頁面佈局 */
+.roommate-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-4) var(--space-8);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.page-title {
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    font-weight: 800;
+    color: var(--navy-900);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .page-title {
+    color: var(--champagne-400);
+}
+
+.page-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 820px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 雙欄工作區 (表單區 + A4 預覽區) */
+.roommate-workspace {
+    display: grid;
+    grid-template-columns: minmax(320px, 500px) 1fr;
+    gap: var(--space-6);
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .roommate-workspace {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* 左側編輯面板 */
+.editor-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    box-shadow: var(--shadow-md);
+}
+
+/* 表單區塊 */
+.form-section {
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy-800);
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+[data-theme="dark"] .section-title {
+    color: var(--champagne-400);
+}
+
+.section-title-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-title i {
+    font-size: 1.05rem;
+    color: var(--champagne-600);
+}
+
+.form-group {
+    margin-bottom: var(--space-3);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+@media (max-width: 500px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.form-label .required {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.form-control {
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: var(--champagne-500);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
+}
+
+.form-hint {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* 試算與防呆警示盒 (Delta Validation Box) */
+.share-calc-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.share-calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+}
+
+.share-calc-row:last-child {
+    margin-bottom: 0;
+}
+
+.share-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.share-status-pill.match {
+    background: rgba(16, 185, 129, 0.15);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.share-status-pill.mismatch {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* 室友成員動態卡片列表 */
+.roommate-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    margin-bottom: var(--space-3);
+    position: relative;
+    transition: border-color 0.2s;
+}
+
+.roommate-card.is-lead {
+    border-left: 4px solid var(--champagne-500);
+}
+
+.roommate-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+}
+
+.roommate-badge-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--navy-800);
+}
+
+[data-theme="dark"] .roommate-badge-title {
+    color: var(--champagne-300);
+}
+
+.lead-tag {
+    background: #1a365d;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.btn-remove-roommate {
+    background: transparent;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.btn-remove-roommate:hover {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+.btn-add-roommate {
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 1px dashed var(--champagne-500);
+    background: rgba(197, 160, 89, 0.08);
+    color: var(--champagne-700);
+    border-radius: var(--radius-md);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    margin-top: 4px;
+}
+
+[data-theme="dark"] .btn-add-roommate {
+    color: var(--champagne-400);
+    background: rgba(197, 160, 89, 0.15);
+}
+
+.btn-add-roommate:hover {
+    background: rgba(197, 160, 89, 0.18);
+    border-style: solid;
+}
+
+/* 分攤模式切換磚 (Utility Mode Radio Cards) */
+.utility-mode-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+}
+
+@media (max-width: 500px) {
+    .utility-mode-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.utility-option {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    background: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 56px;
+    transition: all 0.2s;
+}
+
+.utility-option input {
+    display: none;
+}
+
+.utility-option.active {
+    border-color: var(--champagne-500);
+    background: rgba(197, 160, 89, 0.12);
+}
+
+.utility-option-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.utility-option.active .utility-option-title {
+    color: var(--champagne-700);
+}
+
+[data-theme="dark"] .utility-option.active .utility-option-title {
+    color: var(--champagne-400);
+}
+
+/* 生活公約項目表 (House Rules Matrix) */
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.rule-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 0.2s;
+    min-height: 48px;
+    box-sizing: border-box;
+}
+
+.rule-check-item:hover {
+    background: rgba(197, 160, 89, 0.05);
+}
+
+.rule-check-item input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #1a365d;
+    flex-shrink: 0;
+}
+
+.rule-text-content {
+    flex: 1;
+}
+
+.rule-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+
+.rule-desc {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* 快速填寫範例與重設按鈕群 */
+.quick-action-bar {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.btn-quick {
+    flex: 1;
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.btn-quick:hover {
+    border-color: var(--champagne-500);
+    color: var(--champagne-600);
+}
+
+/* 電子手寫簽章區 (Multi-Signature Pads) */
+.signatures-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+@media (max-width: 500px) {
+    .signatures-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.signature-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+}
+
+.sig-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.sig-party-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.sig-clear-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    min-height: 44px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.sig-clear-btn:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.canvas-wrapper {
+    background: #ffffff;
+    border: 1px dashed #94a3b8;
+    border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
+    height: 100px;
+    touch-action: none;
+}
+
+.sig-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: crosshair;
+}
+
+.canvas-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.78rem;
+    color: #94a3b8;
+    pointer-events: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 操作按鈕工具列 */
+.action-toolbar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-900) 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(26, 54, 93, 0.2);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-800) 100%);
+    box-shadow: 0 4px 8px rgba(26, 54, 93, 0.3);
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, #c5a059 0%, #b38e47 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(197, 160, 89, 0.25);
+}
+
+.btn-gold:hover {
+    background: linear-gradient(135deg, #d4b06a 0%, #c5a059 100%);
+    box-shadow: 0 4px 8px rgba(197, 160, 89, 0.35);
+}
+
+.btn-line {
+    background: #06c755;
+    color: #ffffff;
+}
+
+.btn-line:hover {
+    background: #05b34c;
+}
+
+/* ==========================================================================
+   右側 A4 即時預覽模擬區
+   ========================================================================== */
+.preview-panel {
+    position: sticky;
+    top: 80px;
+}
+
+.preview-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+    padding: 0 4px;
+}
+
+.preview-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--champagne-600);
+    background: rgba(197, 160, 89, 0.12);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+}
+
+[data-theme="dark"] .preview-badge {
+    color: var(--champagne-400);
+    background: rgba(197, 160, 89, 0.2);
+}
+
+.preview-scale-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* A4 紙張本體 */
+.a4-paper {
+    background: #ffffff;
+    color: #111827;
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 48px;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif, sans-serif;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+[data-theme="dark"] .a4-paper {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* A4 內部標頭 */
+.doc-header {
+    text-align: center;
+    border-bottom: 2px solid #1a365d;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.doc-org-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #1a365d;
+    margin-bottom: 2px;
+}
+
+.doc-main-title {
+    font-size: 1.55rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.doc-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #4b5563;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* A4 法律前言 */
+.doc-preamble {
+    font-size: 0.88rem;
+    text-indent: 2em;
+    margin-bottom: 14px;
+    text-align: justify;
+    line-height: 1.7;
+    color: #1f2937;
+}
+
+/* A4 標的物與租金總覽 */
+.doc-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-bottom: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.doc-summary-table th,
+.doc-summary-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: left;
+}
+
+.doc-summary-table th {
+    background: #f1f5f9;
+    font-weight: 700;
+    color: #1e293b;
+    width: 25%;
+}
+
+.doc-summary-table td {
+    background: #ffffff;
+    color: #334155;
+}
+
+/* A4 合租成員分攤對照表 */
+.doc-shares-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    margin-bottom: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.doc-shares-table th,
+.doc-shares-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.doc-shares-table th {
+    background: #1a365d;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.doc-shares-table td {
+    color: #1f2937;
+}
+
+.doc-shares-table tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+.doc-shares-table tr.total-row td {
+    background: #f1f5f9;
+    font-weight: 800;
+}
+
+/* A4 法律條文區塊 */
+.doc-legal-section {
+    margin-bottom: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 12px 14px;
+    background: #fcfcfd;
+}
+
+.doc-legal-title {
+    font-size: 0.92rem;
+    font-weight: 900;
+    color: #1a365d;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.doc-legal-ol {
+    margin: 0;
+    padding-left: 1.4em;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: #374151;
+}
+
+.doc-legal-ol li {
+    margin-bottom: 6px;
+    text-align: justify;
+}
+
+.doc-legal-ol li:last-child {
+    margin-bottom: 0;
+}
+
+.doc-legal-ol strong {
+    color: #111827;
+}
+
+/* A4 生活公約核定項目 */
+.doc-rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.doc-rule-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 8px 10px;
+    background: #ffffff;
+    font-size: 0.8rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.doc-rule-card-title {
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.doc-rule-card-body {
+    color: #4b5563;
+    font-size: 0.76rem;
+    line-height: 1.45;
+}
+
+/* A4 簽署人親簽區 */
+.doc-signatures-section {
+    margin-top: 20px;
+    border-top: 2px solid #1a365d;
+    padding-top: 14px;
+}
+
+.doc-sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.doc-sig-card {
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 10px 12px;
+    background: #ffffff;
+    font-size: 0.8rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.doc-sig-name-line {
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.doc-sig-details {
+    font-size: 0.74rem;
+    color: #64748b;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.doc-sig-preview-img {
+    height: 52px;
+    max-width: 100%;
+    object-fit: contain;
+    border-bottom: 1px solid #000000;
+    margin-top: 4px;
+    display: block;
+}
+
+.doc-sig-empty-line {
+    height: 52px;
+    border-bottom: 1px dashed #94a3b8;
+    margin-top: 4px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 0.72rem;
+    color: #94a3b8;
+    padding-bottom: 4px;
+}
+
+/* A4 頁尾印鑑與宣告 */
+.doc-footer-witness {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px dashed #cbd5e1;
+    font-size: 0.76rem;
+    color: #64748b;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.doc-witness-stamp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #dc2626;
+    color: #dc2626;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    font-size: 0.78rem;
+    transform: rotate(-3deg);
+}
+
+.doc-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 16px;
+}
+
+.rule-sub-params {
+    margin-left: 24px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+    .roommate-container {
+        padding: 12px 6px 24px;
+    }
+
+    .editor-panel {
+        padding: 14px 10px;
+    }
+
+    .a4-paper {
+        padding: 24px 10px;
+    }
+
+    .rule-sub-params {
+        margin-left: 8px;
+    }
+
+    .quick-action-bar {
+        flex-direction: column;
+    }
+
+    .doc-rules-grid,
+    .doc-sig-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   列印專屬樣式 (@media print)
+   ========================================================================== */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 12mm 14mm;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+    }
+
+    .top-bar,
+    .navbar,
+    .editor-panel,
+    .preview-header-bar,
+    .action-toolbar,
+    .footer,
+    #authOverlay,
+    .offline-badge {
+        display: none !important;
+    }
+
+    .roommate-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .roommate-workspace {
+        display: block !important;
+    }
+
+    .preview-panel {
+        position: static !important;
+    }
+
+    .a4-paper {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        background: transparent !important;
+    }
+
+    .doc-header {
+        border-bottom: 2pt solid #000000 !important;
+    }
+
+    .doc-main-title {
+        color: #000000 !important;
+    }
+
+    .doc-summary-table th,
+    .doc-shares-table th {
+        background: #e2e8f0 !important;
+        color: #000000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .doc-summary-table td,
+    .doc-shares-table td,
+    .doc-legal-section,
+    .doc-rule-card,
+    .doc-sig-card {
+        background: #ffffff !important;
+        border-color: #666666 !important;
+    }
+
+    .doc-witness-stamp {
+        border-color: #000000 !important;
+        color: #000000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

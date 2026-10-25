@@ -80,6 +80,7 @@
 - [x] 階段五十七：租賃住宅住戶違規行為勸導限期改善通知單產生器 `rules-violation-notice.html`（依據《租賃住宅市場發展及管理條例》第10條第1項第3款、《公寓大廈管理條例》第16/47條、《噪音管制法》與《菸害防制法》規範，涵蓋梯間雜物、深夜噪音、室內吸菸、違規養寵、私自改裝、違規轉租六大情境，現場4格照片自動壓印存證浮水印、雙方Retina 2x手寫簽章、A4無痕列印出圖附送達回執聯、Canvas 840×1080px圖卡下載與LINE通報文字複製，全站 36 頁 100% 互通、PWA 127 項資產離線秒開與 140 組行動端 0px 溢出通過）
 - [x] 階段五十八：住宅租賃租金催繳與欠租限期清償催告書產生器 `rent-arrears-notice.html`（依據《民法》第439/440條遲延給付催告、第229/233條法定遲延利息年息5%與《租賃專法》第10條欠租達二個月法定門檻設計，整合三級催繳階段梯度、跨月多期積欠明細、國字大寫轉換、代管專用受款帳戶、雙方Retina 2x電子手寫簽章、A4無痕列印出圖附送達與清償承諾回執聯、Canvas 840×1080px圖卡下載與LINE催繳文字複製，全站 37 頁 100% 互通、PWA 130 項資產離線秒開與 144 組行動端 0px 溢出通過）
 - [x] 階段五十九：租賃住宅授權委託代理人委任書產生器 `proxy-authorization.html`（依據《民法》第103/167/528/534條特別委任規範設計，支援房東出租代理與租客承租代理雙模式、7大特別代理授權權限矩陣、雙方Retina 2x電子手寫簽章、身分證影本防偽浮水印黏貼格、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE備忘文字複製，全站 38 頁 100% 互通、PWA 133 項資產離線秒開與 148 組行動端 0px 溢出通過）
+- [x] 階段六十：住宅租賃合租公約與共同承租連帶責任協議書產生器 `roommate-agreement.html`（依據《民法》第272/273/280/443條及《公寓大廈管理條例》規範，支援多人合租分攤精算、主約代表指派、對外出租人全額連帶保證、中途退租替補義務、生活公約輪值、多方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE合租速報文字複製，全站 39 頁 100% 互通、PWA 136 項資產離線秒開與 152 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -129,7 +130,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── rules-violation-notice.html       # 36. 租賃住宅住戶違規行為勸導限期改善通知單產生器
 ├── rent-arrears-notice.html         # 37. 住宅租賃租金催繳與欠租限期清償催告書產生器
 ├── proxy-authorization.html         # 38. 租賃住宅授權委託代理人委任書產生器
-├── sitemap.xml                      # 全站 38 頁 SEO XML 網站地圖
+├── roommate-agreement.html          # 39. 住宅租賃合租公約與共同承租協議書產生器
+├── sitemap.xml                      # 全站 39 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -142,6 +144,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── auth-guard.css               # 全站線上工具授權驗證防護樣式（毛玻璃、零閃爍防護、RWD）
+│   ├── roommate-agreement.css       # 合租公約與共同承租協議專用樣式與 A4 排版引擎
 │   ├── proxy-authorization.css      # 租賃代理授權委任書專用樣式與 A4 排版引擎
 │   ├── rent-arrears-notice.css      # 租金催繳與欠租限期清償催告書專用樣式與 A4 排版引擎
 │   ├── guarantor-agreement.css      # 租賃連帶保證人保證書專用樣式與 A4 排版引擎
@@ -170,6 +173,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
+│   ├── roommate-agreement.js        # 合租公約與共同承租核心邏輯（成員動態名冊、差額精算、生活公約與多方簽章引擎）
 │   ├── proxy-authorization.js       # 租賃代理授權委任書核心邏輯（雙模式、7大授權清單、大寫轉換與雙簽章引擎）
 │   ├── rent-arrears-notice.js       # 租金催繳與欠租限期清償催告書核心邏輯（三級催繳、動態欠繳試算、大寫轉換與雙簽章引擎）
 │   ├── guarantor-agreement.js       # 租賃連帶保證人完全責任、先訴抗辯權拋棄與手寫簽章引擎
