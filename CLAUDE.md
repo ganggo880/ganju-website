@@ -45,7 +45,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── listing-post-generator.html # 20. 591／社群招租文案與第33條法定揭露合成器 (三平台文案、法定證號防漏、1080x1080首圖合成)
 ├── legal-notice-generator.html # 21. 欠租催告與終止租約郵局存證信函產生器 (民法440條防呆、四大範本、中華郵政20x10標準格線A4列印)
 ├── property-roi-calculator.html # 22. 物業投資實質淨投報率與房貸現金流精算器 (Cap Rate、CoC、房貸本息均攤、三方案淨流PK)
-├── sitemap.xml              # 全站 22 頁 SEO XML 網站地圖
+├── viewing-checklist.html       # 23. 租客看屋 30 項自檢與避坑評分表產生器 (6大分區、30項檢核、100分評分、地雷備忘錄、A4列印)
+├── sitemap.xml              # 全站 23 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -65,6 +66,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── listing-post-generator.css # 591／社群招租文案與第33條法定揭露合成器樣式
 │   ├── legal-notice-generator.css # 郵局存證信函 20×10 標準格線與 A4 列印引擎樣式
 │   ├── property-roi-calculator.css # 物業投資投報與房貸現金流樣式與 A4 評估書列印引擎
+│   ├── viewing-checklist.css    # 租客看屋 30 項自檢與避坑評分表專用樣式與 A4 列印引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
 │   ├── converter.css        # 檔案轉換工具專屬樣式
@@ -88,6 +90,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── listing-post-generator.js # 591/FB/LINE招租文案、第33條法定證號防呆與1080x1080首圖合成引擎
 │   ├── legal-notice-generator.js # 民法440條欠租催告與終止租約、中華郵政20x10存證信函格線排版引擎
 │   ├── property-roi-calculator.js # 物業投資投報、房貸本息均攤、自備款現金殖利率與圖卡匯出引擎
+│   ├── viewing-checklist.js # 租客現場看屋 30 項自檢、100分宜居指數、致命安全警示與圖卡匯出引擎
 │   ├── ocr-translator.js    # OCR 雙引擎核心與影像處理邏輯 (純前端自包含腳本)
 │   ├── converter.js         # 檔案轉換核心邏輯 (Canvas/Blob 本地加密運算)
 │   ├── image-converter.js   # 圖像格式與尺寸調控邏輯

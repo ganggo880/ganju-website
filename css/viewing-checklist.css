@@ -1,0 +1,727 @@
+/* ==========================================================================
+   港居不動產 租客看屋必備：30 項屋況自檢與避坑評分表產生器專用樣式
+   Viewing Checklist & Pitfall Guard Stylesheet
+   依據 Tokens 規範建立，支援深淺色切換、高對比度、RWD 與無痕 A4 列印
+   ========================================================================== */
+
+/* 頁面主體與背景光暈 */
+.viewing-page {
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 100px; /* 給予 Navbar 空間 */
+  padding-bottom: 80px;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.viewing-bg-glow {
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--bg-glow-2) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.viewing-bg-glow-left {
+  position: absolute;
+  top: 400px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--bg-glow-1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 主工作台容器 */
+.viewing-container {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 標題與簡介區塊 */
+.viewing-header {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 36px;
+}
+
+.viewing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(197, 160, 89, 0.12);
+  color: var(--accent-gold);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.viewing-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+[data-theme="dark"] .viewing-title {
+  color: #FFFFFF;
+}
+
+.viewing-desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 行動端分頁切換鈕 (小螢幕時顯示) */
+.viewing-mobile-tabs {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.viewing-mobile-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  min-height: 48px;
+  transition: all 0.2s ease;
+}
+
+.viewing-mobile-tab-btn.active {
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  border-color: var(--primary-navy);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+[data-theme="dark"] .viewing-mobile-tab-btn.active {
+  background: var(--accent-gold);
+  color: var(--primary-navy-dark);
+  border-color: var(--accent-gold);
+}
+
+/* 雙欄網格工作台 */
+.viewing-workstation-grid {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .viewing-workstation-grid {
+    grid-template-columns: 1fr;
+  }
+  .viewing-mobile-tabs {
+    display: grid;
+  }
+  .viewing-mobile-hidden {
+    display: none !important;
+  }
+}
+
+/* 通用面板卡片 */
+.viewing-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.viewing-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.viewing-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .viewing-card-title {
+  color: #FFFFFF;
+}
+
+.viewing-card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* 房源基本資料列 */
+.viewing-meta-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .viewing-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.viewing-input-group {
+  margin-bottom: 14px;
+}
+
+.viewing-input-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.viewing-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-input, #FFFFFF);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-height: 44px;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .viewing-input {
+  background: #0f1f38;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.viewing-input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.25);
+}
+
+/* 檢核分區手風琴 / 區塊樣式 */
+.viewing-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.viewing-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: rgba(26, 54, 93, 0.03);
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  user-select: none;
+  min-height: 48px;
+}
+
+[data-theme="dark"] .viewing-section-header {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.viewing-section.active .viewing-section-header {
+  border-bottom-color: var(--border-color);
+}
+
+.viewing-sec-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] .viewing-sec-title {
+  color: #FFFFFF;
+}
+
+.viewing-sec-score {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(197, 160, 89, 0.12);
+}
+
+/* 單項檢核題目列 */
+.viewing-item {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+
+.viewing-item:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .viewing-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.viewing-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.viewing-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewing-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .viewing-num {
+  background: var(--accent-gold);
+  color: #0F172A;
+}
+
+.viewing-item-desc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* 狀態選擇鈕選項組 (合格 / 普通 / 地雷) */
+.viewing-choice-group {
+  display: flex;
+  gap: 6px;
+}
+
+.viewing-choice-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 74px;
+  transition: all 0.15s ease;
+}
+
+.viewing-choice-btn:hover {
+  border-color: var(--accent-gold);
+}
+
+.viewing-choice-btn.pass.active {
+  background: #38a169;
+  border-color: #38a169;
+  color: #FFFFFF;
+}
+
+.viewing-choice-btn.warn.active {
+  background: #dd6b20;
+  border-color: #dd6b20;
+  color: #FFFFFF;
+}
+
+.viewing-choice-btn.fail.active {
+  background: #e53e3e;
+  border-color: #e53e3e;
+  color: #FFFFFF;
+}
+
+/* 右欄：綜合評估看板 (Score Board) */
+.viewing-score-card {
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.05) 0%, rgba(197, 160, 89, 0.12) 100%);
+  border: 1px solid var(--accent-gold);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+[data-theme="dark"] .viewing-score-card {
+  background: linear-gradient(135deg, #0F2341 0%, #1A365D 100%);
+}
+
+.viewing-score-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface);
+  border: 6px solid var(--accent-gold);
+  box-shadow: 0 8px 24px rgba(197, 160, 89, 0.25);
+}
+
+.viewing-score-num {
+  font-size: 3rem;
+  font-weight: 900;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  line-height: 1;
+  color: var(--primary-navy);
+}
+
+[data-theme="dark"] .viewing-score-num {
+  color: var(--accent-gold);
+}
+
+.viewing-score-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.viewing-grade-tag {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.viewing-grade-tag.grade-a {
+  background: rgba(56, 161, 105, 0.15);
+  color: #276749;
+  border: 1px solid #38a169;
+}
+[data-theme="dark"] .viewing-grade-tag.grade-a {
+  color: #68d391;
+}
+
+.viewing-grade-tag.grade-b {
+  background: rgba(49, 130, 206, 0.15);
+  color: #2b6cb0;
+  border: 1px solid #3182ce;
+}
+[data-theme="dark"] .viewing-grade-tag.grade-b {
+  color: #63b3ed;
+}
+
+.viewing-grade-tag.grade-c {
+  background: rgba(221, 107, 32, 0.15);
+  color: #c05621;
+  border: 1px solid #dd6b20;
+}
+[data-theme="dark"] .viewing-grade-tag.grade-c {
+  color: #f6ad55;
+}
+
+.viewing-grade-tag.grade-d {
+  background: rgba(229, 62, 62, 0.15);
+  color: #9b2c2c;
+  border: 1px solid #e53e3e;
+}
+[data-theme="dark"] .viewing-grade-tag.grade-d {
+  color: #fc8181;
+}
+
+.viewing-grade-verdict {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* 狀態統計摘要 */
+.viewing-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.viewing-stat-box {
+  background: var(--bg-surface);
+  padding: 10px 6px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.viewing-stat-val {
+  font-size: 1.3rem;
+  font-weight: 800;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+}
+
+.viewing-stat-val.pass { color: #38a169; }
+.viewing-stat-val.warn { color: #dd6b20; }
+.viewing-stat-val.fail { color: #e53e3e; }
+
+.viewing-stat-title {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* 避坑地雷與改善待辦清單 */
+.viewing-todo-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.viewing-todo-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-navy);
+}
+
+[data-theme="dark"] .viewing-todo-title {
+  color: #FFFFFF;
+}
+
+.viewing-todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.88rem;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.viewing-todo-item {
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+  background: rgba(229, 62, 62, 0.06);
+  border-left: 3px solid #e53e3e;
+}
+
+.viewing-todo-item.warn {
+  background: rgba(221, 107, 32, 0.06);
+  border-left-color: #dd6b20;
+}
+
+/* 操作按鈕集 */
+.viewing-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  .viewing-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+.viewing-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  min-height: 48px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.viewing-action-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.viewing-action-btn.primary {
+  background: var(--accent-gold);
+  color: #0F172A;
+  border-color: var(--accent-gold);
+}
+
+.viewing-action-btn.primary:hover {
+  background: #b08c45;
+  color: #FFFFFF;
+}
+
+.viewing-action-btn.navy {
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  border-color: var(--primary-navy);
+}
+
+.viewing-action-btn.navy:hover {
+  background: #0f2341;
+}
+
+/* ==========================================================================
+   A4 列印專用樣式 (@media print)
+   ========================================================================== */
+.viewing-print-header {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 9pt;
+  }
+
+  .navbar,
+  .top-bar,
+  .footer,
+  .viewing-bg-glow,
+  .viewing-bg-glow-left,
+  .viewing-mobile-tabs,
+  .viewing-actions,
+  .theme-toggle-btn,
+  .btn-gold {
+    display: none !important;
+  }
+
+  .viewing-page {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background: #FFFFFF !important;
+  }
+
+  .viewing-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .viewing-print-header {
+    display: block !important;
+    border-bottom: 2px solid #1A365D;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  .viewing-workstation-grid {
+    display: block !important;
+  }
+
+  .viewing-mobile-hidden {
+    display: block !important;
+  }
+
+  .viewing-card,
+  .viewing-section,
+  .viewing-score-card,
+  .viewing-todo-card {
+    box-shadow: none !important;
+    border: 1px solid #bbb !important;
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+    page-break-inside: avoid;
+  }
+
+  .viewing-item {
+    padding: 6px 0 !important;
+  }
+
+  .viewing-choice-group {
+    display: none !important;
+  }
+
+  .viewing-print-status {
+    display: inline-block !important;
+    font-weight: bold;
+    font-size: 9pt;
+  }
+
+  .viewing-score-circle {
+    width: 80px !important;
+    height: 80px !important;
+    border-width: 3px !important;
+  }
+
+  .viewing-score-num {
+    font-size: 1.8rem !important;
+  }
+}

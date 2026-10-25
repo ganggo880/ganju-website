@@ -32,6 +32,7 @@ const PAGES = [
   'listing-post-generator.html',
   'legal-notice-generator.html',
   'property-roi-calculator.html',
+  'viewing-checklist.html',
   'privacy.html'
 ];
 

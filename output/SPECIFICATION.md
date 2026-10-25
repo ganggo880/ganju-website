@@ -224,14 +224,24 @@ Matt Pocock skills/
 - **中華郵政標準 20×10 格線排版與規費精算**：自動分頁每頁 200 字、試算存證規費（首頁 50 元、續頁每頁 30 元）、LINE 最後通牒複製、920×1120px PNG 圖卡下載、A4 一式三份列印。
 
 ### 4.23 官網主頁「全方位不動產與租務線上工具中心 (`#tools`)」
-- **全站 19 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
-- **4 大分類標籤動態切換**：全部工具 (19)、房東節稅與法務 (7)、租客權益與試算 (4)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
+- **全站 20 款工具實體展示**：完整展示全站各項專業工具，具備彩色專屬圖標、業務場景標籤、核心價值說明與一鍵直達按鈕。
+- **4 大分類標籤動態切換**：全部工具 (20)、房東節稅與法務 (7)、租客權益與試算 (5)、空間與數位神器 (8) 即時動態過濾切換，並自動掛載 GTM/GA4 行為追蹤。
 
 ### 4.24 物業投資實質淨投報率與房貸現金流精算器 (`property-roi-calculator.html`)
 - **專業財務模型**：涵蓋購置與改造成本 (CapEx)、銀行融資與房貸 (Debt Financing)、租金收益與營運開銷 (Income & OpEx)。
 - **核心投資指標**：毛投報率 (Gross Cap Rate)、淨營運收益率 (NOI Yield)、自備款現金殖利率 (Cash-on-Cash Return, CoC)、每月實質淨現金流、回本年限 (Payback Period)。
 - **三大營運方案實質淨現金流 PK**：對比「房東自租自管」、「委託港居代管（10%服務費＋專法節稅）」與「港居全包租保證收益（0%空屋風險＋3~5年穩定撥款）」，搭配視覺化能量條。
 - **三大輸出**：支援 A4 物業投資診斷評估書列印、Canvas 840×1080px 高畫質圖卡下載、LINE 試算摘要一鍵複製與預約會勘。
+
+### 4.25 租客看屋必備：30 項屋況自檢與避坑評分表產生器 (`viewing-checklist.html`)
+- **6 大核心實戰檢核分區**：涵蓋「採光通風與室內結構」、「給水排水與衛浴設備」、「滲漏水、壁癌與潮濕檢測」、「用電負載與居家消防安全」、「大樓物業管理與公共設施」、「生活機能與周邊環境噪音」共 30 項現場高風險痛點。
+- **100 分綜合宜居指數與四大安全等級評估**：
+  - 🟢 90~100 分（極品優質・可直接簽約）
+  - 🔵 75~89 分（良好宜居・瑕疵可議價改善）
+  - 🟡 60~74 分（普通妥協・需謹慎評估）
+  - 🔴 0~59 分（高風險地雷・強烈建議換房）
+- **三大一級致命安全警示 (Critical Safety Alerts)**：住警器缺失、瓦斯熱水器排氣隱患、違建頂加／凶宅疑慮時即刻亮紅燈警示。
+- **智慧備忘錄與三大高質感輸出**：自動彙整勾選為「待改善／有缺陷」之項目清單便於向房東交涉要求修繕。支援 `@media print` A4 無痕列印《現場看屋 30 項屋況自檢與避坑評估診斷書》、HTML5 Canvas 840×1080px 高畫質 PNG 診斷圖卡下載，以及 LINE 檢核摘要一鍵複製。
 
 ---
 
@@ -306,7 +316,7 @@ Matt Pocock skills/
 
 ## 8. SEO 與 Schema.org 結構化資料全覽 (Structured Data)
 
-全站 22 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
+全站 23 大頁面皆完整配置 Google 官方認可之 JSON-LD 結構化資料：
 
 | 頁面 | Schema.org 類型 | 核心欄位與特性 |
 |---|---|---|
@@ -332,6 +342,7 @@ Matt Pocock skills/
 | `listing-post-generator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 591／社群招租文案與第33條揭露合成器 |
 | `legal-notice-generator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 欠租催告與終止租約郵局存證信函產生器 |
 | `property-roi-calculator.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 物業投資實質投報與房貸現金流精算器 |
+| `viewing-checklist.html` | `WebApplication`, `BreadcrumbList` | `applicationCategory`, `operatingSystem`, `offers` (0元 TWD), `provider`, 租客看屋30項自檢與避坑評分表產生器 |
 | `output/winfar-website/` | `Corporation` | `name`, `foundingDate`, `founder`, `address`, `telephone`, `knowsAbout` |
 
 ---
@@ -345,13 +356,13 @@ Matt Pocock skills/
    - 圖示庫：支援 192×192、512×512 之標準圖示與 Android Maskable 圖示，以及 Apple Touch Icon。
    - 快捷捷徑 (App Shortcuts)：直接跳轉 2D/3D 格局、租金試算、EXIF 水印與 OCR 翻譯。
 2. **智慧 Service Worker 快取體系 (`sw.js`)**：
-   - **Pre-caching**：安裝時預載全站 22 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.3` 共 83 項核心資產）。
+   - **Pre-caching**：安裝時預載全站 23 頁 HTML、全套 CSS Tokens、模組化 JS 引擎與品牌圖資（`ganju-pwa-v2.4` 共 86 項核心資產）。
    - **導航請求 (Navigate)**：Network-First with Cache Fallback，網路在線時即時獲取最新修正，案場無訊號（地下室、高樓）自動回退至本機快取。
    - **靜態資源 (Assets/CDN)**：Stale-While-Revalidate 與動態快取，自動緩存 Three.js 與 FontAwesome 等第三方相依庫。
 3. **原生安裝引導與連線監控 (`js/pwa.js`)**：
    - 攔截 `beforeinstallprompt` 提供符合品牌色系與 ≥ 44×44px 觸控標準之「免費安裝」提示卡片。
    - 監聽 `online` / `offline` 事件，斷網時浮動顯示離線指示徽章，連線恢復時 Toast 提示自動同步。
-   - 經 CDP 實機模擬斷網驗收，全站 22 頁完全離線可用率達 **22/22 頁 (100%)**。
+   - 經 CDP 實機模擬斷網驗收，全站 23 頁完全離線可用率達 **23/23 頁 (100%)**。
 
 ---
 
@@ -591,6 +602,21 @@ Matt Pocock skills/
    - `@media print` A4 無痕列印《港居不動產・物業投資淨回報與房貸現金流評估診斷書》。
    - HTML5 Canvas 840×1080px 高畫質 PNG 診斷圖卡下載。
    - LINE 試算摘要一鍵複製與預約陳經理現場資產會勘。
+
+### 13.18 租客看屋必備：30 項屋況自檢與避坑評分表產生器 (`viewing-checklist.html`)
+
+1. **實務背景與防坑價值**：
+   - 專為租客現場實地看房量身打造，破除表面裝潢與假象，將暗漏、水壓、電路、住警器、隔音與嫌惡設施等 30 大隱性風險全面數據化。
+2. **六大分區、30 項檢查點與 100 分評分引擎**：
+   - 採光通風 (15分)、給水排水 (20分)、漏水壁癌 (20分)、用電消防 (20分)、大樓物業 (10分)、環境生活 (15分)。
+   - 內建一級致命安全隱患防呆（住警器、熱水器通風、違建／產權）。
+3. **智慧草稿與待改善地雷備忘錄**：
+   - 支援 LocalStorage 離線即時暫存 (`ganju_viewing_checklist_v1`)，離線中斷不遺失。
+   - 動態彙整所有「待改善/有缺陷」項目，作為向房東爭取降租或要求起租前改善之正式談判清單。
+4. **三大高質感輸出**：
+   - `@media print` A4 無痕列印《現場看屋 30 項屋況自檢與避坑評估診斷書》。
+   - HTML5 Canvas 840×1080px 高畫質 PNG 診斷圖卡下載。
+   - LINE 檢核摘要一鍵複製與港居官方諮詢連結。
 
 ---
 

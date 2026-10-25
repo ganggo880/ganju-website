@@ -63,6 +63,7 @@
 - [x] 階段四十：欠租催告與終止租約「郵局存證信函」產生器 `legal-notice-generator.html`（依據《民法》第 440 條、第 451 條與《租賃專法》第 10 條設計，內建欠租限期催告、催告期滿正式終止租約暨限期遷讓、違反公約催告及期滿不續租四大法務範本，內建二個月欠租法定終止門檻防呆檢核，自動排版為中華郵政標準 20×10 格線格式並試算存證規費，支援 LINE 最後通牒複製、Canvas 存證信函圖卡下載與 A4 標準一式三份列印，全站 21 頁 100% 互通與 PWA 離線可用）
 - [x] 階段四十一：官網主頁「全方位不動產與租務線上工具中心 (`#tools`)」實體專區與 4 大分類篩選器整合（收錄全站 18 款高階數位工具、支援全部/房東/租客/空間神器即時動態過濾、GTM/GA4 點擊追蹤、下拉選單錨點直達、80 組行動端 0px 溢出通過）
 - [x] 階段四十二：物業投資實質淨投報率與房貸現金流精算器 `property-roi-calculator.html`（精算 Cap Rate、自備款現金殖利率 CoC、房貸本息均攤、空屋折減與自租/代管/包租三大方案實質淨現金流 PK、LINE 複製、Canvas 圖卡下載與 A4 列印，全站 22 頁 100% 互通與 PWA 離線可用）
+- [x] 階段四十三：租客現場看屋 30 項屋況自檢與避坑評分表產生器 `viewing-checklist.html`（6 大核心分區、30 項實戰檢核、100 分綜合宜居指數、三大一級致命安全警示、待改善地雷備忘錄、LINE 複製、Canvas 840×1080px 圖卡下載與 A4 診斷表列印，全站 23 頁 100% 互通與 PWA 離線可用）
 
 ## 資料夾結構
 
@@ -96,7 +97,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── listing-post-generator.html      # 20. 591／社群招租文案與第33條法定揭露合成器
 ├── legal-notice-generator.html      # 21. 欠租催告與終止租約郵局存證信函產生器
 ├── property-roi-calculator.html     # 22. 物業投資實質淨投報率與房貸現金流精算器
-├── sitemap.xml                      # 全站 22 頁 SEO XML 網站地圖
+├── viewing-checklist.html           # 23. 租客看屋 30 項自檢與避坑評分表產生器
+├── sitemap.xml                      # 全站 23 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
