@@ -1,0 +1,923 @@
+/* ==========================================================================
+   css/rent-arrears-notice.css
+   港居不動產 - 住宅租賃租金催繳與欠租限期清償催告書產生器專用樣式
+   符合品牌 Token、RWD 響應式規範、雙欄即時預覽、Retina 簽名板與 A4 無痕列印
+   ========================================================================== */
+
+/* 頁面主容器 */
+.notice-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .notice-container {
+    padding: var(--space-4) var(--space-3);
+  }
+}
+
+/* 標頭區域 */
+.notice-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.notice-header .badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(234, 88, 12, 0.12);
+  color: #ea580c;
+  border: 1px solid rgba(234, 88, 12, 0.25);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.notice-header h1 {
+  font-size: var(--font-3xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+  word-break: break-word;
+}
+
+.notice-header p {
+  color: var(--color-slate-600);
+  font-size: var(--font-base);
+  max-width: 820px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 主工作區：雙欄佈局 */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+/* 左側：表單卡片面板 */
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.card-box {
+  background: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.04);
+  transition: box-shadow var(--transition-fast);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.card-box:hover {
+  box-shadow: 0 8px 24px rgba(10, 25, 47, 0.08);
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-slate-100);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.card-title-group h2 {
+  font-size: var(--font-lg);
+  color: var(--color-navy);
+  margin: 0;
+  font-weight: 700;
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #ea580c;
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  font-size: var(--font-sm);
+  font-weight: 700;
+}
+
+.badge-sub {
+  font-size: var(--font-xs);
+  color: var(--color-slate-500);
+  background: var(--color-slate-100);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* 催告等級選擇器 (3 階段) */
+.escalation-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .escalation-selector {
+    grid-template-columns: 1fr;
+  }
+}
+
+.escalation-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-3) var(--space-2);
+  background: var(--color-slate-50);
+  border: 2px solid var(--color-slate-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 80px;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.escalation-btn:hover {
+  border-color: #ea580c;
+  background: #ffffff;
+}
+
+.escalation-btn.active {
+  background: #fff7ed;
+  border-color: #ea580c;
+  box-shadow: 0 0 0 1px #ea580c;
+}
+
+.escalation-btn[data-level="3"].active {
+  background: #fef2f2;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 1px #dc2626;
+}
+
+.esc-icon {
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.escalation-btn[data-level="1"] .esc-icon { color: #d97706; }
+.escalation-btn[data-level="2"] .esc-icon { color: #ea580c; }
+.escalation-btn[data-level="3"] .esc-icon { color: #dc2626; }
+
+.esc-title {
+  font-weight: 700;
+  font-size: var(--font-sm);
+  color: var(--color-navy);
+}
+
+.esc-sub {
+  font-size: var(--font-xs);
+  color: var(--color-slate-500);
+  margin-top: 2px;
+}
+
+/* 表單欄位排版 */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.form-group label {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-slate-700);
+}
+
+.form-group label .req {
+  color: var(--color-danger, #ef4444);
+  margin-left: 2px;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-slate-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  color: var(--color-slate-800);
+  background-color: #ffffff;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+}
+
+textarea.form-control {
+  min-height: 80px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* 欠繳明細動態表格 */
+.items-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-slate-200);
+}
+
+.arrears-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  font-size: var(--font-sm);
+}
+
+.arrears-table th {
+  background: var(--color-slate-100);
+  padding: 10px 12px;
+  font-weight: 700;
+  color: var(--color-slate-700);
+  border-bottom: 1px solid var(--color-slate-200);
+  text-align: left;
+}
+
+.arrears-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-slate-200);
+  vertical-align: middle;
+}
+
+.arrears-table .table-input {
+  width: 100%;
+  min-height: 44px;
+  min-width: 70px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-slate-300);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-sm);
+  box-sizing: border-box;
+}
+
+.btn-del-row {
+  min-width: 44px;
+  min-height: 44px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-del-row:hover {
+  background: #fca5a5;
+  color: #991b1b;
+}
+
+.btn-add-row {
+  min-height: 44px;
+  padding: 8px 16px;
+  background: var(--color-slate-50);
+  border: 1px dashed var(--color-slate-300);
+  border-radius: var(--radius-md);
+  color: var(--color-slate-700);
+  cursor: pointer;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-add-row:hover {
+  background: #fff7ed;
+  border-color: #ea580c;
+  color: #ea580c;
+}
+
+/* 總金額計算卡片 */
+.arrears-total-card {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.arrears-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.arrears-total-row:last-child {
+  margin-bottom: 0;
+  padding-top: var(--space-2);
+  border-top: 1px dashed #fdba74;
+}
+
+.arrears-total-label {
+  font-size: var(--font-sm);
+  color: #9a3412;
+  font-weight: 600;
+}
+
+.arrears-total-val {
+  font-size: var(--font-lg);
+  font-weight: 800;
+  color: #c2410c;
+}
+
+.arrears-total-chinese {
+  font-size: var(--font-sm);
+  color: #7c2d12;
+  font-weight: 700;
+}
+
+/* 匯款受款帳戶資訊盒 */
+.bank-info-box {
+  background: #f8fafc;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.bank-info-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-navy);
+  font-weight: 700;
+  font-size: var(--font-sm);
+  margin-bottom: var(--space-3);
+}
+
+/* 簽名板區塊 */
+.signature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .signature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.signature-card {
+  background: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.signature-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.signature-card-header h3 {
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0;
+}
+
+.btn-clear-sig {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 6px 14px;
+  font-size: var(--font-xs);
+  background: var(--color-slate-100);
+  border: 1px solid var(--color-slate-300);
+  border-radius: var(--radius-sm);
+  color: var(--color-slate-700);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-clear-sig:hover {
+  background: var(--color-slate-200);
+  color: var(--color-navy);
+}
+
+.signature-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: #f8fafc;
+  border: 2px dashed var(--color-slate-300);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  touch-action: none;
+}
+
+.signature-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sig-placeholder-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-slate-400);
+  font-size: var(--font-xs);
+  pointer-events: none;
+}
+
+.signature-canvas-wrap.signed .sig-placeholder-hint {
+  display: none;
+}
+
+/* 操作按鈕列 */
+.action-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.btn-tool {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: all var(--transition-fast);
+}
+
+.btn-tool-orange {
+  background: #ea580c;
+  color: #ffffff;
+}
+
+.btn-tool-orange:hover {
+  background: #c2410c;
+}
+
+.btn-tool-primary {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.btn-tool-primary:hover {
+  background: #0f2b48;
+}
+
+.btn-tool-gold {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+.btn-tool-gold:hover {
+  background: #d4b375;
+}
+
+.btn-tool-outline {
+  background: #ffffff;
+  border-color: var(--color-slate-300);
+  color: var(--color-slate-700);
+}
+
+.btn-tool-outline:hover {
+  background: var(--color-slate-50);
+  border-color: var(--color-slate-400);
+}
+
+/* ==========================================================================
+   右側：A4 即時預覽畫布 (Live A4 Preview Engine)
+   ========================================================================== */
+.preview-panel {
+  position: sticky;
+  top: 90px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .preview-panel {
+    position: static;
+  }
+}
+
+.preview-container-box {
+  background: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.04);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .preview-container-box {
+    padding: var(--space-3);
+  }
+}
+
+.preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-slate-200);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.preview-toolbar h2 {
+  font-size: var(--font-base);
+  color: var(--color-navy);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.a4-paper-wrapper {
+  background: #525659;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .a4-paper-wrapper {
+    padding: var(--space-2);
+  }
+}
+
+.a4-paper {
+  background: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  min-height: auto;
+  padding: 15mm 14mm 12mm 14mm;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color: #1f2937;
+  font-size: 10pt;
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .a4-paper {
+    padding: var(--space-4) var(--space-3);
+    font-size: 8.5pt;
+  }
+}
+
+/* A4 公文紙張內文樣式 */
+.doc-header {
+  border-bottom: 2px solid #ea580c;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.doc-brand-title {
+  font-size: 14pt;
+  font-weight: 800;
+  color: #0a192f;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.doc-subtitle {
+  font-size: 12.5pt;
+  font-weight: 700;
+  color: #c2410c;
+  margin-top: 3px;
+}
+
+.doc-meta-block {
+  text-align: right;
+  font-size: 8.5pt;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.doc-meta-block .doc-no {
+  font-weight: 700;
+  color: #c2410c;
+}
+
+.doc-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+  font-size: 9pt;
+}
+
+.doc-meta-table th {
+  width: 18%;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  padding: 4px 6px;
+  font-weight: 700;
+  color: #9a3412;
+  text-align: justify;
+  text-align-last: justify;
+}
+
+.doc-meta-table td {
+  border: 1px solid #e5e7eb;
+  padding: 4px 6px;
+  color: #1f2937;
+}
+
+.doc-section-title {
+  font-size: 9.5pt;
+  font-weight: 800;
+  color: #9a3412;
+  background: #fff7ed;
+  border-left: 4px solid #ea580c;
+  padding: 3px 6px;
+  margin: 8px 0 5px 0;
+}
+
+.doc-content-box {
+  font-size: 9pt;
+  color: #1f2937;
+  line-height: 1.45;
+  margin-bottom: 6px;
+  text-align: justify;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
+/* A4 欠繳明細表 */
+.doc-arrears-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 6px;
+  font-size: 8.5pt;
+}
+
+.doc-arrears-table th {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 4px 6px;
+  color: #334155;
+  font-weight: 700;
+  text-align: center;
+}
+
+.doc-arrears-table td {
+  border: 1px solid #e2e8f0;
+  padding: 4px 6px;
+  color: #1e293b;
+}
+
+.doc-arrears-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.doc-arrears-table tr.total-row {
+  background: #fff7ed;
+  font-weight: 700;
+  color: #9a3412;
+}
+
+.doc-arrears-table tr.total-row td {
+  border-top: 2px solid #fdba74;
+}
+
+/* A4 匯款指定帳戶 */
+.doc-bank-box {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 3px solid #0a192f;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  font-size: 8.5pt;
+  line-height: 1.4;
+}
+
+/* 法律條款條列 */
+.doc-clauses-list {
+  margin: 4px 0;
+  padding-left: 18px;
+  font-size: 8pt;
+  color: #1f2937;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+.doc-clauses-list li {
+  margin-bottom: 2px;
+}
+
+/* A4 底部簽章與回執聯區 */
+.doc-signatures-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 8px;
+  border-top: 1px solid #cbd5e1;
+  padding-top: 8px;
+}
+
+.doc-sig-col {
+  font-size: 8.5pt;
+  line-height: 1.35;
+}
+
+.doc-sig-preview-img {
+  height: 44px;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+  margin: 2px 0;
+}
+
+.doc-sig-stamp-placeholder {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 8pt;
+}
+
+.doc-receipt-strip {
+  border-top: 1px dashed #94a3b8;
+  margin-top: 8px;
+  padding-top: 6px;
+  font-size: 7.5pt;
+  color: #475569;
+}
+
+.doc-footer-note {
+  margin-top: 6px;
+  padding-top: 4px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 7.5pt;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   列印模式專用樣式 (@media print)
+   ========================================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .top-bar,
+  .navbar,
+  .notice-header,
+  .form-panel,
+  .preview-toolbar,
+  .footer,
+  .action-toolbar,
+  .auth-overlay-backdrop {
+    display: none !important;
+  }
+
+  .notice-container,
+  .workspace-grid,
+  .preview-panel,
+  .preview-container-box,
+  .a4-paper-wrapper {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .a4-paper {
+    width: 210mm !important;
+    max-width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 auto !important;
+    padding: 12mm 14mm 10mm 14mm !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}

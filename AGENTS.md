@@ -78,6 +78,7 @@
 - [x] 階段五十五：住宅租賃屋況定期巡檢維護報告書產生器 `routine-inspection-report.html`（依據《租賃住宅市場發展及管理條例》第28條受託巡檢規範設計，整合消防住警、瓦斯熱水器排氣、配電盤負載、給排水防漏、門窗五金、同住合規六大安全檢驗矩陣、相片存證、雙手寫電子簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE通報房東，全站 34 頁 100% 互通、PWA 121 項資產離線秒開與 132 組行動端 0px 溢出通過）
 - [x] 階段五十六：租賃住宅承租人遺留物處理授權與拋棄切結書產生器 `abandoned-property-agreement.html`（依據《租賃住宅市場發展及管理條例》第12條與《民法》第445條法定留置權規範設計，支援退租現場合意切結、簽約事前約定與欠租失聯催告期滿處置三大模式，動態遺留物造冊、現場拍照存證、清運規費自押金扣抵精算、雙方Retina電子手寫簽章、A4無痕列印出圖、Canvas 840×1080px圖卡下載與LINE存證通報，全站 35 頁 100% 互通、PWA 124 項資產離線秒開與 136 組行動端 0px 溢出通過）
 - [x] 階段五十七：租賃住宅住戶違規行為勸導限期改善通知單產生器 `rules-violation-notice.html`（依據《租賃住宅市場發展及管理條例》第10條第1項第3款、《公寓大廈管理條例》第16/47條、《噪音管制法》與《菸害防制法》規範，涵蓋梯間雜物、深夜噪音、室內吸菸、違規養寵、私自改裝、違規轉租六大情境，現場4格照片自動壓印存證浮水印、雙方Retina 2x手寫簽章、A4無痕列印出圖附送達回執聯、Canvas 840×1080px圖卡下載與LINE通報文字複製，全站 36 頁 100% 互通、PWA 127 項資產離線秒開與 140 組行動端 0px 溢出通過）
+- [x] 階段五十八：住宅租賃租金催繳與欠租限期清償催告書產生器 `rent-arrears-notice.html`（依據《民法》第439/440條遲延給付催告、第229/233條法定遲延利息年息5%與《租賃專法》第10條欠租達二個月法定門檻設計，整合三級催繳階段梯度、跨月多期積欠明細、國字大寫轉換、代管專用受款帳戶、雙方Retina 2x電子手寫簽章、A4無痕列印出圖附送達與清償承諾回執聯、Canvas 840×1080px圖卡下載與LINE催繳文字複製，全站 37 頁 100% 互通、PWA 130 項資產離線秒開與 144 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -125,7 +126,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── routine-inspection-report.html   # 34. 住宅租賃屋況定期巡檢維護報告書產生器
 ├── abandoned-property-agreement.html # 35. 租賃住宅承租人遺留物處理授權與拋棄切結書產生器
 ├── rules-violation-notice.html       # 36. 租賃住宅住戶違規行為勸導限期改善通知單產生器
-├── sitemap.xml                      # 全站 36 頁 SEO XML 網站地圖
+├── rent-arrears-notice.html         # 37. 住宅租賃租金催繳與欠租限期清償催告書產生器
+├── sitemap.xml                      # 全站 37 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -138,6 +140,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   │                                # ⚠️ 基礎重置、.container、.form-control、body 主題底色
 │   │                                #    也一律寫在這裡（只寫在 styles.css 的話，其餘 7 頁吃不到）
 │   ├── auth-guard.css               # 全站線上工具授權驗證防護樣式（毛玻璃、零閃爍防護、RWD）
+│   ├── rent-arrears-notice.css      # 租金催繳與欠租限期清償催告書專用樣式與 A4 排版引擎
 │   ├── guarantor-agreement.css      # 租賃連帶保證人保證書專用樣式與 A4 排版引擎
 │   ├── mandate-contract.css         # 住宅租賃委託管理與包租契約專用樣式與 A4 排版引擎
 │   ├── repair-work-order.css        # 租賃修繕派工與完工驗收單專用樣式與 A4 排版引擎
@@ -164,6 +167,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
+│   ├── rent-arrears-notice.js       # 租金催繳與欠租限期清償催告書核心邏輯（三級催繳、動態欠繳試算、大寫轉換與雙簽章引擎）
 │   ├── guarantor-agreement.js       # 租賃連帶保證人完全責任、先訴抗辯權拋棄與手寫簽章引擎
 │   ├── mandate-contract.js          # 住宅租賃委託管理與包租契約雙模式、修繕代墊授權與手寫簽章引擎
 │   ├── repair-work-order.js         # 租賃修繕三方簽章、動態材料工項明細與 A4/Canvas/LINE 輸出引擎

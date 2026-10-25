@@ -48,6 +48,7 @@ HTML_FILES = [
     "routine-inspection-report.html",
     "abandoned-property-agreement.html",
     "rules-violation-notice.html",
+    "rent-arrears-notice.html",
     "privacy.html"
 ]
 
