@@ -62,6 +62,7 @@ const PAGES = [
   'lease-notarization-agreement.html',
   'emergency-entry-agreement.html',
   'smoke-free-agreement.html',
+  'mold-prevention-agreement.html',
   'fire-safety-agreement.html',
   'privacy.html'
 ];

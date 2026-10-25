@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全面清理與標準化全站 52 頁的導覽列下拉選單與頁尾房東法務專區連結，
+全面清理與標準化全站 53 頁的導覽列下拉選單與頁尾房東法務專區連結，
 去除重複連結，確保全站 100% 乾淨規範。
-支援 Phase 73: smoke-free-agreement.html
+支援 Phase 74: mold-prevention-agreement.html
 """
 
 import os
@@ -12,8 +12,9 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (49)</a></li>
+CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (50)</a></li>
             <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="mold-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-droplet-slash" style="color: #0284c7;"></i> 防潮防黴環境維護承諾書</a></li>
             <li><a href="smoke-free-agreement.html" class="nav-link"><i class="fa-solid fa-ban-smoking" style="color: #ef4444;"></i> 無菸住宅全面禁菸承諾書</a></li>
             <li><a href="emergency-entry-agreement.html" class="nav-link"><i class="fa-solid fa-door-open" style="color: #ef4444;"></i> 緊急避難開門授權協議書</a></li>
             <li><a href="lease-notarization-agreement.html" class="nav-link"><i class="fa-solid fa-stamp" style="color: #c5a059;"></i> 租約公證暨強執約定書</a></li>
@@ -64,7 +65,8 @@ CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="
             <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
             <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>"""
 
-CANONICAL_FOOTER_LANDLORD = """            <li><a href="smoke-free-agreement.html">無菸住宅全面禁菸承諾書</a></li>
+CANONICAL_FOOTER_LANDLORD = """            <li><a href="mold-prevention-agreement.html">防潮防黴環境維護承諾書</a></li>
+            <li><a href="smoke-free-agreement.html">無菸住宅全面禁菸承諾書</a></li>
             <li><a href="emergency-entry-agreement.html">緊急避難開門授權協議書</a></li>
             <li><a href="lease-notarization-agreement.html">租約公證暨強執約定書</a></li>
             <li><a href="household-registration-agreement.html">設籍約定暨遷出切結書</a></li>
@@ -84,7 +86,6 @@ CANONICAL_FOOTER_LANDLORD = """            <li><a href="smoke-free-agreement.htm
 def clean_page(filepath):
     filename = os.path.basename(filepath)
     if filename in ["index.html", "privacy.html", "island.html"]:
-        # 這些頁面的結構略有自定義，單獨處理或保留
         pass
 
     with open(filepath, "r", encoding="utf-8") as f:
@@ -93,14 +94,11 @@ def clean_page(filepath):
     changed = False
 
     # 1. 替換標準 ul.nav-dropdown-menu
-    # 尋找 <ul class="nav-dropdown-menu"> ... </ul>
     nav_pattern = re.compile(r'(<ul class="nav-dropdown-menu">)(.*?)(</ul>)', re.DOTALL)
     match = nav_pattern.search(content)
     if match:
-        # 針對當前檔案，為對應的連結加上 class="nav-link active"
         items = CANONICAL_DROPDOWN_ITEMS
         if filename != "index.html":
-            # 尋找 href="{filename}" 並確保有 active
             items = re.sub(
                 rf'href="{re.escape(filename)}" class="nav-link"',
                 f'href="{filename}" class="nav-link active"',
@@ -127,7 +125,6 @@ def clean_page(filepath):
     watermark_pattern = re.compile(r'(<div class="nav-dropdown-menu">)(.*?)(</div>\s*</div>)', re.DOTALL)
     wm_match = watermark_pattern.search(content)
     if wm_match and "photo-watermark" in filename or "id-card" in filename or "photo-time" in filename:
-        # 構建相容的 a 標籤版本
         wm_items = []
         for line in CANONICAL_DROPDOWN_ITEMS.strip().split("\n"):
             m_a = re.search(r'href="([^"]+)"[^>]*>(<i[^>]*></i>)\s*([^<]+)</a>', line)
@@ -148,7 +145,7 @@ def clean_page(filepath):
         print(f"  [OK] {filename}")
 
 def main():
-    print("=== 開始全站導覽列與頁尾標準化清理 (Phase 73) ===")
+    print("=== 開始全站導覽列與頁尾標準化清理 (Phase 74) ===")
     html_files = sorted(glob.glob(os.path.join(ROOT, "*.html")))
     for f in html_files:
         clean_page(f)
