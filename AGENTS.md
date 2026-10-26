@@ -97,6 +97,7 @@
 - [x] 階段七十四：住宅租賃室內防潮防黴與環境通風維護承諾書產生器 `mold-prevention-agreement.html`（依據《民法》第423/430/432/437條善良管理人注意義務與及時通報責任，整合洗沐抽風排濕、室內除濕晾衣、空調濾網每季清洗、48小時及時通報防損害擴大、發黴賠償責任歸屬判定、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 53 頁 100% 互通、PWA 178 項資產離線秒開與 208 組行動端 0px 溢出通過）
 - [x] 階段七十五：住宅租賃噪音防制與生活安寧特約承諾書產生器 `noise-prevention-agreement.html`（依據《民法》第793/432條、《噪音管制法》第6條、《社會秩序維護法》第72條與《公寓大廈管理條例》第16條，整合Quiet Hours安寧時段、六大防噪要項、地板衝擊音防制、三級違規處置罰則、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE摘要複製，全站 54 頁 100% 互通、PWA 181 項資產離線秒開與 212 組行動端 0px 溢出通過）
 - [x] 階段七十六：住宅租賃無障礙設備使用與安全特約切結書產生器 `accessibility-agreement.html`（依據《民法》第431/432條、《身心障礙者權益保障法》第57/84條與建築物無障礙設施規範，整合三大設備處置與回復原狀模式、六大安全設施登錄、施工安全保證、意外免責宣告、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE切結摘要複製，全站 55 頁 100% 互通、PWA 184 項資產離線秒開與 216 組行動端 0px 溢出通過）
+- [x] 階段七十七：住宅租賃祭祀焚香與神明祖先牌位安奉特約承諾書產生器 `altar-worship-agreement.html`（依據《民法》第432/434條、《消防法》第6條、《公寓大廈管理條例》第16條與《空氣污染防制法》第32條，整合嚴禁焚香與許可安奉雙模式、耐燃防火隔熱板、LED電子香火、住警器維護、全室煙燻粉刷除垢賠償、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE切結摘要複製，全站 56 頁 100% 互通、PWA 187 項資產離線秒開與 220 組行動端 0px 溢出通過）
 
 ## 資料夾結構
 
@@ -163,7 +164,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── mold-prevention-agreement.html        # 53. 住宅租賃室內防潮防黴與環境通風維護承諾書產生器
 ├── noise-prevention-agreement.html       # 54. 住宅租賃噪音防制與生活安寧特約承諾書產生器
 ├── accessibility-agreement.html          # 55. 住宅租賃無障礙設備使用與安全特約切結書產生器
-├── sitemap.xml                      # 全站 55 頁 SEO XML 網站地圖
+├── altar-worship-agreement.html          # 56. 住宅租賃祭祀焚香與神明祖先牌位安奉特約承諾書產生器
+├── sitemap.xml                      # 全站 56 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -216,6 +218,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── photo-time-location.css      # 照片時間地點浮水印工具樣式
 │   ├── noise-prevention-agreement.css # 住宅租賃噪音防制與生活安寧特約承諾書專用樣式與 A4 排版引擎
 │   ├── accessibility-agreement.css  # 住宅租賃無障礙設備使用與安全特約切結書專用樣式與 A4 排版引擎
+│   ├── altar-worship-agreement.css  # 住宅租賃祭祀焚香與神明祖先牌位安奉特約承諾書專用樣式與 A4 排版引擎
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
@@ -262,6 +265,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── photo-time-location.js       # 照片時間地點浮水印邏輯
 │   ├── noise-prevention-agreement.js # 噪音防制承諾書動態計算、Quiet Hours、大寫轉換、簽章與圖卡輸出引擎
 │   ├── accessibility-agreement.js   # 無障礙設備切結書處置模式連動、大寫轉換、雙簽章與圖卡輸出引擎
+│   ├── altar-worship-agreement.js   # 祭祀焚香承諾書雙模式切換、大寫轉換、安全自律核取、雙簽章與圖卡輸出引擎
 │   ├── exif-parser.js               # EXIF 解析
 │   ├── watermark-engine.js          # 水印合成引擎（Canvas）
 │   ├── watermark-app.js             # 照片水印工具 UI 控制

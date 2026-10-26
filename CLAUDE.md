@@ -126,6 +126,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── mold-prevention-agreement.css # 住宅租賃室內防潮防黴與環境通風維護承諾書專用樣式與 A4 排版引擎
 │   ├── noise-prevention-agreement.css # 住宅租賃噪音防制與生活安寧特約承諾書專用樣式與 A4 排版引擎
 │   ├── accessibility-agreement.css # 住宅租賃無障礙設備使用與安全特約切結書專用樣式與 A4 排版引擎
+│   ├── altar-worship-agreement.css # 住宅租賃祭祀焚香與神明祖先牌位安奉特約承諾書專用樣式與 A4 排版引擎
 │   ├── fire-safety-agreement.css    # 住宅租賃用電用火安全暨失火責任切結專用樣式與 A4 排版引擎
 │   ├── privacy.css          # 隱私權政策與個資法遵循專用樣式
 │   ├── ocr-translator.css   # 照片 OCR 翻譯專用樣式
@@ -141,6 +142,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── mold-prevention-agreement.js # 防潮防黴維護承諾書核心邏輯（六大保養要項、48小時及時通報、責任判定、賠償限額與雙簽章引擎）
 │   ├── noise-prevention-agreement.js # 噪音防制承諾書動態計算、Quiet Hours、大寫轉換、簽章與圖卡輸出引擎
 │   ├── accessibility-agreement.js # 無障礙設備切結書處置模式連動、大寫轉換、雙簽章與圖卡輸出引擎
+│   ├── altar-worship-agreement.js # 祭祀焚香承諾書雙模式切換、大寫轉換、安全自律核取、雙簽章與圖卡輸出引擎
 │   ├── lease-notarization-agreement.js # 租約公證暨強執約定核心邏輯（司法院規費表、租金與現值孰高、強執加成、四大特約與雙簽章引擎）
 │   ├── guarantor-agreement.js # 租賃連帶保證人完全責任、先訴抗辯權拋棄與手寫簽章引擎
 │   ├── mandate-contract.js  # 住宅租賃委託管理與包租契約雙模式、修繕代墊授權與手寫簽章引擎
