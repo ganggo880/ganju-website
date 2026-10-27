@@ -1,5 +1,5 @@
 /* ==========================================================================
-   港居不動產 線上工具專屬授權驗證防護系統樣式 (GANJU Auth Guard Styles)
+   港居不動產 線上工具專屬授權驗證防護與 3 天單頁免密通道樣式 (GANJU Auth Guard v2.0)
    設計規範：沉浸式深海藍與香檳金奢華毛玻璃、高對比度無障礙、嚴格 RWD 零溢出
    ========================================================================== */
 
@@ -7,16 +7,18 @@
 html.auth-locked,
 body.auth-locked {
   overflow: hidden !important;
+  overflow-x: hidden !important;
   height: 100vh !important;
-  width: 100vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
-  filter: blur(20px) brightness(0.35) !important;
-  pointer-events: none !important;
-  user-select: none !important;
-  opacity: 0.2 !important;
-  transition: filter 0.4s ease, opacity 0.4s ease;
+  display: none !important;
+}
+
+[data-guest-isolated="true"] {
+  display: none !important;
 }
 
 /* 2. 全螢幕毛玻璃鎖定層 (Fullscreen Glassmorphic Overlay) */
@@ -26,7 +28,8 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  width: 100vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
   height: 100vh !important;
   z-index: 9999999 !important;
   background: rgba(10, 25, 47, 0.88);
@@ -278,9 +281,9 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   border: none;
   border-radius: 12px;
   color: #FFFFFF;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -372,8 +375,6 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   transition: all 0.25s ease;
   box-sizing: border-box;
 }
-  box-sizing: border-box;
-}
 
 .btn-auth-home:hover {
   color: #FFFFFF;
@@ -391,7 +392,7 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   gap: 6px;
 }
 
-/* 6. 已解鎖時的頂部授權狀態徽章 (Unlocked Status Badge) */
+/* 6. 已解鎖時的頂部授權狀態徽章与一鍵複製按鈕 */
 .auth-status-badge {
   display: inline-flex !important;
   align-items: center !important;
@@ -403,6 +404,29 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   border-radius: 6px !important;
   font-size: 0.78rem !important;
   font-weight: 600 !important;
+}
+
+.btn-auth-copy-top {
+  background: linear-gradient(135deg, var(--accent-gold, #C5A059), #997835);
+  border: 1px solid rgba(255, 232, 184, 0.5);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  min-height: 28px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.btn-auth-copy-top:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
 }
 
 .btn-auth-relock {
@@ -428,20 +452,23 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   color: #FCA5A5;
 }
 
-/* 7. 首頁工具中心提示橫幅與鎖定標籤 (Tools Hub Auth Banner on index.html) */
+/* 7. 首頁工具中心提示橫幅、鎖定/開放標籤與管理員一鍵複製按鈕 */
 .tools-hub-auth-notice {
-  background: linear-gradient(135deg, rgba(26, 54, 93, 0.8), rgba(15, 35, 65, 0.95));
-  border: 1px solid rgba(197, 160, 89, 0.35);
-  border-radius: 12px;
-  padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.85), rgba(15, 35, 65, 0.96));
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 14px;
+  padding: 16px 20px;
   margin: 0 0 24px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 14px;
   color: #E2E8F0;
   font-size: 0.92rem;
-  line-height: 1.5;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  line-height: 1.55;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
 }
 
 .tools-hub-auth-notice i {
@@ -450,13 +477,345 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   flex-shrink: 0;
 }
 
+.tools-hub-admin-quickbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  box-sizing: border-box;
+}
+
+.tools-hub-admin-select {
+  flex: 1 1 180px;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  contain: inline-size;
+  min-height: 44px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.btn-hub-quick-copy {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, var(--accent-gold, #C5A059), #997835);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-hub-quick-copy:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-hub-exit-guest {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 16px;
+  background: rgba(197, 160, 89, 0.2);
+  border: 1px solid rgba(197, 160, 89, 0.5);
+  color: var(--accent-gold-light, #FFE8B8);
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
 .tool-hub-badge.locked {
   background: rgba(197, 160, 89, 0.15);
   border: 1px solid rgba(197, 160, 89, 0.4);
   color: var(--accent-gold-light, #FFE8B8);
 }
 
-/* 8. 極限 RWD 適配 (360px ~ 480px) */
+.tool-hub-badge.unlocked {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #6EE7B7;
+}
+
+/* 首頁第 1~26 款工具卡片上的「管理員一鍵複製 3 天免密網址」按鈕 */
+.tool-hub-share-btn {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 14px;
+  background: rgba(197, 160, 89, 0.12);
+  border: 1px dashed rgba(197, 160, 89, 0.5);
+  border-radius: 10px;
+  color: var(--accent-gold-light, #FFE8B8);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.tool-hub-share-btn:hover {
+  background: rgba(197, 160, 89, 0.25);
+  border-style: solid;
+  color: #FFFFFF;
+}
+
+.tool-hub-share-btn.copied {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: #10B981;
+  border-style: solid;
+  color: #6EE7B7;
+}
+
+/* 8. 工具內頁左下角懸浮管理員一鍵複製膠囊列 */
+.ganju-floating-auth-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 99990;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100vw - 40px);
+}
+
+.btn-floating-share {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.95), rgba(15, 35, 65, 0.98));
+  border: 1.5px solid var(--accent-gold, #C5A059);
+  color: var(--accent-gold-light, #FFE8B8);
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-floating-share:hover {
+  background: linear-gradient(135deg, var(--accent-gold, #C5A059), #997835);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.ganju-floating-guest-pill {
+  min-height: 44px;
+  padding: 6px 14px;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  color: #FDE68A;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  flex-wrap: wrap;
+}
+
+.btn-floating-admin-switch {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 4px 12px;
+  background: rgba(197, 160, 89, 0.25);
+  border: 1px solid rgba(197, 160, 89, 0.6);
+  color: #FFFFFF;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 9. 一鍵複製 3 天免密網址成功彈窗 (Share Link Modal) */
+.ganju-share-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999998;
+  background: rgba(10, 25, 47, 0.82);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.ganju-share-modal-card {
+  background: linear-gradient(145deg, #1A365D, #0F2341);
+  border: 1px solid rgba(197, 160, 89, 0.55);
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  padding: 28px 24px;
+  color: #FFFFFF;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+  box-sizing: border-box;
+  animation: authCardEnter 0.3s ease;
+}
+
+.ganju-share-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.ganju-share-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid #10B981;
+  color: #34D399;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ganju-share-modal-header h3 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  color: #FFFFFF;
+}
+
+.ganju-share-modal-header p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--accent-gold-light, #FFE8B8);
+  font-weight: 600;
+}
+
+.ganju-share-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #E2E8F0;
+}
+
+.ganju-share-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ganju-share-info-item i {
+  margin-top: 3px;
+}
+
+.ganju-share-url-box {
+  margin-bottom: 18px;
+}
+
+.ganju-share-url-box input {
+  width: 100%;
+  min-height: 44px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #6EE7B7;
+  font-family: monospace;
+  font-size: 0.84rem;
+  box-sizing: border-box;
+}
+
+.ganju-share-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-share-modal-primary,
+.btn-share-modal-test,
+.btn-share-modal-close {
+  flex: 1;
+  min-width: 130px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btn-share-modal-primary {
+  background: linear-gradient(135deg, var(--accent-gold, #C5A059), #997835);
+  border: none;
+  color: #FFFFFF;
+}
+
+.btn-share-modal-test {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  color: #6EE7B7;
+}
+
+.btn-share-modal-close {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #CBD5E1;
+}
+
+@media print {
+  .ganju-floating-auth-bar,
+  .ganju-share-modal-backdrop,
+  #ganjuAuthBadge {
+    display: none !important;
+  }
+}
+
+/* 10. 極限 RWD 適配 (360px ~ 480px) */
 @media (max-width: 480px) {
   .ganju-auth-overlay {
     padding: 16px 12px;
@@ -484,7 +843,7 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   }
 
   .auth-input {
-    font-size: 16px; /* 防止 iOS 焦點自動放大造成破版 */
+    font-size: 16px;
     min-height: 48px;
     padding: 10px 46px 10px 42px;
   }
@@ -496,7 +855,7 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
 
   .btn-auth-unlock {
     min-height: 48px;
-    font-size: 0.98rem;
+    font-size: 0.92rem;
   }
 
   .btn-auth-line {
@@ -505,7 +864,25 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   }
 
   .tools-hub-auth-notice {
-    padding: 12px 16px;
+    padding: 12px 14px;
     font-size: 0.85rem;
+  }
+
+  .tools-hub-admin-select {
+    flex: 1 1 100%;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .btn-hub-quick-copy {
+    width: 100%;
+  }
+
+  .ganju-floating-auth-bar {
+    bottom: 12px;
+    left: 12px;
+    max-width: calc(100vw - 24px);
   }
 }

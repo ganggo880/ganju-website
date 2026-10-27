@@ -623,6 +623,10 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active');
 
       toolCards.forEach((card) => {
+        if (card.getAttribute('data-guest-isolated') === 'true') {
+          card.style.display = 'none';
+          return;
+        }
         if (filter === 'all' || card.dataset.category === filter) {
           card.style.display = 'flex';
         } else {

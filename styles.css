@@ -1300,8 +1300,12 @@ img, svg, iframe, video {
 
 @media (max-width: 992px) {
   .hero-grid, .calc-grid, .footer-grid, .plans-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 40px;
+  }
+  .calc-inputs, .calc-results {
+    min-width: 0;
+    max-width: 100%;
   }
   .hero {
     padding: 60px 0 80px;
@@ -2757,7 +2761,7 @@ img, svg, iframe, video {
 
 @media (max-width: 640px) {
   .tools-hub-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .tool-hub-card {
     padding: 18px;

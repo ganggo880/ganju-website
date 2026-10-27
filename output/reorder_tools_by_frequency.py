@@ -634,24 +634,63 @@ TOOLS_ORDERED = [
 def build_tool_cards_html():
     cards = []
     for idx, (href, nav_title, icon, color, cat, badge, title, desc, btn_text) in enumerate(TOOLS_ORDERED, 1):
+        if idx <= 26:
+            badge_html = f'<span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #{idx:02d}・{badge}</span>'
+            action_html = f"""          <a href="{href}" class="tool-hub-btn">
+            <span>{btn_text}</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <button type="button" class="tool-hub-share-btn" data-share-page="{href}" data-share-title="{title}">
+            <i class="fa-solid fa-link"></i> 管理員一鍵複製 3 天免密網址
+          </button>"""
+        else:
+            badge_html = f'<span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #{idx:02d}・開放免密</span>'
+            action_html = f"""          <a href="{href}" class="tool-hub-btn">
+            <span>{btn_text}（免密開放）</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>"""
+
         card = f"""        <!-- {idx:02d}. {title} ({href}) -->
         <article class="tool-hub-card" data-category="{cat}">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: {color};">
               <i class="fa-solid {icon}"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> {badge}</span>
+            {badge_html}
           </div>
           <div class="tool-hub-body">
             <h3>{title}</h3>
             <p>{desc}</p>
           </div>
-          <a href="{href}" class="tool-hub-btn">
-            <span>{btn_text}</span> <i class="fa-solid fa-arrow-right"></i>
-          </a>
+{action_html}
         </article>"""
         cards.append(card)
     return "\n\n".join(cards)
+
+
+def build_auth_notice_html():
+    options = []
+    for idx, (href, nav_title, icon, color, cat, badge, title, desc, btn_text) in enumerate(TOOLS_ORDERED[:26], 1):
+        options.append(f'            <option value="{href}">#{idx:02d} {nav_title}</option>')
+    options_str = "\n".join(options)
+    return f"""      <div class="tools-hub-auth-notice">
+        <div style="display: flex; align-items: flex-start; gap: 12px; width: 100%;">
+          <i class="fa-solid fa-shield-halved" style="margin-top: 3px;"></i>
+          <div>
+            <strong>分級授權與 3 天單頁免密通道說明</strong>：
+            <strong>第 01～26 款高頻核心工具</strong>為上鎖保護專區（管理員可一鍵複製「<strong>3 天單頁免密專屬網址</strong>」提供客戶自動解鎖，期限 3 天後自動取消登入，且訪客只能看到自己登入的單一網頁，其他上鎖網頁皆自動隱藏）；<strong>第 27～55 款進階與特約工具</strong>則全面開放免密碼自由使用。
+          </div>
+        </div>
+        <div class="tools-hub-admin-quickbar">
+          <label for="ganjuHubQuickShareSelect" style="font-weight: 700; color: var(--accent-gold-light, #FFE8B8); font-size: 0.88rem;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 管理員免密網址發放器（第 01~26 款）：
+          </label>
+          <select id="ganjuHubQuickShareSelect" class="tools-hub-admin-select" aria-label="選擇要複製3天免密網址的工具">
+{options_str}
+          </select>
+          <button type="button" class="btn-hub-quick-copy" id="ganjuHubQuickShareBtn">
+            <i class="fa-solid fa-copy"></i> 一鍵複製 3 天免密網址
+          </button>
+        </div>
+      </div>"""
 
 
 def build_dropdown_items_html():
@@ -682,10 +721,17 @@ def main():
         cat_counts[t[4]] = cat_counts.get(t[4], 0) + 1
     print("分類統計:", cat_counts)
 
-    # 1. 更新 index.html 的 #toolsHubGrid
+    # 1. 更新 index.html 的 .tools-hub-auth-notice 與 #toolsHubGrid
     index_path = os.path.join(ROOT, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         index_content = f.read()
+
+    notice_pattern = re.compile(
+        r'<div class="tools-hub-auth-notice">.*?</div>\s*(?=<div class="tools-hub-grid" id="toolsHubGrid">)',
+        re.DOTALL
+    )
+    if notice_pattern.search(index_content):
+        index_content = notice_pattern.sub(build_auth_notice_html() + "\n\n      ", index_content, count=1)
 
     pattern = re.compile(
         r'(<div class="tools-hub-grid" id="toolsHubGrid">)(.*?)(</div>\s*</div>\s*</section>)',
@@ -698,9 +744,15 @@ def main():
     new_grid = f"{m.group(1)}\n{build_tool_cards_html()}\n      {m.group(3)}"
     index_content = index_content[:m.start()] + new_grid + index_content[m.end():]
 
+    if 'src="js/auth-guard.js"' not in index_content:
+        index_content = index_content.replace(
+            '<script src="script.js"></script>',
+            '<script src="js/auth-guard.js"></script>\n  <script src="script.js"></script>'
+        )
+
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(index_content)
-    print("✅ index.html: 已將 55 款工具卡片依日常使用頻率由高至低重新排序並補齊！")
+    print("✅ index.html: 已更新 1~26 上鎖+3天免密網址一鍵複製 與 27~55 開放免密碼！")
 
     # 2. 更新 output/clean_nav_and_footers.py 並執行全站 58 頁同步
     clean_script_path = os.path.join(ROOT, "output", "clean_nav_and_footers.py")
