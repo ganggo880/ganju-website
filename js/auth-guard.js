@@ -684,10 +684,70 @@
     });
   }
 
+  function injectDropdownAuthTabs() {
+    const menus = document.querySelectorAll('.nav-dropdown-menu');
+    const isGuestMode = isGuestSingleModeActive();
+    menus.forEach((menu) => {
+      if (menu.querySelector('.nav-dropdown-filter-bar')) return;
+
+      const items = Array.from(menu.querySelectorAll('li'));
+      items.forEach((li) => {
+        const a = li.querySelector('a[href]');
+        if (!a) return;
+        const href = (a.getAttribute('href') || '').split('?')[0].split('#')[0];
+        if (!href || href === 'index.html' || href === 'island.html') {
+          li.setAttribute('data-drop-auth', 'hub');
+          return;
+        }
+        if (LOCKED_SET.has(href)) {
+          li.setAttribute('data-drop-auth', 'locked');
+        } else {
+          li.setAttribute('data-drop-auth', 'unlocked');
+        }
+      });
+
+      const filterBar = document.createElement('li');
+      filterBar.className = 'nav-dropdown-filter-bar';
+      filterBar.setAttribute('role', 'tablist');
+      filterBar.innerHTML = `
+        <button type="button" class="nav-drop-tab active" data-drop-filter="all">全部 (55)</button>
+        <button type="button" class="nav-drop-tab" data-drop-filter="locked"><i class="fa-solid fa-lock" style="color:#FBBF24;"></i> 密碼 (26)</button>
+        <button type="button" class="nav-drop-tab" data-drop-filter="unlocked"><i class="fa-solid fa-lock-open" style="color:#34D399;"></i> 無密碼 (29)</button>
+      `;
+
+      menu.insertBefore(filterBar, menu.firstChild);
+
+      const tabs = filterBar.querySelectorAll('.nav-drop-tab');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const mode = tab.getAttribute('data-drop-filter');
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          items.forEach((li) => {
+            if (li.getAttribute('data-guest-isolated') === 'true') {
+              li.style.display = 'none';
+              return;
+            }
+            const authType = li.getAttribute('data-drop-auth');
+            if (authType === 'hub' || mode === 'all' || authType === mode) {
+              li.style.display = '';
+            } else {
+              li.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  }
+
   // --------------------------------------------------------------------------
   // DOM Ready 流程
   // --------------------------------------------------------------------------
   function onReady() {
+    injectDropdownAuthTabs();
     enforceSinglePageIsolationInDOM();
     bindHomepageAdminControls();
 

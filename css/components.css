@@ -134,23 +134,30 @@ body {
   transform: scale(1.03);
 }
 
-.brand-text-box h1 {
+.brand-text-box h1,
+.brand-text-box .brand-title {
+  display: block;
   font-size: 1.4rem;
   font-weight: 900;
   color: var(--primary-navy);
   letter-spacing: 0.5px;
   line-height: 1.25;
+  margin: 0;
 }
 
-[data-theme="dark"] .brand-text-box h1 {
+[data-theme="dark"] .brand-text-box h1,
+[data-theme="dark"] .brand-text-box .brand-title {
   color: #F8FAFC;
 }
 
-.brand-text-box p {
+.brand-text-box p,
+.brand-text-box .brand-sub {
+  display: block;
   font-size: 0.75rem;
   color: var(--text-muted);
   font-weight: 700;
   letter-spacing: 1px;
+  margin: 0;
 }
 
 .nav-menu {
@@ -823,3 +830,159 @@ input[type="range"] {
     font-size: 0.72rem;
   }
 }
+
+/* ==========================================================================
+   9. 全站工具共用頁首橫幅 (.tool-header) 與頁尾相容結構 (.footer-inner)
+   ========================================================================== */
+.tool-header {
+  background: linear-gradient(135deg, #0F2341 0%, #1A365D 65%, #244775 100%);
+  color: #FFFFFF;
+  padding: 40px 0 36px;
+  border-bottom: 3px solid var(--accent-gold, #C5A059);
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-header .tool-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(197, 160, 89, 0.18);
+  border: 1px solid rgba(197, 160, 89, 0.5);
+  color: var(--accent-gold-light, #FFE8B8);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.tool-header .tool-title,
+.tool-header h1 {
+  font-size: clamp(1.45rem, 2.8vw, 2.15rem);
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin: 0 0 10px;
+}
+
+.tool-header .tool-subtitle,
+.tool-header p {
+  font-size: 0.95rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 900px;
+}
+
+/* 頁尾相容類別 (.footer-inner / .footer-links-grid) */
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: 40px;
+  padding-bottom: 32px;
+}
+
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.footer-brand .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.footer-brand .footer-logo img {
+  height: 44px;
+  width: auto;
+}
+
+.footer-col-title {
+  color: var(--accent-gold, #C5A059);
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 14px;
+}
+
+.footer-desc,
+.footer-cert-info p {
+  color: #CBD5E1;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 4px 0;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 992px) {
+  .footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .footer-links-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* 導覽列下拉選單內建「密碼授權 / 無密碼開放」快速分頁切換列 */
+.nav-dropdown-filter-bar {
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  background: rgba(15, 23, 42, 0.05);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: -10px;
+  z-index: 5;
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .nav-dropdown-filter-bar {
+  background: rgba(15, 35, 65, 0.95);
+}
+
+.nav-drop-tab {
+  flex: 1;
+  min-height: 36px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.nav-drop-tab.active {
+  background: var(--primary-navy);
+  color: var(--accent-gold-light, #FFE8B8);
+  border-color: var(--accent-gold);
+}
+
+.nav-drop-section-label {
+  padding: 6px 12px 4px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--accent-gold, #C5A059);
+  letter-spacing: 0.04em;
+  border-top: 1px dashed var(--border-color);
+  margin-top: 4px;
+  pointer-events: none;
+}
+

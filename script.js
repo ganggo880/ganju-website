@@ -627,7 +627,9 @@ document.addEventListener('DOMContentLoaded', () => {
           card.style.display = 'none';
           return;
         }
-        if (filter === 'all' || card.dataset.category === filter) {
+        const matchAuth = (filter === 'locked' && card.dataset.auth === 'locked') ||
+                          (filter === 'unlocked' && card.dataset.auth === 'unlocked');
+        if (filter === 'all' || matchAuth || card.dataset.category === filter) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';

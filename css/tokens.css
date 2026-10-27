@@ -1,51 +1,140 @@
-/* 港居不動產 品牌設計 Token (Design Tokens) */
+/* 港居不動產 品牌設計 Token (Design Tokens - 全站 58 頁與 55 款工具通用標準) */
 :root {
-  /* 品牌核心色彩 Palette */
+  /* 1. 品牌核心色彩 Palette */
   --primary-navy: #1A365D;
+  --primary-navy-dark: #0F2341;
   --primary-dark: #0F2341;
   --primary-light: #2B4C7E;
-  
+  --primary-color: #1A365D;
+  --hover-color: #2B4C7E;
+
   --accent-gold: #C5A059;
   --accent-gold-hover: #B08C45;
+  --accent-gold-dark: #997835;
   --accent-gold-light: #FFE8B8;
   --accent-light: #F8F5EE;
-  
+  --accent-color: #C5A059;
+
+  /* 相容色階別名 (Navy & Champagne & Slate Scales) */
+  --navy-50: #F0F4F8;
+  --navy-700: #1A365D;
+  --navy-800: #152C4E;
+  --navy-900: #0F2341;
+
+  --champagne-300: #E6CFA0;
+  --champagne-400: #D4B475;
+  --champagne-500: #C5A059;
+  --champagne-600: #B08C45;
+  --champagne-700: #997835;
+
+  --color-primary: #1A365D;
+  --color-primary-dark: #0F2341;
+  --color-primary-light: #2B4C7E;
+  --color-navy: #1A365D;
+  --color-navy-dark: #0F2341;
+  --color-gold: #C5A059;
+  --color-gold-dark: #B08C45;
+  --color-gold-deep: #997835;
+
+  --color-slate-50: #F8FAFC;
+  --color-slate-100: #F1F5F9;
+  --color-slate-200: #E2E8F0;
+  --color-slate-300: #CBD5E1;
+  --color-slate-400: #94A3B8;
+  --color-slate-500: #64748B;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1E293B;
+
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  /* 2. 背景與表面系統 Backgrounds & Surfaces */
   --bg-light: #FAFCFE;
+  --bg-body: #FAFCFE;
+  --bg-main: #FAFCFE;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --bg-tertiary: #F1F5F9;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F8FAFC;
   --bg-card: #FFFFFF;
+  --card-bg: #FFFFFF;
   --bg-card-inner: #F8FAFC;
-  
+  --bg-gold-light: rgba(197, 160, 89, 0.12);
+
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+
+  /* 3. 文字與邊框系統 Text & Borders */
   --text-dark: #0F172A;
+  --text-main: #0F172A;
   --text-primary: #0F172A;
   --text-secondary: #334155;
   --text-muted: #64748B;
-  
-  --border-color: #E2E8F0;
-  
-  /* 陰影系統 Shadows */
-  --shadow-sm: 0 4px 10px -2px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 12px 30px -8px rgba(26, 54, 93, 0.08);
-  --shadow-lg: 0 24px 45px -12px rgba(26, 54, 93, 0.15);
+  --text-inverse: #FFFFFF;
+
+  --color-text: #0F172A;
+  --color-text-main: #0F172A;
+  --color-text-dark: #0F172A;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748B;
+
+  --border-color: #CBD5E1;
+  --border-subtle: #E2E8F0;
+  --border-gold: rgba(197, 160, 89, 0.45);
+  --border-gold-subtle: rgba(197, 160, 89, 0.25);
+
+  --color-border: #CBD5E1;
+  --color-border-light: #E2E8F0;
+
+  /* 4. 間距系統 Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* 5. 字級與字體系統 Typography Scale */
+  --font-primary: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: var(--font-primary);
+  --font-heading: 'Noto Serif TC', var(--font-primary);
+  --font-display: 'Noto Serif TC', var(--font-primary);
+  --font-number: 'Plus Jakarta Sans', var(--font-primary);
+
+  --font-xs: 0.82rem;
+  --font-sm: 0.9rem;
+  --font-base: 1rem;
+  --font-lg: 1.15rem;
+  --font-xl: 1.35rem;
+  --font-2xl: 1.65rem;
+  --font-3xl: 2rem;
+
+  /* 6. 陰影系統 Shadows */
+  --shadow-sm: 0 4px 10px -2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 12px 30px -8px rgba(26, 54, 93, 0.1);
+  --shadow-lg: 0 24px 45px -12px rgba(26, 54, 93, 0.16);
   --shadow-gold: 0 12px 30px -5px rgba(197, 160, 89, 0.35);
-  
-  /* 圓角系統 Border Radius */
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+
+  /* 7. 圓角系統 Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-full: 9999px;
-  
-  /* 動畫過渡 Transitions */
-  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 8. 動畫過渡 Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  
-  /* 字體系統 Typography */
-  --font-primary: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
-  
-  /* 背景光暈 Glows */
+
+  /* 9. 背景光暈與通知 Glows & Toast */
   --bg-glow-1: rgba(26, 54, 93, 0.08);
   --bg-glow-2: rgba(197, 160, 89, 0.12);
-
-  /* Toast & Notification */
   --toast-bg: rgba(26, 54, 93, 0.95);
   --toast-text: #FFFFFF;
 }
@@ -53,23 +142,44 @@
 /* 深色模式變數覆蓋 Dark Theme Scope */
 [data-theme="dark"] {
   --bg-light: #0B192C;
+  --bg-body: #0B192C;
+  --bg-main: #0B192C;
+  --bg-primary: rgba(15, 35, 65, 0.9);
+  --bg-secondary: rgba(24, 48, 85, 0.8);
+  --bg-tertiary: rgba(30, 58, 100, 0.75);
+  --bg-surface: rgba(15, 35, 65, 0.88);
+  --bg-subtle: rgba(24, 48, 85, 0.75);
   --bg-card: rgba(15, 35, 65, 0.85);
+  --card-bg: rgba(15, 35, 65, 0.85);
   --bg-card-inner: rgba(24, 48, 85, 0.75);
-  
+
+  --color-bg: rgba(24, 48, 85, 0.75);
+  --color-surface: rgba(15, 35, 65, 0.88);
+
   --text-dark: #F8FAFC;
+  --text-main: #F8FAFC;
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
-  
-  --border-color: rgba(197, 160, 89, 0.2);
-  
+
+  --color-text: #F8FAFC;
+  --color-text-main: #F8FAFC;
+  --color-text-dark: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+
+  --border-color: rgba(197, 160, 89, 0.25);
+  --border-subtle: rgba(197, 160, 89, 0.2);
+  --color-border: rgba(197, 160, 89, 0.25);
+  --color-border-light: rgba(197, 160, 89, 0.18);
+
   --shadow-sm: 0 4px 10px -2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 12px 30px -8px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 24px 45px -12px rgba(0, 0, 0, 0.7);
-  
+
   --bg-glow-1: rgba(197, 160, 89, 0.18);
   --bg-glow-2: rgba(43, 76, 126, 0.25);
-  
+
   --toast-bg: rgba(197, 160, 89, 0.95);
   --toast-text: #0F2341;
 }

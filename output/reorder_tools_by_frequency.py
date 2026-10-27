@@ -648,8 +648,9 @@ def build_tool_cards_html():
             <span>{btn_text}（免密開放）</span> <i class="fa-solid fa-arrow-right"></i>
           </a>"""
 
+        auth_type = "locked" if idx <= 26 else "unlocked"
         card = f"""        <!-- {idx:02d}. {title} ({href}) -->
-        <article class="tool-hub-card" data-category="{cat}">
+        <article class="tool-hub-card" data-category="{cat}" data-auth="{auth_type}">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: {color};">
               <i class="fa-solid {icon}"></i>
