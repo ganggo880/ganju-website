@@ -66,6 +66,7 @@ const PAGES = [
   'noise-prevention-agreement.html',
   'accessibility-agreement.html',
   'altar-worship-agreement.html',
+  'disaster-prevention-agreement.html',
   'fire-safety-agreement.html',
   'privacy.html'
 ];

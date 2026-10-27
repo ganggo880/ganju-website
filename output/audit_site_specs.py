@@ -61,6 +61,7 @@ HTML_FILES = [
     "noise-prevention-agreement.html",
     "accessibility-agreement.html",
     "altar-worship-agreement.html",
+    "disaster-prevention-agreement.html",
     "privacy.html"
 ]
 
