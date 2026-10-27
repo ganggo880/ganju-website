@@ -12,8 +12,9 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (54)</a></li>
+CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (55)</a></li>
             <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="fall-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-person-falling-burst" style="color: #14b8a6;"></i> 陽台窗戶防墜安全切結書</a></li>
             <li><a href="disaster-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-house-tsunami" style="color: #0ea5e9;"></i> 防汛防颱緊急應變切結書</a></li>
             <li><a href="altar-worship-agreement.html" class="nav-link"><i class="fa-solid fa-place-of-worship" style="color: #f59e0b;"></i> 祭祀焚香神明安奉承諾書</a></li>
             <li><a href="accessibility-agreement.html" class="nav-link"><i class="fa-solid fa-wheelchair" style="color: #3b82f6;"></i> 無障礙設備安全切結書</a></li>
@@ -69,7 +70,8 @@ CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="
             <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #63b3ed;"></i> 照片時間地點水印</a></li>
             <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #63b3ed;"></i> 照片 OCR 翻譯</a></li>"""
 
-CANONICAL_FOOTER_LANDLORD = """            <li><a href="disaster-prevention-agreement.html">防汛防颱緊急應變切結書</a></li>
+CANONICAL_FOOTER_LANDLORD = """            <li><a href="fall-prevention-agreement.html">陽台窗戶防墜安全切結書</a></li>
+            <li><a href="disaster-prevention-agreement.html">防汛防颱緊急應變切結書</a></li>
             <li><a href="altar-worship-agreement.html">祭祀焚香神明安奉承諾書</a></li>
             <li><a href="accessibility-agreement.html">無障礙設備安全切結書</a></li>
             <li><a href="noise-prevention-agreement.html">噪音防制生活安寧承諾書</a></li>
