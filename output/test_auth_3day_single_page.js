@@ -135,6 +135,19 @@ async function main() {
     await cdp.send('Page.enable');
     await cdp.send('Runtime.enable');
 
+    // 測試 0：驗證首頁 #tools 在未登入管理員時，「管理員一鍵複製 3 天免密網址」與發放器必須對一般訪客隱藏！
+    await navigateAndReady(cdp, `http://127.0.0.1:${PORT}/index.html#tools`);
+    const publicHubState = await cdp.eval(`({
+      isAdmin: window.GanjuAuth.isAdmin(),
+      quickBarDisplay: getComputedStyle(document.querySelector('.tools-hub-admin-quickbar')).display,
+      shareBtnDisplay: getComputedStyle(document.querySelector('.tool-hub-share-btn')).display,
+      adminLoginBtnDisplay: getComputedStyle(document.getElementById('ganjuBtnHubAdminLogin')).display
+    })`);
+    if (publicHubState.isAdmin || publicHubState.quickBarDisplay !== 'none' || publicHubState.shareBtnDisplay !== 'none' || publicHubState.adminLoginBtnDisplay === 'none') {
+      throw new Error('首頁未登入管理員時，管理員複製網址按鈕不應對一般訪客顯示！State: ' + JSON.stringify(publicHubState));
+    }
+    console.log('  ✅ [PASS] 測試 0：首頁未登入管理員時，「管理員一鍵複製 3 天免密網址」對一般訪客完全隱藏');
+
     // 測試 1：驗證第 27 ~ 55 款工具開放無密碼
     await navigateAndReady(cdp, `http://127.0.0.1:${PORT}/lease-renewal-agreement.html`);
     const tool27Locked = await cdp.eval(`document.documentElement.classList.contains('auth-locked')`);

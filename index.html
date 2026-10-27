@@ -607,16 +607,21 @@
       </div>
 
       <!-- 工具卡片網格 -->
-            <!-- 內部授權提示橫幅 -->
-                        <div class="tools-hub-auth-notice">
-        <div style="display: flex; align-items: flex-start; gap: 12px; width: 100%;">
-          <i class="fa-solid fa-shield-halved" style="margin-top: 3px;"></i>
-          <div>
-            <strong>分級授權與 3 天單頁免密通道說明</strong>：
-            <strong>第 01～26 款高頻核心工具</strong>為上鎖保護專區（管理員可一鍵複製「<strong>3 天單頁免密專屬網址</strong>」提供客戶自動解鎖，期限 3 天後自動取消登入，且訪客只能看到自己登入的單一網頁，其他上鎖網頁皆自動隱藏）；<strong>第 27～55 款進階與特約工具</strong>則全面開放免密碼自由使用。
+      <!-- 內部授權提示橫幅 -->
+      <div class="tools-hub-auth-notice">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; width: 100%;">
+          <div style="display: flex; align-items: flex-start; gap: 12px; flex: 1 1 300px;">
+            <i class="fa-solid fa-shield-halved" style="margin-top: 3px;"></i>
+            <div>
+              <strong>分級授權與 3 天單頁免密通道說明</strong>：
+              <strong>第 01～26 款高頻核心工具</strong>為上鎖保護專區（需管理員通行碼或專屬 3 天單頁免密網址解鎖，期限 3 天後自動取消登入，且訪客只能看到自己登入的單一網頁）；<strong>第 27～55 款進階與特約工具</strong>則全面開放免密碼自由使用。
+            </div>
           </div>
+          <button type="button" class="btn-hub-admin-login" id="ganjuBtnHubAdminLogin">
+            <i class="fa-solid fa-key"></i> 管理員登入
+          </button>
         </div>
-        <div class="tools-hub-admin-quickbar">
+        <div class="tools-hub-admin-quickbar" id="ganjuHubQuickShareBar">
           <label for="ganjuHubQuickShareSelect" style="font-weight: 700; color: var(--accent-gold-light, #FFE8B8); font-size: 0.88rem;">
             <i class="fa-solid fa-wand-magic-sparkles"></i> 管理員免密網址發放器（第 01~26 款）：
           </label>
@@ -650,6 +655,9 @@
           </select>
           <button type="button" class="btn-hub-quick-copy" id="ganjuHubQuickShareBtn">
             <i class="fa-solid fa-copy"></i> 一鍵複製 3 天免密網址
+          </button>
+          <button type="button" class="btn-hub-admin-logout" id="ganjuBtnHubAdminLogout">
+            <i class="fa-solid fa-lock"></i> 鎖定管理員
           </button>
         </div>
       </div>

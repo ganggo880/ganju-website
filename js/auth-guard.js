@@ -463,10 +463,21 @@
     }
   }
 
+  function syncAdminBodyClass() {
+    if (!document.body) return;
+    if (isAdminSessionValid()) {
+      document.body.classList.add('ganju-admin-unlocked');
+    } else {
+      document.body.classList.remove('ganju-admin-unlocked');
+    }
+  }
+
   // --------------------------------------------------------------------------
   // 單頁訪客隔離機制：「只能看到自己登入的網頁，其他有上鎖的網頁不能看得到」
+  // 以及一般訪客隱藏管理員複製網址按鈕機制
   // --------------------------------------------------------------------------
   function enforceSinglePageIsolationInDOM() {
+    syncAdminBodyClass();
     const isGuestMode = isGuestSingleModeActive();
     const validSinglePages = pruneAndGetValidSinglePages();
 
@@ -505,12 +516,6 @@
             card.removeAttribute('data-guest-isolated');
           }
         }
-      });
-
-      // 若在單頁訪客模式下，隱藏卡片上的管理員複製按鈕
-      const shareBtns = hubGrid.querySelectorAll('.tool-hub-share-btn');
-      shareBtns.forEach((btn) => {
-        btn.style.display = isGuestMode ? 'none' : 'inline-flex';
       });
     }
   }
@@ -594,6 +599,13 @@
   }
 
   function handleAdminCopyShareLink(targetPage, buttonEl) {
+    if (!isAdminSessionValid()) {
+      openAdminPasscodeModal(() => {
+        handleAdminCopyShareLink(targetPage, buttonEl);
+      });
+      return;
+    }
+
     const shareData = generateSinglePageShareUrl(targetPage);
     const toolTitle = TOOL_NAMES[shareData.page] || shareData.page;
 
@@ -609,6 +621,101 @@
       }
       showShareCopiedModal(shareData, toolTitle);
     });
+  }
+
+  function openAdminPasscodeModal(onSuccess) {
+    const existing = document.getElementById('ganjuAdminLoginModal');
+    if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+
+    const modal = document.createElement('div');
+    modal.id = 'ganjuAdminLoginModal';
+    modal.className = 'ganju-share-modal-backdrop ganju-auth-exempt';
+    modal.innerHTML = `
+      <div class="ganju-share-modal-card" role="dialog" aria-modal="true" aria-label="管理員授權驗證">
+        <div class="ganju-share-modal-header">
+          <div class="ganju-share-icon"><i class="fa-solid fa-user-shield"></i></div>
+          <div>
+            <h3>管理員專屬授權登入</h3>
+            <p>請輸入港居管理員通行碼，以啟用「3 天單頁免密網址發放器」與全站第 1~26 款工具解鎖權限</p>
+          </div>
+        </div>
+        <form id="ganjuHubAdminLoginForm" onsubmit="return false;" style="margin-top: 8px;">
+          <div class="auth-input-group" style="margin-bottom: 12px;">
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-key auth-input-icon"></i>
+              <input
+                type="password"
+                id="ganjuHubAdminPwdInput"
+                class="auth-input"
+                placeholder="請輸入管理員通行碼"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+          </div>
+          <div id="ganjuHubAdminLoginError" class="auth-error-msg" hidden style="margin-bottom: 12px;">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>管理員通行碼不正確，請重新輸入。</span>
+          </div>
+          <div class="ganju-share-modal-actions">
+            <button type="submit" class="btn-share-modal-primary" id="ganjuHubAdminSubmitBtn">
+              <i class="fa-solid fa-unlock-keyhole"></i> 驗證並啟用管理員發放器
+            </button>
+            <button type="button" class="btn-share-modal-close" id="ganjuHubAdminCancelBtn">
+              取消
+            </button>
+          </div>
+        </form>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const pwdInput = document.getElementById('ganjuHubAdminPwdInput');
+    const errBox = document.getElementById('ganjuHubAdminLoginError');
+    const form = document.getElementById('ganjuHubAdminLoginForm');
+    const cancelBtn = document.getElementById('ganjuHubAdminCancelBtn');
+
+    if (pwdInput) {
+      setTimeout(() => pwdInput.focus(), 80);
+    }
+
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', () => {
+        if (modal.parentNode) modal.parentNode.removeChild(modal);
+      });
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal && modal.parentNode) {
+        modal.parentNode.removeChild(modal);
+      }
+    });
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const code = pwdInput ? pwdInput.value : '';
+        const ok = await checkPasscode(code);
+        if (!ok) {
+          if (errBox) errBox.hidden = false;
+          if (pwdInput) {
+            pwdInput.value = '';
+            pwdInput.focus();
+          }
+          return;
+        }
+
+        saveAdminSession(true);
+        if (modal.parentNode) modal.parentNode.removeChild(modal);
+        enforceSinglePageIsolationInDOM();
+        injectUnlockedBadge();
+        showWelcomeToast('管理員已登入！現在可一鍵複製 3 天單頁免密專屬網址。');
+        if (typeof onSuccess === 'function') {
+          onSuccess();
+        }
+      });
+    }
   }
 
   function showShareCopiedModal(shareData, toolTitle) {
@@ -779,7 +886,22 @@
    * 綁定首頁 #tools 工具中心之「管理員一鍵複製 3 天免密網址」與模式切換
    */
   function bindHomepageAdminControls() {
-    // 1. 綁定卡片上的「一鍵複製 3 天免密網址」按鈕
+    // 0. 綁定首頁橫幅上的「管理員登入」與「鎖定管理員」按鈕
+    const adminLoginBtn = document.getElementById('ganjuBtnHubAdminLogin');
+    if (adminLoginBtn) {
+      adminLoginBtn.addEventListener('click', () => {
+        openAdminPasscodeModal();
+      });
+    }
+
+    const adminLogoutBtn = document.getElementById('ganjuBtnHubAdminLogout');
+    if (adminLogoutBtn) {
+      adminLogoutBtn.addEventListener('click', () => {
+        clearAllAuthSessions();
+      });
+    }
+
+    // 1. 綁定卡片上的「一鍵複製 3 天免密網址」按鈕（僅管理員已登入時顯示並允許執行）
     const shareBtns = document.querySelectorAll('.tool-hub-share-btn[data-share-page]');
     shareBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {

@@ -477,8 +477,9 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   flex-shrink: 0;
 }
 
+/* 預設隱藏管理員免密網址發放器，僅在管理員通行碼驗證通過 (body.ganju-admin-unlocked) 時顯示 */
 .tools-hub-admin-quickbar {
-  display: flex;
+  display: none !important;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
@@ -488,6 +489,61 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   padding-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   box-sizing: border-box;
+}
+
+body.ganju-admin-unlocked .tools-hub-admin-quickbar {
+  display: flex !important;
+}
+
+.btn-hub-admin-login {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 16px;
+  background: rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(197, 160, 89, 0.55);
+  color: var(--accent-gold-light, #FFE8B8);
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-hub-admin-login:hover {
+  background: rgba(197, 160, 89, 0.3);
+  color: #FFFFFF;
+}
+
+body.ganju-admin-unlocked .btn-hub-admin-login {
+  display: none !important;
+}
+
+.btn-hub-admin-logout {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 14px;
+  background: rgba(239, 68, 68, 0.16);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  color: #FCA5A5;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-hub-admin-logout:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #FFFFFF;
 }
 
 .tools-hub-admin-select {
@@ -561,8 +617,9 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   color: #6EE7B7;
 }
 
-/* 首頁第 1~26 款工具卡片上的「管理員一鍵複製 3 天免密網址」按鈕 */
+/* 首頁第 1~26 款工具卡片上的「管理員一鍵複製 3 天免密網址」按鈕：預設隱藏，僅管理員登入後顯示 */
 .tool-hub-share-btn {
+  display: none !important;
   margin-top: 10px;
   width: 100%;
   min-height: 44px;
@@ -575,12 +632,15 @@ html.auth-locked body > :not(#ganju-auth-overlay):not(.ganju-auth-exempt) {
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   transition: all 0.2s ease;
   box-sizing: border-box;
+}
+
+body.ganju-admin-unlocked .tool-hub-share-btn {
+  display: inline-flex !important;
 }
 
 .tool-hub-share-btn:hover {
