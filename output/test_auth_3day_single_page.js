@@ -159,7 +159,35 @@ async function main() {
     if (tool52Locked) throw new Error('第 52 款工具 (fall-prevention-agreement.html) 不應上鎖！');
     console.log('  ✅ [PASS] 測試 1B：第 52 款工具 (fall-prevention-agreement.html) 開放網頁無密碼');
 
-    // 測試 2：驗證第 1 ~ 26 款工具預設上鎖
+    // 測試 2：驗證第 1 ~ 27 款工具預設上鎖（含新增之 id-card-straightener.html）
+    await navigateAndReady(cdp, `http://127.0.0.1:${PORT}/id-card-straightener.html`);
+    const straightenerLocked = await cdp.eval(`document.documentElement.classList.contains('auth-locked') && Boolean(document.getElementById('ganju-auth-overlay'))`);
+    if (!straightenerLocked) {
+      throw new Error('新增之 id-card-straightener.html 未授權時應預設上鎖！');
+    }
+    console.log('  ✅ [PASS] 測試 2A：身分證歪斜調正與智慧去邊神器 (id-card-straightener.html) 已放入密碼保護工具欄並預設上鎖');
+
+    // 驗證 id-card-straightener.html 解鎖後功能與 360px RWD 零溢出
+    const straightenerShare = await cdp.eval(`window.GanjuAuth.generateShareUrl('id-card-straightener.html')`);
+    await navigateAndReady(cdp, straightenerShare.url);
+    await sleep(300);
+    await cdp.send('Emulation.setDeviceMetricsOverride', { width: 360, height: 800, deviceScaleFactor: 2, mobile: true });
+    await sleep(200);
+    const straightenerCheck = await cdp.eval(`({
+      unlocked: !document.documentElement.classList.contains('auth-locked'),
+      resultW: document.getElementById('resultCanvas').width,
+      resultH: document.getElementById('resultCanvas').height,
+      mergedW: document.getElementById('mergedCanvas').width,
+      scrollW: document.documentElement.scrollWidth,
+      clientW: document.documentElement.clientWidth
+    })`);
+    await cdp.send('Emulation.clearDeviceMetricsOverride');
+    await cdp.eval(`localStorage.clear(); sessionStorage.clear();`);
+    if (!straightenerCheck.unlocked || straightenerCheck.resultW !== 1011 || straightenerCheck.resultH !== 638 || straightenerCheck.scrollW > straightenerCheck.clientW) {
+      throw new Error('id-card-straightener.html 渲染或 RWD 失敗: ' + JSON.stringify(straightenerCheck));
+    }
+    console.log('  ✅ [PASS] 測試 2B：id-card-straightener.html 自動抓邊調正 (1011×638) 與 360px 行動端零溢出驗證通過');
+
     await navigateAndReady(cdp, `http://127.0.0.1:${PORT}/lease-contract.html`);
     const tool01State = await cdp.eval(`({
       htmlLocked: document.documentElement.classList.contains('auth-locked'),

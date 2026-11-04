@@ -29,6 +29,17 @@ TOOLS_ORDERED = [
         "立即產製租賃契約"
     ),
     (
+        "id-card-straightener.html",
+        "身分證歪斜調正與去邊",
+        "fa-crop-simple",
+        "#fbbf24",
+        "utility",
+        "證件拉正",
+        "身分證歪斜調正與智慧去邊裁剪神器",
+        "專治客戶手機斜拍身分證！AI 自動偵測身分證四邊、透視梯形拉正、一鍵切除旁邊多餘桌面空間與透明護貝套，支援正反面同步調正與上下合成。",
+        "立即調正裁剪證件"
+    ),
+    (
         "mandate-contract.html",
         "租賃委託管理/包租契約",
         "fa-handshake",
@@ -634,7 +645,7 @@ TOOLS_ORDERED = [
 def build_tool_cards_html():
     cards = []
     for idx, (href, nav_title, icon, color, cat, badge, title, desc, btn_text) in enumerate(TOOLS_ORDERED, 1):
-        if idx <= 26:
+        if idx <= 27:
             badge_html = f'<span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #{idx:02d}・{badge}</span>'
             action_html = f"""          <a href="{href}" class="tool-hub-btn">
             <span>{btn_text}</span> <i class="fa-solid fa-arrow-right"></i>
@@ -648,7 +659,7 @@ def build_tool_cards_html():
             <span>{btn_text}（免密開放）</span> <i class="fa-solid fa-arrow-right"></i>
           </a>"""
 
-        auth_type = "locked" if idx <= 26 else "unlocked"
+        auth_type = "locked" if idx <= 27 else "unlocked"
         card = f"""        <!-- {idx:02d}. {title} ({href}) -->
         <article class="tool-hub-card" data-category="{cat}" data-auth="{auth_type}">
           <div class="tool-hub-header">
@@ -669,7 +680,7 @@ def build_tool_cards_html():
 
 def build_auth_notice_html():
     options = []
-    for idx, (href, nav_title, icon, color, cat, badge, title, desc, btn_text) in enumerate(TOOLS_ORDERED[:26], 1):
+    for idx, (href, nav_title, icon, color, cat, badge, title, desc, btn_text) in enumerate(TOOLS_ORDERED[:27], 1):
         options.append(f'            <option value="{href}">#{idx:02d} {nav_title}</option>')
     options_str = "\n".join(options)
     return f"""      <div class="tools-hub-auth-notice">
@@ -678,7 +689,7 @@ def build_auth_notice_html():
             <i class="fa-solid fa-shield-halved" style="margin-top: 3px;"></i>
             <div>
               <strong>分級授權與 3 天單頁免密通道說明</strong>：
-              <strong>第 01～26 款高頻核心工具</strong>為上鎖保護專區（需管理員通行碼或專屬 3 天單頁免密網址解鎖，期限 3 天後自動取消登入，且訪客只能看到自己登入的單一網頁）；<strong>第 27～55 款進階與特約工具</strong>則全面開放免密碼自由使用。
+              <strong>第 01～27 款高頻核心工具</strong>為上鎖保護專區（需管理員通行碼或專屬 3 天單頁免密網址解鎖，期限 3 天後自動取消登入，且訪客只能看到自己登入的單一網頁）；<strong>第 28～56 款進階與特約工具</strong>則全面開放免密碼自由使用。
             </div>
           </div>
           <button type="button" class="btn-hub-admin-login" id="ganjuBtnHubAdminLogin">
@@ -687,7 +698,7 @@ def build_auth_notice_html():
         </div>
         <div class="tools-hub-admin-quickbar" id="ganjuHubQuickShareBar">
           <label for="ganjuHubQuickShareSelect" style="font-weight: 700; color: var(--accent-gold-light, #FFE8B8); font-size: 0.88rem;">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> 管理員免密網址發放器（第 01~26 款）：
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 管理員免密網址發放器（第 01~27 款）：
           </label>
           <select id="ganjuHubQuickShareSelect" class="tools-hub-admin-select" aria-label="選擇要複製3天免密網址的工具">
 {options_str}
@@ -704,7 +715,7 @@ def build_auth_notice_html():
 
 def build_dropdown_items_html():
     lines = [
-        '            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (55)</a></li>',
+        '            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (56)</a></li>',
         '            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>',
     ]
     for href, nav_title, icon, color, *_ in TOOLS_ORDERED:
@@ -724,7 +735,7 @@ def build_footer_landlord_html():
 
 
 def main():
-    assert len(TOOLS_ORDERED) == 55, f"Expected 55 tools, got {len(TOOLS_ORDERED)}"
+    assert len(TOOLS_ORDERED) == 56, f"Expected 56 tools, got {len(TOOLS_ORDERED)}"
     cat_counts = {}
     for t in TOOLS_ORDERED:
         cat_counts[t[4]] = cat_counts.get(t[4], 0) + 1

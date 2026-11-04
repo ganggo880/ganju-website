@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>港居不動產｜身分證歪斜調正與智慧去邊裁剪神器</title>
+  <meta name="description" content="港居不動產開發有限公司專屬身分證歪斜調正與智慧去邊裁剪神器，AI 自動偵測歪斜身分證四邊、透視梯形拉正、切除旁邊多餘桌面空間與透明護貝套，支援正反面同步調正與上下合成匯出。">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/id-card-straightener.html">
+  <meta name="theme-color" content="#1A365D">
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="港居不動產｜身分證歪斜調正與智慧去邊裁剪神器">
+  <meta property="og:description" content="專治客戶手機斜拍身分證！AI 自動抓邊、四點透視梯形拉正、裁除旁邊多餘空間與護貝套，支援正反面上下合成。">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/id-card-straightener.html">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Brand Tokens & Components -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/id-card-straightener.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "港居身分證歪斜調正與智慧去邊裁剪神器",
+    "url": "https://ganggo880.github.io/ganju-website/id-card-straightener.html",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas & File API.",
+    "inLanguage": "zh-Hant-TW",
+    "description": "專為客戶翻拍歪斜身分證設計之 AI 四邊偵測、透視梯形拉正與自動去邊裁剪工具，100% 瀏覽器本地運算零上傳。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD"
+    },
+    "provider": {
+      "@type": "RealEstateAgent",
+      "@id": "https://ganggo880.github.io/ganju-website/#organization",
+      "name": "港居不動產開發有限公司",
+      "url": "https://ganggo880.github.io/ganju-website/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "港居不動產",
+        "item": "https://ganggo880.github.io/ganju-website/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "身分證歪斜調正與智慧去邊裁剪神器",
+        "item": "https://ganggo880.github.io/ganju-website/id-card-straightener.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/layout.js"></script>
+  <!-- Auth Guard: 港居內部專屬線上工具授權驗證系統 -->
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <script src="js/auth-guard.js"></script>
+  <script src="js/tracking.js" defer></script>
+</head>
+<body class="viewing-form">
+
+  <!-- 頂部宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法登記包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主導覽列 Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="港居不動產 LOGO" width="279" height="57" fetchpriority="high" decoding="async">
+        <div class="brand-text-box">
+          <h1>港居不動產</h1>
+          <p>GANJU REAL ESTATE</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (56)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #c5a059;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="id-card-straightener.html" class="nav-link active"><i class="fa-solid fa-crop-simple" style="color: #fbbf24;"></i> 身分證歪斜調正與去邊</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #c5a059;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #ecc94b;"></i> 房東節稅效益精算</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-coins" style="color: #f6ad55;"></i> 租金代管費換算</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #f6e05e;"></i> 分租水電公電分攤</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #4fd1c5;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-list" style="color: #68d391;"></i> 點交修繕瑕疵存證</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #48bb78;"></i> 退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-house-chimney-user" style="color: #f687b3;"></i> 300億租補資格精算</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #ed8936;"></i> 591/社群招租文案</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-money-check-dollar" style="color: #38b2ac;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #4299e1;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench" style="color: #f59e0b;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #10b981;"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #f687b3;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #38b2ac;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #eab308;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #00e5ff;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card" style="color: #f56565;"></i> 證件保護防偽水印</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #48bb78;"></i> 照片時間地點水印</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera-retro" style="color: #ed8936;"></i> 房源照片時間水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #667eea;"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export" style="color: #805ad5;"></i> 線上多功能轉檔</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-images" style="color: #38b2ac;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #d69e2e;"></i> 名片正反合成</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #4299e1;"></i> 租約續約協議書</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #f56565;"></i> 租約提前終止協議書</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #805ad5;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="roommate-agreement.html" class="nav-link"><i class="fa-solid fa-users" style="color: #ec4899;"></i> 合租公約與承租協議</a></li>
+            <li><a href="proxy-authorization.html" class="nav-link"><i class="fa-solid fa-signature" style="color: #6366f1;"></i> 租賃代理授權委任書</a></li>
+            <li><a href="rent-arrears-notice.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #ef4444;"></i> 租金催繳與欠租催告書</a></li>
+            <li><a href="rules-violation-notice.html" class="nav-link"><i class="fa-solid fa-triangle-exclamation" style="color: #f97316;"></i> 住戶違規改善通知單</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #e53e3e;"></i> 欠租催告存證信函</a></li>
+            <li><a href="arrears-installment-agreement.html" class="nav-link"><i class="fa-solid fa-handshake-simple" style="color: #14b8a6;"></i> 欠租分期清償和解協議</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #9f7aea;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="pet-addendum-agreement.html" class="nav-link"><i class="fa-solid fa-paw" style="color: #f59e0b;"></i> 飼養寵物特約承諾書</a></li>
+            <li><a href="parking-lease-agreement.html" class="nav-link"><i class="fa-solid fa-square-parking" style="color: #3b82f6;"></i> 汽機車停車位租用協議</a></li>
+            <li><a href="household-registration-agreement.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #3b82f6;"></i> 設籍約定暨遷出切結書</a></li>
+            <li><a href="smoke-free-agreement.html" class="nav-link"><i class="fa-solid fa-ban-smoking" style="color: #ef4444;"></i> 無菸住宅全面禁菸承諾書</a></li>
+            <li><a href="noise-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-volume-xmark" style="color: #38bdf8;"></i> 噪音防制生活安寧承諾書</a></li>
+            <li><a href="fire-safety-agreement.html" class="nav-link"><i class="fa-solid fa-fire-extinguisher" style="color: #ef4444;"></i> 用電用火安全切結協議</a></li>
+            <li><a href="mold-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-droplet-slash" style="color: #0284c7;"></i> 防潮防黴環境維護承諾書</a></li>
+            <li><a href="lease-notarization-agreement.html" class="nav-link"><i class="fa-solid fa-stamp" style="color: #c5a059;"></i> 租約公證暨強執約定書</a></li>
+            <li><a href="renovation-consent-agreement.html" class="nav-link"><i class="fa-solid fa-hammer" style="color: #f59e0b;"></i> 室內裝修改裝同意切結</a></li>
+            <li><a href="sublease-consent-agreement.html" class="nav-link"><i class="fa-solid fa-people-arrows" style="color: #63b3ed;"></i> 承租人轉租同意與協議書</a></li>
+            <li><a href="business-registration-agreement.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #c5a059;"></i> 設址營業與稅賦補償協議</a></li>
+            <li><a href="ownership-change-notice.html" class="nav-link"><i class="fa-solid fa-house-chimney-user" style="color: #38b2ac;"></i> 買賣不破租賃與押金移轉通知</a></li>
+            <li><a href="abandoned-property-agreement.html" class="nav-link"><i class="fa-solid fa-box-open" style="color: #a855f7;"></i> 承租人遺留物拋棄切結</a></li>
+            <li><a href="emergency-entry-agreement.html" class="nav-link"><i class="fa-solid fa-door-open" style="color: #ef4444;"></i> 緊急避難開門授權協議書</a></li>
+            <li><a href="dispute-mediation-request.html" class="nav-link"><i class="fa-solid fa-scale-unbalanced-flip" style="color: #63b3ed;"></i> 租賃爭議調處與調解聲請</a></li>
+            <li><a href="fall-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-person-falling-burst" style="color: #14b8a6;"></i> 陽台窗戶防墜安全切結書</a></li>
+            <li><a href="disaster-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-house-tsunami" style="color: #0ea5e9;"></i> 防汛防颱緊急應變切結書</a></li>
+            <li><a href="altar-worship-agreement.html" class="nav-link"><i class="fa-solid fa-place-of-worship" style="color: #f59e0b;"></i> 祭祀焚香神明安奉承諾書</a></li>
+            <li><a href="accessibility-agreement.html" class="nav-link"><i class="fa-solid fa-wheelchair" style="color: #3b82f6;"></i> 無障礙設備安全切結書</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+        <li><a href="index.html#contact" class="nav-link">聯絡我們</a></li>
+      </ul>
+
+      <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 主內容工作區 -->
+  <main class="straightener-main">
+    <!-- 頂部功能橫幅 -->
+    <section class="straightener-hero">
+      <div class="straightener-hero-text">
+        <div class="straightener-badge-row">
+          <span class="straightener-pill"><i class="fa-solid fa-lock"></i> 內部密碼保護工具</span>
+          <span class="straightener-pill green"><i class="fa-solid fa-shield-halved"></i> 100% 瀏覽器本地運算・證件零上傳</span>
+        </div>
+        <h2><i class="fa-solid fa-crop-simple"></i> 身分證歪斜調正與智慧去邊裁剪神器</h2>
+        <p>專治客戶手機斜拍身分證造成的「梯形透視變形、歪斜角度、透明護貝套邊框與四周大量多餘桌面背景」。支援上傳後 <strong>AI 自動抓邊拉正</strong>、四角拖曳放大鏡微調、去陰影清晰化與正反面合成下載（亦可直接按 <code>Ctrl+V</code> 貼上 LINE 複製的圖片）。</p>
+      </div>
+      <div class="straightener-hero-actions">
+        <label for="fileInputSingle" class="btn-hero-action btn-hero-gold">
+          <i class="fa-solid fa-camera"></i> 上傳客戶身分證照片
+        </label>
+        <input type="file" id="fileInputSingle" accept="image/*" hidden>
+
+        <label for="fileInputBatch" class="btn-hero-action btn-hero-outline">
+          <i class="fa-solid fa-images"></i> 一次選正反兩張
+        </label>
+        <input type="file" id="fileInputBatch" accept="image/*" multiple hidden>
+
+        <button type="button" id="btnLoadDemo" class="btn-hero-action btn-hero-outline">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> 載入歪斜樣張測試
+        </button>
+      </div>
+    </section>
+
+    <!-- 正反面切換槽位列 -->
+    <div class="side-switcher-bar" role="region" aria-label="正反面照片切換">
+      <div class="side-tabs">
+        <button type="button" class="side-tab-btn active has-image" id="btnTabFront">
+          <i class="fa-solid fa-id-card"></i>
+          <span>1. 身分證正面 (Front)</span>
+          <span class="slot-status" id="frontStatusBadge">已調正就緒</span>
+        </button>
+        <button type="button" class="side-tab-btn has-image" id="btnTabBack">
+          <i class="fa-solid fa-barcode"></i>
+          <span>2. 身分證反面 (Back)</span>
+          <span class="slot-status" id="backStatusBadge">已調正就緒</span>
+        </button>
+      </div>
+      <div class="side-quick-upload">
+        <a href="id-card-watermark.html" class="btn-tool-ctrl" style="text-decoration: none;">
+          <i class="fa-solid fa-stamp" style="color: #C5A059;"></i> 進階多行水印工具
+        </a>
+      </div>
+    </div>
+
+    <!-- 左右雙欄工作台 -->
+    <div class="straightener-workspace">
+      <!-- 左欄：原始歪斜照片四點拉正與旋轉控制 -->
+      <section class="work-card">
+        <div class="work-card-header">
+          <h3 class="work-card-title">
+            <i class="fa-solid fa-vector-square"></i> 步驟一：框選身分證四邊（自動剪裁旁邊多餘空間）
+          </h3>
+          <span style="font-size: 0.8rem; color: #64748B;">可拖曳 4 個金色圓點對齊證件四角</span>
+        </div>
+        <div class="work-card-body">
+          <div class="source-stage-wrap" id="sourceStageWrap">
+            <!-- 空狀態拖放區 -->
+            <div class="empty-dropzone" id="emptyDropzone" style="display: none;">
+              <div class="empty-dropzone-icon">
+                <i class="fa-solid fa-id-card-clip"></i>
+              </div>
+              <h3>將歪斜的身分證照片拖曳至此</h3>
+              <p>或直接按 Ctrl+V 貼上 LINE 客戶傳來的身分證照片，系統將自動偵測證件四邊並切除多餘桌面背景</p>
+              <div class="empty-dropzone-btns">
+                <label for="fileInputSingle" class="btn-hero-action btn-hero-gold">
+                  <i class="fa-solid fa-folder-open"></i> 選擇照片檔案
+                </label>
+              </div>
+            </div>
+
+            <!-- 互動式四點透視校正畫布 -->
+            <div class="interactive-canvas-box" id="interactiveCanvasBox">
+              <div class="corner-loupe" id="cornerLoupe">
+                <canvas id="loupeCanvas" width="116" height="116"></canvas>
+              </div>
+              <canvas id="sourceCanvas" aria-label="原始身分證四點透視校正畫布"></canvas>
+              <div class="corner-hint-bar">
+                <span id="detectStatusText">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> 已自動偵測身分證四邊並裁除旁邊多餘空間（可拖曳四角微調）
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 快速抓邊與 90° 旋轉工具列 -->
+          <div class="toolbar-grid">
+            <button type="button" class="btn-tool-ctrl primary-detect" id="btnAutoDetect">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> AI 自動抓邊去背
+            </button>
+            <button type="button" class="btn-tool-ctrl" id="btnRotateLeft">
+              <i class="fa-solid fa-rotate-left"></i> 左轉 90°
+            </button>
+            <button type="button" class="btn-tool-ctrl" id="btnRotateRight">
+              <i class="fa-solid fa-rotate-right"></i> 右轉 90°
+            </button>
+            <button type="button" class="btn-tool-ctrl" id="btnResetQuad">
+              <i class="fa-solid fa-expand"></i> 重置框選區
+            </button>
+          </div>
+
+          <!-- 內縮去邊 (切除透明塑膠護貝套) 與微調角度滑桿 -->
+          <div class="control-group-box">
+            <div class="control-row">
+              <div class="control-label-line">
+                <label for="insetSlider"><i class="fa-solid fa-scissors" style="color: #C5A059;"></i> 四周內縮修邊（一鍵切掉透明護貝套與桌面邊緣）</label>
+                <span class="control-val-badge" id="insetVal">+1.5%</span>
+              </div>
+              <input type="range" id="insetSlider" class="range-slider" min="-4" max="8" step="0.2" value="1.5" aria-label="四周內縮修邊比例">
+              <div class="preset-chips">
+                <button type="button" class="preset-chip" data-inset="0">貼齊原框 (0%)</button>
+                <button type="button" class="preset-chip active" data-inset="1.5">微縮修邊 (+1.5%)</button>
+                <button type="button" class="preset-chip" data-inset="2.8">切除透明護貝套 (+2.8%)</button>
+                <button type="button" class="preset-chip" data-inset="4.2">深度去邊 (+4.2%)</button>
+              </div>
+            </div>
+
+            <div class="control-row">
+              <div class="control-label-line">
+                <label for="fineAngleSlider"><i class="fa-solid fa-compass-drafting" style="color: #3B82F6;"></i> 歪斜角度微調旋轉（-15° ~ +15°）</label>
+                <span class="control-val-badge" id="fineAngleVal">0.0°</span>
+              </div>
+              <input type="range" id="fineAngleSlider" class="range-slider" min="-15" max="15" step="0.1" value="0" aria-label="歪斜角度微調旋轉">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 右欄：即時調正去邊成果預覽、畫質清晰化與一鍵下載 -->
+      <section class="work-card">
+        <div class="work-card-header">
+          <h3 class="work-card-title">
+            <i class="fa-solid fa-circle-check" style="color: #10B981;"></i> 步驟二：調正去邊成果預覽與下載
+          </h3>
+          <span style="font-size: 0.8rem; color: #059669; font-weight: 700;">標準身分證 85.6 × 53.98 mm</span>
+        </div>
+        <div class="work-card-body">
+          <!-- 即時調正預覽畫布 -->
+          <div class="result-preview-wrap">
+            <canvas id="resultCanvas" width="1011" height="638" aria-label="調正去邊後之身分證預覽畫布"></canvas>
+            <div class="result-meta-bar" id="resultSizeInfo">
+              <span><i class="fa-solid fa-ruler-combined"></i> 輸出尺寸：1011 × 638 px (300 DPI 高清印刷級)</span>
+              <span><i class="fa-solid fa-check-double" style="color: #10B981;"></i> 旁邊多餘空間已完整裁除</span>
+            </div>
+          </div>
+
+          <!-- 畫質與去陰影增強 -->
+          <div class="control-group-box">
+            <div class="control-row">
+              <div class="control-label-line">
+                <span><i class="fa-solid fa-sun" style="color: #F59E0B;"></i> 證件畫質增強與去桌面陰影</span>
+              </div>
+              <div class="filter-pills">
+                <button type="button" class="filter-pill-btn active" data-filter="deshadow">
+                  <i class="fa-solid fa-wand-sparkles"></i> 智慧提亮去陰影 (推薦)
+                </button>
+                <button type="button" class="filter-pill-btn" data-filter="normal">
+                  <i class="fa-solid fa-image"></i> 原圖自然色彩
+                </button>
+                <button type="button" class="filter-pill-btn" data-filter="crisp">
+                  <i class="fa-solid fa-highlighter"></i> 高對比清晰字跡
+                </button>
+                <button type="button" class="filter-pill-btn" data-filter="bw">
+                  <i class="fa-solid fa-print"></i> 黑白影印模式
+                </button>
+              </div>
+            </div>
+
+            <div class="control-row" style="margin-top: 8px;">
+              <label class="toggle-check-row" for="chkRounded">
+                <input type="checkbox" id="chkRounded" checked>
+                <span>自動修剪「標準身分證圓角」（徹底消除四個角落殘留桌面背景）</span>
+              </label>
+
+              <label class="toggle-check-row" for="chkWatermark">
+                <input type="checkbox" id="chkWatermark">
+                <span>同時加印「僅供租賃契約簽署使用」防盜水印</span>
+              </label>
+              <input
+                type="text"
+                id="watermarkTextInput"
+                class="watermark-inline-input"
+                value="僅供港居不動產租賃契約簽署使用"
+                placeholder="請輸入防盜水印文字"
+                aria-label="防盜水印文字"
+                style="display: none;"
+              >
+            </div>
+
+            <div class="control-row" style="margin-top: 8px;">
+              <div class="control-label-line">
+                <label for="exportFormatSelect"><i class="fa-solid fa-file-export"></i> 下載圖片格式</label>
+              </div>
+              <select id="exportFormatSelect" class="form-control" style="min-height: 44px;">
+                <option value="image/jpeg" selected>JPG 高畫質檔案 (.jpg，容量小最適合傳 LINE 與歸檔)</option>
+                <option value="image/png">PNG 無損壓縮含透明圓角 (.png)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 下載行動按鈕群 -->
+          <div class="export-action-stack">
+            <button type="button" class="btn-export-main" id="btnDownloadCurrent">
+              <i class="fa-solid fa-download"></i> 下載本張調正去邊身分證
+            </button>
+            <button type="button" class="btn-export-merge" id="btnDownloadMerged">
+              <i class="fa-solid fa-layer-group"></i> 一鍵下載「正反面上下合成圖」（A4 契約附件版）
+            </button>
+          </div>
+
+          <!-- 正反面上下合成即時縮圖 -->
+          <div class="merged-preview-box visible" id="mergedPreviewBox">
+            <div style="font-size: 0.84rem; font-weight: 700; color: #1A365D;">
+              <i class="fa-solid fa-check-circle" style="color: #10B981;"></i> 正反面皆已調正就緒（下方為上下合成預覽）：
+            </div>
+            <canvas id="mergedCanvas" width="1107" height="1480" aria-label="正反面上下合成預覽畫布"></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <img src="assets/logo.png" alt="港居不動產 LOGO" width="279" height="57" loading="lazy" decoding="async">
+            <p>港居不動產開發有限公司<br>GANJU Real Estate Co., Ltd.</p>
+            <p class="company-tax-id">統一編號：96797997</p>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>專屬線上工具</h4>
+          <ul class="footer-links">
+            <li><a href="island.html" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島</a></li>
+            <li><a href="id-card-straightener.html"><i class="fa-solid fa-crop-simple" style="color: #fbbf24;"></i> 身分證歪斜調正與去邊</a></li>
+            <li><a href="id-card-watermark.html"><i class="fa-solid fa-id-card"></i> 證件照裁剪水印</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>證照字號</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" style="font-weight: 700; color: var(--accent-gold);">個人資料與隱私權政策</a></li>
+            <li>租賃管理證號：(112) 登字第013739號</li>
+            <li>經理人：陳俊銘 經理</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>立即與專員聯繫</h4>
+          <p><i class="fa-solid fa-phone"></i> 市話：07-791-2288</p>
+          <p><i class="fa-solid fa-mobile-screen"></i> 行動：0968-863-880</p>
+          <p><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</p>
+          <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="margin-top: 10px; font-size: 0.85rem; padding: 8px 16px;">
+            <i class="fa-brands fa-line"></i> Line 專員一對一諮詢
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 GANJU Real Estate Co., Ltd. All Rights Reserved. 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- JavaScript files -->
+  <script src="script.js"></script>
+  <script src="js/id-card-straightener.js"></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>

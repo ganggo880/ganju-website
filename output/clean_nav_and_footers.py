@@ -12,9 +12,10 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (55)</a></li>
+CANONICAL_DROPDOWN_ITEMS = """            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (56)</a></li>
             <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
             <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #c5a059;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="id-card-straightener.html" class="nav-link"><i class="fa-solid fa-crop-simple" style="color: #fbbf24;"></i> 身分證歪斜調正與去邊</a></li>
             <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #c5a059;"></i> 租賃委託管理/包租契約</a></li>
             <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #ecc94b;"></i> 房東節稅效益精算</a></li>
             <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-coins" style="color: #f6ad55;"></i> 租金代管費換算</a></li>
@@ -132,7 +133,7 @@ def clean_page(filepath):
     # 3. 水印工具等使用 <div class="nav-dropdown-menu"> 的頁面相容處理
     watermark_pattern = re.compile(r'(<div class="nav-dropdown-menu">)(.*?)(</div>\s*</div>)', re.DOTALL)
     wm_match = watermark_pattern.search(content)
-    if wm_match and "photo-watermark" in filename or "id-card" in filename or "photo-time" in filename:
+    if wm_match and ("photo-watermark" in filename or "id-card" in filename or "photo-time" in filename):
         wm_items = []
         for line in CANONICAL_DROPDOWN_ITEMS.strip().split("\n"):
             m_a = re.search(r'href="([^"]+)"[^>]*>(<i[^>]*></i>)\s*([^<]+)</a>', line)

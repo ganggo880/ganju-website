@@ -233,9 +233,10 @@
             <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
           </button>
           <ul class="nav-dropdown-menu">
-            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (55)</a></li>
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (56)</a></li>
             <li><a href="island.html" class="nav-link" target="_blank"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
             <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #c5a059;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="id-card-straightener.html" class="nav-link"><i class="fa-solid fa-crop-simple" style="color: #fbbf24;"></i> 身分證歪斜調正與去邊</a></li>
             <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #c5a059;"></i> 租賃委託管理/包租契約</a></li>
             <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #ecc94b;"></i> 房東節稅效益精算</a></li>
             <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-coins" style="color: #f6ad55;"></i> 租金代管費換算</a></li>
@@ -581,16 +582,16 @@
       <div class="section-header">
         <span class="section-tag">DIGITAL TOOLS HUB</span>
         <h2 class="section-title">全方位不動產與租務線上工具中心</h2>
-        <p class="section-desc">合法合規・純前端本地運算・港居同仁與特約房東/客戶專屬的 55 款高階數位工具系統（內部授權限定）。</p>
+        <p class="section-desc">合法合規・純前端本地運算・港居同仁與特約房東/客戶專屬的 56 款高階數位工具系統（內部授權限定）。</p>
       </div>
 
       <!-- 分類切換按鈕列 -->
       <div class="tools-category-nav" role="tablist" aria-label="線上工具分類篩選">
         <button type="button" class="tools-cat-btn active" data-filter="all">
-          <i class="fa-solid fa-layer-group"></i> 全部工具 (55)
+          <i class="fa-solid fa-layer-group"></i> 全部工具 (56)
         </button>
         <button type="button" class="tools-cat-btn" data-filter="locked">
-          <i class="fa-solid fa-lock" style="color: #FBBF24;"></i> 密碼/免密網址登入 (26)
+          <i class="fa-solid fa-lock" style="color: #FBBF24;"></i> 密碼/免密網址登入 (27)
         </button>
         <button type="button" class="tools-cat-btn" data-filter="unlocked">
           <i class="fa-solid fa-lock-open" style="color: #34D399;"></i> 無密碼開放登入 (29)
@@ -602,19 +603,19 @@
           <i class="fa-solid fa-hand-holding-heart" style="color: #f687b3;"></i> 租客權益與試算 (9)
         </button>
         <button type="button" class="tools-cat-btn" data-filter="utility">
-          <i class="fa-solid fa-wand-magic-sparkles" style="color: #63b3ed;"></i> 空間與數位神器 (8)
+          <i class="fa-solid fa-wand-magic-sparkles" style="color: #63b3ed;"></i> 空間與數位神器 (9)
         </button>
       </div>
 
       <!-- 工具卡片網格 -->
       <!-- 內部授權提示橫幅 -->
-      <div class="tools-hub-auth-notice">
+                  <div class="tools-hub-auth-notice">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; width: 100%;">
           <div style="display: flex; align-items: flex-start; gap: 12px; flex: 1 1 300px;">
             <i class="fa-solid fa-shield-halved" style="margin-top: 3px;"></i>
             <div>
               <strong>分級授權與 3 天單頁免密通道說明</strong>：
-              <strong>第 01～26 款高頻核心工具</strong>為上鎖保護專區（需管理員通行碼或專屬 3 天單頁免密網址解鎖，期限 3 天後自動取消登入，且訪客只能看到自己登入的單一網頁）；<strong>第 27～55 款進階與特約工具</strong>則全面開放免密碼自由使用。
+              <strong>第 01～27 款高頻核心工具</strong>為上鎖保護專區（需管理員通行碼或專屬 3 天單頁免密網址解鎖，期限 3 天後自動取消登入，且訪客只能看到自己登入的單一網頁）；<strong>第 28～56 款進階與特約工具</strong>則全面開放免密碼自由使用。
             </div>
           </div>
           <button type="button" class="btn-hub-admin-login" id="ganjuBtnHubAdminLogin">
@@ -623,35 +624,36 @@
         </div>
         <div class="tools-hub-admin-quickbar" id="ganjuHubQuickShareBar">
           <label for="ganjuHubQuickShareSelect" style="font-weight: 700; color: var(--accent-gold-light, #FFE8B8); font-size: 0.88rem;">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> 管理員免密網址發放器（第 01~26 款）：
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 管理員免密網址發放器（第 01~27 款）：
           </label>
           <select id="ganjuHubQuickShareSelect" class="tools-hub-admin-select" aria-label="選擇要複製3天免密網址的工具">
             <option value="lease-contract.html">#01 租約與住戶公約套印</option>
-            <option value="mandate-contract.html">#02 租賃委託管理/包租契約</option>
-            <option value="tax-calculator.html">#03 房東節稅效益精算</option>
-            <option value="rent-calculator.html">#04 租金代管費換算</option>
-            <option value="utility-splitter.html">#05 分租水電公電分攤</option>
-            <option value="rent-receipt.html">#06 租金收據與代管對帳</option>
-            <option value="repair-inspection.html">#07 點交修繕瑕疵存證</option>
-            <option value="deposit-settlement.html">#08 退租押金結算明細</option>
-            <option value="rent-subsidy-checker.html">#09 300億租補資格精算</option>
-            <option value="listing-post-generator.html">#10 591/社群招租文案</option>
-            <option value="holding-deposit-receipt.html">#11 租屋定金收據與切結</option>
-            <option value="tenant-screening-checker.html">#12 租客審查與信用評分</option>
-            <option value="tenant-check-in-form.html">#13 房客遷入登記與聯絡人卡</option>
-            <option value="repair-work-order.html">#14 修繕派工與驗收單</option>
-            <option value="routine-inspection-report.html">#15 屋況定期巡檢維護報告</option>
-            <option value="viewing-checklist.html">#16 看屋30項自檢評分表</option>
-            <option value="property-roi-calculator.html">#17 物業淨投報與房貸精算</option>
-            <option value="key-custody-agreement.html">#18 鑰匙借出保管與切結</option>
-            <option value="space-planner.html">#19 2D/3D格局配置系統</option>
-            <option value="id-card-watermark.html">#20 證件保護防偽水印</option>
-            <option value="photo-time-location.html">#21 照片時間地點水印</option>
-            <option value="photo-watermark.html">#22 房源照片時間水印</option>
-            <option value="ocr-translator.html">#23 照片 OCR 翻譯</option>
-            <option value="file-converter.html">#24 線上多功能轉檔</option>
-            <option value="image-converter.html">#25 圖像格式轉換</option>
-            <option value="card-merger.html">#26 名片正反合成</option>
+            <option value="id-card-straightener.html">#02 身分證歪斜調正與去邊</option>
+            <option value="mandate-contract.html">#03 租賃委託管理/包租契約</option>
+            <option value="tax-calculator.html">#04 房東節稅效益精算</option>
+            <option value="rent-calculator.html">#05 租金代管費換算</option>
+            <option value="utility-splitter.html">#06 分租水電公電分攤</option>
+            <option value="rent-receipt.html">#07 租金收據與代管對帳</option>
+            <option value="repair-inspection.html">#08 點交修繕瑕疵存證</option>
+            <option value="deposit-settlement.html">#09 退租押金結算明細</option>
+            <option value="rent-subsidy-checker.html">#10 300億租補資格精算</option>
+            <option value="listing-post-generator.html">#11 591/社群招租文案</option>
+            <option value="holding-deposit-receipt.html">#12 租屋定金收據與切結</option>
+            <option value="tenant-screening-checker.html">#13 租客審查與信用評分</option>
+            <option value="tenant-check-in-form.html">#14 房客遷入登記與聯絡人卡</option>
+            <option value="repair-work-order.html">#15 修繕派工與驗收單</option>
+            <option value="routine-inspection-report.html">#16 屋況定期巡檢維護報告</option>
+            <option value="viewing-checklist.html">#17 看屋30項自檢評分表</option>
+            <option value="property-roi-calculator.html">#18 物業淨投報與房貸精算</option>
+            <option value="key-custody-agreement.html">#19 鑰匙借出保管與切結</option>
+            <option value="space-planner.html">#20 2D/3D格局配置系統</option>
+            <option value="id-card-watermark.html">#21 證件保護防偽水印</option>
+            <option value="photo-time-location.html">#22 照片時間地點水印</option>
+            <option value="photo-watermark.html">#23 房源照片時間水印</option>
+            <option value="ocr-translator.html">#24 照片 OCR 翻譯</option>
+            <option value="file-converter.html">#25 線上多功能轉檔</option>
+            <option value="image-converter.html">#26 圖像格式轉換</option>
+            <option value="card-merger.html">#27 名片正反合成</option>
           </select>
           <button type="button" class="btn-hub-quick-copy" id="ganjuHubQuickShareBtn">
             <i class="fa-solid fa-copy"></i> 一鍵複製 3 天免密網址
@@ -683,13 +685,33 @@
           </button>
         </article>
 
-        <!-- 02. 住宅租賃委託管理（包租／代管）契約書 (mandate-contract.html) -->
+        <!-- 02. 身分證歪斜調正與智慧去邊裁剪神器 (id-card-straightener.html) -->
+        <article class="tool-hub-card" data-category="utility" data-auth="locked">
+          <div class="tool-hub-header">
+            <div class="tool-hub-icon-wrap" style="color: #fbbf24;">
+              <i class="fa-solid fa-crop-simple"></i>
+            </div>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #02・證件拉正</span>
+          </div>
+          <div class="tool-hub-body">
+            <h3>身分證歪斜調正與智慧去邊裁剪神器</h3>
+            <p>專治客戶手機斜拍身分證！AI 自動偵測身分證四邊、透視梯形拉正、一鍵切除旁邊多餘桌面空間與透明護貝套，支援正反面同步調正與上下合成。</p>
+          </div>
+          <a href="id-card-straightener.html" class="tool-hub-btn">
+            <span>立即調正裁剪證件</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <button type="button" class="tool-hub-share-btn" data-share-page="id-card-straightener.html" data-share-title="身分證歪斜調正與智慧去邊裁剪神器">
+            <i class="fa-solid fa-link"></i> 管理員一鍵複製 3 天免密網址
+          </button>
+        </article>
+
+        <!-- 03. 住宅租賃委託管理（包租／代管）契約書 (mandate-contract.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #c5a059;">
               <i class="fa-solid fa-handshake"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #02・屋主委託</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #03・屋主委託</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃委託管理（包租／代管）契約書</h3>
@@ -703,13 +725,13 @@
           </button>
         </article>
 
-        <!-- 03. 房東包租代管節稅效益試算神器 (tax-calculator.html) -->
+        <!-- 04. 房東包租代管節稅效益試算神器 (tax-calculator.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #ecc94b;">
               <i class="fa-solid fa-calculator"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #03・節稅必備</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #04・節稅必備</span>
           </div>
           <div class="tool-hub-body">
             <h3>房東包租代管節稅效益試算神器</h3>
@@ -723,13 +745,13 @@
           </button>
         </article>
 
-        <!-- 04. 租金與 10% 代管服務費精算拆分 (rent-calculator.html) -->
+        <!-- 05. 租金與 10% 代管服務費精算拆分 (rent-calculator.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f6ad55;">
               <i class="fa-solid fa-coins"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #04・日常必備</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #05・日常必備</span>
           </div>
           <div class="tool-hub-body">
             <h3>租金與 10% 代管服務費精算拆分</h3>
@@ -743,13 +765,13 @@
           </button>
         </article>
 
-        <!-- 05. 分租水電費與公電分攤結算單產生器 (utility-splitter.html) -->
+        <!-- 06. 分租水電費與公電分攤結算單產生器 (utility-splitter.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f6e05e;">
               <i class="fa-solid fa-bolt"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #05・電費新制</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #06・電費新制</span>
           </div>
           <div class="tool-hub-body">
             <h3>分租水電費與公電分攤結算單產生器</h3>
@@ -763,13 +785,13 @@
           </button>
         </article>
 
-        <!-- 06. 租金電子收據與代管月結對帳單 (rent-receipt.html) -->
+        <!-- 07. 租金電子收據與代管月結對帳單 (rent-receipt.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #4fd1c5;">
               <i class="fa-solid fa-receipt"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #06・月結必備</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #07・月結必備</span>
           </div>
           <div class="tool-hub-body">
             <h3>租金電子收據與代管月結對帳單</h3>
@@ -783,13 +805,13 @@
           </button>
         </article>
 
-        <!-- 07. 租賃修繕點交與屋況瑕疵存證紀錄 (repair-inspection.html) -->
+        <!-- 08. 租賃修繕點交與屋況瑕疵存證紀錄 (repair-inspection.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #68d391;">
               <i class="fa-solid fa-clipboard-list"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #07・起退租必備</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #08・起退租必備</span>
           </div>
           <div class="tool-hub-body">
             <h3>租賃修繕點交與屋況瑕疵存證紀錄</h3>
@@ -803,13 +825,13 @@
           </button>
         </article>
 
-        <!-- 08. 退租押金結算與點交扣款確認單 (deposit-settlement.html) -->
+        <!-- 09. 退租押金結算與點交扣款確認單 (deposit-settlement.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #48bb78;">
               <i class="fa-solid fa-hand-holding-dollar"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #08・退租必備</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #09・退租必備</span>
           </div>
           <div class="tool-hub-body">
             <h3>退租押金結算與點交扣款確認單</h3>
@@ -823,13 +845,13 @@
           </button>
         </article>
 
-        <!-- 09. 300億租金補貼資格自檢與實質月租 (rent-subsidy-checker.html) -->
+        <!-- 10. 300億租金補貼資格自檢與實質月租 (rent-subsidy-checker.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f687b3;">
               <i class="fa-solid fa-house-chimney-user"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #09・招租熱點</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #10・招租熱點</span>
           </div>
           <div class="tool-hub-body">
             <h3>300億租金補貼資格自檢與實質月租</h3>
@@ -843,13 +865,13 @@
           </button>
         </article>
 
-        <!-- 10. 591／社群招租文案與第33條合成器 (listing-post-generator.html) -->
+        <!-- 11. 591／社群招租文案與第33條合成器 (listing-post-generator.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #ed8936;">
               <i class="fa-solid fa-bullhorn"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #10・法規防呆</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #11・法規防呆</span>
           </div>
           <div class="tool-hub-body">
             <h3>591／社群招租文案與第33條合成器</h3>
@@ -863,13 +885,13 @@
           </button>
         </article>
 
-        <!-- 11. 租屋定金收據與承租保留切結產生器 (holding-deposit-receipt.html) -->
+        <!-- 12. 租屋定金收據與承租保留切結產生器 (holding-deposit-receipt.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #38b2ac;">
               <i class="fa-solid fa-money-check-dollar"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #11・現場收定</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #12・現場收定</span>
           </div>
           <div class="tool-hub-body">
             <h3>租屋定金收據與承租保留切結產生器</h3>
@@ -883,13 +905,13 @@
           </button>
         </article>
 
-        <!-- 12. 租客承租資格審查與租賃信用評分表 (tenant-screening-checker.html) -->
+        <!-- 13. 租客承租資格審查與租賃信用評分表 (tenant-screening-checker.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #63b3ed;">
               <i class="fa-solid fa-user-check"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #12・過濾房客</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #13・過濾房客</span>
           </div>
           <div class="tool-hub-body">
             <h3>租客承租資格審查與租賃信用評分表</h3>
@@ -903,13 +925,13 @@
           </button>
         </article>
 
-        <!-- 13. 房客遷入登記與住戶緊急聯絡人資料卡 (tenant-check-in-form.html) -->
+        <!-- 14. 房客遷入登記與住戶緊急聯絡人資料卡 (tenant-check-in-form.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #4299e1;">
               <i class="fa-solid fa-building-user"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #13・入住建檔</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #14・入住建檔</span>
           </div>
           <div class="tool-hub-body">
             <h3>房客遷入登記與住戶緊急聯絡人資料卡</h3>
@@ -923,13 +945,13 @@
           </button>
         </article>
 
-        <!-- 14. 住宅修繕通報派工與完工驗收證明單 (repair-work-order.html) -->
+        <!-- 15. 住宅修繕通報派工與完工驗收證明單 (repair-work-order.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f59e0b;">
               <i class="fa-solid fa-screwdriver-wrench"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #14・工務派工</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #15・工務派工</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅修繕通報派工與完工驗收證明單</h3>
@@ -943,13 +965,13 @@
           </button>
         </article>
 
-        <!-- 15. 住宅租賃屋況定期巡檢維護報告書 (routine-inspection-report.html) -->
+        <!-- 16. 住宅租賃屋況定期巡檢維護報告書 (routine-inspection-report.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #10b981;">
               <i class="fa-solid fa-clipboard-check"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #15・代管巡檢</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #16・代管巡檢</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃屋況定期巡檢維護報告書</h3>
@@ -963,13 +985,13 @@
           </button>
         </article>
 
-        <!-- 16. 租客看屋 30 項自檢與避坑評分表 (viewing-checklist.html) -->
+        <!-- 17. 租客看屋 30 項自檢與避坑評分表 (viewing-checklist.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f687b3;">
               <i class="fa-solid fa-list-check"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #16・看屋必備</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #17・看屋必備</span>
           </div>
           <div class="tool-hub-body">
             <h3>租客看屋 30 項自檢與避坑評分表</h3>
@@ -983,13 +1005,13 @@
           </button>
         </article>
 
-        <!-- 17. 物業投資淨投報率與房貸現金流精算器 (property-roi-calculator.html) -->
+        <!-- 18. 物業投資淨投報率與房貸現金流精算器 (property-roi-calculator.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #38b2ac;">
               <i class="fa-solid fa-chart-line"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #17・投資精算</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #18・投資精算</span>
           </div>
           <div class="tool-hub-body">
             <h3>物業投資淨投報率與房貸現金流精算器</h3>
@@ -1003,13 +1025,13 @@
           </button>
         </article>
 
-        <!-- 18. 現場看屋鑰匙借出保管與返還簽收切結 (key-custody-agreement.html) -->
+        <!-- 19. 現場看屋鑰匙借出保管與返還簽收切結 (key-custody-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #eab308;">
               <i class="fa-solid fa-key"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #18・帶看管理</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #19・帶看管理</span>
           </div>
           <div class="tool-hub-body">
             <h3>現場看屋鑰匙借出保管與返還簽收切結</h3>
@@ -1023,13 +1045,13 @@
           </button>
         </article>
 
-        <!-- 19. 2D 平面格局配置與 3D 即時轉換系統 (space-planner.html) -->
+        <!-- 20. 2D 平面格局配置與 3D 即時轉換系統 (space-planner.html) -->
         <article class="tool-hub-card" data-category="utility" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #00e5ff;">
               <i class="fa-solid fa-compass-drafting"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #19・空間規劃</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #20・空間規劃</span>
           </div>
           <div class="tool-hub-body">
             <h3>2D 平面格局配置與 3D 即時轉換系統</h3>
@@ -1043,13 +1065,13 @@
           </button>
         </article>
 
-        <!-- 20. 身份證照裁剪與租賃用途防盜水印 (id-card-watermark.html) -->
+        <!-- 21. 身份證照裁剪與租賃用途防盜水印 (id-card-watermark.html) -->
         <article class="tool-hub-card" data-category="utility" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f56565;">
               <i class="fa-solid fa-id-card"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #20・個資防護</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #21・個資防護</span>
           </div>
           <div class="tool-hub-body">
             <h3>身份證照裁剪與租賃用途防盜水印</h3>
@@ -1063,13 +1085,13 @@
           </button>
         </article>
 
-        <!-- 21. 照片時間與地點浮水印工具 (photo-time-location.html) -->
+        <!-- 22. 照片時間與地點浮水印工具 (photo-time-location.html) -->
         <article class="tool-hub-card" data-category="utility" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #48bb78;">
               <i class="fa-solid fa-location-dot"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #21・巡檢拍照</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #22・巡檢拍照</span>
           </div>
           <div class="tool-hub-body">
             <h3>照片時間與地點浮水印工具</h3>
@@ -1083,13 +1105,13 @@
           </button>
         </article>
 
-        <!-- 22. 房源照片 EXIF 拍攝時間戳記水印 (photo-watermark.html) -->
+        <!-- 23. 房源照片 EXIF 拍攝時間戳記水印 (photo-watermark.html) -->
         <article class="tool-hub-card" data-category="utility" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #ed8936;">
               <i class="fa-solid fa-camera-retro"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #22・批次水印</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #23・批次水印</span>
           </div>
           <div class="tool-hub-body">
             <h3>房源照片 EXIF 拍攝時間戳記水印</h3>
@@ -1103,13 +1125,13 @@
           </button>
         </article>
 
-        <!-- 23. 照片 OCR 文字辨識與多國語言翻譯 (ocr-translator.html) -->
+        <!-- 24. 照片 OCR 文字辨識與多國語言翻譯 (ocr-translator.html) -->
         <article class="tool-hub-card" data-category="utility" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #667eea;">
               <i class="fa-solid fa-language"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #23・AI 雙引擎</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #24・AI 雙引擎</span>
           </div>
           <div class="tool-hub-body">
             <h3>照片 OCR 文字辨識與多國語言翻譯</h3>
@@ -1123,13 +1145,13 @@
           </button>
         </article>
 
-        <!-- 24. 線上多功能檔案轉換神器 (file-converter.html) -->
+        <!-- 25. 線上多功能檔案轉換神器 (file-converter.html) -->
         <article class="tool-hub-card" data-category="utility" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #805ad5;">
               <i class="fa-solid fa-file-export"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #24・本地轉檔</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #25・本地轉檔</span>
           </div>
           <div class="tool-hub-body">
             <h3>線上多功能檔案轉換神器</h3>
@@ -1143,13 +1165,13 @@
           </button>
         </article>
 
-        <!-- 25. 圖像格式與尺寸轉換壓縮神器 (image-converter.html) -->
+        <!-- 26. 圖像格式與尺寸轉換壓縮神器 (image-converter.html) -->
         <article class="tool-hub-card" data-category="utility" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #38b2ac;">
               <i class="fa-solid fa-images"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #25・批次壓縮</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #26・批次壓縮</span>
           </div>
           <div class="tool-hub-body">
             <h3>圖像格式與尺寸轉換壓縮神器</h3>
@@ -1163,13 +1185,13 @@
           </button>
         </article>
 
-        <!-- 26. 名片正反面／上下拼貼合成神器 (card-merger.html) -->
+        <!-- 27. 名片正反面／上下拼貼合成神器 (card-merger.html) -->
         <article class="tool-hub-card" data-category="utility" data-auth="locked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #d69e2e;">
               <i class="fa-solid fa-address-card"></i>
             </div>
-            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #26・證件名片</span>
+            <span class="tool-hub-badge locked"><i class="fa-solid fa-lock"></i> #27・證件名片</span>
           </div>
           <div class="tool-hub-body">
             <h3>名片正反面／上下拼貼合成神器</h3>
@@ -1183,13 +1205,13 @@
           </button>
         </article>
 
-        <!-- 27. 住宅租賃續約協議書與租金調幅產生器 (lease-renewal-agreement.html) -->
+        <!-- 28. 住宅租賃續約協議書與租金調幅產生器 (lease-renewal-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #4299e1;">
               <i class="fa-solid fa-file-pen"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #27・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #28・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃續約協議書與租金調幅產生器</h3>
@@ -1200,13 +1222,13 @@
           </a>
         </article>
 
-        <!-- 28. 住宅租約提前終止協議與遷讓切結產生器 (lease-termination-agreement.html) -->
+        <!-- 29. 住宅租約提前終止協議與遷讓切結產生器 (lease-termination-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f56565;">
               <i class="fa-solid fa-file-contract"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #28・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #29・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租約提前終止協議與遷讓切結產生器</h3>
@@ -1217,13 +1239,13 @@
           </a>
         </article>
 
-        <!-- 29. 租賃住宅連帶保證人保證書與履約切結 (guarantor-agreement.html) -->
+        <!-- 30. 租賃住宅連帶保證人保證書與履約切結 (guarantor-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #805ad5;">
               <i class="fa-solid fa-user-shield"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #29・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #30・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>租賃住宅連帶保證人保證書與履約切結</h3>
@@ -1234,13 +1256,13 @@
           </a>
         </article>
 
-        <!-- 30. 住宅租賃合租公約與共同承租連帶責任協議 (roommate-agreement.html) -->
+        <!-- 31. 住宅租賃合租公約與共同承租連帶責任協議 (roommate-agreement.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #ec4899;">
               <i class="fa-solid fa-users"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #30・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #31・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃合租公約與共同承租連帶責任協議</h3>
@@ -1251,13 +1273,13 @@
           </a>
         </article>
 
-        <!-- 31. 租賃住宅授權委託代理人委任書產生器 (proxy-authorization.html) -->
+        <!-- 32. 租賃住宅授權委託代理人委任書產生器 (proxy-authorization.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #6366f1;">
               <i class="fa-solid fa-signature"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #31・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #32・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>租賃住宅授權委託代理人委任書產生器</h3>
@@ -1268,13 +1290,13 @@
           </a>
         </article>
 
-        <!-- 32. 住宅租賃租金催繳與欠租限期清償催告書 (rent-arrears-notice.html) -->
+        <!-- 33. 住宅租賃租金催繳與欠租限期清償催告書 (rent-arrears-notice.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #ef4444;">
               <i class="fa-solid fa-file-invoice-dollar"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #32・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #33・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃租金催繳與欠租限期清償催告書</h3>
@@ -1285,13 +1307,13 @@
           </a>
         </article>
 
-        <!-- 33. 住戶違規行為勸導限期改善通知單產生器 (rules-violation-notice.html) -->
+        <!-- 34. 住戶違規行為勸導限期改善通知單產生器 (rules-violation-notice.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f97316;">
               <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #33・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #34・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住戶違規行為勸導限期改善通知單產生器</h3>
@@ -1302,13 +1324,13 @@
           </a>
         </article>
 
-        <!-- 34. 欠租催告與終止租約「郵局存證信函」 (legal-notice-generator.html) -->
+        <!-- 35. 欠租催告與終止租約「郵局存證信函」 (legal-notice-generator.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #e53e3e;">
               <i class="fa-solid fa-envelope-open-text"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #34・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #35・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>欠租催告與終止租約「郵局存證信函」</h3>
@@ -1319,13 +1341,13 @@
           </a>
         </article>
 
-        <!-- 35. 住宅租賃積欠租金分期清償與和解協議 (arrears-installment-agreement.html) -->
+        <!-- 36. 住宅租賃積欠租金分期清償與和解協議 (arrears-installment-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #14b8a6;">
               <i class="fa-solid fa-handshake-simple"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #35・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #36・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃積欠租金分期清償與和解協議</h3>
@@ -1336,13 +1358,13 @@
           </a>
         </article>
 
-        <!-- 36. 租賃設備折舊與損壞賠償殘值精算器 (depreciation-calculator.html) -->
+        <!-- 37. 租賃設備折舊與損壞賠償殘值精算器 (depreciation-calculator.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #9f7aea;">
               <i class="fa-solid fa-chart-pie"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #36・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #37・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>租賃設備折舊與損壞賠償殘值精算器</h3>
@@ -1353,13 +1375,13 @@
           </a>
         </article>
 
-        <!-- 37. 住宅租賃飼養寵物特約承諾書產生器 (pet-addendum-agreement.html) -->
+        <!-- 38. 住宅租賃飼養寵物特約承諾書產生器 (pet-addendum-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f59e0b;">
               <i class="fa-solid fa-paw"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #37・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #38・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃飼養寵物特約承諾書產生器</h3>
@@ -1370,13 +1392,13 @@
           </a>
         </article>
 
-        <!-- 38. 住宅租賃汽機車停車位租用與管理協議書 (parking-lease-agreement.html) -->
+        <!-- 39. 住宅租賃汽機車停車位租用與管理協議書 (parking-lease-agreement.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #3b82f6;">
               <i class="fa-solid fa-square-parking"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #38・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #39・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃汽機車停車位租用與管理協議書</h3>
@@ -1387,13 +1409,13 @@
           </a>
         </article>
 
-        <!-- 39. 住宅租賃設籍約定暨退租遷出切結書 (household-registration-agreement.html) -->
+        <!-- 40. 住宅租賃設籍約定暨退租遷出切結書 (household-registration-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #3b82f6;">
               <i class="fa-solid fa-id-badge"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #39・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #40・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃設籍約定暨退租遷出切結書</h3>
@@ -1404,13 +1426,13 @@
           </a>
         </article>
 
-        <!-- 40. 住宅租賃無菸住宅（全面禁菸）特約承諾書 (smoke-free-agreement.html) -->
+        <!-- 41. 住宅租賃無菸住宅（全面禁菸）特約承諾書 (smoke-free-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #ef4444;">
               <i class="fa-solid fa-ban-smoking"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #40・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #41・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃無菸住宅（全面禁菸）特約承諾書</h3>
@@ -1421,13 +1443,13 @@
           </a>
         </article>
 
-        <!-- 41. 住宅租賃噪音防制與生活安寧特約承諾書 (noise-prevention-agreement.html) -->
+        <!-- 42. 住宅租賃噪音防制與生活安寧特約承諾書 (noise-prevention-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #38bdf8;">
               <i class="fa-solid fa-volume-xmark"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #41・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #42・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃噪音防制與生活安寧特約承諾書</h3>
@@ -1438,13 +1460,13 @@
           </a>
         </article>
 
-        <!-- 42. 住宅租賃用電用火安全暨失火責任切結書 (fire-safety-agreement.html) -->
+        <!-- 43. 住宅租賃用電用火安全暨失火責任切結書 (fire-safety-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #ef4444;">
               <i class="fa-solid fa-fire-extinguisher"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #42・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #43・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃用電用火安全暨失火責任切結書</h3>
@@ -1455,13 +1477,13 @@
           </a>
         </article>
 
-        <!-- 43. 室內防潮防黴與環境通風維護承諾書 (mold-prevention-agreement.html) -->
+        <!-- 44. 室內防潮防黴與環境通風維護承諾書 (mold-prevention-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #0284c7;">
               <i class="fa-solid fa-droplet-slash"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #43・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #44・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>室內防潮防黴與環境通風維護承諾書</h3>
@@ -1472,13 +1494,13 @@
           </a>
         </article>
 
-        <!-- 44. 租約公證聲請暨逕受強制執行約定書 (lease-notarization-agreement.html) -->
+        <!-- 45. 租約公證聲請暨逕受強制執行約定書 (lease-notarization-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #c5a059;">
               <i class="fa-solid fa-stamp"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #44・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #45・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>租約公證聲請暨逕受強制執行約定書</h3>
@@ -1489,13 +1511,13 @@
           </a>
         </article>
 
-        <!-- 45. 住宅租賃室內裝修改裝同意暨回復原狀切結 (renovation-consent-agreement.html) -->
+        <!-- 46. 住宅租賃室內裝修改裝同意暨回復原狀切結 (renovation-consent-agreement.html) -->
         <article class="tool-hub-card" data-category="tenant" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f59e0b;">
               <i class="fa-solid fa-hammer"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #45・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #46・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃室內裝修改裝同意暨回復原狀切結</h3>
@@ -1506,13 +1528,13 @@
           </a>
         </article>
 
-        <!-- 46. 住宅租賃承租人轉租同意書與管理協議 (sublease-consent-agreement.html) -->
+        <!-- 47. 住宅租賃承租人轉租同意書與管理協議 (sublease-consent-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #63b3ed;">
               <i class="fa-solid fa-people-arrows"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #46・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #47・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃承租人轉租同意書與管理協議</h3>
@@ -1523,13 +1545,13 @@
           </a>
         </article>
 
-        <!-- 47. 住宅租賃設址營業與稅賦補償協議書 (business-registration-agreement.html) -->
+        <!-- 48. 住宅租賃設址營業與稅賦補償協議書 (business-registration-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #c5a059;">
               <i class="fa-solid fa-file-invoice-dollar"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #47・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #48・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃設址營業與稅賦補償協議書</h3>
@@ -1540,13 +1562,13 @@
           </a>
         </article>
 
-        <!-- 48. 買賣不破租賃通知與押金移轉確認書 (ownership-change-notice.html) -->
+        <!-- 49. 買賣不破租賃通知與押金移轉確認書 (ownership-change-notice.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #38b2ac;">
               <i class="fa-solid fa-house-chimney-user"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #48・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #49・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>買賣不破租賃通知與押金移轉確認書</h3>
@@ -1557,13 +1579,13 @@
           </a>
         </article>
 
-        <!-- 49. 承租人遺留物處理授權與拋棄切結書 (abandoned-property-agreement.html) -->
+        <!-- 50. 承租人遺留物處理授權與拋棄切結書 (abandoned-property-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #a855f7;">
               <i class="fa-solid fa-box-open"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #49・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #50・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>承租人遺留物處理授權與拋棄切結書</h3>
@@ -1574,13 +1596,13 @@
           </a>
         </article>
 
-        <!-- 50. 住宅租賃緊急避難與緊急開門進入授權協議書 (emergency-entry-agreement.html) -->
+        <!-- 51. 住宅租賃緊急避難與緊急開門進入授權協議書 (emergency-entry-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #ef4444;">
               <i class="fa-solid fa-door-open"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #50・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #51・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃緊急避難與緊急開門進入授權協議書</h3>
@@ -1591,13 +1613,13 @@
           </a>
         </article>
 
-        <!-- 51. 住宅租賃爭議調處與調解聲請書產生器 (dispute-mediation-request.html) -->
+        <!-- 52. 住宅租賃爭議調處與調解聲請書產生器 (dispute-mediation-request.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #63b3ed;">
               <i class="fa-solid fa-scale-unbalanced-flip"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #51・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #52・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃爭議調處與調解聲請書產生器</h3>
@@ -1608,13 +1630,13 @@
           </a>
         </article>
 
-        <!-- 52. 陽台窗戶防墜安全與隱形鐵窗切結書 (fall-prevention-agreement.html) -->
+        <!-- 53. 陽台窗戶防墜安全與隱形鐵窗切結書 (fall-prevention-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #14b8a6;">
               <i class="fa-solid fa-person-falling-burst"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #52・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #53・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>陽台窗戶防墜安全與隱形鐵窗切結書</h3>
@@ -1625,13 +1647,13 @@
           </a>
         </article>
 
-        <!-- 53. 防汛防颱與緊急應變責任切結書 (disaster-prevention-agreement.html) -->
+        <!-- 54. 防汛防颱與緊急應變責任切結書 (disaster-prevention-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #0ea5e9;">
               <i class="fa-solid fa-house-tsunami"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #53・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #54・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>防汛防颱與緊急應變責任切結書</h3>
@@ -1642,13 +1664,13 @@
           </a>
         </article>
 
-        <!-- 54. 祭祀焚香與神明祖先牌位安奉承諾書 (altar-worship-agreement.html) -->
+        <!-- 55. 祭祀焚香與神明祖先牌位安奉承諾書 (altar-worship-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #f59e0b;">
               <i class="fa-solid fa-place-of-worship"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #54・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #55・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>祭祀焚香與神明祖先牌位安奉承諾書</h3>
@@ -1659,13 +1681,13 @@
           </a>
         </article>
 
-        <!-- 55. 住宅租賃無障礙設備使用與安全切結書 (accessibility-agreement.html) -->
+        <!-- 56. 住宅租賃無障礙設備使用與安全切結書 (accessibility-agreement.html) -->
         <article class="tool-hub-card" data-category="landlord" data-auth="unlocked">
           <div class="tool-hub-header">
             <div class="tool-hub-icon-wrap" style="color: #3b82f6;">
               <i class="fa-solid fa-wheelchair"></i>
             </div>
-            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #55・開放免密</span>
+            <span class="tool-hub-badge unlocked"><i class="fa-solid fa-lock-open"></i> #56・開放免密</span>
           </div>
           <div class="tool-hub-body">
             <h3>住宅租賃無障礙設備使用與安全切結書</h3>

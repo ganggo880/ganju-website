@@ -16,9 +16,10 @@
 (function () {
   'use strict';
 
-  // 1. 第 1 ~ 26 款需上鎖之核心高頻工具清單 (第 27 ~ 55 款不在清單內，開放無密碼)
+  // 1. 第 1 ~ 27 款需上鎖之核心高頻工具清單 (第 28 ~ 56 款不在清單內，開放無密碼)
   const LOCKED_TOOLS = [
     'lease-contract.html',
+    'id-card-straightener.html',
     'mandate-contract.html',
     'tax-calculator.html',
     'rent-calculator.html',
@@ -51,31 +52,32 @@
   // 工具名稱對照表（供管理員一鍵複製網址與提示使用）
   const TOOL_NAMES = {
     'lease-contract.html': '01. 租賃契約與住戶公約套印產生器',
-    'mandate-contract.html': '02. 住宅租賃委託管理（包租／代管）契約書',
-    'tax-calculator.html': '03. 房東包租代管節稅效益試算神器',
-    'rent-calculator.html': '04. 租金與 10% 代管服務費精算拆分',
-    'utility-splitter.html': '05. 分租水電費與公電分攤結算單產生器',
-    'rent-receipt.html': '06. 租金電子收據與代管月結對帳單',
-    'repair-inspection.html': '07. 租賃修繕點交與屋況瑕疵存證紀錄',
-    'deposit-settlement.html': '08. 退租押金結算與點交扣款確認單',
-    'rent-subsidy-checker.html': '09. 300億租金補貼資格自檢與實質月租',
-    'listing-post-generator.html': '10. 591／社群招租文案與第33條合成器',
-    'holding-deposit-receipt.html': '11. 租屋定金收據與承租保留切結產生器',
-    'tenant-screening-checker.html': '12. 租客承租資格審查與租賃信用評分表',
-    'tenant-check-in-form.html': '13. 房客遷入登記與住戶緊急聯絡人資料卡',
-    'repair-work-order.html': '14. 住宅修繕通報派工與完工驗收證明單',
-    'routine-inspection-report.html': '15. 住宅租賃屋況定期巡檢維護報告書',
-    'viewing-checklist.html': '16. 租客看屋 30 項自檢與避坑評分表',
-    'property-roi-calculator.html': '17. 物業投資淨投報率與房貸現金流精算器',
-    'key-custody-agreement.html': '18. 現場看屋鑰匙借出保管與返還簽收切結',
-    'space-planner.html': '19. 2D 平面格局配置與 3D 即時轉換系統',
-    'id-card-watermark.html': '20. 身份證照裁剪與租賃用途防盜水印',
-    'photo-time-location.html': '21. 照片時間與地點浮水印工具',
-    'photo-watermark.html': '22. 房源照片 EXIF 拍攝時間戳記水印',
-    'ocr-translator.html': '23. 照片 OCR 文字辨識與多國語言翻譯',
-    'file-converter.html': '24. 線上多功能檔案轉換神器',
-    'image-converter.html': '25. 圖像格式與尺寸轉換壓縮神器',
-    'card-merger.html': '26. 名片正反面／上下拼貼合成神器'
+    'id-card-straightener.html': '02. 身分證歪斜調正與智慧去邊裁剪神器',
+    'mandate-contract.html': '03. 住宅租賃委託管理（包租／代管）契約書',
+    'tax-calculator.html': '04. 房東包租代管節稅效益試算神器',
+    'rent-calculator.html': '05. 租金與 10% 代管服務費精算拆分',
+    'utility-splitter.html': '06. 分租水電費與公電分攤結算單產生器',
+    'rent-receipt.html': '07. 租金電子收據與代管月結對帳單',
+    'repair-inspection.html': '08. 租賃修繕點交與屋況瑕疵存證紀錄',
+    'deposit-settlement.html': '09. 退租押金結算與點交扣款確認單',
+    'rent-subsidy-checker.html': '10. 300億租金補貼資格自檢與實質月租',
+    'listing-post-generator.html': '11. 591／社群招租文案與第33條合成器',
+    'holding-deposit-receipt.html': '12. 租屋定金收據與承租保留切結產生器',
+    'tenant-screening-checker.html': '13. 租客承租資格審查與租賃信用評分表',
+    'tenant-check-in-form.html': '14. 房客遷入登記與住戶緊急聯絡人資料卡',
+    'repair-work-order.html': '15. 住宅修繕通報派工與完工驗收證明單',
+    'routine-inspection-report.html': '16. 住宅租賃屋況定期巡檢維護報告書',
+    'viewing-checklist.html': '17. 租客看屋 30 項自檢與避坑評分表',
+    'property-roi-calculator.html': '18. 物業投資淨投報率與房貸現金流精算器',
+    'key-custody-agreement.html': '19. 現場看屋鑰匙借出保管與返還簽收切結',
+    'space-planner.html': '20. 2D 平面格局配置與 3D 即時轉換系統',
+    'id-card-watermark.html': '21. 身份證照裁剪與租賃用途防盜水印',
+    'photo-time-location.html': '22. 照片時間與地點浮水印工具',
+    'photo-watermark.html': '23. 房源照片 EXIF 拍攝時間戳記水印',
+    'ocr-translator.html': '24. 照片 OCR 文字辨識與多國語言翻譯',
+    'file-converter.html': '25. 線上多功能檔案轉換神器',
+    'image-converter.html': '26. 圖像格式與尺寸轉換壓縮神器',
+    'card-merger.html': '27. 名片正反面／上下拼貼合成神器'
   };
 
   // 2. 授權與免密時效設定
@@ -817,8 +819,8 @@
       filterBar.className = 'nav-dropdown-filter-bar';
       filterBar.setAttribute('role', 'tablist');
       filterBar.innerHTML = `
-        <button type="button" class="nav-drop-tab active" data-drop-filter="all">全部 (55)</button>
-        <button type="button" class="nav-drop-tab" data-drop-filter="locked"><i class="fa-solid fa-lock" style="color:#FBBF24;"></i> 密碼 (26)</button>
+        <button type="button" class="nav-drop-tab active" data-drop-filter="all">全部 (56)</button>
+        <button type="button" class="nav-drop-tab" data-drop-filter="locked"><i class="fa-solid fa-lock" style="color:#FBBF24;"></i> 密碼 (27)</button>
         <button type="button" class="nav-drop-tab" data-drop-filter="unlocked"><i class="fa-solid fa-lock-open" style="color:#34D399;"></i> 無密碼 (29)</button>
       `;
 
