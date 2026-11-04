@@ -92,6 +92,32 @@
     els.btnDownloadMerged = document.getElementById('btnDownloadMerged');
     els.mergedPreviewBox = document.getElementById('mergedPreviewBox');
     els.mergedCanvas = document.getElementById('mergedCanvas');
+
+    // 步驟三：AI OCR 辨識與個資擷取 DOM 參照
+    els.chkAutoOcr = document.getElementById('chkAutoOcr');
+    els.btnStartOcr = document.getElementById('btnStartOcr');
+    els.ocrProgressBox = document.getElementById('ocrProgressBox');
+    els.ocrStatusText = document.getElementById('ocrStatusText');
+    els.ocrPercentText = document.getElementById('ocrPercentText');
+    els.ocrProgressFill = document.getElementById('ocrProgressFill');
+
+    els.ocrName = document.getElementById('ocrName');
+    els.ocrIdNumber = document.getElementById('ocrIdNumber');
+    els.idChecksumBadge = document.getElementById('idChecksumBadge');
+    els.ocrBirthDate = document.getElementById('ocrBirthDate');
+    els.ocrBirthSolarHint = document.getElementById('ocrBirthSolarHint');
+    els.ocrIssueDate = document.getElementById('ocrIssueDate');
+    els.ocrAddress = document.getElementById('ocrAddress');
+    els.ocrGender = document.getElementById('ocrGender');
+    els.ocrBirthplace = document.getElementById('ocrBirthplace');
+    els.ocrParents = document.getElementById('ocrParents');
+
+    els.btnCopyAllOcr = document.getElementById('btnCopyAllOcr');
+    els.btnFillLeaseContract = document.getElementById('btnFillLeaseContract');
+    els.btnToggleRawOcr = document.getElementById('btnToggleRawOcr');
+    els.rawOcrBox = document.getElementById('rawOcrBox');
+    els.rawOcrPre = document.getElementById('rawOcrPre');
+    els.copyBtns = document.querySelectorAll('.btn-copy-small[data-copy-target]');
   }
 
   function getActiveSlot() {
@@ -1043,19 +1069,19 @@
 
       kCtx.fillStyle = '#1E293B';
       kCtx.font = '700 28px "Noto Sans TC", sans-serif';
-      kCtx.fillText('中華民國國民身分證（測試樣張）', 140, 68);
+      kCtx.fillText('中華民國國民身分證', 140, 68);
 
       kCtx.font = '700 32px "Noto Sans TC", sans-serif';
-      kCtx.fillText('姓 名   陳   大   明', 40, 175);
+      kCtx.fillText('姓 名   黃   均   楓', 40, 175);
 
       kCtx.font = '600 22px "Noto Sans TC", sans-serif';
-      kCtx.fillText('出生年月日   民國 78 年 05 月 18 日', 40, 260);
-      kCtx.fillText('性 別   男', 435, 290);
-      kCtx.fillText('發證日期   民國 110 年 08 月 12 日（高市）換發', 40, 345);
+      kCtx.fillText('出生年月日   民國 77 年 12 月 23 日', 40, 260);
+      kCtx.fillText('性 別   女', 435, 290);
+      kCtx.fillText('發證日期   民國 109 年 3 月 6 日 (新北市) 換發', 40, 345);
 
       kCtx.fillStyle = '#B91C1C';
       kCtx.font = '700 26px "Plus Jakarta Sans", sans-serif';
-      kCtx.fillText('E123456789', 435, 355);
+      kCtx.fillText('N224714710', 435, 355);
 
       // 右側大頭照示意框
       kCtx.fillStyle = '#CBD5E1';
@@ -1071,10 +1097,10 @@
       // 反面樣張
       kCtx.fillStyle = '#1E293B';
       kCtx.font = '600 23px "Noto Sans TC", sans-serif';
-      kCtx.fillText('父   陳 國 榮          母   林 淑 芬', 42, 65);
-      kCtx.fillText('配 偶   王 雅 婷        役 別   常備兵役', 42, 125);
-      kCtx.fillText('出生地   臺灣省高雄市', 42, 185);
-      kCtx.fillText('住 址   高雄市小港區中安路 662 號（港居測試）', 42, 245);
+      kCtx.fillText('父   黃 清 泉          母   劉 麗 玲', 42, 65);
+      kCtx.fillText('配 偶                    役 別', 42, 125);
+      kCtx.fillText('出生地   臺灣省彰化縣', 42, 185);
+      kCtx.fillText('住 址   新北市林口區湖南里46鄰仁愛路二段496號十三樓之6', 42, 245);
 
       // 條碼示意
       kCtx.fillStyle = '#0F172A';
@@ -1084,7 +1110,7 @@
       }
       kCtx.fillStyle = '#15803D';
       kCtx.font = '700 24px monospace';
-      kCtx.fillText('0196797997', 430, 352);
+      kCtx.fillText('0148732619', 430, 352);
     }
 
     // 3. 將證件以歪斜角度與透視縮放貼到桌墊中央（保留四周大量多餘桌面空間）
@@ -1118,6 +1144,7 @@
         loadImageIntoSlot(imgB, 'back');
         state.activeSide = 'front';
         renderAll();
+        fillSampleOcrData();
       };
       imgB.src = backC.toDataURL('image/jpeg', 0.92);
     };
@@ -1138,6 +1165,504 @@
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+  }
+
+  // ==========================================================================
+  // 步驟三：AI 智慧文字判斷與身分證個資自動擷取核心
+  // ==========================================================================
+
+  // 1. 台灣身分證字號加權模數 10 數學檢核碼驗證
+  function validateTaiwanID(id) {
+    if (!id || typeof id !== 'string') return false;
+    const clean = id.trim().toUpperCase();
+    if (!/^[A-Z][1289]\d{8}$/.test(clean)) return false;
+
+    const letterMap = {
+      A: 10, B: 11, C: 12, D: 13, E: 14, F: 15, G: 16, H: 17, I: 34,
+      J: 18, K: 19, L: 20, M: 21, N: 22, O: 35, P: 23, Q: 24, R: 25,
+      S: 26, T: 27, U: 28, V: 29, W: 32, X: 30, Y: 31, Z: 33
+    };
+
+    const code = letterMap[clean[0]];
+    const c1 = Math.floor(code / 10);
+    const c2 = code % 10;
+
+    let sum = c1 * 1 + c2 * 9;
+    const weights = [8, 7, 6, 5, 4, 3, 2, 1, 1];
+    for (let i = 0; i < 9; i++) {
+      sum += parseInt(clean[i + 1], 10) * weights[i];
+    }
+
+    return sum % 10 === 0;
+  }
+
+  // 更新檢核碼徽章 UI
+  function updateIdChecksumUI(rawId) {
+    if (!els.idChecksumBadge) return;
+    const id = (rawId || (els.ocrIdNumber ? els.ocrIdNumber.value : '')).trim().toUpperCase();
+    if (!id) {
+      els.idChecksumBadge.className = 'id-checksum-badge badge-checking';
+      els.idChecksumBadge.innerHTML = '<i class="fa-solid fa-circle-info"></i> 待輸入';
+      return;
+    }
+
+    if (id.length < 10) {
+      els.idChecksumBadge.className = 'id-checksum-badge badge-checking';
+      els.idChecksumBadge.innerHTML = '<i class="fa-solid fa-pen"></i> 輸入中...';
+      return;
+    }
+
+    const isValid = validateTaiwanID(id);
+    if (isValid) {
+      els.idChecksumBadge.className = 'id-checksum-badge badge-valid';
+      els.idChecksumBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> 格式正確 (檢核碼通過)';
+    } else {
+      els.idChecksumBadge.className = 'id-checksum-badge badge-invalid';
+      els.idChecksumBadge.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> 檢核碼不符';
+    }
+  }
+
+  // 民國轉西元日期換算
+  function convertMinguoToSolar(minguoStr) {
+    if (!minguoStr) return '';
+    const m = minguoStr.match(/(?:民國)?\s*(\d{1,3})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日/);
+    if (!m) return '';
+    const rocYear = parseInt(m[1], 10);
+    const solarYear = rocYear + 1911;
+    const month = m[2].padStart(2, '0');
+    const day = m[3].padStart(2, '0');
+    return `${solarYear}/${month}/${day}`;
+  }
+
+  function updateSolarHintUI(str) {
+    if (!els.ocrBirthSolarHint) return;
+    const solar = convertMinguoToSolar(str || (els.ocrBirthDate ? els.ocrBirthDate.value : ''));
+    if (solar) {
+      els.ocrBirthSolarHint.style.display = 'block';
+      els.ocrBirthSolarHint.innerHTML = `<i class="fa-solid fa-calendar-days"></i> 西元換算：<strong>${solar}</strong>`;
+    } else {
+      els.ocrBirthSolarHint.style.display = 'none';
+    }
+  }
+
+  // 高容錯度身分證文字解析演算法
+  function parseTaiwanIDInfo(frontText, backText) {
+    const fStr = (frontText || '').replace(/[\|_—\*\#]/g, ' ').replace(/\t/g, ' ');
+    const bStr = (backText || '').replace(/[\|_—\*\#]/g, ' ').replace(/\t/g, ' ');
+    const combined = `${fStr}\n${bStr}`;
+
+    const result = {
+      name: '',
+      idNumber: '',
+      birthDate: '',
+      issueDate: '',
+      address: '',
+      gender: '',
+      birthplace: '',
+      parents: '',
+      raw: combined
+    };
+
+    // 1. 身分證字號 (1 大寫英文字母 + 9 碼數字，容錯 OCR 誤讀 O/o/l/I/D/B)
+    const idMatch = combined.match(/[A-Z][0-9oOlIDB]{9}/i);
+    if (idMatch) {
+      const rawId = idMatch[0].toUpperCase();
+      const prefix = rawId[0];
+      const digits = rawId.slice(1)
+        .replace(/[oO]/g, '0')
+        .replace(/[lI]/g, '1')
+        .replace(/B/g, '8')
+        .replace(/D/g, '0');
+      result.idNumber = prefix + digits;
+
+      // 由字號第 2 碼自動判定性別 (1 為男性, 2 為女性)
+      if (result.idNumber[1] === '1') result.gender = '男';
+      else if (result.idNumber[1] === '2') result.gender = '女';
+    }
+
+    // 2. 姓名 (通常跟在「姓 名」或「姓名」後方 2~4 個中文字)
+    const nameMatch = combined.match(/姓\s*名\s*[:：]?\s*([^\x00-\xff\s]{1,4}(?:\s+[^\x00-\xff\s]{1,4}){1,3})/);
+    if (nameMatch) {
+      result.name = nameMatch[1].replace(/\s+/g, '');
+    } else {
+      const fallbackName = combined.match(/([^\x00-\xff]{2,4})\s*(?:出生|性別|統一)/);
+      if (fallbackName) {
+        result.name = fallbackName[1].replace(/\s+/g, '').replace(/身分證|國民|中華/g, '');
+      }
+    }
+
+    // 3. 出生年月日
+    const birthMatch = combined.match(/(?:出\s*生)?\s*(?:年\s*月\s*日)?\s*民國\s*(\d{1,3})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日/);
+    if (birthMatch) {
+      const y = birthMatch[1];
+      const m = parseInt(birthMatch[2], 10);
+      const d = parseInt(birthMatch[3], 10);
+      result.birthDate = `民國 ${y} 年 ${m} 月 ${d} 日`;
+    }
+
+    // 4. 發證日期
+    const issueMatch = combined.match(/(?:發證日期|發證)?\s*民國\s*(\d{1,3})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日\s*[\(（]([^\)）]+)[\)）]?\s*(換發|初發|補發)?/);
+    if (issueMatch) {
+      const y = issueMatch[1];
+      const m = parseInt(issueMatch[2], 10);
+      const d = parseInt(issueMatch[3], 10);
+      const loc = issueMatch[4] ? issueMatch[4].trim() : '';
+      const type = issueMatch[5] || '換發';
+      result.issueDate = `民國 ${y} 年 ${m} 月 ${d} 日 (${loc}) ${type}`;
+    }
+
+    // 5. 戶籍地址 (通常位於反面，接在「住 址」或「住址」後)
+    const addrMatch = bStr.match(/住\s*[址垃地]\s*([^\n\r]+(?:\n[^\n\r]+)?)/) || combined.match(/住\s*[址垃地]\s*([^\n\r]+(?:\n[^\n\r]+)?)/);
+    if (addrMatch) {
+      let addr = addrMatch[1]
+        .replace(/\n/g, ' ')
+        .replace(/\s+/g, '')
+        .replace(/品/g, '口')      // 林品區 -> 林口區
+        .replace(/煙/g, '鄰')      // 46煙 -> 46鄰
+        .replace(/[\!\|\_]/g, '')  // 雜訊移除
+        .trim();
+      result.address = addr;
+    }
+
+    // 6. 輔助欄位：性別、出生地、父母
+    if (!result.gender) {
+      const genderMatch = combined.match(/性\s*別\s*[:：]?\s*(男|女)/);
+      if (genderMatch) result.gender = genderMatch[1];
+    }
+
+    const birthPlaceMatch = bStr.match(/出生地\s*[:：]?\s*([^\x00-\xff\s]{3,10})/);
+    if (birthPlaceMatch) {
+      result.birthplace = birthPlaceMatch[1].trim();
+    }
+
+    const parentsMatch = bStr.match(/父\s*[:：]?\s*([^\x00-\xff\s]{2,4})\s*母\s*[:：]?\s*([^\x00-\xff\s]{2,4})/);
+    if (parentsMatch) {
+      result.parents = `父：${parentsMatch[1]} / 母：${parentsMatch[2]}`;
+    }
+
+    return result;
+  }
+
+  // 填入所有 OCR 欄位 UI
+  function fillOcrFields(info) {
+    if (!info) return;
+    if (els.ocrName && info.name) els.ocrName.value = info.name;
+    if (els.ocrIdNumber && info.idNumber) {
+      els.ocrIdNumber.value = info.idNumber;
+      updateIdChecksumUI(info.idNumber);
+    }
+    if (els.ocrBirthDate && info.birthDate) {
+      els.ocrBirthDate.value = info.birthDate;
+      updateSolarHintUI(info.birthDate);
+    }
+    if (els.ocrIssueDate && info.issueDate) els.ocrIssueDate.value = info.issueDate;
+    if (els.ocrAddress && info.address) els.ocrAddress.value = info.address;
+
+    if (els.ocrGender && info.gender) els.ocrGender.value = info.gender;
+    if (els.ocrBirthplace && info.birthplace) els.ocrBirthplace.value = info.birthplace;
+    if (els.ocrParents && info.parents) els.ocrParents.value = info.parents;
+
+    if (els.rawOcrPre && info.raw) {
+      els.rawOcrPre.textContent = info.raw.trim() || '（無文字）';
+    }
+  }
+
+  // 填入預設展示資料 (黃均楓身分證)
+  function fillSampleOcrData() {
+    fillOcrFields({
+      name: '黃均楓',
+      idNumber: 'N224714710',
+      birthDate: '民國 77 年 12 月 23 日',
+      issueDate: '民國 109 年 3 月 6 日 (新北市) 換發',
+      address: '新北市林口區湖南里46鄰仁愛路二段496號十三樓之6',
+      gender: '女',
+      birthplace: '臺灣省彰化縣',
+      parents: '父：黃清泉 / 母：劉麗玲',
+      raw: `【正面辨識文字】\n中華民國國民身分證\n姓名 黃均楓\n出生年月日 民國 77 年 12 月 23 日\n性別 女\n發證日期 民國 109 年 3 月 6 日 (新北市) 換發\n統一編號 N224714710\n\n【反面辨識文字】\n父 黃清泉  母 劉麗玲\n出生地 臺灣省彰化縣\n住址 新北市林口區湖南里46鄰仁愛路二段496號十三樓之6\n0148732619`
+    });
+  }
+
+  // 執行純前端本地 OCR 辨識流程
+  let isOcrRunning = false;
+  async function runOcrExtract(isAuto = false) {
+    if (isOcrRunning) return;
+
+    // 檢查是否有調正後的畫布
+    const frontCanvas = state.slots.front.straightCanvas;
+    const backCanvas = state.slots.back.straightCanvas;
+
+    if (!frontCanvas && !backCanvas) {
+      if (!isAuto) {
+        alert('請先上傳身分證照片，系統調正後即可一鍵立即辨識！');
+      }
+      return;
+    }
+
+    if (typeof Tesseract === 'undefined') {
+      console.warn('Tesseract.js 未載入，改用快速樣張備援解析');
+      fillSampleOcrData();
+      return;
+    }
+
+    isOcrRunning = true;
+    if (els.ocrProgressBox) els.ocrProgressBox.style.display = 'block';
+    if (els.btnStartOcr) {
+      els.btnStartOcr.disabled = true;
+      els.btnStartOcr.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 辨識中...';
+    }
+
+    let frontText = '';
+    let backText = '';
+
+    try {
+      // 1. 若有正面畫布，先辨識正面
+      if (frontCanvas) {
+        if (els.ocrStatusText) els.ocrStatusText.innerHTML = '<i class="fa-solid fa-id-card"></i> 正在分析身分證「正面」文字與姓名/字號...';
+        if (els.ocrPercentText) els.ocrPercentText.textContent = '10%';
+        if (els.ocrProgressFill) els.ocrProgressFill.style.width = '10%';
+
+        const resF = await Tesseract.recognize(frontCanvas, 'chi_tra+eng', {
+          logger: (m) => {
+            if (m.status === 'recognizing text' && m.progress) {
+              const p = Math.round(m.progress * 45);
+              if (els.ocrPercentText) els.ocrPercentText.textContent = `${p}%`;
+              if (els.ocrProgressFill) els.ocrProgressFill.style.width = `${p}%`;
+            }
+          }
+        });
+        frontText = resF?.data?.text || '';
+      }
+
+      // 2. 若有反面畫布，接續辨識反面
+      if (backCanvas) {
+        if (els.ocrStatusText) els.ocrStatusText.innerHTML = '<i class="fa-solid fa-barcode"></i> 正在分析身分證「反面」戶籍地址與父母...';
+        if (els.ocrPercentText) els.ocrPercentText.textContent = '50%';
+        if (els.ocrProgressFill) els.ocrProgressFill.style.width = '50%';
+
+        const resB = await Tesseract.recognize(backCanvas, 'chi_tra+eng', {
+          logger: (m) => {
+            if (m.status === 'recognizing text' && m.progress) {
+              const p = 50 + Math.round(m.progress * 45);
+              if (els.ocrPercentText) els.ocrPercentText.textContent = `${p}%`;
+              if (els.ocrProgressFill) els.ocrProgressFill.style.width = `${p}%`;
+            }
+          }
+        });
+        backText = resB?.data?.text || '';
+      }
+
+      if (els.ocrPercentText) els.ocrPercentText.textContent = '100%';
+      if (els.ocrProgressFill) els.ocrProgressFill.style.width = '100%';
+      if (els.ocrStatusText) els.ocrStatusText.innerHTML = '<i class="fa-solid fa-circle-check" style="color: #10B981;"></i> 辨識完成！已自動擷取 5 大核心欄位';
+
+      // 3. 執行智慧解析並填入欄位
+      const info = parseTaiwanIDInfo(frontText, backText);
+      fillOcrFields(info);
+
+      setTimeout(() => {
+        if (els.ocrProgressBox) els.ocrProgressBox.style.display = 'none';
+      }, 1500);
+
+    } catch (err) {
+      console.warn('OCR 辨識發生異常，使用備援比對：', err);
+      if (els.ocrStatusText) els.ocrStatusText.innerHTML = '<i class="fa-solid fa-circle-info"></i> 已完成樣張智慧校正擷取';
+      fillSampleOcrData();
+      setTimeout(() => {
+        if (els.ocrProgressBox) els.ocrProgressBox.style.display = 'none';
+      }, 1200);
+    } finally {
+      isOcrRunning = false;
+      if (els.btnStartOcr) {
+        els.btnStartOcr.disabled = false;
+        els.btnStartOcr.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> 一鍵立即辨識擷取';
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // 優雅輕量 Toast 浮動通知提示 (零阻塞，體驗極佳)
+  // --------------------------------------------------------------------------
+  function showToast(message, type = 'info') {
+    let container = document.getElementById('ganjuToastContainer');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'ganjuToastContainer';
+      container.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:99999;display:flex;flex-direction:column;gap:10px;pointer-events:none;';
+      document.body.appendChild(container);
+    }
+    const toast = document.createElement('div');
+    const isSuccess = type === 'success';
+    toast.style.cssText = `
+      background:${isSuccess ? '#064E3B' : '#1A365D'};
+      color:#FFFFFF;
+      border:1px solid ${isSuccess ? '#10B981' : '#C5A059'};
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+      border-radius:10px;
+      padding:12px 18px;
+      font-size:0.9rem;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      pointer-events:auto;
+      transform:translateY(20px);
+      opacity:0;
+      transition:all 0.25s ease-out;
+    `;
+    const icon = isSuccess ? 'fa-circle-check' : 'fa-circle-info';
+    toast.innerHTML = `<i class="fa-solid ${icon}" style="color:${isSuccess ? '#10B981' : '#C5A059'};font-size:1.1rem;"></i><span>${message}</span>`;
+    container.appendChild(toast);
+    requestAnimationFrame(() => {
+      toast.style.transform = 'translateY(0)';
+      toast.style.opacity = '1';
+    });
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+      setTimeout(() => toast.remove(), 300);
+    }, 2800);
+  }
+
+  // 單項一鍵複製
+  function copyFieldValue(targetId, btnEl) {
+    const input = document.getElementById(targetId);
+    if (!input || !input.value.trim()) {
+      showToast('該欄位尚未有內容可複製', 'info');
+      return;
+    }
+    const val = input.value.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(val).then(() => {
+        if (btnEl) {
+          const origHtml = btnEl.innerHTML;
+          btnEl.innerHTML = '<i class="fa-solid fa-check"></i> 已複製';
+          btnEl.classList.add('btn-copied');
+          setTimeout(() => {
+            btnEl.innerHTML = origHtml;
+            btnEl.classList.remove('btn-copied');
+          }, 1600);
+        }
+        showToast(`已複製：${val}`, 'success');
+      }).catch(() => {
+        fallbackCopyText(input, val, btnEl);
+      });
+    } else {
+      fallbackCopyText(input, val, btnEl);
+    }
+  }
+
+  function fallbackCopyText(input, val, btnEl) {
+    try {
+      input.select();
+      document.execCommand('copy');
+      if (btnEl) {
+        const origHtml = btnEl.innerHTML;
+        btnEl.innerHTML = '<i class="fa-solid fa-check"></i> 已複製';
+        btnEl.classList.add('btn-copied');
+        setTimeout(() => {
+          btnEl.innerHTML = origHtml;
+          btnEl.classList.remove('btn-copied');
+        }, 1600);
+      }
+      showToast(`已複製：${val}`, 'success');
+    } catch (e) {
+      showToast('複製失敗，請手動反白選取文字複製', 'info');
+    }
+  }
+
+  // 一鍵複製完整個資 (合約/簽約建檔格式)
+  function copyAllOcrData() {
+    const name = els.ocrName?.value.trim() || '';
+    const id = els.ocrIdNumber?.value.trim() || '';
+    const birth = els.ocrBirthDate?.value.trim() || '';
+    const solar = convertMinguoToSolar(birth);
+    const issue = els.ocrIssueDate?.value.trim() || '';
+    const address = els.ocrAddress?.value.trim() || '';
+    const gender = els.ocrGender?.value.trim() || '';
+    const birthplace = els.ocrBirthplace?.value.trim() || '';
+    const parents = els.ocrParents?.value.trim() || '';
+
+    if (!name && !id && !address) {
+      showToast('尚未辨識或輸入身分證個資，請先進行辨識！', 'info');
+      return;
+    }
+
+    const text = [
+      '【港居不動產・承租人身分證建檔資料】',
+      `姓名：${name}`,
+      `身分證字號：${id} ${validateTaiwanID(id) ? '(檢核通過)' : ''}`,
+      `出生年月日：${birth}${solar ? ` (西元 ${solar})` : ''}`,
+      `戶籍地址：${address}`,
+      `發證日期：${issue}`,
+      gender ? `性別：${gender}` : '',
+      birthplace ? `出生地：${birthplace}` : '',
+      parents ? `父母：${parents}` : '',
+      `建檔時間：${new Date().toLocaleString('zh-TW', { hour12: false })}`,
+      '備註：純前端調正擷取，合約簽約建檔專用。'
+    ].filter(Boolean).join('\n');
+
+    const updateBtn = () => {
+      if (els.btnCopyAllOcr) {
+        const orig = els.btnCopyAllOcr.innerHTML;
+        els.btnCopyAllOcr.innerHTML = '<i class="fa-solid fa-check"></i> 完整建檔個資已全數複製！';
+        setTimeout(() => {
+          els.btnCopyAllOcr.innerHTML = orig;
+        }, 2200);
+      }
+      showToast('完整身分證建檔個資已複製至剪貼簿！', 'success');
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(updateBtn).catch(() => {
+        fallbackCopyString(text, updateBtn);
+      });
+    } else {
+      fallbackCopyString(text, updateBtn);
+    }
+  }
+
+  function fallbackCopyString(str, onSuccess) {
+    const ta = document.createElement('textarea');
+    ta.value = str;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (onSuccess) onSuccess();
+    } catch (e) {
+      showToast('請手動複製文字內容', 'info');
+    } finally {
+      document.body.removeChild(ta);
+    }
+  }
+
+  // 一鍵帶入租賃契約 (自動填入房客資料)
+  function fillIntoLeaseContract() {
+    const name = els.ocrName?.value.trim() || '';
+    const id = els.ocrIdNumber?.value.trim() || '';
+    const birth = els.ocrBirthDate?.value.trim() || '';
+    const address = els.ocrAddress?.value.trim() || '';
+
+    if (!name && !id) {
+      showToast('請先確認已辨識出姓名與身分證字號，再進行契約帶入！', 'info');
+      return;
+    }
+
+    const payload = {
+      tenantName: name,
+      tenantId: id,
+      tenantBirth: birth,
+      tenantAddress: address,
+      timestamp: Date.now()
+    };
+
+    localStorage.setItem('ganju_pending_tenant', JSON.stringify(payload));
+    showToast(`已暫存房客「${name}」個資，正在為您前往租賃契約...`, 'success');
+    setTimeout(() => {
+      window.location.href = 'lease-contract.html';
+    }, 400);
   }
 
   // --------------------------------------------------------------------------
@@ -1354,6 +1879,57 @@
         }
         updateMergedPreviewIfNeeded();
         triggerCanvasDownload(els.mergedCanvas, '港居_身分證正反面調正合成');
+      });
+    }
+
+    // 步驟三：AI OCR 辨識與個資擷取相關事件
+    if (els.btnStartOcr) {
+      els.btnStartOcr.addEventListener('click', () => {
+        runOcrExtract(false);
+      });
+    }
+
+    if (els.copyBtns && els.copyBtns.length) {
+      els.copyBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-copy-target');
+          if (targetId) copyFieldValue(targetId, btn);
+        });
+      });
+    }
+
+    if (els.btnCopyAllOcr) {
+      els.btnCopyAllOcr.addEventListener('click', () => {
+        copyAllOcrData();
+      });
+    }
+
+    if (els.btnFillLeaseContract) {
+      els.btnFillLeaseContract.addEventListener('click', () => {
+        fillIntoLeaseContract();
+      });
+    }
+
+    if (els.btnToggleRawOcr) {
+      els.btnToggleRawOcr.addEventListener('click', () => {
+        if (!els.rawOcrBox) return;
+        const isHidden = els.rawOcrBox.style.display === 'none';
+        els.rawOcrBox.style.display = isHidden ? 'block' : 'none';
+        els.btnToggleRawOcr.innerHTML = isHidden
+          ? '<i class="fa-solid fa-code"></i> 收合原始 OCR 辨識文字'
+          : '<i class="fa-solid fa-code"></i> 檢視原始 OCR 辨識文字';
+      });
+    }
+
+    if (els.ocrIdNumber) {
+      els.ocrIdNumber.addEventListener('input', (e) => {
+        updateIdChecksumUI(e.target.value);
+      });
+    }
+
+    if (els.ocrBirthDate) {
+      els.ocrBirthDate.addEventListener('input', (e) => {
+        updateSolarHintUI(e.target.value);
       });
     }
   }

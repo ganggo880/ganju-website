@@ -84,6 +84,9 @@
   }
   </script>
 
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
   <script type="module" src="js/layout.js"></script>
   <!-- Auth Guard: 港居內部專屬線上工具授權驗證系統 -->
   <link rel="stylesheet" href="css/auth-guard.css">
@@ -423,6 +426,140 @@
         </div>
       </section>
     </div>
+
+    <!-- 步驟三：AI 智慧文字判斷與身分證個資擷取 -->
+    <section class="work-card ocr-section" id="ocrSection" style="margin-top: 24px;">
+      <div class="work-card-header">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <h3 class="work-card-title">
+            <i class="fa-solid fa-id-card-clip" style="color: #F59E0B;"></i> 步驟三：AI 智慧文字判斷與身分證個資自動擷取
+          </h3>
+          <span class="straightener-pill green"><i class="fa-solid fa-brain"></i> 智慧辨識 5 大核心欄位</span>
+        </div>
+        <div class="ocr-header-actions">
+          <label class="toggle-check-row" style="font-size: 0.84rem; min-height: 36px; margin: 0;">
+            <input type="checkbox" id="chkAutoOcr" checked>
+            <span>自動辨識文字</span>
+          </label>
+          <button type="button" class="btn-tool-ctrl primary-detect" id="btnStartOcr">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 一鍵立即辨識擷取
+          </button>
+        </div>
+      </div>
+      <div class="work-card-body">
+        <!-- 辨識進度與狀態條 -->
+        <div class="ocr-progress-box" id="ocrProgressBox" style="display: none;">
+          <div class="ocr-progress-status">
+            <span id="ocrStatusText"><i class="fa-solid fa-spinner fa-spin"></i> 正在分析身分證影像與文字筆畫...</span>
+            <span id="ocrPercentText" style="font-weight: 700; color: #C5A059;">0%</span>
+          </div>
+          <div class="ocr-progress-bar">
+            <div class="ocr-progress-fill" id="ocrProgressFill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- 5 大核心萃取欄位卡片網格 -->
+        <div class="ocr-fields-grid">
+          <!-- 1. 姓名 -->
+          <div class="ocr-field-card">
+            <div class="ocr-field-header">
+              <label for="ocrName"><i class="fa-solid fa-user" style="color: #C5A059;"></i> 姓名 (Name)</label>
+              <button type="button" class="btn-copy-small" data-copy-target="ocrName" title="複製姓名">
+                <i class="fa-solid fa-copy"></i> 複製
+              </button>
+            </div>
+            <input type="text" id="ocrName" class="ocr-field-input" placeholder="尚未辨識出姓名" autocomplete="off">
+          </div>
+
+          <!-- 2. 身分證字號 -->
+          <div class="ocr-field-card">
+            <div class="ocr-field-header">
+              <label for="ocrIdNumber"><i class="fa-solid fa-fingerprint" style="color: #3B82F6;"></i> 身分證字號 (ID Number)</label>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span class="id-checksum-badge badge-valid" id="idChecksumBadge" title="身分證字號檢核碼狀態">
+                  <i class="fa-solid fa-circle-check"></i> 格式正確
+                </span>
+                <button type="button" class="btn-copy-small" data-copy-target="ocrIdNumber" title="複製身分證字號">
+                  <i class="fa-solid fa-copy"></i> 複製
+                </button>
+              </div>
+            </div>
+            <input type="text" id="ocrIdNumber" class="ocr-field-input id-font" placeholder="例如：N224714710" maxlength="10" autocomplete="off">
+          </div>
+
+          <!-- 3. 出生年月日 -->
+          <div class="ocr-field-card">
+            <div class="ocr-field-header">
+              <label for="ocrBirthDate"><i class="fa-solid fa-cake-candles" style="color: #EC4899;"></i> 出生年月日 (Birth Date)</label>
+              <button type="button" class="btn-copy-small" data-copy-target="ocrBirthDate" title="複製出生年月日">
+                <i class="fa-solid fa-copy"></i> 複製
+              </button>
+            </div>
+            <input type="text" id="ocrBirthDate" class="ocr-field-input" placeholder="例如：民國 77 年 12 月 23 日" autocomplete="off">
+            <div class="ocr-field-hint" id="ocrBirthSolarHint">西元換算：1988/12/23</div>
+          </div>
+
+          <!-- 4. 發證日期 -->
+          <div class="ocr-field-card">
+            <div class="ocr-field-header">
+              <label for="ocrIssueDate"><i class="fa-solid fa-calendar-check" style="color: #10B981;"></i> 發證日期 (Issue Date)</label>
+              <button type="button" class="btn-copy-small" data-copy-target="ocrIssueDate" title="複製發證日期">
+                <i class="fa-solid fa-copy"></i> 複製
+              </button>
+            </div>
+            <input type="text" id="ocrIssueDate" class="ocr-field-input" placeholder="例如：民國 109 年 3 月 6 日 (新北市) 換發" autocomplete="off">
+          </div>
+
+          <!-- 5. 戶籍地 / 戶籍地址 -->
+          <div class="ocr-field-card ocr-field-full">
+            <div class="ocr-field-header">
+              <label for="ocrAddress"><i class="fa-solid fa-location-dot" style="color: #EF4444;"></i> 戶籍地 / 住址 (Registered Address)</label>
+              <button type="button" class="btn-copy-small" data-copy-target="ocrAddress" title="複製戶籍地址">
+                <i class="fa-solid fa-copy"></i> 複製
+              </button>
+            </div>
+            <input type="text" id="ocrAddress" class="ocr-field-input" placeholder="例如：新北市林口區湖南里46鄰仁愛路二段496號十三樓之6" autocomplete="off">
+          </div>
+
+          <!-- 6. 次要輔助欄位：性別、出生地、父母 -->
+          <div class="ocr-field-card ocr-field-full" style="background: #F8FAFC; border-style: dashed;">
+            <div class="ocr-subfields-row">
+              <div class="ocr-subfield-item">
+                <label for="ocrGender"><i class="fa-solid fa-venus-mars"></i> 性別：</label>
+                <input type="text" id="ocrGender" class="ocr-mini-input" placeholder="女/男">
+              </div>
+              <div class="ocr-subfield-item">
+                <label for="ocrBirthplace"><i class="fa-solid fa-map-pin"></i> 出生地：</label>
+                <input type="text" id="ocrBirthplace" class="ocr-mini-input" placeholder="例如：臺灣省彰化縣">
+              </div>
+              <div class="ocr-subfield-item" style="flex: 2 1 240px;">
+                <label for="ocrParents"><i class="fa-solid fa-people-roof"></i> 父母：</label>
+                <input type="text" id="ocrParents" class="ocr-mini-input" placeholder="父：某某 / 母：某某">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 一鍵整套複製與契約連動按鈕列 -->
+        <div class="ocr-actions-row">
+          <button type="button" class="btn-ocr-action btn-gold" id="btnCopyAllOcr">
+            <i class="fa-solid fa-clipboard-check"></i> 一鍵複製完整個資 (合約/簽約建檔格式)
+          </button>
+          <button type="button" class="btn-ocr-action btn-blue" id="btnFillLeaseContract">
+            <i class="fa-solid fa-file-signature"></i> 一鍵帶入租賃契約 (自動填入房客資料)
+          </button>
+          <button type="button" class="btn-ocr-action btn-outline" id="btnToggleRawOcr">
+            <i class="fa-solid fa-code"></i> 檢視原始 OCR 辨識文字
+          </button>
+        </div>
+
+        <!-- 原始 OCR 折疊文字盒 -->
+        <div class="raw-ocr-box" id="rawOcrBox" style="display: none;">
+          <div class="raw-ocr-title"><i class="fa-solid fa-terminal"></i> 原始光學辨識全文 (供核對除錯)：</div>
+          <pre id="rawOcrPre">尚未執行辨識</pre>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- 頁尾 -->

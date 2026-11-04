@@ -657,9 +657,309 @@
   margin-top: 8px;
 }
 
+/* ==========================================================================
+   步驟三：AI 智慧文字判斷與身分證個資自動擷取樣式
+   ========================================================================== */
+.ocr-section {
+  border-color: rgba(197, 160, 89, 0.45);
+}
+
+.ocr-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ocr-progress-box {
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+
+.ocr-progress-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: #1E293B;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.ocr-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #E2E8F0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ocr-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #C5A059 0%, #10B981 100%);
+  border-radius: 999px;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ocr-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ocr-field-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ocr-field-card:focus-within {
+  border-color: #C5A059;
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.18);
+}
+
+.ocr-field-card.ocr-field-full {
+  grid-column: 1 / -1;
+}
+
+.ocr-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.ocr-field-header label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1E293B;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ocr-field-input {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0F172A;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.ocr-field-input:focus {
+  background: #FFFFFF;
+  border-color: #C5A059;
+}
+
+.ocr-field-input.id-font {
+  font-family: 'Plus Jakarta Sans', monospace, sans-serif;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  color: #1A365D;
+}
+
+.ocr-field-hint {
+  font-size: 0.78rem;
+  color: #64748B;
+  margin-top: 4px;
+}
+
+.btn-copy-small {
+  min-height: 32px;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 1px solid #CBD5E1;
+  background: #F1F5F9;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-copy-small:hover {
+  background: #E2E8F0;
+  color: #1A365D;
+}
+
+.btn-copy-small.copied {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+  border-color: #10B981 !important;
+}
+
+.id-checksum-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.id-checksum-badge.badge-valid {
+  background: rgba(16, 185, 129, 0.15);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.id-checksum-badge.badge-invalid {
+  background: rgba(239, 68, 68, 0.15);
+  color: #DC2626;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.ocr-subfields-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.ocr-subfield-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1 1 140px;
+}
+
+.ocr-subfield-item label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.ocr-mini-input {
+  width: 100%;
+  min-height: 38px;
+  padding: 6px 10px;
+  font-size: 0.88rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  background: #FFFFFF;
+}
+
+.ocr-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.btn-ocr-action {
+  min-height: 46px;
+  padding: 10px 18px;
+  border-radius: 11px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn-ocr-action.btn-gold {
+  background: linear-gradient(135deg, var(--accent-gold, #C5A059), #997835);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.35);
+}
+
+.btn-ocr-action.btn-gold:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btn-ocr-action.btn-gold.copied {
+  background: #10B981 !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.btn-ocr-action.btn-blue {
+  background: #1A365D;
+  color: #FFE8B8;
+  border: 1px solid rgba(197, 160, 89, 0.6);
+}
+
+.btn-ocr-action.btn-blue:hover {
+  background: #23477A;
+  color: #FFFFFF;
+}
+
+.btn-ocr-action.btn-outline {
+  background: #FFFFFF;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+}
+
+.btn-ocr-action.btn-outline:hover {
+  background: #F1F5F9;
+  color: #1E293B;
+}
+
+.raw-ocr-box {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #0F172A;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  color: #E2E8F0;
+  box-sizing: border-box;
+}
+
+.raw-ocr-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #FFE8B8;
+  margin-bottom: 8px;
+}
+
+.raw-ocr-box pre {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
 /* RWD 響應式零溢出 */
 @media (max-width: 992px) {
   .straightener-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ocr-fields-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -682,6 +982,10 @@
   }
 
   .btn-hero-action {
+    width: 100%;
+  }
+
+  .btn-ocr-action {
     width: 100%;
   }
 }

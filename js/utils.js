@@ -142,3 +142,13 @@ export function initThemeSwitcher() {
     });
   }
 }
+
+// 支援全域 window 存取
+if (typeof window !== 'undefined') {
+  window.escapeHTML = escapeHTML;
+  window.formatCommas = formatCommas;
+  window.calculateDateDiff = calculateDateDiff;
+  window.showToast = showToast;
+  window.initNavDropdown = initNavDropdown;
+  window.initThemeSwitcher = initThemeSwitcher;
+}

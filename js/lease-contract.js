@@ -746,6 +746,36 @@
     } catch (e) {
       renderPreview();
     }
+
+    // 7. 檢查是否有來自「身分證歪斜調正神器」傳來的即時房客 AI 辨識個資
+    try {
+      const pendingTenantStr = localStorage.getItem('ganju_pending_tenant');
+      if (pendingTenantStr) {
+        const pending = JSON.parse(pendingTenantStr);
+        if (pending && (pending.tenantName || pending.tenantId)) {
+          if (pending.tenantName && $('#tenantName')) $('#tenantName').value = pending.tenantName;
+          if (pending.tenantId && $('#tenantId')) $('#tenantId').value = pending.tenantId;
+          if (pending.tenantBirth && $('#tenantBirth')) $('#tenantBirth').value = pending.tenantBirth;
+          if (pending.tenantAddress && $('#tenantAddress')) $('#tenantAddress').value = pending.tenantAddress;
+          localStorage.removeItem('ganju_pending_tenant');
+          renderPreview();
+          showNotification(`已為您自動帶入身分證 AI 房客資料：${pending.tenantName || ''} (${pending.tenantId || ''})`);
+        }
+      }
+    } catch (err) {
+      console.warn('載入 pending tenant 失敗:', err);
+    }
+  }
+
+  function showNotification(msg) {
+    const el = document.createElement('div');
+    el.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:99999;background:#064E3B;color:#FFFFFF;border:1px solid #10B981;border-radius:10px;padding:12px 18px;font-size:0.9rem;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,0.25);transition:all 0.3s;display:flex;align-items:center;gap:10px;';
+    el.innerHTML = '<i class="fa-solid fa-circle-check" style="color:#10B981;font-size:1.1rem;"></i><span>' + msg + '</span>';
+    document.body.appendChild(el);
+    setTimeout(() => {
+      el.style.opacity = '0';
+      setTimeout(() => el.remove(), 300);
+    }, 3200);
   }
 
   // DOM 載入完成後執行初始化
