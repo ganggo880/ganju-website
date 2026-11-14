@@ -70,6 +70,7 @@ HTML_FILES = [
     "altar-worship-agreement.html",
     "disaster-prevention-agreement.html",
     "fall-prevention-agreement.html",
+    "id-card-straightener.html",
     "privacy.html"
 ]
 

@@ -151,4 +151,12 @@ if (typeof window !== 'undefined') {
   window.showToast = showToast;
   window.initNavDropdown = initNavDropdown;
   window.initThemeSwitcher = initThemeSwitcher;
+  window.GanjuUtils = {
+    escapeHTML,
+    formatCommas,
+    calculateDateDiff,
+    showToast,
+    initNavDropdown,
+    initThemeSwitcher
+  };
 }

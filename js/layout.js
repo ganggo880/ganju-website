@@ -85,7 +85,11 @@ function setupMobileDrawer() {
   }
 }
 
-// 自動載入執行
-document.addEventListener('DOMContentLoaded', () => {
+// 自動載入執行（相容 DOMContentLoaded 已觸發之延遲載入情境）
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initLayout();
+  });
+} else {
   initLayout();
-});
+}

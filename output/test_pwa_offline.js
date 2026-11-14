@@ -69,6 +69,7 @@ const PAGES = [
   'disaster-prevention-agreement.html',
   'fall-prevention-agreement.html',
   'fire-safety-agreement.html',
+  'id-card-straightener.html',
   'privacy.html'
 ];
 

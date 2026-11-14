@@ -74,7 +74,15 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── household-registration-agreement.html # 49. 住宅租賃設籍約定暨退租遷出切結書產生器 (戶籍法50條第1項、定型化契約規範、設籍名冊、限期遷出、違約金精算、授權逕遷戶所、雙簽章與A4無痕列印)
 ├── lease-notarization-agreement.html     # 50. 住宅租賃租約公證聲請暨逕受強制執行約定書產生器 (公證法13條、強制執行法4條、公證規費孰高精算、逕受強執特約、雙簽章與A4無痕列印)
 ├── emergency-entry-agreement.html        # 51. 住宅租賃緊急避難與緊急開門進入授權協議書產生器 (刑法24/306條、民法150條、第三方會同見證SOP、全程錄影存證、雙簽章與A4無痕列印)
-├── sitemap.xml              # 全站 51 頁 SEO XML 網站地圖
+├── smoke-free-agreement.html             # 52. 住宅租賃無菸住宅（全面禁菸）特約承諾書產生器 (菸害防制法、電子煙/加熱菸管制、深層臭氧除味、雙簽章與A4列印)
+├── mold-prevention-agreement.html        # 53. 住宅租賃室內防潮防黴與環境通風維護承諾書產生器 (民法423/432條、48小時通報、責任歸屬、雙簽章與A4列印)
+├── noise-prevention-agreement.html       # 54. 住宅租賃噪音防制與生活安寧特約承諾書產生器 (民法793條、噪音管制法、Quiet Hours、三級處置與雙簽章)
+├── accessibility-agreement.html          # 55. 住宅租賃無障礙設備使用與安全特約切結書產生器 (民法431/432條、身障權益保障法、回復原狀模式與雙簽章)
+├── altar-worship-agreement.html          # 56. 住宅租賃祭祀焚香與神明祖先牌位安奉特約承諾書產生器 (民法432/434條、消防法、雙模式與全室粉刷除垢賠償)
+├── disaster-prevention-agreement.html    # 57. 住宅租賃天然災害防汛防颱與緊急應變責任切結書產生器 (民法432/437條、災損24h通報、天災與人為泡水分界)
+├── fall-prevention-agreement.html        # 58. 住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器 (公寓大廈第8條第2項、窗邊80cm防攀、火警逃生鋼絲剪)
+├── id-card-straightener.html             # 59. 身分證歪斜調正與智慧去邊＋AI 5 大個資擷取神器 (Canvas 透視校正、去陰影、Tesseract.js OCR、模數10檢核、連動租約)
+├── sitemap.xml              # 全站 59 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -136,6 +144,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── image-converter.css  # 圖像轉換工具專屬樣式
 │   ├── card-merger.css      # 名片合成工具專屬樣式
 │   ├── photo-time-location.css # 照片時間地點浮水印樣式
+│   ├── id-card-straightener.css # 身分證歪斜調正與 AI 5 大個資擷取神器樣式
 │   └── id-card-watermark.css   # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js        # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
@@ -195,6 +204,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── image-converter.js   # 圖像格式與尺寸調控邏輯
 │   ├── card-merger.js       # 名片正反面合成邏輯
 │   ├── photo-time-location.js # 照片時間地點浮水印渲染邏輯
+│   ├── id-card-straightener.js # 身分證歪斜調正、Tesseract.js OCR 與 5 大個資擷取引擎
 │   └── watermark-app.js     # EXIF 水印工具邏輯
 ├── assets/                  # 品牌 LOGO (logo.png) 與房源照片實景
 ├── output/                  # 所有 AI 產出之規格書 (SPECIFICATION.md)、講義、文件歸檔資料夾

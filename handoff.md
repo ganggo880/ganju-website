@@ -8,9 +8,22 @@
 
 ## ⏯️ 目前做到哪
 
-全站共 **58 個頁面**（港居不動產官網首頁、55 款高階線上工具集、3D 智慧營運島與個人資料保護政策專頁）維持穩定運作，已完成住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器研發與全站整合：
+全站共 **59 個頁面**（港居不動產官網首頁、56 款高階線上工具集、3D 智慧營運島與個人資料保護政策專頁；第 1~27 款工具上鎖並支援 3 天單頁免密網址、第 28~56 款工具全面免密開放）維持穩定運作：
 
-**2026-10-27（最新推進）— 階段七十九：住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器 (`fall-prevention-agreement.html`) 完整研發與全站 58 頁整合**
+**2026-11-14（最新推進）— 階段八十一：全站架構一致化、ES Module 腳本除錯與技術文件同步（全站 59 頁 100% 互通）**
+- **跨頁腳本與工具函式除錯**：
+  - 修正全站 36 個 HTML 工具頁載入 `js/layout.js` 未加 `type="module"` 之問題，並移除 6 頁（`depreciation-calculator.html`、`fall-prevention-agreement.html`、`holding-deposit-receipt.html`、`lease-termination-agreement.html`、`property-roi-calculator.html`、`viewing-checklist.html`）重複且非模組化之 `js/utils.js` `<script>` 標籤。
+  - `js/utils.js` 補齊 `window.GanjuUtils` 全域命名空間導出，確保跨工具腳本呼叫 `window.GanjuUtils.showToast` 正常運作。
+  - `js/layout.js` 新增 `document.readyState === 'loading'` 判斷，確保無論 DOM 是否已就緒皆可正確掛載導覽與主題切換。
+- **授權防護系統與 PWA／自動化腳本同步**：
+  - `js/auth-guard.js` 全面校正「第 1 ~ 27 款上鎖保護、第 28 ~ 56 款全面免密開放」說明文案與註解（同步反映加入 `id-card-straightener.html` 後之數量）。
+  - `sw.js` 快取版本升版為 `ganju-pwa-v6.3` 並更新工具數量註解；`output/verify_project_health.py`、`output/audit_site_specs.py`、`output/test_pwa_offline.js` 全面納入 `id-card-straightener.html`（共 59 頁）。
+
+**階段八十 — 身分證歪斜調正與智慧去邊＋AI 文字判斷 5 大個資擷取神器 (`id-card-straightener.html`) 完整研發與部署**
+- **第 59 個頁面 `id-card-straightener.html`（`css/id-card-straightener.css` ＋ `js/id-card-straightener.js`）**：
+  - 列入有密碼／3 天單頁免密通道保護工具欄（第 #02 款高頻工具）：純前端 Canvas 透視逆變換（四點拖曳＋自動抓角去邊）、智慧提亮去陰影與圓角修剪，整合 Tesseract.js 本地 OCR 辨識引擎與台灣身分證字號模數 10 檢核碼驗證，自動擷取「姓名、出生年月日、發證日期、身分證字號、戶籍地」5 大欄位，支援一鍵複製與直接帶入 `lease-contract.html` 自動填表。
+
+**階段七十九 — 住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器 (`fall-prevention-agreement.html`) 完整研發與全站 58 頁整合**
 - **第 58 個頁面 `fall-prevention-agreement.html`（`css/fall-prevention-agreement.css` ＋ `js/fall-prevention-agreement.js`）**：
   - **依據《公寓大廈管理條例》第 8 條第 2 項（兒童長者防墜條款）、內政部《公寓大廈防墜設施設置原則》、《兒童及少年福利與權益保障法》第 51 條及《民法》第 431/432/184/191 條設計**：
     - **三大防墜設施設置與退租處置模式切換**：
@@ -1536,6 +1549,7 @@
 | 56 | `altar-worship-agreement.html` | 住宅租賃祭祀焚香與神明祖先牌位安奉特約承諾書產生器（民法第432/434條、消防法、空污法、公寓大廈條例、雙模式切換、防火板、LED香火、禁燒紙錢、全室粉刷除垢賠償、雙簽章、A4列印出圖） | `WebApplication` (BusinessApplication) |
 | 57 | `disaster-prevention-agreement.html` | 住宅租賃天然災害防汛防颱與緊急應變責任切結書產生器（民法第432/437條、災害防救法、三大防汛防颱模式、門窗緊閉與落水頭清淤、懸掛盆栽入室、災損24h通報、天災與人為泡水賠償分界、雙簽章、A4列印出圖） | `WebApplication` (BusinessApplication) |
 | 58 | `fall-prevention-agreement.html` | 住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器（公寓大廈第8條第2項兒童防墜、兒少法第51條、三大防墜設施處置模式、窗邊80cm禁擺攀爬家具、火警逃生鋼絲剪保管、雙簽章、A4列印出圖） | `WebApplication` (BusinessApplication) |
+| 59 | `id-card-straightener.html` | 身分證歪斜調正與智慧去邊＋AI 文字判斷 5 大個資擷取神器（Canvas 透視逆變換、自動抓角去邊、智慧去陰影、Tesseract.js OCR、模數10檢核碼驗證、姓名/生日/發證日/證號/戶籍地擷取、一鍵帶入租約） | `WebApplication` (UtilityApplication) |
 
 ---
 
@@ -1549,6 +1563,6 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-10-27 16:00
+- 時間：2026-11-14 17:42
 - 更新者：Antigravity Agent @ Linux
-- 狀態：完成階段七十九「住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器 (`fall-prevention-agreement.html`) 完整研發與全站 58 頁整合」，全站正式拓展至 58 大頁面（55 款線上工具，38 款房東法務工具）！依據《公寓大廈管理條例》第 8 條第 2 項兒童長者防墜條款、內政部《公寓大廈防墜設施設置原則》、《兒童及少年福利與權益保障法》第 51 條及《民法》第 431/432/184/191 條設計，整合三大防墜設施設置與退租處置模式、六大防墜安全與高空防護自律規範、外牆防水破壞與損壞賠償折抵基準及大寫轉換、雙方獨立 Retina 2x 電子手寫簽章、A4 標準無痕列印出圖、Canvas 840×1180px 圖卡下載與 LINE 切結摘要一鍵複製，整合 `auth-guard.js` 零閃爍授權防護，全站 58 頁雙向互通、PWA 193 項資產離線秒開與 228 組行動端極限驗收 100% 0px 溢出通過。
+- 狀態：完成階段八十一「全站架構一致化、ES Module 腳本除錯與技術文件同步」（全站 59 頁、56 款線上工具；第 1~27 款上鎖支援 3 天免密網址、第 28~56 款全面免密開放）。修正 36 頁 `js/layout.js` ES Module 載入標籤並移除 6 頁重複非模組 `js/utils.js` 標籤、於 `js/utils.js` 補全 `window.GanjuUtils`、`js/layout.js` 支援延遲掛載、校正 `js/auth-guard.js` 1~27 / 28~56 文案、同步 `sw.js` (`ganju-pwa-v6.3`) 與 `verify_project_health.py`／`audit_site_specs.py`／`test_pwa_offline.js` 納管全站 59 頁與 `AGENTS.md`/`CLAUDE.md`/`handoff.md` 文件同步。
