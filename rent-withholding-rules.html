@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>租金扣繳基本規則與即時試算指南（無密碼開放）｜10%所得稅・2.11%二代健保・114年新制｜港居不動產</title>
+  <meta name="description" content="免密碼完整查閱與即時試算！依據現行《所得稅法》（114年1月1日扣繳新制）、《各類所得扣繳率標準》與《全民健康保險法》，彙整租金扣繳義務人、10%／20%扣繳率、20,000元與20,010元門檻差異、開立統一發票免扣繳、實拿淨額Gross-up還原公式與四個法定期限。">
+  <link rel="canonical" href="https://ganggo880.github.io/ganju-website/rent-withholding-rules.html">
+  <meta name="theme-color" content="#1A365D">
+
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="港居不動產">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="租金扣繳基本規則與即時試算指南｜港居不動產">
+  <meta property="og:description" content="無密碼開放使用！完整彙整所得稅扣繳（10%/20%）、二代健保補充保費（2.11%）、114年扣繳義務主體新制、2萬元分水嶺與未稅還原試算。">
+  <meta property="og:url" content="https://ganggo880.github.io/ganju-website/rent-withholding-rules.html">
+  <meta property="og:image" content="https://ganggo880.github.io/ganju-website/assets/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- 全站共用與專屬樣式 -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth-guard.css">
+  <link rel="stylesheet" href="css/rent-withholding-rules.css">
+
+  <!-- JSON-LD 結構化資料 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "租金扣繳基本規則與即時試算指南",
+        "url": "https://ganggo880.github.io/ganju-website/rent-withholding-rules.html",
+        "description": "無密碼免費開放之租賃所得稅扣繳（10%/20%）與二代健保補充保險費（2.11%）基本規則指南暨即時試算工具，涵蓋114年所得稅法扣繳義務人新制、20,000元起扣分水嶺、未稅實拿還原與法定期限。",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "zh-Hant-TW",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD"
+        },
+        "provider": {
+          "@type": "RealEstateAgent",
+          "@id": "https://ganggo880.github.io/ganju-website/#organization",
+          "name": "港居不動產開發有限公司",
+          "taxID": "96797997",
+          "telephone": "+886-7-791-2288",
+          "url": "https://ganggo880.github.io/ganju-website/",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "小港區合作里中安路825號",
+            "addressLocality": "高雄市",
+            "postalCode": "812",
+            "addressCountry": "TW"
+          }
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "港居不動產首頁",
+            "item": "https://ganggo880.github.io/ganju-website/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "租金扣繳基本規則與即時試算指南",
+            "item": "https://ganggo880.github.io/ganju-website/rent-withholding-rules.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/layout.js"></script>
+  <script src="js/auth-guard.js"></script>
+</head>
+<body>
+
+  <!-- 頂部登記宣告條 -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-badges">
+        <span class="top-bar-badge"><i class="fa-solid fa-shield-halved"></i> 合法特許包租代管業者</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-certificate"></i> 高市租登字第0012號</span>
+        <span class="top-bar-badge"><i class="fa-solid fa-id-card"></i> 租賃管理證號：(112) 登字第013739號</span>
+      </div>
+      <div class="top-bar-contact">
+        <span>統編：96797997</span>
+        <a href="tel:0968863880"><i class="fa-solid fa-phone"></i> 0968-863-880 (陳經理)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主導覽列 Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="港居不動產 首頁">
+        <img src="assets/logo.png" alt="港居不動產" width="279" height="57" loading="lazy" decoding="async">
+        <span class="brand-text-box">
+          <span class="brand-name">港居不動產</span>
+          <span class="brand-sub">高優質住宅包租代管</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home" class="nav-link">首頁</a></li>
+        <li><a href="index.html#landlords" class="nav-link">房東專區</a></li>
+        <li><a href="index.html#properties" class="nav-link">精選房源</a></li>
+        <li><a href="index.html#calculator" class="nav-link">收益試算</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-link nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> 線上工具 <i class="fa-solid fa-chevron-down nav-caret"></i>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#tools" class="nav-link" style="color: var(--accent-gold); font-weight: 700;"><i class="fa-solid fa-table-cells"></i> 全部工具中心 (57)</a></li>
+            <li><a href="island.html" class="nav-link" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-cube" style="color: #00e5ff;"></i> 3D 智慧營運島 (數位孿生)</a></li>
+            <li><a href="lease-contract.html" class="nav-link"><i class="fa-solid fa-file-signature" style="color: #c5a059;"></i> 租約與住戶公約套印</a></li>
+            <li><a href="id-card-straightener.html" class="nav-link"><i class="fa-solid fa-crop-simple" style="color: #fbbf24;"></i> 身分證歪斜調正與去邊</a></li>
+            <li><a href="mandate-contract.html" class="nav-link"><i class="fa-solid fa-handshake" style="color: #c5a059;"></i> 租賃委託管理/包租契約</a></li>
+            <li><a href="tax-calculator.html" class="nav-link"><i class="fa-solid fa-calculator" style="color: #ecc94b;"></i> 房東節稅效益精算</a></li>
+            <li><a href="rent-calculator.html" class="nav-link"><i class="fa-solid fa-coins" style="color: #f6ad55;"></i> 租金代管費換算</a></li>
+            <li><a href="utility-splitter.html" class="nav-link"><i class="fa-solid fa-bolt" style="color: #f6e05e;"></i> 分租水電公電分攤</a></li>
+            <li><a href="rent-receipt.html" class="nav-link"><i class="fa-solid fa-receipt" style="color: #4fd1c5;"></i> 租金收據與代管對帳</a></li>
+            <li><a href="repair-inspection.html" class="nav-link"><i class="fa-solid fa-clipboard-list" style="color: #68d391;"></i> 點交修繕瑕疵存證</a></li>
+            <li><a href="deposit-settlement.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="color: #48bb78;"></i> 退租押金結算明細</a></li>
+            <li><a href="rent-subsidy-checker.html" class="nav-link"><i class="fa-solid fa-house-chimney-user" style="color: #f687b3;"></i> 300億租補資格精算</a></li>
+            <li><a href="listing-post-generator.html" class="nav-link"><i class="fa-solid fa-bullhorn" style="color: #ed8936;"></i> 591/社群招租文案</a></li>
+            <li><a href="holding-deposit-receipt.html" class="nav-link"><i class="fa-solid fa-money-check-dollar" style="color: #38b2ac;"></i> 租屋定金收據與切結</a></li>
+            <li><a href="tenant-screening-checker.html" class="nav-link"><i class="fa-solid fa-user-check" style="color: #63b3ed;"></i> 租客審查與信用評分</a></li>
+            <li><a href="tenant-check-in-form.html" class="nav-link"><i class="fa-solid fa-building-user" style="color: #4299e1;"></i> 房客遷入登記與聯絡人卡</a></li>
+            <li><a href="repair-work-order.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench" style="color: #f59e0b;"></i> 修繕派工與驗收單</a></li>
+            <li><a href="routine-inspection-report.html" class="nav-link"><i class="fa-solid fa-clipboard-check" style="color: #10b981;"></i> 屋況定期巡檢維護報告</a></li>
+            <li><a href="viewing-checklist.html" class="nav-link"><i class="fa-solid fa-list-check" style="color: #f687b3;"></i> 看屋30項自檢評分表</a></li>
+            <li><a href="property-roi-calculator.html" class="nav-link"><i class="fa-solid fa-chart-line" style="color: #38b2ac;"></i> 物業淨投報與房貸精算</a></li>
+            <li><a href="key-custody-agreement.html" class="nav-link"><i class="fa-solid fa-key" style="color: #eab308;"></i> 鑰匙借出保管與切結</a></li>
+            <li><a href="space-planner.html" class="nav-link"><i class="fa-solid fa-compass-drafting" style="color: #00e5ff;"></i> 2D/3D格局配置系統</a></li>
+            <li><a href="id-card-watermark.html" class="nav-link"><i class="fa-solid fa-id-card" style="color: #f56565;"></i> 證件保護防偽水印</a></li>
+            <li><a href="photo-time-location.html" class="nav-link"><i class="fa-solid fa-location-dot" style="color: #48bb78;"></i> 照片時間地點水印</a></li>
+            <li><a href="photo-watermark.html" class="nav-link"><i class="fa-solid fa-camera-retro" style="color: #ed8936;"></i> 房源照片時間水印</a></li>
+            <li><a href="ocr-translator.html" class="nav-link"><i class="fa-solid fa-language" style="color: #667eea;"></i> 照片 OCR 翻譯</a></li>
+            <li><a href="file-converter.html" class="nav-link"><i class="fa-solid fa-file-export" style="color: #805ad5;"></i> 線上多功能轉檔</a></li>
+            <li><a href="image-converter.html" class="nav-link"><i class="fa-solid fa-images" style="color: #38b2ac;"></i> 圖像格式轉換</a></li>
+            <li><a href="card-merger.html" class="nav-link"><i class="fa-solid fa-address-card" style="color: #d69e2e;"></i> 名片正反合成</a></li>
+            <li><a href="lease-renewal-agreement.html" class="nav-link"><i class="fa-solid fa-file-pen" style="color: #4299e1;"></i> 租約續約協議書</a></li>
+            <li><a href="lease-termination-agreement.html" class="nav-link"><i class="fa-solid fa-file-contract" style="color: #f56565;"></i> 租約提前終止協議書</a></li>
+            <li><a href="guarantor-agreement.html" class="nav-link"><i class="fa-solid fa-user-shield" style="color: #805ad5;"></i> 租賃連帶保證人切結書</a></li>
+            <li><a href="roommate-agreement.html" class="nav-link"><i class="fa-solid fa-users" style="color: #ec4899;"></i> 合租公約與承租協議</a></li>
+            <li><a href="proxy-authorization.html" class="nav-link"><i class="fa-solid fa-signature" style="color: #6366f1;"></i> 租賃代理授權委任書</a></li>
+            <li><a href="rent-arrears-notice.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #ef4444;"></i> 租金催繳與欠租催告書</a></li>
+            <li><a href="rules-violation-notice.html" class="nav-link"><i class="fa-solid fa-triangle-exclamation" style="color: #f97316;"></i> 住戶違規改善通知單</a></li>
+            <li><a href="legal-notice-generator.html" class="nav-link"><i class="fa-solid fa-envelope-open-text" style="color: #e53e3e;"></i> 欠租催告存證信函</a></li>
+            <li><a href="arrears-installment-agreement.html" class="nav-link"><i class="fa-solid fa-handshake-simple" style="color: #14b8a6;"></i> 欠租分期清償和解協議</a></li>
+            <li><a href="depreciation-calculator.html" class="nav-link"><i class="fa-solid fa-chart-pie" style="color: #9f7aea;"></i> 設備折舊損耗殘值精算</a></li>
+            <li><a href="pet-addendum-agreement.html" class="nav-link"><i class="fa-solid fa-paw" style="color: #f59e0b;"></i> 飼養寵物特約承諾書</a></li>
+            <li><a href="parking-lease-agreement.html" class="nav-link"><i class="fa-solid fa-square-parking" style="color: #3b82f6;"></i> 汽機車停車位租用協議</a></li>
+            <li><a href="household-registration-agreement.html" class="nav-link"><i class="fa-solid fa-id-badge" style="color: #3b82f6;"></i> 設籍約定暨遷出切結書</a></li>
+            <li><a href="smoke-free-agreement.html" class="nav-link"><i class="fa-solid fa-ban-smoking" style="color: #ef4444;"></i> 無菸住宅全面禁菸承諾書</a></li>
+            <li><a href="noise-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-volume-xmark" style="color: #38bdf8;"></i> 噪音防制生活安寧承諾書</a></li>
+            <li><a href="fire-safety-agreement.html" class="nav-link"><i class="fa-solid fa-fire-extinguisher" style="color: #ef4444;"></i> 用電用火安全切結協議</a></li>
+            <li><a href="mold-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-droplet-slash" style="color: #0284c7;"></i> 防潮防黴環境維護承諾書</a></li>
+            <li><a href="lease-notarization-agreement.html" class="nav-link"><i class="fa-solid fa-stamp" style="color: #c5a059;"></i> 租約公證暨強執約定書</a></li>
+            <li><a href="renovation-consent-agreement.html" class="nav-link"><i class="fa-solid fa-hammer" style="color: #f59e0b;"></i> 室內裝修改裝同意切結</a></li>
+            <li><a href="sublease-consent-agreement.html" class="nav-link"><i class="fa-solid fa-people-arrows" style="color: #63b3ed;"></i> 承租人轉租同意與協議書</a></li>
+            <li><a href="business-registration-agreement.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar" style="color: #c5a059;"></i> 設址營業與稅賦補償協議</a></li>
+            <li><a href="ownership-change-notice.html" class="nav-link"><i class="fa-solid fa-house-chimney-user" style="color: #38b2ac;"></i> 買賣不破租賃與押金移轉通知</a></li>
+            <li><a href="abandoned-property-agreement.html" class="nav-link"><i class="fa-solid fa-box-open" style="color: #a855f7;"></i> 承租人遺留物拋棄切結</a></li>
+            <li><a href="emergency-entry-agreement.html" class="nav-link"><i class="fa-solid fa-door-open" style="color: #ef4444;"></i> 緊急避難開門授權協議書</a></li>
+            <li><a href="dispute-mediation-request.html" class="nav-link"><i class="fa-solid fa-scale-unbalanced-flip" style="color: #63b3ed;"></i> 租賃爭議調處與調解聲請</a></li>
+            <li><a href="fall-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-person-falling-burst" style="color: #14b8a6;"></i> 陽台窗戶防墜安全切結書</a></li>
+            <li><a href="disaster-prevention-agreement.html" class="nav-link"><i class="fa-solid fa-house-tsunami" style="color: #0ea5e9;"></i> 防汛防颱緊急應變切結書</a></li>
+            <li><a href="altar-worship-agreement.html" class="nav-link"><i class="fa-solid fa-place-of-worship" style="color: #f59e0b;"></i> 祭祀焚香神明安奉承諾書</a></li>
+            <li><a href="accessibility-agreement.html" class="nav-link"><i class="fa-solid fa-wheelchair" style="color: #3b82f6;"></i> 無障礙設備安全切結書</a></li>
+            <li><a href="rent-withholding-rules.html" class="nav-link active"><i class="fa-solid fa-landmark" style="color: #10b981;"></i> 租金扣繳基本規則與試算</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" class="nav-link">關於港居</a></li>
+        <li><a href="index.html#blog" class="nav-link">租務專欄</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="切換深淺模式" title="切換深淺模式">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <a href="index.html#contact" class="btn btn-gold"><i class="fa-regular fa-calendar-check"></i> 免費現場評估</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="開啟導覽選單" aria-controls="navMenu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主內容區 -->
+  <main class="rwr-page">
+
+    <!-- 列印專用頁首 -->
+    <div class="rwr-container">
+      <div class="rwr-print-header">
+        <div>
+          <h2 style="font-size: 15pt; margin: 0; color: #1A365D;">港居不動產開發有限公司｜租金扣繳基本規則與試算報告</h2>
+          <p style="font-size: 9pt; margin: 2px 0 0; color: #475569;">統一編號：96797997 ｜ 高市租登字第0012號 ｜ 租賃管理證號：(112)登字第013739號</p>
+        </div>
+        <div style="text-align: right; font-size: 9pt; color: #475569;">
+          <div id="rwrPrintDate"></div>
+          <div id="rwrPrintParams"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 頁首橫幅 -->
+    <header class="rwr-hero">
+      <div class="rwr-container rwr-hero-inner">
+        <div class="rwr-badges-row">
+          <span class="rwr-badge rwr-badge-open"><i class="fa-solid fa-lock-open"></i> 全面開放・無密碼自由使用</span>
+          <span class="rwr-badge"><i class="fa-solid fa-scale-balanced"></i> 法源查證：《所得稅法》114年新制 ＋ 《全民健康保險法》</span>
+        </div>
+        <h1 class="rwr-title">租金扣繳基本規則與即時試算指南</h1>
+        <p class="rwr-subtitle">
+          完整彙整所得稅扣繳（10%／20%）、二代健保補充保費（2.11%）、114 年起扣繳義務主體新制、20,000 元與 20,010 元分水嶺、未稅實拿 Gross-up 還原公式與四個法定期限，提供屋主、法人房客與業務同仁即時檢核試算。
+        </p>
+
+        <nav class="rwr-jump-nav" aria-label="章節快速導覽">
+          <a href="#calculator" class="rwr-jump-pill"><i class="fa-solid fa-calculator"></i> 即時扣繳試算台</a>
+          <a href="#rule-subjects" class="rwr-jump-pill"><i class="fa-solid fa-users-gear"></i> 義務主體與身分表</a>
+          <a href="#rule-threshold" class="rwr-jump-pill"><i class="fa-solid fa-code-fork"></i> 20,000元門檻差異</a>
+          <a href="#rule-deadlines" class="rwr-jump-pill"><i class="fa-solid fa-calendar-days"></i> 四個法定期限</a>
+          <a href="#rule-practice" class="rwr-jump-pill"><i class="fa-solid fa-lightbulb"></i> 實務四個注意事項</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="rwr-container">
+
+      <!-- 核心結論框（金字塔頂層） -->
+      <section class="rwr-tldr-box" aria-label="租金扣繳核心結論">
+        <h2 class="rwr-tldr-title"><i class="fa-solid fa-bullseye" style="color: var(--accent-gold);"></i> 核心結論：先看「誰付錢」，再看「誰收錢」</h2>
+        <p class="rwr-tldr-lead">
+          <strong>一般自然人房客無任何扣繳義務</strong>；唯有<strong>公司行號、機關團體、執行業務者等事業單位</strong>給付租金給個人（或未開立統一發票之營利事業）時，才同時涉及「所得稅扣繳」與「二代健保補充保費」，且兩者在 <strong>20,000 元</strong> 這一點判定方向相反（所得稅 <strong>20,010 元起</strong>扣 10%；二代健保 <strong>達 20,000 元</strong>即扣 2.11%）。
+        </p>
+        <div class="rwr-biz-grid">
+          <div class="rwr-biz-item">
+            <div class="rwr-biz-tag"><i class="fa-solid fa-house-user"></i> 代管案件 × 自然人房客</div>
+            <p>租約立於房東與個人房客之間，房客非扣繳／扣費義務人，<strong>免扣繳所得稅、免扣健保補充保費、免列單申報</strong>。</p>
+          </div>
+          <div class="rwr-biz-item">
+            <div class="rwr-biz-tag"><i class="fa-solid fa-building"></i> 代管案件 × 公司行號承租</div>
+            <p>當公司租作員工宿舍或營業使用時，法定扣繳與健保扣費義務人是<strong>承租公司本身</strong>，非代管業者。</p>
+          </div>
+          <div class="rwr-biz-item">
+            <div class="rwr-biz-tag"><i class="fa-solid fa-file-signature"></i> 自租門市 ／ 未來包租案件</div>
+            <p>若由港居公司直接向個人屋主承租（含門市或包租轉租），港居即屬法定扣繳與扣費義務人，須依限代扣與彙報。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 互動試算工作台 -->
+      <section id="calculator" aria-label="互動式租金扣繳與二代健保試算台">
+        <div class="rwr-section-head">
+          <h2><i class="fa-solid fa-calculator"></i> 即時租金扣繳與二代健保試算台</h2>
+          <p class="rwr-section-note">純前端本地運算・稅額角以下無條件捨去・含 1,000 萬元單次健保上限判定</p>
+        </div>
+
+        <div class="rwr-calc-grid">
+          <!-- 左欄：條件設定 -->
+          <div class="rwr-card">
+            <div class="rwr-card-header">
+              <h3 class="rwr-card-title"><i class="fa-solid fa-sliders"></i> 試算條件設定</h3>
+            </div>
+
+            <div class="rwr-form-group">
+              <div class="rwr-label">1. 承租方身分（誰付租金）</div>
+              <div class="rwr-seg-grid" role="group" aria-label="承租方身分">
+                <button type="button" class="rwr-seg-btn active" data-payer="entity">
+                  <i class="fa-solid fa-building"></i> 法人／公司／機關團體
+                </button>
+                <button type="button" class="rwr-seg-btn" data-payer="individual">
+                  <i class="fa-solid fa-user"></i> 一般自然人房客
+                </button>
+              </div>
+            </div>
+
+            <div class="rwr-form-group rwr-entity-only">
+              <label for="rwrLandlordSelect" class="rwr-label">2. 房東身分別（誰收租金）</label>
+              <select id="rwrLandlordSelect" class="rwr-select">
+                <option value="resident">境內居住之個人（本國人／在台滿 183 天）</option>
+                <option value="non_resident">非境內居住之個人／境外無固定營業場所事業</option>
+                <option value="corp_invoice">境內營利事業（依法開立統一發票）</option>
+                <option value="corp_small">免用統一發票小規模營利事業（僅開收據）</option>
+              </select>
+
+              <div id="rwrNonResidentNhiBox" class="rwr-subcheck-box" hidden>
+                <label class="rwr-check-label" for="rwrNonResidentNhiCheck">
+                  <input type="checkbox" id="rwrNonResidentNhiCheck">
+                  <span>受領人仍具台灣健保第 1～4 或第 6 類保險對象資格</span>
+                </label>
+                <p class="rwr-inline-hint">非境內居住者多不具健保資格；若實際持有台灣健保身分且單次達 20,000 元，仍應扣取 2.11%。</p>
+              </div>
+            </div>
+
+            <div class="rwr-form-group rwr-entity-only">
+              <div class="rwr-label">3. 契約約定計價方式</div>
+              <div class="rwr-seg-grid" role="group" aria-label="計價方式">
+                <button type="button" class="rwr-seg-btn active" data-pricing="gross">
+                  <i class="fa-solid fa-receipt"></i> 含稅總額（由租金扣款）
+                </button>
+                <button type="button" class="rwr-seg-btn" data-pricing="net">
+                  <i class="fa-solid fa-hand-holding-dollar"></i> 房東實拿（未稅還原）
+                </button>
+              </div>
+
+              <div id="rwrBearNhiBox" class="rwr-subcheck-box" hidden>
+                <label class="rwr-check-label" for="rwrBearNhiCheck">
+                  <input type="checkbox" id="rwrBearNhiCheck" checked>
+                  <span>承租方同時負擔 2.11% 二代健保補充保費（分母 0.8789）</span>
+                </label>
+                <p class="rwr-inline-hint">取消勾選則僅反推 10%（或 20%）所得稅扣繳；若仍達健保起扣點將另行自給付總額扣取。</p>
+              </div>
+            </div>
+
+            <div class="rwr-form-group rwr-entity-only" id="rwrMasterLeaseGroup">
+              <label for="rwrMasterLeaseSelect" class="rwr-label">4. 包租轉租免稅額適用（可選）</label>
+              <select id="rwrMasterLeaseSelect" class="rwr-select">
+                <option value="none">一般租賃（無每月免稅額減除）</option>
+                <option value="social">社宅包租《住宅法》第 23 條（51R・每月免稅 15,000 元）</option>
+                <option value="general">一般包租《租賃條例》第 17 條（51M・每月免稅 6,000 元）</option>
+              </select>
+              <p class="rwr-inline-hint">所得稅扣繳依減除免稅額後之餘額計算；健保補充保費則依實際給付全額判定 20,000 元起扣。</p>
+            </div>
+
+            <div class="rwr-form-group">
+              <label for="rwrAmountInput" class="rwr-label">
+                <span id="rwrAmountLabelText">單筆／每月租金金額</span>
+              </label>
+              <div class="rwr-amount-row">
+                <input type="number" id="rwrAmountInput" class="rwr-number-input" min="0" max="100000000" step="1" value="25000">
+                <span class="rwr-unit-tag">元 (TWD)</span>
+              </div>
+              <input type="range" id="rwrAmountRange" class="rwr-range" min="0" max="100000" step="100" value="25000" aria-label="調整租金金額滑桿">
+
+              <div class="rwr-chip-row" aria-label="經典門檻快選">
+                <button type="button" class="rwr-chip" data-preset-amount="20000" data-preset-pricing="gross">20,000元（僅扣健保）</button>
+                <button type="button" class="rwr-chip" data-preset-amount="20009" data-preset-pricing="gross">20,009元（免稅邊界）</button>
+                <button type="button" class="rwr-chip" data-preset-amount="20010" data-preset-pricing="gross">20,010元（雙扣起點）</button>
+                <button type="button" class="rwr-chip" data-preset-amount="30000" data-preset-pricing="net">30,000元實拿還原</button>
+              </div>
+            </div>
+
+            <div class="rwr-form-group rwr-entity-only" style="margin-bottom: 0;">
+              <label for="rwrMergeCount" class="rwr-label">同日給付合併筆數（同一房東多間房同日匯款）</label>
+              <div class="rwr-amount-row">
+                <input type="number" id="rwrMergeCount" class="rwr-number-input" min="1" max="50" step="1" value="1">
+                <span class="rwr-unit-tag">筆／間</span>
+              </div>
+              <p id="rwrMergeHint" class="rwr-inline-hint" hidden></p>
+            </div>
+          </div>
+
+          <!-- 右欄：即時試算結果 -->
+          <div class="rwr-card">
+            <div class="rwr-card-header">
+              <h3 class="rwr-card-title"><i class="fa-solid fa-scale-balanced"></i> 法定扣繳試算結果</h3>
+            </div>
+
+            <div id="rwrVerdictBanner" class="rwr-verdict-banner">
+              <span id="rwrVerdictBadge" class="rwr-verdict-badge">計算中</span>
+              <h4 id="rwrVerdictHeadline" class="rwr-verdict-headline"></h4>
+              <p id="rwrVerdictSub" class="rwr-verdict-sub"></p>
+            </div>
+
+            <div class="rwr-kpi-grid">
+              <div class="rwr-kpi-card">
+                <div class="rwr-kpi-label">憑單申報／給付總額 (Gross)</div>
+                <div id="rwrKpiGross" class="rwr-kpi-value">NT$ 0</div>
+                <div id="rwrKpiGrossMeta" class="rwr-kpi-meta"></div>
+              </div>
+              <div class="rwr-kpi-card">
+                <div class="rwr-kpi-label">應代扣所得稅額</div>
+                <div id="rwrKpiTax" class="rwr-kpi-value is-gold">NT$ 0</div>
+                <div id="rwrKpiTaxMeta" class="rwr-kpi-meta"></div>
+              </div>
+              <div class="rwr-kpi-card">
+                <div class="rwr-kpi-label">應代扣二代健保補充保費 (2.11%)</div>
+                <div id="rwrKpiNhi" class="rwr-kpi-value">NT$ 0</div>
+                <div id="rwrKpiNhiMeta" class="rwr-kpi-meta"></div>
+              </div>
+              <div class="rwr-kpi-card">
+                <div class="rwr-kpi-label">房東實領淨額</div>
+                <div id="rwrKpiNet" class="rwr-kpi-value">NT$ 0</div>
+                <div id="rwrKpiNetMeta" class="rwr-kpi-meta"></div>
+              </div>
+            </div>
+
+            <div class="rwr-deadline-box">
+              <h4><i class="fa-solid fa-clock"></i> 本次情境對應法定期限</h4>
+              <ul id="rwrDeadlineList" class="rwr-deadline-list"></ul>
+            </div>
+
+            <div class="rwr-actions-bar">
+              <button type="button" id="rwrBtnCopySummary" class="btn btn-gold">
+                <i class="fa-brands fa-line"></i> 複製 LINE 試算明細
+              </button>
+              <button type="button" id="rwrBtnPrint" class="btn btn-outline">
+                <i class="fa-solid fa-print"></i> 列印 A4 試算暨規則手冊
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 規則明細文件區 -->
+      <div class="rwr-rules-stack">
+
+        <!-- 章節一：義務主體與身分別扣繳率 -->
+        <section id="rule-subjects" class="rwr-rule-card">
+          <h2 class="rwr-rule-card-title">
+            <span class="rwr-rule-num">1</span>
+            誰有扣繳義務？114 年新制與房東身分別扣繳率
+          </h2>
+          <p class="rwr-rule-lead">
+            依據總統 113 年 8 月 7 日修正公布、行政院核定自 <strong>114 年 1 月 1 日起施行</strong>之《所得稅法》第 88 條與第 89 條，企業或機關團體給付所得時，<strong>扣繳義務人由「事業負責人／單位主管」個人，改為「事業、機關、團體或學校等組織本身」</strong>（行政法人與信託受託人亦納入；執行業務事務所與破產財團維持由執行業務者、破產管理人擔任），實現事責一致。
+          </p>
+
+          <div class="rwr-table-wrap">
+            <table class="rwr-table">
+              <thead>
+                <tr>
+                  <th>房東（出租人）身分</th>
+                  <th>所得稅扣繳率</th>
+                  <th>免扣繳／豁免條件</th>
+                  <th>二代健保 (2.11%)</th>
+                  <th>法源依據</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>境內居住之個人</strong><br>（本國人或一課稅年度在台居留滿 183 天之外僑／陸人）</td>
+                  <td><strong>10%</strong></td>
+                  <td>每次應扣繳稅額 <strong>≤ 2,000 元</strong>免扣繳<br>（即單次 <strong>20,009 元以下</strong>免扣）</td>
+                  <td>單次給付達 <strong>20,000 元</strong>起全額扣取<br>（單次上限 1,000 萬元）</td>
+                  <td>《各類所得扣繳率標準》第 2 條第 1 項第 5 款、第 13 條<br>《健保法》第 31、33 條</td>
+                </tr>
+                <tr>
+                  <td><strong>非境內居住之個人</strong><br>或 <strong>境內無固定營業場所營利事業</strong></td>
+                  <td><strong>20%</strong></td>
+                  <td><span class="rwr-tag-alert">無 2,000 元門檻</span><br>不論金額大小皆須按 20% 扣繳</td>
+                  <td>非健保保險對象者免扣取（若仍具健保身分且達 2 萬元則須扣）</td>
+                  <td>《各類所得扣繳率標準》第 3 條第 1 項第 5 款</td>
+                </tr>
+                <tr>
+                  <td><strong>境內營利事業</strong><br>（<strong>依法開立統一發票</strong>）</td>
+                  <td><span class="rwr-tag-good">免扣繳</span></td>
+                  <td>免扣繳，且<strong>免辦理年度列單申報憑單</strong>（營業人須開立發票報繳營業稅）</td>
+                  <td><span class="rwr-tag-good">免扣取</span><br>（營利事業非健保個人對象）</td>
+                  <td>《所得稅法施行細則》第 83 條第 2 項</td>
+                </tr>
+                <tr>
+                  <td><strong>免用統一發票小規模營利事業</strong><br>（僅開立普通收據）</td>
+                  <td><strong>10%</strong></td>
+                  <td>每次應扣繳稅額 <strong>≤ 2,000 元</strong>免扣；超過則須扣繳並申報憑單</td>
+                  <td><span class="rwr-tag-good">免扣取</span><br>（營利事業非健保個人對象）</td>
+                  <td>《各類所得扣繳率標準》第 2 條、第 13 條之 1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 章節二：20,000元黃金分水嶺與免列單規定 -->
+        <section id="rule-threshold" class="rwr-rule-card">
+          <h2 class="rwr-rule-card-title">
+            <span class="rwr-rule-num">2</span>
+            20,000 元黃金分水嶺：「免扣繳」不等於「免申報」
+          </h2>
+          <p class="rwr-rule-lead">
+            給付境內居住之個人租金時，所得稅採「稅額不超過 2,000 元免扣」（因稅款收至元為止、角以下無條件捨去，20,009 元 × 10% = 2,000 元），二代健保則採「單次給付達 20,000 元即全額起扣」，兩者起扣點僅差 10 元卻造成常見誤判：
+          </p>
+
+          <div class="rwr-compare-grid">
+            <div class="rwr-compare-card">
+              <h4><i class="fa-solid fa-coins" style="color: var(--accent-gold);"></i> 情境 A：租金恰為 20,000 ～ 20,009 元</h4>
+              <ul>
+                <li><strong>所得稅扣繳</strong>：<span class="rwr-tag-good">免扣繳</span>（應扣稅額為 2,000 元，未超過 2,000 元門檻）</li>
+                <li><strong>二代健保 (2.11%)</strong>：<span class="rwr-tag-warn">應扣取</span>（單次已「達」20,000 元，例如 20,000 元扣 422 元）</li>
+                <li><strong>年度申報</strong>：次年 1 月底前仍須向國稅局辦理免扣繳憑單列單申報</li>
+              </ul>
+            </div>
+            <div class="rwr-compare-card">
+              <h4><i class="fa-solid fa-file-invoice-dollar" style="color: var(--color-danger);"></i> 情境 B：租金達 20,010 元（含）以上</h4>
+              <ul>
+                <li><strong>所得稅扣繳</strong>：<span class="rwr-tag-alert">應扣 10%</span>（20,010 × 10% = 2,001 元，已超過 2,000 元）</li>
+                <li><strong>二代健保 (2.11%)</strong>：<span class="rwr-tag-alert">應扣 2.11%</span>（以租金全額計收，單次上限 1,000 萬元）</li>
+                <li><strong>同日合併原則</strong>：向同一房東租多間並於同日給付時，健保須合併認定是否達 2 萬元</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="rwr-callout">
+            <strong><i class="fa-solid fa-circle-info"></i> 全年 1,000 元以下才免列單申報：</strong>
+            依《各類所得扣繳率標準》第 13 條第 3 項及《所得稅法》第 89 條第 3 項，對同一納稅義務人<strong>全年給付總額不超過 1,000 元</strong>者，才得免列單申報；只要全年累計超過 1,000 元（即使單月皆在 20,009 元以下而免扣稅），仍須於次年 1 月底前申報免扣繳憑單。
+          </div>
+        </section>
+
+        <!-- 章節三：四個法定期限與罰則 -->
+        <section id="rule-deadlines" class="rwr-rule-card">
+          <h2 class="rwr-rule-card-title">
+            <span class="rwr-rule-num">3</span>
+            四個法定期限與違章罰則（漏一項即受罰）
+          </h2>
+          <p class="rwr-rule-lead">
+            實務最常只記得「每月 10 日繳稅」而漏掉「健保次月底」或「非居住者 10 日內」。請依下列法定時程管控：
+          </p>
+
+          <div class="rwr-table-wrap">
+            <table class="rwr-table">
+              <thead>
+                <tr>
+                  <th>法定義務項目</th>
+                  <th>一般期限</th>
+                  <th>遇連續 3 日以上國定假日順延</th>
+                  <th>法源依據</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>境內所得稅扣繳稅款繳庫</strong></td>
+                  <td><strong>每月 10 日前</strong>（繳清上月所扣稅款）</td>
+                  <td>—（末日逢例假日依行政程序法順延次上班日）</td>
+                  <td>《所得稅法》第 92 條第 1 項</td>
+                </tr>
+                <tr>
+                  <td><strong>二代健保補充保險費繳納</strong></td>
+                  <td>給付日之<strong>次月底前</strong>向健保署繳納</td>
+                  <td>—</td>
+                  <td>《健保法》第 31 條第 1 項<br>《補充保險費辦法》第 4 條第 1 項</td>
+                </tr>
+                <tr>
+                  <td><strong>年度扣免繳憑單彙報<br>健保扣費明細申報</strong></td>
+                  <td>每年 <strong>1 月底前</strong>彙報上一年度資料<br>（健保於繳納時已電子申報明細者免重複）</td>
+                  <td>1 月遇連續 3 日以上國定假日：<br>延長至 <strong>2 月 5 日</strong>止</td>
+                  <td>《所得稅法》第 92 條第 1 項<br>《補充保險費辦法》第 10 條第 1 項</td>
+                </tr>
+                <tr>
+                  <td><strong>扣免繳憑單填發納稅人</strong></td>
+                  <td>每年 <strong>2 月 10 日前</strong><br>（符合《所得稅法》第 94 條之 1 條件且無要求時得免寄紙本）</td>
+                  <td>1 月遇連續 3 日以上國定假日：<br>延長至 <strong>2 月 15 日</strong>止</td>
+                  <td>《所得稅法》第 92 條第 1 項、第 94 條之 1</td>
+                </tr>
+                <tr>
+                  <td><strong>非境內居住者（單次）</strong></td>
+                  <td>自代扣稅款日起 <strong>10 日內</strong>繳清並申報填發憑單</td>
+                  <td>該 10 日內遇連續 3 日以上國定假日：<br><strong>延長 5 日</strong>（114 年新制）</td>
+                  <td>《所得稅法》第 92 條第 2 項</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rwr-callout is-danger">
+            <strong><i class="fa-solid fa-triangle-exclamation"></i> 違章罰則提醒（《所得稅法》第 114 條）：</strong>
+            未依規定扣繳稅款者，限期責令補繳補報並處應扣未扣或短扣稅額 <strong>1 倍以下罰鍰</strong>（屆期未補繳或未按實補報處 <strong>3 倍以下罰鍰</strong>）；已扣稅款但未依限按實填報或填發憑單者，處 <strong>1,500 ～ 20,000 元罰鍰</strong>（經通知限期補報仍未辦理者處 <strong>3,000 ～ 45,000 元罰鍰</strong>）。
+          </div>
+        </section>
+
+        <!-- 章節四：實務四大高頻注意事項 -->
+        <section id="rule-practice" class="rwr-rule-card">
+          <h2 class="rwr-rule-card-title">
+            <span class="rwr-rule-num">4</span>
+            實務四個高頻注意事項與還原公式
+          </h2>
+
+          <div class="rwr-practice-grid">
+            <div class="rwr-practice-item">
+              <h4><i class="fa-solid fa-calculator"></i> ① 「房東實拿（未稅）」還原公式 (Gross-up)</h4>
+              <p>
+                若契約約定由承租法人代為負擔 10% 扣繳稅款與 2.11% 二代健保補充保費，該代付稅費視同租金對價，國稅局與健保署皆規定須還原為「給付總額」：
+              </p>
+              <div class="rwr-formula-box">
+                <strong>給付總額</strong> ＝ 房東實拿 ÷ (1 - 10% - 2.11%) ＝ 實拿 ÷ 0.8789<br>
+                <strong>扣繳稅款</strong> ＝ 給付總額 × 10%<br>
+                <strong>補充保費</strong> ＝ 給付總額 × 2.11%
+              </div>
+              <p>例：約定實拿 30,000 元 ➔ 給付總額 34,133 元（扣繳 3,413 元、健保 720 元）。</p>
+            </div>
+
+            <div class="rwr-practice-item">
+              <h4><i class="fa-solid fa-vault"></i> ② 押金設算（交付時免扣繳）</h4>
+              <p>
+                依《所得稅法》第 14 條第 1 項第 5 類第 3 款及第 123 條，出租收有押金應按每年 1 月 1 日「郵政儲金 1 年期定期儲金固定利率」設算租賃收入。因押金屬擔保款而非實際給付收益，<strong>承租法人交付押金時免辦扣繳</strong>，由個人房東於年度綜所稅結算自行申報；若房東為營業人，另須依《營業稅法施行細則》第 24 條設算利息開立統一發票。
+              </p>
+            </div>
+
+            <div class="rwr-practice-item">
+              <h4><i class="fa-solid fa-handshake-angle"></i> ③ 代管案遇公司房客之責任切分</h4>
+              <p>
+                代管契約下之租賃關係存在於「房東 ↔ 承租公司」之間。簽約時應明確告知由<strong>承租公司</strong>直接依法辦理扣繳、繳庫與憑單申報；若租金經代管專戶代收轉付，切勿誤寫為「由代管公司負擔屋主實拿」，以免混淆實際扣繳義務主體與資金流向。
+              </p>
+            </div>
+
+            <div class="rwr-practice-item">
+              <h4><i class="fa-solid fa-house-circle-check"></i> ④ 包租業轉租特例（51R ／ 51M）</h4>
+              <p>
+                包租業向個人屋主承租轉租時，符合《住宅法》第 23 條（社宅包租 <code>51R</code>，每月免稅額 15,000 元）或《租賃住宅市場發展及管理條例》第 17 條（一般包租一年以上 <code>51M</code>，每月免稅額 6,000 元）者，國稅局實務係以「<strong>租金減除免稅額後之餘額</strong>」作為扣繳基準；至於健保補充保費通常以單次給付總額判定，實際申報前建議向貴司記帳士或健保署複核口徑。
+              </p>
+            </div>
+          </div>
+
+          <div class="rwr-callout" style="margin-top: 18px;">
+            <strong><i class="fa-solid fa-phone-volume"></i> 免費官方查證管道：</strong>
+            法條原文請查「全國法規資料庫（law.moj.gov.tw）」；所得稅扣繳、憑單代號及免稅基準可洽各地區國稅局免費專線 <strong>0800-000-321</strong>；二代健保補充保費費率與弱勢豁免證明可洽健保署專線 <strong>0800-030-598</strong>；日常入帳申報請配合公司委任記帳士確認。
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 列印專用頁尾 -->
+      <div class="rwr-print-footer">
+        <div>
+          <strong>港居不動產開發有限公司</strong> ｜ 統編：96797997 ｜ 高雄市小港區合作里中安路825號
+        </div>
+        <div>
+          租賃管理證號：(112)登字第013739號 ｜ 本試算與規則整理僅供參考，實際申報以國稅局／健保署核定為準
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <img src="assets/logo.png" alt="港居不動產 LOGO" class="footer-logo" width="38" height="38" loading="lazy">
+            <div>
+              <div class="footer-brand-name">港居不動產開發有限公司</div>
+              <div class="footer-brand-sub">GANJU REAL ESTATE CO., LTD.</div>
+            </div>
+          </div>
+          <p class="footer-desc">
+            深耕高雄包租代管與高質感住宅物業管理，首創 57 款全功能線上不動產工具集，全站採用純前端本地運算，100% 保障房東與租客個資安全。
+          </p>
+          <div class="footer-cert-list">
+            <span><i class="fa-solid fa-certificate"></i> 租賃住宅服務業：(113)高市租登字第0012號</span>
+            <span><i class="fa-solid fa-award"></i> 公會會員證號：高雄市租賃住宅證字第115-046號</span>
+            <span><i class="fa-solid fa-user-tie"></i> 租賃住宅管理人員：(112)登字第013739號</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">快速導覽</div>
+          <ul class="footer-links">
+            <li><a href="index.html">返回官網首頁</a></li>
+            <li><a href="index.html#landlords">包租代管方案</a></li>
+            <li><a href="index.html#properties">精選案場房源</a></li>
+            <li><a href="index.html#tools">全部工具中心 (57)</a></li>
+            <li><a href="island.html" target="_blank" rel="noopener noreferrer">3D 智慧營運島</a></li>
+            <li><a href="privacy.html">個人資料保護政策</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">房東稅務與法務工具</div>
+          <ul class="footer-links">
+            <li><a href="rent-withholding-rules.html">租金扣繳基本規則與試算</a></li>
+            <li><a href="tax-calculator.html">房東節稅效益精算</a></li>
+            <li><a href="rent-calculator.html">租金代管費換算</a></li>
+            <li><a href="rent-receipt.html">租金收據與代管對帳</a></li>
+            <li><a href="lease-contract.html">租約與住戶公約套印</a></li>
+            <li><a href="mandate-contract.html">租賃委託管理/包租契約</a></li>
+            <li><a href="business-registration-agreement.html">設址營業與稅賦補償協議</a></li>
+            <li><a href="fall-prevention-agreement.html">陽台窗戶防墜安全切結書</a></li>
+            <li><a href="disaster-prevention-agreement.html">防汛防颱緊急應變切結書</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">聯絡港居</div>
+          <ul class="footer-contact">
+            <li><i class="fa-solid fa-location-dot"></i> 高雄市小港區合作里中安路825號</li>
+            <li><i class="fa-solid fa-phone"></i> 市話：(07) 791-2288</li>
+            <li><i class="fa-solid fa-mobile-screen"></i> 專線：0968-863-880（陳俊銘 經理）</li>
+            <li><i class="fa-solid fa-envelope"></i> 信箱：ganggo880@gmail.com</li>
+            <li><i class="fa-solid fa-building"></i> 統一編號：96797997</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 港居不動產開發有限公司 (GANJU Real Estate Co., Ltd.) 版權所有 · <a href="privacy.html" style="color: var(--accent-gold);">個人資料保護與隱私權政策</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 懸浮 Line 與電話快速按鈕 -->
+  <div class="floating-actions">
+    <a href="https://lin.ee/Q71pw2I" target="_blank" rel="noopener noreferrer" class="float-btn float-btn-line" aria-label="Line 專員一對一諮詢" title="Line 專員一對一諮詢">
+      <i class="fa-brands fa-line"></i>
+    </a>
+    <a href="tel:0968863880" class="float-btn float-btn-phone" aria-label="致電 陳俊銘 經理 0968-863-880" title="致電 陳俊銘 經理">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- 腳本載入 -->
+  <script src="js/tracking.js"></script>
+  <script type="module" src="js/rent-withholding-rules.js"></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>

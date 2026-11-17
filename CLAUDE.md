@@ -82,7 +82,8 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 ├── disaster-prevention-agreement.html    # 57. 住宅租賃天然災害防汛防颱與緊急應變責任切結書產生器 (民法432/437條、災損24h通報、天災與人為泡水分界)
 ├── fall-prevention-agreement.html        # 58. 住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器 (公寓大廈第8條第2項、窗邊80cm防攀、火警逃生鋼絲剪)
 ├── id-card-straightener.html             # 59. 身分證歪斜調正與智慧去邊＋AI 5 大個資擷取神器 (Canvas 透視校正、去陰影、Tesseract.js OCR、模數10檢核、連動租約)
-├── sitemap.xml              # 全站 59 頁 SEO XML 網站地圖
+├── rent-withholding-rules.html           # 60. 租金扣繳基本規則與即時試算指南 (無密碼開放、所得稅10%/20%、二代健保2.11%、114年新制、Gross-up 還原與 A4 列印)
+├── sitemap.xml              # 全站 60 頁 SEO XML 網站地圖
 ├── robots.txt               # 搜尋引擎漫遊器規範檔
 ├── styles.css               # 主頁專屬區塊樣式
 ├── rent-calc.css            # 租金換算工具樣式
@@ -145,6 +146,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── card-merger.css      # 名片合成工具專屬樣式
 │   ├── photo-time-location.css # 照片時間地點浮水印樣式
 │   ├── id-card-straightener.css # 身分證歪斜調正與 AI 5 大個資擷取神器樣式
+│   ├── rent-withholding-rules.css # 租金扣繳基本規則與即時試算指南樣式與 A4 列印引擎
 │   └── id-card-watermark.css   # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js        # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
@@ -205,6 +207,7 @@ g:\我的雲端硬碟\ai agent\Matt Pocock skills\
 │   ├── card-merger.js       # 名片正反面合成邏輯
 │   ├── photo-time-location.js # 照片時間地點浮水印渲染邏輯
 │   ├── id-card-straightener.js # 身分證歪斜調正、Tesseract.js OCR 與 5 大個資擷取引擎
+│   ├── rent-withholding-rules.js # 租金扣繳基本規則與二代健保即時試算引擎（含 Gross-up 還原與 A4 列印）
 │   └── watermark-app.js     # EXIF 水印工具邏輯
 ├── assets/                  # 品牌 LOGO (logo.png) 與房源照片實景
 ├── output/                  # 所有 AI 產出之規格書 (SPECIFICATION.md)、講義、文件歸檔資料夾

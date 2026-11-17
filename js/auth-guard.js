@@ -4,7 +4,7 @@
  * 核心規格：
  * 1. 分級開放機制：
  *    - 第 01 ~ 27 款高頻核心工具 (LOCKED_TOOLS)：預設上鎖，需輸入管理員通行碼，或透過「3 天單頁免密專屬網址」自動解鎖。
- *    - 第 28 ~ 56 款進階與特約工具：全面開放網頁無密碼自由使用。
+ *    - 第 28 ~ 57 款進階與特約工具：全面開放網頁無密碼自由使用。
  * 2. 3 天單頁免密自動解鎖通道 (?unlock=<token>)：
  *    - 綁定單一工具頁面 + 3 天（72 小時）有效期限數位簽章。
  *    - 期限 3 天後自動取消登入網頁（含即時倒數檢查與到期自動鎖定）。
@@ -16,7 +16,7 @@
 (function () {
   'use strict';
 
-  // 1. 第 1 ~ 27 款需上鎖之核心高頻工具清單 (第 28 ~ 56 款不在清單內，開放無密碼)
+  // 1. 第 1 ~ 27 款需上鎖之核心高頻工具清單 (第 28 ~ 57 款不在清單內，開放無密碼)
   const LOCKED_TOOLS = [
     'lease-contract.html',
     'id-card-straightener.html',
@@ -416,14 +416,14 @@
   }
 
   // --------------------------------------------------------------------------
-  // 即時權限判定與 Zero FOUC 鎖定（僅鎖定第 1 ~ 27 款工具；第 28 ~ 56 款無密碼開放）
+  // 即時權限判定與 Zero FOUC 鎖定（僅鎖定第 1 ~ 27 款工具；第 28 ~ 57 款無密碼開放）
   // --------------------------------------------------------------------------
   checkUrlParams();
 
   // 檢查是否剛過期
   function checkCurrentPageAuthorized() {
     if (!IS_LOCKED_TOOL_PAGE) {
-      // 第 28 ~ 56 款工具及首頁/隱私頁：全面開放無密碼
+      // 第 28 ~ 57 款工具及首頁/隱私頁：全面開放無密碼
       return true;
     }
     if (isAdminSessionValid()) {
@@ -819,9 +819,9 @@
       filterBar.className = 'nav-dropdown-filter-bar';
       filterBar.setAttribute('role', 'tablist');
       filterBar.innerHTML = `
-        <button type="button" class="nav-drop-tab active" data-drop-filter="all">全部 (56)</button>
+        <button type="button" class="nav-drop-tab active" data-drop-filter="all">全部 (57)</button>
         <button type="button" class="nav-drop-tab" data-drop-filter="locked"><i class="fa-solid fa-lock" style="color:#FBBF24;"></i> 密碼 (27)</button>
-        <button type="button" class="nav-drop-tab" data-drop-filter="unlocked"><i class="fa-solid fa-lock-open" style="color:#34D399;"></i> 無密碼 (29)</button>
+        <button type="button" class="nav-drop-tab" data-drop-filter="unlocked"><i class="fa-solid fa-lock-open" style="color:#34D399;"></i> 無密碼 (30)</button>
       `;
 
       menu.insertBefore(filterBar, menu.firstChild);
@@ -861,7 +861,7 @@
     bindHomepageAdminControls();
 
     if (!IS_LOCKED_TOOL_PAGE) {
-      // 第 28 ~ 56 款開放工具或首頁：若目前在單頁訪客模式，於頂部顯示訪客狀態提示
+      // 第 28 ~ 57 款開放工具或首頁：若目前在單頁訪客模式，於頂部顯示訪客狀態提示
       if (isGuestSingleModeActive()) {
         injectUnlockedBadge();
       }
@@ -936,7 +936,7 @@
       noticeBox.innerHTML = `
         <i class="fa-solid fa-user-clock"></i>
         <div style="flex: 1;">
-          <strong>3 天免密單頁訪客模式中</strong>：您目前僅能檢視已授權登入之單一網頁（<strong>${allowedList}</strong>）與第 28~56 款開放工具，其他上鎖工具已自動隱藏。
+          <strong>3 天免密單頁訪客模式中</strong>：您目前僅能檢視已授權登入之單一網頁（<strong>${allowedList}</strong>）與第 28~57 款開放工具，其他上鎖工具已自動隱藏。
         </div>
         <button type="button" class="btn-hub-exit-guest" id="ganjuBtnExitGuestMode">
           <i class="fa-solid fa-key"></i> 管理員切換 / 解除單頁限制
@@ -984,7 +984,7 @@
           <i class="fa-solid fa-lock"></i> 專屬工具授權驗證
         </h2>
         <p class="auth-desc">
-          「<strong>${toolTitle}</strong>」為受保護之核心工具。請輸入管理員通行碼，或使用管理員發放之<strong>「3 天單頁免密專屬網址」</strong>自動解鎖（第 28~56 款工具則全面免密開放）。
+          「<strong>${toolTitle}</strong>」為受保護之核心工具。請輸入管理員通行碼，或使用管理員發放之<strong>「3 天單頁免密專屬網址」</strong>自動解鎖（第 28~57 款工具則全面免密開放）。
         </p>
 
         ${reasonBannerHtml}
@@ -1036,7 +1036,7 @@
             <i class="fa-brands fa-line"></i> 聯繫港居管理員索取 3 天免密網址
           </a>
           <a href="index.html#tools" class="btn-auth-home">
-            <i class="fa-solid fa-arrow-left"></i> 返回工具中心（第 28~56 款工具免密開放）
+            <i class="fa-solid fa-arrow-left"></i> 返回工具中心（第 28~57 款工具免密開放）
           </a>
         </div>
 

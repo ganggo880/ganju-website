@@ -8,9 +8,18 @@
 
 ## ⏯️ 目前做到哪
 
-全站共 **59 個頁面**（港居不動產官網首頁、56 款高階線上工具集、3D 智慧營運島與個人資料保護政策專頁；第 1~27 款工具上鎖並支援 3 天單頁免密網址、第 28~56 款工具全面免密開放）維持穩定運作：
+全站共 **60 個頁面**（港居不動產官網首頁、57 款高階線上工具集、3D 智慧營運島與個人資料保護政策專頁；第 1~27 款工具上鎖並支援 3 天單頁免密網址、第 28~57 款工具全面免密開放）維持穩定運作：
 
-**2026-11-14（最新推進）— 階段八十一：全站架構一致化、ES Module 腳本除錯與技術文件同步（全站 59 頁 100% 互通）**
+**2026-11-18（最新推進）— 階段八十二：租金扣繳基本規則與即時試算指南 (`rent-withholding-rules.html`，無密碼開放) 完整建置與全站 60 頁整合**
+- **第 60 個頁面 `rent-withholding-rules.html`（`css/rent-withholding-rules.css` ＋ `js/rent-withholding-rules.js`）**：
+  - 列入**無密碼開放專區（第 #57 款工具）**：未加入 `js/auth-guard.js` 之 `LOCKED_TOOLS`，任何訪客皆可免密直接檢視完整規範與進行即時試算。
+  - **法規涵蓋（經全國法規資料庫／財政部／健保署查證）**：《所得稅法》第 14/88/89/92/94-1/114/123 條（含 114.1.1 施行扣繳義務人改由事業／組織本身擔任新制）、《所得稅法施行細則》第 83 條第 2 項（開發票免扣繳且免列單）、《各類所得扣繳率標準》第 2/3/13/13-1 條（境內 10%、非居住者 20% 無門檻、2,000 元免扣與 1,000 元免列單）、《全民健康保險法》第 31/33 條與《補充保險費辦法》第 4/10 條（2.11%、單次 20,000 元起扣與 1,000 萬元上限）、《住宅法》第 23 條（`51R` 15,000 元免稅）及《租賃條例》第 17 條（`51M` 6,000 元免稅）。
+  - **互動功能**：承租方（法人／自然人）× 房東 4 大身分切換、含稅／未稅實拿 Gross-up 還原（`實拿 ÷ 0.8789`）、同日多筆合併試算、20,000 / 20,009 / 20,010 元經典邊界快選、LINE 試算明細一鍵複製與 A4 無痕列印。
+- **全站同步與驗證**：
+  - `index.html`（工具數 56→57、無密碼開放 29→30、房東節稅與法務 38→39、新增 `#57` 工具卡片）、全站 58 頁有導覽列頁面、`js/auth-guard.js` 文案、`sitemap.xml`、`sw.js`（`ganju-pwa-v6.4`）、`output/verify_project_health.py`、`output/audit_site_specs.py`、`output/test_pwa_offline.js` 同步更新完成。
+  - `verify_project_health.py`（60 頁全檢 GRADE: A+）、`audit_site_specs.py`（60 頁 PASS）、Playwright E2E（360/375/414/1280px 0px 溢出、全觸控熱區 ≥ 44×44px、0 console/page errors、數學邊界全驗證通過）。
+
+**2026-11-14（前一輪）— 階段八十一：全站架構一致化、ES Module 腳本除錯與技術文件同步（全站 59 頁 100% 互通）**
 - **跨頁腳本與工具函式除錯**：
   - 修正全站 36 個 HTML 工具頁載入 `js/layout.js` 未加 `type="module"` 之問題，並移除 6 頁（`depreciation-calculator.html`、`fall-prevention-agreement.html`、`holding-deposit-receipt.html`、`lease-termination-agreement.html`、`property-roi-calculator.html`、`viewing-checklist.html`）重複且非模組化之 `js/utils.js` `<script>` 標籤。
   - `js/utils.js` 補齊 `window.GanjuUtils` 全域命名空間導出，確保跨工具腳本呼叫 `window.GanjuUtils.showToast` 正常運作。
@@ -1550,6 +1559,7 @@
 | 57 | `disaster-prevention-agreement.html` | 住宅租賃天然災害防汛防颱與緊急應變責任切結書產生器（民法第432/437條、災害防救法、三大防汛防颱模式、門窗緊閉與落水頭清淤、懸掛盆栽入室、災損24h通報、天災與人為泡水賠償分界、雙簽章、A4列印出圖） | `WebApplication` (BusinessApplication) |
 | 58 | `fall-prevention-agreement.html` | 住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器（公寓大廈第8條第2項兒童防墜、兒少法第51條、三大防墜設施處置模式、窗邊80cm禁擺攀爬家具、火警逃生鋼絲剪保管、雙簽章、A4列印出圖） | `WebApplication` (BusinessApplication) |
 | 59 | `id-card-straightener.html` | 身分證歪斜調正與智慧去邊＋AI 文字判斷 5 大個資擷取神器（Canvas 透視逆變換、自動抓角去邊、智慧去陰影、Tesseract.js OCR、模數10檢核碼驗證、姓名/生日/發證日/證號/戶籍地擷取、一鍵帶入租約） | `WebApplication` (UtilityApplication) |
+| 60 | `rent-withholding-rules.html` | 租金扣繳基本規則與即時試算指南（無密碼開放、所得稅10%/20%與114年新制、二代健保2.11%、20,000與20,010元起扣分界、開發票雙免、未稅實拿Gross-up還原、LINE摘要與A4列印） | `WebApplication` (FinanceApplication) |
 
 ---
 
@@ -1563,6 +1573,6 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-11-14 17:42
-- 更新者：Antigravity Agent @ Linux
-- 狀態：完成階段八十一「全站架構一致化、ES Module 腳本除錯與技術文件同步」（全站 59 頁、56 款線上工具；第 1~27 款上鎖支援 3 天免密網址、第 28~56 款全面免密開放）。修正 36 頁 `js/layout.js` ES Module 載入標籤並移除 6 頁重複非模組 `js/utils.js` 標籤、於 `js/utils.js` 補全 `window.GanjuUtils`、`js/layout.js` 支援延遲掛載、校正 `js/auth-guard.js` 1~27 / 28~56 文案、同步 `sw.js` (`ganju-pwa-v6.3`) 與 `verify_project_health.py`／`audit_site_specs.py`／`test_pwa_offline.js` 納管全站 59 頁與 `AGENTS.md`/`CLAUDE.md`/`handoff.md` 文件同步。
+- 時間：2026-11-18 03:02
+- 更新者：Antigravity Agent @ KEN-PC
+- 狀態：完成階段八十二「租金扣繳基本規則與即時試算指南 (`rent-withholding-rules.html`) 無密碼開放專頁建置與全站 60 頁整合」（全站 60 頁、57 款線上工具；第 1~27 款上鎖支援 3 天免密網址、第 28~57 款全面免密開放）。完成全站導覽列、首頁工具中心、`js/auth-guard.js`、`sw.js` (`ganju-pwa-v6.4`)、`sitemap.xml`、自動化檢測腳本與文件三處同步前準備；通過 `verify_project_health.py` (GRADE A+)、`audit_site_specs.py` (60 頁 PASS) 與 Playwright E2E（360~1280px 0px 溢出與試算驗證）。

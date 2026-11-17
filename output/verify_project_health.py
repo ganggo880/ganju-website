@@ -71,6 +71,7 @@ HTML_FILES = [
     "disaster-prevention-agreement.html",
     "fall-prevention-agreement.html",
     "id-card-straightener.html",
+    "rent-withholding-rules.html",
     "privacy.html"
 ]
 

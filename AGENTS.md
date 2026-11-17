@@ -102,6 +102,7 @@
 - [x] 階段七十九：住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器 `fall-prevention-agreement.html`（依據《公寓大廈管理條例》第8條第2項兒童長者防墜條款、內政部防墜設施設置原則、《兒少法》第51條與《民法》第431/432/184條，整合既有防墜保管與自費增設隱形鐵窗三模式、窗邊80cm嚴禁擺放攀爬家具、火警逃生鋼絲剪保管、防水損壞賠償基準、雙方Retina 2x電子手寫簽章、A4無痕列印出圖、Canvas 840×1180px圖卡下載與LINE切結摘要複製，全站 58 頁 100% 互通、PWA 193 項資產離線秒開與 228 組行動端 0px 溢出通過）
 - [x] 階段八十：身分證歪斜調正與智慧去邊神器 ＋ AI 文字判斷與 5 大個資自動擷取 `id-card-straightener.html`（純前端本地 Canvas 透視逆變換與自動抓角去邊、智慧提亮去陰影與圓角修剪、整合 Tesseract.js 本地 OCR 辨識引擎、台灣身分證字號加權模數 10 檢核碼數學驗證、自動擷取姓名／身分證字號／出生年月日／發證日期／戶籍地址 5 大核心欄位、民國西元即時對照、單項一鍵複製、一鍵複製完整合約建檔個資、一鍵帶入租賃契約 `lease-contract.html` 自動填入房客資料、密碼與 3 天單頁免密通道整合，CDP 全功能與極限 RWD 0px 溢出通過）
 - [x] 階段八十一：全站架構一致化、ES Module 腳本除錯與技術文件同步（全站 36 頁 `js/layout.js` 補齊 `type="module"`、移除 6 頁重複非模組 `js/utils.js` 載入、`js/utils.js` 補全 `window.GanjuUtils` 全域命名空間、修正 `js/layout.js` 延遲掛載相容性、校正 `js/auth-guard.js` 第 1~27 款上鎖／第 28~56 款開放說明文案、同步 `verify_project_health.py`／`audit_site_specs.py`／`test_pwa_offline.js` 納管全站 59 頁與 `sw.js` 快取升版 `ganju-pwa-v6.3`）
+- [x] 階段八十二：租金扣繳基本規則與即時試算指南（無密碼開放） `rent-withholding-rules.html`（依據《所得稅法》第14/88/89/92/94-1/114/123條含114.1.1施行扣繳義務人新制、《所得稅法施行細則》第83條第2項、《各類所得扣繳率標準》第2/3/13/13-1條、《全民健康保險法》第31/33條、《補充保險費辦法》第4/10條及《住宅法》第23條/`51R`、《租賃條例》第17條/`51M` 建置；整合承租方與房東身分別對照、20,000與20,010元起扣分水嶺、同日多筆合併試算、未稅實拿 Gross-up 還原、A4無痕列印與LINE明細複製，納入第 28~57 款免密開放工具，全站 60 頁 100% 互通、`sw.js` `ganju-pwa-v6.4`、Playwright E2E 360~1280px 0px 溢出與 >=44px 觸控熱區通過）
 
 ## 資料夾結構
 
@@ -172,7 +173,8 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 ├── disaster-prevention-agreement.html    # 57. 住宅租賃天然災害防汛防颱與緊急應變責任切結書產生器
 ├── fall-prevention-agreement.html        # 58. 住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書產生器
 ├── id-card-straightener.html             # 59. 身分證歪斜調正與智慧去邊＋AI 文字判斷 5 大個資擷取神器
-├── sitemap.xml                      # 全站 59 頁 SEO XML 網站地圖
+├── rent-withholding-rules.html           # 60. 租金扣繳基本規則與即時試算指南（無密碼開放）
+├── sitemap.xml                      # 全站 60 頁 SEO XML 網站地圖
 ├── robots.txt                       # 搜尋引擎漫遊器規範檔
 ├── .nojekyll                        # ⚠️ 停用 GitHub Pages 的 Jekyll 處理，勿刪
 ├── styles.css / rent-calc.css / watermark.css
@@ -229,6 +231,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── disaster-prevention-agreement.css # 住宅租賃天然災害防汛防颱與緊急應變責任切結書專用樣式與 A4 排版引擎
 │   ├── fall-prevention-agreement.css # 住宅租賃陽台窗戶防墜安全與隱形鐵窗特約切結書專用樣式與 A4 排版引擎
 │   ├── id-card-straightener.css     # 身分證歪斜調正與 AI 5 大個資擷取神器樣式
+│   ├── rent-withholding-rules.css   # 租金扣繳基本規則與即時試算指南樣式與 A4 列印引擎
 │   └── id-card-watermark.css        # 身份證照裁剪工具樣式
 ├── js/
 │   ├── auth-guard.js                # 全站線上工具專屬授權驗證防護系統核心（SHA-256、免密URL帶參、會話管理）
@@ -282,6 +285,7 @@ Matt Pocock skills/                  # 專案根目錄（Google 雲端硬碟同�
 │   ├── watermark-engine.js          # 水印合成引擎（Canvas）
 │   ├── watermark-app.js             # 照片水印工具 UI 控制
 │   ├── id-card-straightener.js      # 身分證歪斜調正、Tesseract.js OCR 與 5 大個資擷取引擎
+│   ├── rent-withholding-rules.js    # 租金扣繳基本規則與二代健保即時試算引擎（含 Gross-up 與 A4 列印）
 │   └── id-card-watermark.js         # 身份證照裁剪與水印邏輯
 │
 ├── assets/                          # 品牌 LOGO 與房源實景照

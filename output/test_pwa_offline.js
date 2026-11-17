@@ -70,6 +70,7 @@ const PAGES = [
   'fall-prevention-agreement.html',
   'fire-safety-agreement.html',
   'id-card-straightener.html',
+  'rent-withholding-rules.html',
   'privacy.html'
 ];
 
