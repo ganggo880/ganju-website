@@ -6,9 +6,10 @@
  * 法規基準：
  * - 《所得稅法》第14條、第88條、第89條、第92條、第94條之1、第114條、第123條
  *   （含 113.8.7 公布修正、114.1.1 施行扣繳義務人新制）
+ * - 《各級公庫代理銀行代辦機構及代收稅款機構稅款解繳作業辦法》第5條（稅款角以下免收／無條件捨去）
  * - 《所得稅法施行細則》第83條第2項
  * - 《各類所得扣繳率標準》第2條第1項第5款、第3條第1項第5款、第13條、第13條之1
- * - 《全民健康保險法》第31條、第33條
+ * - 《全民健康保險法》第31條、第33條 ／ 《全民健康保險法施行細則》第52條（保費角以下四捨五入）
  * - 《全民健康保險扣取及繳納補充保險費辦法》第4條、第10條
  * - 《住宅法》第23條（51R） ／ 《租賃住宅市場發展及管理條例》第17條（51M）
  * ==========================================================================
@@ -82,15 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
-   * 給定給付毛額 gross，計算所得稅與二代健保補充保費
+   * 給定給付毛額 gross，計算所得稅（角以下無條件捨去）與二代健保補充保費（角以下四捨五入）
    */
   function evaluateFromGross(gross, cfg) {
     const taxableBase = Math.max(0, gross - cfg.exemptPerUnit * cfg.mergeCount);
-    const rawTax = Math.floor(taxableBase * cfg.taxRate);
+    const taxPct = Math.round(cfg.taxRate * 100);
+    const rawTax = Math.floor((taxableBase * taxPct) / 100);
     const tax = (cfg.hasThreshold2000 && rawTax <= TAX_EXEMPT_THRESHOLD) ? 0 : rawTax;
 
     const nhiBase = Math.min(gross, NHI_SINGLE_CAP);
-    const nhi = (cfg.nhiEligible && gross >= NHI_THRESHOLD) ? Math.floor(nhiBase * NHI_RATE) : 0;
+    // 依《全民健康保險法施行細則》第52條，保險費以元為單位，角以下四捨五入（整數運算防浮點誤差）
+    const nhi = (cfg.nhiEligible && gross >= NHI_THRESHOLD)
+      ? Math.floor((nhiBase * 211 + 5000) / 10000)
+      : 0;
 
     return {
       gross,
@@ -103,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
-   * 微調 gross（考慮稅額與健保費均採無條件捨去），尋找滿足實拿目標的最小整數毛額
+   * 微調 gross（所得稅角以下捨去、二代健保角以下四捨五入），尋找滿足實拿目標的最小整數毛額
    */
   function refineGrossForTarget(approxGross, netTarget, cfg, matchTaxOnly) {
     let best = evaluateFromGross(Math.max(netTarget, approxGross), cfg);
@@ -395,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (res.nhi > 0) {
       els.kpiNhiMeta.textContent = res.gross > NHI_SINGLE_CAP
         ? '已達單次 1,000 萬元上限，以 1,000 萬元 × 2.11% 計收'
-        : '費率 2.11%（角以下捨去）；給付日次月底前繳納';
+        : '費率 2.11%（角以下四捨五入）；給付日次月底前繳納';
     } else {
       els.kpiNhiMeta.textContent = '單次給付未達 20,000 元起扣門檻';
     }

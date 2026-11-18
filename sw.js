@@ -1,7 +1,7 @@
 // sw.js - 港居不動產 PWA 離線 Service Worker
 // 提供全站 57 款不動產線上工具、3D 智慧島與隱私權專頁 100% 離線運作與極速快取體驗
 
-const CACHE_NAME = 'ganju-pwa-v6.4';
+const CACHE_NAME = 'ganju-pwa-v6.5';
 
 // 核心離線資源清單
 const PRECACHE_ASSETS = [
