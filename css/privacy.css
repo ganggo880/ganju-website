@@ -209,3 +209,42 @@
   background: var(--primary-light);
   transform: translateY(-2px);
 }
+
+/* 個人資料保護管理政策的表格（2026-11-26） */
+.privacy-table-wrap {
+  overflow-x: auto;
+  margin: 8px 0 16px;
+}
+
+.privacy-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.privacy-table th,
+.privacy-table td {
+  border: 1px solid var(--border-color);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.privacy-table th {
+  background: var(--bg-light);
+  color: var(--primary-navy);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.privacy-table td:first-child {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .privacy-table th {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
+}
